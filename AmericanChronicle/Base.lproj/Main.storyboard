@@ -265,9 +265,20 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="170" height="231"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newspaper_page-thumb" translatesAutoresizingMaskIntoConstraints="NO" id="Mtn-Kc-GOG">
+                                                    <rect key="frame" x="0.0" y="0.0" width="170" height="231"/>
+                                                </imageView>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" red="0.72549019609999998" green="0.75686274509999996" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="Mtn-Kc-GOG" secondAttribute="bottom" id="1HO-Me-jlf"/>
+                                            <constraint firstItem="Mtn-Kc-GOG" firstAttribute="leading" secondItem="6Oj-zS-ajs" secondAttribute="leading" id="U2J-7n-zRf"/>
+                                            <constraint firstAttribute="trailing" secondItem="Mtn-Kc-GOG" secondAttribute="trailing" id="ZZ7-Ap-npG"/>
+                                            <constraint firstItem="Mtn-Kc-GOG" firstAttribute="top" secondItem="6Oj-zS-ajs" secondAttribute="top" id="roP-dP-FwF"/>
+                                        </constraints>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -293,6 +304,7 @@
     </scenes>
     <resources>
         <image name="newspaper_page" width="2968" height="3843"/>
+        <image name="newspaper_page-thumb" width="150" height="194"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="jUr-3t-vfg"/>
