@@ -76,7 +76,7 @@ class MasterViewController: UITableViewController {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow(), let paper = newspaperAtIndexPath(indexPath) {
                 
-            (segue.destinationViewController as! NewspaperViewController).newspaper = paper
+            (segue.destinationViewController as! NewspaperIssuesViewController).newspaper = paper
             }
         }
     }

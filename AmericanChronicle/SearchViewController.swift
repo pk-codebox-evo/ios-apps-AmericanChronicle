@@ -122,7 +122,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let vc = segue.destinationViewController as? NewspaperViewController {
+        if let vc = segue.destinationViewController as? NewspaperIssuesViewController {
             if let selected = tableView.indexPathForSelectedRow() {
                 vc.newspaper = (data[selected.section]["rows"] as! [String])[selected.row]
             }

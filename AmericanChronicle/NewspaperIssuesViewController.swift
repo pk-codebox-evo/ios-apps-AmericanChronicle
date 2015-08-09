@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewspaperViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class NewspaperIssuesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     var newspaper: AnyObject? {
         didSet {

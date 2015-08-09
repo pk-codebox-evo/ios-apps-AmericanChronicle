@@ -238,10 +238,10 @@
             </objects>
             <point key="canvasLocation" x="187" y="-797"/>
         </scene>
-        <!--Newspaper-->
+        <!--Newspaper Issues-->
         <scene sceneID="Cn3-H9-jdl">
             <objects>
-                <viewController title="Detail" id="Ah7-4n-0Wa" userLabel="Newspaper" customClass="NewspaperViewController" customModule="AmericanChronicle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Detail" id="Ah7-4n-0Wa" userLabel="Newspaper Issues" customClass="NewspaperIssuesViewController" customModule="AmericanChronicle" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cIm-e0-J51"/>
                         <viewControllerLayoutGuide type="bottom" id="a0L-h9-sNL"/>
@@ -279,6 +279,9 @@
                                             <constraint firstAttribute="trailing" secondItem="Mtn-Kc-GOG" secondAttribute="trailing" id="ZZ7-Ap-npG"/>
                                             <constraint firstItem="Mtn-Kc-GOG" firstAttribute="top" secondItem="6Oj-zS-ajs" secondAttribute="top" id="roP-dP-FwF"/>
                                         </constraints>
+                                        <connections>
+                                            <segue destination="t9g-8O-U25" kind="show" id="yN9-B9-HIW"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -300,6 +303,67 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lrm-kH-fPn" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1343" y="64"/>
+        </scene>
+        <!--Newspaper Pages View Controller-->
+        <scene sceneID="LpB-y1-g8j">
+            <objects>
+                <viewController id="t9g-8O-U25" customClass="NewspaperPagesViewController" customModule="AmericanChronicle" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kvM-5x-P7g"/>
+                        <viewControllerLayoutGuide type="bottom" id="V8H-Aq-fvV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ACu-44-z6D">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="syV-xM-1yO">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yeV-OG-sFh">
+                                    <size key="itemSize" width="120" height="160"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="h0i-nG-8KY">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="160"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newspaper_page-thumb" translatesAutoresizingMaskIntoConstraints="NO" id="Li7-tS-2u1">
+                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="160"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="Li7-tS-2u1" firstAttribute="top" secondItem="h0i-nG-8KY" secondAttribute="top" id="8pd-Y9-Tu0"/>
+                                            <constraint firstItem="Li7-tS-2u1" firstAttribute="leading" secondItem="h0i-nG-8KY" secondAttribute="leading" id="fCh-c6-fjZ"/>
+                                            <constraint firstAttribute="bottom" secondItem="Li7-tS-2u1" secondAttribute="bottom" id="mVp-66-stD"/>
+                                            <constraint firstAttribute="trailing" secondItem="Li7-tS-2u1" secondAttribute="trailing" id="qCn-V2-JKE"/>
+                                        </constraints>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="t9g-8O-U25" id="Dhx-eS-qcp"/>
+                                    <outlet property="delegate" destination="t9g-8O-U25" id="Fnw-Po-5cK"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="syV-xM-1yO" secondAttribute="bottom" id="DWg-AQ-p3l"/>
+                            <constraint firstItem="syV-xM-1yO" firstAttribute="leading" secondItem="ACu-44-z6D" secondAttribute="leading" id="SkL-pg-E8E"/>
+                            <constraint firstItem="syV-xM-1yO" firstAttribute="top" secondItem="ACu-44-z6D" secondAttribute="top" id="cEB-cW-0gX"/>
+                            <constraint firstAttribute="trailing" secondItem="syV-xM-1yO" secondAttribute="trailing" id="ioU-Et-Xdk"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uni-5y-FKK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1997" y="64"/>
         </scene>
     </scenes>
     <resources>
