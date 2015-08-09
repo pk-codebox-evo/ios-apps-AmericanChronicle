@@ -13,10 +13,26 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
 
     var data = [[String: AnyObject]]()
+    let recentSearches: [[String: AnyObject]] = [
+        ["title": "Recent Searches", "rows": ["The Argus", "The Arizona Champion", "Jane Doe Blah"]]
+    ]
+    let searchResults: [[String: AnyObject]] = [
+        ["title": "1 matching newspaper", "rows": ["The Daily Chronicle"]],
+        ["title": "118 matching pages", "rows": [
+            "The Daily Chronicle",
+            "The Daily Chronicle",
+            "The Daily Chronicle",
+            "The Daily Chronicle",
+            "The Daily Chronicle",
+            "The Daily Chronicle",
+            "The Daily Chronicle",
+            "The Daily Chronicle"
+        ]]
+    ]
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        if !searchBar.isFirstResponder() {
+        if count(searchBar.text) == 0 {
             searchBar.becomeFirstResponder()
             showRecentSearches()
         }
@@ -31,26 +47,12 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
 
     func showSearchResults() {
-        data = [
-            ["title": "1 matching newspaper", "rows": ["The Daily Chronicle"]],
-            ["title": "118 matching pages", "rows": [
-                "The Daily Chronicle",
-                "The Daily Chronicle",
-                "The Daily Chronicle",
-                "The Daily Chronicle",
-                "The Daily Chronicle",
-                "The Daily Chronicle",
-                "The Daily Chronicle",
-                "The Daily Chronicle"
-            ]]
-        ]
+        data = searchResults
         tableView.reloadData()
     }
 
     func showRecentSearches() {
-        data = [
-            ["title": "Recent Searches", "rows": ["The Argus", "The Arizona Champion", "Jane Doe Blah"]]
-        ]
+        data = recentSearches
         tableView.reloadData()
     }
 
@@ -65,7 +67,12 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
 //    // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 //
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! UITableViewCell
+        let cell: UITableViewCell
+        if data == recentSearches {
+             cell = tableView.dequeueReusableCellWithIdentifier("RecentSearchCell") as! UITableViewCell
+        } else {
+            cell = tableView.dequeueReusableCellWithIdentifier("SearchResultsPageCell") as! UITableViewCell
+        }
         if let rows = data[indexPath.section]["rows"] as? [String] {
             cell.textLabel?.text = rows[indexPath.row]
         } else {
@@ -80,6 +87,15 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
 //
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return data[section]["title"] as? String
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if data == recentSearches, let rows = data[indexPath.section]["rows"] as? [String] {
+            searchBar.text = rows[indexPath.row]
+            showSearchResults()
+        } else {
+            println("\(__FILE__) | \(__FUNCTION__) | line \(__LINE__)")
+        }
     }
 
 //    optional func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String?

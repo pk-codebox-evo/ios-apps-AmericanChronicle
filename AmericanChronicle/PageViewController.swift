@@ -29,6 +29,10 @@ class PageViewController: UIViewController {
         }
     }
 
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+
 //    optional func scrollViewDidScroll(scrollView: UIScrollView) // any offset changes
 
 //    @availability(iOS, introduced=3.2)
