@@ -83,7 +83,7 @@
         <scene sceneID="bLx-70-iIW">
             <objects>
                 <tableViewController id="ZFl-2L-3Fm" userLabel="Search View Controller" customClass="SearchViewController" customModule="AmericanChronicle" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="bcB-lu-ojH" userLabel="Table View" customClass="I">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="bcB-lu-ojH" userLabel="Table View">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -101,6 +101,9 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r1s-8D-5AT" id="N7q-U2-8y6">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="1qS-Yc-KkM" kind="showDetail" id="0jL-hM-5hR"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -116,6 +119,75 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XxF-eP-4sd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1007" y="-797"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="mX8-xO-i3Z">
+            <objects>
+                <viewController id="1qS-Yc-KkM" customClass="PageViewController" customModule="AmericanChronicle" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SYt-Qe-zeW"/>
+                        <viewControllerLayoutGuide type="bottom" id="srk-IN-26A"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dnw-1K-uLz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newspaper_page" translatesAutoresizingMaskIntoConstraints="NO" id="o3E-0a-kJu">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" red="0.15686274510000001" green="0.1450980392" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fMa-4a-P3K">
+                                <rect key="frame" x="0.0" y="529" width="600" height="71"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQP-xf-5Pp">
+                                        <rect key="frame" x="537" y="21" width="40" height="30"/>
+                                        <state key="normal" title="Share">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="shareButtonTapped:" destination="1qS-Yc-KkM" eventType="touchUpInside" id="i6l-i5-IYw"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pL9-rV-mb4">
+                                        <rect key="frame" x="25" y="21" width="37" height="30"/>
+                                        <state key="normal" title="Done">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="doneButtonTapped:" destination="1qS-Yc-KkM" eventType="touchUpInside" id="flt-Ba-tpS"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.15686274510000001" green="0.1450980392" blue="0.14901960780000001" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="xQP-xf-5Pp" secondAttribute="bottom" constant="20" id="HKr-9F-2tD"/>
+                                    <constraint firstAttribute="trailing" secondItem="xQP-xf-5Pp" secondAttribute="trailing" constant="23" id="R2n-nn-dOg"/>
+                                    <constraint firstItem="pL9-rV-mb4" firstAttribute="leading" secondItem="fMa-4a-P3K" secondAttribute="leading" constant="25" id="e59-6L-KBj"/>
+                                    <constraint firstAttribute="bottom" secondItem="pL9-rV-mb4" secondAttribute="bottom" constant="20" id="gv3-oy-4ZT"/>
+                                    <constraint firstAttribute="height" constant="71" id="yVc-NU-LEa"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="o3E-0a-kJu" firstAttribute="leading" secondItem="dnw-1K-uLz" secondAttribute="leading" id="Odh-5a-3Xe"/>
+                            <constraint firstAttribute="bottom" secondItem="o3E-0a-kJu" secondAttribute="bottom" id="Tyb-XV-WFP"/>
+                            <constraint firstAttribute="trailing" secondItem="o3E-0a-kJu" secondAttribute="trailing" id="WjP-LX-fow"/>
+                            <constraint firstItem="fMa-4a-P3K" firstAttribute="leading" secondItem="dnw-1K-uLz" secondAttribute="leading" id="aYG-eW-uCo"/>
+                            <constraint firstAttribute="trailing" secondItem="fMa-4a-P3K" secondAttribute="trailing" id="eVR-r5-fVl"/>
+                            <constraint firstItem="o3E-0a-kJu" firstAttribute="top" secondItem="dnw-1K-uLz" secondAttribute="top" id="tiN-Dj-LNd"/>
+                            <constraint firstAttribute="bottom" secondItem="fMa-4a-P3K" secondAttribute="bottom" id="tvR-cr-tMq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bottomBarBG" destination="fMa-4a-P3K" id="Bhw-zG-9gY"/>
+                        <outlet property="doneButton" destination="pL9-rV-mb4" id="u4t-84-3wC"/>
+                        <outlet property="shareButton" destination="xQP-xf-5Pp" id="r8e-CU-rvI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Re-dD-PJv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1850" y="-797"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yT9-gB-WRp">
@@ -170,4 +242,7 @@
             <point key="canvasLocation" x="1343" y="64"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="newspaper_page" width="2968" height="3843"/>
+    </resources>
 </document>

@@ -15,6 +15,7 @@
 		97BDE1211B76ED6B00A3E57F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97BDE11F1B76ED6B00A3E57F /* LaunchScreen.xib */; };
 		97BDE12D1B76ED6B00A3E57F /* AmericanChronicleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE12C1B76ED6B00A3E57F /* AmericanChronicleTests.swift */; };
 		97BDE1371B76F84F00A3E57F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE1361B76F84F00A3E57F /* SearchViewController.swift */; };
+		97BDE1391B7703CA00A3E57F /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE1381B7703CA00A3E57F /* PageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		97BDE12B1B76ED6B00A3E57F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97BDE12C1B76ED6B00A3E57F /* AmericanChronicleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericanChronicleTests.swift; sourceTree = "<group>"; };
 		97BDE1361B76F84F00A3E57F /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		97BDE1381B7703CA00A3E57F /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				97BDE1141B76ED6B00A3E57F /* AppDelegate.swift */,
 				97BDE1161B76ED6B00A3E57F /* MasterViewController.swift */,
 				97BDE1361B76F84F00A3E57F /* SearchViewController.swift */,
+				97BDE1381B7703CA00A3E57F /* PageViewController.swift */,
 				97BDE1181B76ED6B00A3E57F /* NewspaperViewController.swift */,
 				97BDE11A1B76ED6B00A3E57F /* Main.storyboard */,
 				97BDE11D1B76ED6B00A3E57F /* Images.xcassets */,
@@ -219,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				97BDE1191B76ED6B00A3E57F /* NewspaperViewController.swift in Sources */,
+				97BDE1391B7703CA00A3E57F /* PageViewController.swift in Sources */,
 				97BDE1171B76ED6B00A3E57F /* MasterViewController.swift in Sources */,
 				97BDE1371B76F84F00A3E57F /* SearchViewController.swift in Sources */,
 				97BDE1151B76ED6B00A3E57F /* AppDelegate.swift in Sources */,

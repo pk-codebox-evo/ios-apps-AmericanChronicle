@@ -163,7 +163,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
 //    @availability(iOS, introduced=3.0)
 //    optional func tableView(tableView: UITableView, willDeselectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath?
 //    // Called after the user changes the selection.
-//    optional func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+
 //    @availability(iOS, introduced=3.0)
 //    optional func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath)
 //
