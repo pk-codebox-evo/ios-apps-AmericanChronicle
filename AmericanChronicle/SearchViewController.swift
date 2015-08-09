@@ -12,13 +12,24 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
 
+    enum ResultType: Int {
+        case Newspaper
+        case Page
+    }
+
     var data = [[String: AnyObject]]()
     let recentSearches: [[String: AnyObject]] = [
         ["title": "Recent Searches", "rows": ["The Argus", "The Arizona Champion", "Jane Doe Blah"]]
     ]
     let searchResults: [[String: AnyObject]] = [
-        ["title": "1 matching newspaper", "rows": ["The Daily Chronicle"]],
-        ["title": "118 matching pages", "rows": [
+        [
+            "title": "1 matching newspaper",
+            "rows": ["The Daily Chronicle"],
+            "type": ResultType.Newspaper.rawValue
+        ],
+        [
+            "title": "118 matching pages",
+            "rows": [
             "The Daily Chronicle",
             "The Daily Chronicle",
             "The Daily Chronicle",
@@ -27,7 +38,9 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
             "The Daily Chronicle",
             "The Daily Chronicle",
             "The Daily Chronicle"
-        ]]
+        ],
+            "type": ResultType.Page.rawValue
+        ]
     ]
 
     override func viewDidAppear(animated: Bool) {
@@ -71,7 +84,16 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         if data == recentSearches {
              cell = tableView.dequeueReusableCellWithIdentifier("RecentSearchCell") as! UITableViewCell
         } else {
-            cell = tableView.dequeueReusableCellWithIdentifier("SearchResultsPageCell") as! UITableViewCell
+            if let rawType = data[indexPath.section]["type"] as? Int {
+                if ResultType(rawValue: rawType) == .Newspaper {
+                    cell = tableView.dequeueReusableCellWithIdentifier("SearchResultsNewspaperCell") as! UITableViewCell
+                } else {
+                    cell = tableView.dequeueReusableCellWithIdentifier("SearchResultsPageCell") as! UITableViewCell
+                }
+            } else {
+                cell = tableView.dequeueReusableCellWithIdentifier("SearchResultsPageCell") as! UITableViewCell
+            }
+
         }
         if let rows = data[indexPath.section]["rows"] as? [String] {
             cell.textLabel?.text = rows[indexPath.row]
@@ -94,7 +116,16 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
             searchBar.text = rows[indexPath.row]
             showSearchResults()
         } else {
+
             println("\(__FILE__) | \(__FUNCTION__) | line \(__LINE__)")
+        }
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let vc = segue.destinationViewController as? NewspaperViewController {
+            if let selected = tableView.indexPathForSelectedRow() {
+                vc.newspaper = (data[selected.section]["rows"] as! [String])[selected.row]
+            }
         }
     }
 

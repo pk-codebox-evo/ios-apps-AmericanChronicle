@@ -28,6 +28,12 @@ class MasterViewController: UITableViewController {
             self.startYear = startYear
             self.endYear = endYear
         }
+
+
+
+        var description: String {
+            return title
+        }
     }
 
     var newspapers = [State: [Newspaper]]()
@@ -70,7 +76,7 @@ class MasterViewController: UITableViewController {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow(), let paper = newspaperAtIndexPath(indexPath) {
                 
-//            (segue.destinationViewController as! DetailViewController).detailItem = object
+            (segue.destinationViewController as! NewspaperViewController).newspaper = paper
             }
         }
     }
