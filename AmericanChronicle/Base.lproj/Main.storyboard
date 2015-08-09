@@ -132,10 +132,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newspaper_page" translatesAutoresizingMaskIntoConstraints="NO" id="o3E-0a-kJu">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="IdJ-12-A3u">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" red="0.15686274510000001" green="0.1450980392" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newspaper_page" translatesAutoresizingMaskIntoConstraints="NO" id="o3E-0a-kJu">
+                                        <rect key="frame" x="0.0" y="0.0" width="2968" height="3843"/>
+                                        <color key="backgroundColor" red="0.15686274510000001" green="0.1450980392" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="o3E-0a-kJu" secondAttribute="trailing" id="9MN-uz-jbu"/>
+                                    <constraint firstItem="o3E-0a-kJu" firstAttribute="leading" secondItem="IdJ-12-A3u" secondAttribute="leading" id="OXC-0b-THd"/>
+                                    <constraint firstItem="o3E-0a-kJu" firstAttribute="top" secondItem="IdJ-12-A3u" secondAttribute="top" id="bMw-An-FWn"/>
+                                    <constraint firstAttribute="bottom" secondItem="o3E-0a-kJu" secondAttribute="bottom" id="mTs-f5-TCX"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="1qS-Yc-KkM" id="KB4-Qa-lgF"/>
+                                </connections>
+                            </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fMa-4a-P3K">
                                 <rect key="frame" x="0.0" y="529" width="600" height="71"/>
                                 <subviews>
@@ -170,18 +184,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="o3E-0a-kJu" firstAttribute="leading" secondItem="dnw-1K-uLz" secondAttribute="leading" id="Odh-5a-3Xe"/>
-                            <constraint firstAttribute="bottom" secondItem="o3E-0a-kJu" secondAttribute="bottom" id="Tyb-XV-WFP"/>
-                            <constraint firstAttribute="trailing" secondItem="o3E-0a-kJu" secondAttribute="trailing" id="WjP-LX-fow"/>
+                            <constraint firstItem="IdJ-12-A3u" firstAttribute="top" secondItem="dnw-1K-uLz" secondAttribute="top" id="MaZ-Z7-rux"/>
+                            <constraint firstAttribute="bottom" secondItem="IdJ-12-A3u" secondAttribute="bottom" id="ZAU-4g-OOU"/>
                             <constraint firstItem="fMa-4a-P3K" firstAttribute="leading" secondItem="dnw-1K-uLz" secondAttribute="leading" id="aYG-eW-uCo"/>
                             <constraint firstAttribute="trailing" secondItem="fMa-4a-P3K" secondAttribute="trailing" id="eVR-r5-fVl"/>
-                            <constraint firstItem="o3E-0a-kJu" firstAttribute="top" secondItem="dnw-1K-uLz" secondAttribute="top" id="tiN-Dj-LNd"/>
+                            <constraint firstAttribute="trailing" secondItem="IdJ-12-A3u" secondAttribute="trailing" id="nef-d7-9Hw"/>
                             <constraint firstAttribute="bottom" secondItem="fMa-4a-P3K" secondAttribute="bottom" id="tvR-cr-tMq"/>
+                            <constraint firstItem="IdJ-12-A3u" firstAttribute="leading" secondItem="dnw-1K-uLz" secondAttribute="leading" id="uZe-hR-j4E"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="bottomBarBG" destination="fMa-4a-P3K" id="Bhw-zG-9gY"/>
                         <outlet property="doneButton" destination="pL9-rV-mb4" id="u4t-84-3wC"/>
+                        <outlet property="imageView" destination="o3E-0a-kJu" id="1iQ-Br-oUB"/>
+                        <outlet property="scrollView" destination="IdJ-12-A3u" id="qTX-cH-xo4"/>
                         <outlet property="shareButton" destination="xQP-xf-5Pp" id="r8e-CU-rvI"/>
                     </connections>
                 </viewController>
