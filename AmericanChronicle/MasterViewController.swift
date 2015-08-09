@@ -10,20 +10,46 @@ import UIKit
 
 class MasterViewController: UITableViewController {
 
-    var objects = [AnyObject]()
+    enum State: Int {
+        case Alabama
+        case Arizona
+        case Arkansas
+    }
 
+    class Newspaper {
+        let title: String
+        let city: String
+        var startYear: Int?
+        var endYear: Int?
+
+        init(title: String, city: String, startYear: Int?, endYear: Int?) {
+            self.title = title
+            self.city = city
+            self.startYear = startYear
+            self.endYear = endYear
+        }
+    }
+
+    var newspapers = [State: [Newspaper]]()
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        newspapers[.Alabama] = [Newspaper(title: "Chattanooga daily rebel.", city: "Selma", startYear: 1865, endYear: 1865)]
+        newspapers[.Arizona] = [
+            Newspaper(title: "The argus", city: "Holbrook", startYear: 1895, endYear: 1900),
+            Newspaper(title: "The Arizona champion", city: "Peach Springs", startYear: 1883, endYear: 1891),
+            Newspaper(title: "Arizona citizen", city: "Tucson", startYear: 1870, endYear: 1880),
+            Newspaper(title: "The Arizona daily orb", city: "Bisbee", startYear: 1898, endYear: 1900),
+            Newspaper(title: "The Arizona kicker", city: "Tombstone", startYear: 1893, endYear: 1913),
+            Newspaper(title: "Arizona miner", city: "Fort Whipple", startYear: 1864, endYear: 1868),
+            Newspaper(title: "Arizona republican", city: "Phoenix", startYear: 1890, endYear: 1930)
+        ]
+        newspapers[.Arkansas] = [Newspaper(title: "The argus", city: "Holbrook", startYear: 1895, endYear: 1900)]
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        self.navigationItem.leftBarButtonItem = self.editButtonItem()
-
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
-        self.navigationItem.rightBarButtonItem = addButton
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,19 +57,13 @@ class MasterViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func insertNewObject(sender: AnyObject) {
-        objects.insert(NSDate(), atIndex: 0)
-        let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-    }
-
     // MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow() {
-                let object = objects[indexPath.row] as! NSDate
-            (segue.destinationViewController as! DetailViewController).detailItem = object
+//                let object = objects[indexPath.row] as! NSDate
+//            (segue.destinationViewController as! DetailViewController).detailItem = object
             }
         }
     }
@@ -51,33 +71,27 @@ class MasterViewController: UITableViewController {
     // MARK: - Table View
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return newspapers.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        if let state = State(rawValue: section) {
+            return newspapers[state]?.count ?? 0
+        }
+        return 0
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
-
-        let object = objects[indexPath.row] as! NSDate
-        cell.textLabel!.text = object.description
-        return cell
-    }
-
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            objects.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        if let state = State(rawValue: indexPath.section) {
+            if let papers = newspapers[state] {
+                let paper = papers[indexPath.row]
+                cell.textLabel?.text = paper.title
+                return cell
+            }
         }
+        cell.textLabel?.text = nil
+        return cell
     }
 
 
