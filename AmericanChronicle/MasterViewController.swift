@@ -57,12 +57,19 @@ class MasterViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func newspaperAtIndexPath(indexPath: NSIndexPath) -> Newspaper? {
+        if let state = State(rawValue: indexPath.section), let papers = newspapers[state] {
+            return papers[indexPath.row]
+        }
+        return nil
+    }
+
     // MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
-            if let indexPath = self.tableView.indexPathForSelectedRow() {
-//                let object = objects[indexPath.row] as! NSDate
+            if let indexPath = self.tableView.indexPathForSelectedRow(), let paper = newspaperAtIndexPath(indexPath) {
+                
 //            (segue.destinationViewController as! DetailViewController).detailItem = object
             }
         }
@@ -83,14 +90,11 @@ class MasterViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
-        if let state = State(rawValue: indexPath.section) {
-            if let papers = newspapers[state] {
-                let paper = papers[indexPath.row]
-                cell.textLabel?.text = paper.title
-                return cell
-            }
+        if let paper = newspaperAtIndexPath(indexPath) {
+            cell.textLabel?.text = paper.title
+        } else {
+            cell.textLabel?.text = nil
         }
-        cell.textLabel?.text = nil
         return cell
     }
 

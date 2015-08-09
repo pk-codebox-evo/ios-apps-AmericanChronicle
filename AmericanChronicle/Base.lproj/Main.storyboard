@@ -27,14 +27,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="bHH-AM-mZg">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            <textInputTraits key="textInputTraits"/>
-                            <connections>
-                                <outlet property="delegate" destination="pGg-6v-bdr" id="szf-UJ-AR7"/>
-                            </connections>
-                        </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="2pz-XF-uhl" style="IBUITableViewCellStyleDefault" id="m0d-ak-lc9">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
@@ -64,7 +56,13 @@
                             <outlet property="delegate" destination="pGg-6v-bdr" id="Y6K-Cp-Qkv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Home" id="tQt-TN-PWz"/>
+                    <navigationItem key="navigationItem" title="Title" id="WXR-pL-dc8">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="6EL-Zo-QM0">
+                            <connections>
+                                <segue destination="2tS-Kb-pdx" kind="presentation" id="gQU-MG-0ao"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchDisplayController" destination="S56-GT-QBt" id="v6t-tX-4lC"/>
                     </connections>
@@ -73,19 +71,72 @@
                 <searchDisplayController id="S56-GT-QBt">
                     <connections>
                         <outlet property="delegate" destination="pGg-6v-bdr" id="0jb-2C-9eG"/>
-                        <outlet property="searchBar" destination="bHH-AM-mZg" id="x20-ke-1NM"/>
                         <outlet property="searchContentsController" destination="pGg-6v-bdr" id="cPn-uZ-Sth"/>
                         <outlet property="searchResultsDataSource" destination="pGg-6v-bdr" id="WMd-un-XXN"/>
                         <outlet property="searchResultsDelegate" destination="pGg-6v-bdr" id="bue-ou-VgZ"/>
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="605" y="64"/>
+            <point key="canvasLocation" x="560" y="57"/>
         </scene>
-        <!--Detail-->
+        <!--Search View Controller-->
+        <scene sceneID="bLx-70-iIW">
+            <objects>
+                <tableViewController id="ZFl-2L-3Fm" userLabel="Search View Controller" customClass="SearchViewController" customModule="AmericanChronicle" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="bcB-lu-ojH" customClass="I">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search" showsCancelButton="YES" id="KVK-w2-rt5">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="ZFl-2L-3Fm" id="kqz-6n-MJA"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="r1s-8D-5AT">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r1s-8D-5AT" id="N7q-U2-8y6">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ZFl-2L-3Fm" id="eyM-FZ-nxU"/>
+                            <outlet property="delegate" destination="ZFl-2L-3Fm" id="F0b-Vc-fk4"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="TzO-H0-usH"/>
+                    <connections>
+                        <outlet property="searchBar" destination="KVK-w2-rt5" id="WVa-ud-IIK"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XxF-eP-4sd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1007" y="-797"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="yT9-gB-WRp">
+            <objects>
+                <navigationController id="2tS-Kb-pdx" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XIF-bl-One">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ZFl-2L-3Fm" kind="relationship" relationship="rootViewController" id="e9N-cK-chl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g1v-bO-akn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="187" y="-797"/>
+        </scene>
+        <!--Newspaper-->
         <scene sceneID="Cn3-H9-jdl">
             <objects>
-                <viewController title="Detail" id="Ah7-4n-0Wa" customClass="DetailViewController" customModule="AmericanChronicle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Detail" id="Ah7-4n-0Wa" userLabel="Newspaper" customClass="NewspaperlViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cIm-e0-J51"/>
                         <viewControllerLayoutGuide type="bottom" id="a0L-h9-sNL"/>
