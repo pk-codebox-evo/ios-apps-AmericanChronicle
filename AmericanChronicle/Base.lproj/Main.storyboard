@@ -83,7 +83,7 @@
         <scene sceneID="bLx-70-iIW">
             <objects>
                 <tableViewController id="ZFl-2L-3Fm" userLabel="Search View Controller" customClass="SearchViewController" customModule="AmericanChronicle" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="bcB-lu-ojH" customClass="I">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="bcB-lu-ojH" userLabel="Table View" customClass="I">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -96,7 +96,7 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="r1s-8D-5AT">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="r1s-8D-5AT">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r1s-8D-5AT" id="N7q-U2-8y6">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -108,7 +108,7 @@
                             <outlet property="delegate" destination="ZFl-2L-3Fm" id="F0b-Vc-fk4"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="TzO-H0-usH"/>
+                    <navigationItem key="navigationItem" title="Search" id="TzO-H0-usH"/>
                     <connections>
                         <outlet property="searchBar" destination="KVK-w2-rt5" id="WVa-ud-IIK"/>
                     </connections>
