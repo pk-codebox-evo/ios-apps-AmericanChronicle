@@ -39,7 +39,7 @@
                                             <rect key="frame" x="15" y="0.0" width="270" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </label>
                                     </subviews>
@@ -135,7 +135,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XxF-eP-4sd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1007" y="-797"/>
+            <point key="canvasLocation" x="1975" y="-797"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="mX8-xO-i3Z">
@@ -220,7 +220,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Re-dD-PJv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1850" y="-797"/>
+            <point key="canvasLocation" x="3334" y="-797"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yT9-gB-WRp">
@@ -236,7 +236,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g1v-bO-akn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="187" y="-797"/>
+            <point key="canvasLocation" x="1273" y="-797"/>
         </scene>
         <!--Newspaper Issues-->
         <scene sceneID="Cn3-H9-jdl">
@@ -252,7 +252,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SBj-KH-NwP">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sVZ-cP-mZr">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="10" id="sVZ-cP-mZr">
                                     <size key="itemSize" width="170" height="231"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -302,7 +302,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lrm-kH-fPn" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1343" y="64"/>
+            <point key="canvasLocation" x="1975" y="64"/>
         </scene>
         <!--Newspaper Pages View Controller-->
         <scene sceneID="LpB-y1-g8j">
@@ -318,11 +318,11 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="syV-xM-1yO">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yeV-OG-sFh">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="10" id="yeV-OG-sFh">
                                     <size key="itemSize" width="120" height="160"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="10" minY="10" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="h0i-nG-8KY">
@@ -344,6 +344,9 @@
                                             <constraint firstAttribute="bottom" secondItem="Li7-tS-2u1" secondAttribute="bottom" id="mVp-66-stD"/>
                                             <constraint firstAttribute="trailing" secondItem="Li7-tS-2u1" secondAttribute="trailing" id="qCn-V2-JKE"/>
                                         </constraints>
+                                        <connections>
+                                            <segue destination="1qS-Yc-KkM" kind="showDetail" id="Ey2-h4-gGJ"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -363,7 +366,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uni-5y-FKK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1997" y="64"/>
+            <point key="canvasLocation" x="2629" y="64"/>
         </scene>
     </scenes>
     <resources>
@@ -371,6 +374,7 @@
         <image name="newspaper_page-thumb" width="150" height="194"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jUr-3t-vfg"/>
+        <segue reference="0jL-hM-5hR"/>
+        <segue reference="Kxg-2h-Gzk"/>
     </inferredMetricsTieBreakers>
 </document>
