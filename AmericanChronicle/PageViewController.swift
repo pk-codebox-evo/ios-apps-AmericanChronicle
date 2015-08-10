@@ -29,10 +29,36 @@ class PageViewController: UIViewController {
         }
     }
 
+    override var modalPresentationStyle: UIModalPresentationStyle {
+        get {
+            return UIModalPresentationStyle.OverCurrentContext
+        }
+        set {
+
+        }
+    }
+
     @IBOutlet var tapGesture: UITapGestureRecognizer!
     @IBAction func tapRecognized(sender: AnyObject) {
         bottomBarBG.hidden = !bottomBarBG.hidden
     }
+
+    func prepareForAppearanceAnimation() {
+        view.alpha = 0
+    }
+
+    func updateViewsInsideAppearanceAnimation() {
+        view.alpha = 1.0
+    }
+
+    func prepareForDisappearanceAnimation() {
+
+    }
+
+    func updateViewsInsideDisappearanceAnimation() {
+        view.alpha = 0
+    }
+
     override func prefersStatusBarHidden() -> Bool {
         return true
     }

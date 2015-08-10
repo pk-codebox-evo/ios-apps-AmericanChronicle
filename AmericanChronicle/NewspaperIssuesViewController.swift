@@ -36,5 +36,7 @@ class NewspaperIssuesViewController: UIViewController, UICollectionViewDelegate,
         let width = (self.view.bounds.size.width - 30) / 2.0
         return CGSize(width: width, height: width * 1.5)
     }
+
+
 }
 

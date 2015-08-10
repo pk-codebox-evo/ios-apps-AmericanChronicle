@@ -13,10 +13,36 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
     @IBOutlet weak var previewCollectionView: UICollectionView!
     @IBOutlet weak var stripCollectionView: UICollectionView!
     @IBOutlet var previewDelegate: NewspaperPagesPreviewDelegate!
+    var hidesStatusBar: Bool = false
 
     var newspaper: AnyObject? {
         didSet {
         }
+    }
+
+    func prepareForDisappearanceAnimation() {
+        
+    }
+
+    func updateViewsInsideDisappearanceAnimation() {
+//        hidesStatusBar = true
+//        setNeedsStatusBarAppearanceUpdate()
+//        navigationController?.setNavigationBarHidden(true, animated: false)
+
+    }
+
+    func prepareForAppearanceAnimation() {
+
+    }
+
+    func updateViewsInsideAppearanceAnimation() {
+//        hidesStatusBar = false
+//        setNeedsStatusBarAppearanceUpdate()
+//        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+
+    override func prefersStatusBarHidden() -> Bool {
+        return hidesStatusBar
     }
 
     override func viewDidLoad() {
@@ -38,6 +64,10 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         previewCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
 
+    }
+
+    @IBAction func unfocusPage(sender: UIStoryboardSegue) {
+        println("\(__FILE__) | \(__FUNCTION__) | line \(__LINE__)")
     }
 }
 
