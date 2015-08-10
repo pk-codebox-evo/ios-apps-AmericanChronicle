@@ -12,6 +12,7 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
 
     @IBOutlet weak var previewCollectionView: UICollectionView!
     @IBOutlet weak var stripCollectionView: UICollectionView!
+    @IBOutlet var previewDelegate: NewspaperPagesPreviewDelegate!
 
     var newspaper: AnyObject? {
         didSet {
@@ -20,20 +21,21 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        previewDelegate.actionHandler = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
-    func didTapPreviewAtIndexPath(indexPath: NSIndexPath) {
-        // Hide strip and show viewer
+    func didScrollToPreviewAtIndexPath(indexPath: NSIndexPath) {
+        stripCollectionView.selectItemAtIndexPath(indexPath, animated: true, scrollPosition: .CenteredHorizontally)
     }
 
     // MARK: UICollectionViewDelegate methods
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        previewCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
+        previewCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
 
     }
 }

@@ -443,6 +443,7 @@
                     </view>
                     <connections>
                         <outlet property="previewCollectionView" destination="syV-xM-1yO" id="cjS-7m-7ma"/>
+                        <outlet property="previewDelegate" destination="ay3-A8-6dN" id="Y1B-Ba-dKC"/>
                         <outlet property="stripCollectionView" destination="5uZ-Jd-FZG" id="cDh-Kv-yPO"/>
                     </connections>
                 </viewController>

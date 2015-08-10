@@ -9,12 +9,12 @@
 import UIKit
 
 @objc protocol NewspaperPagesPreviewActionHandler {
-    func didTapPreviewAtIndexPath(indexPath: NSIndexPath)
+    func didScrollToPreviewAtIndexPath(indexPath: NSIndexPath)
 }
 
 class NewspaperPagesPreviewDelegate: NSObject, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
-//    weak var actionHandler: NewspaperPagesPreviewActionHandler?
+    weak var actionHandler: NewspaperPagesPreviewActionHandler?
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let width = (collectionView.frame.size.width - 20)
@@ -23,64 +23,15 @@ class NewspaperPagesPreviewDelegate: NSObject, UICollectionViewDelegate, UIColle
         return CGSize(width: width, height: height)
     }
 
-    // MARK: UICollectionViewDelegate methods
+    // MARK: UIScrollViewDelegate methods
 
-//    func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-//
-//    }
-
-//    func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
-//
-//    }
-//
-//    func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
-//
-//    }
-//
-//    func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-//
-//    }
-//
-//    func collectionView(collectionView: UICollectionView, shouldDeselectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-//
-//    }
-
-//    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-//        actionHandler?.didTapPreviewAtIndexPath(indexPath)
-//    }
-
-//    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-//
-//    }
-//
-//    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-//
-//    }
-//
-//    func collectionView(collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, atIndexPath indexPath: NSIndexPath) {
-//
-//    }
-//    func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-//
-//    }
-//
-//    func collectionView(collectionView: UICollectionView, didEndDisplayingSupplementaryView view: UICollectionReusableView, forElementOfKind elementKind: String, atIndexPath indexPath: NSIndexPath) {
-//
-//    }
-//
-//    func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-//
-//    }
-//
-//    func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) -> Bool {
-//
-//    }
-//
-//    func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) {
-//        
-//    }
-//    
-//    func collectionView(collectionView: UICollectionView, transitionLayoutForOldLayout fromLayout: UICollectionViewLayout, newLayout toLayout: UICollectionViewLayout) -> UICollectionViewTransitionLayout! {
-//        
-//    }
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) { // called when scroll view grinds to a halt
+        println("\(__FILE__) | \(__FUNCTION__) | line \(__LINE__)")
+        if let cv = scrollView as? UICollectionView {
+            let visible = cv.indexPathsForVisibleItems()
+            if let indexPath = visible.last as? NSIndexPath where count(visible) == 1 {
+                actionHandler?.didScrollToPreviewAtIndexPath(indexPath)
+            }
+        }
+    }
 }
