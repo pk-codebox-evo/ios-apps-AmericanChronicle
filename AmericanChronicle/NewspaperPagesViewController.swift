@@ -22,6 +22,7 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         previewDelegate.actionHandler = self
+        stripCollectionView.selectItemAtIndexPath(NSIndexPath(forItem: 0, inSection: 0), animated: false, scrollPosition: .Left)
     }
 
     override func didReceiveMemoryWarning() {
