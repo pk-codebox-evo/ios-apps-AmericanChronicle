@@ -9,7 +9,7 @@
 import UIKit
 
 class PageViewController: UIViewController {
-    
+
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var bottomBarBG: UIView!
