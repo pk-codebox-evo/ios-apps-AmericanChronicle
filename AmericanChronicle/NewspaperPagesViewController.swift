@@ -8,7 +8,10 @@
 
 import UIKit
 
-class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, NewspaperPagesPreviewActionHandler {
+
+    @IBOutlet weak var previewCollectionView: UICollectionView!
+    @IBOutlet weak var stripCollectionView: UICollectionView!
 
     var newspaper: AnyObject? {
         didSet {
@@ -23,18 +26,15 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
         super.didReceiveMemoryWarning()
     }
 
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+    func didTapPreviewAtIndexPath(indexPath: NSIndexPath) {
+        // Hide strip and show viewer
     }
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! UICollectionViewCell
-        return cell
-    }
+    // MARK: UICollectionViewDelegate methods
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let width = (self.view.bounds.size.width - 30) / 2.0
-        return CGSize(width: width, height: width * 1.5)
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        previewCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
+
     }
 }
 
