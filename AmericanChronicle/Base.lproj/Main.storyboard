@@ -167,7 +167,7 @@
                                     <outlet property="delegate" destination="1qS-Yc-KkM" id="KB4-Qa-lgF"/>
                                 </connections>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fMa-4a-P3K">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fMa-4a-P3K" userLabel="bottomBarBG">
                                 <rect key="frame" x="0.0" y="529" width="600" height="71"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQP-xf-5Pp">
@@ -200,6 +200,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="IdJ-12-A3u" firstAttribute="top" secondItem="dnw-1K-uLz" secondAttribute="top" id="MaZ-Z7-rux"/>
                             <constraint firstAttribute="bottom" secondItem="IdJ-12-A3u" secondAttribute="bottom" id="ZAU-4g-OOU"/>
@@ -209,6 +210,9 @@
                             <constraint firstAttribute="bottom" secondItem="fMa-4a-P3K" secondAttribute="bottom" id="tvR-cr-tMq"/>
                             <constraint firstItem="IdJ-12-A3u" firstAttribute="leading" secondItem="dnw-1K-uLz" secondAttribute="leading" id="uZe-hR-j4E"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="jAg-yM-ExX" appends="YES" id="XAe-df-M29"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="bottomBarBG" destination="fMa-4a-P3K" id="Bhw-zG-9gY"/>
@@ -216,9 +220,15 @@
                         <outlet property="imageView" destination="o3E-0a-kJu" id="1iQ-Br-oUB"/>
                         <outlet property="scrollView" destination="IdJ-12-A3u" id="qTX-cH-xo4"/>
                         <outlet property="shareButton" destination="xQP-xf-5Pp" id="r8e-CU-rvI"/>
+                        <outlet property="tapGesture" destination="jAg-yM-ExX" id="ovj-9B-8cA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Re-dD-PJv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="jAg-yM-ExX">
+                    <connections>
+                        <action selector="tapRecognized:" destination="1qS-Yc-KkM" id="mlu-J6-lsN"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3334" y="-797"/>
         </scene>

@@ -29,6 +29,10 @@ class PageViewController: UIViewController {
         }
     }
 
+    @IBOutlet var tapGesture: UITapGestureRecognizer!
+    @IBAction func tapRecognized(sender: AnyObject) {
+        bottomBarBG.hidden = !bottomBarBG.hidden
+    }
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
