@@ -97,13 +97,67 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchResultsPageCell" id="r1s-8D-5AT">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SearchResultsPageCell" rowHeight="150" id="r1s-8D-5AT" customClass="SearchResultsPageCell" customModule="AmericanChronicle" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r1s-8D-5AT" id="N7q-U2-8y6">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jan 3, 1902" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LyD-RH-nx7" userLabel="dateLabel">
+                                            <rect key="frame" x="15" y="15" width="73.5" height="19.5"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phoenix, AZ" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XE5-Qz-vCE" userLabel="cityStateLabel">
+                                            <rect key="frame" x="301" y="15.5" width="76" height="19.5"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3lu-HF-ybD" userLabel="matchingTextLabel">
+                                            <rect key="frame" x="45" y="47" width="332" height="46.5"/>
+                                            <string key="text">…with a full season of practice, Jane Doe had learned enough to overtake the incumbent…
+</string>
+                                            <fontDescription key="fontDescription" name="IowanOldStyle-Roman" family="Iowan Old Style" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Daily Mail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yi1-vE-MYn" userLabel="publicationTitleLabel">
+                                            <rect key="frame" x="15" y="114" width="90" height="19.5"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="and 999 more" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xe0-yC-LTi" userLabel="moreMatchesCountLabel">
+                                            <rect key="frame" x="288" y="114" width="89" height="19.5"/>
+                                            <fontDescription key="fontDescription" name="AvenirNext-Italic" family="Avenir Next" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="XE5-Qz-vCE" secondAttribute="trailing" constant="4" id="8Xr-iL-VNv"/>
+                                        <constraint firstItem="LyD-RH-nx7" firstAttribute="leading" secondItem="N7q-U2-8y6" secondAttribute="leading" constant="15" id="Fej-nt-xMU"/>
+                                        <constraint firstItem="LyD-RH-nx7" firstAttribute="top" secondItem="N7q-U2-8y6" secondAttribute="top" constant="15" id="Mdz-qc-wDV"/>
+                                        <constraint firstItem="XE5-Qz-vCE" firstAttribute="top" secondItem="N7q-U2-8y6" secondAttribute="top" constant="15" id="SQy-IP-sSp"/>
+                                        <constraint firstAttribute="trailing" secondItem="3lu-HF-ybD" secondAttribute="trailing" constant="4" id="VRk-td-Z5k"/>
+                                        <constraint firstAttribute="trailing" secondItem="Xe0-yC-LTi" secondAttribute="trailing" constant="4" id="cF5-j9-E08"/>
+                                        <constraint firstItem="3lu-HF-ybD" firstAttribute="leading" secondItem="N7q-U2-8y6" secondAttribute="leading" constant="45" id="gMX-22-uTX"/>
+                                        <constraint firstItem="Yi1-vE-MYn" firstAttribute="leading" secondItem="N7q-U2-8y6" secondAttribute="leading" constant="15" id="lyg-mR-GXe"/>
+                                        <constraint firstItem="Xe0-yC-LTi" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Yi1-vE-MYn" secondAttribute="trailing" constant="10" id="oab-OY-xkr"/>
+                                        <constraint firstAttribute="centerY" secondItem="3lu-HF-ybD" secondAttribute="centerY" constant="4.25" id="t6c-oq-blW"/>
+                                        <constraint firstAttribute="bottom" secondItem="Yi1-vE-MYn" secondAttribute="bottom" constant="15.5" id="tC6-k1-1g4"/>
+                                        <constraint firstItem="Yi1-vE-MYn" firstAttribute="top" secondItem="LyD-RH-nx7" secondAttribute="bottom" constant="79.5" id="uL3-FJ-JXI"/>
+                                        <constraint firstAttribute="bottom" secondItem="Xe0-yC-LTi" secondAttribute="bottom" constant="15.5" id="w9Y-me-wjW"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="1qS-Yc-KkM" kind="showDetail" id="0jL-hM-5hR"/>
+                                    <outlet property="cityStateLabel" destination="XE5-Qz-vCE" id="ep5-iY-225"/>
+                                    <outlet property="dateLabel" destination="LyD-RH-nx7" id="ceh-WX-1D2"/>
+                                    <outlet property="matchingTextLabel" destination="3lu-HF-ybD" id="mQW-u8-DXu"/>
+                                    <outlet property="moreMatchesCountLabel" destination="Xe0-yC-LTi" id="eSh-HQ-Ajx"/>
+                                    <outlet property="publicationTitleLabel" destination="Yi1-vE-MYn" id="RXu-lT-9XS"/>
+                                    <segue destination="1qS-Yc-KkM" kind="show" id="0jL-hM-5hR"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecentSearchCell" id="Cgf-Xj-8oK">
@@ -466,6 +520,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Kxg-2h-Gzk"/>
-        <segue reference="8Os-xR-Ge2"/>
+        <segue reference="0jL-hM-5hR"/>
     </inferredMetricsTieBreakers>
 </document>

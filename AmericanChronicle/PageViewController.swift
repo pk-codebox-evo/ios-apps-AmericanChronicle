@@ -37,6 +37,18 @@ class PageViewController: UIViewController {
         scrollView.contentInset = UIEdgeInsetsMake(top, left, top, left);
     }
 
+    // MARK: UIViewController overrides
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBarHidden = true
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    }
+
+
     override func viewDidLayoutSubviews() {
         if let imageWidth = imageView.image?.size.width where imageWidth > 0 {
             scrollView.minimumZoomScale = scrollView.frame.size.width / imageWidth

@@ -43,7 +43,7 @@ class NewspaperPageUnfocusSegue: UIStoryboardSegue {
     }
 
     func performUnfocusToSearch(searchViewController: SearchViewController, pageViewController: PageViewController) {
-        searchViewController.dismissViewControllerAnimated(true, completion: nil)
+        searchViewController.navigationController?.popViewControllerAnimated(true)
     }
 
     override func perform() {
