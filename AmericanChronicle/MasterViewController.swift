@@ -14,6 +14,14 @@ class MasterViewController: UITableViewController {
         case Alabama
         case Arizona
         case Arkansas
+
+        var description: String {
+            switch self {
+            case .Alabama: return "Alabama"
+            case .Arizona: return "Arizona"
+            case .Arkansas: return "Arkansas"
+            }
+        }
     }
 
     class Newspaper {
@@ -83,6 +91,13 @@ class MasterViewController: UITableViewController {
             return newspapers[state]?.count ?? 0
         }
         return 0
+    }
+
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if let state = State(rawValue: section) {
+            return state.description
+        }
+        return "(Unknown)"
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

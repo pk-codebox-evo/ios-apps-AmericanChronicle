@@ -18,9 +18,11 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     }
 
     var data = [[String: AnyObject]]()
+
     let recentSearches: [[String: AnyObject]] = [
         ["title": "Recent Searches", "rows": ["The Argus", "The Arizona Champion", "Jane Doe Blah"]]
     ]
+
     let searchResults: [[String: AnyObject]] = [
         [
             "title": "1 matching newspaper",
