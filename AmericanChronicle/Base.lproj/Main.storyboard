@@ -242,7 +242,7 @@
         <!--Search Navigation Controller-->
         <scene sceneID="yT9-gB-WRp">
             <objects>
-                <navigationController id="2tS-Kb-pdx" userLabel="Search Navigation Controller" sceneMemberID="viewController">
+                <navigationController id="2tS-Kb-pdx" userLabel="Search Navigation Controller" customClass="CustomSegueNavigationController" customModule="AmericanChronicle" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XIF-bl-One">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

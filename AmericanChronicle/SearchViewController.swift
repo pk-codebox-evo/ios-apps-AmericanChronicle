@@ -44,6 +44,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
     ]
 
     @IBAction func unfocusPage(sender: UIStoryboardSegue) {
+        println("\(__FILE__) | \(__FUNCTION__) | line \(__LINE__)")
     }
 
     override func viewDidAppear(animated: Bool) {
