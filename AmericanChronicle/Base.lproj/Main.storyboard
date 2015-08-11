@@ -150,19 +150,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="IdJ-12-A3u">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" maximumZoomScale="5" translatesAutoresizingMaskIntoConstraints="NO" id="IdJ-12-A3u">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newspaper_page" translatesAutoresizingMaskIntoConstraints="NO" id="o3E-0a-kJu">
-                                        <rect key="frame" x="0.0" y="0.0" width="2968" height="3843"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                         <color key="backgroundColor" red="0.15686274510000001" green="0.1450980392" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="414" placeholder="YES" id="Ugv-hB-0pc"/>
+                                            <constraint firstAttribute="height" constant="736" placeholder="YES" id="nai-R6-Kn1"/>
+                                        </constraints>
                                     </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="o3E-0a-kJu" secondAttribute="trailing" id="9MN-uz-jbu"/>
-                                    <constraint firstItem="o3E-0a-kJu" firstAttribute="leading" secondItem="IdJ-12-A3u" secondAttribute="leading" id="OXC-0b-THd"/>
-                                    <constraint firstItem="o3E-0a-kJu" firstAttribute="top" secondItem="IdJ-12-A3u" secondAttribute="top" id="bMw-An-FWn"/>
-                                    <constraint firstAttribute="bottom" secondItem="o3E-0a-kJu" secondAttribute="bottom" id="mTs-f5-TCX"/>
+                                    <constraint firstAttribute="trailing" secondItem="o3E-0a-kJu" secondAttribute="trailing" id="2Pq-Zt-HrT"/>
+                                    <constraint firstAttribute="bottom" secondItem="o3E-0a-kJu" secondAttribute="bottom" id="a8f-gE-Pu6"/>
+                                    <constraint firstItem="o3E-0a-kJu" firstAttribute="top" secondItem="IdJ-12-A3u" secondAttribute="top" id="c7I-ib-f9P"/>
+                                    <constraint firstItem="o3E-0a-kJu" firstAttribute="leading" secondItem="IdJ-12-A3u" secondAttribute="leading" id="sX7-QU-vPe"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="1qS-Yc-KkM" id="KB4-Qa-lgF"/>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		971848CC1B7999A0005B2541 /* CenteringScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971848CB1B7999A0005B2541 /* CenteringScrollView.swift */; };
 		97415ADE1B7847AE00326239 /* NewspaperPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97415ADD1B7847AE00326239 /* NewspaperPageCell.swift */; };
 		97415AE01B784DB700326239 /* NewspaperPageFocusSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97415ADF1B784DB700326239 /* NewspaperPageFocusSegue.swift */; };
 		97415AE21B785AAE00326239 /* NewspaperPageUnfocusSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97415AE11B785AAE00326239 /* NewspaperPageUnfocusSegue.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		971848CB1B7999A0005B2541 /* CenteringScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenteringScrollView.swift; sourceTree = "<group>"; };
 		97415ADD1B7847AE00326239 /* NewspaperPageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPageCell.swift; sourceTree = "<group>"; };
 		97415ADF1B784DB700326239 /* NewspaperPageFocusSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPageFocusSegue.swift; sourceTree = "<group>"; };
 		97415AE11B785AAE00326239 /* NewspaperPageUnfocusSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPageUnfocusSegue.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				97BDE1161B76ED6B00A3E57F /* MasterViewController.swift */,
 				97BDE1361B76F84F00A3E57F /* SearchViewController.swift */,
 				97BDE1381B7703CA00A3E57F /* PageViewController.swift */,
+				971848CB1B7999A0005B2541 /* CenteringScrollView.swift */,
 				97BDE1181B76ED6B00A3E57F /* NewspaperIssuesViewController.swift */,
 				97BDE13A1B771B4800A3E57F /* NewspaperPagesViewController.swift */,
 				978741461B7832660014D1F0 /* NewspaperPagesDataSource.swift */,
@@ -244,6 +247,7 @@
 			files = (
 				97BDE1191B76ED6B00A3E57F /* NewspaperIssuesViewController.swift in Sources */,
 				97415AE01B784DB700326239 /* NewspaperPageFocusSegue.swift in Sources */,
+				971848CC1B7999A0005B2541 /* CenteringScrollView.swift in Sources */,
 				97BDE1391B7703CA00A3E57F /* PageViewController.swift in Sources */,
 				9787414B1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift in Sources */,
 				97415AE41B785D8400326239 /* CustomSegueNavigationController.swift in Sources */,

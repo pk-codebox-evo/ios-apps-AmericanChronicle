@@ -18,15 +18,38 @@ class PageViewController: UIViewController {
     @IBAction func doneButtonTapped(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
+
+    var presentingViewNavBar: UIView?
+    var presentingView: UIView?
+    var hidesStatusBar: Bool = true
+
     @IBAction func shareButtonTapped(sender: AnyObject) {
     }
 
-    override func viewDidLayoutSubviews() {
-        if let imageWidth = imageView.image?.size.width where imageWidth > 0 {
-            scrollView.zoomScale = scrollView.frame.size.width / imageWidth
-        } else {
-            scrollView.zoomScale = 1.0
+    func centerContent() {
+        var top: CGFloat = 0
+        var left: CGFloat = 0
+        if scrollView.contentSize.width < scrollView.bounds.size.width {
+            left = (scrollView.bounds.size.width-scrollView.contentSize.width) * 0.5
         }
+
+        if scrollView.contentSize.height < scrollView.bounds.size.height {
+            top = (scrollView.bounds.size.height - scrollView.contentSize.height) * 0.5
+        }
+
+        scrollView.contentInset = UIEdgeInsetsMake(top, left, top, left);
+    }
+
+    override func viewDidLayoutSubviews() {
+
+        if let imageWidth = imageView.image?.size.width where imageWidth > 0 {
+            scrollView.minimumZoomScale = scrollView.frame.size.width / imageWidth
+
+        } else {
+            scrollView.minimumZoomScale = 1.0
+        }
+        scrollView.zoomScale = scrollView.minimumZoomScale
+        centerContent()
     }
 
     override var modalPresentationStyle: UIModalPresentationStyle {
@@ -65,8 +88,21 @@ class PageViewController: UIViewController {
 
 //    optional func scrollViewDidScroll(scrollView: UIScrollView) // any offset changes
 
-//    @availability(iOS, introduced=3.2)
-//    optional func scrollViewDidZoom(scrollView: UIScrollView) // any zoom scale changes
+    func scrollViewDidZoom(scrollView: UIScrollView) { // any zoom scale changes
+//        println("scrollView.bounds.size.width: \(scrollView.bounds.size.width)")
+//        println("scrollView.contentSize.width: \(scrollView.contentSize.width)")
+//
+//        let offsetX = max((scrollView.bounds.size.width - scrollView.contentSize.width) / 2.0, 0)
+//        println("offsetX: \(offsetX)")
+//        let offsetY = max((scrollView.bounds.size.height - scrollView.contentSize.height) / 2.0, 0)
+//        println("offsetY: \(offsetY)")
+//        let x = (scrollView.contentSize.width / 2.0) + offsetX
+//        println("x: \(x)")
+//        let y = (scrollView.contentSize.height / 2.0) + offsetY
+//        println("y: \(y)")
+//        imageView.center = CGPoint(x: x, y: y)
+        centerContent()
+    }
 //
 
 //    // called on start of dragging (may require some time and or distance to move)

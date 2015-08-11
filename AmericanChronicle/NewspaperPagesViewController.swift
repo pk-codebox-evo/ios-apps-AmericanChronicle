@@ -21,12 +21,12 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
     }
 
     func prepareForDisappearanceAnimation() {
-        
+//        hidesStatusBar = true
+//        setNeedsStatusBarAppearanceUpdate()
     }
 
     func updateViewsInsideDisappearanceAnimation() {
-//        hidesStatusBar = true
-//        setNeedsStatusBarAppearanceUpdate()
+
 //        navigationController?.setNavigationBarHidden(true, animated: false)
 
     }
@@ -36,9 +36,13 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
     }
 
     func updateViewsInsideAppearanceAnimation() {
+
+//        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+
+    func cleanUpAfterAppearanceAnimation() {
 //        hidesStatusBar = false
 //        setNeedsStatusBarAppearanceUpdate()
-//        navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
     override func prefersStatusBarHidden() -> Bool {
