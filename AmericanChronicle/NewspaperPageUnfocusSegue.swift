@@ -36,8 +36,6 @@ class NewspaperPageUnfocusSegue: UIStoryboardSegue {
 
             presentingVC!.view.insertSubview(pageViewController.presentingView!, belowSubview: pageViewController.view!)
 
-
-
             presentingVC!.view.insertSubview(navBarBackgroundView, aboveSubview: pageViewController.presentingView!)
             pageViewController.view.superview!.addSubview(navBarImage!)
 
