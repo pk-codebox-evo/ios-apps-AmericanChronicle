@@ -29,8 +29,6 @@ class MasterViewController: UITableViewController {
             self.endYear = endYear
         }
 
-
-
         var description: String {
             return title
         }
@@ -58,19 +56,12 @@ class MasterViewController: UITableViewController {
         super.viewDidLoad()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     func newspaperAtIndexPath(indexPath: NSIndexPath) -> Newspaper? {
         if let state = State(rawValue: indexPath.section), let papers = newspapers[state] {
             return papers[indexPath.row]
         }
         return nil
     }
-
-    // MARK: - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
@@ -103,7 +94,5 @@ class MasterViewController: UITableViewController {
         }
         return cell
     }
-
-
 }
 

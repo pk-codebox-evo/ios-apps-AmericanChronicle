@@ -10,18 +10,7 @@ import UIKit
 
 class NewspaperIssuesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-    var newspaper: AnyObject? {
-        didSet {
-        }
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
+    var newspaper: AnyObject?
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
@@ -36,7 +25,5 @@ class NewspaperIssuesViewController: UIViewController, UICollectionViewDelegate,
         let width = (self.view.bounds.size.width - 30) / 2.0
         return CGSize(width: width, height: width * 1.5)
     }
-
-
 }
 

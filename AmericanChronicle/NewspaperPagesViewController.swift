@@ -13,41 +13,7 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
     @IBOutlet weak var previewCollectionView: UICollectionView!
     @IBOutlet weak var stripCollectionView: UICollectionView!
     @IBOutlet var previewDelegate: NewspaperPagesPreviewDelegate!
-    var hidesStatusBar: Bool = false
-
-    var newspaper: AnyObject? {
-        didSet {
-        }
-    }
-
-    func prepareForDisappearanceAnimation() {
-//        hidesStatusBar = true
-//        setNeedsStatusBarAppearanceUpdate()
-    }
-
-    func updateViewsInsideDisappearanceAnimation() {
-
-//        navigationController?.setNavigationBarHidden(true, animated: false)
-
-    }
-
-    func prepareForAppearanceAnimation() {
-
-    }
-
-    func updateViewsInsideAppearanceAnimation() {
-
-//        navigationController?.setNavigationBarHidden(false, animated: false)
-    }
-
-    func cleanUpAfterAppearanceAnimation() {
-//        hidesStatusBar = false
-//        setNeedsStatusBarAppearanceUpdate()
-    }
-
-    override func prefersStatusBarHidden() -> Bool {
-        return hidesStatusBar
-    }
+    var newspaper: AnyObject?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,9 +21,6 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
         stripCollectionView.selectItemAtIndexPath(NSIndexPath(forItem: 0, inSection: 0), animated: false, scrollPosition: .Left)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 
     func didScrollToPreviewAtIndexPath(indexPath: NSIndexPath) {
         stripCollectionView.selectItemAtIndexPath(indexPath, animated: true, scrollPosition: .CenteredHorizontally)
@@ -71,7 +34,6 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
     }
 
     @IBAction func unfocusPage(sender: UIStoryboardSegue) {
-        println("\(__FILE__) | \(__FUNCTION__) | line \(__LINE__)")
     }
 }
 

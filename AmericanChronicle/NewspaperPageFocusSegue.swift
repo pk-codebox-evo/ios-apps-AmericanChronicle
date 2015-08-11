@@ -39,7 +39,6 @@ class NewspaperPageFocusSegue: UIStoryboardSegue {
             navBarCoverView.maskView = UIView(frame: CGRect(x: 0, y: 0, width: navBarImageView.frame.size.width, height: 64.0))
             navBarCoverView.maskView?.backgroundColor = UIColor.blackColor()
 
-            pagesViewController.prepareForDisappearanceAnimation()
             pageViewController.prepareForAppearanceAnimation()
             presentingVC?.view.addSubview(fullScreenImageView)
             presentingVC?.view.addSubview(navBarCoverView)
@@ -50,7 +49,6 @@ class NewspaperPageFocusSegue: UIStoryboardSegue {
             pageViewController.presentingViewNavBar = navBarImageView
 
             UIView.animateWithDuration(2.0, animations: {
-                pagesViewController.updateViewsInsideDisappearanceAnimation()
                 pageViewController.updateViewsInsideAppearanceAnimation()
                 navBarImageView.frame = CGRectOffset(navBarImageView.frame, 0, -64.0)
             }, completion: { _ in
