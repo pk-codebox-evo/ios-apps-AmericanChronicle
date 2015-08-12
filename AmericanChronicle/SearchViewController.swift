@@ -8,9 +8,10 @@
 
 import UIKit
 
-class SearchViewController: UITableViewController, UISearchBarDelegate {
+class SearchViewController: UIViewController, UISearchBarDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
 
     class TableViewData {
         class TableViewSection {
@@ -69,9 +70,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         }
     }
 
-    var activityIndicator: UIActivityIndicatorView = {
-        return UIActivityIndicatorView()
-    }()
+    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
 
     var searchDelayTimer: NSTimer?
 
@@ -81,11 +80,12 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         if activeData === recentSearches {
             activeData = nil
 
-            activityIndicator.center = CGPoint(x: view.bounds.size.width / 2.0, y: 100)
+            activityIndicator.center = CGPoint(x: view.bounds.size.width / 2.0, y: 300)
             view.addSubview(activityIndicator)
             activityIndicator.startAnimating()
             tableView.reloadData()
         }
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
 
         searchDelayTimer?.invalidate()
         searchDelayTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "searchDelayTimerFired:", userInfo: ["resultsCount": resultsCount], repeats: false)
@@ -98,24 +98,26 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
             let allPageResults = searchResults.sections[1].rows
             searchResults.sections[1].maxRowsToShow = min(count, allPageResults.count)
             activeData = searchResults
-            tableView.reloadData()
-            activityIndicator.removeFromSuperview()
         }
+        tableView.reloadData()
+        activityIndicator.removeFromSuperview()
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
     }
 
     func showRecentSearches() {
         searchDelayTimer?.invalidate()
         searchDelayTimer = nil
         self.activityIndicator.removeFromSuperview()
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         activeData = recentSearches
         tableView.reloadData()
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return activeData?.sections[section].rowsToShow ?? 0
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell
         if activeData === recentSearches {
             cell = tableView.dequeueReusableCellWithIdentifier("RecentSearchCell") as! UITableViewCell
@@ -139,22 +141,22 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
         return cell
     }
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return activeData?.sections.count ?? 0
     }
 
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return activeData?.sections[section].title
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if activeData === recentSearches {
             searchBar.text = activeData?.sections[indexPath.section].rows[indexPath.row]
             performSearchWithResultsCount(count(searchBar.text))
         }
     }
 
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 1 {
             return 150.0 // Page cell
         }
