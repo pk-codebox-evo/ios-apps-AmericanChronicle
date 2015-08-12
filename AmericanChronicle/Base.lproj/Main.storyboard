@@ -212,14 +212,40 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="W9k-tl-S2o" userLabel="Table View">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search" showsCancelButton="YES" id="Rao-Jd-EUt">
-                                    <rect key="frame" x="0.0" y="64" width="414" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="U5J-Y3-Pmz" id="fm7-BV-P5J"/>
-                                    </connections>
-                                </searchBar>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="tAZ-5m-ov4">
+                                    <rect key="frame" x="0.0" y="64" width="414" height="86"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <searchBar contentMode="redraw" placeholder="Search" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rao-Jd-EUt">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="U5J-Y3-Pmz" id="fm7-BV-P5J"/>
+                                            </connections>
+                                        </searchBar>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFp-nU-whD">
+                                            <rect key="frame" x="0.0" y="44" width="414" height="42"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="42" id="35L-fv-1WH"/>
+                                            </constraints>
+                                            <state key="normal" title="Add Filters">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <segue destination="E7Q-nd-2Px" kind="presentation" id="JsB-hs-6TZ"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="Rao-Jd-EUt" secondAttribute="trailing" id="0cm-zB-6QW"/>
+                                        <constraint firstAttribute="trailing" secondItem="hFp-nU-whD" secondAttribute="trailing" id="GoF-Gi-1sF"/>
+                                        <constraint firstItem="hFp-nU-whD" firstAttribute="leading" secondItem="tAZ-5m-ov4" secondAttribute="leading" id="OFc-gD-f6C"/>
+                                        <constraint firstItem="Rao-Jd-EUt" firstAttribute="top" secondItem="tAZ-5m-ov4" secondAttribute="top" id="u5b-Yq-ge3"/>
+                                        <constraint firstItem="Rao-Jd-EUt" firstAttribute="leading" secondItem="tAZ-5m-ov4" secondAttribute="leading" id="vTs-BY-xjE"/>
+                                        <constraint firstAttribute="bottom" secondItem="hFp-nU-whD" secondAttribute="bottom" id="w47-Yg-NmL"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SearchResultsPageCell" rowHeight="150" id="Dho-X2-HmO" customClass="SearchResultsPageCell" customModule="AmericanChronicle" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -281,7 +307,7 @@
                                             <outlet property="matchingTextLabel" destination="Gao-CW-JQM" id="VdB-ug-aHb"/>
                                             <outlet property="moreMatchesCountLabel" destination="yK9-yw-GCY" id="eT5-Pt-YNW"/>
                                             <outlet property="publicationTitleLabel" destination="jJh-pT-hWE" id="bd5-ai-pGu"/>
-                                            <segue destination="t9g-8O-U25" kind="show" id="xbz-Y6-pTq"/>
+                                            <segue destination="1qS-Yc-KkM" kind="show" id="uq8-Gm-fne"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecentSearchCell" id="LS8-5G-A6t">
@@ -322,6 +348,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kgF-R4-Lna" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1493" y="-789"/>
+        </scene>
+        <!--Search Filter View Controller-->
+        <scene sceneID="4w1-Bl-OoC">
+            <objects>
+                <viewController id="E7Q-nd-2Px" customClass="SearchFilterViewController" customModule="AmericanChronicle" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5GO-a1-NRd"/>
+                        <viewControllerLayoutGuide type="bottom" id="MOv-9j-igo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mLz-wZ-cyk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TIJ-KJ-CE3">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="Filters" id="ylE-Mo-GET">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="35r-UO-CoG">
+                                            <connections>
+                                                <segue destination="AfU-0q-NbU" kind="unwind" unwindAction="dismissFilters:" id="ZPT-er-ARz"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="pF5-Wa-z4t"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="TIJ-KJ-CE3" firstAttribute="top" secondItem="mLz-wZ-cyk" secondAttribute="top" id="Qqh-V1-AFC"/>
+                            <constraint firstAttribute="trailing" secondItem="TIJ-KJ-CE3" secondAttribute="trailing" id="SlZ-hv-O9s"/>
+                            <constraint firstItem="TIJ-KJ-CE3" firstAttribute="leading" secondItem="mLz-wZ-cyk" secondAttribute="leading" id="aY4-Ak-ijy"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sxb-ZR-4ap" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="AfU-0q-NbU" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2406" y="-1658"/>
         </scene>
         <!--Newspaper Issues-->
         <scene sceneID="Cn3-H9-jdl">
@@ -533,6 +599,6 @@
         <image name="newspaper_page-thumb" width="150" height="194"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xbz-Y6-pTq"/>
+        <segue reference="uq8-Gm-fne"/>
     </inferredMetricsTieBreakers>
 </document>

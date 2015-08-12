@@ -49,6 +49,10 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         println("\(__FILE__) | \(__FUNCTION__) | line \(__LINE__)")
     }
 
+    @IBAction func dismissFilters(sender: UIStoryboardSegue) {
+        println("\(__FILE__) | \(__FUNCTION__) | line \(__LINE__)")
+    }
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBarHidden = false
