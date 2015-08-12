@@ -1,5 +1,5 @@
 //
-//  SearchFilterViewController.swift
+//  SearchFiltersViewController.swift
 //  AmericanChronicle
 //
 //  Created by Ryan Peterson on 8/11/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchFilterViewController: UIViewController {
+class SearchFiltersViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -349,10 +349,10 @@
             </objects>
             <point key="canvasLocation" x="1493" y="-789"/>
         </scene>
-        <!--Search Filter View Controller-->
+        <!--Search Filters View Controller-->
         <scene sceneID="4w1-Bl-OoC">
             <objects>
-                <viewController id="E7Q-nd-2Px" customClass="SearchFilterViewController" customModule="AmericanChronicle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="E7Q-nd-2Px" customClass="SearchFiltersViewController" customModule="AmericanChronicle" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5GO-a1-NRd"/>
                         <viewControllerLayoutGuide type="bottom" id="MOv-9j-igo"/>
@@ -374,6 +374,18 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MQa-n2-dwu">
+                                <rect key="frame" x="16" y="81" width="87" height="30"/>
+                                <state key="normal" title="Earliest Date">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Io2-8R-DAX">
+                                <rect key="frame" x="319" y="81" width="79" height="30"/>
+                                <state key="normal" title="Latest Date">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
