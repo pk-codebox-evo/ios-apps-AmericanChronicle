@@ -12,38 +12,37 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
 
-    enum ResultType: Int {
-        case Newspaper
-        case Page
+    class TableViewData {
+        class TableViewSection {
+            var rows: [String] = []
+            var maxRowsToShow: Int?
+            var title: String = ""
+            init(rows: [String], title: String) {
+                self.rows = rows
+                self.title = title
+            }
+
+            var rowsToShow: Int {
+                return maxRowsToShow ?? rows.count
+            }
+        }
+        var sections: [TableViewSection] = []
     }
 
-    var data = [[String: AnyObject]]()
+    let recentSearches: TableViewData = {
+        let data = TableViewData()
+        data.sections = [TableViewData.TableViewSection(rows: ["The Argus", "The Arizona Champion", "Jane Doe Blah"], title: "Recent Searches")]
+        return data
+    }()
 
-    let recentSearches: [[String: AnyObject]] = [
-        ["title": "Recent Searches", "rows": ["The Argus", "The Arizona Champion", "Jane Doe Blah"]]
-    ]
+    let searchResults: TableViewData = {
+        let data = TableViewData()
+        data.sections.append(TableViewData.TableViewSection(rows: ["The Daily Chronicle"], title: "1 matching newspaper"))
+        data.sections.append(TableViewData.TableViewSection(rows: ["The Daily Chronicle", "The Daily Chronicle", "The Daily Chronicle", "The Daily Chronicle"], title: "118 matching pages"))
+        return data
+    }()
 
-    let searchResults: [[String: AnyObject]] = [
-        [
-            "title": "1 matching newspaper",
-            "rows": ["The Daily Chronicle"],
-            "type": ResultType.Newspaper.rawValue
-        ],
-        [
-            "title": "118 matching pages",
-            "rows": [
-            "The Daily Chronicle",
-            "The Daily Chronicle",
-            "The Daily Chronicle",
-            "The Daily Chronicle",
-            "The Daily Chronicle",
-            "The Daily Chronicle",
-            "The Daily Chronicle",
-            "The Daily Chronicle"
-        ],
-            "type": ResultType.Page.rawValue
-        ]
-    ]
+    var activeData: TableViewData?
 
     @IBAction func unfocusPage(sender: UIStoryboardSegue) {
         println("\(__FILE__) | \(__FUNCTION__) | line \(__LINE__)")
@@ -64,93 +63,108 @@ class SearchViewController: UITableViewController, UISearchBarDelegate {
 
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         if count(searchText) > 0 {
-            showSearchResults()
+            performSearchWithResultsCount(count(searchText))
         } else {
             showRecentSearches()
         }
     }
 
-    func showSearchResults() {
-        data = searchResults
-        tableView.reloadData()
+    var activityIndicator: UIActivityIndicatorView = {
+        return UIActivityIndicatorView()
+    }()
+
+    var searchDelayTimer: NSTimer?
+
+    func performSearchWithResultsCount(resultsCount: Int) {
+
+        // If showing recent searches, then activate loading indicator.
+        if activeData === recentSearches {
+            activeData = nil
+
+            activityIndicator.center = CGPoint(x: view.bounds.size.width / 2.0, y: 100)
+            view.addSubview(activityIndicator)
+            activityIndicator.startAnimating()
+            tableView.reloadData()
+        }
+
+        searchDelayTimer?.invalidate()
+        searchDelayTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "searchDelayTimerFired:", userInfo: ["resultsCount": resultsCount], repeats: false)
+    }
+
+    func searchDelayTimerFired(timer: NSTimer) {
+        searchDelayTimer = nil
+
+        if let userInfo = timer.userInfo as? [String: Int], let count = userInfo["resultsCount"] {
+            let allPageResults = searchResults.sections[1].rows
+            searchResults.sections[1].maxRowsToShow = min(count, allPageResults.count)
+            activeData = searchResults
+            tableView.reloadData()
+            activityIndicator.removeFromSuperview()
+        }
     }
 
     func showRecentSearches() {
-        data = recentSearches
+        searchDelayTimer?.invalidate()
+        searchDelayTimer = nil
+        self.activityIndicator.removeFromSuperview()
+        activeData = recentSearches
         tableView.reloadData()
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let rows = data[section]["rows"] as? [String] {
-            return count(rows)
-        }
-        return 0
+        return activeData?.sections[section].rowsToShow ?? 0
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell
-        if data == recentSearches {
+        if activeData === recentSearches {
             cell = tableView.dequeueReusableCellWithIdentifier("RecentSearchCell") as! UITableViewCell
-            if let rows = data[indexPath.section]["rows"] as? [String] {
-                cell.textLabel?.text = rows[indexPath.row]
-            } else {
-                cell.textLabel?.text = nil
-            }
+            cell.textLabel?.text = activeData?.sections[indexPath.section].rows[indexPath.row]
         } else {
-            if let rawType = data[indexPath.section]["type"] as? Int {
-                if ResultType(rawValue: rawType) == .Newspaper {
-                    cell = tableView.dequeueReusableCellWithIdentifier("SearchResultsNewspaperCell") as! UITableViewCell
-                    if let rows = data[indexPath.section]["rows"] as? [String] {
-                        cell.textLabel?.text = rows[indexPath.row]
-                    } else {
-                        cell.textLabel?.text = nil
-                    }
-                } else {
-                    let pageCell = tableView.dequeueReusableCellWithIdentifier("SearchResultsPageCell") as! SearchResultsPageCell
-                    pageCell.dateLabel.text = "Jan 3, 1902"
-                    pageCell.cityStateLabel.text = "Denver, CO"
-                    pageCell.matchingTextLabel.text = "…with a full season of practice, Jane Doe had learned enough to overtake the incumbent…"
-                    pageCell.publicationTitleLabel.text = "The Daily Mail"
-                    pageCell.moreMatchesCountLabel.text = "and 3 more"
-                    cell = pageCell
-                }
-            } else {
+            switch indexPath.section {
+            case 0:
                 cell = tableView.dequeueReusableCellWithIdentifier("SearchResultsNewspaperCell") as! UITableViewCell
-                cell.textLabel?.text = "?"
+                cell.textLabel?.text = activeData?.sections[indexPath.section].rows[indexPath.row]
+            default:
+                let pageCell = tableView.dequeueReusableCellWithIdentifier("SearchResultsPageCell") as! SearchResultsPageCell
+                pageCell.dateLabel.text = "Jan 3, 1902"
+                pageCell.cityStateLabel.text = "Denver, CO"
+                pageCell.matchingTextLabel.text = "…with a full season of practice, Jane Doe had learned enough to overtake the incumbent…"
+                pageCell.publicationTitleLabel.text = "The Daily Mail"
+                pageCell.moreMatchesCountLabel.text = "and 3 more"
+                cell = pageCell
             }
-
         }
 
         return cell
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return count(data)
+        return activeData?.sections.count ?? 0
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return data[section]["title"] as? String
+        return activeData?.sections[section].title
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if data == recentSearches, let rows = data[indexPath.section]["rows"] as? [String] {
-            searchBar.text = rows[indexPath.row]
-            showSearchResults()
+        if activeData === recentSearches {
+            searchBar.text = activeData?.sections[indexPath.section].rows[indexPath.row]
+            performSearchWithResultsCount(count(searchBar.text))
         }
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if let rawType = data[indexPath.section]["type"] as? Int where ResultType(rawValue: rawType) == .Page {
-            return 150.0
+        if indexPath.section == 1 {
+            return 150.0 // Page cell
         }
         return 44.0
-
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let vc = segue.destinationViewController as? NewspaperIssuesViewController {
             if let selected = tableView.indexPathForSelectedRow() {
-                vc.newspaper = (data[selected.section]["rows"] as! [String])[selected.row]
+                vc.newspaper = activeData?.sections[selected.section].rows[selected.row]
             }
         }
     }
