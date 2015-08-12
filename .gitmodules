@@ -1,0 +1,3 @@
+[submodule "Dependencies/CVCalendar"]
+	path = Dependencies/CVCalendar
+	url = https://github.com/Mozharovsky/CVCalendar.git

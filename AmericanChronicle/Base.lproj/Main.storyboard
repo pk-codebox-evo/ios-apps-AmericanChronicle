@@ -374,32 +374,90 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MQa-n2-dwu">
-                                <rect key="frame" x="16" y="81" width="87" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MQa-n2-dwu">
+                                <rect key="frame" x="16" y="60" width="87" height="30"/>
                                 <state key="normal" title="Earliest Date">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Io2-8R-DAX">
-                                <rect key="frame" x="319" y="81" width="79" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Io2-8R-DAX">
+                                <rect key="frame" x="319" y="60" width="79" height="30"/>
                                 <state key="normal" title="Latest Date">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KhV-aM-Qmu" customClass="CVCalendarView" customModule="AmericanChronicle" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="226" width="414" height="283"/>
+                                <color key="backgroundColor" red="0.82745098039999998" green="0.84705882349999995" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="283" id="Tv7-nY-lX9"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="calendarDelegate" destination="E7Q-nd-2Px" id="osI-7i-K3M"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qvh-KT-a6g" customClass="CVCalendarMenuView" customModule="AmericanChronicle" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="173" width="414" height="53"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="53" id="pvV-lE-xjh"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="menuViewDelegate" destination="E7Q-nd-2Px" id="Kh3-Nx-6MR"/>
+                                </connections>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IO7-zN-Xlb">
+                                <rect key="frame" x="69" y="135" width="276" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="E7Q-nd-2Px" id="dNz-jc-eBo"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LH1-Am-7j8">
+                                <rect key="frame" x="69" y="97" width="276" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="E7Q-nd-2Px" id="KIG-9U-Gf7"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Qvh-KT-a6g" firstAttribute="top" secondItem="IO7-zN-Xlb" secondAttribute="bottom" constant="8" id="3O8-L0-7N7"/>
+                            <constraint firstItem="MQa-n2-dwu" firstAttribute="leading" secondItem="mLz-wZ-cyk" secondAttribute="leading" constant="16" id="7XV-Rd-tMf"/>
+                            <constraint firstItem="LH1-Am-7j8" firstAttribute="leading" secondItem="mLz-wZ-cyk" secondAttribute="leading" constant="69" id="COJ-0j-zmh"/>
+                            <constraint firstItem="KhV-aM-Qmu" firstAttribute="top" secondItem="Qvh-KT-a6g" secondAttribute="bottom" id="LdU-XL-7Hc"/>
+                            <constraint firstItem="Qvh-KT-a6g" firstAttribute="leading" secondItem="mLz-wZ-cyk" secondAttribute="leading" id="NKu-OI-kzs"/>
                             <constraint firstItem="TIJ-KJ-CE3" firstAttribute="top" secondItem="mLz-wZ-cyk" secondAttribute="top" id="Qqh-V1-AFC"/>
                             <constraint firstAttribute="trailing" secondItem="TIJ-KJ-CE3" secondAttribute="trailing" id="SlZ-hv-O9s"/>
+                            <constraint firstItem="Qvh-KT-a6g" firstAttribute="top" secondItem="mLz-wZ-cyk" secondAttribute="top" constant="173" id="TD0-BY-kAo"/>
+                            <constraint firstItem="KhV-aM-Qmu" firstAttribute="leading" secondItem="mLz-wZ-cyk" secondAttribute="leading" id="YQd-Dv-Bl5"/>
+                            <constraint firstItem="IO7-zN-Xlb" firstAttribute="top" secondItem="LH1-Am-7j8" secondAttribute="bottom" constant="8" id="ZHl-ZS-Gve"/>
+                            <constraint firstItem="IO7-zN-Xlb" firstAttribute="leading" secondItem="mLz-wZ-cyk" secondAttribute="leading" constant="69" id="Zf2-d9-aPH"/>
                             <constraint firstItem="TIJ-KJ-CE3" firstAttribute="leading" secondItem="mLz-wZ-cyk" secondAttribute="leading" id="aY4-Ak-ijy"/>
+                            <constraint firstAttribute="trailing" secondItem="IO7-zN-Xlb" secondAttribute="trailing" constant="69" id="bEI-E2-HWe"/>
+                            <constraint firstItem="MQa-n2-dwu" firstAttribute="top" secondItem="mLz-wZ-cyk" secondAttribute="top" constant="60" id="c9H-QY-Ugo"/>
+                            <constraint firstAttribute="trailing" secondItem="LH1-Am-7j8" secondAttribute="trailing" constant="69" id="ho1-8k-DFQ"/>
+                            <constraint firstAttribute="trailing" secondItem="Qvh-KT-a6g" secondAttribute="trailing" id="qAm-HX-dwA"/>
+                            <constraint firstAttribute="trailing" secondItem="Io2-8R-DAX" secondAttribute="trailing" constant="16" id="uvK-lb-Hkq"/>
+                            <constraint firstAttribute="trailing" secondItem="KhV-aM-Qmu" secondAttribute="trailing" id="wAz-rj-OS1"/>
+                            <constraint firstItem="Io2-8R-DAX" firstAttribute="top" secondItem="mLz-wZ-cyk" secondAttribute="top" constant="60" id="znP-T7-6w6"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="calendarMenuView" destination="Qvh-KT-a6g" id="Lym-uT-v49"/>
+                        <outlet property="calendarView" destination="KhV-aM-Qmu" id="hhX-cr-SKi"/>
+                        <outlet property="monthTextField" destination="IO7-zN-Xlb" id="rxW-W1-vye"/>
+                        <outlet property="yearTextField" destination="LH1-Am-7j8" id="1SK-TL-GYl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sxb-ZR-4ap" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="AfU-0q-NbU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2406" y="-1658"/>
+            <point key="canvasLocation" x="2300" y="-1669"/>
         </scene>
         <!--Newspaper Issues-->
         <scene sceneID="Cn3-H9-jdl">
