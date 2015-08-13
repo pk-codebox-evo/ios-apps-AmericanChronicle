@@ -352,7 +352,7 @@
         <!--Search Filters View Controller-->
         <scene sceneID="4w1-Bl-OoC">
             <objects>
-                <viewController id="E7Q-nd-2Px" customClass="SearchFiltersViewController" customModule="AmericanChronicle" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController definesPresentationContext="YES" id="E7Q-nd-2Px" customClass="SearchFiltersViewController" customModule="AmericanChronicle" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5GO-a1-NRd"/>
                         <viewControllerLayoutGuide type="bottom" id="MOv-9j-igo"/>
@@ -387,7 +387,7 @@
                                 </state>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KhV-aM-Qmu" customClass="CVCalendarView" customModule="AmericanChronicle" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="253" width="414" height="283"/>
+                                <rect key="frame" x="0.0" y="303" width="414" height="283"/>
                                 <color key="backgroundColor" red="0.82745098039999998" green="0.84705882349999995" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="283" id="Tv7-nY-lX9"/>
@@ -397,7 +397,7 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qvh-KT-a6g" customClass="CVCalendarMenuView" customModule="AmericanChronicle" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="200" width="414" height="53"/>
+                                <rect key="frame" x="0.0" y="250" width="414" height="53"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="pvV-lE-xjh"/>
@@ -406,19 +406,8 @@
                                     <outlet property="menuViewDelegate" destination="E7Q-nd-2Px" id="Kh3-Nx-6MR"/>
                                 </connections>
                             </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IO7-zN-Xlb">
-                                <rect key="frame" x="69" y="152" width="276" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="YZE-vC-Tcg"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="done"/>
-                                <connections>
-                                    <outlet property="delegate" destination="E7Q-nd-2Px" id="dNz-jc-eBo"/>
-                                </connections>
-                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LH1-Am-7j8">
-                                <rect key="frame" x="69" y="104" width="276" height="40"/>
+                                <rect key="frame" x="69" y="137" width="276" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="bKm-dp-ft8"/>
                                 </constraints>
@@ -428,26 +417,35 @@
                                     <outlet property="delegate" destination="E7Q-nd-2Px" id="KIG-9U-Gf7"/>
                                 </connections>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1I-Wo-nSx">
+                                <rect key="frame" x="69" y="200" width="276" height="30"/>
+                                <state key="normal" title="January">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="monthButtonTapped:" destination="E7Q-nd-2Px" eventType="touchUpInside" id="ibk-pe-asl"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Qvh-KT-a6g" firstAttribute="top" secondItem="IO7-zN-Xlb" secondAttribute="bottom" constant="8" id="3O8-L0-7N7"/>
+                            <constraint firstItem="Qvh-KT-a6g" firstAttribute="top" secondItem="f1I-Wo-nSx" secondAttribute="bottom" constant="20" id="0Z5-oM-xWn"/>
                             <constraint firstItem="MQa-n2-dwu" firstAttribute="leading" secondItem="mLz-wZ-cyk" secondAttribute="leading" constant="16" id="7XV-Rd-tMf"/>
+                            <constraint firstItem="f1I-Wo-nSx" firstAttribute="top" secondItem="LH1-Am-7j8" secondAttribute="bottom" constant="23" id="BRp-A3-0bd"/>
                             <constraint firstItem="LH1-Am-7j8" firstAttribute="leading" secondItem="mLz-wZ-cyk" secondAttribute="leading" constant="69" id="COJ-0j-zmh"/>
                             <constraint firstItem="KhV-aM-Qmu" firstAttribute="top" secondItem="Qvh-KT-a6g" secondAttribute="bottom" id="LdU-XL-7Hc"/>
                             <constraint firstItem="Qvh-KT-a6g" firstAttribute="leading" secondItem="mLz-wZ-cyk" secondAttribute="leading" id="NKu-OI-kzs"/>
                             <constraint firstItem="TIJ-KJ-CE3" firstAttribute="top" secondItem="mLz-wZ-cyk" secondAttribute="top" id="Qqh-V1-AFC"/>
                             <constraint firstAttribute="trailing" secondItem="TIJ-KJ-CE3" secondAttribute="trailing" id="SlZ-hv-O9s"/>
-                            <constraint firstItem="Qvh-KT-a6g" firstAttribute="top" secondItem="mLz-wZ-cyk" secondAttribute="top" constant="200" id="TD0-BY-kAo"/>
+                            <constraint firstItem="Qvh-KT-a6g" firstAttribute="top" secondItem="mLz-wZ-cyk" secondAttribute="top" constant="250" id="TD0-BY-kAo"/>
                             <constraint firstItem="KhV-aM-Qmu" firstAttribute="leading" secondItem="mLz-wZ-cyk" secondAttribute="leading" id="YQd-Dv-Bl5"/>
-                            <constraint firstItem="IO7-zN-Xlb" firstAttribute="top" secondItem="LH1-Am-7j8" secondAttribute="bottom" constant="8" id="ZHl-ZS-Gve"/>
-                            <constraint firstItem="IO7-zN-Xlb" firstAttribute="leading" secondItem="mLz-wZ-cyk" secondAttribute="leading" constant="69" id="Zf2-d9-aPH"/>
                             <constraint firstItem="TIJ-KJ-CE3" firstAttribute="leading" secondItem="mLz-wZ-cyk" secondAttribute="leading" id="aY4-Ak-ijy"/>
-                            <constraint firstAttribute="trailing" secondItem="IO7-zN-Xlb" secondAttribute="trailing" constant="69" id="bEI-E2-HWe"/>
                             <constraint firstItem="MQa-n2-dwu" firstAttribute="top" secondItem="mLz-wZ-cyk" secondAttribute="top" constant="60" id="c9H-QY-Ugo"/>
                             <constraint firstAttribute="trailing" secondItem="LH1-Am-7j8" secondAttribute="trailing" constant="69" id="ho1-8k-DFQ"/>
+                            <constraint firstItem="f1I-Wo-nSx" firstAttribute="leading" secondItem="mLz-wZ-cyk" secondAttribute="leading" constant="69" id="k5U-WG-b2D"/>
                             <constraint firstAttribute="trailing" secondItem="Qvh-KT-a6g" secondAttribute="trailing" id="qAm-HX-dwA"/>
                             <constraint firstAttribute="trailing" secondItem="Io2-8R-DAX" secondAttribute="trailing" constant="16" id="uvK-lb-Hkq"/>
+                            <constraint firstAttribute="trailing" secondItem="f1I-Wo-nSx" secondAttribute="trailing" constant="69" id="vJo-Da-hVq"/>
                             <constraint firstAttribute="trailing" secondItem="KhV-aM-Qmu" secondAttribute="trailing" id="wAz-rj-OS1"/>
                             <constraint firstItem="Io2-8R-DAX" firstAttribute="top" secondItem="mLz-wZ-cyk" secondAttribute="top" constant="60" id="znP-T7-6w6"/>
                         </constraints>
@@ -456,7 +454,7 @@
                     <connections>
                         <outlet property="calendarMenuView" destination="Qvh-KT-a6g" id="Lym-uT-v49"/>
                         <outlet property="calendarView" destination="KhV-aM-Qmu" id="hhX-cr-SKi"/>
-                        <outlet property="monthTextField" destination="IO7-zN-Xlb" id="rxW-W1-vye"/>
+                        <outlet property="monthButton" destination="f1I-Wo-nSx" id="RUZ-jg-JOF"/>
                         <outlet property="yearTextField" destination="LH1-Am-7j8" id="1SK-TL-GYl"/>
                     </connections>
                 </viewController>

@@ -11,7 +11,7 @@ import UIKit
 class SearchFiltersViewController: UIViewController, CVCalendarViewDelegate, MenuViewDelegate {
 
     @IBOutlet weak var yearTextField: UITextField!
-    @IBOutlet weak var monthTextField: UITextField!
+    @IBOutlet weak var monthButton: UIButton!
     @IBOutlet weak var calendarView: CVCalendarView!
     @IBOutlet weak var calendarMenuView: CVCalendarMenuView!
     override func viewDidLoad() {
@@ -28,8 +28,16 @@ class SearchFiltersViewController: UIViewController, CVCalendarViewDelegate, Men
         calendarView.commitCalendarViewUpdate()
         calendarMenuView.commitMenuViewUpdate()
         yearTextField.text = "\(calendarView.presentedDate.year)"
-        monthTextField.text = "\(calendarView.presentedDate.month)"
+        monthButton.setTitle("\(calendarView.presentedDate.month)", forState: .Normal)
 
+    }
+
+    @IBAction func monthButtonTapped(sender: AnyObject) {
+        showMonthPicker()
+    }
+    func showMonthPicker() {
+        let vc = MonthPickerViewController(nibName: "MonthPickerViewController", bundle: nil)
+        self.presentViewController(vc, animated: true, completion: nil)
     }
 
 //    optional func textFieldShouldBeginEditing(textField: UITextField) -> Bool // return NO to disallow editing.
@@ -45,15 +53,13 @@ class SearchFiltersViewController: UIViewController, CVCalendarViewDelegate, Men
             if let year = (updatedText as String).toInt() where year >= 1836 && year <= 1922 {
                 calendarView.toggleViewWithDate(Date(day: calendarView.presentedDate.day, month: calendarView.presentedDate.month, week: calendarView.presentedDate.week, year: year).convertedDate()!)
             }
-        } else if textField == monthTextField {
-            if let month = (updatedText as String).toInt() where month >= 1 && month <= 12 {
-                calendarView.toggleViewWithDate(Date(day: calendarView.presentedDate.day, month: month, week: calendarView.presentedDate.week, year: calendarView.presentedDate.year).convertedDate()!)
-            }
         }
 
 
         return true
     }
+
+    
 //
 //    optional func textFieldShouldClear(textField: UITextField) -> Bool // called when clear button pressed. return NO to ignore (no notifications)
 //    optional func textFieldShouldReturn(textField: UITextField) -> Bool // called when 'return' key pressed. return NO to ignore.
@@ -70,7 +76,7 @@ class SearchFiltersViewController: UIViewController, CVCalendarViewDelegate, Men
         println("dayView: \(dayView)")
         println("calendarView.presentedDate: \(calendarView.presentedDate.globalDescription)")
         yearTextField.text = "\(calendarView.presentedDate.year)"
-        monthTextField.text = "\(calendarView.presentedDate.month)"
+        monthButton.setTitle("\(calendarView.presentedDate.month)", forState: .Normal)
     }
 //    optional func presentedDateUpdated(date: Date)
 //    optional func topMarker(shouldDisplayOnDayView dayView: DayView) -> Bool

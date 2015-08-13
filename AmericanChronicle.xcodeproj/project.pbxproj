@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		971211251B7C3AE3004C9F8F /* MonthPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971211241B7C3AE3004C9F8F /* MonthPickerViewController.swift */; };
+		971211271B7C4179004C9F8F /* MonthPickerRevealSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971211261B7C4179004C9F8F /* MonthPickerRevealSegue.swift */; };
+		971211291B7C6D5C004C9F8F /* MonthPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 971211281B7C6D5C004C9F8F /* MonthPickerViewController.xib */; };
 		97415ADE1B7847AE00326239 /* NewspaperPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97415ADD1B7847AE00326239 /* NewspaperPageCell.swift */; };
 		97415AE01B784DB700326239 /* NewspaperPageFocusSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97415ADF1B784DB700326239 /* NewspaperPageFocusSegue.swift */; };
 		97415AE21B785AAE00326239 /* NewspaperPageUnfocusSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97415AE11B785AAE00326239 /* NewspaperPageUnfocusSegue.swift */; };
@@ -64,6 +67,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		971211241B7C3AE3004C9F8F /* MonthPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthPickerViewController.swift; sourceTree = "<group>"; };
+		971211261B7C4179004C9F8F /* MonthPickerRevealSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthPickerRevealSegue.swift; sourceTree = "<group>"; };
+		971211281B7C6D5C004C9F8F /* MonthPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MonthPickerViewController.xib; sourceTree = "<group>"; };
 		97415ADD1B7847AE00326239 /* NewspaperPageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPageCell.swift; sourceTree = "<group>"; };
 		97415ADF1B784DB700326239 /* NewspaperPageFocusSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPageFocusSegue.swift; sourceTree = "<group>"; };
 		97415AE11B785AAE00326239 /* NewspaperPageUnfocusSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPageUnfocusSegue.swift; sourceTree = "<group>"; };
@@ -192,6 +198,8 @@
 				97BDE1161B76ED6B00A3E57F /* MasterViewController.swift */,
 				97BDE1361B76F84F00A3E57F /* SearchViewController.swift */,
 				97BDE1381B7703CA00A3E57F /* PageViewController.swift */,
+				971211241B7C3AE3004C9F8F /* MonthPickerViewController.swift */,
+				971211281B7C6D5C004C9F8F /* MonthPickerViewController.xib */,
 				97BE67491B7B004B00761033 /* SearchFiltersViewController.swift */,
 				97BDE1181B76ED6B00A3E57F /* NewspaperIssuesViewController.swift */,
 				97BDE13A1B771B4800A3E57F /* NewspaperPagesViewController.swift */,
@@ -201,6 +209,7 @@
 				97415ADF1B784DB700326239 /* NewspaperPageFocusSegue.swift */,
 				97415AE11B785AAE00326239 /* NewspaperPageUnfocusSegue.swift */,
 				97415AE31B785D8400326239 /* CustomSegueNavigationController.swift */,
+				971211261B7C4179004C9F8F /* MonthPickerRevealSegue.swift */,
 				975914A91B7A47C40031BD13 /* SearchResultsPageCell.swift */,
 				97BDE11A1B76ED6B00A3E57F /* Main.storyboard */,
 				97BDE11D1B76ED6B00A3E57F /* Images.xcassets */,
@@ -316,6 +325,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				97BDE11C1B76ED6B00A3E57F /* Main.storyboard in Resources */,
+				971211291B7C6D5C004C9F8F /* MonthPickerViewController.xib in Resources */,
 				97BDE1211B76ED6B00A3E57F /* LaunchScreen.xib in Resources */,
 				97BDE11E1B76ED6B00A3E57F /* Images.xcassets in Resources */,
 			);
@@ -354,6 +364,7 @@
 				979988721B7B075A0094264F /* CVCalendarViewPresentationMode.swift in Sources */,
 				9799886C1B7B075A0094264F /* CVCalendarView.swift in Sources */,
 				97415AE41B785D8400326239 /* CustomSegueNavigationController.swift in Sources */,
+				971211271B7C4179004C9F8F /* MonthPickerRevealSegue.swift in Sources */,
 				979988681B7B075A0094264F /* CVCalendarMenuViewDelegate.swift in Sources */,
 				9799887A1B7B075A0094264F /* CVSet.swift in Sources */,
 				97BDE1171B76ED6B00A3E57F /* MasterViewController.swift in Sources */,
@@ -364,6 +375,7 @@
 				97415ADE1B7847AE00326239 /* NewspaperPageCell.swift in Sources */,
 				97BDE13B1B771B4800A3E57F /* NewspaperPagesViewController.swift in Sources */,
 				97BDE1371B76F84F00A3E57F /* SearchViewController.swift in Sources */,
+				971211251B7C3AE3004C9F8F /* MonthPickerViewController.swift in Sources */,
 				975914AA1B7A47C40031BD13 /* SearchResultsPageCell.swift in Sources */,
 				979988631B7B075A0094264F /* CVCalendarContentViewController.swift in Sources */,
 				979988671B7B075A0094264F /* CVCalendarMenuView.swift in Sources */,
