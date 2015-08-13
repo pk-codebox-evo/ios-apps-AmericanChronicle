@@ -54,17 +54,25 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     }
 
     override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBarHidden = false
-    }
-
-    override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        navigationController?.navigationBarHidden = false
         if count(searchBar.text) == 0 {
             searchBar.becomeFirstResponder()
             showRecentSearches()
         }
     }
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        searchBar.resignFirstResponder()
+    }
+
+//    override func viewDidAppear(animated: Bool) {
+//        super.viewDidAppear(animated)
+//        if count(searchBar.text) == 0 {
+//            showRecentSearches()
+//        }
+//    }
 
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         if count(searchText) > 0 {
