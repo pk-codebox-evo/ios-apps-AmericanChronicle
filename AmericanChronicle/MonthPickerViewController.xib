@@ -26,9 +26,13 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZQ4-xT-km1">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="203"/>
                     <color key="backgroundColor" red="0.15686274510000001" green="0.1450980392" blue="0.14901960780000001" alpha="0.48999999999999999" colorSpace="calibratedRGB"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="height" constant="203" id="laA-nW-abs"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="qq1-PD-U4t" appends="YES" id="D1w-Y5-3dQ"/>
+                    </connections>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="arZ-wx-mP6">
                     <rect key="frame" x="0.0" y="247" width="414" height="489"/>
@@ -39,7 +43,7 @@
                     </connections>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="ZQ4-xT-km1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ECd-Ng-znD"/>
                 <constraint firstItem="arZ-wx-mP6" firstAttribute="top" secondItem="y2i-Fk-CIV" secondAttribute="bottom" id="I6p-rQ-qOU"/>
@@ -54,5 +58,10 @@
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
         </view>
+        <tapGestureRecognizer id="qq1-PD-U4t">
+            <connections>
+                <action selector="tapRecognized:" destination="-1" id="7ws-5V-PI1"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

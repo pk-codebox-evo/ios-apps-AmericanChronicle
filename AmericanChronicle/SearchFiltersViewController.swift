@@ -27,26 +27,29 @@ class SearchFiltersViewController: UIViewController, CVCalendarViewDelegate, Men
 
         calendarView.commitCalendarViewUpdate()
         calendarMenuView.commitMenuViewUpdate()
-        yearTextField.text = "\(calendarView.presentedDate.year)"
-        monthButton.setTitle("\(calendarView.presentedDate.month)", forState: .Normal)
+        update()
+    }
 
+    func update() {
+        yearTextField.text = "\(calendarView.presentedDate.year)"
+        monthButton.setTitle(Month.stringForRawValue(calendarView.presentedDate.month), forState: .Normal)
     }
 
     @IBAction func monthButtonTapped(sender: AnyObject) {
         showMonthPicker()
     }
+
     func showMonthPicker() {
         let vc = MonthPickerViewController(nibName: "MonthPickerViewController", bundle: nil)
-        self.presentViewController(vc, animated: true, completion: nil)
+        vc.modalPresentationStyle = .OverFullScreen
+        vc.selectedMonth = Month(rawValue: calendarView.presentedDate.month)
+        vc.didSelectMonthCallback = { [weak self] month in
+            self?.dismissViewControllerAnimated(true, completion: nil)
+        }
+        presentViewController(vc, animated: true, completion: nil)
     }
 
-//    optional func textFieldShouldBeginEditing(textField: UITextField) -> Bool // return NO to disallow editing.
-//    optional func textFieldDidBeginEditing(textField: UITextField) // became first responder
-//    optional func textFieldShouldEndEditing(textField: UITextField) -> Bool // return YES to allow editing to stop and to resign first responder status. NO to disallow the editing session to end
-//    optional func textFieldDidEndEditing(textField: UITextField) // may be called if forced even if shouldEndEditing returns NO (e.g. view removed from window) or endEditing:YES called
-//
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-
         var updatedText = textField.text as NSString
         updatedText = updatedText.stringByReplacingCharactersInRange(range, withString: string)
         if textField == yearTextField {
@@ -54,15 +57,8 @@ class SearchFiltersViewController: UIViewController, CVCalendarViewDelegate, Men
                 calendarView.toggleViewWithDate(Date(day: calendarView.presentedDate.day, month: calendarView.presentedDate.month, week: calendarView.presentedDate.week, year: year).convertedDate()!)
             }
         }
-
-
         return true
     }
-
-    
-//
-//    optional func textFieldShouldClear(textField: UITextField) -> Bool // called when clear button pressed. return NO to ignore (no notifications)
-//    optional func textFieldShouldReturn(textField: UITextField) -> Bool // called when 'return' key pressed. return NO to ignore.
 
     func presentationMode() -> CalendarMode {
         return CalendarMode.MonthView
@@ -70,32 +66,8 @@ class SearchFiltersViewController: UIViewController, CVCalendarViewDelegate, Men
     func firstWeekday() -> Weekday {
         return Weekday.Sunday
     }
-//
-//    optional func shouldShowWeekdaysOut() -> Bool
+
     func didSelectDayView(dayView: DayView) {
-        println("dayView: \(dayView)")
-        println("calendarView.presentedDate: \(calendarView.presentedDate.globalDescription)")
-        yearTextField.text = "\(calendarView.presentedDate.year)"
-        monthButton.setTitle("\(calendarView.presentedDate.month)", forState: .Normal)
+        update()
     }
-//    optional func presentedDateUpdated(date: Date)
-//    optional func topMarker(shouldDisplayOnDayView dayView: DayView) -> Bool
-//    optional func dotMarker(shouldMoveOnHighlightingOnDayView dayView: DayView) -> Bool
-//    optional func dotMarker(shouldShowOnDayView dayView: DayView) -> Bool
-//    optional func dotMarker(colorOnDayView dayView: DayView) -> [UIColor]
-//    optional func dotMarker(moveOffsetOnDayView dayView: DayView) -> CGFloat
-//
-//    optional func preliminaryView(viewOnDayView dayView: DayView) -> UIView
-//    optional func preliminaryView(shouldDisplayOnDayView dayView: DayView) -> Bool
-//
-//    optional func supplementaryView(viewOnDayView dayView: DayView) -> UIView
-//    optional func supplementaryView(shouldDisplayOnDayView dayView: DayView) -> Bool
-
-
-//    func firstWeekday() -> Weekday {
-//        return .Sunday
-//    }
-//    optional func dayOfWeekTextColor() -> UIColor
-//    optional func dayOfWeekTextUppercase() -> Bool
-//    optional func dayOfWeekFont() -> UIFont
 }

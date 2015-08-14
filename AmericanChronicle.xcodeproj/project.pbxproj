@@ -15,6 +15,7 @@
 		97415AE21B785AAE00326239 /* NewspaperPageUnfocusSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97415AE11B785AAE00326239 /* NewspaperPageUnfocusSegue.swift */; };
 		97415AE41B785D8400326239 /* CustomSegueNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97415AE31B785D8400326239 /* CustomSegueNavigationController.swift */; };
 		975914AA1B7A47C40031BD13 /* SearchResultsPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975914A91B7A47C40031BD13 /* SearchResultsPageCell.swift */; };
+		9764976D1B7DA0270035A388 /* Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9764976C1B7DA0270035A388 /* Month.swift */; };
 		978741471B7832660014D1F0 /* NewspaperPagesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978741461B7832660014D1F0 /* NewspaperPagesDataSource.swift */; };
 		9787414B1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9787414A1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift */; };
 		979988621B7B075A0094264F /* CVAuxiliaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979988481B7B075A0094264F /* CVAuxiliaryView.swift */; };
@@ -75,6 +76,7 @@
 		97415AE11B785AAE00326239 /* NewspaperPageUnfocusSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPageUnfocusSegue.swift; sourceTree = "<group>"; };
 		97415AE31B785D8400326239 /* CustomSegueNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegueNavigationController.swift; sourceTree = "<group>"; };
 		975914A91B7A47C40031BD13 /* SearchResultsPageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsPageCell.swift; sourceTree = "<group>"; };
+		9764976C1B7DA0270035A388 /* Month.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Month.swift; sourceTree = "<group>"; };
 		978741461B7832660014D1F0 /* NewspaperPagesDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPagesDataSource.swift; sourceTree = "<group>"; };
 		9787414A1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPagesPreviewDelegate.swift; sourceTree = "<group>"; };
 		979988481B7B075A0094264F /* CVAuxiliaryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CVAuxiliaryView.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 				97BDE1381B7703CA00A3E57F /* PageViewController.swift */,
 				971211241B7C3AE3004C9F8F /* MonthPickerViewController.swift */,
 				971211281B7C6D5C004C9F8F /* MonthPickerViewController.xib */,
+				9764976C1B7DA0270035A388 /* Month.swift */,
 				97BE67491B7B004B00761033 /* SearchFiltersViewController.swift */,
 				97BDE1181B76ED6B00A3E57F /* NewspaperIssuesViewController.swift */,
 				97BDE13A1B771B4800A3E57F /* NewspaperPagesViewController.swift */,
@@ -362,6 +365,7 @@
 				9787414B1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift in Sources */,
 				97BE674A1B7B004B00761033 /* SearchFiltersViewController.swift in Sources */,
 				979988721B7B075A0094264F /* CVCalendarViewPresentationMode.swift in Sources */,
+				9764976D1B7DA0270035A388 /* Month.swift in Sources */,
 				9799886C1B7B075A0094264F /* CVCalendarView.swift in Sources */,
 				97415AE41B785D8400326239 /* CustomSegueNavigationController.swift in Sources */,
 				971211271B7C4179004C9F8F /* MonthPickerRevealSegue.swift in Sources */,
