@@ -25,7 +25,8 @@ import UIKit
         super.viewDidLoad()
 
         if let month = selectedMonth {
-            tableView.selectRowAtIndexPath(NSIndexPath(forItem: month.rawValue, inSection: 0), animated: false, scrollPosition: .Top)
+            let indexPath = NSIndexPath(forItem: month.rawValue, inSection: 0)
+
         }
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "Cell")
     }
@@ -50,6 +51,11 @@ import UIKit
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! UITableViewCell
+        if let selectedRow = selectedMonth?.rawValue where selectedRow == indexPath.row {
+            cell.accessoryType = .Checkmark
+        } else {
+            cell.accessoryType = .None
+        }
         cell.textLabel?.text = Month.stringForRawValue(indexPath.row)
         return cell
     }
