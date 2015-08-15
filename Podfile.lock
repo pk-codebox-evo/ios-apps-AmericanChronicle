@@ -1,13 +1,16 @@
 PODS:
   - FSCalendar (0.9.3)
+  - Masonry (0.6.2)
   - SwiftMoment (0.1.2)
 
 DEPENDENCIES:
   - FSCalendar
+  - Masonry (~> 0.6)
   - SwiftMoment
 
 SPEC CHECKSUMS:
   FSCalendar: 82450e266009a3f564c83417744a17620a1284d1
+  Masonry: 362e8a1cc0beada4a4c4832d5e863da2a51533be
   SwiftMoment: a439fccf86c8f3367557e406204c93ec1269c8c5
 
 COCOAPODS: 0.38.2
