@@ -6,7 +6,7 @@ use_frameworks!
 target 'AmericanChronicle' do
   pod 'FSCalendar'
   pod 'SwiftMoment'
-  pod 'Masonry', '~> 0.6'
+  pod 'SnapKit', '~> 0.13'
 end
 
 target 'AmericanChronicleTests' do

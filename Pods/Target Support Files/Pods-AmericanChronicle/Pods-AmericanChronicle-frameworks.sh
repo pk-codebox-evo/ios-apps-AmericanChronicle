@@ -53,11 +53,11 @@ code_sign_if_enabled() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-AmericanChronicle/FSCalendar.framework'
-  install_framework 'Pods-AmericanChronicle/Masonry.framework'
+  install_framework 'Pods-AmericanChronicle/SnapKit.framework'
   install_framework 'Pods-AmericanChronicle/SwiftMoment.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-AmericanChronicle/FSCalendar.framework'
-  install_framework 'Pods-AmericanChronicle/Masonry.framework'
+  install_framework 'Pods-AmericanChronicle/SnapKit.framework'
   install_framework 'Pods-AmericanChronicle/SwiftMoment.framework'
 fi
