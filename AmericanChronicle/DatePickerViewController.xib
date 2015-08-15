@@ -13,11 +13,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="64" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="znc-cd-RNF" customClass="FSCalendar">
-                    <rect key="frame" x="0.0" y="155" width="600" height="445"/>
+                    <rect key="frame" x="0.0" y="235" width="600" height="365"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="headerHeight">
@@ -30,7 +30,7 @@
                     </connections>
                 </view>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="shx-df-HkX">
-                    <rect key="frame" x="162" y="20" width="276" height="40"/>
+                    <rect key="frame" x="162" y="100" width="276" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="yxX-eg-uEV"/>
                     </constraints>
@@ -42,8 +42,9 @@
                 </textField>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
             <constraints>
-                <constraint firstItem="shx-df-HkX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="MUK-Gt-YRo"/>
+                <constraint firstItem="shx-df-HkX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="100" id="MUK-Gt-YRo"/>
                 <constraint firstAttribute="trailing" secondItem="znc-cd-RNF" secondAttribute="trailing" id="SoW-sD-F3v"/>
                 <constraint firstItem="shx-df-HkX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="162" id="UWx-No-plI"/>
                 <constraint firstItem="znc-cd-RNF" firstAttribute="top" secondItem="shx-df-HkX" secondAttribute="bottom" constant="95" id="XD6-BN-PqH"/>
@@ -52,8 +53,17 @@
                 <constraint firstAttribute="bottom" secondItem="znc-cd-RNF" secondAttribute="bottom" id="wCK-xW-Eg6"/>
                 <constraint firstAttribute="trailing" secondItem="shx-df-HkX" secondAttribute="trailing" constant="162" id="yqS-RX-YUN"/>
             </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="jre-P2-aUv" appends="YES" id="agp-1G-TNG"/>
+            </connections>
         </view>
         <customObject id="Fnx-yF-8Dl" customClass="CalendarViewDataSource" customModule="AmericanChronicle" customModuleProvider="target"/>
         <customObject id="j5o-bU-goz" customClass="CalendarViewDelegate" customModule="AmericanChronicle" customModuleProvider="target"/>
+        <tapGestureRecognizer id="jre-P2-aUv">
+            <connections>
+                <action selector="unfocusedTapRecognized:" destination="-1" id="SvE-fV-JO2"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

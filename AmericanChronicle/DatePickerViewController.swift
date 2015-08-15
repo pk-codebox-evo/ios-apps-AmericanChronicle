@@ -23,6 +23,9 @@ import FSCalendar
         super.init(nibName: "DatePickerViewController", bundle: nil)
     }
 
+    @IBAction func unfocusedTapRecognized(sender: AnyObject) {
+        yearTextField.resignFirstResponder()
+    }
     @availability(*, unavailable) init() {
         fatalError("init not supported. Use designated initializer instead")
     }
@@ -63,11 +66,22 @@ import FSCalendar
         if updatedText.length > 4 {
             return false
         }
+
+        if updatedText.length == 0 {
+            textField.backgroundColor = UIColor.grayColor()
+            return true
+        }
+
         if let year = (updatedText as String).toInt() {
             if year >= 1836 && year <= 1922 {
                 setCalendarDate(year: year)
-                return false
+                textField.backgroundColor = UIColor.greenColor()
+                return true
+            } else if updatedText.length == 4 {
+                textField.backgroundColor = UIColor.redColor()
+                return true
             } else {
+                textField.backgroundColor = UIColor.grayColor()
                 return true
             }
         } else {
