@@ -13,20 +13,14 @@ import SwiftMoment
 @objc class DatePickerViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
 
     @IBOutlet weak var calendarView: FSCalendar!
-    @IBOutlet weak var yearSlider: UISlider!
+    @IBOutlet weak var slider: YearSlider!
 
     private let selectedDateOnInit: NSDate
     private let earliestPossibleDate: NSDate
     private let latestPossibleDate: NSDate
 
-    @IBAction func yearSliderValueDidChange(sender: UISlider) {
-        let intValue = Int(round(sender.value))
-
-        setCalendarDate(year: intValue)
-
-        if sender.state != .Highlighted {
-            sender.value = Float(intValue)
-        }
+    @IBAction func sliderValueDidChange(sender: YearSlider) {
+        setCalendarDate(year: sender.value)
     }
 
     var saveCallback: ((NSDate) -> ())?
@@ -77,17 +71,20 @@ import SwiftMoment
     }
 
     func updateUIToMatchCurrentDate(currentDate: NSDate) {
-        if yearSlider.state != .Highlighted {
-            yearSlider.value = Float(moment(currentDate).year)
+        if slider.state != .Highlighted {
+            slider.value = moment(currentDate).year
         }
-//        let date = moment(currentDate)
-//        yearTextField.text = "\(date.year)"
     }
 
     // MARK: UIViewController overrides
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        slider.addTarget(self, action: "sliderValueDidChange:", forControlEvents: .ValueChanged)
+        slider.minValue = moment(earliestPossibleDate).year
+        slider.maxValue = moment(latestPossibleDate).year
+        slider.value = moment(selectedDateOnInit).year
 
         calendarView.selectedDate = selectedDateOnInit
         updateUIToMatchCurrentDate(calendarView.selectedDate)

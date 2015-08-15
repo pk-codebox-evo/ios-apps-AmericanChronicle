@@ -22,6 +22,8 @@
 		977F0A5D1B7FC5BA00C4B0FC /* CalendarViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977F0A5C1B7FC5BA00C4B0FC /* CalendarViewDataSource.swift */; };
 		978236191B7FD0D00056FDF6 /* ChroniclingAmericaArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978236181B7FD0D00056FDF6 /* ChroniclingAmericaArchive.swift */; };
 		9782361B1B7FD1F00056FDF6 /* SearchFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782361A1B7FD1F00056FDF6 /* SearchFilters.swift */; };
+		9782361D1B7FFCF80056FDF6 /* YearSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782361C1B7FFCF80056FDF6 /* YearSlider.swift */; };
+		9782361F1B8000CE0056FDF6 /* YearSliderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782361E1B8000CE0056FDF6 /* YearSliderTests.swift */; };
 		978741471B7832660014D1F0 /* NewspaperPagesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978741461B7832660014D1F0 /* NewspaperPagesDataSource.swift */; };
 		9787414B1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9787414A1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift */; };
 		97BDE1151B76ED6B00A3E57F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE1141B76ED6B00A3E57F /* AppDelegate.swift */; };
@@ -66,6 +68,8 @@
 		977F0A5C1B7FC5BA00C4B0FC /* CalendarViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewDataSource.swift; sourceTree = "<group>"; };
 		978236181B7FD0D00056FDF6 /* ChroniclingAmericaArchive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChroniclingAmericaArchive.swift; sourceTree = "<group>"; };
 		9782361A1B7FD1F00056FDF6 /* SearchFilters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFilters.swift; sourceTree = "<group>"; };
+		9782361C1B7FFCF80056FDF6 /* YearSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YearSlider.swift; sourceTree = "<group>"; };
+		9782361E1B8000CE0056FDF6 /* YearSliderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YearSliderTests.swift; sourceTree = "<group>"; };
 		978741461B7832660014D1F0 /* NewspaperPagesDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPagesDataSource.swift; sourceTree = "<group>"; };
 		9787414A1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPagesPreviewDelegate.swift; sourceTree = "<group>"; };
 		97BDE10F1B76ED6B00A3E57F /* AmericanChronicle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmericanChronicle.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +146,7 @@
 				978236181B7FD0D00056FDF6 /* ChroniclingAmericaArchive.swift */,
 				97BDE1361B76F84F00A3E57F /* SearchViewController.swift */,
 				97BDE1381B7703CA00A3E57F /* PageViewController.swift */,
+				9782361C1B7FFCF80056FDF6 /* YearSlider.swift */,
 				977F0A561B7FC3E700C4B0FC /* DatePickerViewController.swift */,
 				977F0A571B7FC3E700C4B0FC /* DatePickerViewController.xib */,
 				977F0A5A1B7FC58200C4B0FC /* CalendarViewDelegate.swift */,
@@ -183,6 +188,7 @@
 			children = (
 				97BDE12C1B76ED6B00A3E57F /* AmericanChronicleTests.swift */,
 				97BDE12A1B76ED6B00A3E57F /* Supporting Files */,
+				9782361E1B8000CE0056FDF6 /* YearSliderTests.swift */,
 			);
 			path = AmericanChronicleTests;
 			sourceTree = "<group>";
@@ -368,6 +374,7 @@
 				97BE674A1B7B004B00761033 /* SearchFiltersViewController.swift in Sources */,
 				9764976D1B7DA0270035A388 /* Month.swift in Sources */,
 				97415AE41B785D8400326239 /* CustomSegueNavigationController.swift in Sources */,
+				9782361D1B7FFCF80056FDF6 /* YearSlider.swift in Sources */,
 				971211271B7C4179004C9F8F /* MonthPickerRevealSegue.swift in Sources */,
 				97BDE1171B76ED6B00A3E57F /* MasterViewController.swift in Sources */,
 				9782361B1B7FD1F00056FDF6 /* SearchFilters.swift in Sources */,
@@ -387,6 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				97BDE12D1B76ED6B00A3E57F /* AmericanChronicleTests.swift in Sources */,
+				9782361F1B8000CE0056FDF6 /* YearSliderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

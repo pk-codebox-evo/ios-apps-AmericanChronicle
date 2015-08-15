@@ -7,8 +7,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DatePickerViewController" customModule="AmericanChronicle" customModuleProvider="target">
             <connections>
                 <outlet property="calendarView" destination="znc-cd-RNF" id="AlI-0u-VTW"/>
+                <outlet property="slider" destination="3Ux-Bf-ACL" id="Xee-3X-MbE"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="yearSlider" destination="yNH-pg-ECf" id="9pS-0L-64R"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -24,55 +24,27 @@
                         <outlet property="delegate" destination="-1" id="td1-Iy-3oB"/>
                     </connections>
                 </view>
-                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1836" minValue="1836" maxValue="1922" translatesAutoresizingMaskIntoConstraints="NO" id="yNH-pg-ECf">
-                    <rect key="frame" x="16" y="90" width="382" height="61"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ux-Bf-ACL" customClass="YearSlider" customModule="AmericanChronicle" customModuleProvider="target">
+                    <rect key="frame" x="17" y="82" width="380" height="61"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="60" id="OKJ-Ay-lbq"/>
+                        <constraint firstAttribute="height" constant="61" id="53H-Y1-sta"/>
                     </constraints>
-                    <connections>
-                        <action selector="yearSliderValueDidChange:" destination="-1" eventType="valueChanged" id="C0d-19-vnI"/>
-                    </connections>
-                </slider>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ENv-6r-7Zg">
-                    <rect key="frame" x="365" y="74" width="34" height="30"/>
-                    <state key="normal" title="1922">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iTS-az-ad3">
-                    <rect key="frame" x="15" y="74" width="34" height="30"/>
-                    <state key="normal" title="1836">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                </button>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <gestureRecognizers/>
             <constraints>
-                <constraint firstItem="iTS-az-ad3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="74" id="4qy-Dd-J1u"/>
-                <constraint firstAttribute="trailing" secondItem="ENv-6r-7Zg" secondAttribute="trailing" constant="15" id="6DV-e5-Tvi"/>
-                <constraint firstItem="iTS-az-ad3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="F8O-j5-P86"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="yNH-pg-ECf" secondAttribute="trailing" constant="20" id="IWR-Oe-5dA"/>
-                <constraint firstItem="iTS-az-ad3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="LvC-Fb-iHz"/>
-                <constraint firstItem="ENv-6r-7Zg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="74" id="Nvo-v6-7un"/>
-                <constraint firstItem="yNH-pg-ECf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="90" id="ODg-nw-dGJ"/>
+                <constraint firstItem="3Ux-Bf-ACL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="17" id="F5f-P2-MRt"/>
+                <constraint firstItem="znc-cd-RNF" firstAttribute="top" secondItem="3Ux-Bf-ACL" secondAttribute="bottom" constant="31" id="F8P-Xo-fbN"/>
+                <constraint firstAttribute="trailing" secondItem="3Ux-Bf-ACL" secondAttribute="trailing" constant="17" id="JIC-l1-ll5"/>
                 <constraint firstAttribute="trailing" secondItem="znc-cd-RNF" secondAttribute="trailing" id="SoW-sD-F3v"/>
-                <constraint firstItem="iTS-az-ad3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="18" id="TOq-fw-LO9"/>
-                <constraint firstItem="yNH-pg-ECf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="18" id="U1B-zQ-EfZ"/>
-                <constraint firstAttribute="trailing" secondItem="yNH-pg-ECf" secondAttribute="trailing" constant="18" id="ZtJ-mg-bOc"/>
+                <constraint firstItem="3Ux-Bf-ACL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="82" id="e9H-Hf-aQi"/>
                 <constraint firstItem="znc-cd-RNF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="udI-Xx-nJr"/>
                 <constraint firstAttribute="bottom" secondItem="znc-cd-RNF" secondAttribute="bottom" constant="180" id="wCK-xW-Eg6"/>
-                <constraint firstItem="znc-cd-RNF" firstAttribute="top" secondItem="yNH-pg-ECf" secondAttribute="bottom" constant="24" id="yR3-bN-man"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="F8O-j5-P86"/>
-                    <exclude reference="TOq-fw-LO9"/>
-                    <exclude reference="IWR-Oe-5dA"/>
-                </mask>
-            </variation>
         </view>
         <customObject id="Fnx-yF-8Dl" customClass="CalendarViewDataSource" customModule="AmericanChronicle" customModuleProvider="target"/>
         <customObject id="j5o-bU-goz" customClass="CalendarViewDelegate" customModule="AmericanChronicle" customModuleProvider="target"/>
