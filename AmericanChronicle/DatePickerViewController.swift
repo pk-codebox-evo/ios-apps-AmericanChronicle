@@ -13,10 +13,18 @@ import SwiftMoment
 @objc class DatePickerViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
 
     @IBOutlet weak var calendarView: FSCalendar!
+    @IBOutlet weak var yearSlider: UISlider!
 
     private let selectedDateOnInit: NSDate
     private let earliestPossibleDate: NSDate
     private let latestPossibleDate: NSDate
+
+    @IBAction func yearSliderValueDidChange(sender: UISlider) {
+        println("sender.value: \(sender.value)")
+        println("round(sender.value): \(round(sender.value))")
+        println("Int(sender.value): \(Int(sender.value))")
+        setCalendarDate(year: Int(sender.value))
+    }
 
     var saveCallback: ((NSDate) -> ())?
 
@@ -54,6 +62,7 @@ import SwiftMoment
     func setCalendarDate(year: Int? = nil, month: Int? = nil) {
         if let year = year {
             println("will set year")
+
             calendarView.selectedDate = NSCalendar.currentCalendar().dateBySettingUnit(.CalendarUnitYear, value: year, ofDate: calendarView.selectedDate, options: NSCalendarOptions.allZeros)
             println("did set year")
         }
