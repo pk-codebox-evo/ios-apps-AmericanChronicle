@@ -8,31 +8,39 @@
 
 import UIKit
 
-class SearchFiltersViewController: UIViewController, CVCalendarViewDelegate, MenuViewDelegate {
+extension UIViewController {
+    func setChildViewController(viewController : UIViewController, inContainer containerView: UIView) {
+        if let onlyChild = self.childViewControllers.first as? UIViewController {
+            onlyChild.willMoveToParentViewController(nil)
+            onlyChild.view.removeFromSuperview()
+            onlyChild.removeFromParentViewController()
+        }
+
+        self.addChildViewController(viewController)
+        viewController.view.frame = containerView.bounds
+        containerView.addSubview(viewController.view)
+        viewController.didMoveToParentViewController(self)
+    }
+}
+
+class SearchFiltersViewController: UIViewController, FSCalendarDataSource, FSCalendarDelegate {
 
     @IBOutlet weak var yearTextField: UITextField!
     @IBOutlet weak var monthButton: UIButton!
-    @IBOutlet weak var calendarView: CVCalendarView!
-    @IBOutlet weak var calendarMenuView: CVCalendarMenuView!
+    @IBOutlet weak var calendarContainerView: UIView!
+    @IBOutlet weak var calendarView: FSCalendar!
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-
-        calendarView.commitCalendarViewUpdate()
-        calendarMenuView.commitMenuViewUpdate()
-        update()
     }
 
     func update() {
-        yearTextField.text = "\(calendarView.presentedDate.year)"
-        monthButton.setTitle(Month.stringForRawValue(calendarView.presentedDate.month), forState: .Normal)
+//        yearTextField.text = "\(calendarView.presentedDate.year)"
+//        monthButton.setTitle(Month.stringForRawValue(calendarView.presentedDate.month), forState: .Normal)
     }
 
     @IBAction func monthButtonTapped(sender: AnyObject) {
@@ -42,11 +50,11 @@ class SearchFiltersViewController: UIViewController, CVCalendarViewDelegate, Men
     func showMonthPicker() {
         let vc = MonthPickerViewController(nibName: "MonthPickerViewController", bundle: nil)
         vc.modalPresentationStyle = .OverFullScreen
-        vc.selectedMonth = Month(rawValue: calendarView.presentedDate.month)
+//        vc.selectedMonth = Month(rawValue: calendarView.presentedDate.month)
         vc.didSelectMonthCallback = { [weak self] month in
-            if let month = month, year = self?.calendarView.presentedDate.year {
-                self?.updateCalendar(month.rawValue, year: year)
-            }
+//            if let month = month, year = self?.calendarView.presentedDate.year {
+//                self?.updateCalendar(month.rawValue, year: year)
+//            }
             self?.dismissViewControllerAnimated(true, completion: nil)
         }
         presentViewController(vc, animated: true, completion: nil)
@@ -57,28 +65,46 @@ class SearchFiltersViewController: UIViewController, CVCalendarViewDelegate, Men
         updatedText = updatedText.stringByReplacingCharactersInRange(range, withString: string)
         if textField == yearTextField {
             if let year = (updatedText as String).toInt() where year >= 1836 && year <= 1922 {
-                updateCalendar(calendarView.presentedDate.month, year: year)
+//                updateCalendar(calendarView.presentedDate.month, year: year)
             }
         }
         return true
     }
 
-    func updateCalendar(month: Int, year: Int) {
-        let day = calendarView.presentedDate.day
-        let week = calendarView.presentedDate.week
-        if let date = Date(day: day, month: month, week: week, year: year).convertedDate() {
-            calendarView.toggleViewWithDate(date)
-        }
+    // MARK: FSCalendarDelegate methods
+
+    func calendar(calendar: FSCalendar, shouldSelectDate: NSDate) -> Bool {
+        return true
     }
 
-    func presentationMode() -> CalendarMode {
-        return CalendarMode.MonthView
-    }
-    func firstWeekday() -> Weekday {
-        return Weekday.Sunday
+    func calendar(calendar: FSCalendar, didSelectDate: NSDate) {
+
     }
 
-    func didSelectDayView(dayView: DayView) {
-        update()
+    func calendarCurrentMonthDidChange(calendar: FSCalendar) {
+        println("calendar: \(calendar)")
+        println("calendar.currentMonth: \(calendar.currentMonth)")
+    }
+
+    // MARK: FSCalendarDataSource methods
+
+    func calendar(calendar: FSCalendar, subtitleForDate: NSDate) -> String {
+        return ""
+    }
+
+    func calendar(calendar: FSCalendar, imageForDate: NSDate) -> UIImage {
+        return UIImage()
+    }
+
+    func calendar(calendar: FSCalendar, hasEventForDate: NSDate) -> Bool {
+        return true
+    }
+
+    func minimumDateForCalendar(calendar: FSCalendar) -> NSDate {
+        return NSDate()
+    }
+
+    func maximumDateForCalendar(calendar: FSCalendar) -> NSDate {
+        return NSDate().dateByAddingTimeInterval(60*60*24*365)
     }
 }

@@ -255,13 +255,13 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jan 3, 1902" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehU-S2-MSd" userLabel="dateLabel">
                                                     <rect key="frame" x="15" y="15" width="73.5" height="19.5"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phoenix, AZ" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IxZ-G9-WPh" userLabel="cityStateLabel">
                                                     <rect key="frame" x="301" y="15.5" width="76" height="19.5"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gao-CW-JQM" userLabel="matchingTextLabel">
@@ -269,19 +269,19 @@
                                                     <string key="text">…with a full season of practice, Jane Doe had learned enough to overtake the incumbent…
 </string>
                                                     <fontDescription key="fontDescription" name="IowanOldStyle-Roman" family="Iowan Old Style" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Daily Mail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJh-pT-hWE" userLabel="publicationTitleLabel">
                                                     <rect key="frame" x="15" y="114" width="90" height="19.5"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="and 999 more" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yK9-yw-GCY" userLabel="moreMatchesCountLabel">
                                                     <rect key="frame" x="288" y="114" width="89" height="19.5"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Italic" family="Avenir Next" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -386,26 +386,6 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KhV-aM-Qmu" customClass="CVCalendarView" customModule="AmericanChronicle" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="303" width="414" height="283"/>
-                                <color key="backgroundColor" red="0.82745098039999998" green="0.84705882349999995" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="283" id="Tv7-nY-lX9"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="calendarDelegate" destination="E7Q-nd-2Px" id="osI-7i-K3M"/>
-                                </connections>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qvh-KT-a6g" customClass="CVCalendarMenuView" customModule="AmericanChronicle" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="250" width="414" height="53"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="53" id="pvV-lE-xjh"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="menuViewDelegate" destination="E7Q-nd-2Px" id="Kh3-Nx-6MR"/>
-                                </connections>
-                            </view>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LH1-Am-7j8">
                                 <rect key="frame" x="69" y="137" width="276" height="40"/>
                                 <constraints>
@@ -426,34 +406,46 @@
                                     <action selector="monthButtonTapped:" destination="E7Q-nd-2Px" eventType="touchUpInside" id="ibk-pe-asl"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OhJ-7g-hZ5" customClass="FSCalendar">
+                                <rect key="frame" x="0.0" y="251" width="414" height="329"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="329" id="nam-Fk-oz6"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="headerHeight">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="dataSource" destination="E7Q-nd-2Px" id="lT7-bs-9xf"/>
+                                    <outlet property="delegate" destination="E7Q-nd-2Px" id="Amq-IE-qPc"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Qvh-KT-a6g" firstAttribute="top" secondItem="f1I-Wo-nSx" secondAttribute="bottom" constant="20" id="0Z5-oM-xWn"/>
                             <constraint firstItem="MQa-n2-dwu" firstAttribute="leading" secondItem="mLz-wZ-cyk" secondAttribute="leading" constant="16" id="7XV-Rd-tMf"/>
                             <constraint firstItem="f1I-Wo-nSx" firstAttribute="top" secondItem="LH1-Am-7j8" secondAttribute="bottom" constant="23" id="BRp-A3-0bd"/>
                             <constraint firstItem="LH1-Am-7j8" firstAttribute="leading" secondItem="mLz-wZ-cyk" secondAttribute="leading" constant="69" id="COJ-0j-zmh"/>
-                            <constraint firstItem="KhV-aM-Qmu" firstAttribute="top" secondItem="Qvh-KT-a6g" secondAttribute="bottom" id="LdU-XL-7Hc"/>
-                            <constraint firstItem="Qvh-KT-a6g" firstAttribute="leading" secondItem="mLz-wZ-cyk" secondAttribute="leading" id="NKu-OI-kzs"/>
+                            <constraint firstItem="OhJ-7g-hZ5" firstAttribute="leading" secondItem="mLz-wZ-cyk" secondAttribute="leading" id="MKK-Df-hdG"/>
                             <constraint firstItem="TIJ-KJ-CE3" firstAttribute="top" secondItem="mLz-wZ-cyk" secondAttribute="top" id="Qqh-V1-AFC"/>
                             <constraint firstAttribute="trailing" secondItem="TIJ-KJ-CE3" secondAttribute="trailing" id="SlZ-hv-O9s"/>
-                            <constraint firstItem="Qvh-KT-a6g" firstAttribute="top" secondItem="mLz-wZ-cyk" secondAttribute="top" constant="250" id="TD0-BY-kAo"/>
-                            <constraint firstItem="KhV-aM-Qmu" firstAttribute="leading" secondItem="mLz-wZ-cyk" secondAttribute="leading" id="YQd-Dv-Bl5"/>
+                            <constraint firstItem="OhJ-7g-hZ5" firstAttribute="top" secondItem="f1I-Wo-nSx" secondAttribute="bottom" constant="21" id="T3V-6w-y35"/>
                             <constraint firstItem="TIJ-KJ-CE3" firstAttribute="leading" secondItem="mLz-wZ-cyk" secondAttribute="leading" id="aY4-Ak-ijy"/>
+                            <constraint firstAttribute="trailing" secondItem="OhJ-7g-hZ5" secondAttribute="trailing" id="bcA-t7-xmZ"/>
                             <constraint firstItem="MQa-n2-dwu" firstAttribute="top" secondItem="mLz-wZ-cyk" secondAttribute="top" constant="60" id="c9H-QY-Ugo"/>
+                            <constraint firstItem="LH1-Am-7j8" firstAttribute="top" secondItem="5GO-a1-NRd" secondAttribute="bottom" constant="137" id="djY-MC-FJX"/>
                             <constraint firstAttribute="trailing" secondItem="LH1-Am-7j8" secondAttribute="trailing" constant="69" id="ho1-8k-DFQ"/>
                             <constraint firstItem="f1I-Wo-nSx" firstAttribute="leading" secondItem="mLz-wZ-cyk" secondAttribute="leading" constant="69" id="k5U-WG-b2D"/>
-                            <constraint firstAttribute="trailing" secondItem="Qvh-KT-a6g" secondAttribute="trailing" id="qAm-HX-dwA"/>
                             <constraint firstAttribute="trailing" secondItem="Io2-8R-DAX" secondAttribute="trailing" constant="16" id="uvK-lb-Hkq"/>
                             <constraint firstAttribute="trailing" secondItem="f1I-Wo-nSx" secondAttribute="trailing" constant="69" id="vJo-Da-hVq"/>
-                            <constraint firstAttribute="trailing" secondItem="KhV-aM-Qmu" secondAttribute="trailing" id="wAz-rj-OS1"/>
                             <constraint firstItem="Io2-8R-DAX" firstAttribute="top" secondItem="mLz-wZ-cyk" secondAttribute="top" constant="60" id="znP-T7-6w6"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="calendarMenuView" destination="Qvh-KT-a6g" id="Lym-uT-v49"/>
-                        <outlet property="calendarView" destination="KhV-aM-Qmu" id="hhX-cr-SKi"/>
+                        <outlet property="calendarView" destination="OhJ-7g-hZ5" id="3La-NK-Qrg"/>
                         <outlet property="monthButton" destination="f1I-Wo-nSx" id="RUZ-jg-JOF"/>
                         <outlet property="yearTextField" destination="LH1-Am-7j8" id="1SK-TL-GYl"/>
                     </connections>
@@ -666,6 +658,24 @@
                 <customObject id="JI3-KR-OyJ" customClass="NewspaperPagesDataSource" customModule="AmericanChronicle" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="1893" y="72"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Djd-gd-VHA">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Auv-7a-4KQ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gmi-bW-HKg"/>
+                        <viewControllerLayoutGuide type="bottom" id="smH-lk-4bG"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="hnk-CZ-sWQ">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JQc-q0-R2Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>

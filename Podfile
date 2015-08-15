@@ -2,7 +2,7 @@
 # platform :ios, '6.0'
 
 target 'AmericanChronicle' do
-  pod 'JTCalendar', '~> 2.0'
+  pod 'FSCalendar'
 end
 
 target 'AmericanChronicleTests' do

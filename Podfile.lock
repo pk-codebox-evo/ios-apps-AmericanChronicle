@@ -1,10 +1,10 @@
 PODS:
-  - JTCalendar (2.0.8)
+  - FSCalendar (0.9.3)
 
 DEPENDENCIES:
-  - JTCalendar (~> 2.0)
+  - FSCalendar
 
 SPEC CHECKSUMS:
-  JTCalendar: ea957a79747486a06e9b28692d4d9eedbf70f663
+  FSCalendar: 82450e266009a3f564c83417744a17620a1284d1
 
 COCOAPODS: 0.38.2
