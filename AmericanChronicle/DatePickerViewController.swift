@@ -20,9 +20,13 @@ import SwiftMoment
     private let latestPossibleDate: NSDate
 
     @IBAction func yearSliderValueDidChange(sender: UISlider) {
-        let intValue = Int(sender.value)
-        sender.value = Float(intValue)
+        let intValue = Int(round(sender.value))
+
         setCalendarDate(year: intValue)
+
+        if sender.state != .Highlighted {
+            sender.value = Float(intValue)
+        }
     }
 
     var saveCallback: ((NSDate) -> ())?
