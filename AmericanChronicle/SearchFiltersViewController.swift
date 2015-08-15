@@ -25,45 +25,53 @@ extension UIViewController {
     }
 }
 
+class DateButton: UIButton {
+    let subtitleLabel: UILabel = UILabel()
+
+    func commonInit() {
+        layer.borderColor = UIColor.blackColor().CGColor
+        layer.borderWidth = 1.0
+        addSubview(subtitleLabel)
+    }
+
+    required init(coder: NSCoder) {
+        super.init(coder: coder)
+        self.commonInit()
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.commonInit()
+    }
+
+    override func updateConstraints() {
+        
+        super.updateConstraints()
+    }
+}
+
 class SearchFiltersViewController: UIViewController {
 
-    var searchFilters: SearchFilters?
+    var searchFilters: SearchFilters = SearchFilters()
 
-    @IBOutlet weak var earliestDatePickerContainerView: UIView!
-    @IBOutlet weak var earliestDatePickerHeight: NSLayoutConstraint!
-    @IBOutlet weak var latestDatePickerContainerView: UIView!
-    @IBOutlet weak var latestDatePickerHeight: NSLayoutConstraint!
     @IBOutlet weak var earliestDateButton: UIButton!
     @IBOutlet weak var latestDateButton: UIButton!
     @IBOutlet weak var locationButton: UIButton!
 
+
     @IBAction func earliestDateButtonTapped(sender: AnyObject) {
         let vc = DatePickerViewController()
+        vc.saveCallback = { [weak self] selectedDate in
+            self?.searchFilters.earliestDate = selectedDate
+        }
         navigationController?.pushViewController(vc, animated: true)
     }
 
     @IBAction func latestDateButtonTapped(sender: AnyObject) {
-
+        let vc = DatePickerViewController()
+        vc.saveCallback = { [weak self] selectedDate in
+            self?.searchFilters.latestDate = selectedDate
+        }
+        navigationController?.pushViewController(vc, animated: true)
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        earliestDatePickerHeight.constant = 0
-        latestDatePickerHeight.constant = 0
-    }
-    
-
-//    func updateLabelsWithCurrentCalendarViewDate() {
-//        let now = moment(calendarView.currentMonth)
-//        monthButton.setTitle(now.monthName, forState: .Normal)
-//        println("will set yearTextField")
-//        yearTextField.text = "\(now.year)"
-//        println("did set yearTextField")
-//    }
-
-    
-
-
-
-
 }
