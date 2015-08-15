@@ -26,7 +26,7 @@ extension UIViewController {
     }
 }
 
-class DateButton: UIButton {
+class FilterButton: UIButton {
     let subtitleLabel: UILabel = UILabel()
 
     func commonInit() {
@@ -72,15 +72,18 @@ class SearchFiltersViewController: UIViewController {
 
     var searchFilters: SearchFilters = SearchFilters()
 
-    @IBOutlet weak var earliestDateButton: DateButton!
-    @IBOutlet weak var latestDateButton: UIButton!
-    @IBOutlet weak var locationButton: UIButton!
+    @IBOutlet weak var earliestDateButton: FilterButton!
+    @IBOutlet weak var latestDateButton: FilterButton!
+    @IBOutlet weak var locationButton: FilterButton!
+
 
 
     @IBAction func earliestDateButtonTapped(sender: AnyObject) {
         let vc = DatePickerViewController()
         vc.saveCallback = { [weak self] selectedDate in
             self?.searchFilters.earliestDate = selectedDate
+            self?.updateFilterButtons()
+            self?.navigationController?.popViewControllerAnimated(true)
         }
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -89,7 +92,36 @@ class SearchFiltersViewController: UIViewController {
         let vc = DatePickerViewController()
         vc.saveCallback = { [weak self] selectedDate in
             self?.searchFilters.latestDate = selectedDate
+            self?.updateFilterButtons()
+            self?.navigationController?.popViewControllerAnimated(true)
         }
         navigationController?.pushViewController(vc, animated: true)
+    }
+
+    func updateFilterButtons() {
+        let formatString = "MMM dd, yyyy"
+        if let earliestDate = self.searchFilters.earliestDate {
+            earliestDateButton.subtitleLabel.text = moment(earliestDate).format(dateFormat: formatString)
+        } else {
+            earliestDateButton.subtitleLabel.text = "--"
+        }
+
+        if let latestDate = self.searchFilters.latestDate {
+            latestDateButton.subtitleLabel.text = moment(latestDate).format(dateFormat: formatString)
+        } else {
+            latestDateButton.subtitleLabel.text = "--"
+        }
+
+        if let locations = self.searchFilters.locations {
+            locationButton.subtitleLabel.text = "\(locations.count) locations set"
+        } else {
+            locationButton.subtitleLabel.text = "--"
+        }
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        updateFilterButtons()
+
     }
 }

@@ -63,16 +63,8 @@
                     <exclude reference="XD6-BN-PqH"/>
                 </mask>
             </variation>
-            <connections>
-                <outletCollection property="gestureRecognizers" destination="jre-P2-aUv" appends="YES" id="agp-1G-TNG"/>
-            </connections>
         </view>
         <customObject id="Fnx-yF-8Dl" customClass="CalendarViewDataSource" customModule="AmericanChronicle" customModuleProvider="target"/>
         <customObject id="j5o-bU-goz" customClass="CalendarViewDelegate" customModule="AmericanChronicle" customModuleProvider="target"/>
-        <tapGestureRecognizer id="jre-P2-aUv">
-            <connections>
-                <action selector="unfocusedTapRecognized:" destination="-1" id="SvE-fV-JO2"/>
-            </connections>
-        </tapGestureRecognizer>
     </objects>
 </document>

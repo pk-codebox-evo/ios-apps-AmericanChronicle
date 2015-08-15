@@ -111,6 +111,14 @@ import SwiftMoment
         }
     }
 
+    func calendar(calendar: FSCalendar!, shouldSelectDate date: NSDate!) -> Bool {
+        return true
+    }
+
+    func calendar(calendar: FSCalendar, didSelectDate date: NSDate) {
+
+    }
+
     func calendarCurrentMonthDidChange(calendar: FSCalendar) {
         updateLabelsToMatchCurrentDate(calendar.selectedDate)
     }
