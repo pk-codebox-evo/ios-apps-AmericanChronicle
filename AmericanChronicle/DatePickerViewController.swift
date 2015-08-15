@@ -20,10 +20,9 @@ import SwiftMoment
     private let latestPossibleDate: NSDate
 
     @IBAction func yearSliderValueDidChange(sender: UISlider) {
-        println("sender.value: \(sender.value)")
-        println("round(sender.value): \(round(sender.value))")
-        println("Int(sender.value): \(Int(sender.value))")
-        setCalendarDate(year: Int(sender.value))
+        let intValue = Int(sender.value)
+        sender.value = Float(intValue)
+        setCalendarDate(year: intValue)
     }
 
     var saveCallback: ((NSDate) -> ())?
@@ -73,7 +72,10 @@ import SwiftMoment
         }
     }
 
-    func updateLabelsToMatchCurrentDate(currentDate: NSDate) {
+    func updateUIToMatchCurrentDate(currentDate: NSDate) {
+        if yearSlider.state != .Highlighted {
+            yearSlider.value = Float(moment(currentDate).year)
+        }
 //        let date = moment(currentDate)
 //        yearTextField.text = "\(date.year)"
     }
@@ -84,7 +86,7 @@ import SwiftMoment
         super.viewDidLoad()
 
         calendarView.selectedDate = selectedDateOnInit
-        updateLabelsToMatchCurrentDate(calendarView.selectedDate)
+        updateUIToMatchCurrentDate(calendarView.selectedDate)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -132,7 +134,7 @@ import SwiftMoment
     }
 
     func calendarCurrentMonthDidChange(calendar: FSCalendar) {
-        updateLabelsToMatchCurrentDate(calendar.selectedDate)
+        updateUIToMatchCurrentDate(calendar.selectedDate)
     }
 
     // MARK: FSCalendarDataSource methods
