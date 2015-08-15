@@ -10,10 +10,9 @@ import UIKit
 import FSCalendar
 import SwiftMoment
 
-@objc class DatePickerViewController: UIViewController, UITextFieldDelegate, FSCalendarDelegate, FSCalendarDataSource {
+@objc class DatePickerViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
 
     @IBOutlet weak var calendarView: FSCalendar!
-    @IBOutlet weak var yearTextField: UITextField!
 
     private let selectedDateOnInit: NSDate
     private let earliestPossibleDate: NSDate
@@ -34,9 +33,6 @@ import SwiftMoment
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: "saveButtonTapped:")
     }
 
-    @IBAction func unfocusedTapRecognized(sender: AnyObject) {
-        yearTextField.resignFirstResponder()
-    }
     @availability(*, unavailable) init() {
         fatalError("init not supported. Use designated initializer instead")
     }
@@ -69,8 +65,8 @@ import SwiftMoment
     }
 
     func updateLabelsToMatchCurrentDate(currentDate: NSDate) {
-        let date = moment(currentDate)
-        yearTextField.text = "\(date.year)"
+//        let date = moment(currentDate)
+//        yearTextField.text = "\(date.year)"
     }
 
     // MARK: UIViewController overrides
@@ -84,7 +80,6 @@ import SwiftMoment
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        yearTextField.becomeFirstResponder()
     }
 
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
