@@ -20,7 +20,7 @@
                     <rect key="frame" x="0.0" y="160" width="600" height="219.5"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
-                        <outlet property="dataSource" destination="Fnx-yF-8Dl" id="Aav-aT-Etd"/>
+                        <outlet property="dataSource" destination="-1" id="HRs-an-wth"/>
                         <outlet property="delegate" destination="-1" id="td1-Iy-3oB"/>
                     </connections>
                 </view>

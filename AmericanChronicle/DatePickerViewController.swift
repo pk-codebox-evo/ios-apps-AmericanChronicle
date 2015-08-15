@@ -10,21 +10,28 @@ import UIKit
 import FSCalendar
 import SwiftMoment
 
-@objc class DatePickerViewController: UIViewController, UITextFieldDelegate, FSCalendarDelegate {
+@objc class DatePickerViewController: UIViewController, UITextFieldDelegate, FSCalendarDelegate, FSCalendarDataSource {
 
     @IBOutlet weak var calendarView: FSCalendar!
     @IBOutlet weak var yearTextField: UITextField!
 
     private let selectedDateOnInit: NSDate
+    private let earliestPossibleDate: NSDate
+    private let latestPossibleDate: NSDate
 
     var saveCallback: ((NSDate) -> ())?
 
     // MARK: UIViewController Init methods
 
-    init(selectedDateOnInit: NSDate = ChroniclingAmericaArchive.earliestPossibleDate) {
-        self.selectedDateOnInit = selectedDateOnInit
-        super.init(nibName: "DatePickerViewController", bundle: nil)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: "saveButtonTapped:")
+    init(earliestPossibleDate: NSDate = ChroniclingAmericaArchive.earliestPossibleDate, latestPossibleDate: NSDate = ChroniclingAmericaArchive.latestPossibleDate,
+        selectedDateOnInit: NSDate? = nil) {
+            self.earliestPossibleDate = earliestPossibleDate
+            self.latestPossibleDate = latestPossibleDate
+            self.selectedDateOnInit = selectedDateOnInit ?? earliestPossibleDate
+
+            super.init(nibName: "DatePickerViewController", bundle: nil)
+
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: "saveButtonTapped:")
     }
 
     @IBAction func unfocusedTapRecognized(sender: AnyObject) {
@@ -70,6 +77,7 @@ import SwiftMoment
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         calendarView.selectedDate = selectedDateOnInit
         updateLabelsToMatchCurrentDate(calendarView.selectedDate)
     }
@@ -121,6 +129,16 @@ import SwiftMoment
 
     func calendarCurrentMonthDidChange(calendar: FSCalendar) {
         updateLabelsToMatchCurrentDate(calendar.selectedDate)
+    }
+
+    // MARK: FSCalendarDataSource methods
+
+    func minimumDateForCalendar(calendar: FSCalendar) -> NSDate {
+        return earliestPossibleDate
+    }
+
+    func maximumDateForCalendar(calendar: FSCalendar) -> NSDate {
+        return latestPossibleDate
     }
 
 }

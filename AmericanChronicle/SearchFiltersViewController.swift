@@ -79,7 +79,9 @@ class SearchFiltersViewController: UIViewController {
 
 
     @IBAction func earliestDateButtonTapped(sender: AnyObject) {
-        let vc = DatePickerViewController()
+        let vc = DatePickerViewController(
+            latestPossibleDate: searchFilters.latestDate ?? ChroniclingAmericaArchive.latestPossibleDate,
+            selectedDateOnInit: searchFilters.earliestDate)
         vc.saveCallback = { [weak self] selectedDate in
             self?.searchFilters.earliestDate = selectedDate
             self?.updateFilterButtons()
@@ -89,7 +91,9 @@ class SearchFiltersViewController: UIViewController {
     }
 
     @IBAction func latestDateButtonTapped(sender: AnyObject) {
-        let vc = DatePickerViewController()
+        let vc = DatePickerViewController(
+            earliestPossibleDate: searchFilters.earliestDate ?? ChroniclingAmericaArchive.earliestPossibleDate,
+            selectedDateOnInit: searchFilters.latestDate)
         vc.saveCallback = { [weak self] selectedDate in
             self?.searchFilters.latestDate = selectedDate
             self?.updateFilterButtons()
