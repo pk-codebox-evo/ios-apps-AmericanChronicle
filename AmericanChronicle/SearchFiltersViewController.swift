@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SwiftMoment
+import FSCalendar
 
 extension UIViewController {
     func setChildViewController(viewController : UIViewController, inContainer containerView: UIView) {
@@ -30,51 +32,65 @@ class SearchFiltersViewController: UIViewController, FSCalendarDataSource, FSCal
     @IBOutlet weak var calendarContainerView: UIView!
     @IBOutlet weak var calendarView: FSCalendar!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-
-    func update() {
-//        yearTextField.text = "\(calendarView.presentedDate.year)"
-//        monthButton.setTitle(Month.stringForRawValue(calendarView.presentedDate.month), forState: .Normal)
-    }
-
     @IBAction func monthButtonTapped(sender: AnyObject) {
         showMonthPicker()
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        calendarView.selectedDate = minimumDateForCalendar(calendarView)
     }
 
     func showMonthPicker() {
         let vc = MonthPickerViewController(nibName: "MonthPickerViewController", bundle: nil)
         vc.modalPresentationStyle = .OverFullScreen
-//        vc.selectedMonth = Month(rawValue: calendarView.presentedDate.month)
         vc.didSelectMonthCallback = { [weak self] month in
-//            if let month = month, year = self?.calendarView.presentedDate.year {
-//                self?.updateCalendar(month.rawValue, year: year)
-//            }
+            if let month = month {
+                self?.setCalendarDate(month: month.rawValue)
+            }
             self?.dismissViewControllerAnimated(true, completion: nil)
         }
         presentViewController(vc, animated: true, completion: nil)
     }
 
+    func setCalendarDate(year: Int? = nil, month: Int? = nil) {
+
+        if let year = year {
+            println("will set year")
+            calendarView.selectedDate = NSCalendar.currentCalendar().dateBySettingUnit(.CalendarUnitYear, value: year, ofDate: calendarView.selectedDate, options: NSCalendarOptions.allZeros)
+            println("did set year")
+        }
+        if let month = month {
+            println("will set month")
+            calendarView.selectedDate = NSCalendar.currentCalendar().dateBySettingUnit(.CalendarUnitMonth, value: month, ofDate: calendarView.selectedDate, options: NSCalendarOptions.allZeros)
+            println("did set month")
+        }
+    }
+
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        println("enter shouldChangeCharactersInRange")
         var updatedText = textField.text as NSString
         updatedText = updatedText.stringByReplacingCharactersInRange(range, withString: string)
         if textField == yearTextField {
-            if let year = (updatedText as String).toInt() where year >= 1836 && year <= 1922 {
-//                updateCalendar(calendarView.presentedDate.month, year: year)
+            if let year = (updatedText as String).toInt() {
+                if year >= 1836 && year <= 1922 {
+                    setCalendarDate(year: year)
+                    return false
+                } else {
+                    return true
+                }
+            } else {
+                return false
             }
         }
+        println("exit shouldChangeCharactersInRange")
         return true
     }
 
     // MARK: FSCalendarDelegate methods
 
     func calendar(calendar: FSCalendar, shouldSelectDate: NSDate) -> Bool {
-        return true
+        return false
     }
 
     func calendar(calendar: FSCalendar, didSelectDate: NSDate) {
@@ -82,8 +98,11 @@ class SearchFiltersViewController: UIViewController, FSCalendarDataSource, FSCal
     }
 
     func calendarCurrentMonthDidChange(calendar: FSCalendar) {
-        println("calendar: \(calendar)")
-        println("calendar.currentMonth: \(calendar.currentMonth)")
+        let now = moment(calendar.currentMonth)
+        monthButton.setTitle(now.monthName, forState: .Normal)
+        println("will set yearTextField")
+        yearTextField.text = "\(now.year)"
+        println("did set yearTextField")
     }
 
     // MARK: FSCalendarDataSource methods
@@ -97,14 +116,20 @@ class SearchFiltersViewController: UIViewController, FSCalendarDataSource, FSCal
     }
 
     func calendar(calendar: FSCalendar, hasEventForDate: NSDate) -> Bool {
-        return true
+        return false
     }
 
     func minimumDateForCalendar(calendar: FSCalendar) -> NSDate {
-        return NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = NSDateComponents()
+        components.year = 1836
+        return calendar.dateFromComponents(components)!
     }
 
     func maximumDateForCalendar(calendar: FSCalendar) -> NSDate {
-        return NSDate().dateByAddingTimeInterval(60*60*24*365)
+        let calendar = NSCalendar.currentCalendar()
+        let components = NSDateComponents()
+        components.year = 1923
+        return calendar.dateFromComponents(components)!
     }
 }
