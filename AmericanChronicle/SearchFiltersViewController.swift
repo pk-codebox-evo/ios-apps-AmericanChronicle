@@ -9,6 +9,7 @@
 import UIKit
 import SwiftMoment
 import FSCalendar
+import SnapKit
 
 extension UIViewController {
     func setChildViewController(viewController : UIViewController, inContainer containerView: UIView) {
@@ -31,7 +32,16 @@ class DateButton: UIButton {
     func commonInit() {
         layer.borderColor = UIColor.blackColor().CGColor
         layer.borderWidth = 1.0
+        titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 24, right: 0)
+
+        titleLabel?.font = UIFont(name: "AvenirNext-Regular", size: 14.0)
+        setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+
         addSubview(subtitleLabel)
+        subtitleLabel.text = "This is subtitle"
+        subtitleLabel.textAlignment = .Center
+        subtitleLabel.font = UIFont(name: "AvenirNext-Regular", size: 14.0)
+        subtitleLabel.textColor = UIColor.blueColor()
     }
 
     required init(coder: NSCoder) {
@@ -45,6 +55,15 @@ class DateButton: UIButton {
     }
 
     override func updateConstraints() {
+
+        subtitleLabel.snp_makeConstraints { [weak self] make in
+            if let myself = self {
+                make.bottom.equalTo(-20.0)
+                make.leading.equalTo(20.0)
+                make.trailing.equalTo(-20.0)
+            }
+        }
+
         super.updateConstraints()
     }
 }
@@ -53,7 +72,7 @@ class SearchFiltersViewController: UIViewController {
 
     var searchFilters: SearchFilters = SearchFilters()
 
-    @IBOutlet weak var earliestDateButton: UIButton!
+    @IBOutlet weak var earliestDateButton: DateButton!
     @IBOutlet weak var latestDateButton: UIButton!
     @IBOutlet weak var locationButton: UIButton!
 

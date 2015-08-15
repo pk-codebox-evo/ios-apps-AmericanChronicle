@@ -378,45 +378,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TIJ-KJ-CE3">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                <items>
-                                    <navigationItem title="Filters" id="ylE-Mo-GET">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="35r-UO-CoG">
-                                            <connections>
-                                                <segue destination="AfU-0q-NbU" kind="unwind" unwindAction="dismissFilters:" id="ZPT-er-ARz"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="pF5-Wa-z4t"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MQa-n2-dwu">
-                                <rect key="frame" x="16" y="60" width="382" height="80"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MQa-n2-dwu" customClass="DateButton" customModule="AmericanChronicle" customModuleProvider="target">
+                                <rect key="frame" x="16" y="90" width="382" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="5G5-Og-cHi"/>
                                 </constraints>
-                                <state key="normal" title="Earliest Date\nJan 3, 1902">
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
+                                <state key="normal" title="Earliest Date">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="earliestDateButtonTapped:" destination="E7Q-nd-2Px" eventType="touchUpInside" id="2iA-xU-IIy"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1M-09-lDN">
-                                <rect key="frame" x="16" y="286" width="382" height="80"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1M-09-lDN" customClass="DateButton" customModule="AmericanChronicle" customModuleProvider="target">
+                                <rect key="frame" x="16" y="316" width="382" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="Ruy-7H-7Yu"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                                 <state key="normal" title="Location">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Io2-8R-DAX">
-                                <rect key="frame" x="16" y="172" width="382" height="80"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Io2-8R-DAX" customClass="DateButton" customModule="AmericanChronicle" customModuleProvider="target">
+                                <rect key="frame" x="16" y="202" width="382" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="8eU-Dk-Xc2"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                                 <state key="normal" title="Latest Date">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -433,16 +423,12 @@
                             <constraint firstAttribute="trailing" secondItem="Io2-8R-DAX" secondAttribute="trailing" constant="16" id="EBh-vc-vhr"/>
                             <constraint firstItem="g1M-09-lDN" firstAttribute="top" secondItem="Io2-8R-DAX" secondAttribute="bottom" constant="34" id="NKT-gE-ZpA"/>
                             <constraint firstItem="g1M-09-lDN" firstAttribute="leading" secondItem="mLz-wZ-cyk" secondAttribute="leading" constant="16" id="O7u-Jg-RkI"/>
-                            <constraint firstItem="TIJ-KJ-CE3" firstAttribute="top" secondItem="mLz-wZ-cyk" secondAttribute="top" id="Qqh-V1-AFC"/>
-                            <constraint firstAttribute="trailing" secondItem="TIJ-KJ-CE3" secondAttribute="trailing" id="SlZ-hv-O9s"/>
-                            <constraint firstItem="TIJ-KJ-CE3" firstAttribute="leading" secondItem="mLz-wZ-cyk" secondAttribute="leading" id="aY4-Ak-ijy"/>
-                            <constraint firstItem="MQa-n2-dwu" firstAttribute="top" secondItem="mLz-wZ-cyk" secondAttribute="top" constant="60" id="c9H-QY-Ugo"/>
+                            <constraint firstItem="MQa-n2-dwu" firstAttribute="top" secondItem="mLz-wZ-cyk" secondAttribute="top" constant="90" id="c9H-QY-Ugo"/>
                             <constraint firstItem="Io2-8R-DAX" firstAttribute="leading" secondItem="mLz-wZ-cyk" secondAttribute="leading" constant="16" id="fkX-f6-EZ0"/>
                             <constraint firstAttribute="trailing" secondItem="g1M-09-lDN" secondAttribute="trailing" constant="16" id="qNI-ET-OKY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="mTh-Wp-Adc"/>
-                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="earliestDateButton" destination="MQa-n2-dwu" id="iqb-RD-zxA"/>
                         <outlet property="latestDateButton" destination="Io2-8R-DAX" id="NpX-jp-aQ8"/>
@@ -450,7 +436,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sxb-ZR-4ap" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="AfU-0q-NbU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1791" y="-1769"/>
         </scene>
