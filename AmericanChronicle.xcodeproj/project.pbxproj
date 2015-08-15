@@ -16,6 +16,12 @@
 		97415AE41B785D8400326239 /* CustomSegueNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97415AE31B785D8400326239 /* CustomSegueNavigationController.swift */; };
 		975914AA1B7A47C40031BD13 /* SearchResultsPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975914A91B7A47C40031BD13 /* SearchResultsPageCell.swift */; };
 		9764976D1B7DA0270035A388 /* Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9764976C1B7DA0270035A388 /* Month.swift */; };
+		977F0A581B7FC3E700C4B0FC /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977F0A561B7FC3E700C4B0FC /* DatePickerViewController.swift */; };
+		977F0A591B7FC3E700C4B0FC /* DatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 977F0A571B7FC3E700C4B0FC /* DatePickerViewController.xib */; };
+		977F0A5B1B7FC58200C4B0FC /* CalendarViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977F0A5A1B7FC58200C4B0FC /* CalendarViewDelegate.swift */; };
+		977F0A5D1B7FC5BA00C4B0FC /* CalendarViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977F0A5C1B7FC5BA00C4B0FC /* CalendarViewDataSource.swift */; };
+		978236191B7FD0D00056FDF6 /* ChroniclingAmericaArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978236181B7FD0D00056FDF6 /* ChroniclingAmericaArchive.swift */; };
+		9782361B1B7FD1F00056FDF6 /* SearchFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782361A1B7FD1F00056FDF6 /* SearchFilters.swift */; };
 		978741471B7832660014D1F0 /* NewspaperPagesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978741461B7832660014D1F0 /* NewspaperPagesDataSource.swift */; };
 		9787414B1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9787414A1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift */; };
 		97BDE1151B76ED6B00A3E57F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE1141B76ED6B00A3E57F /* AppDelegate.swift */; };
@@ -54,6 +60,12 @@
 		97415AE31B785D8400326239 /* CustomSegueNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegueNavigationController.swift; sourceTree = "<group>"; };
 		975914A91B7A47C40031BD13 /* SearchResultsPageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsPageCell.swift; sourceTree = "<group>"; };
 		9764976C1B7DA0270035A388 /* Month.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Month.swift; sourceTree = "<group>"; };
+		977F0A561B7FC3E700C4B0FC /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
+		977F0A571B7FC3E700C4B0FC /* DatePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerViewController.xib; sourceTree = "<group>"; };
+		977F0A5A1B7FC58200C4B0FC /* CalendarViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewDelegate.swift; sourceTree = "<group>"; };
+		977F0A5C1B7FC5BA00C4B0FC /* CalendarViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewDataSource.swift; sourceTree = "<group>"; };
+		978236181B7FD0D00056FDF6 /* ChroniclingAmericaArchive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChroniclingAmericaArchive.swift; sourceTree = "<group>"; };
+		9782361A1B7FD1F00056FDF6 /* SearchFilters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFilters.swift; sourceTree = "<group>"; };
 		978741461B7832660014D1F0 /* NewspaperPagesDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPagesDataSource.swift; sourceTree = "<group>"; };
 		9787414A1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPagesPreviewDelegate.swift; sourceTree = "<group>"; };
 		97BDE10F1B76ED6B00A3E57F /* AmericanChronicle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmericanChronicle.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,12 +139,18 @@
 			children = (
 				97BDE1141B76ED6B00A3E57F /* AppDelegate.swift */,
 				97BDE1161B76ED6B00A3E57F /* MasterViewController.swift */,
+				978236181B7FD0D00056FDF6 /* ChroniclingAmericaArchive.swift */,
 				97BDE1361B76F84F00A3E57F /* SearchViewController.swift */,
 				97BDE1381B7703CA00A3E57F /* PageViewController.swift */,
+				977F0A561B7FC3E700C4B0FC /* DatePickerViewController.swift */,
+				977F0A571B7FC3E700C4B0FC /* DatePickerViewController.xib */,
+				977F0A5A1B7FC58200C4B0FC /* CalendarViewDelegate.swift */,
+				977F0A5C1B7FC5BA00C4B0FC /* CalendarViewDataSource.swift */,
 				971211241B7C3AE3004C9F8F /* MonthPickerViewController.swift */,
 				971211281B7C6D5C004C9F8F /* MonthPickerViewController.xib */,
 				9764976C1B7DA0270035A388 /* Month.swift */,
 				97BE67491B7B004B00761033 /* SearchFiltersViewController.swift */,
+				9782361A1B7FD1F00056FDF6 /* SearchFilters.swift */,
 				97BDE1181B76ED6B00A3E57F /* NewspaperIssuesViewController.swift */,
 				97BDE13A1B771B4800A3E57F /* NewspaperPagesViewController.swift */,
 				978741461B7832660014D1F0 /* NewspaperPagesDataSource.swift */,
@@ -270,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				97BDE11C1B76ED6B00A3E57F /* Main.storyboard in Resources */,
+				977F0A591B7FC3E700C4B0FC /* DatePickerViewController.xib in Resources */,
 				971211291B7C6D5C004C9F8F /* MonthPickerViewController.xib in Resources */,
 				97BDE1211B76ED6B00A3E57F /* LaunchScreen.xib in Resources */,
 				97BDE11E1B76ED6B00A3E57F /* Images.xcassets in Resources */,
@@ -338,8 +357,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				978236191B7FD0D00056FDF6 /* ChroniclingAmericaArchive.swift in Sources */,
 				97BDE1191B76ED6B00A3E57F /* NewspaperIssuesViewController.swift in Sources */,
+				977F0A5B1B7FC58200C4B0FC /* CalendarViewDelegate.swift in Sources */,
 				97415AE01B784DB700326239 /* NewspaperPageFocusSegue.swift in Sources */,
+				977F0A5D1B7FC5BA00C4B0FC /* CalendarViewDataSource.swift in Sources */,
+				977F0A581B7FC3E700C4B0FC /* DatePickerViewController.swift in Sources */,
 				97BDE1391B7703CA00A3E57F /* PageViewController.swift in Sources */,
 				9787414B1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift in Sources */,
 				97BE674A1B7B004B00761033 /* SearchFiltersViewController.swift in Sources */,
@@ -347,6 +370,7 @@
 				97415AE41B785D8400326239 /* CustomSegueNavigationController.swift in Sources */,
 				971211271B7C4179004C9F8F /* MonthPickerRevealSegue.swift in Sources */,
 				97BDE1171B76ED6B00A3E57F /* MasterViewController.swift in Sources */,
+				9782361B1B7FD1F00056FDF6 /* SearchFilters.swift in Sources */,
 				978741471B7832660014D1F0 /* NewspaperPagesDataSource.swift in Sources */,
 				97415ADE1B7847AE00326239 /* NewspaperPageCell.swift in Sources */,
 				97BDE13B1B771B4800A3E57F /* NewspaperPagesViewController.swift in Sources */,
