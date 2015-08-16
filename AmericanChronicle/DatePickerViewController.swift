@@ -58,10 +58,28 @@ import SwiftMoment
 
     func setCalendarDate(year: Int? = nil, month: Int? = nil) {
         if let year = year {
-            println("will set year")
+            println("--- will set year ---")
+            println("* Original calendarView.selectedDate: \(calendarView.selectedDate)")
 
-            calendarView.selectedDate = NSCalendar.currentCalendar().dateBySettingUnit(.CalendarUnitYear, value: year, ofDate: calendarView.selectedDate, options: NSCalendarOptions.allZeros)
-            println("did set year")
+            let selectedMoment = moment(calendarView.selectedDate)
+
+            println("    - year: \(selectedMoment.year)")
+            println("    - month: \(selectedMoment.month)")
+            println("    - day: \(selectedMoment.day)")
+
+            let components = NSDateComponents()
+            components.year = year
+            components.month = selectedMoment.month
+            components.day = selectedMoment.day
+
+            let newDate = NSCalendar.currentCalendar().dateFromComponents(components)
+            println("* New calendarView.selectedDate: \(newDate)")
+            println("    - year: \(components.year)")
+            println("    - month: \(components.month)")
+            println("    - day: \(components.day)")
+            calendarView.selectedDate = newDate
+
+            println("... did set year  ...")
         }
         if let month = month {
             println("will set month")

@@ -16,10 +16,19 @@ public class YearSlider: UIControl {
 
     public var value: Int {
         get {
-            return Int(round(slider.value))
+            println("{get} value called")
+
+            let intValue = Int(round(slider.value))
+            println("* returning slider.value as Int: \(intValue)")
+            println("    - original slider.value: \(slider.value)")
+            return intValue
         }
         set {
-            slider.value = Float(newValue)
+            println("{set} value called")
+            let floatValue = Float(newValue)
+            println("* setting slider.value to \(floatValue)")
+            println("    - original newValue was \(newValue)")
+            slider.value = floatValue
             updateUIForNewValues()
         }
     }
@@ -39,7 +48,7 @@ public class YearSlider: UIControl {
             return Int(round(slider.minimumValue))
         }
         set {
-            slider.minimumValue = Float(newValue)
+            slider.maximumValue = Float(newValue)
             updateUIForNewValues()
         }
     }
@@ -47,14 +56,13 @@ public class YearSlider: UIControl {
     private func commonInit() {
         for subview in [slider, minButton, maxButton] {
             subview.setTranslatesAutoresizingMaskIntoConstraints(false)
+            addSubview(subview)
         }
 
+        println("gestureRecognizers: \(gestureRecognizers)")
         slider.addTarget(self, action: "sliderValueDidChange:", forControlEvents: .ValueChanged)
-        addSubview(slider)
         minButton.addTarget(self, action: "minButtonTapped:", forControlEvents: .TouchUpInside)
-        addSubview(minButton)
         maxButton.addTarget(self, action: "maxButtonTapped:", forControlEvents: .TouchUpInside)
-        addSubview(maxButton)
     }
 
     public required init(coder: NSCoder) {
@@ -77,14 +85,16 @@ public class YearSlider: UIControl {
         sendActionsForControlEvents(.ValueChanged)
     }
 
+    func sliderValueDidChange(slider: UISlider) {
+        sendActionsForControlEvents(.ValueChanged)
+    }
+
     private func updateUIForNewValues() {
         minButton.setTitle("\(minValue)", forState: .Normal)
         maxButton.setTitle("\(maxValue)", forState: .Normal)
     }
 
-    private func sliderValueDidChange(slider: UISlider) {
-        sendActionsForControlEvents(.ValueChanged)
-    }
+
 
     // MARK: UIView overrides
 
@@ -106,6 +116,7 @@ public class YearSlider: UIControl {
         slider.snp_makeConstraints { make in
             make.leading.equalTo(minButton.snp_trailing)
             make.trailing.equalTo(maxButton.snp_leading)
+            make.top.equalTo(0)
         }
         super.updateConstraints()
     }
