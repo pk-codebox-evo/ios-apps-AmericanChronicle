@@ -26,6 +26,10 @@
 		9782361F1B8000CE0056FDF6 /* YearSliderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782361E1B8000CE0056FDF6 /* YearSliderTests.swift */; };
 		978741471B7832660014D1F0 /* NewspaperPagesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978741461B7832660014D1F0 /* NewspaperPagesDataSource.swift */; };
 		9787414B1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9787414A1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift */; };
+		979082701B8135150056CA9C /* LocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9790826E1B8135150056CA9C /* LocationSearchViewController.swift */; };
+		979082711B8135150056CA9C /* LocationSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9790826F1B8135150056CA9C /* LocationSearchViewController.xib */; };
+		979082741B8143E90056CA9C /* MapSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979082721B8143E90056CA9C /* MapSelectionViewController.swift */; };
+		979082751B8143E90056CA9C /* MapSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 979082731B8143E90056CA9C /* MapSelectionViewController.xib */; };
 		97BDE1151B76ED6B00A3E57F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE1141B76ED6B00A3E57F /* AppDelegate.swift */; };
 		97BDE1171B76ED6B00A3E57F /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE1161B76ED6B00A3E57F /* MasterViewController.swift */; };
 		97BDE1191B76ED6B00A3E57F /* NewspaperIssuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE1181B76ED6B00A3E57F /* NewspaperIssuesViewController.swift */; };
@@ -72,6 +76,11 @@
 		9782361E1B8000CE0056FDF6 /* YearSliderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YearSliderTests.swift; sourceTree = "<group>"; };
 		978741461B7832660014D1F0 /* NewspaperPagesDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPagesDataSource.swift; sourceTree = "<group>"; };
 		9787414A1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPagesPreviewDelegate.swift; sourceTree = "<group>"; };
+		9790826E1B8135150056CA9C /* LocationSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchViewController.swift; sourceTree = "<group>"; };
+		9790826F1B8135150056CA9C /* LocationSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationSearchViewController.xib; sourceTree = "<group>"; };
+		979082721B8143E90056CA9C /* MapSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapSelectionViewController.swift; sourceTree = "<group>"; };
+		979082731B8143E90056CA9C /* MapSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MapSelectionViewController.xib; sourceTree = "<group>"; };
+		979082761B8147590056CA9C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		97BDE10F1B76ED6B00A3E57F /* AmericanChronicle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmericanChronicle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97BDE1131B76ED6B00A3E57F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97BDE1141B76ED6B00A3E57F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +122,7 @@
 		315BF8B2FAAA7D968A3BFE28 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				979082761B8147590056CA9C /* MapKit.framework */,
 				3E20440C205A3D3C0AA3C367 /* Pods_AmericanChronicle.framework */,
 			);
 			name = Frameworks;
@@ -147,6 +157,10 @@
 				97BDE1361B76F84F00A3E57F /* SearchViewController.swift */,
 				97BDE1381B7703CA00A3E57F /* PageViewController.swift */,
 				9782361C1B7FFCF80056FDF6 /* YearSlider.swift */,
+				979082721B8143E90056CA9C /* MapSelectionViewController.swift */,
+				979082731B8143E90056CA9C /* MapSelectionViewController.xib */,
+				9790826E1B8135150056CA9C /* LocationSearchViewController.swift */,
+				9790826F1B8135150056CA9C /* LocationSearchViewController.xib */,
 				977F0A561B7FC3E700C4B0FC /* DatePickerViewController.swift */,
 				977F0A571B7FC3E700C4B0FC /* DatePickerViewController.xib */,
 				977F0A5A1B7FC58200C4B0FC /* CalendarViewDelegate.swift */,
@@ -293,9 +307,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				979082711B8135150056CA9C /* LocationSearchViewController.xib in Resources */,
 				97BDE11C1B76ED6B00A3E57F /* Main.storyboard in Resources */,
 				977F0A591B7FC3E700C4B0FC /* DatePickerViewController.xib in Resources */,
 				971211291B7C6D5C004C9F8F /* MonthPickerViewController.xib in Resources */,
+				979082751B8143E90056CA9C /* MapSelectionViewController.xib in Resources */,
 				97BDE1211B76ED6B00A3E57F /* LaunchScreen.xib in Resources */,
 				97BDE11E1B76ED6B00A3E57F /* Images.xcassets in Resources */,
 			);
@@ -370,6 +386,7 @@
 				977F0A5D1B7FC5BA00C4B0FC /* CalendarViewDataSource.swift in Sources */,
 				977F0A581B7FC3E700C4B0FC /* DatePickerViewController.swift in Sources */,
 				97BDE1391B7703CA00A3E57F /* PageViewController.swift in Sources */,
+				979082701B8135150056CA9C /* LocationSearchViewController.swift in Sources */,
 				9787414B1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift in Sources */,
 				97BE674A1B7B004B00761033 /* SearchFiltersViewController.swift in Sources */,
 				9764976D1B7DA0270035A388 /* Month.swift in Sources */,
@@ -383,6 +400,7 @@
 				97BDE13B1B771B4800A3E57F /* NewspaperPagesViewController.swift in Sources */,
 				97BDE1371B76F84F00A3E57F /* SearchViewController.swift in Sources */,
 				971211251B7C3AE3004C9F8F /* MonthPickerViewController.swift in Sources */,
+				979082741B8143E90056CA9C /* MapSelectionViewController.swift in Sources */,
 				975914AA1B7A47C40031BD13 /* SearchResultsPageCell.swift in Sources */,
 				97415AE21B785AAE00326239 /* NewspaperPageUnfocusSegue.swift in Sources */,
 				97BDE1151B76ED6B00A3E57F /* AppDelegate.swift in Sources */,

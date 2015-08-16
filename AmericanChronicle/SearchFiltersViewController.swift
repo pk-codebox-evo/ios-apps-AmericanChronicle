@@ -87,6 +87,11 @@ class SearchFiltersViewController: UIViewController {
     @IBAction func saveButtonTapped(sender: AnyObject) {
         saveCallback?(searchFilters)
     }
+
+    @IBAction func locationButtonTapped(sender: AnyObject) {
+        let vc = LocationSearchViewController(nibName: "LocationSearchViewController", bundle: nil)
+        navigationController?.pushViewController(vc, animated: true)
+    }
     
     @IBAction func earliestDateButtonTapped(sender: AnyObject) {
         let vc = DatePickerViewController(
