@@ -341,6 +341,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="DV3-iK-aOb"/>
                     <connections>
+                        <outlet property="filtersButton" destination="hFp-nU-whD" id="lXk-6L-lI6"/>
                         <outlet property="searchBar" destination="Rao-Jd-EUt" id="cPS-Lp-srv"/>
                         <outlet property="tableView" destination="W9k-tl-S2o" id="FsL-5d-HOh"/>
                     </connections>
@@ -364,7 +365,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4N1-pV-p44" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1232" y="-1769"/>
+            <point key="canvasLocation" x="2012" y="-1940"/>
         </scene>
         <!--Search Filters View Controller-->
         <scene sceneID="4w1-Bl-OoC">
@@ -428,16 +429,28 @@
                             <constraint firstAttribute="trailing" secondItem="g1M-09-lDN" secondAttribute="trailing" constant="16" id="qNI-ET-OKY"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="mTh-Wp-Adc"/>
+                    <navigationItem key="navigationItem" id="mTh-Wp-Adc">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="4G2-eH-WzN">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="E7Q-nd-2Px" id="0ao-u3-Gi4"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="qnR-SW-5qa">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="E7Q-nd-2Px" id="bDQ-0O-v8F"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="earliestDateButton" destination="MQa-n2-dwu" id="iqb-RD-zxA"/>
                         <outlet property="latestDateButton" destination="Io2-8R-DAX" id="NpX-jp-aQ8"/>
                         <outlet property="locationButton" destination="g1M-09-lDN" id="icY-9y-wEA"/>
+                        <outlet property="saveButton" destination="qnR-SW-5qa" id="DEh-cr-R55"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sxb-ZR-4ap" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1791" y="-1769"/>
+            <point key="canvasLocation" x="2503" y="-1940"/>
         </scene>
         <!--Newspaper Issues-->
         <scene sceneID="Cn3-H9-jdl">

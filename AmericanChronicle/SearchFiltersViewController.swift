@@ -70,14 +70,24 @@ class FilterButton: UIButton {
 
 class SearchFiltersViewController: UIViewController {
 
-    var searchFilters: SearchFilters = SearchFilters()
+    var searchFilters = SearchFilters()
 
     @IBOutlet weak var earliestDateButton: FilterButton!
     @IBOutlet weak var latestDateButton: FilterButton!
     @IBOutlet weak var locationButton: FilterButton!
+    var saveCallback: ((SearchFilters) -> ())?
+    var cancelCallback: ((Void) -> ())?
+    @IBOutlet weak var saveButton: UIBarButtonItem!
 
 
+    @IBAction func cancelButtonTapped(sender: AnyObject) {
+        cancelCallback?()
+    }
 
+    @IBAction func saveButtonTapped(sender: AnyObject) {
+        saveCallback?(searchFilters)
+    }
+    
     @IBAction func earliestDateButtonTapped(sender: AnyObject) {
         let vc = DatePickerViewController(
             latestPossibleDate: searchFilters.latestDate ?? ChroniclingAmericaArchive.latestPossibleDate,

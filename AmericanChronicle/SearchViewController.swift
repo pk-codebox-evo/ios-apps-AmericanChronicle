@@ -12,6 +12,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var filtersButton: UIButton!
+    var filters: SearchFilters?
 
     class TableViewData {
         class TableViewSection {
@@ -60,19 +62,14 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             searchBar.becomeFirstResponder()
             showRecentSearches()
         }
+        let filtersTitle = (filters == nil) ? "Add Filters" : "Edit Filters"
+        filtersButton.setTitle(filtersTitle, forState: .Normal)
     }
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         searchBar.resignFirstResponder()
     }
-
-//    override func viewDidAppear(animated: Bool) {
-//        super.viewDidAppear(animated)
-//        if count(searchBar.text) == 0 {
-//            showRecentSearches()
-//        }
-//    }
 
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         if count(searchText) > 0 {
@@ -179,6 +176,15 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         if let vc = segue.destinationViewController as? NewspaperIssuesViewController {
             if let selected = tableView.indexPathForSelectedRow() {
                 vc.newspaper = activeData?.sections[selected.section].rows[selected.row]
+            }
+        } else if let nvc = segue.destinationViewController as? UINavigationController, let vc = nvc.viewControllers.first as? SearchFiltersViewController {
+            vc.searchFilters = filters ?? SearchFilters()
+            vc.saveCallback = { [weak self] filters in
+                self?.filters = filters
+                self?.dismissViewControllerAnimated(true, completion: nil)
+            }
+            vc.cancelCallback = { [weak self] in
+                self?.dismissViewControllerAnimated(true, completion: nil)
             }
         }
     }
