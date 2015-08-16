@@ -45,7 +45,7 @@ public class YearSlider: UIControl {
 
     public var maxValue: Int {
         get {
-            return Int(round(slider.minimumValue))
+            return Int(round(slider.maximumValue))
         }
         set {
             slider.maximumValue = Float(newValue)
@@ -59,10 +59,11 @@ public class YearSlider: UIControl {
             addSubview(subview)
         }
 
-        println("gestureRecognizers: \(gestureRecognizers)")
         slider.addTarget(self, action: "sliderValueDidChange:", forControlEvents: .ValueChanged)
         minButton.addTarget(self, action: "minButtonTapped:", forControlEvents: .TouchUpInside)
+        minButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
         maxButton.addTarget(self, action: "maxButtonTapped:", forControlEvents: .TouchUpInside)
+        maxButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
     }
 
     public required init(coder: NSCoder) {
@@ -114,8 +115,8 @@ public class YearSlider: UIControl {
         }
 
         slider.snp_makeConstraints { make in
-            make.leading.equalTo(minButton.snp_trailing)
-            make.trailing.equalTo(maxButton.snp_leading)
+            make.leading.equalTo(minButton.snp_trailing).offset(20.0)
+            make.trailing.equalTo(maxButton.snp_leading).offset(-20.0)
             make.top.equalTo(0)
         }
         super.updateConstraints()

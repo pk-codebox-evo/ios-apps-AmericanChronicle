@@ -19,7 +19,9 @@ struct ChroniclingAmericaArchive {
     static let latestPossibleDate: NSDate = {
         let calendar = NSCalendar.currentCalendar()
         let components = NSDateComponents()
-        components.year = 1923
+        components.year = 1922
+        components.month = 12
+        components.day = 31
         return calendar.dateFromComponents(components)!
     }()
 }
