@@ -12,31 +12,23 @@ public class YearSlider: UIControl {
 
     private let slider = UISlider()
     private let minButton = UIButton()
+    private let minMarker = UIView()
+    private let midButton = UIButton()
+    private let midMarker = UIView()
     private let maxButton = UIButton()
+    private let maxMarker = UIView()
+
 
     public var value: Int {
-        get {
-            println("{get} value called")
-
-            let intValue = Int(round(slider.value))
-            println("* returning slider.value as Int: \(intValue)")
-            println("    - original slider.value: \(slider.value)")
-            return intValue
-        }
+        get { return Int(round(slider.value)) }
         set {
-            println("{set} value called")
-            let floatValue = Float(newValue)
-            println("* setting slider.value to \(floatValue)")
-            println("    - original newValue was \(newValue)")
-            slider.value = floatValue
+            slider.value = Float(newValue)
             updateUIForNewValues()
         }
     }
 
     public var minValue: Int {
-        get {
-            return Int(round(slider.minimumValue))
-        }
+        get { return Int(round(slider.minimumValue)) }
         set {
             slider.minimumValue = Float(newValue)
             updateUIForNewValues()
@@ -44,9 +36,7 @@ public class YearSlider: UIControl {
     }
 
     public var maxValue: Int {
-        get {
-            return Int(round(slider.maximumValue))
-        }
+        get { return Int(round(slider.maximumValue)) }
         set {
             slider.maximumValue = Float(newValue)
             updateUIForNewValues()
@@ -54,16 +44,26 @@ public class YearSlider: UIControl {
     }
 
     private func commonInit() {
-        for subview in [slider, minButton, maxButton] {
+        for subview in [minButton, midButton, maxButton, minMarker, midMarker, maxMarker, slider] {
             subview.setTranslatesAutoresizingMaskIntoConstraints(false)
             addSubview(subview)
         }
 
         slider.addTarget(self, action: "sliderValueDidChange:", forControlEvents: .ValueChanged)
+        slider.setMinimumTrackImage(minTrackImage, forState: .Normal)
+        slider.setMaximumTrackImage(maxTrackImage, forState: .Normal)
+
         minButton.addTarget(self, action: "minButtonTapped:", forControlEvents: .TouchUpInside)
-        minButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        minButton.setTitleColor(UIColor.darkGrayColor(), forState: .Normal)
+        minMarker.backgroundColor = UIColor.grayColor()
+
+        midButton.addTarget(self, action: "midButtonTapped:", forControlEvents: .TouchUpInside)
+        midButton.setTitleColor(UIColor.darkGrayColor(), forState: .Normal)
+        minMarker.backgroundColor = UIColor.grayColor()
+
         maxButton.addTarget(self, action: "maxButtonTapped:", forControlEvents: .TouchUpInside)
-        maxButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        maxButton.setTitleColor(UIColor.darkGrayColor(), forState: .Normal)
+        maxMarker.backgroundColor = UIColor.grayColor()
     }
 
     public required init(coder: NSCoder) {
@@ -81,6 +81,11 @@ public class YearSlider: UIControl {
         sendActionsForControlEvents(.ValueChanged)
     }
 
+    func midButtonTapped(button: UIButton) {
+//        slider.value = slider.minimumValue
+//        sendActionsForControlEvents(.ValueChanged)
+    }
+
     func maxButtonTapped(button: UIButton) {
         slider.value = slider.maximumValue
         sendActionsForControlEvents(.ValueChanged)
@@ -95,7 +100,25 @@ public class YearSlider: UIControl {
         maxButton.setTitle("\(maxValue)", forState: .Normal)
     }
 
+    let minTrackImage: UIImage = {
+        UIGraphicsBeginImageContext(CGSizeMake(15.0, 1.0))
+        let end = UIBezierPath(rect: CGRect(x: 14.0, y: 0, width: 1.0, height: 1.0))
+        UIColor.grayColor().set()
+        end.fill()
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img.resizableImageWithCapInsets(UIEdgeInsets(top: 0, left: 14.0, bottom: 0, right: 0))
+    }()
 
+    let maxTrackImage: UIImage = {
+        UIGraphicsBeginImageContext(CGSizeMake(15.0, 1.0))
+        let end = UIBezierPath(rect: CGRect(x: 0, y: 0, width: 1.0, height: 1.0))
+        UIColor.grayColor().set()
+        end.fill()
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img.resizableImageWithCapInsets(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 14.0))
+    }()
 
     // MARK: UIView overrides
 
@@ -109,15 +132,32 @@ public class YearSlider: UIControl {
             make.top.equalTo(0)
         }
 
+        minMarker.snp_makeConstraints { make in
+            make.width.equalTo(1.0)
+            make.height.equalTo(20.0)
+            make.centerX.equalTo(minButton.snp_centerX)
+            make.top.equalTo(minButton.snp_bottom)
+        }
+
         maxButton.snp_makeConstraints { make in
             make.trailing.equalTo(0)
             make.top.equalTo(0)
         }
 
+        maxMarker.snp_makeConstraints { make in
+            make.width.equalTo(1.0)
+            make.height.equalTo(20.0)
+            make.centerX.equalTo(maxButton.snp_centerX)
+            make.top.equalTo(maxButton.snp_bottom)
+        }
+
         slider.snp_makeConstraints { make in
-            make.leading.equalTo(minButton.snp_trailing).offset(20.0)
-            make.trailing.equalTo(maxButton.snp_leading).offset(-20.0)
-            make.top.equalTo(0)
+            let thumbRect = (slider.thumbRectForBounds(slider.bounds, trackRect: slider.trackRectForBounds(slider.bounds), value: slider.value))
+            let halfThumb = thumbRect.size.width / 2.0
+            make.leading.equalTo(minMarker.snp_centerX).offset(-(halfThumb - 2.0))
+            make.trailing.equalTo(maxMarker.snp_centerX).offset((halfThumb - 2.0))
+            make.top.equalTo(minButton.snp_bottom)
+            make.bottom.equalTo(0)
         }
         super.updateConstraints()
     }
