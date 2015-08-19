@@ -31,7 +31,7 @@
 		979082741B8143E90056CA9C /* MapSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979082721B8143E90056CA9C /* MapSelectionViewController.swift */; };
 		979082751B8143E90056CA9C /* MapSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 979082731B8143E90056CA9C /* MapSelectionViewController.xib */; };
 		97BDE1151B76ED6B00A3E57F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE1141B76ED6B00A3E57F /* AppDelegate.swift */; };
-		97BDE1171B76ED6B00A3E57F /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE1161B76ED6B00A3E57F /* MasterViewController.swift */; };
+		97BDE1171B76ED6B00A3E57F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE1161B76ED6B00A3E57F /* HomeViewController.swift */; };
 		97BDE1191B76ED6B00A3E57F /* NewspaperIssuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE1181B76ED6B00A3E57F /* NewspaperIssuesViewController.swift */; };
 		97BDE11C1B76ED6B00A3E57F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97BDE11A1B76ED6B00A3E57F /* Main.storyboard */; };
 		97BDE11E1B76ED6B00A3E57F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97BDE11D1B76ED6B00A3E57F /* Images.xcassets */; };
@@ -84,7 +84,7 @@
 		97BDE10F1B76ED6B00A3E57F /* AmericanChronicle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmericanChronicle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97BDE1131B76ED6B00A3E57F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97BDE1141B76ED6B00A3E57F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		97BDE1161B76ED6B00A3E57F /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		97BDE1161B76ED6B00A3E57F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		97BDE1181B76ED6B00A3E57F /* NewspaperIssuesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewspaperIssuesViewController.swift; sourceTree = "<group>"; };
 		97BDE11B1B76ED6B00A3E57F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		97BDE11D1B76ED6B00A3E57F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -128,6 +128,71 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		97AB2A4B1B84277300666E95 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				97BDE1161B76ED6B00A3E57F /* HomeViewController.swift */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		97AB2A4C1B84278400666E95 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				975914A91B7A47C40031BD13 /* SearchResultsPageCell.swift */,
+				9782361C1B7FFCF80056FDF6 /* YearSlider.swift */,
+				971211261B7C4179004C9F8F /* MonthPickerRevealSegue.swift */,
+				971211241B7C3AE3004C9F8F /* MonthPickerViewController.swift */,
+				971211281B7C6D5C004C9F8F /* MonthPickerViewController.xib */,
+				977F0A5A1B7FC58200C4B0FC /* CalendarViewDelegate.swift */,
+				977F0A5C1B7FC5BA00C4B0FC /* CalendarViewDataSource.swift */,
+				979082721B8143E90056CA9C /* MapSelectionViewController.swift */,
+				979082731B8143E90056CA9C /* MapSelectionViewController.xib */,
+				977F0A561B7FC3E700C4B0FC /* DatePickerViewController.swift */,
+				977F0A571B7FC3E700C4B0FC /* DatePickerViewController.xib */,
+				9790826E1B8135150056CA9C /* LocationSearchViewController.swift */,
+				9790826F1B8135150056CA9C /* LocationSearchViewController.xib */,
+				9782361A1B7FD1F00056FDF6 /* SearchFilters.swift */,
+				97BE67491B7B004B00761033 /* SearchFiltersViewController.swift */,
+				97BDE1361B76F84F00A3E57F /* SearchViewController.swift */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		97AB2A4D1B84298700666E95 /* Browse */ = {
+			isa = PBXGroup;
+			children = (
+				97BDE1181B76ED6B00A3E57F /* NewspaperIssuesViewController.swift */,
+				97BDE13A1B771B4800A3E57F /* NewspaperPagesViewController.swift */,
+				978741461B7832660014D1F0 /* NewspaperPagesDataSource.swift */,
+				9787414A1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift */,
+				97415ADD1B7847AE00326239 /* NewspaperPageCell.swift */,
+				97415ADF1B784DB700326239 /* NewspaperPageFocusSegue.swift */,
+				97415AE11B785AAE00326239 /* NewspaperPageUnfocusSegue.swift */,
+			);
+			name = Browse;
+			sourceTree = "<group>";
+		};
+		97AB2A4E1B842A9900666E95 /* App-Wide */ = {
+			isa = PBXGroup;
+			children = (
+				978236181B7FD0D00056FDF6 /* ChroniclingAmericaArchive.swift */,
+				97BDE11F1B76ED6B00A3E57F /* LaunchScreen.xib */,
+				97BDE11A1B76ED6B00A3E57F /* Main.storyboard */,
+				9764976C1B7DA0270035A388 /* Month.swift */,
+				97415AE31B785D8400326239 /* CustomSegueNavigationController.swift */,
+			);
+			name = "App-Wide";
+			sourceTree = "<group>";
+		};
+		97AB2A4F1B842B4F00666E95 /* Page */ = {
+			isa = PBXGroup;
+			children = (
+				97BDE1381B7703CA00A3E57F /* PageViewController.swift */,
+			);
+			name = Page;
+			sourceTree = "<group>";
+		};
 		97BDE1061B76ED6B00A3E57F = {
 			isa = PBXGroup;
 			children = (
@@ -152,37 +217,12 @@
 			isa = PBXGroup;
 			children = (
 				97BDE1141B76ED6B00A3E57F /* AppDelegate.swift */,
-				97BDE1161B76ED6B00A3E57F /* MasterViewController.swift */,
-				978236181B7FD0D00056FDF6 /* ChroniclingAmericaArchive.swift */,
-				97BDE1361B76F84F00A3E57F /* SearchViewController.swift */,
-				97BDE1381B7703CA00A3E57F /* PageViewController.swift */,
-				9782361C1B7FFCF80056FDF6 /* YearSlider.swift */,
-				979082721B8143E90056CA9C /* MapSelectionViewController.swift */,
-				979082731B8143E90056CA9C /* MapSelectionViewController.xib */,
-				9790826E1B8135150056CA9C /* LocationSearchViewController.swift */,
-				9790826F1B8135150056CA9C /* LocationSearchViewController.xib */,
-				977F0A561B7FC3E700C4B0FC /* DatePickerViewController.swift */,
-				977F0A571B7FC3E700C4B0FC /* DatePickerViewController.xib */,
-				977F0A5A1B7FC58200C4B0FC /* CalendarViewDelegate.swift */,
-				977F0A5C1B7FC5BA00C4B0FC /* CalendarViewDataSource.swift */,
-				971211241B7C3AE3004C9F8F /* MonthPickerViewController.swift */,
-				971211281B7C6D5C004C9F8F /* MonthPickerViewController.xib */,
-				9764976C1B7DA0270035A388 /* Month.swift */,
-				97BE67491B7B004B00761033 /* SearchFiltersViewController.swift */,
-				9782361A1B7FD1F00056FDF6 /* SearchFilters.swift */,
-				97BDE1181B76ED6B00A3E57F /* NewspaperIssuesViewController.swift */,
-				97BDE13A1B771B4800A3E57F /* NewspaperPagesViewController.swift */,
-				978741461B7832660014D1F0 /* NewspaperPagesDataSource.swift */,
-				9787414A1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift */,
-				97415ADD1B7847AE00326239 /* NewspaperPageCell.swift */,
-				97415ADF1B784DB700326239 /* NewspaperPageFocusSegue.swift */,
-				97415AE11B785AAE00326239 /* NewspaperPageUnfocusSegue.swift */,
-				97415AE31B785D8400326239 /* CustomSegueNavigationController.swift */,
-				971211261B7C4179004C9F8F /* MonthPickerRevealSegue.swift */,
-				975914A91B7A47C40031BD13 /* SearchResultsPageCell.swift */,
-				97BDE11A1B76ED6B00A3E57F /* Main.storyboard */,
+				97AB2A4E1B842A9900666E95 /* App-Wide */,
+				97AB2A4B1B84277300666E95 /* Home */,
+				97AB2A4C1B84278400666E95 /* Search */,
+				97AB2A4D1B84298700666E95 /* Browse */,
+				97AB2A4F1B842B4F00666E95 /* Page */,
 				97BDE11D1B76ED6B00A3E57F /* Images.xcassets */,
-				97BDE11F1B76ED6B00A3E57F /* LaunchScreen.xib */,
 				97BDE1121B76ED6B00A3E57F /* Supporting Files */,
 				970E81221B7DB32D00D795EB /* AmericanChronicle-Bridging-Header.h */,
 			);
@@ -393,7 +433,7 @@
 				97415AE41B785D8400326239 /* CustomSegueNavigationController.swift in Sources */,
 				9782361D1B7FFCF80056FDF6 /* YearSlider.swift in Sources */,
 				971211271B7C4179004C9F8F /* MonthPickerRevealSegue.swift in Sources */,
-				97BDE1171B76ED6B00A3E57F /* MasterViewController.swift in Sources */,
+				97BDE1171B76ED6B00A3E57F /* HomeViewController.swift in Sources */,
 				9782361B1B7FD1F00056FDF6 /* SearchFilters.swift in Sources */,
 				978741471B7832660014D1F0 /* NewspaperPagesDataSource.swift in Sources */,
 				97415ADE1B7847AE00326239 /* NewspaperPageCell.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  MasterViewController.swift
+//  HomeViewController.swift
 //  AmericanChronicle
 //
 //  Created by Ryan Peterson on 8/8/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MasterViewController: UITableViewController {
+class HomeViewController: UITableViewController {
 
     enum State: Int {
         case Alabama
