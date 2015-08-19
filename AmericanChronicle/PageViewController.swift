@@ -21,7 +21,10 @@ class PageViewController: UIViewController {
     var presentingView: UIView?
     var hidesStatusBar: Bool = true
 
-    @IBAction func shareButtonTapped(sender: AnyObject) { }
+    @IBAction func shareButtonTapped(sender: AnyObject) {
+        let vc = UIActivityViewController(activityItems: [], applicationActivities: nil)
+        presentViewController(vc, animated: true, completion: nil)
+    }
 
     func centerContent() {
         var top: CGFloat = 0
