@@ -57,7 +57,7 @@
                             <outlet property="delegate" destination="pGg-6v-bdr" id="Y6K-Cp-Qkv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="WXR-pL-dc8">
+                    <navigationItem key="navigationItem" id="WXR-pL-dc8">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="6EL-Zo-QM0">
                             <connections>
                                 <segue destination="2tS-Kb-pdx" kind="presentation" id="gQU-MG-0ao"/>
