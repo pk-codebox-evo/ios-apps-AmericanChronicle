@@ -90,6 +90,13 @@ class SearchFiltersViewController: UIViewController {
 
     @IBAction func locationButtonTapped(sender: AnyObject) {
         let vc = LocationSearchViewController(nibName: "LocationSearchViewController", bundle: nil)
+        vc.locationSelectedCallback = { [weak self] location in
+            var locations = self?.searchFilters.locations ?? []
+            locations.append(location)
+            self?.searchFilters.locations = locations
+            self?.updateFilterButtons()
+            self?.navigationController?.popViewControllerAnimated(true)
+        }
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -108,7 +115,7 @@ class SearchFiltersViewController: UIViewController {
     @IBAction func latestDateButtonTapped(sender: AnyObject) {
         let vc = DatePickerViewController(
             earliestPossibleDate: searchFilters.earliestDate ?? ChroniclingAmericaArchive.earliestPossibleDate,
-            selectedDateOnInit: searchFilters.latestDate)
+            selectedDateOnInit: searchFilters.latestDate ?? ChroniclingAmericaArchive.latestPossibleDate)
         vc.saveCallback = { [weak self] selectedDate in
             self?.searchFilters.latestDate = selectedDate
             self?.updateFilterButtons()

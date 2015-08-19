@@ -105,6 +105,7 @@ import SwiftMoment
         slider.value = moment(selectedDateOnInit).year
 
         calendarView.selectedDate = selectedDateOnInit
+        println("calendarView.selectedDate: \(calendarView.selectedDate)")
         updateUIToMatchCurrentDate(calendarView.selectedDate)
     }
 

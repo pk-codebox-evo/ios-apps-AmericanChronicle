@@ -7,30 +7,81 @@
 //
 
 import UIKit
+import CoreLocation
+
+protocol Location {
+    var name: String { get }
+    var lat: Float { get }
+    var lng: Float { get }
+}
+
+struct State: Location, Equatable {
+    var name: String
+    var lat: Float
+    var lng: Float
+    init(name: String, lat: Float, lng: Float) {
+        self.name = name
+        self.lat = lat
+        self.lng = lng
+    }
+}
+
+struct City: Location, Equatable {
+    var name: String
+    var lat: Float
+    var lng: Float
+    init(name: String, lat: Float, lng: Float) {
+        self.name = name
+        self.lat = lat
+        self.lng = lng
+    }
+}
+
+func ==<T: Location>(lhs: T, rhs: T) -> Bool {
+    return true
+}
+
+func ==(lhs: City, rhs: City) -> Bool {
+    return true
+}
+
+func ==(lhs: State, rhs: State) -> Bool {
+    return true
+}
 
 class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
 
-    var results: [String] = []
+    var locationSelectedCallback: ((Location) -> ())?
+
+    var results: [Location] = []
+
+    var recentSearches: [Location] = [
+        City(name: "Phoenix, AZ", lat: 0, lng: 0),
+        City(name: "Santa Fe, NM", lat: 0, lng: 0),
+        State(name: "California", lat: 0, lng: 0)
+    ]
+
+    var searchResults: [Location] = [
+        State(name: "Wyoming", lat: 0, lng: 0),
+        City(name: "Wyoming, MI", lat: 42.913408, lng: -85.708272)
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        results = recentSearches
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "CurrentLocationCell")
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "RecentLocationCell")
-        // Do any additional setup after loading the view.
     }
 
     // MARK: UITableViewDelegate methods
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let vc = MapSelectionViewController(nibName: "MapSelectionViewController", bundle: nil)
-        vc.savedCallback = { [weak self] in
+        if indexPath.section == 1 {
+            locationSelectedCallback?(results[indexPath.row])
         }
-        navigationController?.pushViewController(vc, animated: true)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
     // MARK: UITableViewDataSource methods {
@@ -54,7 +105,7 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
             return cell
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("RecentLocationCell") as! UITableViewCell
-            cell.textLabel?.text = results[indexPath.row]
+            cell.textLabel?.text = results[indexPath.row].name
             return cell
         default:
             return UITableViewCell()
@@ -64,45 +115,13 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
-    //
-    //    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    //        return nil
-    //    }
-    //
-    //    func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-    //        return nil
-    //    }
-    //
-    //    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    //        return false
-    //    }
-    //
-    //    func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-    //        return false
-    //    }
-    //
-    //    func sectionIndexTitlesForTableView(tableView: UITableView) -> [AnyObject]! {
-    //    }
-    //
-    //    func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
-    //        return 0
-    //    }
-    //
-    //    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-    //    }
-    //
-    //    func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
-    //    }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if (section == 1) && (results.count == recentSearches.count) {
+            return "Recent searches"
+        }
+        return nil
     }
-    */
 
     // MARK: UISearchBarDelegate methods
 
@@ -124,9 +143,9 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
 
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         if count(searchText) > 0 {
-            results = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+            results = searchResults
         } else {
-            results = []
+            results = recentSearches
         }
         tableView.reloadData()
     }
