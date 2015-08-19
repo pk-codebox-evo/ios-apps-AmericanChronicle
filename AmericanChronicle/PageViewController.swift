@@ -22,7 +22,13 @@ class PageViewController: UIViewController {
     var hidesStatusBar: Bool = true
 
     @IBAction func shareButtonTapped(sender: AnyObject) {
-        let vc = UIActivityViewController(activityItems: [], applicationActivities: nil)
+        let vc = UIActivityViewController(activityItems: [imageView.image!], applicationActivities: nil)
+        vc.completionWithItemsHandler = { type, completed, returnedItems, activityError in
+            println("type: \(type)")
+            println("completed: \(completed)")
+            println("returnedItems: \(returnedItems)")
+            println("activityError: \(activityError)")
+        }
         presentViewController(vc, animated: true, completion: nil)
     }
 
