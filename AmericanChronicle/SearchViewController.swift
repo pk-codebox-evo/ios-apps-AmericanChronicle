@@ -163,6 +163,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             searchBar.text = activeData?.sections[indexPath.section].rows[indexPath.row]
             performSearchWithResultsCount(count(searchBar.text))
         }
+
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
