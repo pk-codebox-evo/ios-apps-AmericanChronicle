@@ -102,6 +102,8 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
         case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier("CurrentLocationCell") as! UITableViewCell
             cell.textLabel?.text = "Current Location"
+            cell.imageView?.image = UIImage(named: "TrackingLocationMask")?.imageWithRenderingMode(.AlwaysTemplate)
+            cell.imageView?.tintColor = UIColor.blueColor().colorWithAlphaComponent(0.5)
             return cell
         case 1:
             let cell = tableView.dequeueReusableCellWithIdentifier("RecentLocationCell") as! UITableViewCell
