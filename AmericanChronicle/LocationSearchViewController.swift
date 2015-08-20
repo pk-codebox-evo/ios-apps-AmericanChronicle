@@ -79,8 +79,11 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
     // MARK: UITableViewDelegate methods
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 1 {
-            locationSelectedCallback?(results[indexPath.row])
+        switch indexPath.section {
+        case 0: locationSelectedCallback?(City(name: "San Francisco, CA", lat: 0, lng: 0))
+        case 1: locationSelectedCallback?(results[indexPath.row])
+        default:
+            break
         }
     }
 
