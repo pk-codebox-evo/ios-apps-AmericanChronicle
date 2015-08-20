@@ -186,6 +186,10 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             vc.cancelCallback = { [weak self] in
                 self?.dismissViewControllerAnimated(true, completion: nil)
             }
+        } else if let vc = segue.destinationViewController as? PageViewController {
+            vc.doneCallback = { [weak self] in
+                self?.navigationController?.popViewControllerAnimated(true)
+            }
         }
     }
 

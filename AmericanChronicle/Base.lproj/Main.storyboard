@@ -133,7 +133,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="Eud-Cu-oUy" kind="unwind" identifier="Unfocus" unwindAction="unfocusPage:" id="uPe-qx-01g"/>
+                                            <action selector="doneButtonTapped:" destination="1qS-Yc-KkM" eventType="touchUpInside" id="I9g-N3-XQQ"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -173,14 +173,13 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Re-dD-PJv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Eud-Cu-oUy" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="jAg-yM-ExX">
                     <connections>
                         <action selector="tapRecognized:" destination="1qS-Yc-KkM" id="mlu-J6-lsN"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2406" y="-789"/>
+            <point key="canvasLocation" x="2425" y="-789"/>
         </scene>
         <!--Search Navigation Controller-->
         <scene sceneID="yT9-gB-WRp">
@@ -324,6 +323,9 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aBa-Qp-GbK" id="5BX-5p-Dg3">
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Ah7-4n-0Wa" kind="show" id="pGf-xk-sXK"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -666,6 +668,7 @@
         <image name="newspaper_page-thumb" width="150" height="194"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="uq8-Gm-fne"/>
+        <segue reference="pGf-xk-sXK"/>
+        <segue reference="8Os-xR-Ge2"/>
     </inferredMetricsTieBreakers>
 </document>

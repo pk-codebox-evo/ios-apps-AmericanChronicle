@@ -20,6 +20,7 @@ class PageViewController: UIViewController {
     var presentingViewNavBar: UIView?
     var presentingView: UIView?
     var hidesStatusBar: Bool = true
+    var doneCallback: ((Void) -> ())?
 
     @IBAction func shareButtonTapped(sender: AnyObject) {
         let vc = UIActivityViewController(activityItems: [imageView.image!], applicationActivities: nil)
@@ -30,6 +31,11 @@ class PageViewController: UIViewController {
             println("activityError: \(activityError)")
         }
         presentViewController(vc, animated: true, completion: nil)
+    }
+
+    @IBAction func doneButtonTapped(sender: AnyObject) {
+        println("\(__FILE__) | \(__FUNCTION__) | line \(__LINE__)")
+        doneCallback?()
     }
 
     func centerContent() {

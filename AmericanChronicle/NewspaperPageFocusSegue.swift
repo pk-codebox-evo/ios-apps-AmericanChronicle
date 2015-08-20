@@ -15,48 +15,75 @@ class NewspaperPageFocusSegue: UIStoryboardSegue {
     var pageViewController: PageViewController? {
         return destinationViewController as? PageViewController
     }
+
+    private func imageOfWindow() -> UIImage {
+        let window = UIApplication.sharedApplication().keyWindow!
+        UIGraphicsBeginImageContext(window.bounds.size)
+        window.drawViewHierarchyInRect(window.bounds, afterScreenUpdates: false)
+        let fullScreenImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return fullScreenImage
+    }
+
+    var navBarCoverView: UIView = {
+        let navBarCoverView = UIView()
+        navBarCoverView.backgroundColor = UIColor.blackColor()
+        return navBarCoverView
+    }()
+
+    var fullScreenImageView: UIImageView = {
+        return UIImageView()
+    }()
+
+    var navBarImageView: UIImageView = {
+        let navBarImageView = UIImageView()
+        navBarImageView.clipsToBounds = true
+        navBarImageView.contentMode = .Top
+        return navBarImageView
+    }()
+
     override func perform() {
         if let pagesViewController = pagesViewController, let pageViewController = pageViewController {
+            pagesViewController.presentViewController(pageViewController, animated: true, completion: nil)
 
-            let window = UIApplication.sharedApplication().keyWindow!
-            UIGraphicsBeginImageContext(window.bounds.size)
-            window.drawViewHierarchyInRect(window.bounds, afterScreenUpdates: false)
-            let fullScreenImage = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            let fullScreenImageView = UIImageView(image: fullScreenImage)
 
-            let navBarImageView = UIImageView(image: fullScreenImage)
-            navBarImageView.maskView = UIView(frame: CGRect(x: 0, y: 0, width: fullScreenImage.size.width, height: 64.0))
-            navBarImageView.maskView?.backgroundColor = UIColor.blackColor()
-
-            var presentingVC: UIViewController? = pagesViewController
-            while !(presentingVC?.definesPresentationContext ?? false) {
-                presentingVC = presentingVC?.parentViewController
-            }
-
-            let navBarCoverView = UIView(frame: navBarImageView.frame)
-            navBarCoverView.backgroundColor = UIColor.blackColor()
-            navBarCoverView.maskView = UIView(frame: CGRect(x: 0, y: 0, width: navBarImageView.frame.size.width, height: 64.0))
-            navBarCoverView.maskView?.backgroundColor = UIColor.blackColor()
-
-            pageViewController.prepareForAppearanceAnimation()
-            presentingVC?.view.addSubview(fullScreenImageView)
-            presentingVC?.view.addSubview(navBarCoverView)
-            presentingVC?.view.addSubview(pageViewController.view)
-            presentingVC?.view.addSubview(navBarImageView)
-
-            pageViewController.presentingView = fullScreenImageView
-            pageViewController.presentingViewNavBar = navBarImageView
-
-            UIView.animateWithDuration(2.0, animations: {
-                pageViewController.updateViewsInsideAppearanceAnimation()
-                navBarImageView.frame = CGRectOffset(navBarImageView.frame, 0, -64.0)
-            }, completion: { _ in
-                navBarImageView.removeFromSuperview()
-                navBarCoverView.removeFromSuperview()
-                fullScreenImageView.removeFromSuperview()
-                pagesViewController.presentViewController(pageViewController, animated: false, completion: nil)
-            })
+//            var presentingVC: UIViewController? = pagesViewController
+//            while !(presentingVC?.definesPresentationContext ?? false) {
+//                presentingVC = presentingVC?.parentViewController
+//            }
+//
+//            println("presentingVC: \(presentingVC)")
+//
+//            let fullScreenImage = imageOfWindow()
+//
+//            fullScreenImageView.image = fullScreenImage
+//            fullScreenImageView.frame = CGRect(x: 0, y: 0, width: fullScreenImage.size.width, height: fullScreenImage.size.height)
+//
+//            navBarImageView.image = fullScreenImage
+//            navBarImageView.frame = CGRect(x: 0, y: 0, width: fullScreenImage.size.width, height: 64.0)
+//
+//            pageViewController.prepareForAppearanceAnimation()
+//
+//            presentingVC?.view.addSubview(fullScreenImageView)
+//
+//            presentingVC?.view.addSubview(navBarCoverView)
+//
+//            presentingVC?.view.addSubview(pageViewController.view)
+//
+//            presentingVC?.view.addSubview(navBarImageView)
+//
+//            pageViewController.presentingView = fullScreenImageView
+//            pageViewController.presentingViewNavBar = navBarImageView
+//
+//            UIView.animateWithDuration(2.0, animations: {
+//                pageViewController.updateViewsInsideAppearanceAnimation()
+//                self.navBarImageView.frame = CGRectOffset(self.navBarImageView.frame, 0, -64.0)
+//            }, completion: { _ in
+//                self.navBarImageView.removeFromSuperview()
+//                self.navBarCoverView.removeFromSuperview()
+//                self.fullScreenImageView.removeFromSuperview()
+//                pagesViewController.presentViewController(pageViewController, animated: false, completion: nil)
+//            })
         }
     }
 }
