@@ -16,6 +16,7 @@ class PageViewController: UIViewController {
     @IBOutlet weak var bottomBarBG: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
+    var toastButton: UIButton = UIButton()
 
     var presentingViewNavBar: UIView?
     var presentingView: UIView?
@@ -25,10 +26,32 @@ class PageViewController: UIViewController {
     @IBAction func shareButtonTapped(sender: AnyObject) {
         let vc = UIActivityViewController(activityItems: [imageView.image!], applicationActivities: nil)
         vc.completionWithItemsHandler = { type, completed, returnedItems, activityError in
+            self.toastButton.frame = CGRect(x: 20.0, y: self.bottomBarBG.frame.origin.y - 80.0, width: self.view.bounds.size.width - 40.0, height: 60)
+
             println("type: \(type)")
             println("completed: \(completed)")
             println("returnedItems: \(returnedItems)")
             println("activityError: \(activityError)")
+            let message: String
+            switch type {
+            case UIActivityTypeSaveToCameraRoll:
+                message = completed ? "Page saved successfully" : "Trouble saving, please try again"
+            default:
+                message = completed ? "Success" : "Action failed, please try again"
+            }
+
+            self.toastButton.setTitle(message, forState: .Normal)
+            self.toastButton.alpha = 0
+            self.toastButton.hidden = false
+            UIView.animateWithDuration(0.2, animations: {
+                self.toastButton.alpha = 1.0
+            }, completion: { _ in
+                UIView.animateWithDuration(0.2, delay: 3.0, options: UIViewAnimationOptions.allZeros, animations: {
+                    self.toastButton.alpha = 0
+                    }, completion: { _ in
+                        self.toastButton.hidden = true
+                })
+            })
         }
         presentViewController(vc, animated: true, completion: nil)
     }
@@ -36,6 +59,19 @@ class PageViewController: UIViewController {
     @IBAction func doneButtonTapped(sender: AnyObject) {
         println("\(__FILE__) | \(__FUNCTION__) | line \(__LINE__)")
         doneCallback?()
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        toastButton.addTarget(self, action: "toastButtonTapped:", forControlEvents: .TouchUpInside)
+        toastButton.backgroundColor = UIColor(white: 1.0, alpha: 0.8)
+        toastButton.setTitleColor(UIColor.darkGrayColor(), forState: .Normal)
+        toastButton.layer.shadowColor = UIColor.blackColor().CGColor
+        toastButton.layer.shadowOffset = CGSize(width: 0, height: 0)
+        toastButton.layer.shadowRadius = 1.0
+        toastButton.layer.shadowOpacity = 1.0
+
+        view.addSubview(toastButton)
     }
 
     func centerContent() {
