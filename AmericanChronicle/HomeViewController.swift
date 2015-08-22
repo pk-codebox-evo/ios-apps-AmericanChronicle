@@ -10,49 +10,6 @@ import UIKit
 
 class HomeViewController: UITableViewController {
 
-    struct State {
-        let name: StateName
-        let cities: [City]
-        let newspapers: [Newspaper]
-    }
-
-    enum StateName: Int {
-        case Alabama
-        case Arizona
-        case Arkansas
-
-        var description: String {
-            switch self {
-            case .Alabama: return "Alabama"
-            case .Arizona: return "Arizona"
-            case .Arkansas: return "Arkansas"
-            }
-        }
-    }
-
-    struct City {
-        let name: String
-        let newspapers: [Newspaper] = []
-    }
-
-    class Newspaper {
-        let title: String
-        let city: String
-        var startYear: Int?
-        var endYear: Int?
-
-        init(title: String, city: String, startYear: Int?, endYear: Int?) {
-            self.title = title
-            self.city = city
-            self.startYear = startYear
-            self.endYear = endYear
-        }
-
-        var description: String {
-            return title
-        }
-    }
-
     var newspapers = [StateName: [Newspaper]]()
 
     override func awakeFromNib() {
@@ -79,7 +36,7 @@ class HomeViewController: UITableViewController {
     }
 
     func newspaperAtIndexPath(indexPath: NSIndexPath) -> Newspaper? {
-        if let state = StateName(rawValue: indexPath.section), let papers = newspapers[state] {
+        if let papers = newspapers[StateName.alphabeticalList[indexPath.section]] {
             return papers[indexPath.row]
         }
         return nil
@@ -101,17 +58,14 @@ class HomeViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let state = StateName(rawValue: section) {
-            return newspapers[state]?.count ?? 0
+        if let papers = newspapers[StateName.alphabeticalList[section]] {
+            return papers.count
         }
         return 0
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if let state = StateName(rawValue: section) {
-            return state.description
-        }
-        return "(Unknown)"
+        return StateName.alphabeticalList[section].rawValue
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

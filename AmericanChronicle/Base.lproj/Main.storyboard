@@ -438,7 +438,13 @@
                             <constraint firstAttribute="trailing" secondItem="SBj-KH-NwP" secondAttribute="trailing" id="zWY-ha-qzc"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Detail" id="cra-N8-TIN"/>
+                    <navigationItem key="navigationItem" title="Issues" id="cra-N8-TIN">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="x2g-BB-oy6">
+                            <connections>
+                                <segue destination="2tS-Kb-pdx" kind="presentation" id="7F9-Ad-cPt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lrm-kH-fPn" sceneMemberID="firstResponder"/>
             </objects>
@@ -570,6 +576,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="jUr-3t-vfg"/>
+        <segue reference="7F9-Ad-cPt"/>
         <segue reference="uq8-Gm-fne"/>
     </inferredMetricsTieBreakers>
 </document>

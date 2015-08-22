@@ -10,7 +10,7 @@ import UIKit
 
 class NewspaperIssuesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-    var newspaper: AnyObject?
+    var newspaper: Newspaper?
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
@@ -24,6 +24,13 @@ class NewspaperIssuesViewController: UIViewController, UICollectionViewDelegate,
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let width = (self.view.bounds.size.width - 30) / 2.0
         return CGSize(width: width, height: width * 1.5)
+    }
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let nvc = segue.destinationViewController as? UINavigationController,
+            let vc = nvc.viewControllers.first as? SearchViewController {
+                vc.filters = SearchFilters()
+        }
     }
 }
 

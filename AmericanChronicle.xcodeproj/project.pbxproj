@@ -11,6 +11,11 @@
 		97415AE01B784DB700326239 /* NewspaperPageFocusSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97415ADF1B784DB700326239 /* NewspaperPageFocusSegue.swift */; };
 		97415AE21B785AAE00326239 /* NewspaperPageUnfocusSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97415AE11B785AAE00326239 /* NewspaperPageUnfocusSegue.swift */; };
 		97415AE41B785D8400326239 /* CustomSegueNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97415AE31B785D8400326239 /* CustomSegueNavigationController.swift */; };
+		974BA3661B892D3400D7ACA2 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974BA3651B892D3400D7ACA2 /* State.swift */; };
+		974BA3681B892D5200D7ACA2 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974BA3671B892D5200D7ACA2 /* City.swift */; };
+		974BA36A1B892D8900D7ACA2 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974BA3691B892D8900D7ACA2 /* Location.swift */; };
+		974BA36C1B892DD500D7ACA2 /* Newspaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974BA36B1B892DD500D7ACA2 /* Newspaper.swift */; };
+		974BA36E1B89343A00D7ACA2 /* StateName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974BA36D1B89343A00D7ACA2 /* StateName.swift */; };
 		975914AA1B7A47C40031BD13 /* SearchResultsPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975914A91B7A47C40031BD13 /* SearchResultsPageCell.swift */; };
 		9764976D1B7DA0270035A388 /* Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9764976C1B7DA0270035A388 /* Month.swift */; };
 		977F0A581B7FC3E700C4B0FC /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977F0A561B7FC3E700C4B0FC /* DatePickerViewController.swift */; };
@@ -57,6 +62,11 @@
 		97415ADF1B784DB700326239 /* NewspaperPageFocusSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPageFocusSegue.swift; sourceTree = "<group>"; };
 		97415AE11B785AAE00326239 /* NewspaperPageUnfocusSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPageUnfocusSegue.swift; sourceTree = "<group>"; };
 		97415AE31B785D8400326239 /* CustomSegueNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegueNavigationController.swift; sourceTree = "<group>"; };
+		974BA3651B892D3400D7ACA2 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		974BA3671B892D5200D7ACA2 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		974BA3691B892D8900D7ACA2 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		974BA36B1B892DD500D7ACA2 /* Newspaper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Newspaper.swift; sourceTree = "<group>"; };
+		974BA36D1B89343A00D7ACA2 /* StateName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateName.swift; sourceTree = "<group>"; };
 		975914A91B7A47C40031BD13 /* SearchResultsPageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsPageCell.swift; sourceTree = "<group>"; };
 		9764976C1B7DA0270035A388 /* Month.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Month.swift; sourceTree = "<group>"; };
 		977F0A561B7FC3E700C4B0FC /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +134,11 @@
 			isa = PBXGroup;
 			children = (
 				97BDE1161B76ED6B00A3E57F /* HomeViewController.swift */,
+				974BA36B1B892DD500D7ACA2 /* Newspaper.swift */,
+				974BA3691B892D8900D7ACA2 /* Location.swift */,
+				974BA3651B892D3400D7ACA2 /* State.swift */,
+				974BA36D1B89343A00D7ACA2 /* StateName.swift */,
+				974BA3671B892D5200D7ACA2 /* City.swift */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -417,16 +432,21 @@
 				978236191B7FD0D00056FDF6 /* ChroniclingAmericaArchive.swift in Sources */,
 				97BDE1191B76ED6B00A3E57F /* NewspaperIssuesViewController.swift in Sources */,
 				977F0A5B1B7FC58200C4B0FC /* CalendarViewDelegate.swift in Sources */,
+				974BA36C1B892DD500D7ACA2 /* Newspaper.swift in Sources */,
 				97415AE01B784DB700326239 /* NewspaperPageFocusSegue.swift in Sources */,
+				974BA36E1B89343A00D7ACA2 /* StateName.swift in Sources */,
 				977F0A5D1B7FC5BA00C4B0FC /* CalendarViewDataSource.swift in Sources */,
 				977F0A581B7FC3E700C4B0FC /* DatePickerViewController.swift in Sources */,
 				97BDE1391B7703CA00A3E57F /* PageViewController.swift in Sources */,
+				974BA36A1B892D8900D7ACA2 /* Location.swift in Sources */,
 				979082701B8135150056CA9C /* LocationSearchViewController.swift in Sources */,
 				9787414B1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift in Sources */,
+				974BA3661B892D3400D7ACA2 /* State.swift in Sources */,
 				97BE674A1B7B004B00761033 /* SearchFiltersViewController.swift in Sources */,
 				9764976D1B7DA0270035A388 /* Month.swift in Sources */,
 				97415AE41B785D8400326239 /* CustomSegueNavigationController.swift in Sources */,
 				9782361D1B7FFCF80056FDF6 /* YearSlider.swift in Sources */,
+				974BA3681B892D5200D7ACA2 /* City.swift in Sources */,
 				97BDE1171B76ED6B00A3E57F /* HomeViewController.swift in Sources */,
 				9782361B1B7FD1F00056FDF6 /* SearchFilters.swift in Sources */,
 				978741471B7832660014D1F0 /* NewspaperPagesDataSource.swift in Sources */,

@@ -291,11 +291,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let vc = segue.destinationViewController as? NewspaperIssuesViewController {
-            if let selected = tableView.indexPathForSelectedRow() {
-                vc.newspaper = activeData?.sections[selected.section].rows[selected.row].cellText
-            }
-        } else if let nvc = segue.destinationViewController as? UINavigationController, let vc = nvc.viewControllers.first as? SearchFiltersViewController {
+        if let nvc = segue.destinationViewController as? UINavigationController, let vc = nvc.viewControllers.first as? SearchFiltersViewController {
             vc.searchFilters = filters ?? SearchFilters()
             vc.saveCallback = { [weak self] filters in
                 self?.filters = filters

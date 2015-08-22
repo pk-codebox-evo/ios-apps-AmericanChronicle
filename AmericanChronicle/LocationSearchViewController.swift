@@ -9,69 +9,34 @@
 import UIKit
 import CoreLocation
 
-protocol Location {
-    var name: String { get }
-    var lat: Float { get }
-    var lng: Float { get }
-}
-
-struct State: Location, Equatable {
-    var name: String
-    var lat: Float
-    var lng: Float
-    init(name: String, lat: Float, lng: Float) {
-        self.name = name
-        self.lat = lat
-        self.lng = lng
-    }
-}
-
-struct City: Location, Equatable {
-    var name: String
-    var lat: Float
-    var lng: Float
-    init(name: String, lat: Float, lng: Float) {
-        self.name = name
-        self.lat = lat
-        self.lng = lng
-    }
-}
-
-func ==<T: Location>(lhs: T, rhs: T) -> Bool {
-    return true
-}
-
-func ==(lhs: City, rhs: City) -> Bool {
-    return true
-}
-
-func ==(lhs: State, rhs: State) -> Bool {
-    return true
-}
 
 class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
 
-    var locationSelectedCallback: ((Location) -> ())?
+    var locationSelectedCallback: ((City) -> ())?
 
-    var results: [Location] = []
-
-    var recentSearches: [Location] = [
-        City(name: "Phoenix, AZ", lat: 0, lng: 0),
-        City(name: "Santa Fe, NM", lat: 0, lng: 0),
-        State(name: "California", lat: 0, lng: 0)
+    var recentSearches: [String] = [
+        "Phoenix",
+        "Williams",
+        "Alabama"
     ]
 
-    var searchResults: [Location] = [
-        State(name: "Wyoming", lat: 0, lng: 0),
-        City(name: "Wyoming, MI", lat: 42.913408, lng: -85.708272)
+    var searchResults: [City] = [
+        City(name: "Williams", lat: 0, lng: 0, stateName: .Arizona, newspapers: [])
     ]
+
+    var shouldShowSearchResults: Bool {
+        return count(searchBar.text) > 0
+    }
+
+    var shouldShowCurrentLocation: Bool {
+        return !shouldShowSearchResults
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        results = recentSearches
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "CurrentLocationCell")
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "RecentLocationCell")
     }
@@ -80,8 +45,16 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.section {
-        case 0: locationSelectedCallback?(City(name: "San Francisco, CA", lat: 0, lng: 0))
-        case 1: locationSelectedCallback?(results[indexPath.row])
+        case 0:
+            searchBar.text = "Tucson, AZ"
+            tableView.reloadData()
+        case 1:
+            if shouldShowSearchResults {
+                locationSelectedCallback?(searchResults[indexPath.row])
+            } else {
+                searchBar.text = recentSearches[indexPath.row]
+                tableView.reloadData()
+            }
         default:
             break
         }
@@ -92,9 +65,9 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 1
+            return shouldShowCurrentLocation ? 1 : 0
         case 1:
-            return results.count
+            return shouldShowSearchResults ? searchResults.count : recentSearches.count
         default:
             return 0
         }
@@ -109,12 +82,19 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
             cell.imageView?.tintColor = UIColor.blueColor().colorWithAlphaComponent(0.5)
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCellWithIdentifier("RecentLocationCell") as! UITableViewCell
-            cell.textLabel?.text = results[indexPath.row].name
-            return cell
+            if shouldShowSearchResults {
+                let cell = tableView.dequeueReusableCellWithIdentifier("RecentLocationCell") as! UITableViewCell
+                cell.textLabel?.text = searchResults[indexPath.row].name
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCellWithIdentifier("RecentLocationCell") as! UITableViewCell
+                cell.textLabel?.text = recentSearches[indexPath.row]
+                return cell
+            }
         default:
             return UITableViewCell()
         }
+
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -122,7 +102,7 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
     }
 
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if (section == 1) && (results.count == recentSearches.count) {
+        if (section == 1) && !shouldShowSearchResults {
             return "Recent searches"
         }
         return nil
@@ -147,11 +127,6 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
     }
 
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        if count(searchText) > 0 {
-            results = searchResults
-        } else {
-            results = recentSearches
-        }
         tableView.reloadData()
     }
 
