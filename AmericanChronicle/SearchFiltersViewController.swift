@@ -32,8 +32,8 @@ class FilterCell: UICollectionViewCell {
 
     func commonInit() {
         backgroundColor = UIColor.whiteColor()
-        layer.borderColor = UIColor.blackColor().CGColor
-        layer.borderWidth = 1.0
+        layer.borderColor = UIColor.darkGrayColor().CGColor
+        layer.borderWidth = 1.0 / UIScreen.mainScreen().scale
 
         addSubview(titleLabel)
         titleLabel.textAlignment = .Center
@@ -61,6 +61,137 @@ class FilterCell: UICollectionViewCell {
                 make.trailing.equalTo(-20.0)
             }
         }
+    }
+
+    required init(coder: NSCoder) {
+        super.init(coder: coder)
+        self.commonInit()
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.commonInit()
+    }
+}
+
+class EmptyLocationCell: UICollectionViewCell {
+    let titleLabel: UILabel = UILabel()
+
+    func commonInit() {
+        backgroundColor = UIColor.clearColor()
+
+        addSubview(titleLabel)
+        titleLabel.text = "Anywhere. Tap to add a location."
+        titleLabel.textAlignment = .Center
+        titleLabel.font = UIFont(name: "AvenirNext-Regular", size: 14.0)
+        titleLabel.textColor = UIColor.darkGrayColor()
+
+        titleLabel.snp_makeConstraints { [weak self] make in
+            if let myself = self {
+                make.top.equalTo(20.0)
+                make.leading.equalTo(20.0)
+                make.trailing.equalTo(-20.0)
+            }
+        }
+    }
+
+    required init(coder: NSCoder) {
+        super.init(coder: coder)
+        self.commonInit()
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.commonInit()
+    }
+}
+
+class LocationCell: UICollectionViewCell {
+    let titleLabel: UILabel = UILabel()
+
+    func commonInit() {
+        backgroundColor = UIColor.whiteColor()
+        layer.borderColor = UIColor.darkGrayColor().CGColor
+        layer.borderWidth = 1.0 / UIScreen.mainScreen().scale
+
+        addSubview(titleLabel)
+        titleLabel.textAlignment = .Center
+        titleLabel.font = UIFont(name: "AvenirNext-Regular", size: 14.0)
+        titleLabel.textColor = UIColor.blueColor()
+
+        titleLabel.snp_makeConstraints { [weak self] make in
+            if let myself = self {
+                make.top.equalTo(0)
+                make.leading.equalTo(20.0)
+                make.trailing.equalTo(-20.0)
+                make.bottom.equalTo(0)
+            }
+        }
+    }
+
+    required init(coder: NSCoder) {
+        super.init(coder: coder)
+        self.commonInit()
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.commonInit()
+    }
+}
+
+class LocationsHeader: UICollectionReusableView {
+    var backgroundView = UIView()
+    var titleLabel: UILabel = UILabel()
+    var addButton: UIButton = UIButton()
+    func commonInit() {
+
+        backgroundColor = UIColor.clearColor()
+
+        addSubview(backgroundView)
+        backgroundView.backgroundColor = UIColor.whiteColor()
+        backgroundView.layer.borderColor = UIColor.darkGrayColor().CGColor
+        backgroundView.layer.borderWidth = 1.0 / UIScreen.mainScreen().scale
+        backgroundView.snp_makeConstraints { [weak self] make in
+            if let myself = self {
+                make.top.equalTo(0)
+                make.leading.equalTo(20.0)
+                make.bottom.equalTo(0)
+                make.trailing.equalTo(-20.0)
+            }
+        }
+
+        addSubview(titleLabel)
+        titleLabel.text = "Locations"
+        titleLabel.textAlignment = .Center
+        titleLabel.font = UIFont(name: "AvenirNext-Regular", size: 14.0)
+        titleLabel.textColor = UIColor.lightGrayColor()
+        titleLabel.snp_makeConstraints { [weak self] make in
+            if let myself = self {
+                make.top.equalTo(0)
+                make.leading.equalTo(20.0)
+                make.bottom.equalTo(0)
+                make.trailing.equalTo(-20.0)
+            }
+        }
+
+        addSubview(addButton)
+        addButton.setTitle("Add", forState: .Normal)
+        addButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        addButton.titleLabel?.font = UIFont(name: "AvenirNext-Regular", size: 12.0)
+        addButton.addTarget(self, action: "addButtonTapped:", forControlEvents: .TouchUpInside)
+        addButton.snp_makeConstraints { [weak self] make in
+            if let myself = self {
+                make.width.equalTo(40.0)
+                make.top.equalTo(0)
+                make.trailing.equalTo(-30)
+                make.bottom.equalTo(0)
+            }
+        }
+    }
+
+    func addButtonTapped(sender: UIButton) {
+        println("\(__FILE__) | \(__FUNCTION__) | line \(__LINE__)")
     }
 
     required init(coder: NSCoder) {
@@ -138,7 +269,10 @@ class SearchFiltersViewController: UIViewController, UICollectionViewDelegate, U
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.registerClass(FilterCell.self, forCellWithReuseIdentifier: "Cell")
+        collectionView.registerClass(LocationsHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "Header")
+        collectionView.registerClass(FilterCell.self, forCellWithReuseIdentifier: "FilterCell")
+        collectionView.registerClass(EmptyLocationCell.self, forCellWithReuseIdentifier: "EmptyLocationCell")
+        collectionView.registerClass(LocationCell.self, forCellWithReuseIdentifier: "LocationCell")
     }
 
     // MARK: UICollectionViewDelegate methods
@@ -158,44 +292,73 @@ class SearchFiltersViewController: UIViewController, UICollectionViewDelegate, U
 
     // MARK: UICollectionViewDataSource overrides
 
+    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "Header", forIndexPath: indexPath) as! LocationsHeader
+        return header
+    }
+
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return 1
+        case 2:
+            if searchFilters.locations == nil {
+                return 1
+            } else {
+                return (searchFilters.locations?.count ?? 0)
+            }
+        default:
+            return 0
+        }
+
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! FilterCell
+
 
         let formatString = "MMM dd, yyyy"
 
         switch indexPath.section {
         case 0:
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("FilterCell", forIndexPath: indexPath) as! FilterCell
             cell.titleLabel.text = "Earliest Date"
             if let earliestDate = searchFilters.earliestDate {
                 cell.subtitleLabel.text = moment(earliestDate).format(dateFormat: formatString)
             } else {
                 cell.subtitleLabel.text = "--"
             }
+            return cell
         case 1:
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("FilterCell", forIndexPath: indexPath) as! FilterCell
             cell.titleLabel.text = "Latest Date"
             if let latestDate = searchFilters.latestDate {
                 cell.subtitleLabel.text = moment(latestDate).format(dateFormat: formatString)
             } else {
                 cell.subtitleLabel.text = "--"
             }
+            return cell
         case 2:
-            cell.titleLabel.text = "Locations"
-            if searchFilters.locations?.count == 0 {
-                cell.subtitleLabel.text = "Anywhere"
-            } else if searchFilters.locations?.count == 1 {
-                cell.subtitleLabel.text = "1 Location"
+            if searchFilters.locations == nil {
+                let cell = collectionView.dequeueReusableCellWithReuseIdentifier("EmptyLocationCell", forIndexPath: indexPath) as! EmptyLocationCell
+                return cell
             } else {
-                cell.subtitleLabel.text = "\(searchFilters.locations?.count ?? 0) Locations"
+                let cell = collectionView.dequeueReusableCellWithReuseIdentifier("LocationCell", forIndexPath: indexPath) as! LocationCell
+                println("cell: \(cell)")
+                println("cell.titleLabel.text: \(cell.titleLabel.text)")
+                println("searchFilters: \(searchFilters)")
+                println("searchFilters.locations: \(searchFilters.locations)")
+                println("indexPath.row: \(indexPath.row)")
+                println("searchFilters.locations?[indexPath.row]: \(searchFilters.locations?[indexPath.row])")
+                println("searchFilters.locations?[indexPath.row].name: \(searchFilters.locations?[indexPath.row].name)")
+                cell.titleLabel.text = searchFilters.locations?[indexPath.row].name
+                return cell
             }
         default:
             break
         }
-
-        return cell
+        return UICollectionViewCell()
     }
 
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -204,10 +367,37 @@ class SearchFiltersViewController: UIViewController, UICollectionViewDelegate, U
 
     // MARK: UICollectionViewDelegateFlowLayout methods
 
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return (section == 2) ? CGSize(width: collectionView.frame.size.width - 20.0, height: 30) : CGSizeZero
+    }
+
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        switch section {
+        case 0:
+            return UIEdgeInsets(top: 20, left: 20, bottom: 40, right: 20)
+        case 1:
+            return UIEdgeInsets(top: 0, left: 20, bottom: 40, right: 20)
+        case 2:
+            return UIEdgeInsets(top: -(1.0/UIScreen.mainScreen().scale), left: 20, bottom: 20, right: 20)
+        default:
+            return UIEdgeInsetsZero
+        }
+    }
+
     func collectionView(
         collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-            return CGSize(width: collectionView.bounds.size.width - 20.0, height: 80.0)
+            switch indexPath.section {
+            case 0:
+                return CGSize(width: collectionView.bounds.size.width - 40.0, height: 80.0)
+            case 1:
+                return CGSize(width: collectionView.bounds.size.width - 40.0, height: 80.0)
+            case 2:
+                return CGSize(width: collectionView.bounds.size.width - 40.0, height: 40)
+            default:
+                return CGSizeZero
+            }
+
     }
 }
