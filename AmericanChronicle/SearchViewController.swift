@@ -15,6 +15,20 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var filtersButton: UIButton!
     var filters: SearchFilters?
 
+    @IBAction func addEditFiltersButtonTapped(sender: AnyObject) {
+        let vc = SearchFiltersViewController(nibName: "SearchFiltersViewController", bundle: nil)
+        vc.searchFilters = filters ?? SearchFilters()
+        vc.saveCallback = { [weak self] filters in
+            self?.filters = filters
+            self?.dismissViewControllerAnimated(true, completion: nil)
+        }
+        vc.cancelCallback = { [weak self] in
+            self?.dismissViewControllerAnimated(true, completion: nil)
+        }
+        let nvc = UINavigationController(rootViewController: vc)
+        presentViewController(nvc, animated: true, completion: nil)
+    }
+
     class TableViewData {
         class TableViewSection {
             var rows: [String] = []
