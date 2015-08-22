@@ -39,10 +39,9 @@ class FilterCell: UICollectionViewCell {
         titleLabel.textAlignment = .Center
         titleLabel.font = UIFont(name: "AvenirNext-Regular", size: 14.0)
         titleLabel.textColor = UIColor.lightGrayColor()
-
         titleLabel.snp_makeConstraints { [weak self] make in
             if let myself = self {
-                make.top.equalTo(20.0)
+                make.top.equalTo(14.0)
                 make.leading.equalTo(20.0)
                 make.trailing.equalTo(-20.0)
             }
@@ -52,7 +51,7 @@ class FilterCell: UICollectionViewCell {
         subtitleLabel.text = "This is subtitle"
         subtitleLabel.textAlignment = .Center
         subtitleLabel.font = UIFont(name: "AvenirNext-Regular", size: 14.0)
-        subtitleLabel.textColor = UIColor.blueColor()
+        subtitleLabel.textColor = UIColor.darkGrayColor()
 
         subtitleLabel.snp_makeConstraints { [weak self] make in
             if let myself = self {
@@ -81,11 +80,10 @@ class EmptyLocationCell: UICollectionViewCell {
         backgroundColor = UIColor.clearColor()
 
         addSubview(titleLabel)
-        titleLabel.text = "Anywhere. Tap to add a location."
+        titleLabel.text = "Anywhere."
         titleLabel.textAlignment = .Center
         titleLabel.font = UIFont(name: "AvenirNext-Regular", size: 14.0)
         titleLabel.textColor = UIColor.darkGrayColor()
-
         titleLabel.snp_makeConstraints { [weak self] make in
             if let myself = self {
                 make.top.equalTo(20.0)
@@ -107,24 +105,49 @@ class EmptyLocationCell: UICollectionViewCell {
 }
 
 class LocationCell: UICollectionViewCell {
-    let titleLabel: UILabel = UILabel()
+    let bgView = UIView()
+    let titleLabel = UILabel()
+    let clearButton = UIButton()
+    var clearCallback: ((Void) -> ())?
 
     func commonInit() {
-        backgroundColor = UIColor.whiteColor()
-        layer.borderColor = UIColor.darkGrayColor().CGColor
-        layer.borderWidth = 1.0 / UIScreen.mainScreen().scale
+
+        addSubview(bgView)
+        bgView.backgroundColor = UIColor.whiteColor()
+        bgView.layer.borderColor = UIColor.darkGrayColor().CGColor
+        bgView.layer.borderWidth = 1.0 / UIScreen.mainScreen().scale
+        bgView.snp_makeConstraints { [weak self] make in
+            if let myself = self {
+                make.top.equalTo(-1)
+                make.leading.equalTo(0)
+                make.trailing.equalTo(0)
+                make.bottom.equalTo(0)
+            }
+        }
 
         addSubview(titleLabel)
         titleLabel.textAlignment = .Center
         titleLabel.font = UIFont(name: "AvenirNext-Regular", size: 14.0)
-        titleLabel.textColor = UIColor.blueColor()
-
+        titleLabel.textColor = UIColor.darkGrayColor()
         titleLabel.snp_makeConstraints { [weak self] make in
             if let myself = self {
                 make.top.equalTo(0)
                 make.leading.equalTo(20.0)
                 make.trailing.equalTo(-20.0)
                 make.bottom.equalTo(0)
+            }
+        }
+
+        addSubview(clearButton)
+        clearButton.setTitle("X", forState: .Normal)
+        clearButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
+        clearButton.addTarget(self, action: "clearButtonTapped:", forControlEvents: .TouchUpInside)
+        clearButton.snp_makeConstraints { [weak self] make in
+            if let myself = self {
+                make.top.equalTo(0)
+                make.trailing.equalTo(-4.0)
+                make.bottom.equalTo(0)
+                make.width.equalTo(44.0)
             }
         }
     }
@@ -138,12 +161,17 @@ class LocationCell: UICollectionViewCell {
         super.init(frame: frame)
         self.commonInit()
     }
+
+    func clearButtonTapped(sender: UIButton) {
+        clearCallback?()
+    }
 }
 
 class LocationsHeader: UICollectionReusableView {
     var backgroundView = UIView()
     var titleLabel: UILabel = UILabel()
     var addButton: UIButton = UIButton()
+    var addCallback: ((Void) -> ())?
     func commonInit() {
 
         backgroundColor = UIColor.clearColor()
@@ -192,6 +220,7 @@ class LocationsHeader: UICollectionReusableView {
 
     func addButtonTapped(sender: UIButton) {
         println("\(__FILE__) | \(__FUNCTION__) | line \(__LINE__)")
+        addCallback?()
     }
 
     required init(coder: NSCoder) {
@@ -284,7 +313,9 @@ class SearchFiltersViewController: UIViewController, UICollectionViewDelegate, U
         case 1:
             latestDateCellTapped()
         case 2:
-            locationsCellTapped()
+            if searchFilters.locations == nil {
+                locationsCellTapped()
+            }
         default:
             break
         }
@@ -294,6 +325,9 @@ class SearchFiltersViewController: UIViewController, UICollectionViewDelegate, U
 
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, withReuseIdentifier: "Header", forIndexPath: indexPath) as! LocationsHeader
+        header.addCallback = { [weak self] in
+            self?.locationsCellTapped()
+        }
         return header
     }
 
@@ -312,11 +346,9 @@ class SearchFiltersViewController: UIViewController, UICollectionViewDelegate, U
         default:
             return 0
         }
-
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-
 
         let formatString = "MMM dd, yyyy"
 
@@ -345,14 +377,11 @@ class SearchFiltersViewController: UIViewController, UICollectionViewDelegate, U
                 return cell
             } else {
                 let cell = collectionView.dequeueReusableCellWithReuseIdentifier("LocationCell", forIndexPath: indexPath) as! LocationCell
-                println("cell: \(cell)")
-                println("cell.titleLabel.text: \(cell.titleLabel.text)")
-                println("searchFilters: \(searchFilters)")
-                println("searchFilters.locations: \(searchFilters.locations)")
-                println("indexPath.row: \(indexPath.row)")
-                println("searchFilters.locations?[indexPath.row]: \(searchFilters.locations?[indexPath.row])")
-                println("searchFilters.locations?[indexPath.row].name: \(searchFilters.locations?[indexPath.row].name)")
                 cell.titleLabel.text = searchFilters.locations?[indexPath.row].name
+                cell.clearCallback = { [weak self] in
+                    self?.searchFilters.locations?.removeAtIndex(indexPath.row)
+                    self?.collectionView.reloadData()
+                }
                 return cell
             }
         default:
@@ -368,15 +397,15 @@ class SearchFiltersViewController: UIViewController, UICollectionViewDelegate, U
     // MARK: UICollectionViewDelegateFlowLayout methods
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return (section == 2) ? CGSize(width: collectionView.frame.size.width - 20.0, height: 30) : CGSizeZero
+        return (section == 2) ? CGSize(width: collectionView.frame.size.width - 20.0, height: 44) : CGSizeZero
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         switch section {
         case 0:
-            return UIEdgeInsets(top: 20, left: 20, bottom: 40, right: 20)
+            return UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         case 1:
-            return UIEdgeInsets(top: 0, left: 20, bottom: 40, right: 20)
+            return UIEdgeInsets(top: 0, left: 20, bottom: 20, right: 20)
         case 2:
             return UIEdgeInsets(top: -(1.0/UIScreen.mainScreen().scale), left: 20, bottom: 20, right: 20)
         default:
@@ -390,11 +419,11 @@ class SearchFiltersViewController: UIViewController, UICollectionViewDelegate, U
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
             switch indexPath.section {
             case 0:
-                return CGSize(width: collectionView.bounds.size.width - 40.0, height: 80.0)
+                return CGSize(width: collectionView.bounds.size.width - 40.0, height: 66.0)
             case 1:
-                return CGSize(width: collectionView.bounds.size.width - 40.0, height: 80.0)
+                return CGSize(width: collectionView.bounds.size.width - 40.0, height: 66.0)
             case 2:
-                return CGSize(width: collectionView.bounds.size.width - 40.0, height: 40)
+                return CGSize(width: collectionView.bounds.size.width - 40.0, height: 44.0)
             default:
                 return CGSizeZero
             }
