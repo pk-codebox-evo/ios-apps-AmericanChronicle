@@ -219,7 +219,6 @@ class LocationsHeader: UICollectionReusableView {
     }
 
     func addButtonTapped(sender: UIButton) {
-        println("\(__FILE__) | \(__FUNCTION__) | line \(__LINE__)")
         addCallback?()
     }
 

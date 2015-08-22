@@ -8,6 +8,52 @@
 
 import UIKit
 
+protocol TableViewRow {
+    var cellText: String { get }
+}
+
+extension String: TableViewRow {
+    var cellText: String {
+        return self
+    }
+}
+
+class TableViewData {
+    var sections: [TableViewSection] = []
+}
+
+class TableViewSection {
+    var rows: [TableViewRow] = []
+    var maxRowsToShow: Int?
+    var title: String = ""
+    init(title: String, rows: [TableViewRow]) {
+        self.rows = rows
+        self.title = title
+    }
+
+    var rowsToShow: Int {
+        return maxRowsToShow ?? rows.count
+    }
+}
+
+class SearchResultsRow: TableViewRow {
+    var cellText: String {
+        return matchingText
+    }
+    var date = "Jan 3, 1902"
+    var cityState = "Denver, CO"
+    var matchingText = "…with a full season of practice, Jane Doe had learned enough to overtake the incumbent…"
+    var publicationTitle = "The Daily Mail"
+    var moreMatchesCount = "and 3 more"
+    init(date: String, cityState: String, matchingText: String, publicationTitle: String, moreMatchesCount: String) {
+        self.date = date
+        self.cityState = cityState
+        self.matchingText = matchingText
+        self.publicationTitle = publicationTitle
+        self.moreMatchesCount = moreMatchesCount
+    }
+}
+
 class SearchViewController: UIViewController, UISearchBarDelegate {
 
     @IBOutlet weak var searchBar: UISearchBar!
@@ -20,6 +66,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         vc.searchFilters = filters ?? SearchFilters()
         vc.saveCallback = { [weak self] filters in
             self?.filters = filters
+            self?.performSearchWithResultsCount(0)
             self?.dismissViewControllerAnimated(true, completion: nil)
         }
         vc.cancelCallback = { [weak self] in
@@ -29,33 +76,83 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         presentViewController(nvc, animated: true, completion: nil)
     }
 
-    class TableViewData {
-        class TableViewSection {
-            var rows: [String] = []
-            var maxRowsToShow: Int?
-            var title: String = ""
-            init(rows: [String], title: String) {
-                self.rows = rows
-                self.title = title
-            }
-
-            var rowsToShow: Int {
-                return maxRowsToShow ?? rows.count
-            }
-        }
-        var sections: [TableViewSection] = []
-    }
-
     let recentSearches: TableViewData = {
         let data = TableViewData()
-        data.sections = [TableViewData.TableViewSection(rows: ["The Argus", "The Arizona Champion", "Jane Doe Blah"], title: "Recent Searches")]
+        data.sections = [TableViewSection(title: "Recent Searches", rows: ["Eli", "The Arizona Champion", "Jane Doe"])]
         return data
     }()
 
-    let searchResults: TableViewData = {
+    let notMatchingResults: TableViewData = {
         let data = TableViewData()
-        data.sections.append(TableViewData.TableViewSection(rows: ["The Daily Chronicle"], title: "1 matching newspaper"))
-        data.sections.append(TableViewData.TableViewSection(rows: ["The Daily Chronicle", "The Daily Chronicle", "The Daily Chronicle", "The Daily Chronicle"], title: "118 matching pages"))
+        data.sections.append(TableViewSection(title: "6 matches", rows: [
+            SearchResultsRow(
+                date: "Mar 14, 1889",
+                cityState: "Scranton, PA",
+                matchingText: "...Der befannte Runftbaudler Elie Wolf in Bajeljtadt...",
+                publicationTitle: "Scranton Wochenblatt.",
+                moreMatchesCount: ""),
+            SearchResultsRow(
+                date: "Dec 10, 1903",
+                cityState: "Logan, OH",
+                matchingText: "...the home of Mesers Wolf and Grossman on East Hunter...",
+                publicationTitle: "The Ohio Democrat",
+                moreMatchesCount: ""),
+            SearchResultsRow(
+                date: "Jan 09, 1920",
+                cityState: "Plentywood, MO",
+                matchingText: "...and Mrs. Eli Maltby of Wolf Point, spent her holiday...",
+                publicationTitle: "The producers news",
+                moreMatchesCount: ""),
+            SearchResultsRow(
+                date: "Jul 07, 1905",
+                cityState: "Canton, OH",
+                matchingText: "...Reeder on the saw-mill. Eliza Wolf has returned home...",
+                publicationTitle: "The Stark County Democrat",
+                moreMatchesCount: ""),
+            SearchResultsRow(
+                date: "Mar 08, 1921",
+                cityState: "Astoria, OR",
+                matchingText: "...kohtalosta. Beethoven eli Wienissa edelleenkin. V. 1806...",
+                publicationTitle: "Toveritar",
+                moreMatchesCount: "and 5 more"),
+            SearchResultsRow(
+                date: "Dec 03, 1898",
+                cityState: "Maysville, KY",
+                matchingText: "...it many new cases. Eli Perkins. Eli Perkins. Mr Perkins'...",
+                publicationTitle: "The evening bulletin.",
+                moreMatchesCount: "and 1 more")
+            ]))
+        return data
+    }()
+
+    let matchingResults: TableViewData = {
+        let data = TableViewData()
+        data.sections.append(TableViewSection(title: "4 matches", rows: [
+            SearchResultsRow(
+                date: "Sep 20, 1902",
+                cityState: "Williams, AZ",
+                matchingText: "...in this city, Eli W. Wolf, aged seventy-one years...",
+                publicationTitle: "Williams news",
+                moreMatchesCount: "and 3 more"),
+            SearchResultsRow(
+                date: "Feb 03, 1922",
+                cityState: "Williams, AZ",
+                matchingText: "...the death of Calvin M. Wolfe in Phoenix, Arizona, on...",
+                publicationTitle: "Williams news",
+                moreMatchesCount: "and 9 more"),
+            SearchResultsRow(
+                date: "Dec 19, 1919",
+                cityState: "Holbrook, AZ",
+                matchingText: "...Braam, Messrs. Sims Ely, Williams, Kelley, Wolfe...",
+                publicationTitle: "The Holbrook news",
+                moreMatchesCount: ""),
+            SearchResultsRow(
+                date: "Aug 10, 1916",
+                cityState: "Williams, AZ",
+                matchingText: "...Williams News. Fred Wolfe took out a new Maxwell...",
+                publicationTitle: "Williams news",
+                moreMatchesCount: "and 3 more")
+            ]))
         return data
     }()
 
@@ -111,16 +208,20 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
 
         searchDelayTimer?.invalidate()
-        searchDelayTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: "searchDelayTimerFired:", userInfo: ["resultsCount": resultsCount], repeats: false)
+        searchDelayTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "searchDelayTimerFired:", userInfo: ["resultsCount": resultsCount], repeats: false)
     }
 
     func searchDelayTimerFired(timer: NSTimer) {
         searchDelayTimer = nil
 
-        if let userInfo = timer.userInfo as? [String: Int], let count = userInfo["resultsCount"] {
-            let allPageResults = searchResults.sections[1].rows
-            searchResults.sections[1].maxRowsToShow = min(count, allPageResults.count)
-            activeData = searchResults
+        let termMatches = NSString(string: searchBar.text.lowercaseString).containsString("eli")
+        let earlyDateSet = filters?.earliestDate != nil
+        let lateDateSet = filters?.latestDate != nil
+        let locationsSet = filters?.locations?.count > 0
+        if termMatches && (earlyDateSet || lateDateSet) && locationsSet {
+            activeData = matchingResults
+        } else {
+            activeData = notMatchingResults
         }
         tableView.reloadData()
         activityIndicator.removeFromSuperview()
@@ -144,19 +245,20 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         let cell: UITableViewCell
         if activeData === recentSearches {
             cell = tableView.dequeueReusableCellWithIdentifier("RecentSearchCell") as! UITableViewCell
-            cell.textLabel?.text = activeData?.sections[indexPath.section].rows[indexPath.row]
+            cell.textLabel?.text = activeData?.sections[indexPath.section].rows[indexPath.row].cellText
         } else {
             switch indexPath.section {
-            case 0:
-                cell = tableView.dequeueReusableCellWithIdentifier("SearchResultsNewspaperCell") as! UITableViewCell
-                cell.textLabel?.text = activeData?.sections[indexPath.section].rows[indexPath.row]
+//            case 0:
+//                cell = tableView.dequeueReusableCellWithIdentifier("SearchResultsNewspaperCell") as! UITableViewCell
+//                cell.textLabel?.text = activeData?.sections[indexPath.section].rows[indexPath.row]
             default:
                 let pageCell = tableView.dequeueReusableCellWithIdentifier("SearchResultsPageCell") as! SearchResultsPageCell
-                pageCell.dateLabel.text = "Jan 3, 1902"
-                pageCell.cityStateLabel.text = "Denver, CO"
-                pageCell.matchingTextLabel.text = "…with a full season of practice, Jane Doe had learned enough to overtake the incumbent…"
-                pageCell.publicationTitleLabel.text = "The Daily Mail"
-                pageCell.moreMatchesCountLabel.text = "and 3 more"
+                let result = activeData?.sections[indexPath.section].rows[indexPath.row] as! SearchResultsRow
+                pageCell.dateLabel.text = result.date
+                pageCell.cityStateLabel.text = result.cityState
+                pageCell.matchingTextLabel.text = result.matchingText
+                pageCell.publicationTitleLabel.text = result.publicationTitle
+                pageCell.moreMatchesCountLabel.text = result.moreMatchesCount
                 cell = pageCell
             }
         }
@@ -174,7 +276,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if activeData === recentSearches {
-            searchBar.text = activeData?.sections[indexPath.section].rows[indexPath.row]
+            searchBar.text = activeData?.sections[indexPath.section].rows[indexPath.row].cellText
             performSearchWithResultsCount(count(searchBar.text))
         }
 
@@ -182,7 +284,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.section == 1 {
+        if (activeData === notMatchingResults) || (activeData === matchingResults) {
             return 150.0 // Page cell
         }
         return 44.0
@@ -191,7 +293,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let vc = segue.destinationViewController as? NewspaperIssuesViewController {
             if let selected = tableView.indexPathForSelectedRow() {
-                vc.newspaper = activeData?.sections[selected.section].rows[selected.row]
+                vc.newspaper = activeData?.sections[selected.section].rows[selected.row].cellText
             }
         } else if let nvc = segue.destinationViewController as? UINavigationController, let vc = nvc.viewControllers.first as? SearchFiltersViewController {
             vc.searchFilters = filters ?? SearchFilters()

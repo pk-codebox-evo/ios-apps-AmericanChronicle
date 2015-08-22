@@ -10,7 +10,13 @@ import UIKit
 
 class HomeViewController: UITableViewController {
 
-    enum State: Int {
+    struct State {
+        let name: StateName
+        let cities: [City]
+        let newspapers: [Newspaper]
+    }
+
+    enum StateName: Int {
         case Alabama
         case Arizona
         case Arkansas
@@ -22,6 +28,11 @@ class HomeViewController: UITableViewController {
             case .Arkansas: return "Arkansas"
             }
         }
+    }
+
+    struct City {
+        let name: String
+        let newspapers: [Newspaper] = []
     }
 
     class Newspaper {
@@ -42,12 +53,14 @@ class HomeViewController: UITableViewController {
         }
     }
 
-    var newspapers = [State: [Newspaper]]()
+    var newspapers = [StateName: [Newspaper]]()
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        newspapers[.Alabama] = [Newspaper(title: "Chattanooga daily rebel.", city: "Selma", startYear: 1865, endYear: 1865)]
+        newspapers[.Alabama] = [
+            Newspaper(title: "Chattanooga daily rebel.", city: "Selma", startYear: 1865, endYear: 1865)
+        ]
         newspapers[.Arizona] = [
             Newspaper(title: "The argus", city: "Holbrook", startYear: 1895, endYear: 1900),
             Newspaper(title: "The Arizona champion", city: "Peach Springs", startYear: 1883, endYear: 1891),
@@ -55,7 +68,8 @@ class HomeViewController: UITableViewController {
             Newspaper(title: "The Arizona daily orb", city: "Bisbee", startYear: 1898, endYear: 1900),
             Newspaper(title: "The Arizona kicker", city: "Tombstone", startYear: 1893, endYear: 1913),
             Newspaper(title: "Arizona miner", city: "Fort Whipple", startYear: 1864, endYear: 1868),
-            Newspaper(title: "Arizona republican", city: "Phoenix", startYear: 1890, endYear: 1930)
+            Newspaper(title: "Arizona republican", city: "Phoenix", startYear: 1890, endYear: 1930),
+            Newspaper(title: "Williams news.", city: "Williams", startYear: 1901, endYear: 1922)
         ]
         newspapers[.Arkansas] = [Newspaper(title: "The argus", city: "Holbrook", startYear: 1895, endYear: 1900)]
     }
@@ -65,7 +79,7 @@ class HomeViewController: UITableViewController {
     }
 
     func newspaperAtIndexPath(indexPath: NSIndexPath) -> Newspaper? {
-        if let state = State(rawValue: indexPath.section), let papers = newspapers[state] {
+        if let state = StateName(rawValue: indexPath.section), let papers = newspapers[state] {
             return papers[indexPath.row]
         }
         return nil
@@ -83,31 +97,34 @@ class HomeViewController: UITableViewController {
     // MARK: - Table View
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // Disable browsing
-        return 0; // newspapers.count
+        return newspapers.count
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let state = State(rawValue: section) {
+        if let state = StateName(rawValue: section) {
             return newspapers[state]?.count ?? 0
         }
         return 0
     }
 
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if let state = State(rawValue: section) {
+        if let state = StateName(rawValue: section) {
             return state.description
         }
         return "(Unknown)"
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
         if let paper = newspaperAtIndexPath(indexPath) {
             cell.textLabel?.text = paper.title
+            cell.detailTextLabel?.text = paper.city
         } else {
             cell.textLabel?.text = nil
+            cell.detailTextLabel?.text = nil
         }
+
         return cell
     }
 }
