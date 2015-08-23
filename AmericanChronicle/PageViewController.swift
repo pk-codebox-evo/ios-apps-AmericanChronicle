@@ -16,8 +16,12 @@ class PageViewController: UIViewController {
     @IBOutlet weak var bottomBarBG: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
-    var toastButton: UIButton = UIButton()
+    var toastButton = UIButton()
+    var imageName: String? {
+        didSet {
 
+        }
+    }
     var presentingViewNavBar: UIView?
     var presentingView: UIView?
     var hidesStatusBar: Bool = true
@@ -27,11 +31,6 @@ class PageViewController: UIViewController {
         let vc = UIActivityViewController(activityItems: [imageView.image!], applicationActivities: nil)
         vc.completionWithItemsHandler = { type, completed, returnedItems, activityError in
             self.toastButton.frame = CGRect(x: 20.0, y: self.bottomBarBG.frame.origin.y - 80.0, width: self.view.bounds.size.width - 40.0, height: 60)
-
-            println("type: \(type)")
-            println("completed: \(completed)")
-            println("returnedItems: \(returnedItems)")
-            println("activityError: \(activityError)")
             let message: String
             switch type {
             case UIActivityTypeSaveToCameraRoll:
@@ -57,7 +56,6 @@ class PageViewController: UIViewController {
     }
 
     @IBAction func doneButtonTapped(sender: AnyObject) {
-        println("\(__FILE__) | \(__FUNCTION__) | line \(__LINE__)")
         doneCallback?()
     }
 
@@ -70,8 +68,9 @@ class PageViewController: UIViewController {
         toastButton.layer.shadowOffset = CGSize(width: 0, height: 0)
         toastButton.layer.shadowRadius = 1.0
         toastButton.layer.shadowOpacity = 1.0
-
         view.addSubview(toastButton)
+
+        imageView.image = UIImage(named: imageName ?? "")
     }
 
     func centerContent() {
@@ -98,7 +97,6 @@ class PageViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
     }
-
 
     override func viewDidLayoutSubviews() {
         if let imageWidth = imageView.image?.size.width where imageWidth > 0 {

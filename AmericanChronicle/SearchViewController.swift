@@ -45,7 +45,24 @@ class SearchResultsRow: TableViewRow {
     var matchingText = "…with a full season of practice, Jane Doe had learned enough to overtake the incumbent…"
     var publicationTitle = "The Daily Mail"
     var moreMatchesCount = "and 3 more"
-    init(date: String, cityState: String, matchingText: String, publicationTitle: String, moreMatchesCount: String) {
+    var imageName = ""
+    init(date: String, cityState: String, matchingText: String, publicationTitle: String, moreMatchesCount: String, imageName: String) {
+        self.date = date
+        self.cityState = cityState
+        self.matchingText = matchingText
+        self.publicationTitle = publicationTitle
+        self.moreMatchesCount = moreMatchesCount
+    }
+}
+
+struct SearchResult {
+    var date = "Jan 3, 1902"
+    var cityState = "Denver, CO"
+    var matchingText = "…with a full season of practice, Jane Doe had learned enough to overtake the incumbent…"
+    var publicationTitle = "The Daily Mail"
+    var moreMatchesCount = "and 3 more"
+    var imageName = ""
+    init(date: String, cityState: String, matchingText: String, publicationTitle: String, moreMatchesCount: String, imageName: String) {
         self.date = date
         self.cityState = cityState
         self.matchingText = matchingText
@@ -90,37 +107,43 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
                 cityState: "Scranton, PA",
                 matchingText: "...Der befannte Runftbaudler Elie Wolf in Bajeljtadt...",
                 publicationTitle: "Scranton Wochenblatt.",
-                moreMatchesCount: ""),
+                moreMatchesCount: "",
+                imageName: "the_holbrook_news"),
             SearchResultsRow(
                 date: "Dec 10, 1903",
                 cityState: "Logan, OH",
                 matchingText: "...the home of Mesers Wolf and Grossman on East Hunter...",
                 publicationTitle: "The Ohio Democrat",
-                moreMatchesCount: ""),
+                moreMatchesCount: "",
+                imageName: "the_holbrook_news"),
             SearchResultsRow(
                 date: "Jan 09, 1920",
                 cityState: "Plentywood, MO",
                 matchingText: "...and Mrs. Eli Maltby of Wolf Point, spent her holiday...",
                 publicationTitle: "The producers news",
-                moreMatchesCount: ""),
+                moreMatchesCount: "",
+                imageName: "the_holbrook_news"),
             SearchResultsRow(
                 date: "Jul 07, 1905",
                 cityState: "Canton, OH",
                 matchingText: "...Reeder on the saw-mill. Eliza Wolf has returned home...",
                 publicationTitle: "The Stark County Democrat",
-                moreMatchesCount: ""),
+                moreMatchesCount: "",
+                imageName: "the_holbrook_news"),
             SearchResultsRow(
                 date: "Mar 08, 1921",
                 cityState: "Astoria, OR",
                 matchingText: "...kohtalosta. Beethoven eli Wienissa edelleenkin. V. 1806...",
                 publicationTitle: "Toveritar",
-                moreMatchesCount: "and 5 more"),
+                moreMatchesCount: "and 5 more",
+                imageName: "the_holbrook_news"),
             SearchResultsRow(
                 date: "Dec 03, 1898",
                 cityState: "Maysville, KY",
                 matchingText: "...it many new cases. Eli Perkins. Eli Perkins. Mr Perkins'...",
                 publicationTitle: "The evening bulletin.",
-                moreMatchesCount: "and 1 more")
+                moreMatchesCount: "and 1 more",
+                imageName: "thumb_1")
             ]))
         return data
     }()
@@ -133,25 +156,29 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
                 cityState: "Williams, AZ",
                 matchingText: "...in this city, Eli W. Wolf, aged seventy-one years...",
                 publicationTitle: "Williams news",
-                moreMatchesCount: "and 3 more"),
-            SearchResultsRow(
+                moreMatchesCount: "and 3 more",
+                imageName: "seq-1-highlight"
+            ), SearchResultsRow(
                 date: "Feb 03, 1922",
                 cityState: "Williams, AZ",
                 matchingText: "...the death of Calvin M. Wolfe in Phoenix, Arizona, on...",
                 publicationTitle: "Williams news",
-                moreMatchesCount: "and 9 more"),
-            SearchResultsRow(
+                moreMatchesCount: "and 9 more",
+                imageName: "the_williams_news_2"
+            ), SearchResultsRow(
                 date: "Dec 19, 1919",
                 cityState: "Holbrook, AZ",
                 matchingText: "...Braam, Messrs. Sims Ely, Williams, Kelley, Wolfe...",
                 publicationTitle: "The Holbrook news",
-                moreMatchesCount: ""),
-            SearchResultsRow(
+                moreMatchesCount: "",
+                imageName: "the_holbrook_news"
+            ), SearchResultsRow(
                 date: "Aug 10, 1916",
                 cityState: "Williams, AZ",
                 matchingText: "...Williams News. Fred Wolfe took out a new Maxwell...",
                 publicationTitle: "Williams news",
-                moreMatchesCount: "and 3 more")
+                moreMatchesCount: "and 3 more",
+                imageName: "the_williams_news")
             ]))
         return data
     }()
@@ -247,22 +274,15 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             cell = tableView.dequeueReusableCellWithIdentifier("RecentSearchCell") as! UITableViewCell
             cell.textLabel?.text = activeData?.sections[indexPath.section].rows[indexPath.row].cellText
         } else {
-            switch indexPath.section {
-//            case 0:
-//                cell = tableView.dequeueReusableCellWithIdentifier("SearchResultsNewspaperCell") as! UITableViewCell
-//                cell.textLabel?.text = activeData?.sections[indexPath.section].rows[indexPath.row]
-            default:
-                let pageCell = tableView.dequeueReusableCellWithIdentifier("SearchResultsPageCell") as! SearchResultsPageCell
-                let result = activeData?.sections[indexPath.section].rows[indexPath.row] as! SearchResultsRow
-                pageCell.dateLabel.text = result.date
-                pageCell.cityStateLabel.text = result.cityState
-                pageCell.matchingTextLabel.text = result.matchingText
-                pageCell.publicationTitleLabel.text = result.publicationTitle
-                pageCell.moreMatchesCountLabel.text = result.moreMatchesCount
-                cell = pageCell
-            }
+            let pageCell = tableView.dequeueReusableCellWithIdentifier("SearchResultsPageCell") as! SearchResultsPageCell
+            let result = activeData?.sections[indexPath.section].rows[indexPath.row] as! SearchResultsRow
+            pageCell.dateLabel.text = result.date
+            pageCell.cityStateLabel.text = result.cityState
+            pageCell.matchingTextLabel.text = result.matchingText
+            pageCell.publicationTitleLabel.text = result.publicationTitle
+            pageCell.moreMatchesCountLabel.text = result.moreMatchesCount
+            cell = pageCell
         }
-
         return cell
     }
 
@@ -300,7 +320,12 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             vc.cancelCallback = { [weak self] in
                 self?.dismissViewControllerAnimated(true, completion: nil)
             }
-        } else if let vc = segue.destinationViewController as? PageViewController {
+        } else if let vc = segue.destinationViewController as? PageViewController,
+        let selectedIndexPath = tableView.indexPathForSelectedRow() {
+            let selectedSection = activeData?.sections[selectedIndexPath.section]
+            if let selectedItem = selectedSection?.rows[selectedIndexPath.row] as? SearchResultsRow {
+                vc.imageName = selectedItem.imageName
+            }
             vc.doneCallback = { [weak self] in
                 self?.navigationController?.popViewControllerAnimated(true)
             }
