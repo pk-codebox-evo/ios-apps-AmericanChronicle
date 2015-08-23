@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol TableViewRow {
+protocol TableViewRow: Printable {
     var cellText: String { get }
 }
 
@@ -16,13 +16,17 @@ extension String: TableViewRow {
     var cellText: String {
         return self
     }
+
+    public var description: String {
+        return ""
+    }
 }
 
 class TableViewData {
     var sections: [TableViewSection] = []
 }
 
-class TableViewSection {
+class TableViewSection: Printable {
     var rows: [TableViewRow] = []
     var maxRowsToShow: Int?
     var title: String = ""
@@ -33,6 +37,15 @@ class TableViewSection {
 
     var rowsToShow: Int {
         return maxRowsToShow ?? rows.count
+    }
+
+    var description: String {
+        var desc = "TableViewSection <\(unsafeAddressOf(self))>"
+        desc += "\(rows.count) rows\n"
+        for row in rows {
+            desc += "* \(row)\n"
+        }
+        return desc
     }
 }
 
@@ -52,6 +65,18 @@ class SearchResultsRow: TableViewRow {
         self.matchingText = matchingText
         self.publicationTitle = publicationTitle
         self.moreMatchesCount = moreMatchesCount
+        self.imageName = imageName
+    }
+
+    var description: String {
+        var desc = "SearchResultsRow<\(unsafeAddressOf(self))>\n"
+        desc += "* * date: \(date)\n"
+        desc += "* * cityState: \(cityState)\n"
+        desc += "* * matchingText: \(matchingText)\n"
+        desc += "* * publicationTitle: \(publicationTitle)\n"
+        desc += "* * moreMatchesCount: \(moreMatchesCount)\n"
+        desc += "* * imageName: \(imageName)\n"
+        return desc
     }
 }
 
@@ -68,6 +93,7 @@ struct SearchResult {
         self.matchingText = matchingText
         self.publicationTitle = publicationTitle
         self.moreMatchesCount = moreMatchesCount
+        self.imageName = imageName
     }
 }
 
@@ -322,8 +348,12 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             }
         } else if let vc = segue.destinationViewController as? PageViewController,
         let selectedIndexPath = tableView.indexPathForSelectedRow() {
+            println("selectedIndexPath: \(selectedIndexPath)")
             let selectedSection = activeData?.sections[selectedIndexPath.section]
+            println("selectedSection: \(selectedSection)")
             if let selectedItem = selectedSection?.rows[selectedIndexPath.row] as? SearchResultsRow {
+                println("selectedItem: \(selectedItem)")
+                println("selectedItem.imageName: \(selectedItem.imageName)")
                 vc.imageName = selectedItem.imageName
             }
             vc.doneCallback = { [weak self] in
