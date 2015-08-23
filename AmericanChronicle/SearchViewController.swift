@@ -18,7 +18,7 @@ extension String: TableViewRow {
     }
 
     public var description: String {
-        return ""
+        return self
     }
 }
 
@@ -41,7 +41,7 @@ class TableViewSection: Printable {
 
     var description: String {
         var desc = "TableViewSection <\(unsafeAddressOf(self))>"
-        desc += "\(rows.count) rows\n"
+        desc += " (\(rows.count) rows)\n"
         for row in rows {
             desc += "* \(row)\n"
         }
@@ -69,7 +69,7 @@ class SearchResultsRow: TableViewRow {
     }
 
     var description: String {
-        var desc = "SearchResultsRow<\(unsafeAddressOf(self))>\n"
+        var desc = "SearchResultsRow <\(unsafeAddressOf(self))>\n"
         desc += "* * date: \(date)\n"
         desc += "* * cityState: \(cityState)\n"
         desc += "* * matchingText: \(matchingText)\n"
@@ -77,23 +77,6 @@ class SearchResultsRow: TableViewRow {
         desc += "* * moreMatchesCount: \(moreMatchesCount)\n"
         desc += "* * imageName: \(imageName)\n"
         return desc
-    }
-}
-
-struct SearchResult {
-    var date = "Jan 3, 1902"
-    var cityState = "Denver, CO"
-    var matchingText = "…with a full season of practice, Jane Doe had learned enough to overtake the incumbent…"
-    var publicationTitle = "The Daily Mail"
-    var moreMatchesCount = "and 3 more"
-    var imageName = ""
-    init(date: String, cityState: String, matchingText: String, publicationTitle: String, moreMatchesCount: String, imageName: String) {
-        self.date = date
-        self.cityState = cityState
-        self.matchingText = matchingText
-        self.publicationTitle = publicationTitle
-        self.moreMatchesCount = moreMatchesCount
-        self.imageName = imageName
     }
 }
 
@@ -348,12 +331,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             }
         } else if let vc = segue.destinationViewController as? PageViewController,
         let selectedIndexPath = tableView.indexPathForSelectedRow() {
-            println("selectedIndexPath: \(selectedIndexPath)")
             let selectedSection = activeData?.sections[selectedIndexPath.section]
-            println("selectedSection: \(selectedSection)")
             if let selectedItem = selectedSection?.rows[selectedIndexPath.row] as? SearchResultsRow {
-                println("selectedItem: \(selectedItem)")
-                println("selectedItem.imageName: \(selectedItem.imageName)")
                 vc.imageName = selectedItem.imageName
             }
             vc.doneCallback = { [weak self] in
