@@ -11,6 +11,13 @@ struct State: Equatable {
     var lat: Float
     var lng: Float
     var cities: [City] = []
+    var newspapers: [Newspaper] {
+        var papers: [Newspaper] = []
+        for city in cities {
+            papers.extend(city.newspapers)
+        }
+        return papers
+    }
 }
 
 func ==(lhs: State, rhs: State) -> Bool {

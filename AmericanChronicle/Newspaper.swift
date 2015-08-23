@@ -8,16 +8,9 @@
 
 struct Newspaper {
     let title: String
-    let city: String
+    let city: City
     var startYear: Int?
     var endYear: Int?
-
-    init(title: String, city: String, startYear: Int?, endYear: Int?) {
-        self.title = title
-        self.city = city
-        self.startYear = startYear
-        self.endYear = endYear
-    }
 
     var description: String {
         return title
