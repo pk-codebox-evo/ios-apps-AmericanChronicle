@@ -286,9 +286,9 @@ class SearchFiltersViewController: UIViewController, UICollectionViewDelegate, U
     func locationsCellTapped() {
         let vc = LocationSearchViewController(nibName: "LocationSearchViewController", bundle: nil)
         vc.locationSelectedCallback = { [weak self] location in
-            var locations = self?.searchFilters.locations ?? []
+            var locations = self?.searchFilters.cities ?? []
             locations.append(location)
-            self?.searchFilters.locations = locations
+            self?.searchFilters.cities = locations
             self?.collectionView.reloadData()
             self?.navigationController?.popViewControllerAnimated(true)
         }
@@ -312,7 +312,7 @@ class SearchFiltersViewController: UIViewController, UICollectionViewDelegate, U
         case 1:
             latestDateCellTapped()
         case 2:
-            if searchFilters.locations == nil {
+            if searchFilters.cities == nil {
                 locationsCellTapped()
             }
         default:
@@ -337,10 +337,10 @@ class SearchFiltersViewController: UIViewController, UICollectionViewDelegate, U
         case 1:
             return 1
         case 2:
-            if searchFilters.locations == nil {
+            if searchFilters.cities == nil {
                 return 1
             } else {
-                return (searchFilters.locations?.count ?? 0)
+                return (searchFilters.cities?.count ?? 0)
             }
         default:
             return 0
@@ -371,16 +371,18 @@ class SearchFiltersViewController: UIViewController, UICollectionViewDelegate, U
             }
             return cell
         case 2:
-            if searchFilters.locations == nil {
-                let cell = collectionView.dequeueReusableCellWithReuseIdentifier("EmptyLocationCell", forIndexPath: indexPath) as! EmptyLocationCell
-                return cell
-            } else {
+            if let cities = searchFilters.cities {
+
                 let cell = collectionView.dequeueReusableCellWithReuseIdentifier("LocationCell", forIndexPath: indexPath) as! LocationCell
-                cell.titleLabel.text = searchFilters.locations?[indexPath.row].name
+                let city = cities[indexPath.row]
+                cell.titleLabel.text = "\(city.name), \(city.stateName.abbreviation)"
                 cell.clearCallback = { [weak self] in
-                    self?.searchFilters.locations?.removeAtIndex(indexPath.row)
+                    self?.searchFilters.cities?.removeAtIndex(indexPath.row)
                     self?.collectionView.reloadData()
                 }
+                return cell
+            } else {
+                let cell = collectionView.dequeueReusableCellWithReuseIdentifier("EmptyLocationCell", forIndexPath: indexPath) as! EmptyLocationCell
                 return cell
             }
         default:

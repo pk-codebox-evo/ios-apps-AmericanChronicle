@@ -217,7 +217,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         let termMatches = NSString(string: searchBar.text.lowercaseString).containsString("eli")
         let earlyDateSet = filters?.earliestDate != nil
         let lateDateSet = filters?.latestDate != nil
-        let locationsSet = filters?.locations?.count > 0
+        let locationsSet = filters?.cities?.count > 0
         if termMatches && (earlyDateSet || lateDateSet) && locationsSet {
             activeData = matchingResults
         } else {

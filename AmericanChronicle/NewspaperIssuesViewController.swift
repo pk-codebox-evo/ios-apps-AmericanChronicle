@@ -31,7 +31,7 @@ class NewspaperIssuesViewController: UIViewController, UICollectionViewDelegate,
             let vc = nvc.viewControllers.first as? SearchViewController {
                 vc.filters = SearchFilters()
                 if let city = newspaper?.city {
-                    vc.filters?.locations = [city]
+                    vc.filters?.cities = [city]
                 }
         }
     }

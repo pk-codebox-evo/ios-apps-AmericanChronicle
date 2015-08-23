@@ -11,5 +11,5 @@ import UIKit
 struct SearchFilters {
     var earliestDate: NSDate?
     var latestDate: NSDate?
-    var locations: [City]?
+    var cities: [City]?
 }

@@ -59,10 +59,6 @@ class HomeViewController: UITableViewController {
         }()
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     func newspaperAtIndexPath(indexPath: NSIndexPath) -> Newspaper? {
         if let state = statesByName[StateName.alphabeticalList[indexPath.section]] {
             return state.newspapers[indexPath.row]
@@ -70,11 +66,14 @@ class HomeViewController: UITableViewController {
         return nil
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow(), let paper = newspaperAtIndexPath(indexPath) {
-                
-            (segue.destinationViewController as! NewspaperIssuesViewController).newspaper = paper
+                (segue.destinationViewController as! NewspaperIssuesViewController).newspaper = paper
             }
         }
     }
@@ -97,7 +96,6 @@ class HomeViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
         if let paper = newspaperAtIndexPath(indexPath) {
             cell.textLabel?.text = paper.title

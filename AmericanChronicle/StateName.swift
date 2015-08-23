@@ -13,4 +13,12 @@ enum StateName: String {
     static var alphabeticalList: [StateName] {
         return [.Alabama, .Arizona, .Arkansas]
     }
+    var abbreviation: String {
+        switch self {
+        case Alabama: return "AL"
+        case Arizona: return "AZ"
+        case Arkansas: return "AR"
+        default: return "??"
+        }
+    }
 }
