@@ -84,7 +84,8 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
         case 1:
             if shouldShowSearchResults {
                 let cell = tableView.dequeueReusableCellWithIdentifier("RecentLocationCell") as! UITableViewCell
-                cell.textLabel?.text = searchResults[indexPath.row].name
+                let searchResult = searchResults[indexPath.row]
+                cell.textLabel?.text = "\(searchResult.name), \(searchResult.stateName.abbreviation)"
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCellWithIdentifier("RecentLocationCell") as! UITableViewCell
