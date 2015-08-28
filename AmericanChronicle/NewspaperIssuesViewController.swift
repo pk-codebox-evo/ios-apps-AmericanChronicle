@@ -12,12 +12,13 @@ class NewspaperIssuesViewController: UIViewController, UICollectionViewDelegate,
 
     var newspaper: Newspaper?
 
+
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return newspaper?.issues.count ?? 0
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! UICollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! NewspaperIssueCell
         return cell
     }
 

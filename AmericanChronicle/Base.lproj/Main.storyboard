@@ -380,45 +380,18 @@
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="6Oj-zS-ajs">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="6Oj-zS-ajs" customClass="NewspaperIssueCell" customModule="AmericanChronicle" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="170" height="231"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newspaper_page-thumb" translatesAutoresizingMaskIntoConstraints="NO" id="Mtn-Kc-GOG">
-                                                    <rect key="frame" x="0.0" y="0.0" width="170" height="231"/>
-                                                </imageView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zRG-On-Mbg">
-                                                    <rect key="frame" x="0.0" y="151" width="170" height="80"/>
-                                                    <color key="backgroundColor" white="1" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="80" id="Een-Zt-tdc"/>
-                                                    </constraints>
-                                                </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="January 3rd, 1902" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uDi-h7-JrK">
-                                                    <rect key="frame" x="8" y="180" width="154" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" red="0.72549019609999998" green="0.75686274509999996" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="Mtn-Kc-GOG" secondAttribute="bottom" id="1HO-Me-jlf"/>
-                                            <constraint firstAttribute="bottom" secondItem="zRG-On-Mbg" secondAttribute="bottom" id="ByF-Ax-sGu"/>
-                                            <constraint firstAttribute="trailing" secondItem="uDi-h7-JrK" secondAttribute="trailing" constant="8" id="L8m-7S-PjJ"/>
-                                            <constraint firstItem="zRG-On-Mbg" firstAttribute="leading" secondItem="6Oj-zS-ajs" secondAttribute="leading" id="L9U-A6-l79"/>
-                                            <constraint firstItem="uDi-h7-JrK" firstAttribute="centerY" secondItem="zRG-On-Mbg" secondAttribute="centerY" constant="-0.5" id="Rvk-l2-W5Y"/>
-                                            <constraint firstItem="Mtn-Kc-GOG" firstAttribute="leading" secondItem="6Oj-zS-ajs" secondAttribute="leading" id="U2J-7n-zRf"/>
-                                            <constraint firstAttribute="trailing" secondItem="Mtn-Kc-GOG" secondAttribute="trailing" id="ZZ7-Ap-npG"/>
-                                            <constraint firstItem="uDi-h7-JrK" firstAttribute="leading" secondItem="6Oj-zS-ajs" secondAttribute="leading" constant="8" id="nFh-hJ-VgF"/>
-                                            <constraint firstItem="Mtn-Kc-GOG" firstAttribute="top" secondItem="6Oj-zS-ajs" secondAttribute="top" id="roP-dP-FwF"/>
-                                            <constraint firstAttribute="trailing" secondItem="zRG-On-Mbg" secondAttribute="trailing" id="tti-Yp-1q5"/>
-                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="newspaper_page"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <segue destination="t9g-8O-U25" kind="show" id="yN9-B9-HIW"/>
                                         </connections>

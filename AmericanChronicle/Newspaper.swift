@@ -6,11 +6,12 @@
 //  Copyright (c) 2015 ryanipete. All rights reserved.
 //
 
-struct Newspaper {
+struct Newspaper: Printable {
     let title: String
     let city: City
     var startYear: Int?
     var endYear: Int?
+    var issues = [NewspaperIssue]()
 
     var description: String {
         return title
