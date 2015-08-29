@@ -10,6 +10,12 @@ import UIKit
 
 public class YearSlider: UIControl {
 
+    private let titleLabel: UILabel = {
+        let l = UILabel()
+        l.text = "Year"
+        l.textAlignment = .Center
+        return l
+    }()
     private let slider = UISlider()
     private let minButton = UIButton()
     private let minMarker = UIView()
@@ -44,7 +50,7 @@ public class YearSlider: UIControl {
     }
 
     private func commonInit() {
-        for subview in [minButton, midButton, maxButton, minMarker, midMarker, maxMarker, slider] {
+        for subview in [titleLabel, minButton, midButton, maxButton, minMarker, midMarker, maxMarker, slider] {
             subview.setTranslatesAutoresizingMaskIntoConstraints(false)
             addSubview(subview)
         }
@@ -127,6 +133,14 @@ public class YearSlider: UIControl {
     }
 
     override public func updateConstraints() {
+
+        titleLabel.snp_makeConstraints { make in
+            make.leading.equalTo(0)
+            make.top.equalTo(10.0)
+            make.trailing.equalTo(0)
+
+        }
+
         minButton.snp_makeConstraints { make in
             make.leading.equalTo(0)
             make.top.equalTo(0)
