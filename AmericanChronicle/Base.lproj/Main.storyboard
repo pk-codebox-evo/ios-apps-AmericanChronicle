@@ -63,7 +63,7 @@
                             <outlet property="delegate" destination="pGg-6v-bdr" id="Y6K-Cp-Qkv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="WXR-pL-dc8">
+                    <navigationItem key="navigationItem" title="All Newspapers" id="WXR-pL-dc8">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="6EL-Zo-QM0">
                             <connections>
                                 <segue destination="2tS-Kb-pdx" kind="presentation" id="gQU-MG-0ao"/>
@@ -548,8 +548,8 @@
         <image name="newspaper_page-thumb" width="150" height="194"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="gQU-MG-0ao"/>
         <segue reference="jUr-3t-vfg"/>
-        <segue reference="7F9-Ad-cPt"/>
         <segue reference="uq8-Gm-fne"/>
     </inferredMetricsTieBreakers>
 </document>
