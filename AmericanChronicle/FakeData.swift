@@ -134,7 +134,7 @@ class FakeData {
     private class func holbrook() -> City {
         var holbrook = City(name: "Holbrook", lat: 0, lng: 0, stateName: .Arizona, newspapers: [])
         let holbrookIssues = [
-            NewspaperIssue(date: moment([1902, 10, 02])!, imageName: "the_holbrook_news", pages: [
+            NewspaperIssue(date: moment([1902, 10, 02])!, pages: [
                 NewspaperPage(imageName: BrowseResultImageName.HolbrookNews.rawValue)
             ])
         ]
@@ -144,7 +144,7 @@ class FakeData {
 
     private class func peachSprings() -> City {
         var peachSprings = City(name: "Peach Springs", lat: 0, lng: 0, stateName: .Arizona, newspapers: [])
-        let peachSpringsIssues = [NewspaperIssue(date: moment([1902, 10, 02])!, imageName: "the_williams_news_2", pages: [
+        let peachSpringsIssues = [NewspaperIssue(date: moment([1902, 10, 02])!, pages: [
             NewspaperPage(imageName: BrowseResultImageName.ImageHeavy0.rawValue)
             ])]
         peachSprings.newspapers.append(Newspaper(title: "The Arizona champion", city: peachSprings, startYear: 1883, endYear: 1891, issues: peachSpringsIssues))
@@ -155,7 +155,7 @@ class FakeData {
         var tucson = City(name: "Tucson", lat: 0, lng: 0, stateName: .Arizona, newspapers: [])
 
         let tucsonIssues = [
-            NewspaperIssue(date: moment([1870, 10, 17])!, imageName: "the_holbrook_news", pages: [
+            NewspaperIssue(date: moment([1870, 10, 17])!, pages: [
                 NewspaperPage(imageName: BrowseResultImageName.ImageHeavy0.rawValue)
                 ])
         ]
@@ -165,7 +165,7 @@ class FakeData {
 
     private class func bisbee() -> City {
         var bisbee = City(name: "Bisbee", lat: 0, lng: 0, stateName: .Arizona, newspapers: [])
-        let bisbeeIssues = [NewspaperIssue(date: moment([1902, 10, 02])!, imageName: "the_holbrook_news", pages: [
+        let bisbeeIssues = [NewspaperIssue(date: moment([1902, 10, 02])!, pages: [
             NewspaperPage(imageName: BrowseResultImageName.ImageHeavy0.rawValue)
             ])]
         bisbee.newspapers.append(Newspaper(title: "The Arizona daily orb", city: bisbee, startYear: 1898, endYear: 1900, issues: bisbeeIssues))
@@ -174,7 +174,7 @@ class FakeData {
 
     private class func tombstone() -> City {
         var tombstone = City(name: "Tombstone", lat: 0, lng: 0, stateName: .Arizona, newspapers: [])
-        let tombstoneIssues = [NewspaperIssue(date: moment([1902, 10, 02])!, imageName: "the_holbrook_news", pages: [
+        let tombstoneIssues = [NewspaperIssue(date: moment([1902, 10, 02])!, pages: [
             NewspaperPage(imageName: BrowseResultImageName.ImageHeavy0.rawValue)
             ])]
         tombstone.newspapers.append(Newspaper(title: "The Arizona kicker", city: tombstone, startYear: 1893, endYear: 1913, issues: tombstoneIssues))
@@ -183,7 +183,7 @@ class FakeData {
 
     private class func fortWhipple() -> City {
         var fortWhipple = City(name: "Fort Whipple", lat: 0, lng: 0, stateName: .Arizona, newspapers: [])
-        let fortWhippleIssues = [NewspaperIssue(date: moment([1902, 10, 02])!, imageName: "the_holbrook_news", pages: [
+        let fortWhippleIssues = [NewspaperIssue(date: moment([1902, 10, 02])!, pages: [
             NewspaperPage(imageName: BrowseResultImageName.ImageHeavy0.rawValue)
             ])]
         fortWhipple.newspapers.append(Newspaper(title: "Arizona miner", city: fortWhipple, startYear: 1864, endYear: 1868, issues: fortWhippleIssues))
@@ -192,7 +192,7 @@ class FakeData {
 
     private class func phoenix() -> City {
         var phoenix = City(name: "Phoenix", lat: 0, lng: 0, stateName: .Arizona, newspapers: [])
-        let phoenixIssues = [NewspaperIssue(date: moment([1902, 10, 02])!, imageName: "the_holbrook_news", pages: [
+        let phoenixIssues = [NewspaperIssue(date: moment([1902, 10, 02])!, pages: [
             NewspaperPage(imageName: BrowseResultImageName.ImageHeavy0.rawValue)
             ])]
         phoenix.newspapers.append(Newspaper(title: "Arizona republican", city: phoenix, startYear: 1890, endYear: 1930, issues: phoenixIssues))
@@ -202,22 +202,22 @@ class FakeData {
     private class func williams() -> City {
         var williams = City(name: "Williams", lat: 0, lng: 0, stateName: .Arizona, newspapers: [])
         let williamsIssues = [
-            NewspaperIssue(date: moment([1902, 10, 17])!, imageName: "the_williams_news_2", pages: [
+            NewspaperIssue(date: moment([1902, 10, 17])!, pages: [
                 NewspaperPage(imageName: BrowseResultImageName.ImageHeavy0.rawValue),
                 NewspaperPage(imageName: BrowseResultImageName.TextHeavy0.rawValue),
             ]),
 
-            NewspaperIssue(date: moment([1902, 10, 22])!, imageName: "the_williams_news_3", pages: [
+            NewspaperIssue(date: moment([1902, 10, 22])!, pages: [
                 NewspaperPage(imageName: BrowseResultImageName.ImageHeavy0.rawValue),
                 NewspaperPage(imageName: BrowseResultImageName.TextHeavy0.rawValue)
             ]),
 
-            NewspaperIssue(date: moment([1902, 10, 29])!, imageName: "the_williams_news_2", pages: [
+            NewspaperIssue(date: moment([1902, 10, 29])!, pages: [
                 NewspaperPage(imageName: BrowseResultImageName.ImageHeavy0.rawValue),
                 NewspaperPage(imageName: BrowseResultImageName.TextHeavy0.rawValue)
             ]),
 
-            NewspaperIssue(date: moment([1902, 11, 05])!, imageName: "the_williams_news_3", pages: [
+            NewspaperIssue(date: moment([1902, 11, 05])!, pages: [
                 NewspaperPage(imageName: BrowseResultImageName.ImageHeavy0.rawValue),
                 NewspaperPage(imageName: BrowseResultImageName.TextHeavy0.rawValue)
             ])

@@ -615,9 +615,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				INFOPLIST_FILE = AmericanChronicle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7ce012be-8d12-4ed8-8bfa-da1e908781f8";
 				SWIFT_OBJC_BRIDGING_HEADER = "AmericanChronicle/AmericanChronicle-Bridging-Header.h";
 			};
 			name = Release;

@@ -389,9 +389,6 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" red="0.72549019609999998" green="0.75686274509999996" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="newspaper_page"/>
-                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <segue destination="t9g-8O-U25" kind="show" id="yN9-B9-HIW"/>
                                         </connections>
@@ -535,9 +532,6 @@
             <point key="canvasLocation" x="1893" y="72"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="newspaper_page" width="2968" height="3843"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="7F9-Ad-cPt"/>
         <segue reference="jUr-3t-vfg"/>

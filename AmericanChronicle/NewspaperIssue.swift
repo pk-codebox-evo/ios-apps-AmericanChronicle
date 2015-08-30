@@ -10,7 +10,9 @@ import SwiftMoment
 
 struct NewspaperIssue {
     let date: Moment
-    let imageName: String
+    var imageName: String {
+        return pages.first?.imageName ?? ""
+    }
     let pages: [NewspaperPage]
     var description: String {
         return date.format(dateFormat: "MMM dd, yyyy")
