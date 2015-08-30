@@ -101,7 +101,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" maximumZoomScale="5" translatesAutoresizingMaskIntoConstraints="NO" id="IdJ-12-A3u">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newspaper_page" translatesAutoresizingMaskIntoConstraints="NO" id="o3E-0a-kJu">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o3E-0a-kJu">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                         <color key="backgroundColor" red="0.15686274510000001" green="0.1450980392" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -489,7 +489,6 @@
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="newspaper_page-thumb"/>
                                             <userDefinedRuntimeAttribute type="color" keyPath="selectedBorderColor">
                                                 <color key="value" red="0.066666666669999999" green="0.42352941179999998" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
@@ -538,7 +537,6 @@
     </scenes>
     <resources>
         <image name="newspaper_page" width="2968" height="3843"/>
-        <image name="newspaper_page-thumb" width="150" height="194"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="7F9-Ad-cPt"/>
