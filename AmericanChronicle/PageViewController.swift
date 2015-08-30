@@ -19,7 +19,10 @@ class PageViewController: UIViewController {
     var toastButton = UIButton()
     var imageName: String? {
         didSet {
-            println("imageName: \(imageName)")
+            if !isViewLoaded() {
+                return
+            }
+            imageView.image = UIImage(named: imageName ?? "")
         }
     }
     var presentingViewNavBar: UIView?
