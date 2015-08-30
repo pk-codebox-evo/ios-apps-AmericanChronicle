@@ -19,6 +19,8 @@ class NewspaperIssuesViewController: UIViewController, UICollectionViewDelegate,
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! NewspaperIssueCell
+        cell.title = newspaper?.issues[indexPath.row].description
+        cell.image = UIImage(named: newspaper?.issues[indexPath.row].imageName ?? "")
         return cell
     }
 
