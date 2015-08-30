@@ -454,19 +454,8 @@
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="394" height="542"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newspaper_page-thumb" translatesAutoresizingMaskIntoConstraints="NO" id="Li7-tS-2u1">
-                                                    <rect key="frame" x="0.0" y="0.0" width="394" height="542"/>
-                                                </imageView>
-                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <constraints>
-                                            <constraint firstItem="Li7-tS-2u1" firstAttribute="top" secondItem="h0i-nG-8KY" secondAttribute="top" id="8pd-Y9-Tu0"/>
-                                            <constraint firstItem="Li7-tS-2u1" firstAttribute="leading" secondItem="h0i-nG-8KY" secondAttribute="leading" id="fCh-c6-fjZ"/>
-                                            <constraint firstAttribute="bottom" secondItem="Li7-tS-2u1" secondAttribute="bottom" id="mVp-66-stD"/>
-                                            <constraint firstAttribute="trailing" secondItem="Li7-tS-2u1" secondAttribute="trailing" id="qCn-V2-JKE"/>
-                                        </constraints>
                                         <connections>
                                             <segue destination="1qS-Yc-KkM" kind="custom" identifier="FocusSegue" customClass="NewspaperPageFocusSegue" customModule="AmericanChronicle" customModuleProvider="target" id="8Os-xR-Ge2"/>
                                         </connections>

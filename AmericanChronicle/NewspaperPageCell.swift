@@ -9,7 +9,11 @@
 import UIKit
 
 class NewspaperPageCell: UICollectionViewCell {
-    @IBInspectable var image: UIImage?
+    @IBInspectable var image: UIImage? {
+        didSet {
+            imageView.image = image
+        }
+    }
     @IBInspectable var unselectedBorderColor: UIColor = UIColor.blackColor().colorWithAlphaComponent(0.5)
     @IBInspectable var selectedBorderColor: UIColor = UIColor.blueColor().colorWithAlphaComponent(0.5)
     let imageView: UIImageView = {

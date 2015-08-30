@@ -10,22 +10,18 @@ import UIKit
 
 class NewspaperPagesDataSource: NSObject, UICollectionViewDataSource {
 
-    var issue: NewspaperIssue? {
-        didSet {
-            println("didSet issue: \(issue)")
-        }
-    }
+    var issue: NewspaperIssue?
 
     // MARK: UICollectionViewDataSource methods
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        println("issue?.pages.count: \(issue?.pages.count)")
         return issue?.pages.count ?? 0
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! NewspaperPageCell
         cell.image = UIImage(named: issue?.pages[indexPath.row].imageName ?? "")
+        println("cell.image: \(cell.image)")
         return cell
     }
 
