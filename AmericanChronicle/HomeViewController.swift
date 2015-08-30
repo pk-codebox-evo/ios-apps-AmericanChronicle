@@ -7,105 +7,14 @@
 //
 
 import UIKit
-import SwiftMoment
+
 
 class HomeViewController: UITableViewController {
 
-    var statesByName = [StateName: State]()
+    var statesByName = FakeData.statesByName()
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
-        statesByName[.Alabama] = {
-            var selma = City(name: "Selma", lat: 0, lng: 0, stateName: .Alabama, newspapers: [])
-            selma.newspapers.append(Newspaper(title: "Chattanooga daily rebel.", city: selma, startYear: 1865, endYear: 1865, issues: []))
-
-            return State(name: .Alabama, lat: 0, lng: 0, cities: [selma])
-        }()
-
-        statesByName[.Arizona] = {
-            var holbrook = City(name: "Holbrook", lat: 0, lng: 0, stateName: .Arizona, newspapers: [])
-            let holbrookIssues = [
-                NewspaperIssue(date: moment([1902, 10, 02])!, imageName: "the_holbrook_news", pages: [
-                    NewspaperPage(imageName: "thumb_1")
-                ])
-            ]
-            holbrook.newspapers.append(Newspaper(title: "The argus", city: holbrook, startYear: 1895, endYear: 1900, issues: holbrookIssues))
-
-            var peachSprings = City(name: "Peach Springs", lat: 0, lng: 0, stateName: .Arizona, newspapers: [])
-            let peachSpringsIssues = [NewspaperIssue(date: moment([1902, 10, 02])!, imageName: "the_williams_news_2", pages: [
-                NewspaperPage(imageName: "thumb_2")
-            ])]
-            peachSprings.newspapers.append(Newspaper(title: "The Arizona champion", city: peachSprings, startYear: 1883, endYear: 1891, issues: peachSpringsIssues))
-
-            var tucson = City(name: "Tucson", lat: 0, lng: 0, stateName: .Arizona, newspapers: [])
-
-            let tucsonIssues = [
-                NewspaperIssue(date: moment([1870, 10, 17])!, imageName: "the_holbrook_news", pages: [
-                    NewspaperPage(imageName: "thumb_3")
-                ])
-            ]
-            tucson.newspapers.append(Newspaper(title: "Arizona citizen", city: tucson, startYear: 1870, endYear: 1880, issues: tucsonIssues))
-
-            var bisbee = City(name: "Bisbee", lat: 0, lng: 0, stateName: .Arizona, newspapers: [])
-            let bisbeeIssues = [NewspaperIssue(date: moment([1902, 10, 02])!, imageName: "the_holbrook_news", pages: [
-                NewspaperPage(imageName: "thumb_1")
-            ])]
-            bisbee.newspapers.append(Newspaper(title: "The Arizona daily orb", city: bisbee, startYear: 1898, endYear: 1900, issues: bisbeeIssues))
-
-            var tombstone = City(name: "Tombstone", lat: 0, lng: 0, stateName: .Arizona, newspapers: [])
-            let tombstoneIssues = [NewspaperIssue(date: moment([1902, 10, 02])!, imageName: "the_holbrook_news", pages: [
-                NewspaperPage(imageName: "thumb_2")
-            ])]
-            tombstone.newspapers.append(Newspaper(title: "The Arizona kicker", city: tombstone, startYear: 1893, endYear: 1913, issues: tombstoneIssues))
-
-            var fortWhipple = City(name: "Fort Whipple", lat: 0, lng: 0, stateName: .Arizona, newspapers: [])
-            let fortWhippleIssues = [NewspaperIssue(date: moment([1902, 10, 02])!, imageName: "the_holbrook_news", pages: [
-                NewspaperPage(imageName: "thumb_3")
-            ])]
-            fortWhipple.newspapers.append(Newspaper(title: "Arizona miner", city: fortWhipple, startYear: 1864, endYear: 1868, issues: fortWhippleIssues))
-
-            var phoenix = City(name: "Phoenix", lat: 0, lng: 0, stateName: .Arizona, newspapers: [])
-            let phoenixIssues = [NewspaperIssue(date: moment([1902, 10, 02])!, imageName: "the_holbrook_news", pages: [
-                NewspaperPage(imageName: "4")
-            ])]
-            phoenix.newspapers.append(Newspaper(title: "Arizona republican", city: phoenix, startYear: 1890, endYear: 1930, issues: phoenixIssues))
-
-            var williams = City(name: "Williams", lat: 0, lng: 0, stateName: .Arizona, newspapers: [])
-            let williamsIssues = [
-                NewspaperIssue(date: moment([1870, 10, 17])!, imageName: "the_williams_news_2", pages: [
-                    NewspaperPage(imageName: "the_williams_news"),
-                    NewspaperPage(imageName: "the_williams_news_2"),
-                    NewspaperPage(imageName: "the_williams_news_3")
-                ]),
-                NewspaperIssue(date: moment([1870, 10, 22])!, imageName: "the_williams_news_3", pages: [
-                    NewspaperPage(imageName: "the_williams_news"),
-                    NewspaperPage(imageName: "the_williams_news_2"),
-                    NewspaperPage(imageName: "the_williams_news_3")
-                ]),
-                NewspaperIssue(date: moment([1870, 10, 29])!, imageName: "the_williams_news_2", pages: [
-                    NewspaperPage(imageName: "the_williams_news"),
-                    NewspaperPage(imageName: "the_williams_news_2"),
-                    NewspaperPage(imageName: "the_williams_news_3")
-                ]),
-                NewspaperIssue(date: moment([1870, 11, 05])!, imageName: "the_williams_news_3", pages: [
-                    NewspaperPage(imageName: "the_williams_news"),
-                    NewspaperPage(imageName: "the_williams_news_2"),
-                    NewspaperPage(imageName: "the_williams_news_3")
-                ])
-            ]
-            williams.newspapers.append(Newspaper(title: "Williams news.", city: williams, startYear: 1901, endYear: 1922, issues: williamsIssues))
-
-            return State(name: .Arizona, lat: 0, lng: 0, cities: [holbrook, peachSprings, tucson, bisbee, tombstone, fortWhipple, phoenix, williams])
-        }()
-
-
-        statesByName[.Arkansas] = {
-            var holbrook = City(name: "Holbrook", lat: 0, lng: 0, stateName: .Arizona, newspapers: [])
-            var paper = Newspaper(title: "The argus", city: holbrook, startYear: 1895, endYear: 1900, issues: [])
-            holbrook.newspapers.append(paper)
-            return State(name: .Arkansas, lat: 0, lng: 0, cities: [holbrook])
-        }()
     }
 
     func newspaperAtIndexPath(indexPath: NSIndexPath) -> Newspaper? {
