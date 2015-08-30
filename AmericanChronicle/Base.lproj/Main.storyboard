@@ -418,6 +418,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="SBj-KH-NwP" id="FX9-ic-qZf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lrm-kH-fPn" sceneMemberID="firstResponder"/>
             </objects>
@@ -550,6 +553,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="7F9-Ad-cPt"/>
         <segue reference="jUr-3t-vfg"/>
-        <segue reference="uq8-Gm-fne"/>
+        <segue reference="8Os-xR-Ge2"/>
     </inferredMetricsTieBreakers>
 </document>

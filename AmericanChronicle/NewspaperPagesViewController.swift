@@ -13,10 +13,18 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
     @IBOutlet weak var previewCollectionView: UICollectionView!
     @IBOutlet weak var stripCollectionView: UICollectionView!
     @IBOutlet var previewDelegate: NewspaperPagesPreviewDelegate!
-    var newspaper: AnyObject?
+    var issue: NewspaperIssue? {
+        didSet {
+            if !isViewLoaded() {
+                return
+            }
+            previewDelegate.issue = issue
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        previewDelegate.issue = issue
         previewDelegate.actionHandler = self
         stripCollectionView.selectItemAtIndexPath(NSIndexPath(forItem: 0, inSection: 0), animated: false, scrollPosition: .Left)
     }

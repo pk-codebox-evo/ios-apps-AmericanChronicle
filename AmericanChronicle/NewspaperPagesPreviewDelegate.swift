@@ -15,6 +15,7 @@ import UIKit
 class NewspaperPagesPreviewDelegate: NSObject, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     weak var actionHandler: NewspaperPagesPreviewActionHandler?
+    var issue: NewspaperIssue?
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let width = (collectionView.frame.size.width - 20)
@@ -26,7 +27,6 @@ class NewspaperPagesPreviewDelegate: NSObject, UICollectionViewDelegate, UIColle
     // MARK: UIScrollViewDelegate methods
 
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) { // called when scroll view grinds to a halt
-        println("\(__FILE__) | \(__FUNCTION__) | line \(__LINE__)")
         if let cv = scrollView as? UICollectionView {
             let visible = cv.indexPathsForVisibleItems()
             if let indexPath = visible.last as? NSIndexPath where count(visible) == 1 {

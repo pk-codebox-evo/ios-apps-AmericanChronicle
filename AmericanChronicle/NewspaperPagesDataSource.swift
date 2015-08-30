@@ -10,6 +10,8 @@ import UIKit
 
 class NewspaperPagesDataSource: NSObject, UICollectionViewDataSource {
 
+    var issue: NewspaperIssue?
+
     // MARK: UICollectionViewDataSource methods
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

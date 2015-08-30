@@ -30,6 +30,7 @@
 		9787414B1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9787414A1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift */; };
 		979082701B8135150056CA9C /* LocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9790826E1B8135150056CA9C /* LocationSearchViewController.swift */; };
 		979082711B8135150056CA9C /* LocationSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9790826F1B8135150056CA9C /* LocationSearchViewController.xib */; };
+		979BF8211B928697006482F1 /* NewspaperPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979BF8201B928697006482F1 /* NewspaperPage.swift */; };
 		97A7D9AE1B866E7E00DDBF59 /* SearchFiltersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97A7D9AD1B866E7E00DDBF59 /* SearchFiltersViewController.xib */; };
 		97BDE1151B76ED6B00A3E57F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE1141B76ED6B00A3E57F /* AppDelegate.swift */; };
 		97BDE1171B76ED6B00A3E57F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE1161B76ED6B00A3E57F /* HomeViewController.swift */; };
@@ -84,6 +85,7 @@
 		9790826E1B8135150056CA9C /* LocationSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchViewController.swift; sourceTree = "<group>"; };
 		9790826F1B8135150056CA9C /* LocationSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationSearchViewController.xib; sourceTree = "<group>"; };
 		979082761B8147590056CA9C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		979BF8201B928697006482F1 /* NewspaperPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPage.swift; sourceTree = "<group>"; };
 		97A7D9AD1B866E7E00DDBF59 /* SearchFiltersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchFiltersViewController.xib; sourceTree = "<group>"; };
 		97BDE10F1B76ED6B00A3E57F /* AmericanChronicle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmericanChronicle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97BDE1131B76ED6B00A3E57F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				97BDE1161B76ED6B00A3E57F /* HomeViewController.swift */,
 				974BA36B1B892DD500D7ACA2 /* Newspaper.swift */,
 				97DFA8011B9026C8006578CF /* NewspaperIssue.swift */,
+				979BF8201B928697006482F1 /* NewspaperPage.swift */,
 				974BA3691B892D8900D7ACA2 /* Location.swift */,
 				974BA3651B892D3400D7ACA2 /* State.swift */,
 				974BA36D1B89343A00D7ACA2 /* StateName.swift */,
@@ -435,6 +438,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				979BF8211B928697006482F1 /* NewspaperPage.swift in Sources */,
 				978236191B7FD0D00056FDF6 /* ChroniclingAmericaArchive.swift in Sources */,
 				97BDE1191B76ED6B00A3E57F /* NewspaperIssuesViewController.swift in Sources */,
 				97DFA8041B903025006578CF /* NewspaperIssueCell.swift in Sources */,

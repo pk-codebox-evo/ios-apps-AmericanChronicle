@@ -10,8 +10,8 @@ import UIKit
 
 class NewspaperIssuesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
+    @IBOutlet weak var collectionView: UICollectionView!
     var newspaper: Newspaper?
-
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return newspaper?.issues.count ?? 0
@@ -36,6 +36,9 @@ class NewspaperIssuesViewController: UIViewController, UICollectionViewDelegate,
                 if let city = newspaper?.city {
                     vc.filters?.cities = [city]
                 }
+        } else if let vc = segue.destinationViewController as? NewspaperPagesViewController,
+            let selectedPath = collectionView.indexPathsForSelectedItems().first as? NSIndexPath {
+            vc.issue = newspaper?.issues[selectedPath.item]
         }
     }
 }
