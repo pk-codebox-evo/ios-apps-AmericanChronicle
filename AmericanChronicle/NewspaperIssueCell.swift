@@ -39,7 +39,6 @@ class NewspaperIssueCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        println("\(__FILE__) | \(__FUNCTION__) | line \(__LINE__)")
         for subview in [imageView, titleLabel] {
             subview.setTranslatesAutoresizingMaskIntoConstraints(false)
             addSubview(subview)

@@ -448,7 +448,7 @@
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="h0i-nG-8KY">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="h0i-nG-8KY" customClass="NewspaperPageCell" customModule="AmericanChronicle" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -534,6 +534,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="dataSource" destination="JI3-KR-OyJ" id="KxA-Os-Twp"/>
                         <outlet property="previewCollectionView" destination="syV-xM-1yO" id="cjS-7m-7ma"/>
                         <outlet property="previewDelegate" destination="ay3-A8-6dN" id="Y1B-Ba-dKC"/>
                         <outlet property="stripCollectionView" destination="5uZ-Jd-FZG" id="cDh-Kv-yPO"/>

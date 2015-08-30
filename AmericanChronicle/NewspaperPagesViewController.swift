@@ -13,11 +13,13 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
     @IBOutlet weak var previewCollectionView: UICollectionView!
     @IBOutlet weak var stripCollectionView: UICollectionView!
     @IBOutlet var previewDelegate: NewspaperPagesPreviewDelegate!
+    @IBOutlet var dataSource: NewspaperPagesDataSource!
     var issue: NewspaperIssue? {
         didSet {
             if !isViewLoaded() {
                 return
             }
+            println("\(__FILE__) | \(__FUNCTION__) | line \(__LINE__)")
             previewDelegate.issue = issue
         }
     }
@@ -26,6 +28,8 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
         super.viewDidLoad()
         previewDelegate.issue = issue
         previewDelegate.actionHandler = self
+
+        dataSource.issue = issue
         stripCollectionView.selectItemAtIndexPath(NSIndexPath(forItem: 0, inSection: 0), animated: false, scrollPosition: .Left)
     }
 
