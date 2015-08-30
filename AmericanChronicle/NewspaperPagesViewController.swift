@@ -49,8 +49,10 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let vc = segue.destinationViewController as? PageViewController {
-            vc.imageName = issue?.imageName
+        if let vc = segue.destinationViewController as? PageViewController,
+        let selectedPath = previewCollectionView.indexPathsForSelectedItems().first as? NSIndexPath {
+
+            vc.imageName = issue?.pages[selectedPath.item].imageName
             vc.doneCallback = { [unowned self] in
 
                 let segue = NewspaperPageUnfocusSegue(identifier: nil, source: vc, destination: self)
