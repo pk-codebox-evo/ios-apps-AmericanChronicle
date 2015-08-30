@@ -203,8 +203,8 @@ class FakeData {
         var williams = City(name: "Williams", lat: 0, lng: 0, stateName: .Arizona, newspapers: [])
         let williamsIssues = [
             NewspaperIssue(date: moment([1902, 10, 17])!, pages: [
-                NewspaperPage(imageName: BrowseResultImageName.ImageHeavy0.rawValue),
                 NewspaperPage(imageName: BrowseResultImageName.TextHeavy0.rawValue),
+                NewspaperPage(imageName: BrowseResultImageName.ImageHeavy0.rawValue),
             ]),
 
             NewspaperIssue(date: moment([1902, 10, 22])!, pages: [
@@ -213,8 +213,10 @@ class FakeData {
             ]),
 
             NewspaperIssue(date: moment([1902, 10, 29])!, pages: [
+                NewspaperPage(imageName: BrowseResultImageName.TextHeavy0.rawValue),
                 NewspaperPage(imageName: BrowseResultImageName.ImageHeavy0.rawValue),
-                NewspaperPage(imageName: BrowseResultImageName.TextHeavy0.rawValue)
+                NewspaperPage(imageName: BrowseResultImageName.TextHeavy0.rawValue),
+                NewspaperPage(imageName: BrowseResultImageName.ImageHeavy0.rawValue)
             ]),
 
             NewspaperIssue(date: moment([1902, 11, 05])!, pages: [

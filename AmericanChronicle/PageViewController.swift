@@ -35,6 +35,10 @@ class PageViewController: UIViewController {
         vc.completionWithItemsHandler = { type, completed, returnedItems, activityError in
             self.toastButton.frame = CGRect(x: 20.0, y: self.bottomBarBG.frame.origin.y - 80.0, width: self.view.bounds.size.width - 40.0, height: 60)
             let message: String
+            println("type: \(type)")
+            if type == nil {
+                return
+            }
             switch type {
             case UIActivityTypeSaveToCameraRoll:
                 message = completed ? "Page saved successfully" : "Trouble saving, please try again"
