@@ -29,6 +29,90 @@ enum SearchResultImageName: String {
 
 class FakeData {
 
+    static let searchResultsMiss: TableViewData = {
+        let data = TableViewData()
+        data.sections.append(TableViewSection(title: "6 matches", rows: [
+            SearchResultsRow(
+                date: "Mar 14, 1889",
+                cityState: "Scranton, PA",
+                matchingText: "...Der befannte Runftbaudler Elie Wolf in Bajeljtadt...",
+                publicationTitle: "Scranton Wochenblatt.",
+                moreMatchesCount: "",
+                imageName: SearchResultImageName.ImageHeavy1.rawValue),
+            SearchResultsRow(
+                date: "Dec 10, 1903",
+                cityState: "Logan, OH",
+                matchingText: "...the home of Mesers Wolf and Grossman on East Hunter...",
+                publicationTitle: "The Ohio Democrat",
+                moreMatchesCount: "",
+                imageName: SearchResultImageName.ImageHeavy2.rawValue),
+            SearchResultsRow(
+                date: "Jan 09, 1920",
+                cityState: "Plentywood, MO",
+                matchingText: "...and Mrs. Eli Maltby of Wolf Point, spent her holiday...",
+                publicationTitle: "The producers news",
+                moreMatchesCount: "",
+                imageName: SearchResultImageName.PoorQuality0.rawValue),
+            SearchResultsRow(
+                date: "Jul 07, 1905",
+                cityState: "Canton, OH",
+                matchingText: "...Reeder on the saw-mill. Eliza Wolf has returned home...",
+                publicationTitle: "The Stark County Democrat",
+                moreMatchesCount: "",
+                imageName: SearchResultImageName.TextHeavy1.rawValue),
+            SearchResultsRow(
+                date: "Mar 08, 1921",
+                cityState: "Astoria, OR",
+                matchingText: "...kohtalosta. Beethoven eli Wienissa edelleenkin. V. 1806...",
+                publicationTitle: "Toveritar",
+                moreMatchesCount: "and 5 more",
+                imageName: SearchResultImageName.TextHeavy2.rawValue),
+            SearchResultsRow(
+                date: "Dec 03, 1898",
+                cityState: "Maysville, KY",
+                matchingText: "...it many new cases. Eli Perkins. Eli Perkins. Mr Perkins'...",
+                publicationTitle: "The evening bulletin.",
+                moreMatchesCount: "and 1 more",
+                imageName: SearchResultImageName.TextHeavy3.rawValue)
+            ]))
+        return data
+        }()
+
+    static let searchResultsHit: TableViewData = {
+        let data = TableViewData()
+        data.sections.append(TableViewSection(title: "4 matches", rows: [
+            SearchResultsRow(
+                date: "Sep 20, 1902",
+                cityState: "Williams, AZ",
+                matchingText: "...in this city, Eli W. Wolf, aged seventy-one years...",
+                publicationTitle: "Williams news",
+                moreMatchesCount: "and 3 more",
+                imageName: SearchResultImageName.WilliamsNewsEliWolfSearch.rawValue
+            ), SearchResultsRow(
+                date: "Feb 03, 1922",
+                cityState: "Williams, AZ",
+                matchingText: "...the death of Calvin M. Wolfe in Phoenix, Arizona, on...",
+                publicationTitle: "Williams news",
+                moreMatchesCount: "and 9 more",
+                imageName: SearchResultImageName.WilliamsNewsMisc0.rawValue
+            ), SearchResultsRow(
+                date: "Dec 19, 1919",
+                cityState: "Holbrook, AZ",
+                matchingText: "...Braam, Messrs. Sims Ely, Williams, Kelley, Wolfe...",
+                publicationTitle: "The Holbrook news",
+                moreMatchesCount: "",
+                imageName: SearchResultImageName.WilliamsNewsMisc1.rawValue
+            ), SearchResultsRow(
+                date: "Aug 10, 1916",
+                cityState: "Williams, AZ",
+                matchingText: "...Williams News. Fred Wolfe took out a new Maxwell...",
+                publicationTitle: "Williams news",
+                moreMatchesCount: "and 3 more",
+                imageName: SearchResultImageName.PoorQuality0.rawValue)
+            ]))
+        return data
+        }()
+
     class func statesByName() -> [StateName: State] {
         var statesByName = [StateName: State]()
         statesByName[.Alabama] = alabama()
