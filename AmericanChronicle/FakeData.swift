@@ -36,7 +36,7 @@ class FakeData {
                 date: "Mar 14, 1889",
                 cityState: "Scranton, PA",
                 matchingText: "...Der befannte Runftbaudler Elie Wolf in Bajeljtadt...",
-                publicationTitle: "Scranton Wochenblatt.",
+                publicationTitle: "Scranton Wochenblatt",
                 moreMatchesCount: "",
                 imageName: SearchResultImageName.ImageHeavy1.rawValue),
             SearchResultsRow(
@@ -50,7 +50,7 @@ class FakeData {
                 date: "Jan 09, 1920",
                 cityState: "Plentywood, MO",
                 matchingText: "...and Mrs. Eli Maltby of Wolf Point, spent her holiday...",
-                publicationTitle: "The producers news",
+                publicationTitle: "The Producers News",
                 moreMatchesCount: "",
                 imageName: SearchResultImageName.PoorQuality0.rawValue),
             SearchResultsRow(
@@ -71,7 +71,7 @@ class FakeData {
                 date: "Dec 03, 1898",
                 cityState: "Maysville, KY",
                 matchingText: "...it many new cases. Eli Perkins. Eli Perkins. Mr Perkins'...",
-                publicationTitle: "The evening bulletin.",
+                publicationTitle: "The Evening Bulletin",
                 moreMatchesCount: "and 1 more",
                 imageName: SearchResultImageName.TextHeavy3.rawValue)
             ]))
@@ -85,28 +85,28 @@ class FakeData {
                 date: "Sep 20, 1902",
                 cityState: "Williams, AZ",
                 matchingText: "...in this city, Eli W. Wolf, aged seventy-one years...",
-                publicationTitle: "Williams news",
+                publicationTitle: "Williams News",
                 moreMatchesCount: "and 3 more",
                 imageName: SearchResultImageName.WilliamsNewsEliWolfSearch.rawValue
             ), SearchResultsRow(
                 date: "Feb 03, 1922",
                 cityState: "Williams, AZ",
                 matchingText: "...the death of Calvin M. Wolfe in Phoenix, Arizona, on...",
-                publicationTitle: "Williams news",
+                publicationTitle: "Williams News",
                 moreMatchesCount: "and 9 more",
                 imageName: SearchResultImageName.WilliamsNewsMisc0.rawValue
             ), SearchResultsRow(
                 date: "Dec 19, 1919",
                 cityState: "Holbrook, AZ",
                 matchingText: "...Braam, Messrs. Sims Ely, Williams, Kelley, Wolfe...",
-                publicationTitle: "The Holbrook news",
+                publicationTitle: "The Holbrook News",
                 moreMatchesCount: "",
                 imageName: SearchResultImageName.WilliamsNewsMisc1.rawValue
             ), SearchResultsRow(
                 date: "Aug 10, 1916",
                 cityState: "Williams, AZ",
                 matchingText: "...Williams News. Fred Wolfe took out a new Maxwell...",
-                publicationTitle: "Williams news",
+                publicationTitle: "Williams News",
                 moreMatchesCount: "and 3 more",
                 imageName: SearchResultImageName.PoorQuality0.rawValue)
             ]))
@@ -125,7 +125,7 @@ class FakeData {
 
     private class func alabama() -> State {
         var selma = City(name: "Selma", lat: 0, lng: 0, stateName: .Alabama, newspapers: [])
-        selma.newspapers.append(Newspaper(title: "Chattanooga daily rebel.", city: selma, startYear: 1865, endYear: 1865, issues: []))
+        selma.newspapers.append(Newspaper(title: "Chattanooga Daily Rebel", city: selma, startYear: 1865, endYear: 1865, issues: []))
         return State(name: .Alabama, lat: 0, lng: 0, cities: [selma])
     }
 
@@ -138,7 +138,7 @@ class FakeData {
                 NewspaperPage(imageName: BrowseResultImageName.HolbrookNews.rawValue)
             ])
         ]
-        holbrook.newspapers.append(Newspaper(title: "The argus", city: holbrook, startYear: 1895, endYear: 1900, issues: holbrookIssues))
+        holbrook.newspapers.append(Newspaper(title: "The Argus", city: holbrook, startYear: 1895, endYear: 1900, issues: holbrookIssues))
         return holbrook
     }
 
@@ -147,7 +147,7 @@ class FakeData {
         let peachSpringsIssues = [NewspaperIssue(date: moment([1902, 10, 02])!, pages: [
             NewspaperPage(imageName: BrowseResultImageName.ImageHeavy0.rawValue)
             ])]
-        peachSprings.newspapers.append(Newspaper(title: "The Arizona champion", city: peachSprings, startYear: 1883, endYear: 1891, issues: peachSpringsIssues))
+        peachSprings.newspapers.append(Newspaper(title: "The Arizona Champion", city: peachSprings, startYear: 1883, endYear: 1891, issues: peachSpringsIssues))
         return peachSprings
     }
 
@@ -159,7 +159,7 @@ class FakeData {
                 NewspaperPage(imageName: BrowseResultImageName.ImageHeavy0.rawValue)
                 ])
         ]
-        tucson.newspapers.append(Newspaper(title: "Arizona citizen", city: tucson, startYear: 1870, endYear: 1880, issues: tucsonIssues))
+        tucson.newspapers.append(Newspaper(title: "Arizona Citizen", city: tucson, startYear: 1870, endYear: 1880, issues: tucsonIssues))
         return tucson
     }
 
@@ -168,7 +168,7 @@ class FakeData {
         let bisbeeIssues = [NewspaperIssue(date: moment([1902, 10, 02])!, pages: [
             NewspaperPage(imageName: BrowseResultImageName.ImageHeavy0.rawValue)
             ])]
-        bisbee.newspapers.append(Newspaper(title: "The Arizona daily orb", city: bisbee, startYear: 1898, endYear: 1900, issues: bisbeeIssues))
+        bisbee.newspapers.append(Newspaper(title: "The Arizona Daily Orb", city: bisbee, startYear: 1898, endYear: 1900, issues: bisbeeIssues))
         return bisbee
     }
 
@@ -177,7 +177,7 @@ class FakeData {
         let tombstoneIssues = [NewspaperIssue(date: moment([1902, 10, 02])!, pages: [
             NewspaperPage(imageName: BrowseResultImageName.ImageHeavy0.rawValue)
             ])]
-        tombstone.newspapers.append(Newspaper(title: "The Arizona kicker", city: tombstone, startYear: 1893, endYear: 1913, issues: tombstoneIssues))
+        tombstone.newspapers.append(Newspaper(title: "The Arizona Kicker", city: tombstone, startYear: 1893, endYear: 1913, issues: tombstoneIssues))
         return tombstone
     }
 
@@ -186,7 +186,7 @@ class FakeData {
         let fortWhippleIssues = [NewspaperIssue(date: moment([1902, 10, 02])!, pages: [
             NewspaperPage(imageName: BrowseResultImageName.ImageHeavy0.rawValue)
             ])]
-        fortWhipple.newspapers.append(Newspaper(title: "Arizona miner", city: fortWhipple, startYear: 1864, endYear: 1868, issues: fortWhippleIssues))
+        fortWhipple.newspapers.append(Newspaper(title: "Arizona Miner", city: fortWhipple, startYear: 1864, endYear: 1868, issues: fortWhippleIssues))
         return fortWhipple
     }
 
@@ -195,7 +195,7 @@ class FakeData {
         let phoenixIssues = [NewspaperIssue(date: moment([1902, 10, 02])!, pages: [
             NewspaperPage(imageName: BrowseResultImageName.ImageHeavy0.rawValue)
             ])]
-        phoenix.newspapers.append(Newspaper(title: "Arizona republican", city: phoenix, startYear: 1890, endYear: 1930, issues: phoenixIssues))
+        phoenix.newspapers.append(Newspaper(title: "Arizona Republican", city: phoenix, startYear: 1890, endYear: 1930, issues: phoenixIssues))
         return phoenix
     }
 
@@ -224,7 +224,7 @@ class FakeData {
                 NewspaperPage(imageName: BrowseResultImageName.TextHeavy0.rawValue)
             ])
         ]
-        williams.newspapers.append(Newspaper(title: "Williams news.", city: williams, startYear: 1901, endYear: 1922, issues: williamsIssues))
+        williams.newspapers.append(Newspaper(title: "Williams News", city: williams, startYear: 1901, endYear: 1922, issues: williamsIssues))
         return williams
     }
 
@@ -233,8 +233,8 @@ class FakeData {
     }
 
     private class func arkansas() -> State {
-        var holbrook = City(name: "Holbrook", lat: 0, lng: 0, stateName: .Arizona, newspapers: [])
-        var paper = Newspaper(title: "The argus", city: holbrook, startYear: 1895, endYear: 1900, issues: [])
+        var holbrook = City(name: "Little Rock", lat: 0, lng: 0, stateName: .Arizona, newspapers: [])
+        var paper = Newspaper(title: "The Gazette", city: holbrook, startYear: 1895, endYear: 1900, issues: [])
         holbrook.newspapers.append(paper)
         return State(name: .Arkansas, lat: 0, lng: 0, cities: [holbrook])
     }
