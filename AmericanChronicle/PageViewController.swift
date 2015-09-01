@@ -68,6 +68,12 @@ class PageViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        doneButton.setBackgroundImage(nil, forState: .Normal)
+        doneButton.setTitleColor(UIColor.lightTextColor(), forState: .Normal)
+        shareButton.setBackgroundImage(nil, forState: .Normal)
+        shareButton.setTitleColor(UIColor.lightTextColor(), forState: .Normal)
+
         toastButton.addTarget(self, action: "toastButtonTapped:", forControlEvents: .TouchUpInside)
         toastButton.backgroundColor = UIColor(white: 1.0, alpha: 0.8)
         toastButton.setTitleColor(UIColor.darkGrayColor(), forState: .Normal)

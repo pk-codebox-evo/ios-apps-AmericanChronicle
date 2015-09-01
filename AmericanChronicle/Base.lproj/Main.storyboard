@@ -124,8 +124,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fMa-4a-P3K" userLabel="bottomBarBG">
                                 <rect key="frame" x="0.0" y="665" width="414" height="71"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQP-xf-5Pp">
-                                        <rect key="frame" x="351" y="21" width="40" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQP-xf-5Pp">
+                                        <rect key="frame" x="360" y="10" width="44" height="51"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="HWv-xZ-Gfo"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <state key="normal" title="Share">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -133,8 +137,12 @@
                                             <action selector="shareButtonTapped:" destination="1qS-Yc-KkM" eventType="touchUpInside" id="i6l-i5-IYw"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pL9-rV-mb4">
-                                        <rect key="frame" x="25" y="21" width="37" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pL9-rV-mb4">
+                                        <rect key="frame" x="10" y="10" width="44" height="51"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="6Ke-fn-joc"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <state key="normal" title="Done">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -145,10 +153,12 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.1450980392" blue="0.14901960780000001" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="xQP-xf-5Pp" secondAttribute="bottom" constant="20" id="HKr-9F-2tD"/>
-                                    <constraint firstAttribute="trailing" secondItem="xQP-xf-5Pp" secondAttribute="trailing" constant="23" id="R2n-nn-dOg"/>
-                                    <constraint firstItem="pL9-rV-mb4" firstAttribute="leading" secondItem="fMa-4a-P3K" secondAttribute="leading" constant="25" id="e59-6L-KBj"/>
-                                    <constraint firstAttribute="bottom" secondItem="pL9-rV-mb4" secondAttribute="bottom" constant="20" id="gv3-oy-4ZT"/>
+                                    <constraint firstItem="xQP-xf-5Pp" firstAttribute="top" secondItem="fMa-4a-P3K" secondAttribute="top" constant="10" id="DEF-kM-vE9"/>
+                                    <constraint firstAttribute="bottom" secondItem="xQP-xf-5Pp" secondAttribute="bottom" constant="10" id="HKr-9F-2tD"/>
+                                    <constraint firstItem="pL9-rV-mb4" firstAttribute="top" secondItem="fMa-4a-P3K" secondAttribute="top" constant="10" id="Mwh-Bs-GOI"/>
+                                    <constraint firstAttribute="trailing" secondItem="xQP-xf-5Pp" secondAttribute="trailing" constant="10" id="R2n-nn-dOg"/>
+                                    <constraint firstItem="pL9-rV-mb4" firstAttribute="leading" secondItem="fMa-4a-P3K" secondAttribute="leading" constant="10" id="e59-6L-KBj"/>
+                                    <constraint firstAttribute="bottom" secondItem="pL9-rV-mb4" secondAttribute="bottom" constant="10" id="gv3-oy-4ZT"/>
                                     <constraint firstAttribute="height" constant="71" id="yVc-NU-LEa"/>
                                 </constraints>
                             </view>
@@ -234,7 +244,6 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="44" id="35L-fv-1WH"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <state key="normal" title="Add Filters">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
