@@ -30,6 +30,7 @@
 		9782361F1B8000CE0056FDF6 /* YearSliderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782361E1B8000CE0056FDF6 /* YearSliderTests.swift */; };
 		978741471B7832660014D1F0 /* NewspaperPagesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978741461B7832660014D1F0 /* NewspaperPagesDataSource.swift */; };
 		9787414B1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9787414A1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift */; };
+		978D11541B955C39003B98C5 /* UIAppearance+AMC.m in Sources */ = {isa = PBXBuildFile; fileRef = 978D11531B955C39003B98C5 /* UIAppearance+AMC.m */; };
 		979082701B8135150056CA9C /* LocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9790826E1B8135150056CA9C /* LocationSearchViewController.swift */; };
 		979082711B8135150056CA9C /* LocationSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9790826F1B8135150056CA9C /* LocationSearchViewController.xib */; };
 		979BF8211B928697006482F1 /* NewspaperPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979BF8201B928697006482F1 /* NewspaperPage.swift */; };
@@ -87,6 +88,8 @@
 		9782361E1B8000CE0056FDF6 /* YearSliderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YearSliderTests.swift; sourceTree = "<group>"; };
 		978741461B7832660014D1F0 /* NewspaperPagesDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPagesDataSource.swift; sourceTree = "<group>"; };
 		9787414A1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPagesPreviewDelegate.swift; sourceTree = "<group>"; };
+		978D11521B955C39003B98C5 /* UIAppearance+AMC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAppearance+AMC.h"; sourceTree = "<group>"; };
+		978D11531B955C39003B98C5 /* UIAppearance+AMC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAppearance+AMC.m"; sourceTree = "<group>"; };
 		9790826E1B8135150056CA9C /* LocationSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchViewController.swift; sourceTree = "<group>"; };
 		9790826F1B8135150056CA9C /* LocationSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationSearchViewController.xib; sourceTree = "<group>"; };
 		979082761B8147590056CA9C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -195,6 +198,8 @@
 				97BDE11A1B76ED6B00A3E57F /* Main.storyboard */,
 				9764976C1B7DA0270035A388 /* Month.swift */,
 				97415AE31B785D8400326239 /* CustomSegueNavigationController.swift */,
+				978D11521B955C39003B98C5 /* UIAppearance+AMC.h */,
+				978D11531B955C39003B98C5 /* UIAppearance+AMC.m */,
 			);
 			name = "App-Wide";
 			sourceTree = "<group>";
@@ -477,6 +482,7 @@
 				9721FDCB1B940EE7006798B2 /* TableHeaderView.swift in Sources */,
 				97BDE13B1B771B4800A3E57F /* NewspaperPagesViewController.swift in Sources */,
 				97BDE1371B76F84F00A3E57F /* SearchViewController.swift in Sources */,
+				978D11541B955C39003B98C5 /* UIAppearance+AMC.m in Sources */,
 				975914AA1B7A47C40031BD13 /* SearchResultsPageCell.swift in Sources */,
 				97415AE21B785AAE00326239 /* NewspaperPageUnfocusSegue.swift in Sources */,
 				97BDE1151B76ED6B00A3E57F /* AppDelegate.swift in Sources */,
