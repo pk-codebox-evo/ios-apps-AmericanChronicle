@@ -28,6 +28,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="0AC-8y-sic" customClass="SearchField" customModule="AmericanChronicle" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="64" width="414" height="64"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="2pz-XF-uhl" detailTextLabel="6D6-q6-5dc" style="IBUITableViewCellStyleSubtitle" id="m0d-ak-lc9">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
@@ -63,15 +68,10 @@
                             <outlet property="delegate" destination="pGg-6v-bdr" id="Y6K-Cp-Qkv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="All Newspapers" id="WXR-pL-dc8">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="6EL-Zo-QM0">
-                            <connections>
-                                <segue destination="2tS-Kb-pdx" kind="presentation" id="gQU-MG-0ao"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="All Newspapers" id="WXR-pL-dc8"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="S56-GT-QBt" id="v6t-tX-4lC"/>
+                        <outlet property="searchField" destination="0AC-8y-sic" id="roh-wL-RLh"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cn-md-YlS" sceneMemberID="firstResponder"/>
@@ -544,8 +544,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pGf-xk-sXK"/>
-        <segue reference="gQU-MG-0ao"/>
+        <segue reference="jUr-3t-vfg"/>
         <segue reference="uq8-Gm-fne"/>
     </inferredMetricsTieBreakers>
 </document>

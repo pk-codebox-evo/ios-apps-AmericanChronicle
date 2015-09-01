@@ -9,8 +9,10 @@
 import UIKit
 
 
-class HomeViewController: UITableViewController {
+class HomeViewController: UITableViewController, UITextFieldDelegate {
 
+    
+    @IBOutlet weak var searchField: SearchField!
     var statesByName = FakeData.statesByName()
 
     override func awakeFromNib() {
@@ -27,6 +29,16 @@ class HomeViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerClass(TableHeaderView.self, forHeaderFooterViewReuseIdentifier: "Header")
+
+        searchField.shouldBeginEditingCallback = {
+            // Present search vc here
+            let sb = UIStoryboard(name: "Search", bundle: nil)
+            println("sb: \(sb)")
+            if let vc = sb.instantiateInitialViewController() as? UIViewController {
+                self.presentViewController(vc, animated: true, completion: nil)
+            }
+            return false
+        }
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -76,6 +88,10 @@ class HomeViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40.0
+    }
+
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+        return false
     }
 }
 

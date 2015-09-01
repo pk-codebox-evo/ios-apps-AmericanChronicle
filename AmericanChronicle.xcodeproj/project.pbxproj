@@ -31,6 +31,8 @@
 		978741471B7832660014D1F0 /* NewspaperPagesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978741461B7832660014D1F0 /* NewspaperPagesDataSource.swift */; };
 		9787414B1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9787414A1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift */; };
 		978D11541B955C39003B98C5 /* UIAppearance+AMC.m in Sources */ = {isa = PBXBuildFile; fileRef = 978D11531B955C39003B98C5 /* UIAppearance+AMC.m */; };
+		978D11561B956EAA003B98C5 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 978D11551B956EAA003B98C5 /* Search.storyboard */; };
+		978D11581B956F2D003B98C5 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D11571B956F2D003B98C5 /* SearchField.swift */; };
 		979082701B8135150056CA9C /* LocationSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9790826E1B8135150056CA9C /* LocationSearchViewController.swift */; };
 		979082711B8135150056CA9C /* LocationSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9790826F1B8135150056CA9C /* LocationSearchViewController.xib */; };
 		979BF8211B928697006482F1 /* NewspaperPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979BF8201B928697006482F1 /* NewspaperPage.swift */; };
@@ -90,6 +92,8 @@
 		9787414A1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPagesPreviewDelegate.swift; sourceTree = "<group>"; };
 		978D11521B955C39003B98C5 /* UIAppearance+AMC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAppearance+AMC.h"; sourceTree = "<group>"; };
 		978D11531B955C39003B98C5 /* UIAppearance+AMC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAppearance+AMC.m"; sourceTree = "<group>"; };
+		978D11551B956EAA003B98C5 /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
+		978D11571B956F2D003B98C5 /* SearchField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
 		9790826E1B8135150056CA9C /* LocationSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchViewController.swift; sourceTree = "<group>"; };
 		9790826F1B8135150056CA9C /* LocationSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationSearchViewController.xib; sourceTree = "<group>"; };
 		979082761B8147590056CA9C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -196,7 +200,9 @@
 				9721FDC81B93FF26006798B2 /* Style.swift */,
 				97BDE11F1B76ED6B00A3E57F /* LaunchScreen.xib */,
 				97BDE11A1B76ED6B00A3E57F /* Main.storyboard */,
+				978D11551B956EAA003B98C5 /* Search.storyboard */,
 				9764976C1B7DA0270035A388 /* Month.swift */,
+				978D11571B956F2D003B98C5 /* SearchField.swift */,
 				97415AE31B785D8400326239 /* CustomSegueNavigationController.swift */,
 				978D11521B955C39003B98C5 /* UIAppearance+AMC.h */,
 				978D11531B955C39003B98C5 /* UIAppearance+AMC.m */,
@@ -385,6 +391,7 @@
 				97BDE11C1B76ED6B00A3E57F /* Main.storyboard in Resources */,
 				97A7D9AE1B866E7E00DDBF59 /* SearchFiltersViewController.xib in Resources */,
 				977F0A591B7FC3E700C4B0FC /* DatePickerViewController.xib in Resources */,
+				978D11561B956EAA003B98C5 /* Search.storyboard in Resources */,
 				97BDE1211B76ED6B00A3E57F /* LaunchScreen.xib in Resources */,
 				97BDE11E1B76ED6B00A3E57F /* Images.xcassets in Resources */,
 			);
@@ -463,6 +470,7 @@
 				977F0A5D1B7FC5BA00C4B0FC /* CalendarViewDataSource.swift in Sources */,
 				977F0A581B7FC3E700C4B0FC /* DatePickerViewController.swift in Sources */,
 				97BDE1391B7703CA00A3E57F /* PageViewController.swift in Sources */,
+				978D11581B956F2D003B98C5 /* SearchField.swift in Sources */,
 				979BF8251B92A26D006482F1 /* FakeData.swift in Sources */,
 				974BA36A1B892D8900D7ACA2 /* Location.swift in Sources */,
 				979082701B8135150056CA9C /* LocationSearchViewController.swift in Sources */,
