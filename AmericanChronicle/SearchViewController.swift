@@ -129,6 +129,12 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         filtersButton.setTitle(filtersTitle, forState: .Normal)
     }
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.registerClass(TableHeaderView.self, forHeaderFooterViewReuseIdentifier: "Header")
+        filtersButton.titleLabel?.font = UIFont(name: "AvenirNext-Regular", size: UIFont.buttonFontSize())
+    }
+
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         searchBar.resignFirstResponder()
@@ -197,6 +203,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         let cell: UITableViewCell
         if activeData === recentSearches {
             cell = tableView.dequeueReusableCellWithIdentifier("RecentSearchCell") as! UITableViewCell
+            cell.textLabel?.font = UIFont(name: "AvenirNext-Regular", size: UIFont.systemFontSize())
             cell.textLabel?.text = activeData?.sections[indexPath.section].rows[indexPath.row].cellText
         } else {
             let pageCell = tableView.dequeueReusableCellWithIdentifier("SearchResultsPageCell") as! SearchResultsPageCell
@@ -211,13 +218,20 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         return cell
     }
 
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("Header") as? TableHeaderView
+        headerView?.label.text = "Recent Searches"
+        return headerView
+    }
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return activeData?.sections.count ?? 0
     }
 
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return activeData?.sections[section].title
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40.0
     }
+
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if activeData === recentSearches {

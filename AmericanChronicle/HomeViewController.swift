@@ -26,6 +26,7 @@ class HomeViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.registerClass(TableHeaderView.self, forHeaderFooterViewReuseIdentifier: "Header")
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -49,14 +50,21 @@ class HomeViewController: UITableViewController {
         return 0
     }
 
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return StateName.alphabeticalList[section].rawValue
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("Header") as? TableHeaderView
+        headerView?.label.text = StateName.alphabeticalList[section].rawValue
+        return headerView
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
         if let paper = newspaperAtIndexPath(indexPath) {
+            cell.textLabel?.font = UIFont(name: "AvenirNext-Regular", size: UIFont.systemFontSize())
+            cell.textLabel?.textColor = UIColor.darkTextColor()
             cell.textLabel?.text = paper.title
+
+            cell.detailTextLabel?.font = UIFont(name: "AvenirNext-Regular", size: UIFont.smallSystemFontSize())
+            cell.detailTextLabel?.textColor = UIColor.darkTextColor()
             cell.detailTextLabel?.text = paper.city.name
         } else {
             cell.textLabel?.text = nil
@@ -64,6 +72,10 @@ class HomeViewController: UITableViewController {
         }
 
         return cell
+    }
+
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40.0
     }
 }
 

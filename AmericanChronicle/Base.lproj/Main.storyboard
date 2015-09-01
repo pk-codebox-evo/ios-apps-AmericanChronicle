@@ -40,13 +40,13 @@
                                             <rect key="frame" x="15" y="0.0" width="270" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6D6-q6-5dc">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -219,21 +219,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="tAZ-5m-ov4">
-                                    <rect key="frame" x="0.0" y="64" width="414" height="86"/>
+                                    <rect key="frame" x="0.0" y="64" width="414" height="113"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <searchBar contentMode="redraw" placeholder="Search" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rao-Jd-EUt">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
                                                 <outlet property="delegate" destination="U5J-Y3-Pmz" id="fm7-BV-P5J"/>
                                             </connections>
                                         </searchBar>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFp-nU-whD">
-                                            <rect key="frame" x="0.0" y="44" width="414" height="42"/>
+                                            <rect key="frame" x="10" y="59" width="394" height="44"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="42" id="35L-fv-1WH"/>
+                                                <constraint firstAttribute="height" constant="44" id="35L-fv-1WH"/>
                                             </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <state key="normal" title="Add Filters">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -245,11 +246,12 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="Rao-Jd-EUt" secondAttribute="trailing" id="0cm-zB-6QW"/>
-                                        <constraint firstAttribute="trailing" secondItem="hFp-nU-whD" secondAttribute="trailing" id="GoF-Gi-1sF"/>
-                                        <constraint firstItem="hFp-nU-whD" firstAttribute="leading" secondItem="tAZ-5m-ov4" secondAttribute="leading" id="OFc-gD-f6C"/>
-                                        <constraint firstItem="Rao-Jd-EUt" firstAttribute="top" secondItem="tAZ-5m-ov4" secondAttribute="top" id="u5b-Yq-ge3"/>
+                                        <constraint firstAttribute="trailing" secondItem="hFp-nU-whD" secondAttribute="trailing" constant="10" id="GoF-Gi-1sF"/>
+                                        <constraint firstItem="hFp-nU-whD" firstAttribute="leading" secondItem="tAZ-5m-ov4" secondAttribute="leading" constant="10" id="OFc-gD-f6C"/>
+                                        <constraint firstItem="hFp-nU-whD" firstAttribute="top" secondItem="Rao-Jd-EUt" secondAttribute="bottom" constant="10" id="TVO-ys-oFm"/>
+                                        <constraint firstItem="Rao-Jd-EUt" firstAttribute="top" secondItem="tAZ-5m-ov4" secondAttribute="top" symbolic="YES" id="u5b-Yq-ge3"/>
                                         <constraint firstItem="Rao-Jd-EUt" firstAttribute="leading" secondItem="tAZ-5m-ov4" secondAttribute="leading" id="vTs-BY-xjE"/>
-                                        <constraint firstAttribute="bottom" secondItem="hFp-nU-whD" secondAttribute="bottom" id="w47-Yg-NmL"/>
+                                        <constraint firstAttribute="bottom" secondItem="hFp-nU-whD" secondAttribute="bottom" constant="10" id="w47-Yg-NmL"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
@@ -533,8 +535,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="jUr-3t-vfg"/>
+        <segue reference="pGf-xk-sXK"/>
         <segue reference="gQU-MG-0ao"/>
-        <segue reference="8Os-xR-Ge2"/>
+        <segue reference="uq8-Gm-fne"/>
     </inferredMetricsTieBreakers>
 </document>
