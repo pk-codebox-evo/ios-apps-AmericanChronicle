@@ -71,8 +71,15 @@ class PageViewController: UIViewController {
 
         doneButton.setBackgroundImage(nil, forState: .Normal)
         doneButton.setTitleColor(UIColor.lightTextColor(), forState: .Normal)
+        doneButton.setTitle(nil, forState: .Normal)
+        doneButton.tintColor = UIColor.whiteColor()
+        doneButton.setImage(UIImage(named: "UIAccessoryButtonX")?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
+
         shareButton.setBackgroundImage(nil, forState: .Normal)
         shareButton.setTitleColor(UIColor.lightTextColor(), forState: .Normal)
+        shareButton.setTitle(nil, forState: .Normal)
+        shareButton.tintColor = UIColor.whiteColor()
+        shareButton.setImage(UIImage(named: "UIButtonBarAction")?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
 
         toastButton.addTarget(self, action: "toastButtonTapped:", forControlEvents: .TouchUpInside)
         toastButton.backgroundColor = UIColor(white: 1.0, alpha: 0.8)

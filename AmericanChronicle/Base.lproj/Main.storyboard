@@ -122,10 +122,10 @@
                                 </connections>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fMa-4a-P3K" userLabel="bottomBarBG">
-                                <rect key="frame" x="0.0" y="665" width="414" height="71"/>
+                                <rect key="frame" x="0.0" y="672" width="414" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQP-xf-5Pp">
-                                        <rect key="frame" x="360" y="10" width="44" height="51"/>
+                                        <rect key="frame" x="360" y="10" width="44" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="44" id="HWv-xZ-Gfo"/>
                                         </constraints>
@@ -138,7 +138,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pL9-rV-mb4">
-                                        <rect key="frame" x="10" y="10" width="44" height="51"/>
+                                        <rect key="frame" x="10" y="10" width="44" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="44" id="6Ke-fn-joc"/>
                                         </constraints>
@@ -159,7 +159,7 @@
                                     <constraint firstAttribute="trailing" secondItem="xQP-xf-5Pp" secondAttribute="trailing" constant="10" id="R2n-nn-dOg"/>
                                     <constraint firstItem="pL9-rV-mb4" firstAttribute="leading" secondItem="fMa-4a-P3K" secondAttribute="leading" constant="10" id="e59-6L-KBj"/>
                                     <constraint firstAttribute="bottom" secondItem="pL9-rV-mb4" secondAttribute="bottom" constant="10" id="gv3-oy-4ZT"/>
-                                    <constraint firstAttribute="height" constant="71" id="yVc-NU-LEa"/>
+                                    <constraint firstAttribute="height" constant="64" id="yVc-NU-LEa"/>
                                 </constraints>
                             </view>
                         </subviews>
