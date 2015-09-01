@@ -37,18 +37,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="SXg-Lz-AAe">
-                                    <rect key="frame" x="0.0" y="64" width="414" height="113"/>
+                                    <rect key="frame" x="0.0" y="64" width="414" height="128"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <searchBar contentMode="redraw" placeholder="Search" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mqY-th-QND">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="Cf1-V8-EKb" id="gMj-fW-sgI"/>
-                                            </connections>
-                                        </searchBar>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v2g-t7-C3f">
-                                            <rect key="frame" x="10" y="59" width="394" height="44"/>
+                                            <rect key="frame" x="10" y="74" width="394" height="44"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="44" id="deK-fG-8jI"/>
                                             </constraints>
@@ -59,16 +52,23 @@
                                                 <action selector="addEditFiltersButtonTapped:" destination="Cf1-V8-EKb" eventType="touchUpInside" id="eU8-tA-iix"/>
                                             </connections>
                                         </button>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Qm-bS-WYt" customClass="SearchField" customModule="AmericanChronicle" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="64" id="501-1s-E7P"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="7Qm-bS-WYt" secondAttribute="trailing" id="1UQ-X9-l2w"/>
+                                        <constraint firstAttribute="bottom" secondItem="v2g-t7-C3f" secondAttribute="bottom" constant="10" id="1qA-n4-HI6"/>
                                         <constraint firstAttribute="trailing" secondItem="v2g-t7-C3f" secondAttribute="trailing" constant="10" id="54H-vg-UhE"/>
-                                        <constraint firstAttribute="trailing" secondItem="mqY-th-QND" secondAttribute="trailing" id="HKI-qd-bRW"/>
+                                        <constraint firstItem="7Qm-bS-WYt" firstAttribute="leading" secondItem="SXg-Lz-AAe" secondAttribute="leading" id="B7Q-sI-Ke5"/>
                                         <constraint firstItem="v2g-t7-C3f" firstAttribute="leading" secondItem="SXg-Lz-AAe" secondAttribute="leading" constant="10" id="agQ-KL-rf7"/>
-                                        <constraint firstItem="v2g-t7-C3f" firstAttribute="top" secondItem="mqY-th-QND" secondAttribute="bottom" constant="10" id="b0X-AT-iRU"/>
-                                        <constraint firstItem="mqY-th-QND" firstAttribute="top" secondItem="SXg-Lz-AAe" secondAttribute="top" symbolic="YES" id="jR4-v4-XLl"/>
-                                        <constraint firstItem="mqY-th-QND" firstAttribute="leading" secondItem="SXg-Lz-AAe" secondAttribute="leading" id="nWF-rP-XAo"/>
-                                        <constraint firstAttribute="bottom" secondItem="v2g-t7-C3f" secondAttribute="bottom" constant="10" id="v7f-sY-RxU"/>
+                                        <constraint firstItem="v2g-t7-C3f" firstAttribute="top" secondItem="7Qm-bS-WYt" secondAttribute="bottom" constant="10" id="qoh-V4-H9k"/>
+                                        <constraint firstItem="7Qm-bS-WYt" firstAttribute="top" secondItem="SXg-Lz-AAe" secondAttribute="top" id="rM2-8s-zMR"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
@@ -166,7 +166,7 @@
                     <navigationItem key="navigationItem" id="HZ6-kq-UgQ"/>
                     <connections>
                         <outlet property="filtersButton" destination="v2g-t7-C3f" id="aiW-ar-Tjd"/>
-                        <outlet property="searchBar" destination="mqY-th-QND" id="ck2-AK-TM6"/>
+                        <outlet property="searchField" destination="7Qm-bS-WYt" id="dbM-Zr-cIW"/>
                         <outlet property="tableView" destination="JF5-Ev-fZm" id="kKc-gd-ILw"/>
                     </connections>
                 </viewController>

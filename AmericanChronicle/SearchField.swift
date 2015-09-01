@@ -13,6 +13,15 @@ class SearchField: UIView, UITextFieldDelegate {
     let textField: UITextField
     var shouldBeginEditingCallback: ((Void) -> Bool)?
 
+    var text: String {
+        get {
+            return textField.text
+        }
+        set {
+            textField.text = newValue
+        }
+    }
+
     // Init methods
 
     func commonInit() {
@@ -47,6 +56,14 @@ class SearchField: UIView, UITextFieldDelegate {
         textField = UITextField()
         super.init(frame: frame)
         self.commonInit()
+    }
+
+    override func becomeFirstResponder() -> Bool {
+        return textField.becomeFirstResponder()
+    }
+
+    override func resignFirstResponder() -> Bool {
+        return textField.resignFirstResponder()
     }
 
     // MARK: UITextFieldDelegate methods

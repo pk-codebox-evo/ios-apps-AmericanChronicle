@@ -82,7 +82,8 @@ class SearchResultsRow: TableViewRow {
 
 class SearchViewController: UIViewController, UISearchBarDelegate {
 
-    @IBOutlet weak var searchBar: UISearchBar!
+    
+    @IBOutlet weak var searchField: SearchField!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var filtersButton: UIButton!
     var filters: SearchFilters?
@@ -121,8 +122,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.navigationBarHidden = false
-        if count(searchBar.text) == 0 {
-            searchBar.becomeFirstResponder()
+        if count(searchField.text) == 0 {
+            searchField.becomeFirstResponder()
             showRecentSearches()
         }
         let filtersTitle = (filters == nil) ? "Add Filters" : "Edit Filters"
@@ -137,7 +138,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
 
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        searchBar.resignFirstResponder()
+        searchField.resignFirstResponder()
     }
 
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
@@ -172,7 +173,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     func searchDelayTimerFired(timer: NSTimer) {
         searchDelayTimer = nil
 
-        let termMatches = NSString(string: searchBar.text.lowercaseString).containsString("eli")
+        let termMatches = NSString(string: searchField.text.lowercaseString).containsString("eli")
         let earlyDateSet = filters?.earliestDate != nil
         let lateDateSet = filters?.latestDate != nil
         let locationsSet = filters?.cities?.count > 0
@@ -235,8 +236,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if activeData === recentSearches {
-            searchBar.text = activeData?.sections[indexPath.section].rows[indexPath.row].cellText
-            performSearchWithResultsCount(count(searchBar.text))
+            searchField.text = activeData?.sections[indexPath.section].rows[indexPath.row].cellText ?? ""
+            performSearchWithResultsCount(count(searchField.text))
         }
 
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
