@@ -169,6 +169,7 @@
 		97AB2A4C1B84278400666E95 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				978D11551B956EAA003B98C5 /* Search.storyboard */,
 				97BDE1361B76F84F00A3E57F /* SearchViewController.swift */,
 				975914A91B7A47C40031BD13 /* SearchResultsPageCell.swift */,
 				977F0A5A1B7FC58200C4B0FC /* CalendarViewDelegate.swift */,
@@ -200,7 +201,6 @@
 				9721FDC81B93FF26006798B2 /* Style.swift */,
 				97BDE11F1B76ED6B00A3E57F /* LaunchScreen.xib */,
 				97BDE11A1B76ED6B00A3E57F /* Main.storyboard */,
-				978D11551B956EAA003B98C5 /* Search.storyboard */,
 				9764976C1B7DA0270035A388 /* Month.swift */,
 				978D11571B956F2D003B98C5 /* SearchField.swift */,
 				97415AE31B785D8400326239 /* CustomSegueNavigationController.swift */,

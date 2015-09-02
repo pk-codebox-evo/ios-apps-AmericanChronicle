@@ -31,13 +31,15 @@ class HomeViewController: UITableViewController, UITextFieldDelegate, UIViewCont
         tableView.registerClass(TableHeaderView.self, forHeaderFooterViewReuseIdentifier: "Header")
 
         searchField.shouldBeginEditingCallback = {
-            // Present search vc here
             let sb = UIStoryboard(name: "Search", bundle: nil)
-            println("sb: \(sb)")
-            if let vc = sb.instantiateInitialViewController() as? UIViewController {
-                vc.modalPresentationStyle = .Custom
-                vc.transitioningDelegate = self
-                self.presentViewController(vc, animated: true, completion: nil)
+            if let nvc = sb.instantiateInitialViewController() as? UINavigationController,
+               let vc = nvc.topViewController as? SearchViewController {
+                vc.cancelCallback = { [weak self] in
+                    self?.dismissViewControllerAnimated(true, completion: nil)
+                }
+                nvc.modalPresentationStyle = .Custom
+                nvc.transitioningDelegate = self
+                self.presentViewController(nvc, animated: true, completion: nil)
             }
             return false
         }
@@ -104,8 +106,9 @@ class HomeViewController: UITableViewController, UITextFieldDelegate, UIViewCont
                                                     return TransitionController()
     }
 
-    //func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-    //}
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return TransitionController()
+    }
 
     //func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
     //}
@@ -125,15 +128,31 @@ class TransitionController: NSObject, UIViewControllerAnimatedTransitioning {
 
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
 
-        if let toView = transitionContext.viewForKey(UITransitionContextToViewKey) {
-            toView.alpha = 0
-            transitionContext.containerView().addSubview(toView)
-            UIView.animateWithDuration(duration, animations: {
-                toView.alpha = 1.0
-            }, completion: { _ in
-                transitionContext.completeTransition(true)
-            })
+        let fromNVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as? UINavigationController
+        println("fromNVC?.topViewController: \(fromNVC?.topViewController)")
+        let toNVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as? UINavigationController
+        println("toNVC?.topViewController: \(toNVC?.topViewController)")
+        if let fromVC = fromNVC?.topViewController as? HomeViewController  {
+            if let toView = transitionContext.viewForKey(UITransitionContextToViewKey) {
+                toView.alpha = 0
+                transitionContext.containerView().addSubview(toView)
+                UIView.animateWithDuration(duration, animations: {
+                    toView.alpha = 1.0
+                    }, completion: { _ in
+                        transitionContext.completeTransition(true)
+                })
+            }
+        } else {
+            if let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey) {
+                UIView.animateWithDuration(duration, animations: {
+                    fromView.alpha = 0
+                }, completion: { _ in
+                    fromView.removeFromSuperview()
+                    transitionContext.completeTransition(true)
+                })
+            }
         }
+
     }
 
     func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {

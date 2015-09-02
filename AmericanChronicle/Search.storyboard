@@ -163,8 +163,15 @@
                             <constraint firstAttribute="bottom" secondItem="JF5-Ev-fZm" secondAttribute="bottom" id="xI4-9I-uTy"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="HZ6-kq-UgQ"/>
+                    <navigationItem key="navigationItem" id="HZ6-kq-UgQ">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="3JF-wK-xVv">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="Cf1-V8-EKb" id="EwW-nC-U3W"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="cancelButton" destination="3JF-wK-xVv" id="Sps-tG-QKb"/>
                         <outlet property="filtersButton" destination="v2g-t7-C3f" id="aiW-ar-Tjd"/>
                         <outlet property="searchField" destination="7Qm-bS-WYt" id="dbM-Zr-cIW"/>
                         <outlet property="tableView" destination="JF5-Ev-fZm" id="kKc-gd-ILw"/>

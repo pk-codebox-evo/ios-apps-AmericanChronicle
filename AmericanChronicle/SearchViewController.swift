@@ -82,11 +82,17 @@ class SearchResultsRow: TableViewRow {
 
 class SearchViewController: UIViewController, UISearchBarDelegate {
 
-    
+
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var searchField: SearchField!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var filtersButton: UIButton!
     var filters: SearchFilters?
+    var cancelCallback: ((Void) -> ())?
+
+    @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
+        cancelCallback?()
+    }
 
     @IBAction func addEditFiltersButtonTapped(sender: AnyObject) {
         let vc = SearchFiltersViewController(nibName: "SearchFiltersViewController", bundle: nil)
@@ -233,13 +239,11 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         return 40.0
     }
 
-
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if activeData === recentSearches {
             searchField.text = activeData?.sections[indexPath.section].rows[indexPath.row].cellText ?? ""
             performSearchWithResultsCount(count(searchField.text))
         }
-
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
