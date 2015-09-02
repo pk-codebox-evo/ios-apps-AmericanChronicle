@@ -14,6 +14,14 @@ class SearchField: UIView, UITextFieldDelegate {
     var shouldBeginEditingCallback: ((Void) -> Bool)?
     var shouldChangeCharactersCallback: ((text: String, range: NSRange, replacementString: String) -> Bool)?
 
+    var placeholder: String? {
+        get {
+            return textField.placeholder
+        }
+        set {
+            textField.placeholder = newValue
+        }
+    }
 
     var text: String {
         get {

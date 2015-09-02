@@ -195,7 +195,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2425" y="-789"/>
+            <point key="canvasLocation" x="2089" y="64"/>
         </scene>
         <!--Newspaper Issues-->
         <scene sceneID="Cn3-H9-jdl">
@@ -211,6 +211,7 @@
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SBj-KH-NwP">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="sVZ-cP-mZr">
                                     <size key="itemSize" width="170" height="231"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -218,7 +219,18 @@
                                     <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="6Oj-zS-ajs" customClass="NewspaperIssueCell" customModule="AmericanChronicle" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SearchCell" id="KJZ-Nw-vpZ" customClass="SearchFieldCell" customModule="AmericanChronicle" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="394" height="64"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <size key="customSize" width="394" height="64"/>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ThumbnailCell" id="6Oj-zS-ajs" customClass="NewspaperIssueCell" customModule="AmericanChronicle" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -246,16 +258,14 @@
                             <constraint firstAttribute="trailing" secondItem="SBj-KH-NwP" secondAttribute="trailing" id="zWY-ha-qzc"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Issues" id="cra-N8-TIN">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="x2g-BB-oy6"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Issues" id="cra-N8-TIN"/>
                     <connections>
                         <outlet property="collectionView" destination="SBj-KH-NwP" id="FX9-ic-qZf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lrm-kH-fPn" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1411" y="64"/>
+            <point key="canvasLocation" x="971" y="64"/>
         </scene>
         <!--Newspaper Pages View Controller-->
         <scene sceneID="LpB-y1-g8j">
@@ -363,7 +373,7 @@
                 <customObject id="ay3-A8-6dN" customClass="NewspaperPagesPreviewDelegate" customModule="AmericanChronicle" customModuleProvider="target"/>
                 <customObject id="JI3-KR-OyJ" customClass="NewspaperPagesDataSource" customModule="AmericanChronicle" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="1893" y="72"/>
+            <point key="canvasLocation" x="1529" y="64"/>
         </scene>
     </scenes>
 </document>

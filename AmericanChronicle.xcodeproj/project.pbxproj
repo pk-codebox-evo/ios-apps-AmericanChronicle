@@ -49,6 +49,7 @@
 		97BDE1391B7703CA00A3E57F /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE1381B7703CA00A3E57F /* PageViewController.swift */; };
 		97BDE13B1B771B4800A3E57F /* NewspaperPagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE13A1B771B4800A3E57F /* NewspaperPagesViewController.swift */; };
 		97BE674A1B7B004B00761033 /* SearchFiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BE67491B7B004B00761033 /* SearchFiltersViewController.swift */; };
+		97C99FB81B96BAC5001310DE /* SearchFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C99FB71B96BAC5001310DE /* SearchFieldCell.swift */; };
 		97DFA8021B9026C8006578CF /* NewspaperIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DFA8011B9026C8006578CF /* NewspaperIssue.swift */; };
 		97DFA8041B903025006578CF /* NewspaperIssueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DFA8031B903025006578CF /* NewspaperIssueCell.swift */; };
 		FCD5A5ABB195D364ECFD6349 /* Pods_AmericanChronicle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E20440C205A3D3C0AA3C367 /* Pods_AmericanChronicle.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -115,6 +116,7 @@
 		97BDE1381B7703CA00A3E57F /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		97BDE13A1B771B4800A3E57F /* NewspaperPagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPagesViewController.swift; sourceTree = "<group>"; };
 		97BE67491B7B004B00761033 /* SearchFiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFiltersViewController.swift; sourceTree = "<group>"; };
+		97C99FB71B96BAC5001310DE /* SearchFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFieldCell.swift; sourceTree = "<group>"; };
 		97DFA8011B9026C8006578CF /* NewspaperIssue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperIssue.swift; sourceTree = "<group>"; };
 		97DFA8031B903025006578CF /* NewspaperIssueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperIssueCell.swift; sourceTree = "<group>"; };
 		9EB9942B4072BEAA793863BD /* Pods-AmericanChronicle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmericanChronicle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AmericanChronicle/Pods-AmericanChronicle.debug.xcconfig"; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				97415AE31B785D8400326239 /* CustomSegueNavigationController.swift */,
 				978D11521B955C39003B98C5 /* UIAppearance+AMC.h */,
 				978D11531B955C39003B98C5 /* UIAppearance+AMC.m */,
+				97C99FB71B96BAC5001310DE /* SearchFieldCell.swift */,
 			);
 			name = "App-Wide";
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 				97415AE41B785D8400326239 /* CustomSegueNavigationController.swift in Sources */,
 				9782361D1B7FFCF80056FDF6 /* YearSlider.swift in Sources */,
 				974BA3681B892D5200D7ACA2 /* City.swift in Sources */,
+				97C99FB81B96BAC5001310DE /* SearchFieldCell.swift in Sources */,
 				97BDE1171B76ED6B00A3E57F /* HomeViewController.swift in Sources */,
 				9721FDC91B93FF26006798B2 /* Style.swift in Sources */,
 				9782361B1B7FD1F00056FDF6 /* SearchFilters.swift in Sources */,
