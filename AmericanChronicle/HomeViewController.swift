@@ -9,7 +9,7 @@
 import UIKit
 
 
-class HomeViewController: UITableViewController, UITextFieldDelegate {
+class HomeViewController: UITableViewController, UITextFieldDelegate, UIViewControllerTransitioningDelegate {
 
     
     @IBOutlet weak var searchField: SearchField!
@@ -35,6 +35,8 @@ class HomeViewController: UITableViewController, UITextFieldDelegate {
             let sb = UIStoryboard(name: "Search", bundle: nil)
             println("sb: \(sb)")
             if let vc = sb.instantiateInitialViewController() as? UIViewController {
+                vc.modalPresentationStyle = .Custom
+                vc.transitioningDelegate = self
                 self.presentViewController(vc, animated: true, completion: nil)
             }
             return false
@@ -93,5 +95,52 @@ class HomeViewController: UITableViewController, UITextFieldDelegate {
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         return false
     }
+
+    // MARK: UIViewControllerTransitioningDelegate methods
+
+    func animationControllerForPresentedController(presented: UIViewController,
+                                                   presentingController presenting: UIViewController,
+                                                   sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+                                                    return TransitionController()
+    }
+
+    //func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    //}
+
+    //func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    //}
+
+    //func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    //}
+
+//    func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController!, sourceViewController source: UIViewController) -> UIPresentationController? {
+//        return PresentationController()
+//    }
+
 }
 
+class TransitionController: NSObject, UIViewControllerAnimatedTransitioning {
+
+    let duration = 0.1
+
+    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+
+        if let toView = transitionContext.viewForKey(UITransitionContextToViewKey) {
+            toView.alpha = 0
+            transitionContext.containerView().addSubview(toView)
+            UIView.animateWithDuration(duration, animations: {
+                toView.alpha = 1.0
+            }, completion: { _ in
+                transitionContext.completeTransition(true)
+            })
+        }
+    }
+
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+        return duration
+    }
+}
+
+class PresentationController: UIPresentationController {
+
+}
