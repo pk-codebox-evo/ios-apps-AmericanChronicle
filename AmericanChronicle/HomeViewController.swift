@@ -127,11 +127,8 @@ class TransitionController: NSObject, UIViewControllerAnimatedTransitioning {
     let duration = 0.1
 
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-
         let fromNVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as? UINavigationController
-        println("fromNVC?.topViewController: \(fromNVC?.topViewController)")
         let toNVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as? UINavigationController
-        println("toNVC?.topViewController: \(toNVC?.topViewController)")
         if let fromVC = fromNVC?.topViewController as? HomeViewController  {
             if let toView = transitionContext.viewForKey(UITransitionContextToViewKey) {
                 toView.alpha = 0

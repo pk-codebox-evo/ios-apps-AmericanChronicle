@@ -80,6 +80,18 @@ class SearchResultsRow: TableViewRow {
     }
 }
 
+extension String {
+    func rangeFromNSRange(nsRange : NSRange) -> Range<String.Index>? {
+        let from16 = advance(utf16.startIndex, nsRange.location, utf16.endIndex)
+        let to16 = advance(from16, nsRange.length, utf16.endIndex)
+        if let from = String.Index(from16, within: self),
+            let to = String.Index(to16, within: self) {
+                return from ..< to
+        }
+        return nil
+    }
+}
+
 class SearchViewController: UIViewController, UISearchBarDelegate {
 
 
@@ -99,7 +111,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         vc.searchFilters = filters ?? SearchFilters()
         vc.saveCallback = { [weak self] filters in
             self?.filters = filters
-            self?.performSearchWithResultsCount(0)
+            self?.performSearch()
             self?.dismissViewControllerAnimated(true, completion: nil)
         }
         vc.cancelCallback = { [weak self] in
@@ -140,6 +152,20 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         super.viewDidLoad()
         tableView.registerClass(TableHeaderView.self, forHeaderFooterViewReuseIdentifier: "Header")
         filtersButton.titleLabel?.font = UIFont(name: "AvenirNext-Regular", size: UIFont.buttonFontSize())
+        searchField.shouldChangeCharactersCallback = { original, range, replacement in
+            var text = original
+            if let range = original.rangeFromNSRange(range) {
+                text.replaceRange(range, with: replacement)
+            }
+
+            if count(text) > 0 {
+                self.performSearch()
+            } else {
+                self.showRecentSearches()
+            }
+
+            return true
+        }
     }
 
     override func viewWillDisappear(animated: Bool) {
@@ -149,7 +175,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
 
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         if count(searchText) > 0 {
-            performSearchWithResultsCount(count(searchText))
+            performSearch()
         } else {
             showRecentSearches()
         }
@@ -159,7 +185,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
 
     var searchDelayTimer: NSTimer?
 
-    func performSearchWithResultsCount(resultsCount: Int) {
+    func performSearch() {
 
         // If showing recent searches, then activate loading indicator.
         if activeData === recentSearches {
@@ -173,7 +199,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
 
         searchDelayTimer?.invalidate()
-        searchDelayTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "searchDelayTimerFired:", userInfo: ["resultsCount": resultsCount], repeats: false)
+        searchDelayTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "searchDelayTimerFired:", userInfo: nil, repeats: false)
     }
 
     func searchDelayTimerFired(timer: NSTimer) {
@@ -242,7 +268,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if activeData === recentSearches {
             searchField.text = activeData?.sections[indexPath.section].rows[indexPath.row].cellText ?? ""
-            performSearchWithResultsCount(count(searchField.text))
+            performSearch()
         }
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }

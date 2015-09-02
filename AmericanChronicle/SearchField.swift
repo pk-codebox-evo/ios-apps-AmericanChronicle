@@ -12,6 +12,8 @@ class SearchField: UIView, UITextFieldDelegate {
 
     let textField: UITextField
     var shouldBeginEditingCallback: ((Void) -> Bool)?
+    var shouldChangeCharactersCallback: ((text: String, range: NSRange, replacementString: String) -> Bool)?
+
 
     var text: String {
         get {
@@ -84,9 +86,9 @@ class SearchField: UIView, UITextFieldDelegate {
 //
 //    }
 //
-//    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-//
-//    }
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        return shouldChangeCharactersCallback?(text: textField.text, range: range, replacementString: string) ?? true
+    }
 //
 //    func textFieldShouldClear(textField: UITextField) -> Bool {
 //
