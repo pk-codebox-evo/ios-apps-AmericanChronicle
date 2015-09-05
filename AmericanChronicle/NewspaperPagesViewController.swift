@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, NewspaperPagesPreviewActionHandler {
+class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, NewspaperPagesPreviewActionHandler, UIViewControllerTransitioningDelegate {
 
     @IBOutlet weak var previewCollectionView: UICollectionView!
     @IBOutlet weak var stripCollectionView: UICollectionView!
@@ -21,6 +21,26 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
             }
             println("\(__FILE__) | \(__FUNCTION__) | line \(__LINE__)")
             previewDelegate.issue = issue
+        }
+    }
+
+    var focusTransition: PageFocusTransition?
+
+    @IBAction func pinchRecognized(sender: UIPinchGestureRecognizer) {
+        if let transition = focusTransition {
+            transition.progress = sender.scale - 1.0
+        } else {
+            focusTransition = PageFocusTransition()
+        let sb = UIStoryboard(name: "Page", bundle: nil)
+            if let vc = sb.instantiateInitialViewController() as? PageViewController {
+                vc.imageName = issue?.imageName
+                vc.transitioningDelegate = self
+                vc.modalPresentationStyle = .Custom
+                vc.doneCallback = { [weak self] in
+                    self?.dismissViewControllerAnimated(true, completion: nil)
+                }
+                presentViewController(vc, animated: true, completion: nil)
+            }
         }
     }
 
@@ -60,5 +80,181 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
             }
         }
     }
+
+    // MARK: UIViewControllerTransitioningDelegate methods
+
+//    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        return PageFocusTransition()
+//    }
+//    class PageFocusTransition: NSObject, UIViewControllerAnimatedTransitioning {
+//        let duration = 1.0
+//        func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+//            let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)
+//            let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
+//            if let pagesViewController = fromVC as? NewspaperPagesViewController,
+//                   pageViewController = toVC as? PageViewController {
+//
+//                var presentingVC: UIViewController? = pagesViewController
+//                while !(presentingVC?.definesPresentationContext ?? false) {
+//                    presentingVC = presentingVC?.parentViewController
+//                }
+//
+//                println("presentingVC: \(presentingVC)")
+//
+//                let fullScreenImage = imageOfWindow()
+//
+//                fullScreenImageView.image = fullScreenImage
+//                fullScreenImageView.frame = CGRect(x: 0, y: 0, width: fullScreenImage.size.width, height: fullScreenImage.size.height)
+//
+//                navBarImageView.image = fullScreenImage
+//                navBarImageView.frame = CGRect(x: 0, y: 0, width: fullScreenImage.size.width, height: 64.0)
+//
+//                pageViewController.prepareForAppearanceAnimation()
+//
+//                presentingVC?.view.addSubview(fullScreenImageView)
+//
+//                presentingVC?.view.addSubview(navBarCoverView)
+//
+//                presentingVC?.view.addSubview(pageViewController.view)
+//
+//                presentingVC?.view.addSubview(navBarImageView)
+//
+//                pageViewController.presentingView = fullScreenImageView
+//                pageViewController.presentingViewNavBar = navBarImageView
+//
+//                UIView.animateWithDuration(2.0, animations: {
+//                    pageViewController.updateViewsInsideAppearanceAnimation()
+//                    self.navBarImageView.frame = CGRectOffset(self.navBarImageView.frame, 0, -64.0)
+//                    }, completion: { _ in
+//                        self.navBarImageView.removeFromSuperview()
+//                        self.navBarCoverView.removeFromSuperview()
+//                        self.fullScreenImageView.removeFromSuperview()
+//                        pagesViewController.presentViewController(pageViewController, animated: false, completion: nil)
+//                })
+//            }
+//        }
+//
+//        func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+//            return duration
+//        }
+//    }
+
+
+    //func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    //}
+
+    func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return focusTransition
+    }
+
+    class PageFocusTransition: NSObject, UIViewControllerInteractiveTransitioning {
+
+        var context: UIViewControllerContextTransitioning?
+        var progress: CGFloat = 0 {
+            didSet {
+                println("progress: \(progress)")
+                // update progress
+//                pageViewController.updateViewsInsideAppearanceAnimation()
+                let offset = -64.0 * progress
+                var navBarFrame = self.navBarImageView.frame
+                navBarFrame.origin.y = offset
+                self.navBarImageView.frame = navBarFrame
+                context?.updateInteractiveTransition(progress)
+                if progress >= 1.0 {
+                    println("\(__FILE__) | \(__FUNCTION__) | line \(__LINE__)")
+                    context?.completeTransition(true)
+                }
+            }
+        }
+
+        private func imageOfWindow() -> UIImage {
+            let window = UIApplication.sharedApplication().keyWindow!
+            UIGraphicsBeginImageContext(window.bounds.size)
+            window.drawViewHierarchyInRect(window.bounds, afterScreenUpdates: false)
+            let fullScreenImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return fullScreenImage
+        }
+
+        var navBarCoverView: UIView = {
+            let navBarCoverView = UIView()
+            navBarCoverView.backgroundColor = UIColor.blackColor()
+            return navBarCoverView
+            }()
+
+        var fullScreenImageView: UIImageView = {
+            return UIImageView()
+            }()
+
+        var navBarImageView: UIImageView = {
+            let navBarImageView = UIImageView()
+            navBarImageView.clipsToBounds = true
+            navBarImageView.contentMode = .Top
+            return navBarImageView
+            }()
+
+        func startInteractiveTransition(transitionContext: UIViewControllerContextTransitioning) {
+            context = transitionContext
+            let fromVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey)
+            let toVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey)
+
+            if let pagesViewController = fromVC as? NewspaperPagesViewController,
+                   pageViewController = toVC as? PageViewController {
+
+                    var presentingVC: UIViewController? = pagesViewController
+
+                    while !(presentingVC?.definesPresentationContext ?? false) {
+                        presentingVC = presentingVC?.parentViewController
+                    }
+
+                    let fullScreenImage = imageOfWindow()
+
+//                    fullScreenImageView.image = fullScreenImage
+                    fullScreenImageView.frame = CGRect(x: 0, y: 0, width: fullScreenImage.size.width, height: fullScreenImage.size.height)
+                    fullScreenImageView.backgroundColor = UIColor.greenColor()
+
+                    navBarImageView.image = fullScreenImage
+                    navBarImageView.frame = CGRect(x: 0, y: 0, width: fullScreenImage.size.width, height: 64.0)
+
+//                    pageViewController.prepareForAppearanceAnimation()
+
+                    presentingVC?.view.addSubview(fullScreenImageView)
+//
+//                    presentingVC?.view.addSubview(navBarCoverView)
+//
+//                    presentingVC?.view.addSubview(pageViewController.view)
+//
+//                    presentingVC?.view.addSubview(navBarImageView)
+//
+//                    pageViewController.presentingView = fullScreenImageView
+//                    pageViewController.presentingViewNavBar = navBarImageView
+
+//                    UIView.animateWithDuration(2.0, animations: {
+//                        pageViewController.updateViewsInsideAppearanceAnimation()
+//                        self.navBarImageView.frame = CGRectOffset(self.navBarImageView.frame, 0, -64.0)
+//                        }, completion: { _ in
+//                            self.navBarImageView.removeFromSuperview()
+//                            self.navBarCoverView.removeFromSuperview()
+//                            self.fullScreenImageView.removeFromSuperview()
+//                            pagesViewController.presentViewController(pageViewController, animated: false, completion: nil)
+//                    })
+            }
+
+        }
+
+//        func completionSpeed() -> CGFloat {
+//
+//        }
+//        func completionCurve() -> UIViewAnimationCurve {
+//
+//        }
+    }
+
+    //func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    //}
+
+    //func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController!, sourceViewController source: UIViewController) -> UIPresentationController? {
+    //}
+
 }
 

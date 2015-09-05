@@ -50,6 +50,7 @@
 		97BDE13B1B771B4800A3E57F /* NewspaperPagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE13A1B771B4800A3E57F /* NewspaperPagesViewController.swift */; };
 		97BE674A1B7B004B00761033 /* SearchFiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BE67491B7B004B00761033 /* SearchFiltersViewController.swift */; };
 		97C99FB81B96BAC5001310DE /* SearchFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C99FB71B96BAC5001310DE /* SearchFieldCell.swift */; };
+		97D3F84A1B994B5E008B8D81 /* Page.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97D3F8491B994B5E008B8D81 /* Page.storyboard */; };
 		97DFA8021B9026C8006578CF /* NewspaperIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DFA8011B9026C8006578CF /* NewspaperIssue.swift */; };
 		97DFA8041B903025006578CF /* NewspaperIssueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DFA8031B903025006578CF /* NewspaperIssueCell.swift */; };
 		FCD5A5ABB195D364ECFD6349 /* Pods_AmericanChronicle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E20440C205A3D3C0AA3C367 /* Pods_AmericanChronicle.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -117,6 +118,7 @@
 		97BDE13A1B771B4800A3E57F /* NewspaperPagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPagesViewController.swift; sourceTree = "<group>"; };
 		97BE67491B7B004B00761033 /* SearchFiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFiltersViewController.swift; sourceTree = "<group>"; };
 		97C99FB71B96BAC5001310DE /* SearchFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFieldCell.swift; sourceTree = "<group>"; };
+		97D3F8491B994B5E008B8D81 /* Page.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Page.storyboard; sourceTree = "<group>"; };
 		97DFA8011B9026C8006578CF /* NewspaperIssue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperIssue.swift; sourceTree = "<group>"; };
 		97DFA8031B903025006578CF /* NewspaperIssueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperIssueCell.swift; sourceTree = "<group>"; };
 		9EB9942B4072BEAA793863BD /* Pods-AmericanChronicle.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmericanChronicle.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AmericanChronicle/Pods-AmericanChronicle.debug.xcconfig"; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 			children = (
 				978236181B7FD0D00056FDF6 /* ChroniclingAmericaArchive.swift */,
 				9721FDC81B93FF26006798B2 /* Style.swift */,
+				97D3F8491B994B5E008B8D81 /* Page.storyboard */,
 				97BDE11F1B76ED6B00A3E57F /* LaunchScreen.xib */,
 				97BDE11A1B76ED6B00A3E57F /* Main.storyboard */,
 				9764976C1B7DA0270035A388 /* Month.swift */,
@@ -393,6 +396,7 @@
 				979082711B8135150056CA9C /* LocationSearchViewController.xib in Resources */,
 				97BDE11C1B76ED6B00A3E57F /* Main.storyboard in Resources */,
 				97A7D9AE1B866E7E00DDBF59 /* SearchFiltersViewController.xib in Resources */,
+				97D3F84A1B994B5E008B8D81 /* Page.storyboard in Resources */,
 				977F0A591B7FC3E700C4B0FC /* DatePickerViewController.xib in Resources */,
 				978D11561B956EAA003B98C5 /* Search.storyboard in Resources */,
 				97BDE1211B76ED6B00A3E57F /* LaunchScreen.xib in Resources */,

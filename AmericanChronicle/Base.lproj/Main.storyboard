@@ -86,117 +86,6 @@
             </objects>
             <point key="canvasLocation" x="406" y="64"/>
         </scene>
-        <!--Page View Controller-->
-        <scene sceneID="mX8-xO-i3Z">
-            <objects>
-                <viewController id="1qS-Yc-KkM" customClass="PageViewController" customModule="AmericanChronicle" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="SYt-Qe-zeW"/>
-                        <viewControllerLayoutGuide type="bottom" id="srk-IN-26A"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="dnw-1K-uLz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" maximumZoomScale="5" translatesAutoresizingMaskIntoConstraints="NO" id="IdJ-12-A3u">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="o3E-0a-kJu">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                                        <color key="backgroundColor" red="0.15686274510000001" green="0.1450980392" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="414" placeholder="YES" id="Ugv-hB-0pc"/>
-                                            <constraint firstAttribute="height" constant="736" placeholder="YES" id="nai-R6-Kn1"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" red="0.15686274510000001" green="0.1450980392" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="o3E-0a-kJu" secondAttribute="trailing" id="2Pq-Zt-HrT"/>
-                                    <constraint firstAttribute="bottom" secondItem="o3E-0a-kJu" secondAttribute="bottom" id="a8f-gE-Pu6"/>
-                                    <constraint firstItem="o3E-0a-kJu" firstAttribute="top" secondItem="IdJ-12-A3u" secondAttribute="top" id="c7I-ib-f9P"/>
-                                    <constraint firstItem="o3E-0a-kJu" firstAttribute="leading" secondItem="IdJ-12-A3u" secondAttribute="leading" id="sX7-QU-vPe"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="delegate" destination="1qS-Yc-KkM" id="KB4-Qa-lgF"/>
-                                </connections>
-                            </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fMa-4a-P3K" userLabel="bottomBarBG">
-                                <rect key="frame" x="0.0" y="672" width="414" height="64"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xQP-xf-5Pp">
-                                        <rect key="frame" x="360" y="10" width="44" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="HWv-xZ-Gfo"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <state key="normal" title="Share">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="shareButtonTapped:" destination="1qS-Yc-KkM" eventType="touchUpInside" id="i6l-i5-IYw"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pL9-rV-mb4">
-                                        <rect key="frame" x="10" y="10" width="44" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="6Ke-fn-joc"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <state key="normal" title="Done">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="doneButtonTapped:" destination="1qS-Yc-KkM" eventType="touchUpInside" id="I9g-N3-XQQ"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.15686274510000001" green="0.1450980392" blue="0.14901960780000001" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="xQP-xf-5Pp" firstAttribute="top" secondItem="fMa-4a-P3K" secondAttribute="top" constant="10" id="DEF-kM-vE9"/>
-                                    <constraint firstAttribute="bottom" secondItem="xQP-xf-5Pp" secondAttribute="bottom" constant="10" id="HKr-9F-2tD"/>
-                                    <constraint firstItem="pL9-rV-mb4" firstAttribute="top" secondItem="fMa-4a-P3K" secondAttribute="top" constant="10" id="Mwh-Bs-GOI"/>
-                                    <constraint firstAttribute="trailing" secondItem="xQP-xf-5Pp" secondAttribute="trailing" constant="10" id="R2n-nn-dOg"/>
-                                    <constraint firstItem="pL9-rV-mb4" firstAttribute="leading" secondItem="fMa-4a-P3K" secondAttribute="leading" constant="10" id="e59-6L-KBj"/>
-                                    <constraint firstAttribute="bottom" secondItem="pL9-rV-mb4" secondAttribute="bottom" constant="10" id="gv3-oy-4ZT"/>
-                                    <constraint firstAttribute="height" constant="64" id="yVc-NU-LEa"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <gestureRecognizers/>
-                        <constraints>
-                            <constraint firstItem="IdJ-12-A3u" firstAttribute="top" secondItem="dnw-1K-uLz" secondAttribute="top" id="MaZ-Z7-rux"/>
-                            <constraint firstAttribute="bottom" secondItem="IdJ-12-A3u" secondAttribute="bottom" id="ZAU-4g-OOU"/>
-                            <constraint firstItem="fMa-4a-P3K" firstAttribute="leading" secondItem="dnw-1K-uLz" secondAttribute="leading" id="aYG-eW-uCo"/>
-                            <constraint firstAttribute="trailing" secondItem="fMa-4a-P3K" secondAttribute="trailing" id="eVR-r5-fVl"/>
-                            <constraint firstAttribute="trailing" secondItem="IdJ-12-A3u" secondAttribute="trailing" id="nef-d7-9Hw"/>
-                            <constraint firstAttribute="bottom" secondItem="fMa-4a-P3K" secondAttribute="bottom" id="tvR-cr-tMq"/>
-                            <constraint firstItem="IdJ-12-A3u" firstAttribute="leading" secondItem="dnw-1K-uLz" secondAttribute="leading" id="uZe-hR-j4E"/>
-                        </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="jAg-yM-ExX" appends="YES" id="XAe-df-M29"/>
-                        </connections>
-                    </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
-                    <connections>
-                        <outlet property="bottomBarBG" destination="fMa-4a-P3K" id="Bhw-zG-9gY"/>
-                        <outlet property="doneButton" destination="pL9-rV-mb4" id="u4t-84-3wC"/>
-                        <outlet property="imageView" destination="o3E-0a-kJu" id="1iQ-Br-oUB"/>
-                        <outlet property="scrollView" destination="IdJ-12-A3u" id="qTX-cH-xo4"/>
-                        <outlet property="shareButton" destination="xQP-xf-5Pp" id="r8e-CU-rvI"/>
-                        <outlet property="tapGesture" destination="jAg-yM-ExX" id="ovj-9B-8cA"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0Re-dD-PJv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="jAg-yM-ExX">
-                    <connections>
-                        <action selector="tapRecognized:" destination="1qS-Yc-KkM" id="mlu-J6-lsN"/>
-                    </connections>
-                </tapGestureRecognizer>
-            </objects>
-            <point key="canvasLocation" x="2089" y="64"/>
-        </scene>
         <!--Newspaper Issues-->
         <scene sceneID="Cn3-H9-jdl">
             <objects>
@@ -297,9 +186,6 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <connections>
-                                            <segue destination="1qS-Yc-KkM" kind="custom" identifier="FocusSegue" customClass="NewspaperPageFocusSegue" customModule="AmericanChronicle" customModuleProvider="target" id="8Os-xR-Ge2"/>
-                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -361,6 +247,9 @@
                                 <exclude reference="DWg-AQ-p3l"/>
                             </mask>
                         </variation>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Rk4-LE-wC7" appends="YES" id="SI5-F8-8YK"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="dataSource" destination="JI3-KR-OyJ" id="KxA-Os-Twp"/>
@@ -370,6 +259,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uni-5y-FKK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pinchGestureRecognizer id="Rk4-LE-wC7">
+                    <connections>
+                        <action selector="pinchRecognized:" destination="t9g-8O-U25" id="lXC-JP-7aP"/>
+                    </connections>
+                </pinchGestureRecognizer>
                 <customObject id="ay3-A8-6dN" customClass="NewspaperPagesPreviewDelegate" customModule="AmericanChronicle" customModuleProvider="target"/>
                 <customObject id="JI3-KR-OyJ" customClass="NewspaperPagesDataSource" customModule="AmericanChronicle" customModuleProvider="target"/>
             </objects>

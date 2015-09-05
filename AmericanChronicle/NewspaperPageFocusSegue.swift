@@ -47,43 +47,43 @@ class NewspaperPageFocusSegue: UIStoryboardSegue {
             pagesViewController.presentViewController(pageViewController, animated: true, completion: nil)
 
 
-//            var presentingVC: UIViewController? = pagesViewController
-//            while !(presentingVC?.definesPresentationContext ?? false) {
-//                presentingVC = presentingVC?.parentViewController
-//            }
-//
-//            println("presentingVC: \(presentingVC)")
-//
-//            let fullScreenImage = imageOfWindow()
-//
-//            fullScreenImageView.image = fullScreenImage
-//            fullScreenImageView.frame = CGRect(x: 0, y: 0, width: fullScreenImage.size.width, height: fullScreenImage.size.height)
-//
-//            navBarImageView.image = fullScreenImage
-//            navBarImageView.frame = CGRect(x: 0, y: 0, width: fullScreenImage.size.width, height: 64.0)
-//
-//            pageViewController.prepareForAppearanceAnimation()
-//
-//            presentingVC?.view.addSubview(fullScreenImageView)
-//
-//            presentingVC?.view.addSubview(navBarCoverView)
-//
-//            presentingVC?.view.addSubview(pageViewController.view)
-//
-//            presentingVC?.view.addSubview(navBarImageView)
-//
-//            pageViewController.presentingView = fullScreenImageView
-//            pageViewController.presentingViewNavBar = navBarImageView
-//
-//            UIView.animateWithDuration(2.0, animations: {
-//                pageViewController.updateViewsInsideAppearanceAnimation()
-//                self.navBarImageView.frame = CGRectOffset(self.navBarImageView.frame, 0, -64.0)
-//            }, completion: { _ in
-//                self.navBarImageView.removeFromSuperview()
-//                self.navBarCoverView.removeFromSuperview()
-//                self.fullScreenImageView.removeFromSuperview()
-//                pagesViewController.presentViewController(pageViewController, animated: false, completion: nil)
-//            })
+            var presentingVC: UIViewController? = pagesViewController
+            while !(presentingVC?.definesPresentationContext ?? false) {
+                presentingVC = presentingVC?.parentViewController
+            }
+
+            println("presentingVC: \(presentingVC)")
+
+            let fullScreenImage = imageOfWindow()
+
+            fullScreenImageView.image = fullScreenImage
+            fullScreenImageView.frame = CGRect(x: 0, y: 0, width: fullScreenImage.size.width, height: fullScreenImage.size.height)
+
+            navBarImageView.image = fullScreenImage
+            navBarImageView.frame = CGRect(x: 0, y: 0, width: fullScreenImage.size.width, height: 64.0)
+
+            pageViewController.prepareForAppearanceAnimation()
+
+            presentingVC?.view.addSubview(fullScreenImageView)
+
+            presentingVC?.view.addSubview(navBarCoverView)
+
+            presentingVC?.view.addSubview(pageViewController.view)
+
+            presentingVC?.view.addSubview(navBarImageView)
+
+            pageViewController.presentingView = fullScreenImageView
+            pageViewController.presentingViewNavBar = navBarImageView
+
+            UIView.animateWithDuration(2.0, animations: {
+                pageViewController.updateViewsInsideAppearanceAnimation()
+                self.navBarImageView.frame = CGRectOffset(self.navBarImageView.frame, 0, -64.0)
+            }, completion: { _ in
+                self.navBarImageView.removeFromSuperview()
+                self.navBarCoverView.removeFromSuperview()
+                self.fullScreenImageView.removeFromSuperview()
+                pagesViewController.presentViewController(pageViewController, animated: false, completion: nil)
+            })
         }
     }
 }
