@@ -34,4 +34,10 @@ class NewspaperPagesPreviewDelegate: NSObject, UICollectionViewDelegate, UIColle
             }
         }
     }
+
+    // MARK: UICollectionViewDelegate methods
+
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        println("\(self.dynamicType) | \(__FUNCTION__) | line \(__LINE__)")
+    }
 }
