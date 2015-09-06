@@ -71,6 +71,13 @@ class TransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
 
 class InteractivePageFocusTransition: UIPercentDrivenInteractiveTransition, UIViewControllerAnimatedTransitioning {
 
+    override func updateInteractiveTransition(percentComplete: CGFloat) {
+        super.updateInteractiveTransition(percentComplete)
+        if percentComplete >= 1.0 {
+            finishInteractiveTransition()
+        }
+    }
+
     private func imageOfWindow() -> UIImage {
         let window = UIApplication.sharedApplication().keyWindow!
         UIGraphicsBeginImageContext(window.bounds.size)
@@ -183,9 +190,12 @@ class InteractivePageFocusTransition: UIPercentDrivenInteractiveTransition, UIVi
             self.navBarCoverView.removeFromSuperview()
             self.navBarImageView.removeFromSuperview()
             stripCoverView.removeFromSuperview()
+            if let toView = toView {
+                transitionContext.containerView().addSubview(toView)
+            }
             // MARK: Testing --->
-            transitionContext.completeTransition(false)
-//            transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+//            transitionContext.completeTransition(false)
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
             // <--- Testing
         })
     }
