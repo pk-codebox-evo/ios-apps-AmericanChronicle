@@ -44,6 +44,10 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
         }
     }
 
+    override func prefersStatusBarHidden() -> Bool {
+        return chromeHidden
+    }
+
     var chromeHidden = false
 
     func showStrip() {
@@ -60,12 +64,14 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
     }
 
     func hideStrip() {
-        chromeHidden = true
+
         stripCollectionViewBottom.constant = -stripCollectionView.frame.size.height
 
         UIView.animateWithDuration(0.3, animations: {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
             self.view.layoutIfNeeded()
+            self.chromeHidden = true
+            self.setNeedsStatusBarAppearanceUpdate()
         }, completion: { finished in
             println("hideStrip finished: \(finished)")
         })
