@@ -236,8 +236,8 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
         let sb = UIStoryboard(name: "Page", bundle: nil)
         if let vc = sb.instantiateInitialViewController() as? PageViewController {
             vc.imageName = issue?.imageName
-            vc.transitioningDelegate = pageFocusTransitioningDelegate
-            vc.modalTransitionStyle = UIModalTransitionStyle(rawValue: UIModalPresentationStyle.Custom.rawValue)!
+//            vc.transitioningDelegate = pageFocusTransitioningDelegate
+//            vc.modalTransitionStyle = UIModalTransitionStyle(rawValue: UIModalPresentationStyle.Custom.rawValue)!
             vc.doneCallback = { [weak self] in
                 self?.dismissViewControllerAnimated(true, completion: nil)
             }
@@ -266,12 +266,27 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
         }
     }
 
+    func showStrip() {
+
+    }
+
+    func hideStrip() {
+        
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         previewDelegate.issue = issue
         previewDelegate.actionHandler = self
 
         dataSource.issue = issue
+        dataSource.didZoomCallback = { [weak self] scrollView in
+            if scrollView.zoomScale <= 1.0 {
+                self?.showStrip()
+            } else {
+                self?.hideStrip()
+            }
+        }
         stripCollectionView.selectItemAtIndexPath(NSIndexPath(forItem: 0, inSection: 0), animated: false, scrollPosition: .Left)
     }
 

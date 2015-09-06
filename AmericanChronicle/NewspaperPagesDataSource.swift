@@ -11,6 +11,7 @@ import UIKit
 class NewspaperPagesDataSource: NSObject, UICollectionViewDataSource {
 
     var issue: NewspaperIssue?
+    var didZoomCallback: ((UIScrollView) -> ())?
 
     // MARK: UICollectionViewDataSource methods
 
@@ -21,6 +22,9 @@ class NewspaperPagesDataSource: NSObject, UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! NewspaperPageCell
         cell.image = UIImage(named: issue?.pages[indexPath.row].imageName ?? "")
+        cell.didZoomCallback = { [weak self] scrollView in
+            self?.didZoomCallback?(scrollView)
+        }
         println("cell.image: \(cell.image)")
         return cell
     }

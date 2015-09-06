@@ -8,6 +8,12 @@
 
 import UIKit
 
+extension UIStoryboard {
+    class func instantiateInitialViewControllerFor<T: UIViewController>(storyboardName: String) -> T? {
+        return UIStoryboard(name: storyboardName, bundle: nil).instantiateInitialViewController() as? T
+    }
+}
+
 class HomeViewController: UITableViewController, UITextFieldDelegate, UIViewControllerTransitioningDelegate {
 
     
@@ -41,14 +47,6 @@ class HomeViewController: UITableViewController, UITextFieldDelegate, UIViewCont
                 self.presentViewController(nvc, animated: true, completion: nil)
             }
             return false
-        }
-    }
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showDetail" {
-            if let indexPath = self.tableView.indexPathForSelectedRow(), let paper = newspaperAtIndexPath(indexPath) {
-                (segue.destinationViewController as! NewspaperIssuesViewController).newspaper = paper
-            }
         }
     }
 
@@ -91,6 +89,14 @@ class HomeViewController: UITableViewController, UITextFieldDelegate, UIViewCont
 
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40.0
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let paper = newspaperAtIndexPath(indexPath),
+               vc = UIStoryboard.instantiateInitialViewControllerFor("Browse") as? NewspaperIssuesViewController {
+            vc.newspaper = paper
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
