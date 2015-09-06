@@ -28,8 +28,6 @@ class NewspaperPageCell: UICollectionViewCell, UIScrollViewDelegate {
         return v
     }()
 
-    var didZoomCallback: ((UIScrollView) -> ())?
-
     override func awakeFromNib() {
         super.awakeFromNib()
         scrollView.frame = bounds
@@ -62,8 +60,6 @@ class NewspaperPageCell: UICollectionViewCell, UIScrollViewDelegate {
     }
 
     func scrollViewDidZoom(scrollView: UIScrollView) { // any zoom scale changes
-        println("scrollView.zoomScale: \(scrollView.zoomScale)")
-        didZoomCallback?(scrollView)
     }
 
     // called on start of dragging (may require some time and or distance to move)

@@ -33,18 +33,19 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
     }
 
     @IBAction func pageTapRecognized(sender: UITapGestureRecognizer) {
-        println("pageTapRecongnized - stripCollectionViewBottom.constant: \(stripCollectionViewBottom.constant)")
-        if stripCollectionViewBottom.constant == 0 {
-            hideStrip()
-        } else {
+        if chromeHidden {
             showStrip()
+        } else {
+            hideStrip()
         }
     }
 
+    var chromeHidden = false
+
     func showStrip() {
+        chromeHidden = false
         stripCollectionViewBottom.constant = 0
         UIView.animateWithDuration(0.3, animations: {
-            println("showStrip animating")
             self.view.layoutIfNeeded()
         }, completion: { finished in
             println("showStrip finished: \(finished)")
@@ -52,9 +53,11 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
     }
 
     func hideStrip() {
+        chromeHidden = true
         stripCollectionViewBottom.constant = -stripCollectionView.frame.size.height
+        self.previewCollectionView.collectionViewLayout.invalidateLayout()
         UIView.animateWithDuration(0.3, animations: {
-            println("hideStrip animating")
+            self.previewCollectionView.collectionViewLayout = self.previewCollectionView.collectionViewLayout
             self.view.layoutIfNeeded()
         }, completion: { finished in
             println("hideStrip finished: \(finished)")
@@ -63,19 +66,19 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        navigationController?.hidesBarsOnTap = true
+        navigationController?.barHideOnTapGestureRecognizer.addTarget(self, action: "pageTapRecognized:")
+
         previewDelegate.issue = issue
         previewDelegate.actionHandler = self
 
         dataSource.issue = issue
-        dataSource.didZoomCallback = { [weak self] scrollView in
-//            println("scrollView.zoomScale: \(scrollView.zoomScale)")
-//            if scrollView.zoomScale <= 1.0 {
-//                self?.showStrip()
-//            } else {
-//                self?.hideStrip()
-//            }
-        }
         stripCollectionView.selectItemAtIndexPath(NSIndexPath(forItem: 0, inSection: 0), animated: false, scrollPosition: .Left)
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
     }
 
 

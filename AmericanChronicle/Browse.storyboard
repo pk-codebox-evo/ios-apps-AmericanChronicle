@@ -90,18 +90,18 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LTh-Ks-uS0" userLabel="previewCollectionView">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.1450980392" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="20" minimumInteritemSpacing="20" id="SD8-q7-y5F">
-                                    <size key="itemSize" width="394" height="542"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="SD8-q7-y5F">
+                                    <size key="itemSize" width="414" height="626"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="110"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="110"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="qh3-gE-DgG" customClass="NewspaperPageCell" customModule="AmericanChronicle" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="394" height="542"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="626"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
@@ -160,9 +160,6 @@
                             <constraint firstAttribute="bottom" secondItem="LTh-Ks-uS0" secondAttribute="bottom" id="ncb-Vf-I57" userLabel="previewCollectionViewBottom"/>
                             <constraint firstItem="LTh-Ks-uS0" firstAttribute="top" secondItem="k2O-ds-0FC" secondAttribute="top" id="yd5-RT-wxd" userLabel="previewCollectionViewTop"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="p8A-LG-gBe" appends="YES" id="O7g-zc-DiF"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="dataSource" destination="k07-2D-NwA" id="Z3T-cj-pnz"/>
@@ -173,11 +170,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xql-7m-MuD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="p8A-LG-gBe">
-                    <connections>
-                        <action selector="pageTapRecognized:" destination="DRN-BS-auP" id="aRp-yN-BbK"/>
-                    </connections>
-                </tapGestureRecognizer>
                 <customObject id="FsR-0J-dzs" customClass="NewspaperPagesPreviewDelegate" customModule="AmericanChronicle" customModuleProvider="target"/>
                 <customObject id="k07-2D-NwA" customClass="NewspaperPagesDataSource" customModule="AmericanChronicle" customModuleProvider="target"/>
             </objects>

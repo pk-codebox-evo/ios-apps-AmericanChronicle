@@ -18,10 +18,21 @@ class NewspaperPagesPreviewDelegate: NSObject, UICollectionViewDelegate, UIColle
     var issue: NewspaperIssue?
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let width = (collectionView.frame.size.width - 20)
-        let visibleHeight = collectionView.frame.size.height - collectionView.contentInset.top
-        let height = (visibleHeight - 20)
-        return CGSize(width: width, height: height)
+        var size = CGSizeZero
+        if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
+            let width = collectionView.frame.size.width - (layout.sectionInset.left + layout.sectionInset.right)
+            println("collectionView.frame: \(collectionView.frame)")
+            println("collectionView.contentInset: top = \(collectionView.contentInset.top), right = \(collectionView.contentInset.right), bottom = \(collectionView.contentInset.bottom), left = \(collectionView.contentInset.left)")
+            println("collectionView.contentSize: \(collectionView.contentSize)")
+            println("layout.sectionInset: top = \(layout.sectionInset.top), right = \(layout.sectionInset.right), bottom = \(layout.sectionInset.bottom), left = \(layout.sectionInset.left)")
+            println("layout.minimumInteritemSpacing: \(layout.minimumInteritemSpacing)")
+            println("layout.minimumLineSpacing: \(layout.minimumLineSpacing)")
+
+            let height = collectionView.frame.size.height - (layout.sectionInset.top + layout.sectionInset.bottom + collectionView.contentInset.top + collectionView.contentInset.bottom)
+            size = CGSize(width: width, height: height)
+        }
+        println("size: \(size)")
+        return size
     }
 
     // MARK: UIScrollViewDelegate methods
@@ -33,11 +44,5 @@ class NewspaperPagesPreviewDelegate: NSObject, UICollectionViewDelegate, UIColle
                 actionHandler?.didScrollToPreviewAtIndexPath(indexPath)
             }
         }
-    }
-
-    // MARK: UICollectionViewDelegate methods
-
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        println("\(self.dynamicType) | \(__FUNCTION__) | line \(__LINE__)")
     }
 }
