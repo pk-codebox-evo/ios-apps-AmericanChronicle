@@ -15,6 +15,10 @@ extension UIView {
     }
 }
 
+class CustomLayout: UICollectionViewFlowLayout {
+
+}
+
 class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, NewspaperPagesPreviewActionHandler {
 
     @IBOutlet weak var previewCollectionView: UICollectionView!
@@ -45,8 +49,11 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
     func showStrip() {
         chromeHidden = false
         stripCollectionViewBottom.constant = 0
+
         UIView.animateWithDuration(0.3, animations: {
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
             self.view.layoutIfNeeded()
+
         }, completion: { finished in
             println("showStrip finished: \(finished)")
         })
@@ -55,9 +62,9 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
     func hideStrip() {
         chromeHidden = true
         stripCollectionViewBottom.constant = -stripCollectionView.frame.size.height
-        self.previewCollectionView.collectionViewLayout.invalidateLayout()
+
         UIView.animateWithDuration(0.3, animations: {
-            self.previewCollectionView.collectionViewLayout = self.previewCollectionView.collectionViewLayout
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
             self.view.layoutIfNeeded()
         }, completion: { finished in
             println("hideStrip finished: \(finished)")
@@ -67,8 +74,10 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationController?.hidesBarsOnTap = true
-        navigationController?.barHideOnTapGestureRecognizer.addTarget(self, action: "pageTapRecognized:")
+        let tap = UITapGestureRecognizer(target: self, action: "pageTapRecognized:")
+        view.addGestureRecognizer(tap)
+//        navigationController?.hidesBarsOnTap = true
+//        navigationController?.barHideOnTapGestureRecognizer.addTarget(self, action: "pageTapRecognized:")
 
         previewDelegate.issue = issue
         previewDelegate.actionHandler = self

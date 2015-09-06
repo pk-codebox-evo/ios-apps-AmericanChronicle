@@ -31,6 +31,7 @@ class NewspaperPageCell: UICollectionViewCell, UIScrollViewDelegate {
     override func awakeFromNib() {
         super.awakeFromNib()
         scrollView.frame = bounds
+        scrollView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
         scrollView.delegate = self
         scrollView.minimumZoomScale = 1.0
         scrollView.maximumZoomScale = 5.0
@@ -38,21 +39,26 @@ class NewspaperPageCell: UICollectionViewCell, UIScrollViewDelegate {
 
         imageView.image = image
         imageView.frame = scrollView.bounds
+        imageView.autoresizingMask = UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight
         scrollView.addSubview(imageView)
     }
 
     override var selected: Bool {
         didSet {
-            imageView.layer.borderColor = selected ? selectedBorderColor.CGColor : unselectedBorderColor.CGColor
+//            imageView.layer.borderColor = selected ? selectedBorderColor.CGColor : unselectedBorderColor.CGColor
         }
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        println("frame: \(frame)")
-        scrollView.frame = bounds
-        imageView.frame = scrollView.bounds
-    }
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//        println("frame: \(frame)")
+//        println("scrollView.frame before: \(scrollView.frame)")
+//        println("scrollView.zoomScale: \(scrollView.zoomScale)")
+//        println("scrollView.zooming: \(scrollView.zooming)")
+//        scrollView.frame = bounds
+//        println("scrollView.frame after: \(scrollView.frame)")
+//        imageView.frame = scrollView.bounds
+//    }
 
     // MARK: UIScrollViewDelegate methods
 
