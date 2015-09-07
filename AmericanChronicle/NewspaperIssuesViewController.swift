@@ -60,8 +60,8 @@ class NewspaperIssuesViewController: UIViewController, UICollectionViewDelegate,
             return cell
         case Section.Thumbnail.rawValue:
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ThumbnailCell", forIndexPath: indexPath) as! NewspaperIssueCell
-            cell.title = newspaper?.issues[indexPath.row].description
-            cell.image = UIImage(named: newspaper?.issues[indexPath.row].imageName ?? "")
+//            cell.title = newspaper?.issues[indexPath.row].description
+//            cell.image = UIImage(named: newspaper?.issues[indexPath.row].imageName ?? "")
             return cell
         default:
             return UICollectionViewCell()
@@ -113,7 +113,7 @@ class NewspaperIssuesViewController: UIViewController, UICollectionViewDelegate,
                     vc.filters?.cities = [city]
                 }
         } else if let vc = segue.destinationViewController as? NewspaperPagesViewController,
-            let selectedPath = collectionView.indexPathsForSelectedItems().first as? NSIndexPath {
+            let selectedPath = collectionView.indexPathsForSelectedItems()?.first {
             vc.issue = newspaper?.issues[selectedPath.item]
         }
     }

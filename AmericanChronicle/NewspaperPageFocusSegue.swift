@@ -52,8 +52,6 @@ class NewspaperPageFocusSegue: UIStoryboardSegue {
                 presentingVC = presentingVC?.parentViewController
             }
 
-            println("presentingVC: \(presentingVC)")
-
             let fullScreenImage = imageOfWindow()
 
             fullScreenImageView.image = fullScreenImage

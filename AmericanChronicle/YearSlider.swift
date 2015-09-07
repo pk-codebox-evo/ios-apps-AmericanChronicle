@@ -51,8 +51,7 @@ public class YearSlider: UIControl {
 
     private func commonInit() {
         for subview in [titleLabel, minButton, midButton, maxButton, minMarker, midMarker, maxMarker, slider] {
-            subview.setTranslatesAutoresizingMaskIntoConstraints(false)
-            addSubview(subview)
+            addForAutolayout(subview)
         }
 
         slider.addTarget(self, action: "sliderValueDidChange:", forControlEvents: .ValueChanged)
@@ -72,7 +71,7 @@ public class YearSlider: UIControl {
         maxMarker.backgroundColor = UIColor.grayColor()
     }
 
-    public required init(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         super.init(coder: coder)
         commonInit()
     }

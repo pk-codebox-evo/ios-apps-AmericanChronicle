@@ -17,11 +17,9 @@ class YearSliderTests: XCTestCase {
     override func setUp() {
         super.setUp()
         subject = YearSlider()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
 
@@ -33,8 +31,8 @@ class YearSliderTests: XCTestCase {
         XCTAssertEqual(subject.minValue, 0)
     }
 
-    func testThat_after_init_maxValue_isEqualTo_0() {
-        XCTAssertEqual(subject.maxValue, 0)
+    func testThat_after_init_maxValue_isEqualTo_1() {
+        XCTAssertEqual(subject.maxValue, 1)
     }
 
     func testThat_after_settingValueGreaterThanMaxValue_value_isEqualTo_maxValue() {

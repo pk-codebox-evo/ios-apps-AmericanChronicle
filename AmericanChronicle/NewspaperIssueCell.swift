@@ -40,7 +40,7 @@ class NewspaperIssueCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         for subview in [imageView, titleLabel] {
-            subview.setTranslatesAutoresizingMaskIntoConstraints(false)
+            subview.translatesAutoresizingMaskIntoConstraints = false
             addSubview(subview)
         }
 

@@ -16,10 +16,10 @@ class CalendarViewDataSource: NSObject, FSCalendarDataSource {
     // MARK: FSCalendarDataSource methods
 
     func minimumDateForCalendar(calendar: FSCalendar) -> NSDate {
-        return ChroniclingAmericaArchive.earliestPossibleDate
+        return ChroniclingAmericaWebService.earliestPossibleDate
     }
 
     func maximumDateForCalendar(calendar: FSCalendar) -> NSDate {
-        return ChroniclingAmericaArchive.latestPossibleDate
+        return ChroniclingAmericaWebService.latestPossibleDate
     }
 }
