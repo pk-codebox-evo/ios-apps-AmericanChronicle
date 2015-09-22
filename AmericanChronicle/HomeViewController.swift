@@ -16,9 +16,9 @@ extension UIStoryboard {
 
 class HomeViewController: UITableViewController, UITextFieldDelegate, UIViewControllerTransitioningDelegate {
 
-    
     @IBOutlet weak var searchField: SearchField!
-    var statesByName = FakeData.statesByName()
+    var statesByName = [StateName: State]()//FakeData.statesByName()
+    let searchWireframe = SearchWireframe()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,18 +34,8 @@ class HomeViewController: UITableViewController, UITextFieldDelegate, UIViewCont
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerClass(TableHeaderView.self, forHeaderFooterViewReuseIdentifier: "Header")
-
-        searchField.shouldBeginEditingCallback = {
-            let sb = UIStoryboard(name: "Search", bundle: nil)
-            if let nvc = sb.instantiateInitialViewController() as? UINavigationController,
-               let vc = nvc.topViewController as? SearchViewController {
-                vc.cancelCallback = { [weak self] in
-                    self?.dismissViewControllerAnimated(true, completion: nil)
-                }
-                nvc.modalPresentationStyle = .Custom
-                nvc.transitioningDelegate = self
-                self.presentViewController(nvc, animated: true, completion: nil)
-            }
+        searchField.shouldBeginEditingCallback = { [weak self] in
+            self?.searchWireframe.presentSearchFromViewController(self)
             return false
         }
     }
@@ -70,7 +60,7 @@ class HomeViewController: UITableViewController, UITextFieldDelegate, UIViewCont
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) 
         if let paper = newspaperAtIndexPath(indexPath) {
             cell.textLabel?.font = UIFont(name: "AvenirNext-Regular", size: UIFont.systemFontSize())
             cell.textLabel?.textColor = UIColor.darkTextColor()
@@ -115,16 +105,6 @@ class HomeViewController: UITableViewController, UITextFieldDelegate, UIViewCont
         return TransitionController()
     }
 
-    //func interactionControllerForPresentation(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-    //}
-
-    //func interactionControllerForDismissal(animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-    //}
-
-//    func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController!, sourceViewController source: UIViewController) -> UIPresentationController? {
-//        return PresentationController()
-//    }
-
 }
 
 class TransitionController: NSObject, UIViewControllerAnimatedTransitioning {
@@ -132,43 +112,43 @@ class TransitionController: NSObject, UIViewControllerAnimatedTransitioning {
     let duration = 0.1
 
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        let fromNVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as? UINavigationController
-        let toNVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as? UINavigationController
-
-        if let fromVC = fromNVC?.topViewController as? HomeViewController  {
-            if let toView = transitionContext.viewForKey(UITransitionContextToViewKey) {
-                toView.alpha = 0
-                transitionContext.containerView().addSubview(toView)
-                UIView.animateWithDuration(duration, animations: {
-                    toView.alpha = 1.0
-                    }, completion: { _ in
-                        transitionContext.completeTransition(true)
-                })
-            }
-        } else if let fromVC = fromNVC?.topViewController as? NewspaperIssuesViewController  {
-            if let toView = transitionContext.viewForKey(UITransitionContextToViewKey) {
-                toView.alpha = 0
-                transitionContext.containerView().addSubview(toView)
-                UIView.animateWithDuration(duration, animations: {
-                    toView.alpha = 1.0
-                    }, completion: { _ in
-                        transitionContext.completeTransition(true)
-                })
-            }
-        } else {
-            if let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey) {
-                UIView.animateWithDuration(duration, animations: {
-                    fromView.alpha = 0
-                }, completion: { _ in
-                    fromView.removeFromSuperview()
-                    transitionContext.completeTransition(true)
-                })
-            }
-        }
+//        let fromNVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as? UINavigationController
+//        let toNVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as? UINavigationController
+//
+//        if let fromVC = fromNVC?.topViewController as? HomeViewController  {
+//            if let toView = transitionContext.viewForKey(UITransitionContextToViewKey) {
+//                toView.alpha = 0
+//                transitionContext.containerView().addSubview(toView)
+//                UIView.animateWithDuration(duration, animations: {
+//                    toView.alpha = 1.0
+//                    }, completion: { _ in
+//                        transitionContext.completeTransition(true)
+//                })
+//            }
+//        } else if let fromVC = fromNVC?.topViewController as? NewspaperIssuesViewController  {
+//            if let toView = transitionContext.viewForKey(UITransitionContextToViewKey) {
+//                toView.alpha = 0
+//                transitionContext.containerView().addSubview(toView)
+//                UIView.animateWithDuration(duration, animations: {
+//                    toView.alpha = 1.0
+//                    }, completion: { _ in
+//                        transitionContext.completeTransition(true)
+//                })
+//            }
+//        } else {
+//            if let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey) {
+//                UIView.animateWithDuration(duration, animations: {
+//                    fromView.alpha = 0
+//                }, completion: { _ in
+//                    fromView.removeFromSuperview()
+//                    transitionContext.completeTransition(true)
+//                })
+//            }
+//        }
 
     }
 
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning) -> NSTimeInterval {
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return duration
     }
 }

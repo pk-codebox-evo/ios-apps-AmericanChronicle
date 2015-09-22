@@ -12,7 +12,7 @@ class TableHeaderView: UITableViewHeaderFooterView {
     let label = UILabel()
     func commonInit() {
         addSubview(label)
-        label.setTranslatesAutoresizingMaskIntoConstraints(true)
+        label.translatesAutoresizingMaskIntoConstraints = true
         label.font = UIFont(name: "AvenirNext-Regular", size: UIFont.systemFontSize())
         label.snp_makeConstraints { make in
             make.leading.equalTo(10.0)
@@ -25,12 +25,12 @@ class TableHeaderView: UITableViewHeaderFooterView {
         commonInit()
     }
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
+//    override init(frame: CGRect) {
+//        super.init(frame: frame)
+//        commonInit()
+//    }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }

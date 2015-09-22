@@ -8,7 +8,6 @@
 
 import UIKit
 import FSCalendar
-import SwiftMoment
 
 @objc class DatePickerViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
 
@@ -20,14 +19,14 @@ import SwiftMoment
     private let latestPossibleDate: NSDate
 
     @IBAction func sliderValueDidChange(sender: YearSlider) {
-        setCalendarDate(year: sender.value)
+        setCalendarDate(sender.value)
     }
 
     var saveCallback: ((NSDate) -> ())?
 
     // MARK: UIViewController Init methods
 
-    init(earliestPossibleDate: NSDate = ChroniclingAmericaArchive.earliestPossibleDate, latestPossibleDate: NSDate = ChroniclingAmericaArchive.latestPossibleDate,
+    init(earliestPossibleDate: NSDate = ChroniclingAmericaWebService.earliestPossibleDate, latestPossibleDate: NSDate = ChroniclingAmericaWebService.latestPossibleDate,
         selectedDateOnInit: NSDate? = nil) {
             self.earliestPossibleDate = earliestPossibleDate
             self.latestPossibleDate = latestPossibleDate
@@ -38,15 +37,15 @@ import SwiftMoment
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: "saveButtonTapped:")
     }
 
-    @availability(*, unavailable) init() {
+    @available(*, unavailable) init() {
         fatalError("init not supported. Use designated initializer instead")
     }
 
-    @availability(*, unavailable) required init(coder aDecoder: NSCoder) {
+    @available(*, unavailable) required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) not supported. Use designated initializer instead")
     }
 
-    @availability(*, unavailable) override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    @available(*, unavailable) override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         fatalError("init(nibName:bundle) not supported. Use designated initializer instead")
     }
 
@@ -57,41 +56,27 @@ import SwiftMoment
     }
 
     func setCalendarDate(year: Int? = nil, month: Int? = nil) {
-        if let year = year {
-            println("--- will set year ---")
-            println("* Original calendarView.selectedDate: \(calendarView.selectedDate)")
+//        if let year = year {
 
-            let selectedMoment = moment(calendarView.selectedDate)
-
-            println("    - year: \(selectedMoment.year)")
-            println("    - month: \(selectedMoment.month)")
-            println("    - day: \(selectedMoment.day)")
-
-            let components = NSDateComponents()
-            components.year = year
-            components.month = selectedMoment.month
-            components.day = selectedMoment.day
-
-            let newDate = NSCalendar.currentCalendar().dateFromComponents(components)
-            println("* New calendarView.selectedDate: \(newDate)")
-            println("    - year: \(components.year)")
-            println("    - month: \(components.month)")
-            println("    - day: \(components.day)")
-            calendarView.selectedDate = newDate
-
-            println("... did set year  ...")
-        }
-        if let month = month {
-            println("will set month")
-            calendarView.selectedDate = NSCalendar.currentCalendar().dateBySettingUnit(.CalendarUnitMonth, value: month, ofDate: calendarView.selectedDate, options: NSCalendarOptions.allZeros)
-            println("did set month")
-        }
+//            let selectedMoment = moment(calendarView.selectedDate)
+//
+//            let components = NSDateComponents()
+//            components.year = year
+//            components.month = selectedMoment.month
+//            components.day = selectedMoment.day
+//
+//            let newDate = NSCalendar.currentCalendar().dateFromComponents(components)
+//            calendarView.selectedDate = newDate
+//        }
+//        if let month = month {
+//            calendarView.selectedDate = NSCalendar.currentCalendar().dateBySettingUnit(.CalendarUnitMonth, value: month, ofDate: calendarView.selectedDate, options: NSCalendarOptions.allZeros)
+//        }
     }
 
     func updateUIToMatchCurrentDate(currentDate: NSDate) {
-        if slider.state != .Highlighted {
-            slider.value = moment(currentDate).year
-        }
+//        if slider.state != .Highlighted {
+//            slider.value = moment(currentDate).year
+//        }
     }
 
     // MARK: UIViewController overrides
@@ -100,12 +85,11 @@ import SwiftMoment
         super.viewDidLoad()
 
         slider.addTarget(self, action: "sliderValueDidChange:", forControlEvents: .ValueChanged)
-        slider.minValue = moment(earliestPossibleDate).year
-        slider.maxValue = moment(latestPossibleDate).year
-        slider.value = moment(selectedDateOnInit).year
-
-        calendarView.selectedDate = selectedDateOnInit
-        println("calendarView.selectedDate: \(calendarView.selectedDate)")
+//        slider.minValue = moment(earliestPossibleDate).year
+//        slider.maxValue = moment(latestPossibleDate).year
+//        slider.value = moment(selectedDateOnInit).year
+//
+//        calendarView.selectedDate = selectedDateOnInit
         updateUIToMatchCurrentDate(calendarView.selectedDate)
     }
 
@@ -114,35 +98,35 @@ import SwiftMoment
     }
 
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        var updatedText = textField.text as NSString
-        updatedText = updatedText.stringByReplacingCharactersInRange(range, withString: string)
-        if updatedText.length > 4 {
+//        var updatedText = textField.text as NSString
+//        updatedText = updatedText.stringByReplacingCharactersInRange(range, withString: string)
+//        if updatedText.length > 4 {
+//            return false
+//        }
+//
+//        if updatedText.length == 0 {
+//            textField.backgroundColor = UIColor.grayColor()
+//            return true
+//        }
+//
+//        if let year = Int((updatedText as String)) {
+//            if year >= 1836 && year <= 1922 {
+//                setCalendarDate(year: year)
+//                textField.backgroundColor = UIColor.greenColor()
+//                // Setting calendar date will trigger its delegate's MonthDidChange method,
+//                // which will update the textField. If we do it here, we end up modifying 
+//                // the already-updated text.
+//                return false
+//            } else if updatedText.length == 4 {
+//                textField.backgroundColor = UIColor.redColor()
+//                return true
+//            } else {
+//                textField.backgroundColor = UIColor.grayColor()
+//                return true
+//            }
+//        } else {
             return false
-        }
-
-        if updatedText.length == 0 {
-            textField.backgroundColor = UIColor.grayColor()
-            return true
-        }
-
-        if let year = (updatedText as String).toInt() {
-            if year >= 1836 && year <= 1922 {
-                setCalendarDate(year: year)
-                textField.backgroundColor = UIColor.greenColor()
-                // Setting calendar date will trigger its delegate's MonthDidChange method,
-                // which will update the textField. If we do it here, we end up modifying 
-                // the already-updated text.
-                return false
-            } else if updatedText.length == 4 {
-                textField.backgroundColor = UIColor.redColor()
-                return true
-            } else {
-                textField.backgroundColor = UIColor.grayColor()
-                return true
-            }
-        } else {
-            return false
-        }
+//        }
     }
 
     func calendar(calendar: FSCalendar!, shouldSelectDate date: NSDate!) -> Bool {

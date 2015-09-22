@@ -34,17 +34,16 @@ class PageViewController: UIViewController {
         let vc = UIActivityViewController(activityItems: [imageView.image!], applicationActivities: nil)
         vc.completionWithItemsHandler = { type, completed, returnedItems, activityError in
             self.toastButton.frame = CGRect(x: 20.0, y: self.bottomBarBG.frame.origin.y - 80.0, width: self.view.bounds.size.width - 40.0, height: 60)
-            let message: String
-            println("type: \(type)")
+            let message: String = ""
             if type == nil {
                 return
             }
-            switch type {
-            case UIActivityTypeSaveToCameraRoll:
-                message = completed ? "Page saved successfully" : "Trouble saving, please try again"
-            default:
-                message = completed ? "Success" : "Action failed, please try again"
-            }
+//            switch type {
+//            case UIActivityTypeSaveToCameraRoll:
+//                message = completed ? "Page saved successfully" : "Trouble saving, please try again"
+//            default:
+//                message = completed ? "Success" : "Action failed, please try again"
+//            }
 
             self.toastButton.setTitle(message, forState: .Normal)
             self.toastButton.alpha = 0
@@ -52,7 +51,7 @@ class PageViewController: UIViewController {
             UIView.animateWithDuration(0.2, animations: {
                 self.toastButton.alpha = 1.0
             }, completion: { _ in
-                UIView.animateWithDuration(0.2, delay: 3.0, options: UIViewAnimationOptions.allZeros, animations: {
+                UIView.animateWithDuration(0.2, delay: 3.0, options: UIViewAnimationOptions(), animations: {
                     self.toastButton.alpha = 0
                     }, completion: { _ in
                         self.toastButton.hidden = true

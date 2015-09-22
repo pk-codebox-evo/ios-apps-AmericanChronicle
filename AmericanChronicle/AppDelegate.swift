@@ -10,8 +10,15 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+
     var window: UIWindow?
+    let rootWireframe = RootWireframe()
+
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        window?.rootViewController = rootWireframe.rootViewController()
+        window?.makeKeyAndVisible()
         Appearance.apply()
         return true
     }

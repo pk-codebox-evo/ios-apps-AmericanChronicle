@@ -15,13 +15,12 @@ class NewspaperPagesDataSource: NSObject, UICollectionViewDataSource {
     // MARK: UICollectionViewDataSource methods
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return issue?.pages.count ?? 0
+        return 0
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! NewspaperPageCell
-        cell.image = UIImage(named: issue?.pages[indexPath.row].imageName ?? "")
-        println("cell.image: \(cell.image)")
+//        cell.image = UIImage(named: issue?.pages[indexPath.row].imageName ?? "")
         return cell
     }
 

@@ -6,16 +6,15 @@
 //  Copyright (c) 2015 ryanipete. All rights reserved.
 //
 
-import SwiftMoment
 
 struct NewspaperIssue {
-    let date: Moment
-    var imageName: String {
-        return pages.first?.imageName ?? ""
-    }
-    let pages: [NewspaperPage]
-    var description: String {
-        return date.format(dateFormat: "MMM dd, yyyy")
-    }
+//    let date: Moment
+//    var imageName: String {
+//        return pages.first?.imageName ?? ""
+//    }
+//    let pages: [NewspaperPage]
+//    var description: String {
+//        return date.format(dateFormat: "MMM dd, yyyy")
+//    }
 }
 

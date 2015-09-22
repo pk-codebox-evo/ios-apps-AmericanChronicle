@@ -25,7 +25,7 @@ class SearchField: UIView, UITextFieldDelegate {
 
     var text: String {
         get {
-            return textField.text
+            return textField.text!
         }
         set {
             textField.text = newValue
@@ -35,7 +35,7 @@ class SearchField: UIView, UITextFieldDelegate {
     // Init methods
 
     func commonInit() {
-        textField.setTranslatesAutoresizingMaskIntoConstraints(false)
+        textField.translatesAutoresizingMaskIntoConstraints = false
         addSubview(textField)
 
         textField.delegate = self
@@ -56,7 +56,7 @@ class SearchField: UIView, UITextFieldDelegate {
         }
     }
 
-    required init(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         textField = UITextField()
         super.init(coder: coder)
         self.commonInit()
@@ -95,7 +95,7 @@ class SearchField: UIView, UITextFieldDelegate {
 //    }
 //
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        return shouldChangeCharactersCallback?(text: textField.text, range: range, replacementString: string) ?? true
+        return shouldChangeCharactersCallback?(text: textField.text!, range: range, replacementString: string) ?? true
     }
 //
 //    func textFieldShouldClear(textField: UITextField) -> Bool {

@@ -14,7 +14,7 @@ struct State: Equatable {
     var newspapers: [Newspaper] {
         var papers: [Newspaper] = []
         for city in cities {
-            papers.extend(city.newspapers)
+            papers.appendContentsOf(city.newspapers)
         }
         return papers
     }

@@ -10,7 +10,7 @@ import UIKit
 
 extension UIView {
     func addForAutolayout(subview: UIView) {
-        subview.setTranslatesAutoresizingMaskIntoConstraints(false)
+        subview.translatesAutoresizingMaskIntoConstraints = false
         addSubview(subview)
     }
 }
@@ -59,7 +59,6 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
             self.view.layoutIfNeeded()
 
         }, completion: { finished in
-            println("showStrip finished: \(finished)")
         })
     }
 
@@ -73,7 +72,6 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
             self.chromeHidden = true
             self.setNeedsStatusBarAppearanceUpdate()
         }, completion: { finished in
-            println("hideStrip finished: \(finished)")
         })
     }
 
@@ -112,16 +110,16 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let vc = segue.destinationViewController as? PageViewController,
-        let selectedPath = previewCollectionView.indexPathsForSelectedItems().first as? NSIndexPath {
-
-            vc.imageName = issue?.pages[selectedPath.item].imageName
-            vc.doneCallback = { [unowned self] in
-
-                let segue = NewspaperPageUnfocusSegue(identifier: nil, source: vc, destination: self)
-                segue.perform()
-            }
-        }
+//        if let vc = segue.destinationViewController as? PageViewController,
+//        let selectedPath = previewCollectionView.indexPathsForSelectedItems()!.first {
+//
+//            vc.imageName = issue?.pages[selectedPath.item].imageName
+//            vc.doneCallback = { [unowned self] in
+//
+//                let segue = NewspaperPageUnfocusSegue(identifier: nil, source: vc, destination: self)
+//                segue.perform()
+//            }
+//        }
     }
 }
 

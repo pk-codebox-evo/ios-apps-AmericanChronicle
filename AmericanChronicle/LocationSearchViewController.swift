@@ -28,7 +28,7 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
     ]
 
     var shouldShowSearchResults: Bool {
-        return count(searchBar.text) > 0
+        return searchBar.text!.characters.count > 0
     }
 
     var shouldShowCurrentLocation: Bool {
@@ -74,27 +74,27 @@ class LocationSearchViewController: UIViewController, UISearchBarDelegate, UITab
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
-            let cell = tableView.dequeueReusableCellWithIdentifier("CurrentLocationCell") as! UITableViewCell
-            cell.textLabel?.text = "Current Location"
-            cell.imageView?.image = UIImage(named: "TrackingLocationMask")?.imageWithRenderingMode(.AlwaysTemplate)
-            cell.imageView?.tintColor = UIColor.blueColor().colorWithAlphaComponent(0.5)
-            return cell
-        case 1:
-            if shouldShowSearchResults {
-                let cell = tableView.dequeueReusableCellWithIdentifier("RecentLocationCell") as! UITableViewCell
-                let searchResult = searchResults[indexPath.row]
-                cell.textLabel?.text = "\(searchResult.name), \(searchResult.stateName.abbreviation)"
-                return cell
-            } else {
-                let cell = tableView.dequeueReusableCellWithIdentifier("RecentLocationCell") as! UITableViewCell
-                cell.textLabel?.text = recentSearches[indexPath.row]
-                return cell
-            }
-        default:
+//        switch indexPath.section {
+//        case 0:
+//            let cell = tableView.dequeueReusableCellWithIdentifier("CurrentLocationCell")
+//            cell.textLabel?.text = "Current Location"
+//            cell.imageView?.image = UIImage(named: "TrackingLocationMask")?.imageWithRenderingMode(.AlwaysTemplate)
+//            cell.imageView?.tintColor = UIColor.blueColor().colorWithAlphaComponent(0.5)
+//            return cell
+//        case 1:
+//            if shouldShowSearchResults {
+//                let cell = tableView.dequeueReusableCellWithIdentifier("RecentLocationCell")
+//                let searchResult = searchResults[indexPath.row]
+//                cell.textLabel?.text = "\(searchResult.name), \(searchResult.stateName.abbreviation)"
+//                return cell
+//            } else {
+//                let cell = tableView.dequeueReusableCellWithIdentifier("RecentLocationCell")
+//                cell.textLabel?.text = recentSearches[indexPath.row]
+//                return cell
+//            }
+//        default:
             return UITableViewCell()
-        }
+//        }
 
     }
 

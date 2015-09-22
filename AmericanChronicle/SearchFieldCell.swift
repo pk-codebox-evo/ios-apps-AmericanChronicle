@@ -12,7 +12,7 @@ class SearchFieldCell: UICollectionViewCell {
     var searchField = SearchField()
 
     func commonInit() {
-        searchField.setTranslatesAutoresizingMaskIntoConstraints(false)
+        searchField.translatesAutoresizingMaskIntoConstraints = false
         addSubview(searchField)
 
         searchField.snp_makeConstraints { make in
@@ -23,7 +23,7 @@ class SearchFieldCell: UICollectionViewCell {
         }
     }
 
-    required init(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.commonInit()
     }

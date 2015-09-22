@@ -12,8 +12,7 @@ class SearchResultsPageCell: UITableViewCell {
 
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var cityStateLabel: UILabel!
-    @IBOutlet weak var matchingTextLabel: UILabel!
     @IBOutlet weak var publicationTitleLabel: UILabel!
-    @IBOutlet weak var moreMatchesCountLabel: UILabel!
+    @IBOutlet weak var thumbnailImageView: UIImageView!
 
 }
