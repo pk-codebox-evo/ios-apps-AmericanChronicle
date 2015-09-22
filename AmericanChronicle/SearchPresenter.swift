@@ -83,10 +83,8 @@ public class SearchPresenter: NSObject, SearchPresenterProtocol {
                         let row = SearchResultsRow(
                             date: date,
                             cityState: cityState,
-                            matchingText: "",
                             publicationTitle: publicationTitle,
-                            moreMatchesCount: "3",
-                            imageName: "")
+                            thumbnailURL: result.thumbnailURL)
                         rows.append(row)
                     }
                     print("[RP] '\(nonNilTerm)' - \(rows.count) items returned")
