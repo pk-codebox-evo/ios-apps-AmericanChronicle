@@ -139,6 +139,7 @@ public class SearchViewController: UIViewController, SearchView, UITableViewDele
         pageCell.cityStateLabel.text = result.cityState ?? ""
         pageCell.publicationTitleLabel.text = result.publicationTitle ?? ""
         pageCell.thumbnailImageView.backgroundColor = UIColor.lightGrayColor()
+        pageCell.thumbnailImageView.sd_setImageWithURL(result.thumbnailURL)
         cell = pageCell
         return cell
     }
