@@ -40,6 +40,7 @@ public class SearchResult: NSObject, Mappable {
     var url: String?
     var place: [String]?
     var page: String?
+    public var thumbnailURL: NSURL?
 
     public override init() {
         super.init()
@@ -97,6 +98,7 @@ public class SearchResult: NSObject, Mappable {
         url <- map["url"]
         place <- map["place"]
         page <- map["page"]
+        thumbnailURL = NSURL(string: url ?? "")?.URLByDeletingPathExtension?.URLByAppendingPathComponent("thumbnail.jpg")
     }
 
     // MARK: NSObject overrides
@@ -132,6 +134,7 @@ public class SearchResult: NSObject, Mappable {
         str += ", url=\(url?.description ?? empty)"
         str += ", place=\(place?.description ?? empty)"
         str += ", page=\(page?.description ?? nil)"
+        str += ", thumbnailURL=\(thumbnailURL ?? empty)"
         str += ">"
         return str
     }

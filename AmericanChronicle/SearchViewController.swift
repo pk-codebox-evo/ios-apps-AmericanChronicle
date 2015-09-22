@@ -11,27 +11,21 @@ import UIKit
 public class SearchResultsRow {
     let date: NSDate?
     let cityState: String
-    let matchingText: String
     let publicationTitle: String
-    let moreMatchesCount: String
-    let imageName: String
-    init(date: NSDate?, cityState: String, matchingText: String, publicationTitle: String, moreMatchesCount: String, imageName: String) {
+    let thumbnailURL: NSURL?
+    init(date: NSDate?, cityState: String, publicationTitle: String, thumbnailURL: NSURL?) {
         self.date = date
         self.cityState = cityState
-        self.matchingText = matchingText
         self.publicationTitle = publicationTitle
-        self.moreMatchesCount = moreMatchesCount
-        self.imageName = imageName
+        self.thumbnailURL = thumbnailURL
     }
 
     public var description: String {
         var desc = "<SearchResultsRow: "
         desc += ", date=\(date)"
         desc += ", cityState=\(cityState)"
-        desc += ", matchingText=\(matchingText)"
         desc += ", publicationTitle=\(publicationTitle)"
-        desc += ", moreMatchesCount=\(moreMatchesCount)"
-        desc += ", imageName=\(imageName)>"
+        desc += ", thumbnailURL=\(thumbnailURL)>"
         return desc
     }
 }
