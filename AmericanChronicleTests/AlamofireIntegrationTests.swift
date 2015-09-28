@@ -17,7 +17,7 @@ class AlamofireIntegrationTests: XCTestCase {
     override func setUp() {
         super.setUp()
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuration.protocolClasses?.insert(TestURLProtocol.self, atIndex: 0)
+//        configuration.protocolClasses?.insert(TestURLProtocol.self, atIndex: 0)
         manager = Manager(configuration: configuration)
         manager.startRequestsImmediately = false
     }
@@ -40,4 +40,20 @@ class AlamofireIntegrationTests: XCTestCase {
 //        waitForExpectationsWithTimeout(3.0, handler: nil)
     }
 
+    func testDownload() {
+//        let expectation = expectationWithDescription("request")
+//        let destination = Alamofire.Request.suggestedDownloadDestination()
+//        manager.download(.GET, "http://chroniclingamerica.loc.gov/lccn/sn83045487/1913-02-20/ed-1/seq-18.pdf", destination: destination).progress { bytesRead, totalBytesRead, totalBytesExpected in
+//            print("[RP] bytesRead: \(bytesRead)")
+//            print("[RP] totalBytesRead: \(totalBytesRead)")
+//            print("[RP] totalBytesExpected: \(totalBytesExpected)")
+//        }.response { request, response, data, error in
+//            print("[RP] request: \(request)")
+//            print("[RP] response: \(response)")
+//            print("[RP] data: \(data)")
+//            print("[RP] error: \(error)")
+//            expectation.fulfill()
+//        }.resume()
+//        waitForExpectationsWithTimeout(60.0, handler: nil)
+    }
 }

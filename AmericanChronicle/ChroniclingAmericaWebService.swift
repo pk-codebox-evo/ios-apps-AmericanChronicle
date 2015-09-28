@@ -12,10 +12,10 @@ import AlamofireObjectMapper
 import ObjectMapper
 
 public protocol ChroniclingAmericaWebServiceProtocol {
-
     func performSearch(term: String, page: Int, andThen: ((SearchResults?, ErrorType?) -> ())?)
     func cancelLastSearch()
     func isPerformingSearch() -> Bool
+    func downloadPage(url: NSURL, andThen: ((NSURL?, ErrorType?) -> ())?) -> RequestProtocol?
 }
 
 public protocol ManagerProtocol {
@@ -23,16 +23,23 @@ public protocol ManagerProtocol {
         method: Alamofire.Method,
         URLString: URLStringConvertible,
         parameters: [String: AnyObject]?) -> RequestProtocol?
+    func download(
+        method: Alamofire.Method,
+        URLString: URLStringConvertible,
+        parameters: [String: AnyObject]?, destination: Request.DownloadFileDestination) -> RequestProtocol?
 }
 
 public protocol RequestProtocol {
     var task: NSURLSessionTask { get }
     func responseObject<T: Mappable>(completionHandler: (T?, ErrorType?) -> Void) -> Self
+    func response(completionHandler: (NSURLRequest?, NSHTTPURLResponse?, NSData?, ErrorType?) -> Void) -> Self
     func cancel()
 }
 
 extension Request: RequestProtocol {
-
+    public func response(completionHandler: (NSURLRequest?, NSHTTPURLResponse?, NSData?, ErrorType?) -> Void) -> Self {
+        return response(queue: nil, completionHandler: completionHandler)
+    }
 }
 
 extension Manager: ManagerProtocol {
@@ -42,6 +49,13 @@ extension Manager: ManagerProtocol {
         parameters: [String: AnyObject]?) -> RequestProtocol? {
             return request(method, URLString, parameters: parameters, encoding: .URL,
                 headers: nil)
+    }
+
+    public func download(
+        method: Alamofire.Method,
+        URLString: URLStringConvertible,
+        parameters: [String: AnyObject]?, destination: Request.DownloadFileDestination) -> RequestProtocol? {
+            return download(method, URLString, parameters: parameters, encoding: .URL, headers: nil, destination: destination)
     }
 }
 
@@ -95,9 +109,9 @@ public class ChroniclingAmericaWebService: ChroniclingAmericaWebServiceProtocol 
 
     public func performSearch(term: String, page: Int, andThen: ((SearchResults?, ErrorType?) -> ())? = nil) {
         self.cancelLastSearch()
-        let URL = Path.PagesSearch.asURL()
+        let url = Path.PagesSearch.asURL()
         let params: [String: AnyObject] = ["format": "json", "rows": 20, "proxtext": term, "page": page]
-        currentPagesSearch = manager.request(.GET, URLString: URL, parameters: params)
+        currentPagesSearch = manager.request(.GET, URLString: url, parameters: params)
         currentPagesSearch?.responseObject { (obj: SearchResults?, error) in
             if let error = error {
                 andThen?(nil, error)
@@ -116,5 +130,28 @@ public class ChroniclingAmericaWebService: ChroniclingAmericaWebServiceProtocol 
             return true
         }
         return false
+    }
+
+    // ---
+
+    public func downloadPage(remoteURL: NSURL, andThen: ((NSURL?, ErrorType?) -> ())?) -> RequestProtocol? {
+        var fileURL: NSURL?
+        let destination: (NSURL, NSHTTPURLResponse) -> (NSURL) = { (temporaryURL, response) in
+            let documentsDirectoryURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+            let remotePath = remoteURL.path ?? ""
+            fileURL = documentsDirectoryURL.URLByAppendingPathComponent(remotePath).URLByStandardizingPath
+            do {
+                if let fileDirectoryURL = fileURL?.URLByDeletingLastPathComponent {
+                    try NSFileManager.defaultManager().createDirectoryAtURL(fileDirectoryURL, withIntermediateDirectories: true, attributes: nil)
+                }
+            } catch let error {
+                print("[RP] error: \(error)")
+            }
+
+            return fileURL ?? temporaryURL
+        }
+        return manager.download(.GET, URLString: remoteURL.absoluteString, parameters: nil, destination: destination)?.response({ request, response, data, error in
+            andThen?(fileURL, error)
+        })
     }
 }

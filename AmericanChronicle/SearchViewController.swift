@@ -13,11 +13,13 @@ public class SearchResultsRow {
     let cityState: String
     let publicationTitle: String
     let thumbnailURL: NSURL?
-    init(date: NSDate?, cityState: String, publicationTitle: String, thumbnailURL: NSURL?) {
+    let pdfURL: NSURL?
+    init(date: NSDate?, cityState: String, publicationTitle: String, thumbnailURL: NSURL?, pdfURL: NSURL?) {
         self.date = date
         self.cityState = cityState
         self.publicationTitle = publicationTitle
         self.thumbnailURL = thumbnailURL
+        self.pdfURL = pdfURL
     }
 
     public var description: String {

@@ -9,6 +9,7 @@
 import AmericanChronicle
 
 class FakeChroniclingAmericaWebService: ChroniclingAmericaWebServiceProtocol {
+
     var performSearch_called = false
     var performSearch_called_withTerm: String?
     func performSearch(term: String, page: Int, andThen: ((SearchResults?, ErrorType?) -> ())?) {
@@ -16,6 +17,7 @@ class FakeChroniclingAmericaWebService: ChroniclingAmericaWebServiceProtocol {
         performSearch_called_withTerm = term
         andThen?(nil, nil)
     }
+
     var cancelLastSearch_wasCalled = false
     func cancelLastSearch() {
         cancelLastSearch_wasCalled = true
@@ -23,5 +25,15 @@ class FakeChroniclingAmericaWebService: ChroniclingAmericaWebServiceProtocol {
 
     func isPerformingSearch() -> Bool {
         return false
+    }
+
+    var downloadPage_called = false
+    var downloadPage_called_withParameters: (url: NSURL, andThen: ((NSURL?, ErrorType?) -> ()))?
+    func downloadPage(url: NSURL, andThen: ((NSURL?, ErrorType?) -> ())?) -> RequestProtocol? {
+        downloadPage_called = true
+        downloadPage_called_withParameters = (url: url, andThen: { url, error in
+            andThen?(url, error)
+        })
+        return FakeRequest()
     }
 }

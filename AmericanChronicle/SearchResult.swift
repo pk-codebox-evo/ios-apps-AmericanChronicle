@@ -41,6 +41,7 @@ public class SearchResult: NSObject, Mappable {
     var place: [String]?
     var page: String?
     public var thumbnailURL: NSURL?
+    public var pdfURL: NSURL?
 
     public override init() {
         super.init()
@@ -76,7 +77,6 @@ public class SearchResult: NSObject, Mappable {
                 return nil
         })
 
-
         date <- (map["date"], dateTransform)
         title <- map["title"]
         endYear <- map["end_year"]
@@ -99,6 +99,7 @@ public class SearchResult: NSObject, Mappable {
         place <- map["place"]
         page <- map["page"]
         thumbnailURL = NSURL(string: url ?? "")?.URLByDeletingPathExtension?.URLByAppendingPathComponent("thumbnail.jpg")
+        pdfURL = NSURL(string: url ?? "")?.URLByDeletingPathExtension?.URLByAppendingPathExtension("pdf")
     }
 
     // MARK: NSObject overrides
@@ -135,6 +136,7 @@ public class SearchResult: NSObject, Mappable {
         str += ", place=\(place?.description ?? empty)"
         str += ", page=\(page?.description ?? nil)"
         str += ", thumbnailURL=\(thumbnailURL ?? empty)"
+        str += ", pdfURL=\(pdfURL ?? empty)"
         str += ">"
         return str
     }

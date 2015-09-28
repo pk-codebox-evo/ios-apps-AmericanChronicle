@@ -11,7 +11,7 @@ import AmericanChronicle
 class FakeSearchPresenter: NSObject, SearchPresenterProtocol {
 
     var cancelCallback: ((Void) -> ())?
-    var showPageCallback: ((SearchResult) -> ())?
+    var showPageCallback: ((SearchResultsRow) -> ())?
     var didCall_setUpView_withSearchView: SearchView?
     func setUpView(searchView: SearchView) {
         didCall_setUpView_withSearchView = searchView

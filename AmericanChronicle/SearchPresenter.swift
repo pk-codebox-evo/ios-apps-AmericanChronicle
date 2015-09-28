@@ -13,7 +13,7 @@ import UIKit
 
 public protocol SearchPresenterProtocol: class {
     var cancelCallback: ((Void) -> ())? { get set }
-    var showPageCallback: ((SearchResult) -> ())? { get set }
+    var showPageCallback: ((SearchResultsRow) -> ())? { get set }
     func setUpView(searchView: SearchView)
 }
 
@@ -25,12 +25,12 @@ public class SearchPresenter: NSObject, SearchPresenterProtocol {
     public let interactor: SearchInteractorProtocol
     public let searchDelay: NSTimeInterval
     public var cancelCallback: ((Void) -> ())?
-    public var showPageCallback: ((SearchResult) -> ())?
+    public var showPageCallback: ((SearchResultsRow) -> ())?
 
     public func setUpView(searchView: SearchView) {
 
         searchView.searchResultSelectedCallback = { row in
-
+            self.showPageCallback?(row)
         }
 
         searchView.cancelCallback = { [weak self] in
@@ -40,10 +40,10 @@ public class SearchPresenter: NSObject, SearchPresenterProtocol {
         searchView.searchTermDidChangeCallback = { [weak self] term in
 
             let nonNilTerm = term ?? ""
-            print("[RP] '\(nonNilTerm)' - search term changed")
+//            print("[RP] '\(nonNilTerm)' - search term changed")
 
             if (nonNilTerm.characters.count == 0) {
-                print("[RP] '\(nonNilTerm)' - search term was empty, cleaning up and returning.")
+//                print("[RP] '\(nonNilTerm)' - search term was empty, cleaning up and returning.")
                 searchView.hideLoadingIndicator()
                 self?.interactor.cancelLastSearch()
                 searchView.showSearchResults([], title: "")
@@ -60,16 +60,16 @@ public class SearchPresenter: NSObject, SearchPresenterProtocol {
                 }
 
                 if isACancelledRequest {
-                    print("[RP] '\(nonNilTerm)' - the request was cancelled")
+//                    print("[RP] '\(nonNilTerm)' - the request was cancelled")
                 } else {
-                    print("[RP] '\(nonNilTerm)' - the request returned on its own")
+//                    print("[RP] '\(nonNilTerm)' - the request returned on its own")
                 }
 
                 if let welf = self where !welf.interactor.isDoingWork {
-                    print("[RP] '\(nonNilTerm)' - the interactor has stopped doing work, hiding loading indicator")
+//                    print("[RP] '\(nonNilTerm)' - the interactor has stopped doing work, hiding loading indicator")
                     searchView.hideLoadingIndicator()
                 } else {
-                    print("[RP] '\(nonNilTerm)' - the interactor still has work ongoing, not hiding loading indicator")
+//                    print("[RP] '\(nonNilTerm)' - the interactor still has work ongoing, not hiding loading indicator")
                 }
 
                 if let results = results, items = results.items {
@@ -84,10 +84,11 @@ public class SearchPresenter: NSObject, SearchPresenterProtocol {
                             date: date,
                             cityState: cityState,
                             publicationTitle: publicationTitle,
-                            thumbnailURL: result.thumbnailURL)
+                            thumbnailURL: result.thumbnailURL,
+                            pdfURL: result.pdfURL)
                         rows.append(row)
                     }
-                    print("[RP] '\(nonNilTerm)' - \(rows.count) items returned")
+//                    print("[RP] '\(nonNilTerm)' - \(rows.count) items returned")
                     if rows.count > 0 {
                         let title = "\(results.totalItems ?? 0) matches for \(nonNilTerm)"
                         searchView.showSearchResults(rows, title: title)
@@ -95,7 +96,7 @@ public class SearchPresenter: NSObject, SearchPresenterProtocol {
                         searchView.showEmptyResults()
                     }
                 } else if let err = error as? NSError {
-                    print("[RP] '\(nonNilTerm)' - no items returned")
+//                    print("[RP] '\(nonNilTerm)' - no items returned")
                     searchView.showErrorMessage(err.localizedDescription, message: err.localizedRecoverySuggestion)
                 } else {
                     searchView.showEmptyResults()

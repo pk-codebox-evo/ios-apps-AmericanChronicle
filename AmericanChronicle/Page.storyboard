@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="r3d-KN-wgs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="r3d-KN-wgs">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
         <!--Page View Controller-->
@@ -16,25 +17,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="vx1-vv-2Wx">
+                                <rect key="frame" x="197" y="358" width="20" height="20"/>
+                            </activityIndicatorView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" maximumZoomScale="5" translatesAutoresizingMaskIntoConstraints="NO" id="B8b-q7-hMi">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YcB-jM-Em6">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                                        <color key="backgroundColor" red="0.15686274510000001" green="0.1450980392" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="414" placeholder="YES" id="Bta-ko-GeY"/>
-                                            <constraint firstAttribute="height" constant="736" placeholder="YES" id="SUh-mL-vme"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.1450980392" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="YcB-jM-Em6" secondAttribute="trailing" id="DhF-JX-hoZ"/>
-                                    <constraint firstItem="YcB-jM-Em6" firstAttribute="leading" secondItem="B8b-q7-hMi" secondAttribute="leading" id="XeP-9S-ucR"/>
-                                    <constraint firstAttribute="bottom" secondItem="YcB-jM-Em6" secondAttribute="bottom" id="hCf-HA-R6n"/>
-                                    <constraint firstItem="YcB-jM-Em6" firstAttribute="top" secondItem="B8b-q7-hMi" secondAttribute="top" id="re9-vp-gnx"/>
-                                </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="r3d-KN-wgs" id="S6v-dF-V6T"/>
                                 </connections>
@@ -98,9 +86,9 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="vx1-vv-2Wx" id="Pcc-GJ-W7H"/>
                         <outlet property="bottomBarBG" destination="hcc-kf-Khs" id="k4u-gu-wnH"/>
                         <outlet property="doneButton" destination="lrz-z4-eGL" id="HJo-SM-qj3"/>
-                        <outlet property="imageView" destination="YcB-jM-Em6" id="kZb-1L-cch"/>
                         <outlet property="scrollView" destination="B8b-q7-hMi" id="1Rf-iP-Wek"/>
                         <outlet property="shareButton" destination="cdb-JN-kEu" id="MkD-gC-eLR"/>
                         <outlet property="tapGesture" destination="Adx-rE-enr" id="612-OH-XaV"/>
