@@ -27,13 +27,11 @@ public class PagePresenter: NSObject, PagePresenterProtocol {
             self?.shareCallback?()
         }
         view.doneCallback = { [weak self] in
-            self?.interactor.cancelDownload(url)
-            self?.doneCallback?()
+            self?.cancelDownloadAndFinish(url)
         }
 
         view.cancelCallback = { [weak self] in
-            self?.interactor.cancelDownload(url)
-            self?.doneCallback?()
+            self?.cancelDownloadAndFinish(url)
         }
 
         view.showLoadingIndicator()
@@ -45,5 +43,10 @@ public class PagePresenter: NSObject, PagePresenterProtocol {
             }
             view.hideLoadingIndicator()
         } )
+    }
+
+    private func cancelDownloadAndFinish(url: NSURL) {
+        interactor.cancelDownload(url)
+        doneCallback?()
     }
 }
