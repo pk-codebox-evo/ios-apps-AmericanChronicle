@@ -8,56 +8,27 @@
 
 import UIKit
 
-public protocol PageView: class {
-    var doneCallback: ((Void) -> ())? { get set }
-    var shareCallback: ((Void) -> ())? { get set }
-    var pdfPage: CGPDFPageRef? { get set }
-
-    func showLoadingIndicator()
-    func hideLoadingIndicator()
-    func showErrorWithTitle(title: String?, message: String?)
-}
-
-extension CGPDFPageRef {
-    var mediaBoxRect: CGRect {
-        return CGPDFPageGetBoxRect(self, .MediaBox)
-    }
-}
+// -
+// MARK: PageViewController Class
 
 class PageViewController: UIViewController, PageView, UIScrollViewDelegate {
+
+    // MARK: Properties
 
     @IBOutlet var tapGesture: UITapGestureRecognizer!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var bottomBarBG: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
-    lazy var pageView: PDFPageView = PDFPageView()
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+
+    lazy var pageView: PDFPageView = PDFPageView()
     var toastButton = UIButton()
     var presentingViewNavBar: UIView?
     var presentingView: UIView?
     var hidesStatusBar: Bool = true
-    var doneCallback: ((Void) -> ())?
-    var shareCallback: ((Void) -> ())?
-    var pdfPage: CGPDFPageRef? {
-        get {
-            return pageView.pdfPage
-        }
-        set {
-            p("[RP] ENTERING pdfPage's setter")
-            pageView.pdfPage = newValue
-            pageView.frame = pageView.pdfPage?.mediaBoxRect ?? CGRectZero
-            view.setNeedsLayout()
-            p("[RP] EXITING pdfPage's setter")
-        }
-    }
 
-    let loggingEnabled = true
-    func p(string: String) {
-        if loggingEnabled {
-            print(string)
-        }
-    }
+    // MARK: Internal methods
 
     @IBAction func shareButtonTapped(sender: AnyObject) {
         shareCallback?()
@@ -67,9 +38,55 @@ class PageViewController: UIViewController, PageView, UIScrollViewDelegate {
         doneCallback?()
     }
 
+    @IBAction func tapRecognized(sender: AnyObject) {
+        bottomBarBG.hidden = !bottomBarBG.hidden
+    }
+
+    // MARK: PageView protocol
+
+    var doneCallback: ((Void) -> ())?
+    var shareCallback: ((Void) -> ())?
+    var pdfPage: CGPDFPageRef? {
+        get {
+            return pageView.pdfPage
+        }
+        set {
+            pageView.pdfPage = newValue
+            pageView.frame = pageView.pdfPage?.mediaBoxRect ?? CGRectZero
+            view.setNeedsLayout()
+        }
+    }
+
+    func showLoadingIndicator() {
+        if isViewLoaded() {
+            activityIndicator.startAnimating()
+        }
+    }
+
+    func hideLoadingIndicator() {
+        activityIndicator.stopAnimating()
+    }
+
+    func showErrorWithTitle(title: String?, message: String?) {
+
+    }
+
+    // MARK: UIScrollViewDelegate protocol
+
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        return pageView
+    }
+
+    // MARK: UIViewController overrides
+
+    override var modalPresentationStyle: UIModalPresentationStyle {
+        get { return .OverCurrentContext }
+        set { }
+    }
+
     override func viewDidLoad() {
-        p("[RP] ENTERING viewDidLoad()")
         super.viewDidLoad()
+
         scrollView.addSubview(pageView)
 
         doneButton.setBackgroundImage(nil, forState: .Normal)
@@ -94,64 +111,14 @@ class PageViewController: UIViewController, PageView, UIScrollViewDelegate {
         view.addSubview(toastButton)
 
         showLoadingIndicator()
-
-        p("[RP] EXITING viewDidLoad()")
     }
-
-    func showLoadingIndicator() {
-        if isViewLoaded() {
-            activityIndicator.startAnimating()
-        }
-    }
-
-    func hideLoadingIndicator() {
-        activityIndicator.stopAnimating()
-    }
-
-    func showErrorWithTitle(title: String?, message: String?) {
-        
-    }
-
-    // MARK: UIViewController overrides
 
     override func viewWillAppear(animated: Bool) {
-        p("[RP] ENTERING viewWillAppear(:)")
         super.viewWillAppear(animated)
         navigationController?.navigationBarHidden = true
-        p("[RP] EXITING viewWillAppear(:)")
-    }
-
-    func matchPageViewSizeToPDFSize() {
-        let pdfSize = CGPDFPageGetBoxRect(pageView.pdfPage, .MediaBox).size
-        print("[RP]  * pdfSize: \(pdfSize)")
-        print("[RP]  * view.frame: \(view.frame)")
-        print("[RP]  * scrollView.frame: \(scrollView.frame)")
-        print("[RP]  * UIScreen.mainScreen().bounds: \(UIScreen.mainScreen().bounds)")
-        let fractionOfWidth = Float(scrollView.bounds.size.width/pdfSize.width)
-        print("[RP]  * fractionOfWidth: \(fractionOfWidth)")
-        let fractionOfHeight = Float(scrollView.bounds.size.height/pdfSize.height)
-        print("[RP]  * fractionOfHeight: \(fractionOfHeight)")
-        let smallerFraction = fminf(fractionOfWidth, fractionOfHeight)
-        print("[RP]  * smallerFraction: \(smallerFraction)")
-        var pageViewFrame = scrollView.bounds
-        pageViewFrame.size.width = scrollView.bounds.size.width/CGFloat(smallerFraction)
-        pageViewFrame.size.height = scrollView.bounds.size.height/CGFloat(smallerFraction)
-        print("[RP]  * pageViewFrame: \(pageViewFrame)")
-        pageView.frame = pageViewFrame
-        pageView.layer.setNeedsDisplay()
-        scrollView.contentSize = pageView.frame.size
-        scrollView.minimumZoomScale = CGFloat(smallerFraction)
-        scrollView.zoomScale = CGFloat(smallerFraction)
-
-        print("[RP]  * scrollView.minimumZoomScale: \(scrollView.minimumZoomScale)")
-        print("[RP]  * scrollView.zoomScale: \(scrollView.zoomScale)")
-
-        view.setNeedsDisplay()
     }
 
     override func viewDidLayoutSubviews() {
-        p("[RP] ENTERING viewDidLayoutSubviews()")
-
         let scrollViewWidthOverPageWidth: CGFloat
         if let pageWidth = pageView.pdfPage?.mediaBoxRect.size.width where pageWidth > 0 {
             scrollViewWidthOverPageWidth = scrollView.bounds.size.width/pageWidth
@@ -160,30 +127,11 @@ class PageViewController: UIViewController, PageView, UIScrollViewDelegate {
         }
         scrollView.minimumZoomScale = scrollViewWidthOverPageWidth
         scrollView.zoomScale = scrollView.minimumZoomScale
-
-        p("[RP] EXITING viewDidLayoutSubviews()")
-    }
-
-    override func viewDidAppear(animated: Bool) {
-        p("[RP] ENTERING viewDidAppear(:)")
-        super.viewDidAppear(animated)
-        p("[RP] EXITING viewDidAppear(:)")
-    }
-
-    override var modalPresentationStyle: UIModalPresentationStyle {
-        get { return .OverCurrentContext }
-        set { }
-    }
-
-    @IBAction func tapRecognized(sender: AnyObject) {
-        bottomBarBG.hidden = !bottomBarBG.hidden
     }
 
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
 
-    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
-        return pageView
-    }
+
 }

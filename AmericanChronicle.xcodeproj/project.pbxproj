@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		970492191BC4D898001DA2DE /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970492181BC4D898001DA2DE /* PageView.swift */; };
+		9704921B1BC4D8C4001DA2DE /* CGPDFPageRef+AMC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9704921A1BC4D8C4001DA2DE /* CGPDFPageRef+AMC.swift */; };
 		970A00C31BABB19D00B3BB87 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970A00BE1BABB19D00B3BB87 /* Alamofire.framework */; };
 		970A00C41BABB19D00B3BB87 /* AlamofireObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970A00BF1BABB19D00B3BB87 /* AlamofireObjectMapper.framework */; };
 		970A00C51BABB19D00B3BB87 /* FSCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970A00C01BABB19D00B3BB87 /* FSCalendar.framework */; };
@@ -15,7 +17,7 @@
 		971C2CD91B9BC94F00F00323 /* Browse.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 971C2CD81B9BC94F00F00323 /* Browse.storyboard */; };
 		9721FDC91B93FF26006798B2 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9721FDC81B93FF26006798B2 /* Style.swift */; };
 		9721FDCB1B940EE7006798B2 /* TableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9721FDCA1B940EE7006798B2 /* TableHeaderView.swift */; };
-		972D2C821BBB9E7A002C2FA8 /* input_pdf.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 972D2C811BBB9E79002C2FA8 /* input_pdf.pdf */; settings = {ASSET_TAGS = (); }; };
+		972D2C821BBB9E7A002C2FA8 /* input_pdf.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 972D2C811BBB9E79002C2FA8 /* input_pdf.pdf */; };
 		9730C1341BB0F20500355D7D /* WebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9730C1331BB0F20500355D7D /* WebImage.framework */; };
 		9739FE301BA282CD009ACD94 /* ChroniclingAmericaWebServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9739FE2F1BA282CD009ACD94 /* ChroniclingAmericaWebServiceTests.swift */; };
 		9739FE321BA28A04009ACD94 /* AlamofireIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9739FE311BA28A04009ACD94 /* AlamofireIntegrationTests.swift */; };
@@ -62,7 +64,7 @@
 		9791A5D41BABC868008CF0A6 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970A00C11BABB19D00B3BB87 /* ObjectMapper.framework */; };
 		979BF8211B928697006482F1 /* NewspaperPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979BF8201B928697006482F1 /* NewspaperPage.swift */; };
 		97A7D9AE1B866E7E00DDBF59 /* SearchFiltersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97A7D9AD1B866E7E00DDBF59 /* SearchFiltersViewController.xib */; };
-		97B829331BC08C5700B35538 /* PDFPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B829321BC08C5700B35538 /* PDFPageView.swift */; settings = {ASSET_TAGS = (); }; };
+		97B829331BC08C5700B35538 /* PDFPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B829321BC08C5700B35538 /* PDFPageView.swift */; };
 		97BDE1151B76ED6B00A3E57F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE1141B76ED6B00A3E57F /* AppDelegate.swift */; };
 		97BDE1171B76ED6B00A3E57F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE1161B76ED6B00A3E57F /* HomeViewController.swift */; };
 		97BDE1191B76ED6B00A3E57F /* NewspaperIssuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE1181B76ED6B00A3E57F /* NewspaperIssuesViewController.swift */; };
@@ -126,6 +128,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		970492181BC4D898001DA2DE /* PageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
+		9704921A1BC4D8C4001DA2DE /* CGPDFPageRef+AMC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPDFPageRef+AMC.swift"; sourceTree = "<group>"; };
 		970A00BE1BABB19D00B3BB87 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		970A00BF1BABB19D00B3BB87 /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireObjectMapper.framework; path = Carthage/Build/iOS/AlamofireObjectMapper.framework; sourceTree = "<group>"; };
 		970A00C01BABB19D00B3BB87 /* FSCalendar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FSCalendar.framework; path = Carthage/Build/iOS/FSCalendar.framework; sourceTree = "<group>"; };
@@ -379,6 +383,7 @@
 			isa = PBXGroup;
 			children = (
 				97BDE1141B76ED6B00A3E57F /* AppDelegate.swift */,
+				9704921A1BC4D8C4001DA2DE /* CGPDFPageRef+AMC.swift */,
 				978236181B7FD0D00056FDF6 /* ChroniclingAmericaWebService.swift */,
 				9721FDC81B93FF26006798B2 /* Style.swift */,
 				97BDE11F1B76ED6B00A3E57F /* LaunchScreen.xib */,
@@ -401,6 +406,7 @@
 				972D2C811BBB9E79002C2FA8 /* input_pdf.pdf */,
 				97D3F8491B994B5E008B8D81 /* Page.storyboard */,
 				97BDE1381B7703CA00A3E57F /* PageViewController.swift */,
+				970492181BC4D898001DA2DE /* PageView.swift */,
 				97789B931BB10206000B298C /* PageInteractor.swift */,
 				97F707D01BB8AE8F00A3D760 /* PagePresenter.swift */,
 				97475B721BBB86E1006C95AB /* TiledPDFView.swift */,
@@ -668,6 +674,7 @@
 				9787414B1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift in Sources */,
 				97EAC1DF1B9D3E0300956EBC /* RootWireframe.swift in Sources */,
 				974BA3661B892D3400D7ACA2 /* State.swift in Sources */,
+				970492191BC4D898001DA2DE /* PageView.swift in Sources */,
 				97DFA8021B9026C8006578CF /* NewspaperIssue.swift in Sources */,
 				97BE674A1B7B004B00761033 /* SearchFiltersViewController.swift in Sources */,
 				978E9B1A1BAFA6360001690C /* SearchResults.swift in Sources */,
@@ -692,6 +699,7 @@
 				97BDE13B1B771B4800A3E57F /* NewspaperPagesViewController.swift in Sources */,
 				97BDE1371B76F84F00A3E57F /* SearchViewController.swift in Sources */,
 				978D11541B955C39003B98C5 /* UIAppearance+AMC.m in Sources */,
+				9704921B1BC4D8C4001DA2DE /* CGPDFPageRef+AMC.swift in Sources */,
 				975914AA1B7A47C40031BD13 /* SearchResultsPageCell.swift in Sources */,
 				97789B941BB10206000B298C /* PageInteractor.swift in Sources */,
 				97415AE21B785AAE00326239 /* NewspaperPageUnfocusSegue.swift in Sources */,
