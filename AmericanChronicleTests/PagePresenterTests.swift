@@ -22,7 +22,7 @@ class FakePageView: NSObject, PageView {
 
     var doneCallback: ((Void) -> ())?
     var shareCallback: ((Void) -> ())?
-    var fileURL: NSURL?
+    var pdfPage: CGPDFPageRef?
 
     var showError_wasCalled_withTitle: String?
     var showError_wasCalled_withMessage: String?
@@ -78,13 +78,15 @@ class PagePresenterTests: XCTestCase {
         XCTAssertTrue(view.hideLoadingIndicator_called)
     }
 
-    func testThat_whenADownloadFinishesWithoutAnError_itTellsTheViewToShowThePDF() {
+    func testThat_whenADownloadFinishesWithoutAnError_itPassesThePDFToTheView() {
         let view = FakePageView()
         let requestURL = NSURL(string: "")!
         subject.setUpView(view, url: requestURL)
-        let returnedFileURL = NSURL(string: "")
+        let currentBundle = NSBundle(forClass: PagePresenterTests.self)
+        let returnedFilePathString = currentBundle.pathForResource("seq-1", ofType: "pdf")
+        let returnedFileURL = NSURL(fileURLWithPath: returnedFilePathString ?? "")
         fakeInteractor.downloadPage_called_withCallback?(returnedFileURL, nil)
-        XCTAssertEqual(view.fileURL, returnedFileURL)
+        XCTAssertNotNil(view.pdfPage)
     }
 
     func testThat_whenADownloadFinishesWithAnError_itTellsTheViewToShowTheErrorMessage() {

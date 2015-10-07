@@ -35,12 +35,9 @@ public class PagePresenter: NSObject, PagePresenterProtocol {
             if let error = error as? NSError {
                 view.showErrorWithTitle("Trouble Downloading PDF", message: error.localizedDescription)
             } else {
-                print("[RP] url: \(url)")
-                let doc = CGPDFDocumentCreateWithURL(url)
-                view.pdfPage = CGPDFDocumentGetPage(doc, 1)
+                view.pdfPage = CGPDFDocumentGetPage(CGPDFDocumentCreateWithURL(url), 1)
             }
             view.hideLoadingIndicator()
         } )
     }
-
 }
