@@ -10,13 +10,6 @@ import UIKit
 
 class PDFPageView: UIView {
 
-    let loggingEnabled = false
-    func p(string: String) {
-        if loggingEnabled {
-            print(string)
-        }
-    }
-
     var pdfPage: CGPDFPageRef? {
         didSet {
             layer.setNeedsDisplay()
