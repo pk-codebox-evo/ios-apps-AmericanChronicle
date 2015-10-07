@@ -10,13 +10,6 @@ import UIKit
 
 class PDFPageView: UIView {
 
-    let loggingEnabled = false
-    func p(string: String) {
-        if loggingEnabled {
-            print(string)
-        }
-    }
-
     var pdfPage: CGPDFPageRef? {
         didSet {
             layer.setNeedsDisplay()
@@ -41,8 +34,6 @@ class PDFPageView: UIView {
 
     override func drawLayer(layer: CALayer, inContext ctx: CGContext) {
 
-        p("[RP] ENTERING drawLayer(::)")
-
         // Draw a blank white background.
         CGContextSetRGBFillColor(ctx, 1.0, 1.0, 1.0, 1.0);
         CGContextFillRect(ctx, bounds);
@@ -58,7 +49,6 @@ class PDFPageView: UIView {
 
         // Scale the context so that the PDF page is drawn to fill the view exactly.
         let pdfSize = CGPDFPageGetBoxRect(pdfPage, .MediaBox).size
-        print("[RP]  * pdfSize: \(pdfSize)")
         let widthScale = bounds.size.width/pdfSize.width
         let heightScale = bounds.size.height/pdfSize.height
         let smallerScale = fmin(widthScale, heightScale)
@@ -70,8 +60,6 @@ class PDFPageView: UIView {
 
         CGContextDrawPDFPage(ctx, self.pdfPage)
         CGContextRestoreGState(ctx)
-        
-        p("[RP] EXITING drawLayer(::)")
     }
 
 }

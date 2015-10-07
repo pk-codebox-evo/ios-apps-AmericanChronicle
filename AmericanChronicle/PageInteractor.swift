@@ -8,6 +8,7 @@
 
 public protocol PageInteractorProtocol {
     func downloadPage(url: NSURL, andThen: ((NSURL?, ErrorType?) -> ()))
+    func cancelDownload(url: NSURL)
 }
 
 public class PageInteractor: NSObject, PageInteractorProtocol {

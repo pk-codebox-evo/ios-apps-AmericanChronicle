@@ -17,9 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="vx1-vv-2Wx">
-                                <rect key="frame" x="197" y="358" width="20" height="20"/>
-                            </activityIndicatorView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" maximumZoomScale="5" translatesAutoresizingMaskIntoConstraints="NO" id="B8b-q7-hMi">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" red="0.15686274510000001" green="0.1450980392" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -68,12 +65,42 @@
                                     <constraint firstAttribute="trailing" secondItem="cdb-JN-kEu" secondAttribute="trailing" constant="10" id="qzJ-6r-3vq"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="76B-LB-ADo" userLabel="loadingView">
+                                <rect key="frame" x="0.0" y="20" width="414" height="716"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CV0-Tm-cID">
+                                        <rect key="frame" x="152" y="376" width="110" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="110" id="Oj7-dg-auf"/>
+                                            <constraint firstAttribute="height" constant="30" id="dyC-E8-JKi"/>
+                                        </constraints>
+                                        <state key="normal" title="Cancel"/>
+                                        <connections>
+                                            <action selector="cancelButtonTapped:" destination="r3d-KN-wgs" eventType="touchUpInside" id="87X-FH-qxh"/>
+                                        </connections>
+                                    </button>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="vx1-vv-2Wx">
+                                        <rect key="frame" x="197" y="348" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="CV0-Tm-cID" firstAttribute="top" secondItem="vx1-vv-2Wx" secondAttribute="bottom" constant="8" id="9CD-GT-FCw"/>
+                                    <constraint firstItem="vx1-vv-2Wx" firstAttribute="centerX" secondItem="76B-LB-ADo" secondAttribute="centerX" id="Dhh-Rz-HsV"/>
+                                    <constraint firstItem="CV0-Tm-cID" firstAttribute="centerX" secondItem="vx1-vv-2Wx" secondAttribute="centerX" id="Eha-P8-dac"/>
+                                    <constraint firstItem="vx1-vv-2Wx" firstAttribute="centerY" secondItem="76B-LB-ADo" secondAttribute="centerY" id="gwB-3K-CPr"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="oY2-ec-wL4" firstAttribute="top" secondItem="76B-LB-ADo" secondAttribute="bottom" id="9Hk-21-pGO"/>
                             <constraint firstAttribute="bottom" secondItem="B8b-q7-hMi" secondAttribute="bottom" id="IRi-hO-geX"/>
                             <constraint firstAttribute="trailing" secondItem="B8b-q7-hMi" secondAttribute="trailing" id="Jn1-Ry-KcP"/>
+                            <constraint firstItem="76B-LB-ADo" firstAttribute="leading" secondItem="e6q-FU-DYZ" secondAttribute="leading" id="LPj-4Y-8Cd"/>
+                            <constraint firstItem="76B-LB-ADo" firstAttribute="top" secondItem="8Fo-gZ-jaN" secondAttribute="bottom" id="S4X-8a-S9I"/>
+                            <constraint firstAttribute="trailing" secondItem="76B-LB-ADo" secondAttribute="trailing" id="Tjx-jL-yPe"/>
                             <constraint firstAttribute="trailing" secondItem="hcc-kf-Khs" secondAttribute="trailing" id="Xgi-j1-3Oc"/>
                             <constraint firstItem="B8b-q7-hMi" firstAttribute="top" secondItem="e6q-FU-DYZ" secondAttribute="top" id="Yx7-Xj-3PE"/>
                             <constraint firstAttribute="bottom" secondItem="hcc-kf-Khs" secondAttribute="bottom" id="fJ8-k3-COh"/>
@@ -89,6 +116,7 @@
                         <outlet property="activityIndicator" destination="vx1-vv-2Wx" id="Pcc-GJ-W7H"/>
                         <outlet property="bottomBarBG" destination="hcc-kf-Khs" id="k4u-gu-wnH"/>
                         <outlet property="doneButton" destination="lrz-z4-eGL" id="HJo-SM-qj3"/>
+                        <outlet property="loadingView" destination="76B-LB-ADo" id="4Mz-Mf-flT"/>
                         <outlet property="scrollView" destination="B8b-q7-hMi" id="1Rf-iP-Wek"/>
                         <outlet property="shareButton" destination="cdb-JN-kEu" id="MkD-gC-eLR"/>
                         <outlet property="tapGesture" destination="Adx-rE-enr" id="612-OH-XaV"/>

@@ -36,16 +36,12 @@ public class SearchInteractor: NSObject, SearchInteractorProtocol {
     public func performSearch(term: String?, andThen callback: ((SearchResults?, ErrorType?) -> ())) {
         let oldRequest = activeRequest
         if let term = term where term.characters.count > 0 {
-//            print("[RP] '\(term)' - starting a new search")
             activeRequest = searchFactory.newSearchForTerm(term, callback: callback, webService: webService)
             activeRequest?.start()
         } else {
             let err = NSError(domain: "", code: -999, userInfo: nil)
             callback(nil, err)
         }
-//        let currentTerm = term ?? "(nil)"
-//        let oldTerm = oldRequest?.term ?? "(nil)"
-//        print("[RP] '\(currentTerm)' - cancelling an old search ('\(oldTerm)')")
         oldRequest?.cancel()
     }
 
