@@ -21,6 +21,7 @@ class PageViewController: UIViewController, PageView, UIScrollViewDelegate {
     @IBOutlet weak var bottomBarBG: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var loadingView: UIView!
 
     lazy var pageView: PDFPageView = PDFPageView()
     var toastButton = UIButton()
@@ -38,6 +39,10 @@ class PageViewController: UIViewController, PageView, UIScrollViewDelegate {
         doneCallback?()
     }
 
+    @IBAction func cancelButtonTapped(sender: AnyObject) {
+        cancelCallback?()
+    }
+
     @IBAction func tapRecognized(sender: AnyObject) {
         bottomBarBG.hidden = !bottomBarBG.hidden
     }
@@ -46,6 +51,7 @@ class PageViewController: UIViewController, PageView, UIScrollViewDelegate {
 
     var doneCallback: ((Void) -> ())?
     var shareCallback: ((Void) -> ())?
+    var cancelCallback: ((Void) -> ())?
     var pdfPage: CGPDFPageRef? {
         get {
             return pageView.pdfPage
@@ -59,11 +65,13 @@ class PageViewController: UIViewController, PageView, UIScrollViewDelegate {
 
     func showLoadingIndicator() {
         if isViewLoaded() {
+            loadingView.alpha = 1.0
             activityIndicator.startAnimating()
         }
     }
 
     func hideLoadingIndicator() {
+        loadingView.alpha = 0
         activityIndicator.stopAnimating()
     }
 

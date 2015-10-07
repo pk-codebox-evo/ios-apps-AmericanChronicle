@@ -9,6 +9,7 @@
 public protocol PageView: class {
     var doneCallback: ((Void) -> ())? { get set }
     var shareCallback: ((Void) -> ())? { get set }
+    var cancelCallback: ((Void) -> ())? { get set }
     var pdfPage: CGPDFPageRef? { get set }
 
     func showLoadingIndicator()

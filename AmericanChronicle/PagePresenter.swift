@@ -30,6 +30,10 @@ public class PagePresenter: NSObject, PagePresenterProtocol {
             self?.doneCallback?()
         }
 
+        view.cancelCallback = {
+            print("[RP] \(self.dynamicType) | \(__FUNCTION__) | line \(__LINE__)")
+        }
+
         view.showLoadingIndicator()
         interactor.downloadPage(url, andThen: { url, error in
             if let error = error as? NSError {
