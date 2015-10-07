@@ -27,11 +27,13 @@ public class PagePresenter: NSObject, PagePresenterProtocol {
             self?.shareCallback?()
         }
         view.doneCallback = { [weak self] in
+            self?.interactor.cancelDownload(url)
             self?.doneCallback?()
         }
 
-        view.cancelCallback = {
-            print("[RP] \(self.dynamicType) | \(__FUNCTION__) | line \(__LINE__)")
+        view.cancelCallback = { [weak self] in
+            self?.interactor.cancelDownload(url)
+            self?.doneCallback?()
         }
 
         view.showLoadingIndicator()
