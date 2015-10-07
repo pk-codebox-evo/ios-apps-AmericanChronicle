@@ -26,6 +26,7 @@ public class PagePresenter: NSObject, PagePresenterProtocol {
         view.shareCallback = { [weak self] in
             self?.shareCallback?()
         }
+
         view.doneCallback = { [weak self] in
             self?.cancelDownloadAndFinish(url)
         }

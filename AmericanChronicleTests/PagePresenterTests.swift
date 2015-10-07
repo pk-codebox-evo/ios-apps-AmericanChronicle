@@ -35,14 +35,14 @@ class FakePageView: NSObject, PageView {
         showError_wasCalled_withMessage = message
     }
 
-    var showLoadingIndicator_called = false
+    var showLoadingIndicator_wasCalled = false
     func showLoadingIndicator() {
-        showLoadingIndicator_called = true
+        showLoadingIndicator_wasCalled = true
     }
 
-    var hideLoadingIndicator_called = false
+    var hideLoadingIndicator_wasCalled = false
     func hideLoadingIndicator() {
-        hideLoadingIndicator_called = true
+        hideLoadingIndicator_wasCalled = true
     }
 }
 
@@ -64,7 +64,7 @@ class PagePresenterTests: XCTestCase {
         let view = FakePageView()
         let url = NSURL(string: "")!
         subject.setUpView(view, url: url)
-        XCTAssertTrue(view.showLoadingIndicator_called)
+        XCTAssertTrue(view.showLoadingIndicator_wasCalled)
     }
 
     func testThat_whenItSetsUpAView_itStartsTheDownload() {
@@ -79,7 +79,7 @@ class PagePresenterTests: XCTestCase {
         let url = NSURL(string: "")!
         subject.setUpView(view, url: url)
         fakeInteractor.downloadPage_wasCalled_withCallback?(nil, nil)
-        XCTAssertTrue(view.hideLoadingIndicator_called)
+        XCTAssertTrue(view.hideLoadingIndicator_wasCalled)
     }
 
     func testThat_whenADownloadFinishesWithoutAnError_itPassesThePDFToTheView() {
@@ -101,5 +101,24 @@ class PagePresenterTests: XCTestCase {
         fakeInteractor.downloadPage_wasCalled_withCallback?(nil, returnedError)
         XCTAssertNotNil(view.showError_wasCalled_withTitle)
     }
-    
+
+    func testThat_whenTheViewAsksToCancelTheDownload_itPassesTheMessageToTheInteractor() {
+        let view = FakePageView()
+        let requestURL = NSURL(string: "")!
+        subject.setUpView(view, url: requestURL)
+        view.cancelCallback?()
+        XCTAssertEqual(fakeInteractor.cancelDownload_wasCalled_withURL, requestURL)
+    }
+
+    func testThat_whenTheViewAsksToCancelTheDownload_itConsidersItselfDone() {
+        let view = FakePageView()
+        let requestURL = NSURL(string: "")!
+        subject.setUpView(view, url: requestURL)
+        var doneCallbackTriggered = false
+        subject.doneCallback = {
+            doneCallbackTriggered = true
+        }
+        view.cancelCallback?()
+        XCTAssertTrue(doneCallbackTriggered)
+    }
 }
