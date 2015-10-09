@@ -23,6 +23,9 @@ class PageViewController: UIViewController, PageView, UIScrollViewDelegate {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var errorView: UIView!
+    @IBOutlet weak var errorTitleLabel: UILabel!
+    @IBOutlet weak var errorMessageLabel: UILabel!
 
     lazy var pageView: PDFPageView = PDFPageView()
     var toastButton = UIButton()
@@ -81,7 +84,17 @@ class PageViewController: UIViewController, PageView, UIScrollViewDelegate {
     }
 
     func showErrorWithTitle(title: String?, message: String?) {
+        errorTitleLabel.text = title
+        errorMessageLabel.text = message
+        errorView.hidden = false
+    }
 
+    func hideError() {
+        errorView.hidden = true
+    }
+
+    @IBAction func errorOKButtonTapped(sender: AnyObject) {
+        doneCallback?()
     }
 
     // MARK: UIScrollViewDelegate protocol
@@ -122,6 +135,8 @@ class PageViewController: UIViewController, PageView, UIScrollViewDelegate {
         toastButton.layer.shadowRadius = 1.0
         toastButton.layer.shadowOpacity = 1.0
         view.addSubview(toastButton)
+
+        hideError()
 
         showLoadingIndicator()
     }

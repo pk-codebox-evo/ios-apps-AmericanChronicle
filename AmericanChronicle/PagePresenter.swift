@@ -37,12 +37,9 @@ public class PagePresenter: NSObject, PagePresenterProtocol {
 
         view.showLoadingIndicator()
         interactor.downloadPage(url, totalBytesRead: { totalRead in
-
-
             let progress = Float(totalRead)/Float(estimatedSize)
-            print("[RP] totalRead (\(totalRead)) / estimatedSize (\(estimatedSize)) = \(progress)")
             view.setDownloadProgress(progress)
-            }, completion: { url, error in
+        }, completion: { url, error in
             if let error = error as? NSError {
                 view.showErrorWithTitle("Trouble Downloading PDF", message: error.localizedDescription)
             } else {
