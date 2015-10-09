@@ -9,7 +9,7 @@
 public protocol PagePresenterProtocol: class {
     var shareCallback: (() -> Void)? { get set }
     var doneCallback: (() -> Void)? { get set }
-    func setUpView(view: PageView, url: NSURL)
+    func setUpView(view: PageView, url: NSURL, estimatedSize: Int)
 }
 
 public class PagePresenter: NSObject, PagePresenterProtocol {
@@ -22,7 +22,7 @@ public class PagePresenter: NSObject, PagePresenterProtocol {
         super.init()
     }
 
-    public func setUpView(view: PageView, url: NSURL) {
+    public func setUpView(view: PageView, url: NSURL, estimatedSize: Int) {
         view.shareCallback = { [weak self] in
             self?.shareCallback?()
         }
@@ -36,7 +36,13 @@ public class PagePresenter: NSObject, PagePresenterProtocol {
         }
 
         view.showLoadingIndicator()
-        interactor.downloadPage(url, andThen: { url, error in
+        interactor.downloadPage(url, totalBytesRead: { totalRead in
+
+
+            let progress = Float(totalRead)/Float(estimatedSize)
+            print("[RP] totalRead (\(totalRead)) / estimatedSize (\(estimatedSize)) = \(progress)")
+            view.setDownloadProgress(progress)
+            }, completion: { url, error in
             if let error = error as? NSError {
                 view.showErrorWithTitle("Trouble Downloading PDF", message: error.localizedDescription)
             } else {

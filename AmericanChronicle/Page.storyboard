@@ -82,13 +82,20 @@
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="vx1-vv-2Wx">
                                         <rect key="frame" x="197" y="348" width="20" height="20"/>
                                     </activityIndicatorView>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0oR-oX-YCh">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="2"/>
+                                        <color key="progressTintColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </progressView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="CV0-Tm-cID" firstAttribute="top" secondItem="vx1-vv-2Wx" secondAttribute="bottom" constant="8" id="9CD-GT-FCw"/>
+                                    <constraint firstItem="0oR-oX-YCh" firstAttribute="leading" secondItem="76B-LB-ADo" secondAttribute="leading" id="ADh-An-Asi"/>
                                     <constraint firstItem="vx1-vv-2Wx" firstAttribute="centerX" secondItem="76B-LB-ADo" secondAttribute="centerX" id="Dhh-Rz-HsV"/>
                                     <constraint firstItem="CV0-Tm-cID" firstAttribute="centerX" secondItem="vx1-vv-2Wx" secondAttribute="centerX" id="Eha-P8-dac"/>
+                                    <constraint firstItem="0oR-oX-YCh" firstAttribute="top" secondItem="76B-LB-ADo" secondAttribute="top" id="fOm-x3-IL8"/>
                                     <constraint firstItem="vx1-vv-2Wx" firstAttribute="centerY" secondItem="76B-LB-ADo" secondAttribute="centerY" id="gwB-3K-CPr"/>
+                                    <constraint firstAttribute="trailing" secondItem="0oR-oX-YCh" secondAttribute="trailing" id="hmD-RJ-I7l"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -117,6 +124,7 @@
                         <outlet property="bottomBarBG" destination="hcc-kf-Khs" id="k4u-gu-wnH"/>
                         <outlet property="doneButton" destination="lrz-z4-eGL" id="HJo-SM-qj3"/>
                         <outlet property="loadingView" destination="76B-LB-ADo" id="4Mz-Mf-flT"/>
+                        <outlet property="progressView" destination="0oR-oX-YCh" id="vOM-18-sj4"/>
                         <outlet property="scrollView" destination="B8b-q7-hMi" id="1Rf-iP-Wek"/>
                         <outlet property="shareButton" destination="cdb-JN-kEu" id="MkD-gC-eLR"/>
                         <outlet property="tapGesture" destination="Adx-rE-enr" id="612-OH-XaV"/>

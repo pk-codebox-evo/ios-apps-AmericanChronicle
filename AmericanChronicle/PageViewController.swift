@@ -22,6 +22,7 @@ class PageViewController: UIViewController, PageView, UIScrollViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var progressView: UIProgressView!
 
     lazy var pageView: PDFPageView = PDFPageView()
     var toastButton = UIButton()
@@ -73,6 +74,10 @@ class PageViewController: UIViewController, PageView, UIScrollViewDelegate {
     func hideLoadingIndicator() {
         loadingView.alpha = 0
         activityIndicator.stopAnimating()
+    }
+
+    func setDownloadProgress(progress: Float) {
+        progressView.progress = progress
     }
 
     func showErrorWithTitle(title: String?, message: String?) {
@@ -140,6 +145,4 @@ class PageViewController: UIViewController, PageView, UIScrollViewDelegate {
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
-
-
 }

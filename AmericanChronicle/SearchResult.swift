@@ -42,6 +42,9 @@ public class SearchResult: NSObject, Mappable {
     var page: String?
     public var thumbnailURL: NSURL?
     public var pdfURL: NSURL?
+    public var estimatedPDFSize: Int {
+        return (ocrEng?.characters.count ?? 0) * 30
+    }
 
     public override init() {
         super.init()

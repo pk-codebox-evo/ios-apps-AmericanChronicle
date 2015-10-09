@@ -14,5 +14,6 @@ public protocol PageView: class {
 
     func showLoadingIndicator()
     func hideLoadingIndicator()
+    func setDownloadProgress(progress: Float)
     func showErrorWithTitle(title: String?, message: String?)
 }

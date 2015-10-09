@@ -30,7 +30,7 @@ public class SearchWireframe: NSObject, UIViewControllerTransitioningDelegate {
                 presenting?.dismissViewControllerAnimated(true, completion: nil)
             }
             searchPresenter.showPageCallback = { row in
-                self.presentPage(row.pdfURL!, fromViewController: vc)
+                self.presentPage(row.pdfURL!, withEstimatedSize: row.estimatedPDFSize, fromViewController: vc)
             }
             let nvc = UINavigationController(rootViewController: vc)
             nvc.modalPresentationStyle = .Custom
@@ -39,10 +39,11 @@ public class SearchWireframe: NSObject, UIViewControllerTransitioningDelegate {
         }
     }
 
-    public func presentPage(url: NSURL, fromViewController presenting: UIViewController?) {
+    // estimatedSize should be in KB
+    public func presentPage(url: NSURL, withEstimatedSize estimatedSize: Int, fromViewController presenting: UIViewController?) {
         let sb = UIStoryboard(name: "Page", bundle: nil)
         if let vc = sb.instantiateInitialViewController() as? PageViewController {
-            pagePresenter.setUpView(vc, url: url)
+            pagePresenter.setUpView(vc, url: url, estimatedSize: estimatedSize)
             pagePresenter.doneCallback = {
                 presenting?.dismissViewControllerAnimated(true, completion: nil)
             }

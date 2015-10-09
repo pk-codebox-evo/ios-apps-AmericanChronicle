@@ -14,12 +14,14 @@ public class SearchResultsRow {
     let publicationTitle: String
     let thumbnailURL: NSURL?
     let pdfURL: NSURL?
-    init(date: NSDate?, cityState: String, publicationTitle: String, thumbnailURL: NSURL?, pdfURL: NSURL?) {
+    let estimatedPDFSize: Int
+    init(date: NSDate?, cityState: String, publicationTitle: String, thumbnailURL: NSURL?, pdfURL: NSURL?, estimatedPDFSize: Int) {
         self.date = date
         self.cityState = cityState
         self.publicationTitle = publicationTitle
         self.thumbnailURL = thumbnailURL
         self.pdfURL = pdfURL
+        self.estimatedPDFSize = estimatedPDFSize
     }
 
     public var description: String {
@@ -27,7 +29,8 @@ public class SearchResultsRow {
         desc += ", date=\(date)"
         desc += ", cityState=\(cityState)"
         desc += ", publicationTitle=\(publicationTitle)"
-        desc += ", thumbnailURL=\(thumbnailURL)>"
+        desc += ", thumbnailURL=\(thumbnailURL)"
+        desc += ", estimatedPDFSize=\(estimatedPDFSize)>"
         return desc
     }
 }

@@ -69,7 +69,8 @@ public class SearchPresenter: NSObject, SearchPresenterProtocol {
                             cityState: cityState,
                             publicationTitle: publicationTitle,
                             thumbnailURL: result.thumbnailURL,
-                            pdfURL: result.pdfURL)
+                            pdfURL: result.pdfURL,
+                            estimatedPDFSize: result.estimatedPDFSize)
                         rows.append(row)
                     }
                     if rows.count > 0 {

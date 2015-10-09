@@ -15,7 +15,7 @@ public protocol ChroniclingAmericaWebServiceProtocol {
     func performSearch(term: String, page: Int, andThen: ((SearchResults?, ErrorType?) -> ())?)
     func cancelLastSearch()
     func isPerformingSearch() -> Bool
-    func downloadPage(url: NSURL, andThen: ((NSURL?, ErrorType?) -> ())?) -> RequestProtocol?
+    func downloadPage(url: NSURL, totalBytesRead: ((Int64) -> Void), completion: ((NSURL?, ErrorType?) -> ())?) -> RequestProtocol?
 }
 
 public protocol ManagerProtocol {
@@ -33,6 +33,7 @@ public protocol RequestProtocol {
     var task: NSURLSessionTask { get }
     func responseObject<T: Mappable>(completionHandler: (T?, ErrorType?) -> Void) -> Self
     func response(completionHandler: (NSURLRequest?, NSHTTPURLResponse?, NSData?, ErrorType?) -> Void) -> Self
+    func progress(closure: ((Int64, Int64, Int64) -> Void)?) -> Self
     func cancel()
 }
 
@@ -56,6 +57,72 @@ extension Manager: ManagerProtocol {
         URLString: URLStringConvertible,
         parameters: [String: AnyObject]?, destination: Request.DownloadFileDestination) -> RequestProtocol? {
             return download(method, URLString, parameters: parameters, encoding: .URL, headers: nil, destination: destination)
+    }
+}
+
+extension NSFileManager {
+    class var defaultDocumentDirectoryURL: NSURL? {
+        return NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first
+    }
+
+    class var defaultApplicationDirectoryURL: NSURL? {
+        return NSFileManager.defaultManager().URLsForDirectory(.ApplicationDirectory, inDomains: .UserDomainMask).first
+    }
+
+    class var defaultLibraryDirectoryURL: NSURL? {
+        return NSFileManager.defaultManager().URLsForDirectory(.LibraryDirectory, inDomains: .UserDomainMask).first
+    }
+
+    class var defaultCachesDirectoryURL: NSURL? {
+        return NSFileManager.defaultManager().URLsForDirectory(.CachesDirectory, inDomains: .UserDomainMask).first
+    }
+
+    class var defaultDownloadsDirectoryURL: NSURL? {
+        return NSFileManager.defaultManager().URLsForDirectory(.DownloadsDirectory, inDomains: .UserDomainMask).first
+    }
+
+    class var defaultItemReplacementDirectoryURL: NSURL? {
+        return NSFileManager.defaultManager().URLsForDirectory(.ItemReplacementDirectory, inDomains: .UserDomainMask).first
+    }
+
+    class func printAllDirectoryURLs() {
+        print("[RP] defaultDocumentDirectoryURL: \(defaultDocumentDirectoryURL)")
+        print("[RP] defaultApplicationDirectoryURL: \(defaultApplicationDirectoryURL)")
+        print("[RP] defaultLibraryDirectoryURL: \(defaultLibraryDirectoryURL)")
+        print("[RP] defaultCachesDirectoryURL: \(defaultCachesDirectoryURL)")
+        print("[RP] defaultDownloadsDirectoryURL: \(defaultDownloadsDirectoryURL)")
+        print("[RP] defaultItemReplacementDirectoryURL: \(defaultItemReplacementDirectoryURL)")
+    }
+
+    class var contentsOfTemporaryDirectory: [String] {
+        let tempDirURL = NSTemporaryDirectory()
+        do {
+            let contents = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(tempDirURL)
+            print("[RP] contents: \(contents)")
+            return contents
+        } catch let error {
+            print("[RP] error: \(error)")
+        }
+        return []
+    }
+
+    class func fullURLForTemporaryFileWithName(name: String) -> NSURL? {
+        let tempDirURL = NSURL(fileURLWithPath: NSTemporaryDirectory())
+        let fullURL = tempDirURL.URLByAppendingPathComponent(name)
+        return fullURL
+    }
+
+    class func attributesForTemporaryFileWithName(name: String) -> [String: AnyObject] {
+        let fullURL = fullURLForTemporaryFileWithName(name)
+        if let fullURLString = fullURL?.absoluteString {
+            do {
+                let attributes = try NSFileManager.defaultManager().attributesOfItemAtPath(fullURLString)
+                return attributes
+            } catch let error {
+                print("[RP] error: \(error)")
+            }
+        }
+        return [:]
     }
 }
 
@@ -134,12 +201,12 @@ public class ChroniclingAmericaWebService: ChroniclingAmericaWebServiceProtocol 
 
     // ---
 
-    public func downloadPage(remoteURL: NSURL, andThen: ((NSURL?, ErrorType?) -> ())?) -> RequestProtocol? {
+    public func downloadPage(remoteURL: NSURL, totalBytesRead: ((Int64) -> Void), completion: ((NSURL?, ErrorType?) -> ())?) -> RequestProtocol? {
         var fileURL: NSURL?
         let destination: (NSURL, NSHTTPURLResponse) -> (NSURL) = { (temporaryURL, response) in
-            let documentsDirectoryURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)[0]
+            let documentsDirectoryURL = NSFileManager.defaultDocumentDirectoryURL
             let remotePath = remoteURL.path ?? ""
-            fileURL = documentsDirectoryURL.URLByAppendingPathComponent(remotePath).URLByStandardizingPath
+            fileURL = documentsDirectoryURL?.URLByAppendingPathComponent(remotePath).URLByStandardizingPath
             do {
                 if let fileDirectoryURL = fileURL?.URLByDeletingLastPathComponent {
                     try NSFileManager.defaultManager().createDirectoryAtURL(fileDirectoryURL, withIntermediateDirectories: true, attributes: nil)
@@ -150,8 +217,13 @@ public class ChroniclingAmericaWebService: ChroniclingAmericaWebServiceProtocol 
 
             return fileURL ?? temporaryURL
         }
-        return manager.download(.GET, URLString: remoteURL.absoluteString, parameters: nil, destination: destination)?.response({ request, response, data, error in
-            andThen?(fileURL, error)
-        })
+
+        return manager.download(.GET, URLString: remoteURL.absoluteString, parameters: nil, destination: destination)?
+            .progress { bytesRead, totalRead, totalExpected in
+                dispatch_async(dispatch_get_main_queue()) { totalBytesRead(totalRead) }
+            }
+            .response { request, response, data, error in
+                completion?(fileURL, error)
+            }
     }
 }
