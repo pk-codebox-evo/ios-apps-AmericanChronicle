@@ -27,13 +27,13 @@ class FakeChroniclingAmericaWebService: ChroniclingAmericaWebServiceProtocol {
         return false
     }
 
-    var downloadPage_called = false
-    var downloadPage_called_withParameters: (url: NSURL, andThen: ((NSURL?, ErrorType?) -> ()))?
-    func downloadPage(url: NSURL, andThen: ((NSURL?, ErrorType?) -> ())?) -> RequestProtocol? {
-        downloadPage_called = true
-        downloadPage_called_withParameters = (url: url, andThen: { url, error in
-            andThen?(url, error)
-        })
+    var downloadPage_called_withURL: NSURL?
+    var downloadPage_called_withTotalBytesRead: ((Int64) -> Void)?
+    var downloadPage_called_withCompletion: ((NSURL?, ErrorType?) -> ())?
+    func downloadPage(url: NSURL, totalBytesRead: ((Int64) -> Void), completion: ((NSURL?, ErrorType?) -> ())?) -> RequestProtocol? {
+        downloadPage_called_withURL = url
+        downloadPage_called_withTotalBytesRead = totalBytesRead
+        downloadPage_called_withCompletion = completion
         return FakeRequest()
     }
 }

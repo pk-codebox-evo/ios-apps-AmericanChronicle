@@ -10,9 +10,13 @@ import XCTest
 import AmericanChronicle
 
 class FakePageInteractor: NSObject, PageInteractorProtocol {
-    var downloadPage_wasCalled_withCallback: ((NSURL?, ErrorType?) -> ())?
-    func downloadPage(url: NSURL, andThen callback: ((NSURL?, ErrorType?) -> ())) {
-        downloadPage_wasCalled_withCallback = callback
+    var downloadPage_wasCalled_withURL: NSURL?
+    var downloadPage_wasCalled_withTotalBytesRead: ((Int64) -> ())?
+    var downloadPage_wasCalled_withCompletion: ((NSURL?, ErrorType?) -> ())?
+    func downloadPage(url: NSURL, totalBytesRead: ((Int64) -> ()), completion: ((NSURL?, ErrorType?) -> ())) {
+        downloadPage_wasCalled_withURL = url
+        downloadPage_wasCalled_withTotalBytesRead = totalBytesRead
+        downloadPage_wasCalled_withCompletion = completion
     }
 
     var cancelDownload_wasCalled_withURL: NSURL?
@@ -40,6 +44,10 @@ class FakePageView: NSObject, PageView {
         showLoadingIndicator_wasCalled = true
     }
 
+    func setDownloadProgress(progress: Float) {
+
+    }
+
     var hideLoadingIndicator_wasCalled = false
     func hideLoadingIndicator() {
         hideLoadingIndicator_wasCalled = true
@@ -63,49 +71,49 @@ class PagePresenterTests: XCTestCase {
     func testThat_whenItSetsUpAView_itTellsTheViewToShowItsLoadingIndicator() {
         let view = FakePageView()
         let url = NSURL(string: "")!
-        subject.setUpView(view, url: url)
+        subject.setUpView(view, url: url, estimatedSize: 0)
         XCTAssertTrue(view.showLoadingIndicator_wasCalled)
     }
 
     func testThat_whenItSetsUpAView_itStartsTheDownload() {
         let view = FakePageView()
         let url = NSURL(string: "")!
-        subject.setUpView(view, url: url)
-        XCTAssertNotNil(fakeInteractor.downloadPage_wasCalled_withCallback)
+        subject.setUpView(view, url: url, estimatedSize: 0)
+        XCTAssertNotNil(fakeInteractor.downloadPage_wasCalled_withURL)
     }
 
     func testThat_whenADownloadFinishes_itTellsTheViewToHideItsLoadingIndicator() {
         let view = FakePageView()
         let url = NSURL(string: "")!
-        subject.setUpView(view, url: url)
-        fakeInteractor.downloadPage_wasCalled_withCallback?(nil, nil)
+        subject.setUpView(view, url: url, estimatedSize: 0)
+        fakeInteractor.downloadPage_wasCalled_withCompletion?(nil, nil)
         XCTAssertTrue(view.hideLoadingIndicator_wasCalled)
     }
 
     func testThat_whenADownloadFinishesWithoutAnError_itPassesThePDFToTheView() {
         let view = FakePageView()
         let requestURL = NSURL(string: "")!
-        subject.setUpView(view, url: requestURL)
+        subject.setUpView(view, url: requestURL, estimatedSize: 0)
         let currentBundle = NSBundle(forClass: PagePresenterTests.self)
         let returnedFilePathString = currentBundle.pathForResource("seq-1", ofType: "pdf")
         let returnedFileURL = NSURL(fileURLWithPath: returnedFilePathString ?? "")
-        fakeInteractor.downloadPage_wasCalled_withCallback?(returnedFileURL, nil)
+        fakeInteractor.downloadPage_wasCalled_withCompletion?(returnedFileURL, nil)
         XCTAssertNotNil(view.pdfPage)
     }
 
     func testThat_whenADownloadFinishesWithAnError_itTellsTheViewToShowTheErrorMessage() {
         let view = FakePageView()
         let requestURL = NSURL(string: "")!
-        subject.setUpView(view, url: requestURL)
+        subject.setUpView(view, url: requestURL, estimatedSize: 0)
         let returnedError = NSError(domain: "", code: 0, userInfo: nil)
-        fakeInteractor.downloadPage_wasCalled_withCallback?(nil, returnedError)
+        fakeInteractor.downloadPage_wasCalled_withCompletion?(nil, returnedError)
         XCTAssertNotNil(view.showError_wasCalled_withTitle)
     }
 
     func testThat_whenTheViewAsksToCancelTheDownload_itPassesTheMessageToTheInteractor() {
         let view = FakePageView()
         let requestURL = NSURL(string: "")!
-        subject.setUpView(view, url: requestURL)
+        subject.setUpView(view, url: requestURL, estimatedSize: 0)
         view.cancelCallback?()
         XCTAssertEqual(fakeInteractor.cancelDownload_wasCalled_withURL, requestURL)
     }
@@ -113,7 +121,7 @@ class PagePresenterTests: XCTestCase {
     func testThat_whenTheViewAsksToCancelTheDownload_itConsidersItselfDone() {
         let view = FakePageView()
         let requestURL = NSURL(string: "")!
-        subject.setUpView(view, url: requestURL)
+        subject.setUpView(view, url: requestURL, estimatedSize: 0)
         var doneCallbackTriggered = false
         subject.doneCallback = {
             doneCallbackTriggered = true

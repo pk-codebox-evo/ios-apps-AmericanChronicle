@@ -51,6 +51,7 @@ class FakeManager: ManagerProtocol {
 }
 
 class FakeRequest: RequestProtocol {
+
     var task: NSURLSessionTask {
         return NSURLSessionTask()
     }
@@ -67,6 +68,10 @@ class FakeRequest: RequestProtocol {
     func response(completionHandler: (NSURLRequest?, NSHTTPURLResponse?, NSData?, ErrorType?) -> Void) -> Self {
         response_wasCalled = true
         response_wasCalled_withCompletionHandler = completionHandler
+        return self
+    }
+
+    func progress(closure: ((Int64, Int64, Int64) -> Void)?) -> Self {
         return self
     }
 
