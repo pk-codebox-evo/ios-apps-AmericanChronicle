@@ -11,11 +11,11 @@ import AmericanChronicle
 
 class FakePageInteractor: NSObject, PageInteractorProtocol {
     var downloadPage_wasCalled_withURL: NSURL?
-    var downloadPage_wasCalled_withTotalBytesRead: ((Int64) -> ())?
+    var downloadPage_wasCalled_withProgress: ((Int64) -> ())?
     var downloadPage_wasCalled_withCompletion: ((NSURL?, ErrorType?) -> ())?
-    func downloadPage(url: NSURL, totalBytesRead: ((Int64) -> ()), completion: ((NSURL?, ErrorType?) -> ())) {
+    func downloadPage(url: NSURL, progress: ((Int64) -> ()), completion: ((NSURL?, ErrorType?) -> ())) {
         downloadPage_wasCalled_withURL = url
-        downloadPage_wasCalled_withTotalBytesRead = totalBytesRead
+        downloadPage_wasCalled_withProgress = progress
         downloadPage_wasCalled_withCompletion = completion
     }
 
