@@ -36,7 +36,7 @@ public class PagePresenter: NSObject, PagePresenterProtocol {
         }
 
         view.showLoadingIndicator()
-        interactor.downloadPage(url, totalBytesRead: { totalRead in
+        interactor.downloadPage(url, progress: { totalRead in
             let progress = Float(totalRead)/Float(estimatedSize)
             view.setDownloadProgress(progress)
         }, completion: { url, error in
