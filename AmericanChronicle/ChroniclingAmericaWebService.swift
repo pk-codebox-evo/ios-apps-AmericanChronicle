@@ -202,6 +202,7 @@ public class ChroniclingAmericaWebService: ChroniclingAmericaWebServiceProtocol 
     // ---
 
     public func downloadPage(remoteURL: NSURL, totalBytesRead: ((Int64) -> Void), completion: ((NSURL?, ErrorType?) -> ())?) -> RequestProtocol? {
+        // Note: Resumes are not currently supported by chroniclingamerica.loc.gov.
         var fileURL: NSURL?
         let destination: (NSURL, NSHTTPURLResponse) -> (NSURL) = { (temporaryURL, response) in
             let documentsDirectoryURL = NSFileManager.defaultDocumentDirectoryURL

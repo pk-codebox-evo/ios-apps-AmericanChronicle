@@ -7,7 +7,7 @@
 //
 
 public protocol PageInteractorProtocol {
-    func downloadPage(url: NSURL, totalBytesRead: ((Int64) -> ()), completion: ((NSURL?, ErrorType?) -> ()))
+    func downloadPage(url: NSURL, progress: ((Int64) -> ()), completion: ((NSURL?, ErrorType?) -> ()))
     func cancelDownload(url: NSURL)
 }
 
@@ -22,13 +22,13 @@ public class PageInteractor: NSObject, PageInteractorProtocol {
     public var activeRequests: [NSURL: RequestProtocol] = [:]
     public var completedDownloads: [NSURL: NSURL] = [:]
 
-    public func downloadPage(url: NSURL, totalBytesRead: ((Int64) -> ()), completion: ((NSURL?, ErrorType?) -> ())) {
+    public func downloadPage(url: NSURL, progress: ((Int64) -> ()), completion: ((NSURL?, ErrorType?) -> ())) {
         if let fileURL = completedDownloads[url] {
             completion(fileURL, nil)
             return
         }
         let request = webService.downloadPage(url, totalBytesRead: { totalRead in
-            totalBytesRead(totalRead)
+            progress(totalRead)
         }, completion:{ [weak self] fileURL, error in
             if let fileURL = fileURL { self?.completedDownloads[url] = fileURL }
 
