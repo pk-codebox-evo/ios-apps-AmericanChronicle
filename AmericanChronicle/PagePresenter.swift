@@ -6,51 +6,60 @@
 //  Copyright © 2015 ryanipete. All rights reserved.
 //
 
-public protocol PagePresenterProtocol: class {
-    var shareCallback: (() -> Void)? { get set }
-    var doneCallback: (() -> Void)? { get set }
-    func setUpView(view: PageView, url: NSURL, estimatedSize: Int)
+public protocol PagePresenterInterface: class, PageInteractorDelegate {
+    var wireframe: PageWireframe? { get set }
+    var view: PageViewInterface { get }
+    var interactor: PageInteractorInterface { get }
+
+    func userDidTapDone()
+    func userDidTapCancel()
+    func startDownload()
 }
 
-public class PagePresenter: NSObject, PagePresenterProtocol {
+public class PagePresenter: NSObject, PagePresenterInterface {
 
-    public var shareCallback: (() -> Void)?
-    public var doneCallback: (() -> Void)?
-    public let interactor: PageInteractorProtocol
-    public init(interactor: PageInteractorProtocol = PageInteractor()) {
+    // MARK: Properties
+
+    public let view: PageViewInterface
+    public let interactor: PageInteractorInterface
+    weak public var wireframe: PageWireframe?
+
+    public init(view: PageViewInterface, interactor: PageInteractorInterface) {
+        self.view = view
         self.interactor = interactor
         super.init()
+        view.presenter = self
+        interactor.delegate = self
     }
 
-    public func setUpView(view: PageView, url: NSURL, estimatedSize: Int) {
-        view.shareCallback = { [weak self] in
-            self?.shareCallback?()
-        }
+    // MARK: PagePresenterInterface conformance
 
-        view.doneCallback = { [weak self] in
-            self?.cancelDownloadAndFinish(url)
-        }
+    public func userDidTapDone() {
+        cancelDownloadAndFinish()
+    }
 
-        view.cancelCallback = { [weak self] in
-            self?.cancelDownloadAndFinish(url)
-        }
+    public func userDidTapCancel() {
+        cancelDownloadAndFinish()
+    }
 
+    public func startDownload() {
         view.showLoadingIndicator()
-        interactor.downloadPage(url, progress: { totalRead in
-            let progress = Float(totalRead)/Float(estimatedSize)
-            view.setDownloadProgress(progress)
-        }, completion: { url, error in
-            if let error = error as? NSError {
-                view.showErrorWithTitle("Trouble Downloading PDF", message: error.localizedDescription)
-            } else {
-                view.pdfPage = CGPDFDocumentGetPage(CGPDFDocumentCreateWithURL(url), 1)
-            }
-            view.hideLoadingIndicator()
-        } )
+        interactor.startDownload()
     }
 
-    private func cancelDownloadAndFinish(url: NSURL) {
-        interactor.cancelDownload(url)
-        doneCallback?()
+    public func download(remoteURL: NSURL, didFinishWithFileURL fileURL: NSURL?, error: NSError?) {
+        if let error = error {
+            view.showErrorWithTitle("Trouble Downloading PDF", message: error.localizedDescription)
+        } else {
+            view.pdfPage = CGPDFDocumentGetPage(CGPDFDocumentCreateWithURL(fileURL), 1)
+        }
+        view.hideLoadingIndicator()
+    }
+
+    // MARK: Private methods
+
+    private func cancelDownloadAndFinish() {
+        interactor.cancelDownload()
+        wireframe?.userDidTapDone()
     }
 }

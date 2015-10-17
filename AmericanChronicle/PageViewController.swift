@@ -11,7 +11,7 @@ import UIKit
 // -
 // MARK: PageViewController Class
 
-class PageViewController: UIViewController, PageView, UIScrollViewDelegate {
+class PageViewController: UIViewController, PageViewInterface, UIScrollViewDelegate {
 
     // MARK: Properties
 
@@ -32,19 +32,20 @@ class PageViewController: UIViewController, PageView, UIScrollViewDelegate {
     var presentingViewNavBar: UIView?
     var presentingView: UIView?
     var hidesStatusBar: Bool = true
+    var presenter: PagePresenterInterface?
 
     // MARK: Internal methods
 
     @IBAction func shareButtonTapped(sender: AnyObject) {
-        shareCallback?()
+
     }
 
     @IBAction func doneButtonTapped(sender: AnyObject) {
-        doneCallback?()
+        presenter?.userDidTapDone()
     }
 
     @IBAction func cancelButtonTapped(sender: AnyObject) {
-        cancelCallback?()
+        presenter?.userDidTapCancel()
     }
 
     @IBAction func tapRecognized(sender: AnyObject) {
@@ -53,9 +54,6 @@ class PageViewController: UIViewController, PageView, UIScrollViewDelegate {
 
     // MARK: PageView protocol
 
-    var doneCallback: ((Void) -> ())?
-    var shareCallback: ((Void) -> ())?
-    var cancelCallback: ((Void) -> ())?
     var pdfPage: CGPDFPageRef? {
         get {
             return pageView.pdfPage
@@ -94,7 +92,7 @@ class PageViewController: UIViewController, PageView, UIScrollViewDelegate {
     }
 
     @IBAction func errorOKButtonTapped(sender: AnyObject) {
-        doneCallback?()
+        presenter?.userDidTapDone()
     }
 
     // MARK: UIScrollViewDelegate protocol

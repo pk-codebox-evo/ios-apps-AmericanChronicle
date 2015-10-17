@@ -14,7 +14,7 @@ extension UIStoryboard {
     }
 }
 
-class HomeViewController: UITableViewController, UITextFieldDelegate, UIViewControllerTransitioningDelegate {
+class HomeViewController: UITableViewController, UITextFieldDelegate, UIViewControllerTransitioningDelegate, SearchWireframeDelegate {
 
     @IBOutlet weak var searchField: SearchField!
     var statesByName = [StateName: State]()//FakeData.statesByName()
@@ -35,9 +35,14 @@ class HomeViewController: UITableViewController, UITextFieldDelegate, UIViewCont
         super.viewDidLoad()
         tableView.registerClass(TableHeaderView.self, forHeaderFooterViewReuseIdentifier: "Header")
         searchField.shouldBeginEditingCallback = { [weak self] in
+            self?.searchWireframe.delegate = self
             self?.searchWireframe.presentSearchFromViewController(self)
             return false
         }
+    }
+
+    func userDidTapCancel() {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 
     // MARK: - Table View

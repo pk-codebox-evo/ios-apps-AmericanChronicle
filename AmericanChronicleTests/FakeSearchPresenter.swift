@@ -8,12 +8,24 @@
 
 import AmericanChronicle
 
-class FakeSearchPresenter: NSObject, SearchPresenterProtocol {
+class FakeSearchPresenter: NSObject, SearchPresenterInterface {
+    var wireframe: SearchWireframeInterface?
+    var view: SearchViewInterface?
+    var interactor: SearchInteractorInterface?
 
-    var cancelCallback: ((Void) -> ())?
-    var showPageCallback: ((SearchResultsRow) -> ())?
-    var didCall_setUpView_withSearchView: SearchView?
-    func setUpView(searchView: SearchView) {
-        didCall_setUpView_withSearchView = searchView
+    func userDidTapCancel() {
+
+    }
+
+    func userDidSelectSearchResult(row: SearchResultsRow) {
+
+    }
+
+    func userDidChangeSearchToTerm(term: String?) {
+
+    }
+
+    func searchForTerm(term: String, page: Int, didFinishWithResults: SearchResults?, error: NSError?) {
+
     }
 }

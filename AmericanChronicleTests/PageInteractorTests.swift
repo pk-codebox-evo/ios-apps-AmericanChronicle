@@ -9,60 +9,47 @@
 import XCTest
 import AmericanChronicle
 
+class FakePageDataManager: PageDataManagerInterface {
+
+    var downloadPage_wasCalled_withRemoteURL: NSURL?
+    var downloadPage_wasCalled_withCompletionHandler: ((NSURL, NSURL?, NSError?) -> Void)?
+    func downloadPage(remoteURL: NSURL, completionHandler: (NSURL, NSURL?, NSError?) -> Void) {
+        downloadPage_wasCalled_withRemoteURL = remoteURL
+        downloadPage_wasCalled_withCompletionHandler = completionHandler
+    }
+
+    var cancelDownload_wasCalled_withRemoteURL: NSURL?
+    func cancelDownload(remoteURL: NSURL) {
+        cancelDownload_wasCalled_withRemoteURL = remoteURL
+    }
+
+    func isDownloadInProgress(remoteURL: NSURL) -> Bool {
+        return false
+    }
+}
+
 class PageInteractorTests: XCTestCase {
 
     var subject: PageInteractor!
-    var fakeWebService: FakeChroniclingAmericaWebService!
+    var remoteURL: NSURL!
+    var dataManager: FakePageDataManager!
 
     override func setUp() {
         super.setUp()
-        fakeWebService = FakeChroniclingAmericaWebService()
-        subject = PageInteractor(webService: fakeWebService)
+
+        remoteURL = NSURL(string: "http://www.notreal.com")!
+        dataManager = FakePageDataManager()
+
+        subject = PageInteractor(remoteURL: remoteURL, dataManager: dataManager)
     }
 
-    func testThat_whenADownloadCompletesSuccessfully_itReturnsTheLocationOfTheDownloadedFile() {
-        var returnedFileURL: NSURL?
-        subject.downloadPage(NSURL(string: "")!, progress: { _ in }, completion: { url, error in
-            returnedFileURL = url
-        })
-        let expectedFileURL = NSURL(string: "www.google.com")
-        fakeWebService.downloadPage_called_withCompletion?(expectedFileURL, nil)
-        XCTAssertEqual(expectedFileURL, returnedFileURL)
+    func testThat_whenStartDownloadIsCalled_itStartsTheDownloadForItsRemoteURL() {
+        subject.startDownload()
+        XCTAssertEqual(dataManager.downloadPage_wasCalled_withRemoteURL, remoteURL)
     }
 
-    func testThat_whenADownloadFails_itReturnsAnError() {
-        var returnedError: NSError?
-        subject.downloadPage(NSURL(string: "")!, progress: { _ in }, completion: { url, error in
-            returnedError = error as? NSError
-        })
-        let expectedError = NSError(domain: "", code: 0, userInfo: nil)
-        fakeWebService.downloadPage_called_withCompletion?(nil, expectedError)
-        XCTAssertEqual(expectedError, returnedError)
-    }
-
-    func testThat_whileTheCallbackIsBeingTriggered_itStillConsidersTheRequestOngoing() {
-        var stillOngoing = false
-        let requestURL = NSURL(string: "chroniclingamerica.loc.gov")!
-        subject.downloadPage(requestURL, progress: { _ in }, completion: { url, error in
-            stillOngoing = self.subject.isDownloadInProgress(requestURL)
-        })
-        fakeWebService.downloadPage_called_withCompletion?(nil, nil)
-        XCTAssertTrue(stillOngoing)
-    }
-
-    func testThat_afterTriggeringTheCallback_itNoLongerConsidersTheRequestOngoing() {
-        let requestURL = NSURL(string: "chroniclingamerica.loc.gov")!
-        subject.downloadPage(requestURL, progress: { _ in }, completion: { url, error in
-        })
-        fakeWebService.downloadPage_called_withCompletion?(nil, nil)
-        XCTAssertFalse(subject.isDownloadInProgress(requestURL))
-    }
-
-    func testThat_whenItIsAskedToCancelADownload_itCancelsTheCorrectRequest() {
-        let url = NSURL(string: "chroniclingamerica.com")!
-        subject.downloadPage(url, progress: { _ in }, completion: { _, _ in })
-        let request = subject.activeRequests[url] as! FakeRequest
-        subject.cancelDownload(url)
-        XCTAssertTrue(request.cancel_wasCalled)
+    func testThat_whenCancelDownloadIsCalled_itAsksItsDataManagerToCancelTheRequestForItsRemoteURL() {
+        subject.cancelDownload()
+        XCTAssertEqual(dataManager.cancelDownload_wasCalled_withRemoteURL, remoteURL)
     }
 }

@@ -8,30 +8,34 @@
 
 import UIKit
 
+public protocol SearchWireframeInterface: class {
+    func userDidSelectSearchResult(row: SearchResultsRow)
+    func userDidTapCancel()
+}
+
+public protocol SearchWireframeDelegate: class {
+    func userDidTapCancel()
+}
+
 // MARK: -
 // MARK: SearchWireframe class
 
-public class SearchWireframe: NSObject, UIViewControllerTransitioningDelegate {
+public class SearchWireframe: NSObject, SearchWireframeInterface, UIViewControllerTransitioningDelegate {
+    let dependencies: SearchModuleDependencies
+    var pageWireframe: PageWireframe?
+    weak var delegate: SearchWireframeDelegate?
+    var showPageHandler: ((NSURL, Int, UIViewController) -> Void)?
 
-    let searchPresenter: SearchPresenterProtocol
-    let pagePresenter: PagePresenterProtocol
-
-    public init(searchPresenter: SearchPresenterProtocol = SearchPresenter(), pagePresenter: PagePresenterProtocol = PagePresenter()) {
-        self.searchPresenter = searchPresenter
-        self.pagePresenter = pagePresenter
+    public init(
+        dependencies: SearchModuleDependencies = SearchModuleDependencies())
+    {
+        self.dependencies = dependencies
         super.init()
+        dependencies.presenter.wireframe = self
     }
 
     public func presentSearchFromViewController(presenting: UIViewController?) {
-        let sb = UIStoryboard(name: "Search", bundle: nil)
-        if let vc = sb.instantiateInitialViewController() as? SearchViewController {
-            searchPresenter.setUpView(vc)
-            searchPresenter.cancelCallback = {
-                presenting?.dismissViewControllerAnimated(true, completion: nil)
-            }
-            searchPresenter.showPageCallback = { row in
-                self.presentPage(row.pdfURL!, withEstimatedSize: row.estimatedPDFSize, fromViewController: vc)
-            }
+        if let vc = dependencies.view as? SearchViewController {
             let nvc = UINavigationController(rootViewController: vc)
             nvc.modalPresentationStyle = .Custom
             nvc.transitioningDelegate = self
@@ -39,56 +43,22 @@ public class SearchWireframe: NSObject, UIViewControllerTransitioningDelegate {
         }
     }
 
-    // estimatedSize should be in KB
-    public func presentPage(url: NSURL, withEstimatedSize estimatedSize: Int, fromViewController presenting: UIViewController?) {
-        let sb = UIStoryboard(name: "Page", bundle: nil)
-        if let vc = sb.instantiateInitialViewController() as? PageViewController {
-            pagePresenter.setUpView(vc, url: url, estimatedSize: estimatedSize)
-            pagePresenter.doneCallback = {
-                presenting?.dismissViewControllerAnimated(true, completion: nil)
-            }
+    public func userDidTapCancel() {
+        delegate?.userDidTapCancel()
+    }
 
-            pagePresenter.shareCallback = {
-//                let vc = UIActivityViewController(activityItems: [imageView.image!], applicationActivities: nil)
-//                vc.completionWithItemsHandler = { type, completed, returnedItems, activityError in
-//                    self.toastButton.frame = CGRect(x: 20.0, y: self.bottomBarBG.frame.origin.y - 80.0, width: self.view.bounds.size.width - 40.0, height: 60)
-//                    let message: String = ""
-//                    if type == nil {
-//                        return
-//                    }
-//                    //            switch type {
-//                    //            case UIActivityTypeSaveToCameraRoll:
-//                    //                message = completed ? "Page saved successfully" : "Trouble saving, please try again"
-//                    //            default:
-//                    //                message = completed ? "Success" : "Action failed, please try again"
-//                    //            }
-//
-//                    self.toastButton.setTitle(message, forState: .Normal)
-//                    self.toastButton.alpha = 0
-//                    self.toastButton.hidden = false
-//                    UIView.animateWithDuration(0.2, animations: {
-//                        self.toastButton.alpha = 1.0
-//                        }, completion: { _ in
-//                            UIView.animateWithDuration(0.2, delay: 3.0, options: UIViewAnimationOptions(), animations: {
-//                                self.toastButton.alpha = 0
-//                                }, completion: { _ in
-//                                    self.toastButton.hidden = true
-//                            })
-//                    })
-//                }
-//                presentViewController(vc, animated: true, completion: nil)
-//            }
-//            let nvc = UINavigationController(rootViewController: vc)
-//            presenting?.presentViewController(nvc, animated: true, completion: nil)
-            }
-            presenting?.presentViewController(vc, animated: true, completion: nil)
+    public func userDidSelectSearchResult(row: SearchResultsRow) {
+        if let remoteURL = row.pdfURL {
+            pageWireframe = PageWireframe(remoteURL: remoteURL)
+            pageWireframe?.beginFromViewController(dependencies.view as? SearchViewController, withRemoteURL: remoteURL)
         }
     }
 }
 
-public extension SearchWireframe {
-    // MARK: UIViewControllerTransitioningDelegate methods
+// MARK: -
+// MARK: SearchWireframe (UIViewControllerTransitioningDelegate)
 
+public extension SearchWireframe {
     public func animationControllerForPresentedController(
         presented: UIViewController,
         presentingController presenting: UIViewController,
@@ -96,15 +66,13 @@ public extension SearchWireframe {
         return ShowSearchTransitionController()
     }
 
-    public func animationControllerForDismissedController(
-        dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-
-            return HideSearchTransitionController()
+    public func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return HideSearchTransitionController()
     }
 }
 
 // MARK: -
-// MARK: ShowSearchTransitionController class
+// MARK: ShowSearchTransitionController
 
 public class ShowSearchTransitionController: NSObject, UIViewControllerAnimatedTransitioning {
 

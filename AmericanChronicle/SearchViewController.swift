@@ -8,42 +8,13 @@
 
 import UIKit
 
-public class SearchResultsRow {
-    let date: NSDate?
-    let cityState: String
-    let publicationTitle: String
-    let thumbnailURL: NSURL?
-    let pdfURL: NSURL?
-    let estimatedPDFSize: Int
-    init(date: NSDate?, cityState: String, publicationTitle: String, thumbnailURL: NSURL?, pdfURL: NSURL?, estimatedPDFSize: Int) {
-        self.date = date
-        self.cityState = cityState
-        self.publicationTitle = publicationTitle
-        self.thumbnailURL = thumbnailURL
-        self.pdfURL = pdfURL
-        self.estimatedPDFSize = estimatedPDFSize
-    }
-
-    public var description: String {
-        var desc = "<SearchResultsRow: "
-        desc += ", date=\(date)"
-        desc += ", cityState=\(cityState)"
-        desc += ", publicationTitle=\(publicationTitle)"
-        desc += ", thumbnailURL=\(thumbnailURL)"
-        desc += ", estimatedPDFSize=\(estimatedPDFSize)>"
-        return desc
-    }
-}
-
 // NOTES:
 //
 // The View is passive. It waits for the Presenter to give it content to display; it never asks the Presenter for data.
 // The view controller shouldn’t be making decisions based on (user) actions, but it should pass these events along to something that can.
 
-public protocol SearchView: class {
-    var searchResultSelectedCallback: ((SearchResultsRow) -> ())? { get set }
-    var cancelCallback: ((Void) -> ())? { get set }
-    var searchTermDidChangeCallback: ((String?) -> ())? { get set }
+public protocol SearchViewInterface: class {
+    weak var presenter: SearchPresenterInterface? { get set }
 
     func showLoadingIndicator()
     func hideLoadingIndicator()
@@ -52,9 +23,11 @@ public protocol SearchView: class {
     func showErrorMessage(title: String?, message: String?)
 }
 
-public class SearchViewController: UIViewController, SearchView, UITableViewDelegate, UITableViewDataSource {
+public class SearchViewController: UIViewController, SearchViewInterface, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: Properties
+
+    weak public var presenter: SearchPresenterInterface?
 
     var filters: SearchFilters?
     var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
@@ -69,7 +42,7 @@ public class SearchViewController: UIViewController, SearchView, UITableViewDele
     // MARK: Internal methods
 
     @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
-        cancelCallback?()
+        presenter?.userDidTapCancel()
     }
 
     @IBAction func addEditFiltersButtonTapped(sender: AnyObject) {
@@ -77,7 +50,7 @@ public class SearchViewController: UIViewController, SearchView, UITableViewDele
         vc.searchFilters = filters ?? SearchFilters()
         vc.saveCallback = { [weak self] filters in
             self?.filters = filters
-            self?.searchTermDidChangeCallback?(self?.searchField.text)
+            self?.presenter?.userDidChangeSearchToTerm(self?.searchField.text)
             self?.dismissViewControllerAnimated(true, completion: nil)
         }
         vc.cancelCallback = { [weak self] in
@@ -89,18 +62,16 @@ public class SearchViewController: UIViewController, SearchView, UITableViewDele
 
     // MARK: SearchView properties and methods
 
-    public var searchResultSelectedCallback: ((SearchResultsRow) -> ())?
-    public var cancelCallback: ((Void) -> ())?
-    public var searchTermDidChangeCallback: ((String?) -> ())?
-
     public func showLoadingIndicator() {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
         activityIndicator.startAnimating()
+//        tableView.alpha = 0
     }
 
     public func hideLoadingIndicator() {
         UIApplication.sharedApplication().networkActivityIndicatorVisible = false
         activityIndicator.stopAnimating()
+//        tableView.alpha = 1.0
     }
 
     public func showSearchResults(rows: [SearchResultsRow], title: String) {
@@ -152,7 +123,7 @@ public class SearchViewController: UIViewController, SearchView, UITableViewDele
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let row = resultRows[indexPath.row]
-        searchResultSelectedCallback?(row)
+        presenter?.userDidSelectSearchResult(row)
     }
 
     // MARK: UIViewController overrides
@@ -173,7 +144,7 @@ public class SearchViewController: UIViewController, SearchView, UITableViewDele
                 text.replaceRange(range, with: replacement)
             }
 
-            self?.searchTermDidChangeCallback?(text)
+            self?.presenter?.userDidChangeSearchToTerm(text)
 
             return true
         }

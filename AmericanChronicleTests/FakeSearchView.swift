@@ -8,29 +8,33 @@
 
 import AmericanChronicle
 
-class FakeSearchView: SearchView {
+class FakeSearchView: SearchViewInterface {
+
+    weak var presenter: SearchPresenterInterface?
+
     var searchResultSelectedCallback: ((SearchResultsRow) -> ())?
     var cancelCallback: ((Void) -> ())?
     var searchTermDidChangeCallback: ((String?) -> ())?
 
-    var didCall_showLoadingIndicator = false
+    var showLoadingIndicator_wasCalled = false
     func showLoadingIndicator() {
-        didCall_showLoadingIndicator = true
+        showLoadingIndicator_wasCalled = true
     }
 
-    var didCall_hideLoadingIndicator = false
+    var hideLoadingIndicator_wasCalled = false
     func hideLoadingIndicator() {
-        didCall_hideLoadingIndicator = true
+        hideLoadingIndicator_wasCalled = true
     }
 
-    var didCall_showSearchResults = false
+    var showSearchResults_wasCalled_withRows: [SearchResultsRow]?
     func showSearchResults(rows: [SearchResultsRow], title: String) {
-        didCall_showSearchResults = true
+        showSearchResults_wasCalled_withRows = rows
     }
 
-    var didCall_showEmptyResults = false
+
+    var showEmptyResults_wasCalled = false
     func showEmptyResults() {
-        didCall_showEmptyResults = true
+        showEmptyResults_wasCalled = true
     }
 
     var didCall_showErrorMessage = false

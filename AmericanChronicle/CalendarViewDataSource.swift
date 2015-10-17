@@ -11,15 +11,11 @@ import FSCalendar
 
 class CalendarViewDataSource: NSObject, FSCalendarDataSource {
 
-
-
-    // MARK: FSCalendarDataSource methods
-
     func minimumDateForCalendar(calendar: FSCalendar) -> NSDate {
-        return ChroniclingAmericaWebService.earliestPossibleDate
+        return SearchParameters.earliestPossibleDate()
     }
 
     func maximumDateForCalendar(calendar: FSCalendar) -> NSDate {
-        return ChroniclingAmericaWebService.latestPossibleDate
+        return SearchParameters.latestPossibleDate()
     }
 }

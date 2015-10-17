@@ -10,84 +10,98 @@ import UIKit
 import XCTest
 import AmericanChronicle
 
+class FakeSearchWireframe: SearchWireframe {
+    var userDidTapCancel_wasCalled = false
+    override func userDidTapCancel() {
+        userDidTapCancel_wasCalled = true
+    }
+}
+
 class SearchPresenterTests: XCTestCase {
 
     var subject: SearchPresenter!
-    var fakeInteractor: FakeSearchInteractor!
-    var fakeView: FakeSearchView!
+
+    var wireframe: FakeSearchWireframe!
+    var view: FakeSearchView!
+    var interactor: FakeSearchInteractor!
 
     override func setUp() {
         super.setUp()
-        fakeInteractor = FakeSearchInteractor()
-        subject = SearchPresenter(interactor: fakeInteractor, searchDelay: 0)
-        fakeView = FakeSearchView()
-        subject.setUpView(fakeView)
+        wireframe = FakeSearchWireframe()
+        view = FakeSearchView()
+        interactor = FakeSearchInteractor()
+
+        subject = SearchPresenter()
+        subject.wireframe = wireframe
+        subject.view = view
+        subject.interactor = interactor
     }
 
-    func testThat_whenTheViewCancels_itCallsItsOwnCancelCallback() {
-        var didCallCancelCallback = false
-        subject.cancelCallback = {
-            didCallCancelCallback = true
-        }
-        fakeView.cancelCallback?()
-        XCTAssertTrue(didCallCancelCallback)
+    func testThat_whenTheUserTapsCancel_itLetsTheWireframeKnow() {
+        subject.userDidTapCancel()
+        XCTAssert(wireframe.userDidTapCancel_wasCalled)
     }
 
-    func testThat_whenTheSearchTermChanges_andTheNewTermIsNotEmpty_itPerformsASearch() {
-        fakeView.searchTermDidChangeCallback?("Blah")
-        XCTAssertEqual(fakeInteractor.didCall_performSearch_withTerm ?? "", "Blah")
+    func testThat_whenTheSearchTermChanges_andTheNewTermIsNotEmpty_itStartsASearch() {
+        subject.userDidChangeSearchToTerm("Blah")
+        XCTAssertEqual(interactor.startSearch_wasCalled_withTerm ?? "", "Blah")
     }
 
     func testThat_whenTheSearchTermChanges_andTheNewTermIsNotEmpty_itAsksTheViewToShowItsLoadingIndicator() {
-        fakeView.searchTermDidChangeCallback?("Blah")
-        XCTAssertTrue(fakeView.didCall_showLoadingIndicator)
+        subject.userDidChangeSearchToTerm("Blah")
+        XCTAssert(view.showLoadingIndicator_wasCalled)
     }
 
-    func testThat_whenTheSearchTermChanges_andTheNewTermIsEmpty_itDoesNotPerformASearch() {
-        fakeView.searchTermDidChangeCallback?("")
-        XCTAssertFalse(fakeInteractor.didCall_performSearch)
+    func testThat_whenTheSearchTermChanges_andTheNewTermIsEmpty_itDoesNotStartASearch() {
+        subject.userDidChangeSearchToTerm("")
+        XCTAssertFalse(interactor.startSearch_wasCalled)
     }
-
+//
     func testThat_whenTheSearchTermChanges_andTheNewTermIsEmpty_itDoesNotAskTheViewToShowItsLoadingIndicator() {
-        fakeView.searchTermDidChangeCallback?("")
-        XCTAssertFalse(fakeView.didCall_showLoadingIndicator)
+        subject.userDidChangeSearchToTerm("")
+        XCTAssertFalse(view.showLoadingIndicator_wasCalled)
     }
 
-    func testThat_whenASearchFinishes_andTheInteractorIsNoLongerDoingWork_itAsksTheViewToHideItsLoadingIndicator() {
-        fakeView.searchTermDidChangeCallback?("Blah")
-        fakeInteractor.fake_isDoingWork = false
-        fakeInteractor.didCall_performSearch_withCallback!(nil, nil)
-        XCTAssertTrue(fakeView.didCall_hideLoadingIndicator)
+    func testThat_whenTheSearchTermChanges_andTheNewTermIsEmpty_itCancelsTheActiveSearch() {
+        subject.userDidChangeSearchToTerm("")
+        XCTAssert(interactor.cancelLastSearch_wasCalled)
+    }
+
+    func testThat_whenTheSearchTermChanges_andTheNewTermIsEmpty_itAsksTheViewToShowAnEmptySetOfSearchResults() {
+        subject.userDidChangeSearchToTerm("")
+        XCTAssertEqual(view.showSearchResults_wasCalled_withRows!, [SearchResultsRow]())
+    }
+
+    func testThat_whenASearchFinishes_andTheInteractorHasNoWork_itAsksTheViewToHideItsLoadingIndicator() {
+        interactor.fake_isSearchInProgress = false
+        subject.searchForTerm("Blah", page: 0, didFinishWithResults: nil, error: nil)
+        XCTAssert(view.hideLoadingIndicator_wasCalled)
     }
 
     func testThat_whenASearchFinishes_andTheInteractorIsStillDoingWork_itDoesNotAskTheViewToHideItsLoadingIndicator() {
-        fakeView.searchTermDidChangeCallback?("Blah")
-        fakeInteractor.fake_isDoingWork = true
-        fakeInteractor.didCall_performSearch_withCallback!(nil, nil)
-        XCTAssertFalse(fakeView.didCall_hideLoadingIndicator)
+        interactor.fake_isSearchInProgress = true
+        subject.searchForTerm("Blah", page: 0, didFinishWithResults: nil, error: nil)
+        XCTAssertFalse(view.hideLoadingIndicator_wasCalled)
     }
 
     func testThat_whenASearchSucceeds_andThereIsAtLeastOneResult_itAsksTheViewToShowTheResults() {
-        fakeView.searchTermDidChangeCallback?("Blah")
         let results = SearchResults()
         results.items = [SearchResult()]
-        fakeInteractor.didCall_performSearch_withCallback?(results, nil)
-        XCTAssertTrue(fakeView.didCall_showSearchResults)
+        subject.searchForTerm("Blah", page: 0, didFinishWithResults: results, error: nil)
+        XCTAssertEqual(view.showSearchResults_wasCalled_withRows?.count, 1)
     }
 
     func testThat_whenASearchSucceeds_andThereAreNoResults_itAsksTheViewToShowItsEmptyResultsMessage() {
-        fakeView.searchTermDidChangeCallback?("Blah")
         let results = SearchResults()
         results.items = []
-        fakeInteractor.didCall_performSearch_withCallback?(results, nil)
-        XCTAssertTrue(fakeView.didCall_showEmptyResults)
+        subject.searchForTerm("Blah", page: 0, didFinishWithResults: results, error: nil)
+        XCTAssert(view.showEmptyResults_wasCalled)
     }
 
     func testThat_whenASearchFails_itAsksTheViewToShowAnErrorMessage() {
-        fakeView.searchTermDidChangeCallback?("Blah")
         let error = NSError(domain: "", code: 0, userInfo: nil)
-        fakeInteractor.didCall_performSearch_withCallback?(nil, error)
-        XCTAssertTrue(fakeView.didCall_showErrorMessage)
+        subject.searchForTerm("Blah", page: 0, didFinishWithResults: nil, error: error)
+        XCTAssert(view.didCall_showErrorMessage)
     }
 
 }

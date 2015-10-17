@@ -6,53 +6,46 @@
 //  Copyright © 2015 ryanipete. All rights reserved.
 //
 
-public protocol PageInteractorProtocol {
-    func downloadPage(url: NSURL, progress: ((Int64) -> ()), completion: ((NSURL?, ErrorType?) -> ()))
-    func cancelDownload(url: NSURL)
+@objc public protocol PageInteractorInterface {
+
+    var delegate: PageInteractorDelegate? { get set }
+
+    func startDownload()
+    func cancelDownload()
+    func isDownloadInProgress() -> Bool
 }
 
-public class PageInteractor: NSObject, PageInteractorProtocol {
+@objc public protocol PageInteractorDelegate: class {
+    func download(remoteURL: NSURL, didFinishWithFileURL fileURL: NSURL?, error: NSError?)
+}
 
-    let webService: ChroniclingAmericaWebServiceProtocol
-    public init(webService: ChroniclingAmericaWebServiceProtocol = ChroniclingAmericaWebService()) {
-            self.webService = webService
-            super.init()
+
+// Responsibilities:
+// - Owns the download URL.
+public final class PageInteractor: NSObject, PageInteractorInterface {
+
+    public weak var delegate: PageInteractorDelegate?
+
+    private let dataManager: PageDataManagerInterface
+    private let remoteURL: NSURL
+
+    public init(remoteURL: NSURL, dataManager: PageDataManagerInterface) {
+        self.remoteURL = remoteURL
+        self.dataManager = dataManager
+        super.init()
     }
 
-    public var activeRequests: [NSURL: RequestProtocol] = [:]
-    public var completedDownloads: [NSURL: NSURL] = [:]
-
-    public func downloadPage(url: NSURL, progress: ((Int64) -> ()), completion: ((NSURL?, ErrorType?) -> ())) {
-        if let fileURL = completedDownloads[url] {
-            completion(fileURL, nil)
-            return
-        }
-        let request = webService.downloadPage(url, totalBytesRead: { totalRead in
-            progress(totalRead)
-        }, completion:{ [weak self] fileURL, error in
-            if let fileURL = fileURL { self?.completedDownloads[url] = fileURL }
-
-            if let error = error as? NSError where error.code == NSFileWriteFileExistsError {
-                // Not a real error
-                completion(fileURL, nil)
-            } else {
-                completion(fileURL, error)
-            }
-            self?.activeRequests[url] = nil
+    public func startDownload() {
+        dataManager.downloadPage(remoteURL, completionHandler: { remoteURL, fileURL, error in
+            self.delegate?.download(self.remoteURL, didFinishWithFileURL: fileURL, error: error)
         })
-
-        if let request = request {
-            activeRequests[url] = request
-        }
     }
 
-    public func cancelDownload(url: NSURL) {
-        if let request = activeRequests[url] {
-            request.cancel()
-        }
+    public func cancelDownload() {
+        dataManager.cancelDownload(remoteURL)
     }
 
-    public func isDownloadInProgress(url: NSURL) -> Bool {
-        return activeRequests[url] != nil
+    public func isDownloadInProgress() -> Bool {
+        return dataManager.isDownloadInProgress(remoteURL)
     }
 }
