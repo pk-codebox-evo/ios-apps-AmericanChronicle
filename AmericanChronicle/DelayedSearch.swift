@@ -10,40 +10,38 @@ import UIKit
 
 public class DelayedSearchFactory {
     public func newSearchForTerm(term: String,
-            callback: ((SearchResults?, ErrorType?) -> ()),
-            webService: ChroniclingAmericaWebServiceProtocol) -> DelayedSearch {
-            return DelayedSearch(term: term, callback: callback, webService: webService)
+                page: Int,
+                callback: ((SearchResults?, ErrorType?) -> ()),
+                dataManager: SearchDataManager) -> DelayedSearch {
+            return DelayedSearch(term: term, page: page, callback: callback, dataManager: dataManager)
     }
 
-    public init() {
-        
-    }
+    public init() {}
 }
 
 public class DelayedSearch: NSObject {
 
     public let term: String
+    public let page: Int
     let callback: (SearchResults?, ErrorType?) -> ()
-    let webService: ChroniclingAmericaWebServiceProtocol
-
+    let dataManager: SearchDataManager
     var timer: NSTimer?
 
-    public var inProgress: Bool {
+    // MARK: Init methods
+
+    public init(term: String, page: Int, callback: ((SearchResults?, ErrorType?) -> ()), dataManager: SearchDataManager) {
+        self.term = term
+        self.page = page
+        self.callback = callback
+        self.dataManager = dataManager
+        super.init()
+    }
+
+    public var isDoingWork: Bool {
         if let timer = timer where timer.valid {
             return true
         }
-        if webService.isPerformingSearch() {
-            return true
-        }
-
-        return false
-    }
-
-    public init(term: String, callback: ((SearchResults?, ErrorType?) -> ()), webService: ChroniclingAmericaWebServiceProtocol) {
-        self.term = term
-        self.callback = callback
-        self.webService = webService
-        super.init()
+        return dataManager.isSearchInProgress(term, page: page)
     }
 
     public func start() {
@@ -51,18 +49,18 @@ public class DelayedSearch: NSObject {
         timer = NSTimer(timeInterval: 0.3, target: self, selector: "timerFired:", userInfo: nil, repeats: false)
         NSRunLoop.currentRunLoop().addTimer(timer!, forMode: NSDefaultRunLoopMode)
     }
-
-    func timerFired(sender: NSTimer) {
-        webService.performSearch(term, page: 0, andThen: callback)
-    }
-
+    
     public func cancel() {
         if let timer = timer where timer.valid { // Request hasn't started yet
             timer.invalidate()
             let error = NSError(domain: "", code: -999, userInfo: nil)
             callback(nil, error)
         } else { // Request has started already. Cancelling will trigger the callback.
-            webService.cancelLastSearch()
+            dataManager.cancelSearch(term, page: page)
         }
+    }
+
+    func timerFired(sender: NSTimer) {
+//        dataManager.startSearch(term, page: 0)
     }
 }

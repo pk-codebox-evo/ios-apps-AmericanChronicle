@@ -15,6 +15,7 @@
 {
     [super viewDidLoad];
 //    _calendar.scrollDirection = FSCalendarScrollDirectionVertical;
+    _calendar.firstWeekday = 1;
 }
 
 - (void)calendarCurrentScopeWillChange:(FSCalendar *)calendar animated:(BOOL)animated
@@ -33,12 +34,6 @@
         [selectedDates addObject:[obj fs_stringWithFormat:@"yyyy/MM/dd"]];
     }];
     NSLog(@"selected dates is %@",selectedDates);
-    
-    
-    if (calendar.scope == FSCalendarScopeMonth) {
-        [calendar setScope:FSCalendarScopeWeek animated: YES];
-//        [calendar selectDate:date];
-    }
     
 }
 

@@ -8,22 +8,25 @@
 
 import AmericanChronicle
 
-class FakeSearchInteractor: SearchInteractorProtocol {
-    var didCall_performSearch = false
-    var didCall_performSearch_withTerm: String?
-    var didCall_performSearch_withCallback: ((SearchResults?, ErrorType?) -> ())?
-    var fake_isDoingWork = false
-    var isDoingWork: Bool {
-        return fake_isDoingWork
+class FakeSearchInteractor: SearchInteractorInterface {
+
+    var dataManager: SearchDataManagerInterface?
+    var delegate: SearchInteractorDelegate?
+
+    var startSearch_wasCalled = false
+    var startSearch_wasCalled_withTerm: String?
+    func startSearch(term: String, page: Int) {
+        startSearch_wasCalled = true
+        startSearch_wasCalled_withTerm = term
     }
 
-    func performSearch(term: String?, andThen callback: ((SearchResults?, ErrorType?) -> ())) {
-        didCall_performSearch = true
-        didCall_performSearch_withTerm = term
-        didCall_performSearch_withCallback = callback
+    var fake_isSearchInProgress = false
+    func isSearchInProgress() -> Bool {
+        return fake_isSearchInProgress
     }
 
+    var cancelLastSearch_wasCalled = false
     func cancelLastSearch() {
-
+        cancelLastSearch_wasCalled = true
     }
 }

@@ -7,7 +7,7 @@
 //
 
 #import "MultipleSelectionViewController.h"
-
+#import "FSCalendarTestMacros.h"
 
 @implementation MultipleSelectionViewController
 
@@ -33,6 +33,16 @@
     calendar.allowsMultipleSelection = YES;
     [self.view addSubview:calendar];
     self.calendar = calendar;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [_calendar selectDate:[[NSDate date] fs_dateByAddingDays:1]];
+    
+#if 0
+    FSCalendarTestSelectDate
+#endif
 }
 
 - (BOOL)calendar:(FSCalendar *)calendar shouldSelectDate:(NSDate *)date

@@ -1,0 +1,44 @@
+//
+//  FakeSearchPagesService.swift
+//  AmericanChronicle
+//
+//  Created by Ryan Peterson on 9/12/15.
+//  Copyright (c) 2015 ryanipete. All rights reserved.
+//
+
+import AmericanChronicle
+
+class FakeSearchPagesService: SearchPagesServiceInterface {
+
+    var startSearch_wasCalled_withTerm: String?
+    var startSearch_wasCalled_withPage: Int?
+    var startSearch_wasCalled_withContextID: String?
+    var startSearch_wasCalled_withCompletionHandler: ((SearchResults?, ErrorType?) -> Void)?
+    func startSearch(term: String, page: Int, contextID: String, completionHandler: ((SearchResults?, ErrorType?) -> Void)) {
+        startSearch_wasCalled_withTerm = term
+        startSearch_wasCalled_withPage = page
+        startSearch_wasCalled_withContextID = contextID
+        startSearch_wasCalled_withCompletionHandler = completionHandler
+        completionHandler(nil, nil)
+    }
+
+    var isSearchInProgress_wasCalled_withTerm: String?
+    var isSearchInProgress_wasCalled_withPage: Int?
+    var isSearchInProgress_wasCalled_withContextID: String?
+    var isSearchInProgress_mock_returnValue = false
+    func isSearchInProgress(term: String, page: Int, contextID: String) -> Bool {
+        isSearchInProgress_wasCalled_withTerm = term
+        isSearchInProgress_wasCalled_withPage = page
+        isSearchInProgress_wasCalled_withContextID = contextID
+        return isSearchInProgress_mock_returnValue
+    }
+
+    var cancelSearch_wasCalled_withTerm: String?
+    var cancelSearch_wasCalled_withPage: Int?
+    var cancelSearch_wasCalled_withContextID: String?
+    func cancelSearch(term: String, page: Int, contextID: String) {
+        cancelSearch_wasCalled_withTerm = term
+        cancelSearch_wasCalled_withPage = page
+        cancelSearch_wasCalled_withContextID = contextID
+    }
+}

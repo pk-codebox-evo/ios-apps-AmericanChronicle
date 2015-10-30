@@ -48,9 +48,9 @@ class NewspaperIssuesViewController: UIViewController, UICollectionViewDelegate,
                         if let city = self?.newspaper?.city {
                             vc.filters?.cities = [city]
                         }
-                        vc.cancelCallback = { [weak self] in
-                            self?.dismissViewControllerAnimated(true, completion: nil)
-                        }
+//                        vc.cancelCallback = { [weak self] in
+//                            self?.dismissViewControllerAnimated(true, completion: nil)
+//                        }
                         nvc.modalPresentationStyle = .Custom
                         nvc.transitioningDelegate = self
                         self?.presentViewController(nvc, animated: true, completion: nil)

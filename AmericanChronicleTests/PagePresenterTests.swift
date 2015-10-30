@@ -9,28 +9,32 @@
 import XCTest
 import AmericanChronicle
 
-class FakePageInteractor: NSObject, PageInteractorProtocol {
-    var downloadPage_wasCalled_withURL: NSURL?
-    var downloadPage_wasCalled_withProgress: ((Int64) -> ())?
-    var downloadPage_wasCalled_withCompletion: ((NSURL?, ErrorType?) -> ())?
-    func downloadPage(url: NSURL, progress: ((Int64) -> ()), completion: ((NSURL?, ErrorType?) -> ())) {
-        downloadPage_wasCalled_withURL = url
-        downloadPage_wasCalled_withProgress = progress
-        downloadPage_wasCalled_withCompletion = completion
+class FakePageInteractor: NSObject, PageInteractorInterface {
+
+    var delegate: PageInteractorDelegate?
+
+    var startDownload_wasCalled = false
+    func startDownload() {
+        startDownload_wasCalled = true
     }
 
-    var cancelDownload_wasCalled_withURL: NSURL?
-    func cancelDownload(url: NSURL) {
-        cancelDownload_wasCalled_withURL = url
+    var cancelDownload_wasCalled = false
+    func cancelDownload() {
+        cancelDownload_wasCalled = true
+    }
+
+    func isDownloadInProgress() -> Bool {
+        return false
     }
 }
 
-class FakePageView: NSObject, PageView {
+class FakePageView: NSObject, PageViewInterface {
 
     var doneCallback: ((Void) -> ())?
     var shareCallback: ((Void) -> ())?
     var cancelCallback: ((Void) -> ())?
     var pdfPage: CGPDFPageRef?
+    var presenter: PagePresenterInterface?
 
     var showError_wasCalled_withTitle: String?
     var showError_wasCalled_withMessage: String?
@@ -54,79 +58,74 @@ class FakePageView: NSObject, PageView {
     }
 }
 
+class FakePageWireframe: PageWireframe {
+    var userDidTapDone_wasCalled = false
+    override func userDidTapDone() {
+        userDidTapDone_wasCalled = true
+    }
+}
+
 class PagePresenterTests: XCTestCase {
     var subject: PagePresenter!
-    var fakeInteractor: FakePageInteractor!
+    var interactor: FakePageInteractor!
+    var view: FakePageView!
+    var wireframe: FakePageWireframe!
     override func setUp() {
         super.setUp()
-        fakeInteractor = FakePageInteractor()
-        subject = PagePresenter(interactor: fakeInteractor)
-    }
-    
-    override func tearDown() {
-
-        super.tearDown()
+        view = FakePageView()
+        interactor = FakePageInteractor()
+        wireframe = FakePageWireframe(remoteURL: NSURL(string: "")!)
+        subject = PagePresenter(view: view, interactor: interactor)
+        subject.wireframe = wireframe
     }
 
-    func testThat_whenItSetsUpAView_itTellsTheViewToShowItsLoadingIndicator() {
-        let view = FakePageView()
-        let url = NSURL(string: "")!
-        subject.setUpView(view, url: url, estimatedSize: 0)
+    func testThat_itSetsTheViewsPresenter() {
+        XCTAssertEqual(view.presenter as? PagePresenter, subject)
+    }
+
+    func testThat_itSetsTheInteractorsDelegate() {
+        XCTAssertEqual(interactor.delegate as? PagePresenter, subject)
+    }
+
+    func testThat_whenStartDownloadIsCalled_itTellsTheViewToShowItsLoadingIndicator() {
+        subject.startDownload()
         XCTAssertTrue(view.showLoadingIndicator_wasCalled)
     }
 
-    func testThat_whenItSetsUpAView_itStartsTheDownload() {
-        let view = FakePageView()
-        let url = NSURL(string: "")!
-        subject.setUpView(view, url: url, estimatedSize: 0)
-        XCTAssertNotNil(fakeInteractor.downloadPage_wasCalled_withURL)
+    func testThat_whenStartDownloadIsCalled_itTellsTheInteractor() {
+        subject.startDownload()
+        XCTAssert(interactor.startDownload_wasCalled)
     }
 
     func testThat_whenADownloadFinishes_itTellsTheViewToHideItsLoadingIndicator() {
-        let view = FakePageView()
-        let url = NSURL(string: "")!
-        subject.setUpView(view, url: url, estimatedSize: 0)
-        fakeInteractor.downloadPage_wasCalled_withCompletion?(nil, nil)
+        subject.download(NSURL(string: "http://google.com")!, didFinishWithFileURL: nil, error: nil)
         XCTAssertTrue(view.hideLoadingIndicator_wasCalled)
     }
 
     func testThat_whenADownloadFinishesWithoutAnError_itPassesThePDFToTheView() {
-        let view = FakePageView()
         let requestURL = NSURL(string: "")!
-        subject.setUpView(view, url: requestURL, estimatedSize: 0)
         let currentBundle = NSBundle(forClass: PagePresenterTests.self)
         let returnedFilePathString = currentBundle.pathForResource("seq-1", ofType: "pdf")
         let returnedFileURL = NSURL(fileURLWithPath: returnedFilePathString ?? "")
-        fakeInteractor.downloadPage_wasCalled_withCompletion?(returnedFileURL, nil)
+        XCTAssertNotNil(returnedFileURL)
+        subject.download(requestURL, didFinishWithFileURL: returnedFileURL, error: nil)
         XCTAssertNotNil(view.pdfPage)
     }
 
     func testThat_whenADownloadFinishesWithAnError_itTellsTheViewToShowTheErrorMessage() {
-        let view = FakePageView()
         let requestURL = NSURL(string: "")!
-        subject.setUpView(view, url: requestURL, estimatedSize: 0)
         let returnedError = NSError(domain: "", code: 0, userInfo: nil)
-        fakeInteractor.downloadPage_wasCalled_withCompletion?(nil, returnedError)
+        subject.download(requestURL, didFinishWithFileURL: nil, error: returnedError)
         XCTAssertNotNil(view.showError_wasCalled_withTitle)
     }
 
-    func testThat_whenTheViewAsksToCancelTheDownload_itPassesTheMessageToTheInteractor() {
-        let view = FakePageView()
-        let requestURL = NSURL(string: "")!
-        subject.setUpView(view, url: requestURL, estimatedSize: 0)
-        view.cancelCallback?()
-        XCTAssertEqual(fakeInteractor.cancelDownload_wasCalled_withURL, requestURL)
+    func testThat_whenTheUserTapsCancel_itTellsTheInteractorToCancel() {
+        subject.userDidTapCancel()
+        XCTAssert(interactor.cancelDownload_wasCalled)
     }
 
-    func testThat_whenTheViewAsksToCancelTheDownload_itConsidersItselfDone() {
-        let view = FakePageView()
-        let requestURL = NSURL(string: "")!
-        subject.setUpView(view, url: requestURL, estimatedSize: 0)
-        var doneCallbackTriggered = false
-        subject.doneCallback = {
-            doneCallbackTriggered = true
-        }
-        view.cancelCallback?()
-        XCTAssertTrue(doneCallbackTriggered)
+    func testThat_whenTheUserTapsCancel_itTellsTheWireframe() {
+        subject.userDidTapCancel()
+        XCTAssert(wireframe.userDidTapDone_wasCalled)
     }
 }

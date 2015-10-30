@@ -9,88 +9,88 @@
 import UIKit
 
 // MARK: -
-// MARK: SearchPresenterProtocol
+// MARK: SearchPresenterInterface
 
-public protocol SearchPresenterProtocol: class {
-    var cancelCallback: ((Void) -> ())? { get set }
-    var showPageCallback: ((SearchResultsRow) -> ())? { get set }
-    func setUpView(searchView: SearchView)
+public protocol SearchPresenterInterface: class, SearchInteractorDelegate {
+    var wireframe: SearchWireframeInterface? { get set }
+    var view: SearchViewInterface? { get set }
+    var interactor: SearchInteractorInterface? { get set }
+
+    func userDidTapCancel()
+    func userDidChangeSearchToTerm(term: String?)
+    func userDidSelectSearchResult(row: SearchResultsRow)
 }
 
 // MARK: -
-// MARK: SearchPresenter class
+// MARK: SearchPresenter
 
-public class SearchPresenter: NSObject, SearchPresenterProtocol {
+public class SearchPresenter: NSObject, SearchPresenterInterface {
 
-    public let interactor: SearchInteractorProtocol
-    public let searchDelay: NSTimeInterval
-    public var cancelCallback: ((Void) -> ())?
-    public var showPageCallback: ((SearchResultsRow) -> ())?
+    // MARK: Public Properties
 
-    public func setUpView(searchView: SearchView) {
+    weak public var view: SearchViewInterface?
+    weak public var interactor: SearchInteractorInterface?
+    weak public var wireframe: SearchWireframeInterface?
 
-        searchView.searchResultSelectedCallback = { row in
-            self.showPageCallback?(row)
-        }
-
-        searchView.cancelCallback = { [weak self] in
-            self?.cancelCallback?()
-        }
-
-        searchView.searchTermDidChangeCallback = { [weak self] term in
-
-            let nonNilTerm = term ?? ""
-
-            if (nonNilTerm.characters.count == 0) {
-                searchView.hideLoadingIndicator()
-                self?.interactor.cancelLastSearch()
-                searchView.showSearchResults([], title: "")
-                return
-            }
-
-            searchView.showLoadingIndicator()
-
-            self?.interactor.performSearch(nonNilTerm, andThen: { results, error in
-
-                if let welf = self where !welf.interactor.isDoingWork {
-                    searchView.hideLoadingIndicator()
-                }
-
-                if let results = results, items = results.items {
-                    var rows = [SearchResultsRow]()
-                    for result in items {
-                        let date = result.date
-                        let city = result.city?.first ?? ""
-                        let state = result.state?.first ?? ""
-                        let cityState = "\(city), \(state)"
-                        let publicationTitle = result.titleNormal ?? ""
-                        let row = SearchResultsRow(
-                            date: date,
-                            cityState: cityState,
-                            publicationTitle: publicationTitle,
-                            thumbnailURL: result.thumbnailURL,
-                            pdfURL: result.pdfURL,
-                            estimatedPDFSize: result.estimatedPDFSize)
-                        rows.append(row)
-                    }
-                    if rows.count > 0 {
-                        let title = "\(results.totalItems ?? 0) matches for \(nonNilTerm)"
-                        searchView.showSearchResults(rows, title: title)
-                    } else {
-                        searchView.showEmptyResults()
-                    }
-                } else if let err = error as? NSError {
-                    searchView.showErrorMessage(err.localizedDescription, message: err.localizedRecoverySuggestion)
-                } else {
-                    searchView.showEmptyResults()
-                }
-            })
-        }
+    public func userDidTapCancel() {
+        wireframe?.userDidTapCancel()
     }
 
-    public init(interactor: SearchInteractorProtocol = SearchInteractor(), searchDelay: NSTimeInterval = 0.3) {
-        self.interactor = interactor
-        self.searchDelay = searchDelay
-        super.init()
+    public func userDidSelectSearchResult(row: SearchResultsRow) {
+        wireframe?.userDidSelectSearchResult(row)
+    }
+
+    public func userDidChangeSearchToTerm(term: String?) {
+
+        let nonNilTerm = term ?? ""
+        if (nonNilTerm.characters.count == 0) {
+            view?.showSearchResults([], title: "")
+            interactor?.cancelLastSearch()
+            return
+        }
+
+        view?.showLoadingIndicator()
+
+        interactor?.startSearch(nonNilTerm, page: 1)
+    }
+
+    public func searchForTerm(term: String, page: Int, didFinishWithResults results: SearchResults?, error: NSError?) {
+
+        if let inProgress = self.interactor?.isSearchInProgress() where inProgress == false {
+            view?.hideLoadingIndicator()
+        }
+
+        if let results = results, items = results.items {
+
+            var rows = [SearchResultsRow]()
+            for result in items {
+                let date = result.date
+                let city = result.city?.first ?? ""
+                let state = result.state?.first ?? ""
+                let cityState = "\(city), \(state)"
+                let publicationTitle = result.titleNormal ?? ""
+                let row = SearchResultsRow(
+                    date: date,
+                    cityState: cityState,
+                    publicationTitle: publicationTitle,
+                    thumbnailURL: result.thumbnailURL,
+                    pdfURL: result.pdfURL,
+                    estimatedPDFSize: result.estimatedPDFSize)
+                rows.append(row)
+            }
+            if rows.count > 0 {
+                let title = "\(results.totalItems ?? 0) matches for \(term)"
+                view?.showSearchResults(rows, title: title)
+            } else {
+                view?.showEmptyResults()
+            }
+        } else if let err = error {
+            if err.code == -999 {
+                return
+            }
+            view?.showErrorMessage(err.localizedDescription, message: err.localizedRecoverySuggestion)
+        } else {
+            view?.showEmptyResults()
+        }
     }
 }

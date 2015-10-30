@@ -6,11 +6,10 @@
 //  Copyright (c) 2015 ryanipete. All rights reserved.
 //
 
-public protocol PageView: class {
-    var doneCallback: ((Void) -> ())? { get set }
-    var shareCallback: ((Void) -> ())? { get set }
-    var cancelCallback: ((Void) -> ())? { get set }
+public protocol PageViewInterface: class {
+
     var pdfPage: CGPDFPageRef? { get set }
+    var presenter: PagePresenterInterface? { get set }
 
     func showLoadingIndicator()
     func hideLoadingIndicator()

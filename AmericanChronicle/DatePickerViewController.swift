@@ -26,7 +26,7 @@ import FSCalendar
 
     // MARK: UIViewController Init methods
 
-    init(earliestPossibleDate: NSDate = ChroniclingAmericaWebService.earliestPossibleDate, latestPossibleDate: NSDate = ChroniclingAmericaWebService.latestPossibleDate,
+    init(earliestPossibleDate: NSDate = SearchParameters.earliestPossibleDate(), latestPossibleDate: NSDate = SearchParameters.latestPossibleDate(),
         selectedDateOnInit: NSDate? = nil) {
             self.earliestPossibleDate = earliestPossibleDate
             self.latestPossibleDate = latestPossibleDate

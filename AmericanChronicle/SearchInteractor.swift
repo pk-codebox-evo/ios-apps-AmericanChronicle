@@ -6,46 +6,67 @@
 //  Copyright (c) 2015 ryanipete. All rights reserved.
 //
 
-public protocol SearchInteractorProtocol {
-    var isDoingWork: Bool { get }
-    func performSearch(term: String?, andThen callback: ((SearchResults?, ErrorType?) -> ()))
+// MARK: -
+// MARK: SearchInteractorInterface
+
+public protocol SearchInteractorInterface: class {
+    var dataManager: SearchDataManagerInterface? { get set }
+    var delegate: SearchInteractorDelegate? { get set }
+
+    func startSearch(term: String, page: Int)
+    func isSearchInProgress() -> Bool
     func cancelLastSearch()
 }
 
-public class SearchInteractor: NSObject, SearchInteractorProtocol {
+// MARK: -
+// MARK: SearchInteractorDelegate
 
-    let webService: ChroniclingAmericaWebServiceProtocol
-    let searchFactory: DelayedSearchFactory
-    var activeSearchTerm: String?
-    var activeCallback: ((SearchResults?, NSError?) -> ())?
-    var activeRequest: DelayedSearch?
+public protocol SearchInteractorDelegate {
+    func searchForTerm(term: String, page: Int, didFinishWithResults: SearchResults?, error: NSError?)
+}
 
-    public init(webService: ChroniclingAmericaWebServiceProtocol = ChroniclingAmericaWebService(),
-        delayedSearchFactory: DelayedSearchFactory = DelayedSearchFactory()) {
-        self.webService = webService
-        self.searchFactory = delayedSearchFactory
-        super.init()
+// MARK: -
+// MARK: SearchInteractor
+
+// Responsibilities:
+//  * Ensures that only one request is ongoing at a time.
+//  * Waits for some time before starting a new search. (Incomplete)
+public class SearchInteractor: NSObject, SearchInteractorInterface {
+
+    public var dataManager: SearchDataManagerInterface?
+    public var delegate: SearchInteractorDelegate?
+
+    // MARK: Private Properties
+
+    private var activeSearchTerm: String?
+    private var activeSearchPage: Int?
+
+    public func startSearch(term: String, page: Int) {
+
+        cancelLastSearch()
+
+        activeSearchTerm = nil
+        activeSearchPage = nil
+
+        // TODO: Add delay here.
+
+        activeSearchTerm = term
+        activeSearchPage = page
+        dataManager?.startSearch(term, page: page, completionHandler: { [weak self] results, error in
+            self?.delegate?.searchForTerm(term, page: page, didFinishWithResults: results, error: error)
+        })
     }
 
-    // MARK: SearchInteractorProtocol properties and methods
-
-    public var isDoingWork: Bool {
-        return activeRequest?.inProgress ?? false
-    }
-
-    public func performSearch(term: String?, andThen callback: ((SearchResults?, ErrorType?) -> ())) {
-        let oldRequest = activeRequest
-        if let term = term where term.characters.count > 0 {
-            activeRequest = searchFactory.newSearchForTerm(term, callback: callback, webService: webService)
-            activeRequest?.start()
-        } else {
-            let err = NSError(domain: "", code: -999, userInfo: nil)
-            callback(nil, err)
+    public func isSearchInProgress() -> Bool {
+        if let term = activeSearchTerm, page = activeSearchPage {
+            return dataManager?.isSearchInProgress(term, page: page) ?? false
         }
-        oldRequest?.cancel()
+        return false
     }
 
     public func cancelLastSearch() {
-        activeRequest?.cancel()
+        if let term = activeSearchTerm, page = activeSearchPage {
+            dataManager?.cancelSearch(term, page: page)
+        }
     }
 }
