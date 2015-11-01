@@ -77,6 +77,7 @@ public class SearchPresenter: NSObject, SearchPresenterInterface {
                     estimatedPDFSize: result.estimatedPDFSize)
                 rows.append(row)
             }
+
             if rows.count > 0 {
                 let title = "\(results.totalItems ?? 0) matches for \(term)"
                 view?.showSearchResults(rows, title: title)

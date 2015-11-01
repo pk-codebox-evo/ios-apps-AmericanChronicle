@@ -11,10 +11,6 @@ import XCTest
 import AmericanChronicle
 
 class FakeDelayedSearch: DelayedSearch {
-    var didCall_start = false
-    override func start() {
-        didCall_start = true
-    }
 
     var didCall_cancel = false
     override func cancel() {
