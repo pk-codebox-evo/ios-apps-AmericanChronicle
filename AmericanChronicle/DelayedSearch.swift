@@ -13,7 +13,7 @@ public class DelayedSearchFactory {
                 page: Int,
                 callback: ((SearchResults?, ErrorType?) -> ()),
                 dataManager: SearchDataManager) -> DelayedSearch {
-            return DelayedSearch(term: term, page: page, callback: callback, dataManager: dataManager)
+            return DelayedSearch(term: term, page: page, dataManager: dataManager, completionHandler: callback)
     }
 
     public init() {}
@@ -21,46 +21,45 @@ public class DelayedSearchFactory {
 
 public class DelayedSearch: NSObject {
 
-    public let term: String
-    public let page: Int
-    let callback: (SearchResults?, ErrorType?) -> ()
-    let dataManager: SearchDataManager
-    var timer: NSTimer?
+    private let term: String
+    private let page: Int
+    private let dataManager: SearchDataManagerInterface
+    private let completionHandler: (SearchResults?, ErrorType?) -> ()
+    private var timer: NSTimer!
 
     // MARK: Init methods
 
-    public init(term: String, page: Int, callback: ((SearchResults?, ErrorType?) -> ()), dataManager: SearchDataManager) {
+    public init(term: String, page: Int, dataManager: SearchDataManagerInterface, completionHandler: ((SearchResults?, ErrorType?) -> ())) {
         self.term = term
         self.page = page
-        self.callback = callback
         self.dataManager = dataManager
+        self.completionHandler = completionHandler
+
         super.init()
-    }
 
-    public var isDoingWork: Bool {
-        if let timer = timer where timer.valid {
-            return true
-        }
-        return dataManager.isSearchInProgress(term, page: page)
-    }
-
-    public func start() {
-        assert(timer == nil)
         timer = NSTimer(timeInterval: 0.3, target: self, selector: "timerFired:", userInfo: nil, repeats: false)
         NSRunLoop.currentRunLoop().addTimer(timer!, forMode: NSDefaultRunLoopMode)
     }
     
     public func cancel() {
-        if let timer = timer where timer.valid { // Request hasn't started yet
+        if timer.valid { // Request hasn't started yet
             timer.invalidate()
             let error = NSError(domain: "", code: -999, userInfo: nil)
-            callback(nil, error)
-        } else { // Request has started already. Cancelling will trigger the callback.
-            dataManager.cancelSearch(term, page: page)
+            completionHandler(nil, error)
+        } else { // Request has started already.
+            dataManager.cancelSearch(term, page: page) // Cancelling will trigger the completionHandler.
         }
     }
 
+    /// This will return the correct value by the time the completion handler is called.
+    public func isSearchInProgress() -> Bool {
+        if timer.valid {
+            return true
+        }
+        return dataManager.isSearchInProgress(term, page: page)
+    }
+
     func timerFired(sender: NSTimer) {
-//        dataManager.startSearch(term, page: 0)
+        dataManager.startSearch(term, page: page, completionHandler: completionHandler)
     }
 }

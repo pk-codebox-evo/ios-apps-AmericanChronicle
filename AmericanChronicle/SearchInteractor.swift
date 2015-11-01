@@ -30,7 +30,8 @@ public protocol SearchInteractorDelegate {
 
 // Responsibilities:
 //  * Ensures that only one request is ongoing at a time.
-//  * Waits for some time before starting a new search. (Incomplete)
+//  * Waits for some time before starting a new search.
+//  * Guarantees that isSearchInProgress will return the correct value.
 public class SearchInteractor: NSObject, SearchInteractorInterface {
 
     public var dataManager: SearchDataManagerInterface?
@@ -38,35 +39,24 @@ public class SearchInteractor: NSObject, SearchInteractorInterface {
 
     // MARK: Private Properties
 
-    private var activeSearchTerm: String?
-    private var activeSearchPage: Int?
-
+    private var delayedSearch: DelayedSearch?
     public func startSearch(term: String, page: Int) {
-
-        cancelLastSearch()
-
-        activeSearchTerm = nil
-        activeSearchPage = nil
-
-        // TODO: Add delay here.
-
-        activeSearchTerm = term
-        activeSearchPage = page
-        dataManager?.startSearch(term, page: page, completionHandler: { [weak self] results, error in
-            self?.delegate?.searchForTerm(term, page: page, didFinishWithResults: results, error: error)
-        })
+        // Calling cancel() on delayedSearch can sometimes trigger the completionHandler
+        // synchronously, and the delegate might then call isSearchInProgress to see if
+        // it can hide the progress indicator. Wait to start this chain of events until
+        // the new delayedSearch has been created.
+        let oldDelayedSearch = delayedSearch
+        delayedSearch = DelayedSearch(term: term, page: page, dataManager: dataManager!) { (results, error) in
+            self.delegate?.searchForTerm(term, page: page, didFinishWithResults: results, error: error as? NSError)
+        }
+        oldDelayedSearch?.cancel()
     }
 
     public func isSearchInProgress() -> Bool {
-        if let term = activeSearchTerm, page = activeSearchPage {
-            return dataManager?.isSearchInProgress(term, page: page) ?? false
-        }
-        return false
+        return delayedSearch?.isSearchInProgress() ?? false
     }
 
     public func cancelLastSearch() {
-        if let term = activeSearchTerm, page = activeSearchPage {
-            dataManager?.cancelSearch(term, page: page)
-        }
+        delayedSearch?.cancel()
     }
 }

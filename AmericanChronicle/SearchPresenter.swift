@@ -61,7 +61,6 @@ public class SearchPresenter: NSObject, SearchPresenterInterface {
         }
 
         if let results = results, items = results.items {
-
             var rows = [SearchResultsRow]()
             for result in items {
                 let date = result.date
