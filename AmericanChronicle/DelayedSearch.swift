@@ -8,18 +8,31 @@
 
 import UIKit
 
-public class DelayedSearchFactory {
-    public func newSearchForTerm(term: String,
-                page: Int,
-                callback: ((SearchResults?, ErrorType?) -> ()),
-                dataManager: SearchDataManager) -> DelayedSearch {
-            return DelayedSearch(term: term, page: page, dataManager: dataManager, completionHandler: callback)
-    }
-
-    public init() {}
+public protocol DelayedSearchFactoryInterface {
+    func newSearchForTerm(term: String, page: Int, callback: ((SearchResults?, ErrorType?) -> ())) -> DelayedSearchInterface?
 }
 
-public class DelayedSearch: NSObject {
+public class DelayedSearchFactory: DelayedSearchFactoryInterface {
+
+    let dataManager: SearchDataManagerInterface
+    public init(dataManager: SearchDataManagerInterface) {
+        self.dataManager = dataManager
+    }
+
+    public func newSearchForTerm(term: String,
+                page: Int,
+                callback: ((SearchResults?, ErrorType?) -> ())) -> DelayedSearchInterface? {
+            return DelayedSearch(term: term, page: page, dataManager: dataManager, completionHandler: callback)
+    }
+}
+
+public protocol DelayedSearchInterface {
+    init(term: String, page: Int, dataManager: SearchDataManagerInterface, completionHandler: ((SearchResults?, ErrorType?) -> ()))
+    func cancel()
+    func isSearchInProgress() -> Bool
+}
+
+public class DelayedSearch: NSObject, DelayedSearchInterface {
 
     private let term: String
     private let page: Int
@@ -29,7 +42,7 @@ public class DelayedSearch: NSObject {
 
     // MARK: Init methods
 
-    public init(term: String, page: Int, dataManager: SearchDataManagerInterface, completionHandler: ((SearchResults?, ErrorType?) -> ())) {
+    public required init(term: String, page: Int, dataManager: SearchDataManagerInterface, completionHandler: ((SearchResults?, ErrorType?) -> ())) {
         self.term = term
         self.page = page
         self.dataManager = dataManager
