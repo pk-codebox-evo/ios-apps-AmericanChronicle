@@ -27,10 +27,16 @@ public class DelayedSearchFactory: DelayedSearchFactoryInterface {
 }
 
 public protocol DelayedSearchInterface {
-    init(term: String, page: Int, dataManager: SearchDataManagerInterface, completionHandler: ((SearchResults?, ErrorType?) -> ()))
+    init(term: String, page: Int, dataManager: SearchDataManagerInterface, runLoop: RunLoopInterface, completionHandler: ((SearchResults?, ErrorType?) -> ()))
     func cancel()
     func isSearchInProgress() -> Bool
 }
+
+public protocol RunLoopInterface {
+    func addTimer(timer: NSTimer, forMode mode: String)
+}
+
+extension NSRunLoop: RunLoopInterface {}
 
 public class DelayedSearch: NSObject, DelayedSearchInterface {
 
@@ -42,7 +48,13 @@ public class DelayedSearch: NSObject, DelayedSearchInterface {
 
     // MARK: Init methods
 
-    public required init(term: String, page: Int, dataManager: SearchDataManagerInterface, completionHandler: ((SearchResults?, ErrorType?) -> ())) {
+    public required init(
+                        term: String,
+                        page: Int,
+                        dataManager: SearchDataManagerInterface,
+                        runLoop: RunLoopInterface = NSRunLoop.currentRunLoop(),
+                        completionHandler: ((SearchResults?, ErrorType?) -> ()))
+    {
         self.term = term
         self.page = page
         self.dataManager = dataManager
@@ -51,7 +63,7 @@ public class DelayedSearch: NSObject, DelayedSearchInterface {
         super.init()
 
         timer = NSTimer(timeInterval: 0.3, target: self, selector: "timerFired:", userInfo: nil, repeats: false)
-        NSRunLoop.currentRunLoop().addTimer(timer!, forMode: NSDefaultRunLoopMode)
+        runLoop.addTimer(timer!, forMode: NSDefaultRunLoopMode)
     }
     
     public func cancel() {

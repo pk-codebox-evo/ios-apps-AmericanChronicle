@@ -12,7 +12,7 @@ import AmericanChronicle
 
 class FakeDelayedSearch: DelayedSearchInterface {
     private let completionHandler: ((SearchResults?, ErrorType?) -> ())
-    required init(term: String, page: Int, dataManager: SearchDataManagerInterface, completionHandler: ((SearchResults?, ErrorType?) -> ())) {
+    required init(term: String, page: Int, dataManager: SearchDataManagerInterface, runLoop: RunLoopInterface, completionHandler: ((SearchResults?, ErrorType?) -> ())) {
         self.completionHandler = completionHandler
     }
     var cancel_wasCalled = false
@@ -54,11 +54,12 @@ class FakeSearchDataManager: SearchDataManagerInterface {
     var isSearchInProgress_wasCalled = false
     var isSearchInProgress_wasCalled_withTerm: String?
     var isSearchInProgress_wasCalled_withPage: Int?
+    var isSearchInProgress_stubbedReturnValue = false
     func isSearchInProgress(term: String, page: Int) -> Bool {
         isSearchInProgress_wasCalled = true
         isSearchInProgress_wasCalled_withTerm = term
         isSearchInProgress_wasCalled_withPage = page
-        return false
+        return isSearchInProgress_stubbedReturnValue
     }
 }
 
@@ -81,7 +82,7 @@ class FakeDelayedSearchFactory: DelayedSearchFactoryInterface {
     func newSearchForTerm(term: String, page: Int, callback: ((SearchResults?, ErrorType?) -> ())) -> DelayedSearchInterface? {
         newSearchForTerm_wasCalled_withTerm = term
         newSearchForTerm_wasCalled_withPage = page
-        newSearchForTerm_lastReturnedSearch = FakeDelayedSearch(term: term, page: page, dataManager: FakeSearchDataManager(), completionHandler: callback)
+        newSearchForTerm_lastReturnedSearch = FakeDelayedSearch(term: term, page: page, dataManager: FakeSearchDataManager(), runLoop: FakeRunLoop(), completionHandler: callback)
         return newSearchForTerm_lastReturnedSearch
     }
 
