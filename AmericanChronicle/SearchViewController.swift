@@ -37,7 +37,6 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var searchField: SearchField!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var filtersButton: UIButton!
 
     // MARK: Internal methods
 
@@ -131,8 +130,8 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
     override public func viewWillAppear(animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.navigationBarHidden = false
-        let filtersTitle = (filters == nil) ? "Add Filters" : "Edit Filters"
-        filtersButton.setTitle(filtersTitle, forState: .Normal)
+//        let filtersTitle = (filters == nil) ? "Add Filters" : "Edit Filters"
+//        filtersButton.setTitle(filtersTitle, forState: .Normal)
     }
 
     override public func viewDidLoad() {
@@ -149,7 +148,7 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
             return true
         }
 
-        filtersButton.titleLabel?.font = UIFont(name: "AvenirNext-Regular", size: UIFont.buttonFontSize())
+//        filtersButton.titleLabel?.font = UIFont(name: "AvenirNext-Regular", size: UIFont.buttonFontSize())
 
         tableView.registerClass(TableHeaderView.self, forHeaderFooterViewReuseIdentifier: "Header")
         tableView.sectionHeaderHeight = 40.0
