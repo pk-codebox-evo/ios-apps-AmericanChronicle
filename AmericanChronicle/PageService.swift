@@ -39,22 +39,13 @@ public class PageService: NSObject, PageServiceInterface {
     private let queue = dispatch_queue_create("com.ryanipete.AmericanChronicle.PageService", DISPATCH_QUEUE_SERIAL)
 
     private func finishRequestWithRemoteURL(remoteURL: NSURL, fileURL: NSURL?, error: NSError?) {
-        print("[RP] \(self.dynamicType) | \(__FUNCTION__) | line \(__LINE__)")
         dispatch_group_async(group, queue) {
-            print("[RP] \(self.dynamicType) | \(__FUNCTION__) | line \(__LINE__)")
             if let activeDownload = self.activeDownloads[remoteURL] {
-                print("[RP] \(self.dynamicType) | \(__FUNCTION__) | line \(__LINE__)")
                 dispatch_async(dispatch_get_main_queue()) {
-                    print("[RP] \(self.dynamicType) | \(__FUNCTION__) | line \(__LINE__)")
                     for (_, requester) in activeDownload.requesters {
-
-                        print("[RP] \(self.dynamicType) | \(__FUNCTION__) | line \(__LINE__)")
                         requester.completionHandler(fileURL, nil)
-                        print("[RP] \(self.dynamicType) | \(__FUNCTION__) | line \(__LINE__)")
                     }
-                    print("[RP] \(self.dynamicType) | \(__FUNCTION__) | line \(__LINE__)")
                     self.activeDownloads[remoteURL] = nil
-                    print("[RP] \(self.dynamicType) | \(__FUNCTION__) | line \(__LINE__)")
                 }
             }
         }
@@ -85,7 +76,7 @@ public class PageService: NSObject, PageServiceInterface {
                     try NSFileManager.defaultManager().createDirectoryAtURL(fileDirectoryURL, withIntermediateDirectories: true, attributes: nil)
                 }
             } catch let error {
-                print("[RP] error: \(error)")
+                print("ERROR: \(error)")
             }
 
             return fileURL ?? temporaryURL

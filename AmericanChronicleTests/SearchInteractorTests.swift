@@ -10,15 +10,24 @@ import UIKit
 import XCTest
 import AmericanChronicle
 
-class FakeDelayedSearch: DelayedSearch {
-    var didCall_start = false
-    override func start() {
-        didCall_start = true
+class FakeDelayedSearch: DelayedSearchInterface {
+    private let completionHandler: ((SearchResults?, ErrorType?) -> ())
+    required init(term: String, page: Int, dataManager: SearchDataManagerInterface, runLoop: RunLoopInterface, completionHandler: ((SearchResults?, ErrorType?) -> ())) {
+        self.completionHandler = completionHandler
+    }
+    var cancel_wasCalled = false
+    func cancel() {
+        cancel_wasCalled = true
     }
 
-    var didCall_cancel = false
-    override func cancel() {
-        didCall_cancel = true
+    var isSearchInProgress_wasCalled = false
+    func isSearchInProgress() -> Bool {
+        isSearchInProgress_wasCalled = true
+        return false
+    }
+
+    func finishRequestWithSearchResults(results: SearchResults?, error: ErrorType?) {
+        completionHandler(results, error)
     }
 }
 
@@ -45,100 +54,100 @@ class FakeSearchDataManager: SearchDataManagerInterface {
     var isSearchInProgress_wasCalled = false
     var isSearchInProgress_wasCalled_withTerm: String?
     var isSearchInProgress_wasCalled_withPage: Int?
+    var isSearchInProgress_stubbedReturnValue = false
     func isSearchInProgress(term: String, page: Int) -> Bool {
         isSearchInProgress_wasCalled = true
         isSearchInProgress_wasCalled_withTerm = term
         isSearchInProgress_wasCalled_withPage = page
-        return false
+        return isSearchInProgress_stubbedReturnValue
     }
 }
 
 class FakeSearchInteractorDelegate: SearchInteractorDelegate {
-    func searchForTerm(term: String, page: Int, didFinishWithResults: SearchResults?, error: NSError?) {
-
+    var searchForTerm_didFinish_wasCalled = false
+    var searchForTerm_didFinish_wasCalled_withResults: SearchResults?
+    var searchForTerm_didFinish_wasCalled_withError: NSError?
+    func searchForTerm(term: String, page: Int, didFinishWithResults results: SearchResults?, error: NSError?) {
+        searchForTerm_didFinish_wasCalled = true
+        searchForTerm_didFinish_wasCalled_withResults = results
+        searchForTerm_didFinish_wasCalled_withError = error
     }
+}
+
+class FakeDelayedSearchFactory: DelayedSearchFactoryInterface {
+    var newSearchForTerm_wasCalled_withTerm: String?
+    var newSearchForTerm_wasCalled_withPage: Int?
+    private(set) var newSearchForTerm_lastReturnedSearch: FakeDelayedSearch?
+
+    func newSearchForTerm(term: String, page: Int, callback: ((SearchResults?, ErrorType?) -> ())) -> DelayedSearchInterface? {
+        newSearchForTerm_wasCalled_withTerm = term
+        newSearchForTerm_wasCalled_withPage = page
+        newSearchForTerm_lastReturnedSearch = FakeDelayedSearch(term: term, page: page, dataManager: FakeSearchDataManager(), runLoop: FakeRunLoop(), completionHandler: callback)
+        return newSearchForTerm_lastReturnedSearch
+    }
+
+    init() {}
 }
 
 class SearchInteractorTests: XCTestCase {
 
     var subject: SearchInteractor!
-    var dataManager: FakeSearchDataManager!
+    var searchFactory: FakeDelayedSearchFactory!
     var delegate: FakeSearchInteractorDelegate!
 
     override func setUp() {
         super.setUp()
-        dataManager = FakeSearchDataManager()
+        searchFactory = FakeDelayedSearchFactory()
         delegate = FakeSearchInteractorDelegate()
-        subject = SearchInteractor()
-        subject.dataManager = dataManager
+        subject = SearchInteractor(searchFactory: searchFactory)
         subject.delegate = delegate
     }
-//
+
     func testThat_whenStartSearchIsCalled_itAsksTheDataManagerToStartASearchWithTheSameTerm() {
         subject.startSearch("Jibberish", page: 0)
-        XCTAssertEqual(dataManager.startSearch_wasCalled_withTerm, "Jibberish")
+        XCTAssertEqual(searchFactory.newSearchForTerm_wasCalled_withTerm, "Jibberish")
 
     }
 
     func testThat_whenStartSearchIsCalled_itAsksTheDataManagerToStartASearchWithTheSamePage() {
         subject.startSearch("", page: 5)
-        XCTAssertEqual(dataManager.startSearch_wasCalled_withPage, 5)
+        XCTAssertEqual(searchFactory.newSearchForTerm_wasCalled_withPage, 5)
     }
 
-    func testThat_whenStartSearchIsCalled_itCancelsTheLastSearch_withTheCorrectTerm() {
+    func testThat_whenStartSearchIsCalled_itCancelsTheLastSearch() {
         subject.startSearch("First Search", page: 3)
+        let firstSearch = searchFactory.newSearchForTerm_lastReturnedSearch
         subject.startSearch("Second Search", page: 5)
-        XCTAssertEqual(dataManager.cancelSearch_wasCalled_withTerm, "First Search")
+        XCTAssert(firstSearch?.cancel_wasCalled ?? false)
     }
 
-    func testThat_whenStartSearchIsCalled_itCancelsTheLastSearch_withTheCorrectPage() {
-        subject.startSearch("First Search", page: 3)
-        subject.startSearch("Second Search", page: 5)
-        XCTAssertEqual(dataManager.cancelSearch_wasCalled_withPage, 3)
-    }
-
-    func testThat_whenAskedWhetherASearchIsInProgress_itAsksTheDataManagerWithTheActiveSearchTerm() {
+    func testThat_whenAskedWhetherASearchIsInProgress_itAsksTheActiveSearch() {
         subject.startSearch("sample search", page: 0)
+        let search = searchFactory.newSearchForTerm_lastReturnedSearch
         subject.isSearchInProgress()
-        XCTAssertEqual(dataManager.isSearchInProgress_wasCalled_withTerm, "sample search")
+        XCTAssert(search?.isSearchInProgress_wasCalled ?? false)
     }
 
-    func testThat_whenAskedWhetherASearchIsInProgress_andThereShouldBeASearchInProgress_itAsksTheDataManagerWithTheActiveTerm() {
-        subject.startSearch("sample search", page: 0)
-        subject.isSearchInProgress()
-        XCTAssertEqual(dataManager.isSearchInProgress_wasCalled_withTerm, "sample search")
-    }
+    func testThat_whenCancelLastSearchIsCalled_itCancelsTheActiveSearch() {
 
-    func testThat_whenAskedWhetherASearchIsInProgress_andThereShouldBeASearchInProgress_itAsksTheDataManagerWithTheActivePage() {
-        subject.startSearch("", page: 2)
-        subject.isSearchInProgress()
-        XCTAssertEqual(dataManager.isSearchInProgress_wasCalled_withPage, 2)
-    }
-
-    func testThat_whenAskedWhetherASearchIsInProgress_andNoSearchIsActive_itDoesNotBotherTheDataManager() {
-        subject.cancelLastSearch()
-        XCTAssertFalse(dataManager.isSearchInProgress_wasCalled)
-    }
-
-    func testThat_whenASearchIsCancelled_whileASearchIsInProgress_itAsksTheDataManagerToCancelTheSearchWithTheActiveSearchTerm() {
         subject.startSearch("some term", page: 0)
+        let search = searchFactory.newSearchForTerm_lastReturnedSearch
         subject.cancelLastSearch()
-        XCTAssertEqual(dataManager.cancelSearch_wasCalled_withTerm, "some term")
-    }
-
-    func testThat_whenASearchIsCancelled_whileASearchIsInProgress_itAsksTheDataManagerToCancelTheSearchWithTheActiveSearchPage() {
-        subject.startSearch("some term", page: 4)
-        subject.cancelLastSearch()
-        XCTAssertEqual(dataManager.cancelSearch_wasCalled_withPage, 4)
-    }
-
-    func testThat_whenASearchIsCancelled_andNoSearchIsInProgress_itDoesNotAskTheDataManagerToCancelAnyRequests() {
-        subject.cancelLastSearch()
-        XCTAssertFalse(dataManager.cancelSearch_wasCalled)
+        XCTAssert(search?.cancel_wasCalled ?? false)
     }
 
     func testThat_whenASearchSucceeds_itPassesTheResultsToItsDelegate() {
         subject.startSearch("", page: 0)
+        let results = SearchResults()
+        searchFactory.newSearchForTerm_lastReturnedSearch?.finishRequestWithSearchResults(results, error: nil)
+        XCTAssertEqual(delegate.searchForTerm_didFinish_wasCalled_withResults, results)
+    }
+
+    func testThat_whenASearchFails_itPassesTheErrorToItsDelegate() {
+        subject.startSearch("", page: 0)
+        let error = NSError(code: .InvalidParameter)
+        searchFactory.newSearchForTerm_lastReturnedSearch?.finishRequestWithSearchResults(nil, error: error)
+        XCTAssertEqual(delegate.searchForTerm_didFinish_wasCalled_withError, error)
     }
 
 }

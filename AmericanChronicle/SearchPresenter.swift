@@ -61,7 +61,6 @@ public class SearchPresenter: NSObject, SearchPresenterInterface {
         }
 
         if let results = results, items = results.items {
-
             var rows = [SearchResultsRow]()
             for result in items {
                 let date = result.date
@@ -78,6 +77,7 @@ public class SearchPresenter: NSObject, SearchPresenterInterface {
                     estimatedPDFSize: result.estimatedPDFSize)
                 rows.append(row)
             }
+
             if rows.count > 0 {
                 let title = "\(results.totalItems ?? 0) matches for \(term)"
                 view?.showSearchResults(rows, title: title)
