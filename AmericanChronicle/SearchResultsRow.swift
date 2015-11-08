@@ -8,14 +8,14 @@
 
 import UIKit
 
-public class SearchResultsRow {
+public class SearchResultsRow: CustomStringConvertible {
     let date: NSDate?
     let cityState: String
     let publicationTitle: String
     let thumbnailURL: NSURL?
     let pdfURL: NSURL?
     let estimatedPDFSize: Int
-    init(date: NSDate?, cityState: String, publicationTitle: String, thumbnailURL: NSURL?, pdfURL: NSURL?, estimatedPDFSize: Int) {
+    public init(date: NSDate?, cityState: String, publicationTitle: String, thumbnailURL: NSURL?, pdfURL: NSURL?, estimatedPDFSize: Int) {
         self.date = date
         self.cityState = cityState
         self.publicationTitle = publicationTitle
@@ -26,7 +26,7 @@ public class SearchResultsRow {
 
     public var description: String {
         var desc = "<SearchResultsRow: "
-        desc += ", date=\(date)"
+        desc += "date=\(date)"
         desc += ", cityState=\(cityState)"
         desc += ", publicationTitle=\(publicationTitle)"
         desc += ", thumbnailURL=\(thumbnailURL)"

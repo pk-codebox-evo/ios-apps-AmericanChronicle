@@ -74,7 +74,7 @@ class SearchPagesServiceTests: XCTestCase {
         subject.startSearch("volcano", page: 2, contextID: "context") { _, error in
             returnedError = error as? NSError
         }
-        let expectedError = NSError(code: .InvalidParameter)
+        let expectedError = NSError(code: .InvalidParameter, message: "")
         let obj: SearchResults? = nil
         request.finishWithResponseObject(obj, error: expectedError)
         XCTAssertEqual(returnedError, expectedError)

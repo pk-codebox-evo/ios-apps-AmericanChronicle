@@ -47,17 +47,17 @@ public class SearchPagesService: SearchPagesServiceInterface {
     public func startSearch(term: String, page: Int, contextID: String, completionHandler: ((SearchResults?, ErrorType?) -> Void)) {
 
         if term.characters.count <= 0 {
-            completionHandler(nil, NSError(code: .InvalidParameter))
+            completionHandler(nil, NSError(code: .InvalidParameter, message: "Tried to search for an empty term."))
             return
         }
 
         if page < 1 {
-            completionHandler(nil, NSError(code: .InvalidParameter))
+            completionHandler(nil, NSError(code: .InvalidParameter, message: "Tried to search for an invalid page."))
             return
         }
 
         if isSearchInProgress(term, page: page, contextID: contextID) {
-            completionHandler(nil, NSError(code: .DuplicateRequest))
+            completionHandler(nil, NSError(code: .DuplicateRequest, message: "Message tried to send a duplicate request."))
             return
         }
 

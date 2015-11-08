@@ -185,7 +185,7 @@ class PageServiceTests: XCTestCase {
             expectSubjectGroupToEmpty.fulfill()
         }
         waitForExpectationsWithTimeout(0.1, handler: nil)
-        manager.stubbedReturnValue.finishWithRequest(nil, response: nil, data: nil, error: NSError(code: .InvalidParameter))
+        manager.stubbedReturnValue.finishWithRequest(nil, response: nil, data: nil, error: NSError(code: .InvalidParameter, message: ""))
 
         XCTAssertEqual(errorOne, errorTwo)
         XCTAssertEqual(errorTwo, errorThree)

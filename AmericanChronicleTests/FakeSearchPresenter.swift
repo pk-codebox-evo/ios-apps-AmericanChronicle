@@ -13,19 +13,13 @@ class FakeSearchPresenter: NSObject, SearchPresenterInterface {
     var view: SearchViewInterface?
     var interactor: SearchInteractorInterface?
 
-    func userDidTapCancel() {
+    func userDidTapCancel() {}
 
-    }
+    func userDidChangeSearchToTerm(term: String?) {}
 
-    func userDidSelectSearchResult(row: SearchResultsRow) {
+    func userIsApproachingLastRow(term: String?, inCollection: [SearchResultsRow]) {}
 
-    }
+    func userDidSelectSearchResult(row: SearchResultsRow) {}
 
-    func userDidChangeSearchToTerm(term: String?) {
-
-    }
-
-    func searchForTerm(term: String, page: Int, didFinishWithResults: SearchResults?, error: NSError?) {
-
-    }
+    func searchForTerm(term: String, existingRows: [SearchResultsRow], didFinishWithResults: SearchResults?, error: NSError?) {}
 }

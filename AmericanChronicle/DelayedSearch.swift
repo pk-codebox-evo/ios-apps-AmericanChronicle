@@ -27,6 +27,7 @@ public class DelayedSearchFactory: DelayedSearchFactoryInterface {
 }
 
 public protocol DelayedSearchInterface {
+    var term: String { get }
     init(term: String, page: Int, dataManager: SearchDataManagerInterface, runLoop: RunLoopInterface, completionHandler: ((SearchResults?, ErrorType?) -> ()))
     func cancel()
     func isSearchInProgress() -> Bool
@@ -40,7 +41,7 @@ extension NSRunLoop: RunLoopInterface {}
 
 public class DelayedSearch: NSObject, DelayedSearchInterface {
 
-    private let term: String
+    public let term: String
     private let page: Int
     private let dataManager: SearchDataManagerInterface
     private let completionHandler: (SearchResults?, ErrorType?) -> ()
