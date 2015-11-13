@@ -92,3 +92,5 @@ public init (
         self.emailValidator = emailValidator
         super.init(analyticsService: analyticsService, screenName: "Edit personal info screen")
     } 
+
+This looks funky if there's no scope keyword - another reason to always explicitly declare `internal`.
