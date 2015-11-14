@@ -16,4 +16,8 @@ class FakeSearchView: SearchViewInterface {
     func setViewState(state: ViewState) {
         setViewState_wasCalled_withState = state
     }
+
+    func setBottomContentInset(bottom: CGFloat) {
+        
+    }
 }

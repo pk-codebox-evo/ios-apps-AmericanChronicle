@@ -69,11 +69,6 @@ public func ==(a: ViewState, b: ViewState) -> Bool {
     }
 }
 
-enum SearchViewControllerSection: Int {
-    case SearchResults
-    case LoadingNextPage
-}
-
 public class SearchViewController: UIViewController, SearchViewInterface, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: Properties
@@ -120,9 +115,13 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
         if !isViewLoaded() {
             return
         }
-        var inset = tableView.contentInset
-        inset.bottom = bottom
-        tableView.contentInset = inset
+        var contentInset = tableView.contentInset
+        contentInset.bottom = bottom
+        tableView.contentInset = contentInset
+
+        var indicatorInsets = tableView.scrollIndicatorInsets
+        indicatorInsets.bottom = bottom
+        tableView.scrollIndicatorInsets = indicatorInsets
     }
 
     // > The partial state is the screen someone will see when the page is no longer empty and
@@ -140,7 +139,7 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
             sectionTitle = ""
             rows = []
             tableView.reloadData()
-
+            tableView.tableFooterView?.alpha = 0
         case .EmptyResults:
             print("[RP] EmptyResults")
             setLoadingIndicatorsVisible(false)
@@ -149,19 +148,19 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
             sectionTitle = ""
             rows = []
             tableView.reloadData()
-
+            tableView.tableFooterView?.alpha = 0
         case .LoadingNewTerm:
             print("[RP] LoadingNewTerm")
             setLoadingIndicatorsVisible(true)
             emptyResultsLabel.alpha = 0
             errorView.alpha = 0
-
+            tableView.tableFooterView?.alpha = 0
         case .LoadingMoreRows:
             print("[RP] LoadingMoreRows")
             setLoadingIndicatorsVisible(false)
             emptyResultsLabel.alpha = 0
             errorView.alpha = 0
-
+            tableView.tableFooterView?.alpha = 1.0
         case let .Partial(title, rows):
             print("[RP] Partial")
             setLoadingIndicatorsVisible(false)
@@ -170,7 +169,7 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
             sectionTitle = title
             self.rows = rows
             tableView.reloadData()
-
+            tableView.tableFooterView?.alpha = 0
         case let .Ideal(title, rows):
             print("[RP] Ideal")
             setLoadingIndicatorsVisible(false)
@@ -179,7 +178,7 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
             sectionTitle = title
             self.rows = rows
             tableView.reloadData()
-
+            tableView.tableFooterView?.alpha = 0
         case let .Error(title, message):
             print("[RP] Error")
             setLoadingIndicatorsVisible(false)
@@ -190,7 +189,7 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
             tableView.reloadData()
             errorTitleLabel.text = title
             errorMessageLabel.text = message
-
+            tableView.tableFooterView?.alpha = 0
         }
     }
 
@@ -207,63 +206,34 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
 
     // MARK: UITableViewDelegate & -DataSource methods
 
-    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
-    }
-
     public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        switch SearchViewControllerSection(rawValue: section)! {
-            case .SearchResults:
-                let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("Header") as? TableHeaderView
-                headerView?.label.text = sectionTitle
-                return headerView
-            case .LoadingNextPage:
-                return nil
-        }
+        let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("Header") as? TableHeaderView
+        headerView?.label.text = sectionTitle
+        return headerView
     }
 
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch SearchViewControllerSection(rawValue: section)! {
-            case .SearchResults:
-                return rows.count ?? 0
-            case .LoadingNextPage:
-                return 1
-        }
+        return rows.count ?? 0
     }
 
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell: UITableViewCell
+        let pageCell = tableView.dequeueReusableCellWithIdentifier("SearchResultsPageCell") as! SearchResultsPageCell
+        let result = rows[indexPath.row]
 
-        switch SearchViewControllerSection(rawValue: indexPath.section)! {
-            case .SearchResults:
-                let cell: UITableViewCell
-                let pageCell = tableView.dequeueReusableCellWithIdentifier("SearchResultsPageCell") as! SearchResultsPageCell
-                let result = rows[indexPath.row]
-
-                if let date = result.date {
-                    let formatter = NSDateFormatter()
-                    formatter.dateFormat = "MMM dd, yyyy"
-                    pageCell.dateLabel.text = formatter.stringFromDate(date)
-                } else {
-                    pageCell.dateLabel.text = ""
-                }
-                pageCell.cityStateLabel.text = result.cityState ?? ""
-                pageCell.publicationTitleLabel.text = result.publicationTitle ?? ""
-                pageCell.thumbnailImageView.backgroundColor = UIColor.lightGrayColor()
-                pageCell.thumbnailImageView.sd_setImageWithURL(result.thumbnailURL)
-                cell = pageCell
-                return cell
-            case .LoadingNextPage:
-                return tableView.dequeueReusableCellWithIdentifier("LoadingNextPageCell")!
+        if let date = result.date {
+            let formatter = NSDateFormatter()
+            formatter.dateFormat = "MMM dd, yyyy"
+            pageCell.dateLabel.text = formatter.stringFromDate(date)
+        } else {
+            pageCell.dateLabel.text = ""
         }
-    }
-
-    public func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        switch SearchViewControllerSection(rawValue: indexPath.section)! {
-            case .SearchResults:
-                return indexPath
-            case .LoadingNextPage:
-                return nil
-        }
+        pageCell.cityStateLabel.text = result.cityState ?? ""
+        pageCell.publicationTitleLabel.text = result.publicationTitle ?? ""
+        pageCell.thumbnailImageView.backgroundColor = UIColor.lightGrayColor()
+        pageCell.thumbnailImageView.sd_setImageWithURL(result.thumbnailURL)
+        cell = pageCell
+        return cell
     }
 
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -272,11 +242,11 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
         presenter?.userDidSelectSearchResult(row)
     }
 
+    static let approachingCount = 5
+
     public func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
 
-        if (SearchViewControllerSection(rawValue: indexPath.row) == .SearchResults)
-            && (rows.count > 0)
-            && ((rows.count - indexPath.row) < 5) {
+        if (rows.count > 0) && ((rows.count - indexPath.row) < SearchViewController.approachingCount) {
             presenter?.userIsApproachingLastRow(searchField.text, inCollection: rows)
         }
     }

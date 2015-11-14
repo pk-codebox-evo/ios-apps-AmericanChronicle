@@ -33,14 +33,14 @@ public class SearchPresenter: NSObject, SearchPresenterInterface {
     weak public var wireframe: SearchWireframeInterface?
     weak public var view: SearchViewInterface? {
         didSet {
-            updateViewForKeyboardFrame(KeyboardObserver.sharedInstance.keyboardFrame)
+            updateViewForKeyboardFrame(KeyboardService.sharedInstance.keyboardFrame)
         }
     }
     weak public var interactor: SearchInteractorInterface?
 
-    override init() {
+    public override init() {
         super.init()
-        KeyboardObserver.sharedInstance.addFrameChangeHandler("\(unsafeAddressOf(self))") { [weak self] rect in
+        KeyboardService.sharedInstance.addFrameChangeHandler("\(unsafeAddressOf(self))") { [weak self] rect in
             self?.updateViewForKeyboardFrame(rect)
         }
     }
@@ -58,7 +58,7 @@ public class SearchPresenter: NSObject, SearchPresenterInterface {
     }
 
     public func viewDidLoad() {
-        updateViewForKeyboardFrame(KeyboardObserver.sharedInstance.keyboardFrame)
+        updateViewForKeyboardFrame(KeyboardService.sharedInstance.keyboardFrame)
     }
 
     public func userDidChangeSearchToTerm(term: String?) {
@@ -131,6 +131,6 @@ public class SearchPresenter: NSObject, SearchPresenterInterface {
     }
 
     deinit {
-        KeyboardObserver.sharedInstance.removeFrameChangeHandler("\(unsafeAddressOf(self))")
+        KeyboardService.sharedInstance.removeFrameChangeHandler("\(unsafeAddressOf(self))")
     }
 }

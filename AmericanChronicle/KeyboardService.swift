@@ -1,5 +1,5 @@
 //
-//  KeyboardObserver.swift
+//  KeyboardService.swift
 //  AmericanChronicle
 //
 //  Created by Ryan Peterson on 11/12/15.
@@ -8,13 +8,13 @@
 
 import Foundation
 
-public class KeyboardObserver: NSObject {
+public class KeyboardService: NSObject {
 
     private var frameChangeHandlers: [String: (CGRect?) -> Void] = [:]
 
-    static let sharedInstance = KeyboardObserver()
+    static let sharedInstance = KeyboardService()
     private let notificationCenter: NSNotificationCenter
-    internal var keyboardFrame: CGRect? {
+    public private(set) var keyboardFrame: CGRect? {
         didSet {
             if keyboardFrame != oldValue {
                 for (_, handler) in frameChangeHandlers {
@@ -27,7 +27,6 @@ public class KeyboardObserver: NSObject {
     public init(notificationCenter: NSNotificationCenter = NSNotificationCenter.defaultCenter()) {
         self.notificationCenter = notificationCenter
         super.init()
-
     }
 
     public func applicationDidFinishLaunching() {
@@ -44,11 +43,11 @@ public class KeyboardObserver: NSObject {
         keyboardFrame = nil
     }
 
-    func addFrameChangeHandler(identifier: String, handler: (CGRect?) -> Void) {
+    public func addFrameChangeHandler(identifier: String, handler: (CGRect?) -> Void) {
         frameChangeHandlers[identifier] = handler
     }
 
-    func removeFrameChangeHandler(identifier: String) {
+    public func removeFrameChangeHandler(identifier: String) {
         frameChangeHandlers[identifier] = nil
     }
 

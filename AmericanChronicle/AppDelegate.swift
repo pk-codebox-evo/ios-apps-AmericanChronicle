@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let rootWireframe = RootWireframe()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        KeyboardObserver.sharedInstance.applicationDidFinishLaunching()
+        KeyboardService.sharedInstance.applicationDidFinishLaunching()
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window?.rootViewController = rootWireframe.rootViewController()
         window?.makeKeyAndVisible()

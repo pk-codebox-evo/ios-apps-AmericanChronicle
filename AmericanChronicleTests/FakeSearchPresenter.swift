@@ -22,4 +22,8 @@ class FakeSearchPresenter: NSObject, SearchPresenterInterface {
     func userDidSelectSearchResult(row: SearchResultsRow) {}
 
     func searchForTerm(term: String, existingRows: [SearchResultsRow], didFinishWithResults: SearchResults?, error: NSError?) {}
+
+    func viewDidLoad() {
+
+    }
 }
