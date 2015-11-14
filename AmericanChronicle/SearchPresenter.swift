@@ -20,6 +20,7 @@ public protocol SearchPresenterInterface: class, SearchInteractorDelegate {
     func userDidChangeSearchToTerm(term: String?)
     func userIsApproachingLastRow(term: String?, inCollection: [SearchResultsRow])
     func userDidSelectSearchResult(row: SearchResultsRow)
+    func viewDidLoad()
 }
 
 // MARK: -
@@ -30,9 +31,23 @@ public class SearchPresenter: NSObject, SearchPresenterInterface {
     // MARK: Public Properties
 
     weak public var wireframe: SearchWireframeInterface?
-    weak public var view: SearchViewInterface?
+    weak public var view: SearchViewInterface? {
+        didSet {
+            updateViewForKeyboardFrame(KeyboardObserver.sharedInstance.keyboardFrame)
+        }
+    }
     weak public var interactor: SearchInteractorInterface?
 
+    override init() {
+        super.init()
+        KeyboardObserver.sharedInstance.addFrameChangeHandler("\(unsafeAddressOf(self))") { [weak self] rect in
+            self?.updateViewForKeyboardFrame(rect)
+        }
+    }
+
+    func updateViewForKeyboardFrame(rect: CGRect?) {
+        view?.setBottomContentInset(rect?.size.height ?? 0)
+    }
 
     public func userDidTapCancel() {
         wireframe?.userDidTapCancel()
@@ -40,6 +55,10 @@ public class SearchPresenter: NSObject, SearchPresenterInterface {
 
     public func userDidSelectSearchResult(row: SearchResultsRow) {
         wireframe?.userDidSelectSearchResult(row)
+    }
+
+    public func viewDidLoad() {
+        updateViewForKeyboardFrame(KeyboardObserver.sharedInstance.keyboardFrame)
     }
 
     public func userDidChangeSearchToTerm(term: String?) {
@@ -109,5 +128,9 @@ public class SearchPresenter: NSObject, SearchPresenterInterface {
         } else {
             view?.setViewState(.EmptyResults)
         }
+    }
+
+    deinit {
+        KeyboardObserver.sharedInstance.removeFrameChangeHandler("\(unsafeAddressOf(self))")
     }
 }

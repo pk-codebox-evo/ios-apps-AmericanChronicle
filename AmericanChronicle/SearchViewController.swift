@@ -16,6 +16,7 @@ import UIKit
 public protocol SearchViewInterface: class {
     weak var presenter: SearchPresenterInterface? { get set }
     func setViewState(state: ViewState)
+    func setBottomContentInset(bottom: CGFloat)
 }
 
 // http://scotthurff.com/posts/why-your-user-interface-is-awkward-youre-ignoring-the-ui-stack
@@ -68,6 +69,11 @@ public func ==(a: ViewState, b: ViewState) -> Bool {
     }
 }
 
+enum SearchViewControllerSection: Int {
+    case SearchResults
+    case LoadingNextPage
+}
+
 public class SearchViewController: UIViewController, SearchViewInterface, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: Properties
@@ -110,6 +116,14 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
         presentViewController(nvc, animated: true, completion: nil)
     }
 
+    public func setBottomContentInset(bottom: CGFloat) {
+        if !isViewLoaded() {
+            return
+        }
+        var inset = tableView.contentInset
+        inset.bottom = bottom
+        tableView.contentInset = inset
+    }
 
     // > The partial state is the screen someone will see when the page is no longer empty and
     //   sparsely populated. Your job here is to prevent people from getting discouraged and giving
@@ -193,34 +207,63 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
 
     // MARK: UITableViewDelegate & -DataSource methods
 
+    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
+
     public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("Header") as? TableHeaderView
-        headerView?.label.text = sectionTitle
-        return headerView
+        switch SearchViewControllerSection(rawValue: section)! {
+            case .SearchResults:
+                let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("Header") as? TableHeaderView
+                headerView?.label.text = sectionTitle
+                return headerView
+            case .LoadingNextPage:
+                return nil
+        }
     }
 
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rows.count ?? 0
+        switch SearchViewControllerSection(rawValue: section)! {
+            case .SearchResults:
+                return rows.count ?? 0
+            case .LoadingNextPage:
+                return 1
+        }
     }
 
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: UITableViewCell
-        let pageCell = tableView.dequeueReusableCellWithIdentifier("SearchResultsPageCell") as! SearchResultsPageCell
-        let result = rows[indexPath.row]
 
-        if let date = result.date {
-            let formatter = NSDateFormatter()
-            formatter.dateFormat = "MMM dd, yyyy"
-            pageCell.dateLabel.text = formatter.stringFromDate(date)
-        } else {
-            pageCell.dateLabel.text = ""
+        switch SearchViewControllerSection(rawValue: indexPath.section)! {
+            case .SearchResults:
+                let cell: UITableViewCell
+                let pageCell = tableView.dequeueReusableCellWithIdentifier("SearchResultsPageCell") as! SearchResultsPageCell
+                let result = rows[indexPath.row]
+
+                if let date = result.date {
+                    let formatter = NSDateFormatter()
+                    formatter.dateFormat = "MMM dd, yyyy"
+                    pageCell.dateLabel.text = formatter.stringFromDate(date)
+                } else {
+                    pageCell.dateLabel.text = ""
+                }
+                pageCell.cityStateLabel.text = result.cityState ?? ""
+                pageCell.publicationTitleLabel.text = result.publicationTitle ?? ""
+                pageCell.thumbnailImageView.backgroundColor = UIColor.lightGrayColor()
+                pageCell.thumbnailImageView.sd_setImageWithURL(result.thumbnailURL)
+                cell = pageCell
+                return cell
+            case .LoadingNextPage:
+                return tableView.dequeueReusableCellWithIdentifier("LoadingNextPageCell")!
         }
-        pageCell.cityStateLabel.text = result.cityState ?? ""
-        pageCell.publicationTitleLabel.text = result.publicationTitle ?? ""
-        pageCell.thumbnailImageView.backgroundColor = UIColor.lightGrayColor()
-        pageCell.thumbnailImageView.sd_setImageWithURL(result.thumbnailURL)
-        cell = pageCell
-        return cell
+    }
+
+    public func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        switch SearchViewControllerSection(rawValue: indexPath.section)! {
+            case .SearchResults:
+                return indexPath
+            case .LoadingNextPage:
+                return nil
+        }
     }
 
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -230,7 +273,10 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
     }
 
     public func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if rows.count > 0 && ((rows.count - indexPath.row) < 5) {
+
+        if (SearchViewControllerSection(rawValue: indexPath.row) == .SearchResults)
+            && (rows.count > 0)
+            && ((rows.count - indexPath.row) < 5) {
             presenter?.userIsApproachingLastRow(searchField.text, inCollection: rows)
         }
     }
@@ -266,6 +312,8 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
         activityIndicator.snp_makeConstraints { make in
             make.center.equalTo(view.snp_center)
         }
+
+        presenter?.viewDidLoad()
     }
 
     override public func viewWillDisappear(animated: Bool) {

@@ -34,6 +34,7 @@
 		974BA36C1B892DD500D7ACA2 /* Newspaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974BA36B1B892DD500D7ACA2 /* Newspaper.swift */; };
 		974BA36E1B89343A00D7ACA2 /* StateName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974BA36D1B89343A00D7ACA2 /* StateName.swift */; };
 		974E4FBE1BAF61FC006A8231 /* LoggingURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974E4FBD1BAF61FC006A8231 /* LoggingURLProtocol.swift */; };
+		975355681BF5A8550028B7FD /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975355671BF5A8550028B7FD /* KeyboardObserver.swift */; };
 		975914AA1B7A47C40031BD13 /* SearchResultsPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975914A91B7A47C40031BD13 /* SearchResultsPageCell.swift */; };
 		9762A0901BB0E19D002A57C8 /* FakeSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9762A08F1BB0E19D002A57C8 /* FakeSearchView.swift */; };
 		9764976D1B7DA0270035A388 /* Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9764976C1B7DA0270035A388 /* Month.swift */; };
@@ -181,6 +182,7 @@
 		974BA36B1B892DD500D7ACA2 /* Newspaper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Newspaper.swift; sourceTree = "<group>"; };
 		974BA36D1B89343A00D7ACA2 /* StateName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateName.swift; sourceTree = "<group>"; };
 		974E4FBD1BAF61FC006A8231 /* LoggingURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggingURLProtocol.swift; sourceTree = "<group>"; };
+		975355671BF5A8550028B7FD /* KeyboardObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
 		975914A91B7A47C40031BD13 /* SearchResultsPageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsPageCell.swift; sourceTree = "<group>"; };
 		9762A08F1BB0E19D002A57C8 /* FakeSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeSearchView.swift; sourceTree = "<group>"; };
 		9764976C1B7DA0270035A388 /* Month.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Month.swift; sourceTree = "<group>"; };
@@ -517,6 +519,7 @@
 				97C99FB71B96BAC5001310DE /* SearchFieldCell.swift */,
 				97EAC1DE1B9D3E0300956EBC /* RootWireframe.swift */,
 				974E4FBD1BAF61FC006A8231 /* LoggingURLProtocol.swift */,
+				975355671BF5A8550028B7FD /* KeyboardObserver.swift */,
 			);
 			name = "App-wide";
 			sourceTree = "<group>";
@@ -813,6 +816,7 @@
 				97B829331BC08C5700B35538 /* PDFPageView.swift in Sources */,
 				97EAC1DD1B9D2F0C00956EBC /* SearchPresenter.swift in Sources */,
 				97C99FB81B96BAC5001310DE /* SearchFieldCell.swift in Sources */,
+				975355681BF5A8550028B7FD /* KeyboardObserver.swift in Sources */,
 				97BDE1171B76ED6B00A3E57F /* HomeViewController.swift in Sources */,
 				97F707D11BB8AE8F00A3D760 /* PagePresenter.swift in Sources */,
 				9721FDC91B93FF26006798B2 /* Style.swift in Sources */,
