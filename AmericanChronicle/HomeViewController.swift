@@ -34,7 +34,7 @@ class HomeViewController: UITableViewController, UITextFieldDelegate, UIViewCont
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.registerClass(TableHeaderView.self, forHeaderFooterViewReuseIdentifier: "Header")
-        searchField.shouldBeginEditingCallback = { [weak self] in
+        searchField.shouldBeginEditingHandler = { [weak self] in
             self?.searchWireframe.delegate = self
             self?.searchWireframe.presentSearchFromViewController(self)
             return false
@@ -43,6 +43,11 @@ class HomeViewController: UITableViewController, UITextFieldDelegate, UIViewCont
 
     func userDidTapCancel() {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        searchField.becomeFirstResponder()
     }
 
     // MARK: - Table View
