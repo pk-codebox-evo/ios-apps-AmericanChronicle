@@ -47,7 +47,8 @@ class SearchField: UIView, UITextFieldDelegate {
         textField.leftViewMode = .Always
         textField.placeholder = "Search all Newspapers"
         textField.font = UIFont(name: "AvenirNext-Regular", size: 20.0)
-
+        textField.autocapitalizationType = .None
+        textField.autocorrectionType = .No
         textField.snp_makeConstraints { make in
             make.leading.equalTo(10.0)
             make.top.equalTo(10.0)
@@ -82,32 +83,7 @@ class SearchField: UIView, UITextFieldDelegate {
         return shouldBeginEditingCallback?() ?? true
     }
 
-//    func textFieldDidBeginEditing(textField: UITextField) {
-//
-//    }
-//
-//    func textFieldShouldEndEditing(textField: UITextField) -> Bool {
-//
-//    }
-//
-//    func textFieldDidEndEditing(textField: UITextField) {
-//
-//    }
-//
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         return shouldChangeCharactersCallback?(text: textField.text!, range: range, replacementString: string) ?? true
     }
-//
-//    func textFieldShouldClear(textField: UITextField) -> Bool {
-//
-//    }
-//
-//    func textFieldShouldReturn(textField: UITextField) -> Bool {
-//
-//    }
-
-    // MARK: UIView overrides
-
-
-
 }
