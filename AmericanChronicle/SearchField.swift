@@ -49,6 +49,7 @@ class SearchField: UIView, UITextFieldDelegate {
         textField.font = UIFont(name: "AvenirNext-Regular", size: 20.0)
         textField.autocapitalizationType = .None
         textField.autocorrectionType = .No
+        textField.returnKeyType = .Search
         textField.snp_makeConstraints { make in
             make.leading.equalTo(10.0)
             make.top.equalTo(10.0)
