@@ -16,8 +16,16 @@ public extension NSError {
         case DuplicateRequest
     }
 
-    public convenience init(code: Code) {
-        self.init(domain: NSError.appDomain, code: code.rawValue, userInfo: nil)
+    public convenience init(code: Code, message: String?) {
+        var userInfo: [String: AnyObject] = [:]
+        switch code {
+        case .InvalidParameter:
+            userInfo[NSLocalizedDescriptionKey] = "InvalidParameter"
+        case .DuplicateRequest:
+            userInfo[NSLocalizedDescriptionKey] = "DuplicateRequest"
+        }
+        userInfo[NSLocalizedRecoverySuggestionErrorKey] = message
+        self.init(domain: NSError.appDomain, code: code.rawValue, userInfo: userInfo)
     }
 
     public func isInvalidParameterError() -> Bool {

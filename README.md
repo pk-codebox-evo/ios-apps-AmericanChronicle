@@ -72,3 +72,25 @@ Delegate methods that are meant to be called by a view should be of the form `vi
 ### Rule ###
 
 Use XCTAssert, not XCTAssertTrue. Usually more readable.
+
+### Rule ###
+
+When an init method's parameters require multiple lines, each parameter should be on a new line below the init keyword. The curly brace should be on its own line. For example:
+
+public init (
+        customer: Customer,
+        customerService: CustomerService_Protocol = CustomerService(),
+        analyticsService: StitchFixAnalyticsService = StitchFixAnalyticsService.sharedInstance(),
+        viewValidator: PersonalInfoViewValidator_Protocol = PersonalInfoViewValidator(),
+        emailValidator: EmailTextFieldValidator_Protocol = EmailTextFieldValidator(),
+        errorPresenter: ErrorPresenter_Protocol = ErrorPresenter())
+    {
+        self.customer = customer
+        self.customerService = customerService
+        self.errorPresenter = errorPresenter
+        self.viewValidator = viewValidator
+        self.emailValidator = emailValidator
+        super.init(analyticsService: analyticsService, screenName: "Edit personal info screen")
+    } 
+
+This looks funky if there's no scope keyword - another reason to always explicitly declare `internal`.

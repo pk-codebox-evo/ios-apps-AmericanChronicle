@@ -15,7 +15,7 @@ class FakeSearchInteractor: SearchInteractorInterface {
 
     var startSearch_wasCalled = false
     var startSearch_wasCalled_withTerm: String?
-    func startSearch(term: String, page: Int) {
+    func startSearchForTerm(term: String, existingRows: [SearchResultsRow]) {
         startSearch_wasCalled = true
         startSearch_wasCalled_withTerm = term
     }

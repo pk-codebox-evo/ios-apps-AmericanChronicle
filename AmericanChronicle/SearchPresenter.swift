@@ -18,7 +18,9 @@ public protocol SearchPresenterInterface: class, SearchInteractorDelegate {
 
     func userDidTapCancel()
     func userDidChangeSearchToTerm(term: String?)
+    func userIsApproachingLastRow(term: String?, inCollection: [SearchResultsRow])
     func userDidSelectSearchResult(row: SearchResultsRow)
+    func viewDidLoad()
 }
 
 // MARK: -
@@ -28,9 +30,24 @@ public class SearchPresenter: NSObject, SearchPresenterInterface {
 
     // MARK: Public Properties
 
-    weak public var view: SearchViewInterface?
-    weak public var interactor: SearchInteractorInterface?
     weak public var wireframe: SearchWireframeInterface?
+    weak public var view: SearchViewInterface? {
+        didSet {
+            updateViewForKeyboardFrame(KeyboardService.sharedInstance.keyboardFrame)
+        }
+    }
+    weak public var interactor: SearchInteractorInterface?
+
+    public override init() {
+        super.init()
+        KeyboardService.sharedInstance.addFrameChangeHandler("\(unsafeAddressOf(self))") { [weak self] rect in
+            self?.updateViewForKeyboardFrame(rect)
+        }
+    }
+
+    func updateViewForKeyboardFrame(rect: CGRect?) {
+        view?.setBottomContentInset(rect?.size.height ?? 0)
+    }
 
     public func userDidTapCancel() {
         wireframe?.userDidTapCancel()
@@ -40,57 +57,80 @@ public class SearchPresenter: NSObject, SearchPresenterInterface {
         wireframe?.userDidSelectSearchResult(row)
     }
 
+    public func viewDidLoad() {
+        updateViewForKeyboardFrame(KeyboardService.sharedInstance.keyboardFrame)
+    }
+
     public func userDidChangeSearchToTerm(term: String?) {
 
         let nonNilTerm = term ?? ""
         if (nonNilTerm.characters.count == 0) {
-            view?.showSearchResults([], title: "")
+            view?.setViewState(.EmptySearchField)
             interactor?.cancelLastSearch()
             return
         }
 
-        view?.showLoadingIndicator()
+        view?.setViewState(.LoadingNewTerm)
 
-        interactor?.startSearch(nonNilTerm, page: 1)
+        interactor?.startSearchForTerm(nonNilTerm, existingRows: [])
     }
 
-    public func searchForTerm(term: String, page: Int, didFinishWithResults results: SearchResults?, error: NSError?) {
-
-        if let inProgress = self.interactor?.isSearchInProgress() where inProgress == false {
-            view?.hideLoadingIndicator()
+    public func userIsApproachingLastRow(term: String?, inCollection collection: [SearchResultsRow]) {
+        let nonNilTerm = term ?? ""
+        if (nonNilTerm.characters.count == 0) {
+            return
         }
+        view?.setViewState(.LoadingMoreRows)
+        interactor?.startSearchForTerm(nonNilTerm, existingRows: collection)
+    }
+
+    public func searchForTerm(term: String, existingRows: [SearchResultsRow], didFinishWithResults results: SearchResults?, error: NSError?) {
 
         if let results = results, items = results.items {
-            var rows = [SearchResultsRow]()
+            var allRows = existingRows
             for result in items {
                 let date = result.date
-                let city = result.city?.first ?? ""
-                let state = result.state?.first ?? ""
-                let cityState = "\(city), \(state)"
+                var cityStateComponents: [String] = []
+
+                if let city = result.city?.first {
+                    cityStateComponents.append(city)
+                }
+                if let state = result.state?.first {
+                    cityStateComponents.append(state)
+                }
+
+
                 let publicationTitle = result.titleNormal ?? ""
                 let row = SearchResultsRow(
                     date: date,
-                    cityState: cityState,
+                    cityState: cityStateComponents.joinWithSeparator(", "),
                     publicationTitle: publicationTitle,
                     thumbnailURL: result.thumbnailURL,
                     pdfURL: result.pdfURL,
                     estimatedPDFSize: result.estimatedPDFSize)
-                rows.append(row)
+                allRows.append(row)
             }
 
-            if rows.count > 0 {
+            if allRows.count > 0 {
                 let title = "\(results.totalItems ?? 0) matches for \(term)"
-                view?.showSearchResults(rows, title: title)
+                view?.setViewState(.Ideal(title: title, rows: allRows))
             } else {
-                view?.showEmptyResults()
+                view?.setViewState(.EmptyResults)
             }
         } else if let err = error {
             if err.code == -999 {
                 return
             }
-            view?.showErrorMessage(err.localizedDescription, message: err.localizedRecoverySuggestion)
+            if err.isDuplicateRequestError() {
+                return
+            }
+            view?.setViewState(.Error(title: err.localizedDescription, message: err.localizedRecoverySuggestion))
         } else {
-            view?.showEmptyResults()
+            view?.setViewState(.EmptyResults)
         }
+    }
+
+    deinit {
+        KeyboardService.sharedInstance.removeFrameChangeHandler("\(unsafeAddressOf(self))")
     }
 }

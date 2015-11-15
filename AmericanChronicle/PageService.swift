@@ -85,7 +85,7 @@ public class PageService: NSObject, PageServiceInterface {
             if var activeDownload = self.activeDownloads[remoteURL] {
                 if activeDownload.requesters[contextID] != nil {
                     dispatch_async(dispatch_get_main_queue()) {
-                        completionHandler(nil, NSError(code: .DuplicateRequest))
+                        completionHandler(nil, NSError(code: .DuplicateRequest, message: "Tried to send a duplicate request."))
                     }
                 } else {
                     activeDownload.requesters[contextID] = PageDownloadRequester(contextID: contextID, completionHandler: completionHandler)
@@ -105,7 +105,7 @@ public class PageService: NSObject, PageServiceInterface {
                     self.activeDownloads[remoteURL] = ActivePageDownload(request: request, requesters: [contextID: requester])
                 } else {
                     dispatch_async(dispatch_get_main_queue()) {
-                        completionHandler(nil, NSError(code: .InvalidParameter))
+                        completionHandler(nil, NSError(code: .InvalidParameter, message: "Couldn't create the request."))
                     }
                 }
             }
