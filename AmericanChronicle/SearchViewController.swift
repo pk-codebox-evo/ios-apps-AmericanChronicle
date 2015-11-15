@@ -17,6 +17,7 @@ public protocol SearchViewInterface: class {
     weak var presenter: SearchPresenterInterface? { get set }
     func setViewState(state: ViewState)
     func setBottomContentInset(bottom: CGFloat)
+    func resignFirstResponder() -> Bool
 }
 
 // http://scotthurff.com/posts/why-your-user-interface-is-awkward-youre-ignoring-the-ui-stack
@@ -247,7 +248,7 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
     override public func viewDidLoad() {
         super.viewDidLoad()
 
-        searchField.shouldChangeCharactersCallback = { [weak self] original, range, replacement in
+        searchField.shouldChangeCharactersHandler = { [weak self] original, range, replacement in
             var text = original
             if let range = original.rangeFromNSRange(range) {
                 text.replaceRange(range, with: replacement)
@@ -256,6 +257,11 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
             self?.presenter?.userDidChangeSearchToTerm(text)
 
             return true
+        }
+
+        searchField.shouldReturnHandler = { [weak self] in
+            self?.presenter?.userDidTapReturn()
+            return false
         }
 
         tableView.registerClass(TableHeaderView.self, forHeaderFooterViewReuseIdentifier: "Header")
@@ -277,5 +283,9 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
 
     public override func becomeFirstResponder() -> Bool {
         return searchField.becomeFirstResponder()
+    }
+
+    public override func resignFirstResponder() -> Bool {
+        return searchField.resignFirstResponder()
     }
 }

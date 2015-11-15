@@ -17,6 +17,7 @@ public protocol SearchPresenterInterface: class, SearchInteractorDelegate {
     var interactor: SearchInteractorInterface? { get set }
 
     func userDidTapCancel()
+    func userDidTapReturn()
     func userDidChangeSearchToTerm(term: String?)
     func userIsApproachingLastRow(term: String?, inCollection: [SearchResultsRow])
     func userDidSelectSearchResult(row: SearchResultsRow)
@@ -56,6 +57,10 @@ public class SearchPresenter: NSObject, SearchPresenterInterface {
     public func userDidSelectSearchResult(row: SearchResultsRow) {
         
         wireframe?.userDidSelectSearchResult(row)
+    }
+
+    public func userDidTapReturn() {
+        view?.resignFirstResponder()
     }
 
     public func viewDidLoad() {

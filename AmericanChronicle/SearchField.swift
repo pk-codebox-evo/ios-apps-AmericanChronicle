@@ -11,9 +11,9 @@ import UIKit
 class SearchField: UIView, UITextFieldDelegate {
 
     let textField: UITextField
-    var shouldBeginEditingCallback: ((Void) -> Bool)?
-    var shouldChangeCharactersCallback: ((text: String, range: NSRange, replacementString: String) -> Bool)?
-
+    var shouldBeginEditingHandler: ((Void) -> Bool)?
+    var shouldChangeCharactersHandler: ((text: String, range: NSRange, replacementString: String) -> Bool)?
+    var shouldReturnHandler: ((Void) -> Bool)?
     var placeholder: String? {
         get {
             return textField.placeholder
@@ -81,10 +81,14 @@ class SearchField: UIView, UITextFieldDelegate {
     // MARK: UITextFieldDelegate methods
 
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-        return shouldBeginEditingCallback?() ?? true
+        return shouldBeginEditingHandler?() ?? true
     }
 
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        return shouldChangeCharactersCallback?(text: textField.text!, range: range, replacementString: string) ?? true
+        return shouldChangeCharactersHandler?(text: textField.text!, range: range, replacementString: string) ?? true
+    }
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        return shouldReturnHandler?() ?? true
     }
 }
