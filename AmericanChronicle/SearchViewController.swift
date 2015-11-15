@@ -96,21 +96,6 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
         presenter?.userDidTapCancel()
     }
 
-    @IBAction func addEditFiltersButtonTapped(sender: AnyObject) {
-        let vc = SearchFiltersViewController(nibName: "SearchFiltersViewController", bundle: nil)
-        vc.searchFilters = filters ?? SearchFilters()
-        vc.saveCallback = { [weak self] filters in
-            self?.filters = filters
-            self?.presenter?.userDidChangeSearchToTerm(self?.searchField.text)
-            self?.dismissViewControllerAnimated(true, completion: nil)
-        }
-        vc.cancelCallback = { [weak self] in
-            self?.dismissViewControllerAnimated(true, completion: nil)
-        }
-        let nvc = UINavigationController(rootViewController: vc)
-        presentViewController(nvc, animated: true, completion: nil)
-    }
-
     public func setBottomContentInset(bottom: CGFloat) {
         if !isViewLoaded() {
             return
@@ -238,6 +223,7 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
 
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        searchField.resignFirstResponder()
         let row = rows[indexPath.row]
         presenter?.userDidSelectSearchResult(row)
     }
@@ -256,7 +242,6 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
     override public func viewWillAppear(animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.navigationBarHidden = false
-        setViewState(.EmptySearchField)
     }
 
     override public func viewDidLoad() {
@@ -284,11 +269,8 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
         }
 
         presenter?.viewDidLoad()
-    }
 
-    override public func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        searchField.resignFirstResponder()
+        setViewState(.EmptySearchField)
     }
 
     // MARK: UIResponder methods

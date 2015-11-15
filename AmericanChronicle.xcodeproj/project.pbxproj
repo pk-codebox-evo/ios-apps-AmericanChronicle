@@ -440,6 +440,7 @@
 		97963F881BCC779000248942 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				975355671BF5A8550028B7FD /* KeyboardService.swift */,
 				978236181B7FD0D00056FDF6 /* ChroniclingAmericaEndpoint.swift */,
 				97963F891BCC784000248942 /* PageService.swift */,
 				9725E5B11BDC547800E74370 /* CachedPageService.swift */,
@@ -522,7 +523,6 @@
 				97C99FB71B96BAC5001310DE /* SearchFieldCell.swift */,
 				97EAC1DE1B9D3E0300956EBC /* RootWireframe.swift */,
 				974E4FBD1BAF61FC006A8231 /* LoggingURLProtocol.swift */,
-				975355671BF5A8550028B7FD /* KeyboardService.swift */,
 			);
 			name = "App-wide";
 			sourceTree = "<group>";

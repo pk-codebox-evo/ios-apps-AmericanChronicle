@@ -54,6 +54,7 @@ public class SearchPresenter: NSObject, SearchPresenterInterface {
     }
 
     public func userDidSelectSearchResult(row: SearchResultsRow) {
+        
         wireframe?.userDidSelectSearchResult(row)
     }
 
