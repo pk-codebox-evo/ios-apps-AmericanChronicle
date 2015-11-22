@@ -104,7 +104,6 @@ class SearchInteractorTests: XCTestCase {
         let firstSearch = searchFactory.newSearchForTerm_lastReturnedSearch
         firstSearch?.isSearchInProgress_returnValue = true
         subject.startSearchForTerm("First Search", existingRows: [])
-        print("[RP] delegate.searchForTerm_didFinish_wasCalled_withError: \(delegate.searchForTerm_didFinish_wasCalled_withError)")
         XCTAssert(delegate.searchForTerm_didFinish_wasCalled_withError!.isDuplicateRequestError() ?? false)
 
     }

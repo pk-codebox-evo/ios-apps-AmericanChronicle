@@ -22,6 +22,8 @@
 		9725E5B21BDC547800E74370 /* CachedPageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9725E5B11BDC547800E74370 /* CachedPageService.swift */; };
 		9725E5B41BDC571600E74370 /* SearchResultsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9725E5B31BDC571600E74370 /* SearchResultsRow.swift */; };
 		9725E5B61BDC783600E74370 /* SearchPagesServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9725E5B51BDC783600E74370 /* SearchPagesServiceTests.swift */; };
+		972613DD1C024EF500EDF550 /* OCRCoordinatesDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972613DC1C024EF500EDF550 /* OCRCoordinatesDataManager.swift */; };
+		972613DF1C024F1700EDF550 /* OCRCoordinatesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972613DE1C024F1700EDF550 /* OCRCoordinatesService.swift */; };
 		9730C1341BB0F20500355D7D /* WebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9730C1331BB0F20500355D7D /* WebImage.framework */; };
 		97369DCE1BD45B5A0090EC38 /* SearchDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97369DCD1BD45B5A0090EC38 /* SearchDataManagerTests.swift */; };
 		9739FE321BA28A04009ACD94 /* AlamofireIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9739FE311BA28A04009ACD94 /* AlamofireIntegrationTests.swift */; };
@@ -40,6 +42,10 @@
 		9762A0901BB0E19D002A57C8 /* FakeSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9762A08F1BB0E19D002A57C8 /* FakeSearchView.swift */; };
 		9764976D1B7DA0270035A388 /* Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9764976C1B7DA0270035A388 /* Month.swift */; };
 		9767C7331BBA518400F5CBEC /* PagePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9767C7321BBA518400F5CBEC /* PagePresenterTests.swift */; };
+		976D6EB01C02543C00EF2B03 /* OCRCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976D6EAF1C02543C00EF2B03 /* OCRCoordinates.swift */; };
+		976D6EB21C02588800EF2B03 /* OCRCoordinatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976D6EB11C02588800EF2B03 /* OCRCoordinatesTests.swift */; };
+		976D6EB61C0259B300EF2B03 /* ocr_coordinates-response.json in Resources */ = {isa = PBXBuildFile; fileRef = 976D6EB41C0259B300EF2B03 /* ocr_coordinates-response.json */; };
+		976D6EB71C0259B300EF2B03 /* search_pages-response.json in Resources */ = {isa = PBXBuildFile; fileRef = 976D6EB51C0259B300EF2B03 /* search_pages-response.json */; };
 		97789B941BB10206000B298C /* PageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97789B931BB10206000B298C /* PageInteractor.swift */; };
 		97789B961BB10316000B298C /* PageInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97789B951BB10316000B298C /* PageInteractorTests.swift */; };
 		977F0A581B7FC3E700C4B0FC /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977F0A561B7FC3E700C4B0FC /* DatePickerViewController.swift */; };
@@ -171,6 +177,8 @@
 		9725E5B11BDC547800E74370 /* CachedPageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedPageService.swift; sourceTree = "<group>"; };
 		9725E5B31BDC571600E74370 /* SearchResultsRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsRow.swift; sourceTree = "<group>"; };
 		9725E5B51BDC783600E74370 /* SearchPagesServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPagesServiceTests.swift; sourceTree = "<group>"; };
+		972613DC1C024EF500EDF550 /* OCRCoordinatesDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OCRCoordinatesDataManager.swift; sourceTree = "<group>"; };
+		972613DE1C024F1700EDF550 /* OCRCoordinatesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OCRCoordinatesService.swift; sourceTree = "<group>"; };
 		9730C1331BB0F20500355D7D /* WebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebImage.framework; path = Carthage/Build/iOS/WebImage.framework; sourceTree = "<group>"; };
 		97369DCD1BD45B5A0090EC38 /* SearchDataManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDataManagerTests.swift; sourceTree = "<group>"; };
 		9739FE311BA28A04009ACD94 /* AlamofireIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireIntegrationTests.swift; sourceTree = "<group>"; };
@@ -189,6 +197,10 @@
 		9762A08F1BB0E19D002A57C8 /* FakeSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeSearchView.swift; sourceTree = "<group>"; };
 		9764976C1B7DA0270035A388 /* Month.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Month.swift; sourceTree = "<group>"; };
 		9767C7321BBA518400F5CBEC /* PagePresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagePresenterTests.swift; sourceTree = "<group>"; };
+		976D6EAF1C02543C00EF2B03 /* OCRCoordinates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OCRCoordinates.swift; sourceTree = "<group>"; };
+		976D6EB11C02588800EF2B03 /* OCRCoordinatesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OCRCoordinatesTests.swift; sourceTree = "<group>"; };
+		976D6EB41C0259B300EF2B03 /* ocr_coordinates-response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ocr_coordinates-response.json"; sourceTree = "<group>"; };
+		976D6EB51C0259B300EF2B03 /* search_pages-response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "search_pages-response.json"; sourceTree = "<group>"; };
 		97789B931BB10206000B298C /* PageInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageInteractor.swift; sourceTree = "<group>"; };
 		97789B951BB10316000B298C /* PageInteractorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageInteractorTests.swift; sourceTree = "<group>"; };
 		977F0A561B7FC3E700C4B0FC /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
@@ -358,8 +370,19 @@
 				9767C7321BBA518400F5CBEC /* PagePresenterTests.swift */,
 				97924DF51BDC14F30035E5F6 /* PageDataManagerTests.swift */,
 				97FE01511BDC48C00098E45F /* PageWireframeTests.swift */,
+				976D6EB11C02588800EF2B03 /* OCRCoordinatesTests.swift */,
 			);
 			name = Page;
+			sourceTree = "<group>";
+		};
+		976D6EB31C0259B300EF2B03 /* JSON_Samples */ = {
+			isa = PBXGroup;
+			children = (
+				976D6EB41C0259B300EF2B03 /* ocr_coordinates-response.json */,
+				976D6EB51C0259B300EF2B03 /* search_pages-response.json */,
+			);
+			name = JSON_Samples;
+			path = API_Samples;
 			sourceTree = "<group>";
 		};
 		977F109E1BA54BCA003BEF11 /* Fakes */ = {
@@ -445,6 +468,7 @@
 				97963F891BCC784000248942 /* PageService.swift */,
 				9725E5B11BDC547800E74370 /* CachedPageService.swift */,
 				97963F931BCC7BFE00248942 /* SearchPagesService.swift */,
+				972613DE1C024F1700EDF550 /* OCRCoordinatesService.swift */,
 				978E95D71BEF2E9E00A4E71E /* CachedSearchResultsService.swift */,
 			);
 			name = Services;
@@ -536,6 +560,8 @@
 				97F707D01BB8AE8F00A3D760 /* PagePresenter.swift */,
 				97789B931BB10206000B298C /* PageInteractor.swift */,
 				979E20721BD2B8CD007C7F5F /* PageDataManager.swift */,
+				972613DC1C024EF500EDF550 /* OCRCoordinatesDataManager.swift */,
+				976D6EAF1C02543C00EF2B03 /* OCRCoordinates.swift */,
 			);
 			name = Page;
 			sourceTree = "<group>";
@@ -582,6 +608,7 @@
 		97BDE1291B76ED6B00A3E57F /* AmericanChronicleTests */ = {
 			isa = PBXGroup;
 			children = (
+				976D6EB31C0259B300EF2B03 /* JSON_Samples */,
 				970782391BC4DD0900D23517 /* PDF_Samples */,
 				97BDE12A1B76ED6B00A3E57F /* Supporting Files */,
 				977F109E1BA54BCA003BEF11 /* Fakes */,
@@ -742,8 +769,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				976D6EB61C0259B300EF2B03 /* ocr_coordinates-response.json in Resources */,
 				9707823C1BC4DD0900D23517 /* seq-1.pdf in Resources */,
 				9707823D1BC4DD0900D23517 /* seq-18.pdf in Resources */,
+				976D6EB71C0259B300EF2B03 /* search_pages-response.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -779,6 +808,7 @@
 			files = (
 				97963F921BCC7ACE00248942 /* NSFileManager+AMC.swift in Sources */,
 				979BF8211B928697006482F1 /* NewspaperPage.swift in Sources */,
+				972613DD1C024EF500EDF550 /* OCRCoordinatesDataManager.swift in Sources */,
 				978236191B7FD0D00056FDF6 /* ChroniclingAmericaEndpoint.swift in Sources */,
 				97BDE1191B76ED6B00A3E57F /* NewspaperIssuesViewController.swift in Sources */,
 				97DFA8041B903025006578CF /* NewspaperIssueCell.swift in Sources */,
@@ -817,11 +847,13 @@
 				974BA3681B892D5200D7ACA2 /* City.swift in Sources */,
 				978E9B151BAFA3950001690C /* DelayedSearch.swift in Sources */,
 				97B829331BC08C5700B35538 /* PDFPageView.swift in Sources */,
+				976D6EB01C02543C00EF2B03 /* OCRCoordinates.swift in Sources */,
 				97EAC1DD1B9D2F0C00956EBC /* SearchPresenter.swift in Sources */,
 				97C99FB81B96BAC5001310DE /* SearchFieldCell.swift in Sources */,
 				975355681BF5A8550028B7FD /* KeyboardService.swift in Sources */,
 				97BDE1171B76ED6B00A3E57F /* HomeViewController.swift in Sources */,
 				97F707D11BB8AE8F00A3D760 /* PagePresenter.swift in Sources */,
+				972613DF1C024F1700EDF550 /* OCRCoordinatesService.swift in Sources */,
 				9721FDC91B93FF26006798B2 /* Style.swift in Sources */,
 				9782361B1B7FD1F00056FDF6 /* SearchFilters.swift in Sources */,
 				978741471B7832660014D1F0 /* NewspaperPagesDataSource.swift in Sources */,
@@ -866,6 +898,7 @@
 				97C02B031B9E5B3E00126611 /* SearchWireframeTests.swift in Sources */,
 				97DD1C561BEFFE7A00A67538 /* FakeDelayedSearch.swift in Sources */,
 				9762A0901BB0E19D002A57C8 /* FakeSearchView.swift in Sources */,
+				976D6EB21C02588800EF2B03 /* OCRCoordinatesTests.swift in Sources */,
 				97FE01521BDC48C00098E45F /* PageWireframeTests.swift in Sources */,
 				9767C7331BBA518400F5CBEC /* PagePresenterTests.swift in Sources */,
 				9725E5B61BDC783600E74370 /* SearchPagesServiceTests.swift in Sources */,

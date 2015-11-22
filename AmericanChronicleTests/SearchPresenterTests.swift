@@ -73,7 +73,6 @@ class SearchPresenterTests: XCTestCase {
         subject.searchForTerm("Blah", existingRows: [], didFinishWithResults: results, error: nil)
 
         let row = SearchResultsRow(date: nil, cityState: "", publicationTitle: "", thumbnailURL: nil, pdfURL: nil, estimatedPDFSize: 0)
-        print("[RP] view.setViewState_wasCalled_withState: \(view.setViewState_wasCalled_withState)")
 
         XCTAssertEqual(view.setViewState_wasCalled_withState, ViewState.Ideal(title: "0 matches for Blah", rows: [row]))
     }

@@ -40,7 +40,7 @@ class NewspaperIssuesViewController: UIViewController, UICollectionViewDelegate,
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SearchCell", forIndexPath: indexPath) as! SearchFieldCell
             let fallbackText = "this newspaper"
             cell.searchField.placeholder = "Search \(newspaper?.title ?? fallbackText)"
-            cell.searchField.shouldBeginEditingCallback = { [weak self] in
+            cell.searchField.shouldBeginEditingHandler = { [weak self] in
                 let sb = UIStoryboard(name: "Search", bundle: nil)
                 if let nvc = sb.instantiateInitialViewController() as? UINavigationController,
                     let vc = nvc.topViewController as? SearchViewController {
