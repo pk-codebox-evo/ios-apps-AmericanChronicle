@@ -154,7 +154,7 @@ class PageServiceTests: XCTestCase {
         dispatch_group_notify(subject.group, dispatch_get_main_queue()) {
             expectSubjectGroupToEmpty.fulfill()
         }
-        waitForExpectationsWithTimeout(0.2, handler: nil)
+        waitForExpectationsWithTimeout(0.5, handler: nil)
 
         manager.stubbedReturnValue.finishWithRequest(nil, response: nil, data: nil, error: nil)
 

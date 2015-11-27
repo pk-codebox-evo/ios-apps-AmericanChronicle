@@ -48,8 +48,8 @@ public class SearchWireframe: NSObject, SearchWireframeInterface, UIViewControll
     }
 
     public func userDidSelectSearchResult(row: SearchResultsRow) {
-        if let remoteURL = row.pdfURL {
-            pageWireframe = PageWireframe(remoteURL: remoteURL)
+        if let remoteURL = row.pdfURL, date = row.date, lccn = row.lccn, edition = row.edition, sequence = row.sequence {
+            pageWireframe = PageWireframe(remoteURL: remoteURL, date: date, lccn: lccn, edition: edition, sequence: sequence)
             pageWireframe?.beginFromViewController(dependencies.view as? SearchViewController, withRemoteURL: remoteURL)
         }
     }

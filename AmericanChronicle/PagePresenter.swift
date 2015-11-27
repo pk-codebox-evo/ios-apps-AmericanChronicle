@@ -45,6 +45,7 @@ public class PagePresenter: NSObject, PagePresenterInterface {
     public func startDownload() {
         view.showLoadingIndicator()
         interactor.startDownload()
+        interactor.startOCRCoordinatesRequest()
     }
 
     public func download(remoteURL: NSURL, didFinishWithFileURL fileURL: NSURL?, error: NSError?) {
@@ -54,6 +55,12 @@ public class PagePresenter: NSObject, PagePresenterInterface {
             view.pdfPage = CGPDFDocumentGetPage(CGPDFDocumentCreateWithURL(fileURL), 1)
         }
         view.hideLoadingIndicator()
+    }
+
+    public func requestDidFinishWithOCRCoordinates(coordinates: OCRCoordinates?, error: NSError?) {
+        if let coordinates = coordinates {
+            print("[RP] coordinates: \(coordinates)")
+        }
     }
 
     // MARK: Private methods

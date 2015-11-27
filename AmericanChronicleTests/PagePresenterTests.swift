@@ -26,6 +26,10 @@ class FakePageInteractor: NSObject, PageInteractorInterface {
     func isDownloadInProgress() -> Bool {
         return false
     }
+
+    func startOCRCoordinatesRequest() {
+        
+    }
 }
 
 class FakePageView: NSObject, PageViewInterface {
@@ -74,7 +78,7 @@ class PagePresenterTests: XCTestCase {
         super.setUp()
         view = FakePageView()
         interactor = FakePageInteractor()
-        wireframe = FakePageWireframe(remoteURL: NSURL(string: "")!)
+        wireframe = FakePageWireframe(remoteURL: NSURL(string: "")!, date: NSDate(), lccn: "", edition: 0, sequence: 0)
         subject = PagePresenter(view: view, interactor: interactor)
         subject.wireframe = wireframe
     }

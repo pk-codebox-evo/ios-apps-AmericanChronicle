@@ -15,21 +15,21 @@ public protocol OCRCoordinatesServiceInterface {
     func startRequest(
             lccn: String,
             date: NSDate,
-            edition: String,
-            sequence: String,
+            edition: Int,
+            sequence: Int,
             contextID: String,
             completionHandler: ((OCRCoordinates?, ErrorType?) -> Void))
     func isRequestInProgress(
             lccn: String,
             date: NSDate,
-            edition: String,
-            sequence: String,
+            edition: Int,
+            sequence: Int,
             contextID: String) -> Bool
     func cancelRequest(
             lccn: String,
             date: NSDate,
-            edition: String,
-            sequence: String,
+            edition: Int,
+            sequence: Int,
             contextID: String)
 }
 
@@ -46,8 +46,8 @@ public class OCRCoordinatesService: OCRCoordinatesServiceInterface {
     public func startRequest(
             lccn: String,
             date: NSDate,
-            edition: String,
-            sequence: String,
+            edition: Int,
+            sequence: Int,
             contextID: String,
             completionHandler: ((OCRCoordinates?, ErrorType?) -> Void))
     {
@@ -76,18 +76,18 @@ public class OCRCoordinatesService: OCRCoordinatesServiceInterface {
         }
     }
 
-    private func URLStringForLCCN(lccn: String, date: NSDate, edition: String, sequence: String) -> String {
+    private func URLStringForLCCN(lccn: String, date: NSDate, edition: Int, sequence: Int) -> String {
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         let dateString = formatter.stringFromDate(date)
-        return "lccn/\(lccn)/\(dateString)/\(edition)/\(sequence)/coordinates/"
+        return "lccn/\(lccn)/\(dateString)/ed-\(edition)/seq-\(sequence)/coordinates/"
     }
 
     public func isRequestInProgress(
             lccn: String,
             date: NSDate,
-            edition: String,
-            sequence: String,
+            edition: Int,
+            sequence: Int,
             contextID: String) -> Bool
     {
         return activeRequests[URLStringForLCCN(lccn, date: date, edition: edition, sequence: sequence)] != nil
@@ -96,8 +96,8 @@ public class OCRCoordinatesService: OCRCoordinatesServiceInterface {
     public func cancelRequest(
             lccn: String,
             date: NSDate,
-            edition: String,
-            sequence: String,
+            edition: Int,
+            sequence: Int,
             contextID: String)
     {
 

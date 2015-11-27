@@ -11,11 +11,6 @@ import AmericanChronicle
 
 class PageWireframeTests: XCTestCase {
 
-    var subject: PageWireframe!
 
-    override func setUp() {
-        super.setUp()
-        subject = PageWireframe(remoteURL: NSURL(string: "http://notreal.com")!)
-    }
 
 }

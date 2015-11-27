@@ -11,6 +11,22 @@ public protocol PageDataManagerInterface {
     func downloadPage(remoteURL: NSURL, completionHandler: (NSURL, NSURL?, NSError?) -> Void)
     func cancelDownload(remoteURL: NSURL)
     func isDownloadInProgress(remoteURL: NSURL) -> Bool
+    func startOCRCoordinatesRequest(
+        lccn: String,
+        date: NSDate,
+        edition: Int,
+        sequence: Int,
+        completionHandler: (OCRCoordinates?, NSError?) -> Void)
+    func cancelOCRCoordinatesRequest(
+        lccn: String,
+        date: NSDate,
+        edition: Int,
+        sequence: Int)
+    func isOCRCoordinatesRequestInProgress(
+        lccn: String,
+        date: NSDate,
+        edition: Int,
+        sequence: Int) -> Bool
 }
 
 /// Responsibilities:
@@ -61,8 +77,8 @@ public class PageDataManager: NSObject, PageDataManagerInterface {
     public func startOCRCoordinatesRequest(
         lccn: String,
         date: NSDate,
-        edition: String,
-        sequence: String,
+        edition: Int,
+        sequence: Int,
         completionHandler: (OCRCoordinates?, NSError?) -> Void)
     {
         coordinatesService.startRequest(lccn, date: date, edition: edition, sequence: sequence, contextID: contextID, completionHandler: { coordinates, err in
@@ -73,8 +89,8 @@ public class PageDataManager: NSObject, PageDataManagerInterface {
     public func cancelOCRCoordinatesRequest(
         lccn: String,
         date: NSDate,
-        edition: String,
-        sequence: String)
+        edition: Int,
+        sequence: Int)
     {
         coordinatesService.cancelRequest(lccn, date: date, edition: edition, sequence: sequence, contextID: contextID)
     }
@@ -82,8 +98,8 @@ public class PageDataManager: NSObject, PageDataManagerInterface {
     public func isOCRCoordinatesRequestInProgress(
         lccn: String,
         date: NSDate,
-        edition: String,
-        sequence: String) -> Bool
+        edition: Int,
+        sequence: Int) -> Bool
     {
         return coordinatesService.isRequestInProgress(lccn, date: date, edition: edition, sequence: sequence, contextID: contextID)
     }

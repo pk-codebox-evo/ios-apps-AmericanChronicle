@@ -50,7 +50,9 @@ class SearchInteractorTests: XCTestCase {
                 publicationTitle: "",
                 thumbnailURL: nil,
                 pdfURL: nil,
-                estimatedPDFSize: 0)
+                lccn: "",
+                edition: 0,
+                sequence: 0)
         }
         subject.startSearchForTerm("Jibberish", existingRows: rows)
         XCTAssertEqual(searchFactory.newSearchForTerm_wasCalled_withPage, 3)
@@ -74,7 +76,9 @@ class SearchInteractorTests: XCTestCase {
                 publicationTitle: "",
                 thumbnailURL: nil,
                 pdfURL: nil,
-                estimatedPDFSize: 0)
+                lccn: "",
+                edition: 0,
+                sequence: 0)
         }
         subject.startSearchForTerm("Jibberish", existingRows: rows)
         XCTAssert(delegate.searchForTerm_didFinish_wasCalled_withError?.isInvalidParameterError() ?? false)
@@ -90,7 +94,9 @@ class SearchInteractorTests: XCTestCase {
                 publicationTitle: "",
                 thumbnailURL: nil,
                 pdfURL: nil,
-                estimatedPDFSize: 0)
+                lccn: "",
+                edition: 0,
+                sequence: 0)
         }
         subject.startSearchForTerm("Second Search", existingRows: rows)
         XCTAssertFalse(firstSearch?.cancel_wasCalled ?? true)

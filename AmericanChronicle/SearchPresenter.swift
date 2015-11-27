@@ -113,7 +113,9 @@ public class SearchPresenter: NSObject, SearchPresenterInterface {
                     publicationTitle: publicationTitle,
                     thumbnailURL: result.thumbnailURL,
                     pdfURL: result.pdfURL,
-                    estimatedPDFSize: result.estimatedPDFSize)
+                    lccn: result.lccn,
+                    edition: result.edition,
+                    sequence: result.sequence)
                 allRows.append(row)
             }
 

@@ -13,7 +13,7 @@ public class PageWireframe: NSObject {
     let interactor: PageInteractorInterface
     let dataManager: PageDataManagerInterface
 
-    public init(remoteURL: NSURL) {
+    public init(remoteURL: NSURL, date: NSDate, lccn: String, edition: Int, sequence: Int) {
 
         // Create the view
         let sb = UIStoryboard(name: "Page", bundle: nil)
@@ -21,7 +21,7 @@ public class PageWireframe: NSObject {
 
         // Create the interactor
         dataManager = PageDataManager()
-        interactor = PageInteractor(remoteURL: remoteURL, dataManager: dataManager)
+        interactor = PageInteractor(remoteURL: remoteURL, date: date, lccn: lccn, edition: edition, sequence: sequence, dataManager: dataManager)
 
         // Create the presenter
         presenter = PagePresenter(view: view, interactor: interactor)
