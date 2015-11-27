@@ -527,6 +527,7 @@
 		97AB2A4D1B84298700666E95 /* Browse */ = {
 			isa = PBXGroup;
 			children = (
+				97C99FB71B96BAC5001310DE /* SearchFieldCell.swift */,
 				97BDE1181B76ED6B00A3E57F /* NewspaperIssuesViewController.swift */,
 				97BDE13A1B771B4800A3E57F /* NewspaperPagesViewController.swift */,
 				978741461B7832660014D1F0 /* NewspaperPagesDataSource.swift */,
@@ -543,16 +544,15 @@
 			isa = PBXGroup;
 			children = (
 				97BDE1141B76ED6B00A3E57F /* AppDelegate.swift */,
-				97963F881BCC779000248942 /* Services */,
 				9721FDC81B93FF26006798B2 /* Style.swift */,
 				97BDE11F1B76ED6B00A3E57F /* LaunchScreen.xib */,
 				9764976C1B7DA0270035A388 /* Month.swift */,
 				978D11571B956F2D003B98C5 /* SearchField.swift */,
 				97415AE31B785D8400326239 /* CustomSegueNavigationController.swift */,
-				97963F851BCC2B1800248942 /* Extensions */,
-				97C99FB71B96BAC5001310DE /* SearchFieldCell.swift */,
 				97EAC1DE1B9D3E0300956EBC /* RootWireframe.swift */,
 				974E4FBD1BAF61FC006A8231 /* LoggingURLProtocol.swift */,
+				97963F851BCC2B1800248942 /* Extensions */,
+				97963F881BCC779000248942 /* Services */,
 			);
 			name = "App-wide";
 			sourceTree = "<group>";

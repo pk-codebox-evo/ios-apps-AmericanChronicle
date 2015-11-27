@@ -24,4 +24,8 @@ class FakeSearchView: SearchViewInterface {
     func resignFirstResponder() -> Bool {
         return true
     }
+
+    func currentSearchTerm() -> String {
+        return ""
+    }
 }

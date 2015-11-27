@@ -105,10 +105,12 @@ class HomeViewController: UITableViewController, UITextFieldDelegate, UIViewCont
 
     // MARK: UIViewControllerTransitioningDelegate methods
 
-    func animationControllerForPresentedController(presented: UIViewController,
-                                                   presentingController presenting: UIViewController,
-                                                   sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-                                                    return TransitionController()
+    func animationControllerForPresentedController(
+        presented: UIViewController,
+        presentingController presenting: UIViewController,
+        sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning?
+    {
+        return TransitionController()
     }
 
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
