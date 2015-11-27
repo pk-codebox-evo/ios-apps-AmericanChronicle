@@ -22,11 +22,13 @@ public class PagePresenter: NSObject, PagePresenterInterface {
 
     public let view: PageViewInterface
     public let interactor: PageInteractorInterface
+    public let searchTerm: String?
     weak public var wireframe: PageWireframe?
 
-    public init(view: PageViewInterface, interactor: PageInteractorInterface) {
+    public init(view: PageViewInterface, interactor: PageInteractorInterface, searchTerm: String?) {
         self.view = view
         self.interactor = interactor
+        self.searchTerm = searchTerm
         super.init()
         view.presenter = self
         interactor.delegate = self
@@ -58,9 +60,21 @@ public class PagePresenter: NSObject, PagePresenterInterface {
     }
 
     public func requestDidFinishWithOCRCoordinates(coordinates: OCRCoordinates?, error: NSError?) {
-        if let coordinates = coordinates {
-            print("[RP] coordinates: \(coordinates)")
+        let terms = searchTerm?.componentsSeparatedByString(" ") ?? []
+        var matchingCoordinates: [String: [CGRect]] = [:]
+        if let wordsWithCoordinates = coordinates?.wordCoordinates?.keys {
+            for word in wordsWithCoordinates {
+                for term in terms {
+                    if word.lowercaseString.containsString(term.lowercaseString) {
+                        matchingCoordinates[word] = coordinates?.wordCoordinates?[word]
+                        continue
+                    }
+                }
+            }
         }
+
+        coordinates?.wordCoordinates = matchingCoordinates
+        view.highlights = coordinates
     }
 
     // MARK: Private methods

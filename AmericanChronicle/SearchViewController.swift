@@ -18,6 +18,7 @@ public protocol SearchViewInterface: class {
     func setViewState(state: ViewState)
     func setBottomContentInset(bottom: CGFloat)
     func resignFirstResponder() -> Bool
+    func currentSearchTerm() -> String
 }
 
 // http://scotthurff.com/posts/why-your-user-interface-is-awkward-youre-ignoring-the-ui-stack
@@ -170,6 +171,10 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
             errorMessageLabel.text = message
             tableView.tableFooterView?.alpha = 0
         }
+    }
+
+    public func currentSearchTerm() -> String {
+        return searchField?.text ?? ""
     }
 
     // MARK: SearchView properties and methods

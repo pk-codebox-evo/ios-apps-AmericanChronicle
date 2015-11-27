@@ -65,6 +65,16 @@ class PageViewController: UIViewController, PageViewInterface, UIScrollViewDeleg
         }
     }
 
+    var highlights: OCRCoordinates? {
+        get {
+            return pageView.highlights
+        }
+        set {
+            pageView.highlights = newValue
+            view.setNeedsLayout()
+        }
+    }
+
     func showLoadingIndicator() {
         if isViewLoaded() {
             loadingView.alpha = 1.0
