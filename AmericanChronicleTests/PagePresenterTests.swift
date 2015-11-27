@@ -78,7 +78,7 @@ class PagePresenterTests: XCTestCase {
         super.setUp()
         view = FakePageView()
         interactor = FakePageInteractor()
-        wireframe = FakePageWireframe(remoteURL: NSURL(string: "")!, date: NSDate(), lccn: "", edition: 0, sequence: 0)
+        wireframe = FakePageWireframe(remoteURL: NSURL(string: "")!, id: "", date: NSDate(), lccn: "", edition: 0, sequence: 0)
         subject = PagePresenter(view: view, interactor: interactor)
         subject.wireframe = wireframe
     }

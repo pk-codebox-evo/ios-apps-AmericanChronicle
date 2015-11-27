@@ -31,13 +31,15 @@ public final class PageInteractor: NSObject, PageInteractorInterface {
 
     private let dataManager: PageDataManagerInterface
     private let remoteURL: NSURL
-    private let date: NSDate
-    private let lccn: String
-    private let sequence: Int
-    private let edition: Int
+    private let id: String
+    private let date: NSDate?
+    private let lccn: String?
+    private let sequence: Int?
+    private let edition: Int?
 
-    public init(remoteURL: NSURL, date: NSDate, lccn: String, edition: Int, sequence: Int, dataManager: PageDataManagerInterface) {
+    public init(remoteURL: NSURL, id: String, date: NSDate?, lccn: String?, edition: Int?, sequence: Int?, dataManager: PageDataManagerInterface) {
         self.remoteURL = remoteURL
+        self.id = id
         self.date = date
         self.lccn = lccn
         self.sequence = sequence
@@ -61,7 +63,7 @@ public final class PageInteractor: NSObject, PageInteractorInterface {
     }
 
     public func startOCRCoordinatesRequest() {
-        dataManager.startOCRCoordinatesRequest(lccn, date: date, edition: edition, sequence: sequence) { coordinates, error in
+        dataManager.startOCRCoordinatesRequest(id) { coordinates, error in
             self.delegate?.requestDidFinishWithOCRCoordinates(coordinates, error: error)
         }
     }

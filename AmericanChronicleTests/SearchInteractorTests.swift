@@ -45,6 +45,7 @@ class SearchInteractorTests: XCTestCase {
     func testThat_whenStartSearchIsCalled_withANewTerm_andNumberOfExistingRowsEvenlyDivisibleByPageSize_itAsksTheDataManagerToStartASearchWithTheCorrectPage() {
         let rows = (0..<40).map { _ in
             SearchResultsRow(
+                id: "",
                 date: nil,
                 cityState: "",
                 publicationTitle: "",
@@ -71,6 +72,7 @@ class SearchInteractorTests: XCTestCase {
     func testThat_whenStartSearchIsCalled_withANewTerm_andNumberOfExistingRowsNotEvenlyDivisibleByPageSize_itFailsImmediatelyWithAnInvalidParameterError() {
         let rows = (0..<25).map { _ in
             SearchResultsRow(
+                id: "",
                 date: nil,
                 cityState: "",
                 publicationTitle: "",
@@ -89,6 +91,7 @@ class SearchInteractorTests: XCTestCase {
         let firstSearch = searchFactory.newSearchForTerm_lastReturnedSearch
         let rows = (0..<25).map { _ in
             SearchResultsRow(
+                id: "",
                 date: nil,
                 cityState: "",
                 publicationTitle: "",

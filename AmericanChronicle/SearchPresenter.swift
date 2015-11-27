@@ -108,6 +108,7 @@ public class SearchPresenter: NSObject, SearchPresenterInterface {
 
                 let publicationTitle = result.titleNormal ?? ""
                 let row = SearchResultsRow(
+                    id: result.id,
                     date: date,
                     cityState: cityStateComponents.joinWithSeparator(", "),
                     publicationTitle: publicationTitle,

@@ -11,7 +11,7 @@ enum ChroniclingAmericaEndpoint: String {
 
     // ---
 
-    private static let baseURLString = "http://chroniclingamerica.loc.gov/"
+    internal static let baseURLString = "http://chroniclingamerica.loc.gov/"
     var fullURLString: String? { return "\(ChroniclingAmericaEndpoint.baseURLString)\(self.rawValue)" }
     var fullURL: NSURL? { return NSURL(string: fullURLString ?? "") }
 }

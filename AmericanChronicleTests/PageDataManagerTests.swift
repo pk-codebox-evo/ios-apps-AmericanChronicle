@@ -22,54 +22,33 @@ class FakeCachedPageService: CachedPageServiceInterface {
 }
 
 class FakeOCRCoordinatesService: OCRCoordinatesServiceInterface {
-    var startRequest_wasCalled_withLCCN: String?
-    var startRequest_wasCalled_withDate: NSDate?
-    var startRequest_wasCalled_withEdition: Int?
-    var startRequest_wasCalled_withSequence: Int?
+    var startRequest_wasCalled_withID: String?
     var startRequest_wasCalled_withContextID: String?
     var startRequest_wasCalled_withCompletionHandler: ((OCRCoordinates?, ErrorType?) -> Void)?
 
     internal func startRequest(
-        lccn: String,
-        date: NSDate,
-        edition: Int,
-        sequence: Int,
+        id: String,
         contextID: String,
         completionHandler: ((OCRCoordinates?, ErrorType?) -> Void))
     {
-        startRequest_wasCalled_withLCCN = lccn
-        startRequest_wasCalled_withDate = date
-        startRequest_wasCalled_withEdition = edition
-        startRequest_wasCalled_withSequence = sequence
+        startRequest_wasCalled_withID = id
         startRequest_wasCalled_withContextID = contextID
         startRequest_wasCalled_withCompletionHandler = completionHandler
     }
 
-    var cancelRequest_wasCalled_withLCCN: String?
-    var cancelRequest_wasCalled_withDate: NSDate?
-    var cancelRequest_wasCalled_withEdition: Int?
-    var cancelRequest_wasCalled_withSequence: Int?
+    var cancelRequest_wasCalled_withID: String?
     var cancelRequest_wasCalled_withContextID: String?
     internal func cancelRequest(
-        lccn: String,
-        date: NSDate,
-        edition: Int,
-        sequence: Int,
+        id: String,
         contextID: String)
     {
-        cancelRequest_wasCalled_withLCCN = lccn
-        cancelRequest_wasCalled_withDate = date
-        cancelRequest_wasCalled_withEdition = edition
-        cancelRequest_wasCalled_withSequence = sequence
+        cancelRequest_wasCalled_withID = id
         cancelRequest_wasCalled_withContextID = contextID
     }
     
     var stubbed_isRequestInProgress = false
     internal func isRequestInProgress(
-        lccn: String,
-        date: NSDate,
-        edition: Int,
-        sequence: Int,
+        id: String,
         contextID: String) -> Bool
     {
         return stubbed_isRequestInProgress
@@ -155,16 +134,13 @@ class PageDataManagerTests: XCTestCase {
     }
 
     func testThat_whenStartOCRCoordinatesRequestIsCalled_itStartsAnOCRCoordinatesServiceRequest_withTheSameLCCN() {
-        subject.startOCRCoordinatesRequest("sn83045487",
-            date: NSDate(),
-            edition: 1,
-            sequence: 1, completionHandler: { _, _ in })
-        XCTAssertEqual(coordinatesService.startRequest_wasCalled_withLCCN, "sn83045487")
+        subject.startOCRCoordinatesRequest("sn83045487", completionHandler: { _, _ in })
+        XCTAssertEqual(coordinatesService.startRequest_wasCalled_withID, "sn83045487")
     }
 
     func testThat_whenAnOCRCoordinatesRequestSucceeds_itPassesTheReceivedCoordinatesAlong() {
         var returnedCoordinates: OCRCoordinates?
-        subject.startOCRCoordinatesRequest("", date: NSDate(), edition: 1, sequence: 1) { coordinates, _ in
+        subject.startOCRCoordinatesRequest("") { coordinates, _ in
             returnedCoordinates = coordinates
         }
 
@@ -176,7 +152,7 @@ class PageDataManagerTests: XCTestCase {
 
     func testThat_whenAnOCRCoordinatesRequestFails_itPassesTheReceivedErrorAlong() {
         var returnedError: NSError?
-        subject.startOCRCoordinatesRequest("", date: NSDate(), edition: 1, sequence: 1) { _, err in
+        subject.startOCRCoordinatesRequest("") { _, err in
             returnedError = err
         }
 
@@ -187,12 +163,12 @@ class PageDataManagerTests: XCTestCase {
     }
 
     func testThat_whenAnOCRCoordinatesRequestIsCancelled_itPassesTheMessageAlongToTheOCRCoordinatesService() {
-        subject.cancelOCRCoordinatesRequest("sn83045487", date: NSDate(), edition: 1, sequence: 1)
-        XCTAssertEqual(coordinatesService.cancelRequest_wasCalled_withLCCN, "sn83045487")
+        subject.cancelOCRCoordinatesRequest("sn83045487")
+        XCTAssertEqual(coordinatesService.cancelRequest_wasCalled_withID, "sn83045487")
     }
 
     func testThat_whenAskedWhetherAnOCRCoordinatesRequestIsInProgress_itReturnsTheStatusReportedByTheOCRCoordinatesService() {
         coordinatesService.stubbed_isRequestInProgress = true
-        XCTAssert(subject.isOCRCoordinatesRequestInProgress("", date: NSDate(), edition: 1, sequence: 1))
+        XCTAssert(subject.isOCRCoordinatesRequestInProgress(""))
     }
 }

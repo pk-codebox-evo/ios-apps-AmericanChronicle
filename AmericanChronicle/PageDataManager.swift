@@ -11,22 +11,9 @@ public protocol PageDataManagerInterface {
     func downloadPage(remoteURL: NSURL, completionHandler: (NSURL, NSURL?, NSError?) -> Void)
     func cancelDownload(remoteURL: NSURL)
     func isDownloadInProgress(remoteURL: NSURL) -> Bool
-    func startOCRCoordinatesRequest(
-        lccn: String,
-        date: NSDate,
-        edition: Int,
-        sequence: Int,
-        completionHandler: (OCRCoordinates?, NSError?) -> Void)
-    func cancelOCRCoordinatesRequest(
-        lccn: String,
-        date: NSDate,
-        edition: Int,
-        sequence: Int)
-    func isOCRCoordinatesRequestInProgress(
-        lccn: String,
-        date: NSDate,
-        edition: Int,
-        sequence: Int) -> Bool
+    func startOCRCoordinatesRequest(id: String, completionHandler: (OCRCoordinates?, NSError?) -> Void)
+    func cancelOCRCoordinatesRequest(id: String)
+    func isOCRCoordinatesRequestInProgress(id: String) -> Bool
 }
 
 /// Responsibilities:
@@ -74,33 +61,17 @@ public class PageDataManager: NSObject, PageDataManagerInterface {
         return pageService.isDownloadInProgress(remoteURL)
     }
 
-    public func startOCRCoordinatesRequest(
-        lccn: String,
-        date: NSDate,
-        edition: Int,
-        sequence: Int,
-        completionHandler: (OCRCoordinates?, NSError?) -> Void)
-    {
-        coordinatesService.startRequest(lccn, date: date, edition: edition, sequence: sequence, contextID: contextID, completionHandler: { coordinates, err in
+    public func startOCRCoordinatesRequest(id: String, completionHandler: (OCRCoordinates?, NSError?) -> Void) {
+        coordinatesService.startRequest(id, contextID: contextID, completionHandler: { coordinates, err in
             completionHandler(coordinates, err as? NSError)
         })
     }
 
-    public func cancelOCRCoordinatesRequest(
-        lccn: String,
-        date: NSDate,
-        edition: Int,
-        sequence: Int)
-    {
-        coordinatesService.cancelRequest(lccn, date: date, edition: edition, sequence: sequence, contextID: contextID)
+    public func cancelOCRCoordinatesRequest(id: String) {
+        coordinatesService.cancelRequest(id, contextID: contextID)
     }
 
-    public func isOCRCoordinatesRequestInProgress(
-        lccn: String,
-        date: NSDate,
-        edition: Int,
-        sequence: Int) -> Bool
-    {
-        return coordinatesService.isRequestInProgress(lccn, date: date, edition: edition, sequence: sequence, contextID: contextID)
+    public func isOCRCoordinatesRequestInProgress(id: String) -> Bool {
+        return coordinatesService.isRequestInProgress(id, contextID: contextID)
     }
 }

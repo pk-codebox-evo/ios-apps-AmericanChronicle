@@ -12,25 +12,9 @@ import Alamofire
 // MARK: OCRCoordinatesServiceInterface
 
 public protocol OCRCoordinatesServiceInterface {
-    func startRequest(
-            lccn: String,
-            date: NSDate,
-            edition: Int,
-            sequence: Int,
-            contextID: String,
-            completionHandler: ((OCRCoordinates?, ErrorType?) -> Void))
-    func isRequestInProgress(
-            lccn: String,
-            date: NSDate,
-            edition: Int,
-            sequence: Int,
-            contextID: String) -> Bool
-    func cancelRequest(
-            lccn: String,
-            date: NSDate,
-            edition: Int,
-            sequence: Int,
-            contextID: String)
+    func startRequest(id: String, contextID: String, completionHandler: ((OCRCoordinates?, ErrorType?) -> Void))
+    func isRequestInProgress(id: String, contextID: String) -> Bool
+    func cancelRequest(id: String, contextID: String)
 }
 
 public class OCRCoordinatesService: OCRCoordinatesServiceInterface {
@@ -43,26 +27,18 @@ public class OCRCoordinatesService: OCRCoordinatesServiceInterface {
         self.manager = manager
     }
 
-    public func startRequest(
-            lccn: String,
-            date: NSDate,
-            edition: Int,
-            sequence: Int,
-            contextID: String,
-            completionHandler: ((OCRCoordinates?, ErrorType?) -> Void))
-    {
-        if lccn.characters.count <= 0 {
+    public func startRequest(id: String, contextID: String, completionHandler: ((OCRCoordinates?, ErrorType?) -> Void)) {
+        if id.characters.count <= 0 {
             completionHandler(nil, NSError(code: .InvalidParameter, message: "Tried to fetch OCR info using an empty lccn."))
             return
         }
 
-        if isRequestInProgress(lccn, date: date, edition: edition, sequence: sequence, contextID: contextID) {
+        if isRequestInProgress(id, contextID: contextID) {
             completionHandler(nil, NSError(code: .DuplicateRequest, message: "Message tried to send a duplicate request."))
             return
         }
 
-
-        let URLString = URLStringForLCCN(lccn, date: date, edition: edition, sequence: sequence)
+        let URLString = URLStringForID(id)
 
         let request = self.manager.request(.GET, URLString: URLString, parameters: nil)?.responseObject { (obj: OCRCoordinates?, error) in
             dispatch_sync(self.queue) {
@@ -76,30 +52,15 @@ public class OCRCoordinatesService: OCRCoordinatesServiceInterface {
         }
     }
 
-    private func URLStringForLCCN(lccn: String, date: NSDate, edition: Int, sequence: Int) -> String {
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        let dateString = formatter.stringFromDate(date)
-        return "lccn/\(lccn)/\(dateString)/ed-\(edition)/seq-\(sequence)/coordinates/"
+    private func URLStringForID(id: String) -> String {
+        return "\(ChroniclingAmericaEndpoint.baseURLString)\(id)coordinates"
     }
 
-    public func isRequestInProgress(
-            lccn: String,
-            date: NSDate,
-            edition: Int,
-            sequence: Int,
-            contextID: String) -> Bool
-    {
-        return activeRequests[URLStringForLCCN(lccn, date: date, edition: edition, sequence: sequence)] != nil
+    public func isRequestInProgress(id: String, contextID: String) -> Bool {
+        return activeRequests[URLStringForID(id)] != nil
     }
 
-    public func cancelRequest(
-            lccn: String,
-            date: NSDate,
-            edition: Int,
-            sequence: Int,
-            contextID: String)
-    {
+    public func cancelRequest(id: String, contextID: String) {
 
     }
 }
