@@ -13,6 +13,8 @@ public protocol PagePresenterInterface: class, PageInteractorDelegate {
 
     func userDidTapDone()
     func userDidTapCancel()
+    func userDidTapShare(image: UIImage)
+
     func startDownload()
 }
 
@@ -42,6 +44,10 @@ public class PagePresenter: NSObject, PagePresenterInterface {
 
     public func userDidTapCancel() {
         cancelDownloadAndFinish()
+    }
+
+    public func userDidTapShare(image: UIImage) {
+        wireframe?.userDidTapShare(image)
     }
 
     public func startDownload() {

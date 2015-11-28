@@ -38,6 +38,15 @@ class PageViewController: UIViewController, PageViewInterface, UIScrollViewDeleg
 
     @IBAction func shareButtonTapped(sender: AnyObject) {
 
+        let pdfRect = CGPDFPageGetBoxRect(pageView.pdfPage, .MediaBox)
+        UIGraphicsBeginImageContext(pdfRect.size)
+        if let ctx = UIGraphicsGetCurrentContext() {
+            pageView.pdfPage?.drawInContext(ctx, boundingRect: pdfRect, withHighlights: pageView.highlights)
+        }
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        presenter?.userDidTapShare(image)
     }
 
     @IBAction func doneButtonTapped(sender: AnyObject) {
