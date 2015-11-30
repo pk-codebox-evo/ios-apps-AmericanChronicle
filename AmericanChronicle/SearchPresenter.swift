@@ -55,8 +55,7 @@ public class SearchPresenter: NSObject, SearchPresenterInterface {
     }
 
     public func userDidSelectSearchResult(row: SearchResultsRow) {
-        
-        wireframe?.userDidSelectSearchResult(row)
+        wireframe?.userDidSelectSearchResult(row, forTerm: view?.currentSearchTerm() ?? "")
     }
 
     public func userDidTapReturn() {
@@ -108,12 +107,15 @@ public class SearchPresenter: NSObject, SearchPresenterInterface {
 
                 let publicationTitle = result.titleNormal ?? ""
                 let row = SearchResultsRow(
+                    id: result.id,
                     date: date,
                     cityState: cityStateComponents.joinWithSeparator(", "),
                     publicationTitle: publicationTitle,
                     thumbnailURL: result.thumbnailURL,
                     pdfURL: result.pdfURL,
-                    estimatedPDFSize: result.estimatedPDFSize)
+                    lccn: result.lccn,
+                    edition: result.edition,
+                    sequence: result.sequence)
                 allRows.append(row)
             }
 

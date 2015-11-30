@@ -45,12 +45,15 @@ class SearchInteractorTests: XCTestCase {
     func testThat_whenStartSearchIsCalled_withANewTerm_andNumberOfExistingRowsEvenlyDivisibleByPageSize_itAsksTheDataManagerToStartASearchWithTheCorrectPage() {
         let rows = (0..<40).map { _ in
             SearchResultsRow(
+                id: "",
                 date: nil,
                 cityState: "",
                 publicationTitle: "",
                 thumbnailURL: nil,
                 pdfURL: nil,
-                estimatedPDFSize: 0)
+                lccn: "",
+                edition: 0,
+                sequence: 0)
         }
         subject.startSearchForTerm("Jibberish", existingRows: rows)
         XCTAssertEqual(searchFactory.newSearchForTerm_wasCalled_withPage, 3)
@@ -69,12 +72,15 @@ class SearchInteractorTests: XCTestCase {
     func testThat_whenStartSearchIsCalled_withANewTerm_andNumberOfExistingRowsNotEvenlyDivisibleByPageSize_itFailsImmediatelyWithAnInvalidParameterError() {
         let rows = (0..<25).map { _ in
             SearchResultsRow(
+                id: "",
                 date: nil,
                 cityState: "",
                 publicationTitle: "",
                 thumbnailURL: nil,
                 pdfURL: nil,
-                estimatedPDFSize: 0)
+                lccn: "",
+                edition: 0,
+                sequence: 0)
         }
         subject.startSearchForTerm("Jibberish", existingRows: rows)
         XCTAssert(delegate.searchForTerm_didFinish_wasCalled_withError?.isInvalidParameterError() ?? false)
@@ -85,12 +91,15 @@ class SearchInteractorTests: XCTestCase {
         let firstSearch = searchFactory.newSearchForTerm_lastReturnedSearch
         let rows = (0..<25).map { _ in
             SearchResultsRow(
+                id: "",
                 date: nil,
                 cityState: "",
                 publicationTitle: "",
                 thumbnailURL: nil,
                 pdfURL: nil,
-                estimatedPDFSize: 0)
+                lccn: "",
+                edition: 0,
+                sequence: 0)
         }
         subject.startSearchForTerm("Second Search", existingRows: rows)
         XCTAssertFalse(firstSearch?.cancel_wasCalled ?? true)
@@ -104,7 +113,6 @@ class SearchInteractorTests: XCTestCase {
         let firstSearch = searchFactory.newSearchForTerm_lastReturnedSearch
         firstSearch?.isSearchInProgress_returnValue = true
         subject.startSearchForTerm("First Search", existingRows: [])
-        print("[RP] delegate.searchForTerm_didFinish_wasCalled_withError: \(delegate.searchForTerm_didFinish_wasCalled_withError)")
         XCTAssert(delegate.searchForTerm_didFinish_wasCalled_withError!.isDuplicateRequestError() ?? false)
 
     }

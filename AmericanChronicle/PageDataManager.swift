@@ -11,46 +11,67 @@ public protocol PageDataManagerInterface {
     func downloadPage(remoteURL: NSURL, completionHandler: (NSURL, NSURL?, NSError?) -> Void)
     func cancelDownload(remoteURL: NSURL)
     func isDownloadInProgress(remoteURL: NSURL) -> Bool
+    func startOCRCoordinatesRequest(id: String, completionHandler: (OCRCoordinates?, NSError?) -> Void)
+    func cancelOCRCoordinatesRequest(id: String)
+    func isOCRCoordinatesRequestInProgress(id: String) -> Bool
 }
 
 /// Responsibilities:
 /// * Knows which service to use.
 public class PageDataManager: NSObject, PageDataManagerInterface {
 
-    private let webService: PageServiceInterface
-    private let cacheService: CachedPageServiceInterface
+    private let pageService: PageServiceInterface
+    private let cachedPageService: CachedPageServiceInterface
+    private let coordinatesService: OCRCoordinatesServiceInterface
     private var contextID: String { return "\(unsafeAddressOf(self))" }
 
     /// * parameters:
-    ///     * webService: The service to use for API requests.
-    ///     * cacheService: The service to check before making API requests.
-    public required init(webService: PageServiceInterface = PageService(),
-                         cacheService: CachedPageServiceInterface = CachedPageService())
+    ///     * pageService: The service to use for API requests.
+    ///     * cachedPageService: The service to check before making API requests.
+    public required init(
+        pageService: PageServiceInterface = PageService(),
+        cachedPageService: CachedPageServiceInterface = CachedPageService(),
+        coordinatesService: OCRCoordinatesServiceInterface = OCRCoordinatesService())
     {
-        self.webService = webService
-        self.cacheService = cacheService
+        self.pageService = pageService
+        self.cachedPageService = cachedPageService
+        self.coordinatesService = coordinatesService
         super.init()
     }
 
     public func downloadPage(remoteURL: NSURL, completionHandler: (NSURL, NSURL?, NSError?) -> Void) {
-        if let fileURL = cacheService.fileURLForRemoteURL(remoteURL) {
+        if let fileURL = cachedPageService.fileURLForRemoteURL(remoteURL) {
             completionHandler(remoteURL, fileURL, nil)
             return
         }
 
-        webService.downloadPage(remoteURL, contextID: contextID) { fileURL, error in
+        pageService.downloadPage(remoteURL, contextID: contextID) { fileURL, error in
             if let fileURL = fileURL where error == nil {
-                self.cacheService.cacheFileURL(fileURL, forRemoteURL: remoteURL)
+                self.cachedPageService.cacheFileURL(fileURL, forRemoteURL: remoteURL)
             }
             completionHandler(remoteURL, fileURL, error as? NSError)
         }
     }
 
     public func cancelDownload(remoteURL: NSURL) {
-        webService.cancelDownload(remoteURL, contextID: contextID)
+        pageService.cancelDownload(remoteURL, contextID: contextID)
     }
 
     public func isDownloadInProgress(remoteURL: NSURL) -> Bool {
-        return webService.isDownloadInProgress(remoteURL)
+        return pageService.isDownloadInProgress(remoteURL)
+    }
+
+    public func startOCRCoordinatesRequest(id: String, completionHandler: (OCRCoordinates?, NSError?) -> Void) {
+        coordinatesService.startRequest(id, contextID: contextID, completionHandler: { coordinates, err in
+            completionHandler(coordinates, err as? NSError)
+        })
+    }
+
+    public func cancelOCRCoordinatesRequest(id: String) {
+        coordinatesService.cancelRequest(id, contextID: contextID)
+    }
+
+    public func isOCRCoordinatesRequestInProgress(id: String) -> Bool {
+        return coordinatesService.isRequestInProgress(id, contextID: contextID)
     }
 }

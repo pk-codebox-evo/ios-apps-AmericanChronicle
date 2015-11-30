@@ -9,6 +9,7 @@
 public protocol PageViewInterface: class {
 
     var pdfPage: CGPDFPageRef? { get set }
+    var highlights: OCRCoordinates? { get set }
     var presenter: PagePresenterInterface? { get set }
 
     func showLoadingIndicator()

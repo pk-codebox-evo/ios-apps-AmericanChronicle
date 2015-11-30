@@ -9,11 +9,14 @@
 import AmericanChronicle
 
 class FakeSearchPresenter: NSObject, SearchPresenterInterface {
+
     var wireframe: SearchWireframeInterface?
     var view: SearchViewInterface?
     var interactor: SearchInteractorInterface?
 
     func userDidTapCancel() {}
+
+    func userDidTapReturn() {}
 
     func userDidChangeSearchToTerm(term: String?) {}
 

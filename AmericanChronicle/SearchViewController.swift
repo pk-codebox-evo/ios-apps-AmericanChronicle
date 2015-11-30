@@ -18,6 +18,7 @@ public protocol SearchViewInterface: class {
     func setViewState(state: ViewState)
     func setBottomContentInset(bottom: CGFloat)
     func resignFirstResponder() -> Bool
+    func currentSearchTerm() -> String
 }
 
 // http://scotthurff.com/posts/why-your-user-interface-is-awkward-youre-ignoring-the-ui-stack
@@ -118,7 +119,6 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
     public func setViewState(state: ViewState) {
         switch state {
         case .EmptySearchField:
-            print("[RP] EmptySearchField")
             setLoadingIndicatorsVisible(false)
             emptyResultsLabel.alpha = 0
             errorView.alpha = 0
@@ -127,7 +127,6 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
             tableView.reloadData()
             tableView.tableFooterView?.alpha = 0
         case .EmptyResults:
-            print("[RP] EmptyResults")
             setLoadingIndicatorsVisible(false)
             emptyResultsLabel.alpha = 1.0
             errorView.alpha = 0
@@ -136,19 +135,16 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
             tableView.reloadData()
             tableView.tableFooterView?.alpha = 0
         case .LoadingNewTerm:
-            print("[RP] LoadingNewTerm")
             setLoadingIndicatorsVisible(true)
             emptyResultsLabel.alpha = 0
             errorView.alpha = 0
             tableView.tableFooterView?.alpha = 0
         case .LoadingMoreRows:
-            print("[RP] LoadingMoreRows")
             setLoadingIndicatorsVisible(false)
             emptyResultsLabel.alpha = 0
             errorView.alpha = 0
             tableView.tableFooterView?.alpha = 1.0
         case let .Partial(title, rows):
-            print("[RP] Partial")
             setLoadingIndicatorsVisible(false)
             emptyResultsLabel.alpha = 0
             errorView.alpha = 0
@@ -157,7 +153,6 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
             tableView.reloadData()
             tableView.tableFooterView?.alpha = 0
         case let .Ideal(title, rows):
-            print("[RP] Ideal")
             setLoadingIndicatorsVisible(false)
             emptyResultsLabel.alpha = 0
             errorView.alpha = 0
@@ -166,7 +161,6 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
             tableView.reloadData()
             tableView.tableFooterView?.alpha = 0
         case let .Error(title, message):
-            print("[RP] Error")
             setLoadingIndicatorsVisible(false)
             emptyResultsLabel.alpha = 0
             errorView.alpha = 1.0
@@ -177,6 +171,10 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
             errorMessageLabel.text = message
             tableView.tableFooterView?.alpha = 0
         }
+    }
+
+    public func currentSearchTerm() -> String {
+        return searchField?.text ?? ""
     }
 
     // MARK: SearchView properties and methods

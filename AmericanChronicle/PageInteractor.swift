@@ -13,10 +13,13 @@
     func startDownload()
     func cancelDownload()
     func isDownloadInProgress() -> Bool
+
+    func startOCRCoordinatesRequest()
 }
 
 @objc public protocol PageInteractorDelegate: class {
     func download(remoteURL: NSURL, didFinishWithFileURL fileURL: NSURL?, error: NSError?)
+    func requestDidFinishWithOCRCoordinates(coordinates: OCRCoordinates?, error: NSError?)
 }
 
 
@@ -28,9 +31,19 @@ public final class PageInteractor: NSObject, PageInteractorInterface {
 
     private let dataManager: PageDataManagerInterface
     private let remoteURL: NSURL
+    private let id: String
+    private let date: NSDate?
+    private let lccn: String?
+    private let sequence: Int?
+    private let edition: Int?
 
-    public init(remoteURL: NSURL, dataManager: PageDataManagerInterface) {
+    public init(remoteURL: NSURL, id: String, date: NSDate?, lccn: String?, edition: Int?, sequence: Int?, dataManager: PageDataManagerInterface) {
         self.remoteURL = remoteURL
+        self.id = id
+        self.date = date
+        self.lccn = lccn
+        self.sequence = sequence
+        self.edition = edition
         self.dataManager = dataManager
         super.init()
     }
@@ -47,5 +60,11 @@ public final class PageInteractor: NSObject, PageInteractorInterface {
 
     public func isDownloadInProgress() -> Bool {
         return dataManager.isDownloadInProgress(remoteURL)
+    }
+
+    public func startOCRCoordinatesRequest() {
+        dataManager.startOCRCoordinatesRequest(id) { coordinates, error in
+            self.delegate?.requestDidFinishWithOCRCoordinates(coordinates, error: error)
+        }
     }
 }

@@ -31,8 +31,8 @@ class FakeRequest: RequestProtocol {
     func cancel() {}
 
     func finishWithResponseObject<T: Mappable>(responseObject: T?, error: ErrorType?) {
-        let handler = responseObjectWasCalled_withCompletionHandler as! ((T?, ErrorType?) -> Void)
-        handler(responseObject, error)
+        let handler = responseObjectWasCalled_withCompletionHandler as? ((T?, ErrorType?) -> Void)
+        handler?(responseObject, error)
     }
 
     func finishWithRequest(request: NSURLRequest?, response: NSHTTPURLResponse?, data: NSData?, error: NSError?) {

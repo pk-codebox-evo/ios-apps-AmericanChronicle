@@ -9,28 +9,38 @@
 import UIKit
 
 public class SearchResultsRow: CustomStringConvertible {
+    let id: String?
     let date: NSDate?
     let cityState: String
     let publicationTitle: String
     let thumbnailURL: NSURL?
     let pdfURL: NSURL?
-    let estimatedPDFSize: Int
-    public init(date: NSDate?, cityState: String, publicationTitle: String, thumbnailURL: NSURL?, pdfURL: NSURL?, estimatedPDFSize: Int) {
+    let lccn: String?
+    let edition: Int?
+    let sequence: Int?
+    public init(id: String?, date: NSDate?, cityState: String, publicationTitle: String, thumbnailURL: NSURL?, pdfURL: NSURL?, lccn: String?, edition: Int?, sequence: Int?) {
+        self.id = id
         self.date = date
         self.cityState = cityState
         self.publicationTitle = publicationTitle
         self.thumbnailURL = thumbnailURL
         self.pdfURL = pdfURL
-        self.estimatedPDFSize = estimatedPDFSize
+        self.lccn = lccn
+        self.edition = edition
+        self.sequence = sequence
     }
 
     public var description: String {
         var desc = "<SearchResultsRow: "
-        desc += "date=\(date)"
+        desc += "id=\(id)"
+        desc += ", date=\(date)"
         desc += ", cityState=\(cityState)"
         desc += ", publicationTitle=\(publicationTitle)"
         desc += ", thumbnailURL=\(thumbnailURL)"
-        desc += ", estimatedPDFSize=\(estimatedPDFSize)>"
+        desc += ", lccn=\(lccn)"
+        desc += ", edition=\(edition)"
+        desc += ", sequence=\(sequence)"
+        desc += ">"
         return desc
     }
 }
@@ -40,5 +50,4 @@ public func ==(lhs: SearchResultsRow, rhs: SearchResultsRow) -> Bool {
         && lhs.cityState == rhs.cityState
         && lhs.publicationTitle == rhs.publicationTitle
         && lhs.thumbnailURL == rhs.thumbnailURL
-        && lhs.estimatedPDFSize == rhs.estimatedPDFSize
 }

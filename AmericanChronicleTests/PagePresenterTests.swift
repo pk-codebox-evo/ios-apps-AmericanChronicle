@@ -26,6 +26,10 @@ class FakePageInteractor: NSObject, PageInteractorInterface {
     func isDownloadInProgress() -> Bool {
         return false
     }
+
+    func startOCRCoordinatesRequest() {
+        
+    }
 }
 
 class FakePageView: NSObject, PageViewInterface {
@@ -34,6 +38,7 @@ class FakePageView: NSObject, PageViewInterface {
     var shareCallback: ((Void) -> ())?
     var cancelCallback: ((Void) -> ())?
     var pdfPage: CGPDFPageRef?
+    var highlights: OCRCoordinates?
     var presenter: PagePresenterInterface?
 
     var showError_wasCalled_withTitle: String?
@@ -74,8 +79,8 @@ class PagePresenterTests: XCTestCase {
         super.setUp()
         view = FakePageView()
         interactor = FakePageInteractor()
-        wireframe = FakePageWireframe(remoteURL: NSURL(string: "")!)
-        subject = PagePresenter(view: view, interactor: interactor)
+        wireframe = FakePageWireframe(remoteURL: NSURL(string: "")!, id: "", searchTerm: nil, date: NSDate(), lccn: "", edition: 0, sequence: 0)
+        subject = PagePresenter(view: view, interactor: interactor, searchTerm: "")
         subject.wireframe = wireframe
     }
 

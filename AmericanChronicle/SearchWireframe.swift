@@ -9,7 +9,7 @@
 import UIKit
 
 public protocol SearchWireframeInterface: class {
-    func userDidSelectSearchResult(row: SearchResultsRow)
+    func userDidSelectSearchResult(row: SearchResultsRow, forTerm: String)
     func userDidTapCancel()
 }
 
@@ -47,9 +47,9 @@ public class SearchWireframe: NSObject, SearchWireframeInterface, UIViewControll
         delegate?.userDidTapCancel()
     }
 
-    public func userDidSelectSearchResult(row: SearchResultsRow) {
-        if let remoteURL = row.pdfURL {
-            pageWireframe = PageWireframe(remoteURL: remoteURL)
+    public func userDidSelectSearchResult(row: SearchResultsRow, forTerm term: String) {
+        if let remoteURL = row.pdfURL, id = row.id {
+            pageWireframe = PageWireframe(remoteURL: remoteURL, id: id, searchTerm: term, date: row.date, lccn: row.lccn, edition: row.edition, sequence: row.sequence)
             pageWireframe?.beginFromViewController(dependencies.view as? SearchViewController, withRemoteURL: remoteURL)
         }
     }

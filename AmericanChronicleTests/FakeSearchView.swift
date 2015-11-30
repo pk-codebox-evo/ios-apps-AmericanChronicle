@@ -20,4 +20,12 @@ class FakeSearchView: SearchViewInterface {
     func setBottomContentInset(bottom: CGFloat) {
         
     }
+
+    func resignFirstResponder() -> Bool {
+        return true
+    }
+
+    func currentSearchTerm() -> String {
+        return ""
+    }
 }

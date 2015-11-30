@@ -26,6 +26,18 @@ class FakePageDataManager: PageDataManagerInterface {
     func isDownloadInProgress(remoteURL: NSURL) -> Bool {
         return false
     }
+
+    func startOCRCoordinatesRequest(id: String, completionHandler: (OCRCoordinates?, NSError?) -> Void) {
+
+    }
+
+    func cancelOCRCoordinatesRequest(id: String) {
+
+    }
+
+    func isOCRCoordinatesRequestInProgress(id: String) -> Bool {
+        return false
+    }
 }
 
 class PageInteractorTests: XCTestCase {
@@ -40,7 +52,7 @@ class PageInteractorTests: XCTestCase {
         remoteURL = NSURL(string: "http://www.notreal.com")!
         dataManager = FakePageDataManager()
 
-        subject = PageInteractor(remoteURL: remoteURL, dataManager: dataManager)
+        subject = PageInteractor(remoteURL: remoteURL, id: "", date: NSDate(), lccn: "", edition: 1, sequence: 18, dataManager: dataManager)
     }
 
     func testThat_whenStartDownloadIsCalled_itStartsTheDownloadForItsRemoteURL() {
