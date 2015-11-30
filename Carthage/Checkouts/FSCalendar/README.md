@@ -1,17 +1,19 @@
 
 ![fscalendar](https://cloud.githubusercontent.com/assets/5186464/6655324/213a814a-cb36-11e4-9add-f80515a83291.png)<br/><br/>
 [![Version](https://img.shields.io/cocoapods/v/FSCalendar.svg?style=flat)](http://cocoadocs.org/docsets/FSCalendar)
-[![License](https://img.shields.io/cocoapods/l/FSCalendar.svg?style=flat)](http://cocoadocs.org/docsets/FSCalendar)
-[![Platform](https://img.shields.io/cocoapods/p/FSCalendar.svg?style=flat)](http://cocoadocs.org/docsets/FSCalendar)
+[![Platform](https://img.shields.io/badge/platform-iOS%207%2B-blue.svg?style=flat)](http://cocoadocs.org/docsets/FSCalendar)
+[![Swift2 compatible](https://img.shields.io/badge/swift2-compatible-4BC51D.svg?style=flat)](https://developer.apple.com/swift/)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![License](https://img.shields.io/cocoapods/l/FSCalendar.svg?style=flat)](http://cocoadocs.org/docsets/FSCalendar)
 
 # Screenshots
 
+## iPhone
 ![fscalendar](https://cloud.githubusercontent.com/assets/5186464/10262249/4fabae40-69f2-11e5-97ab-afbacd0a3da2.jpg)
 
-# New Feature
+## iPad
+![fscalendar-ipad](https://cloud.githubusercontent.com/assets/5186464/10927681/d2448cb6-82dc-11e5-9d11-f664a06698a7.jpg)
 
-![fscalendar-roll](https://cloud.githubusercontent.com/assets/5186464/10562289/1885c3aa-7588-11e5-8505-ef030bd183c7.gif)
 # Installation
 
 ## Cocoapods:
@@ -82,6 +84,31 @@ calendar.delegate = self
 view.addSubview(calendar)
 self.calendar = calendar
 ```
+
+## Indian
+```objective-c
+calendar.identifier = NSCalendarIdentifierIndian;
+```
+![indian](https://cloud.githubusercontent.com/assets/5186464/11204305/59158ab4-8d38-11e5-97d0-9af3e800c49a.jpg)
+
+## Persian
+```objective-c
+calendar.identifier = NSCalendarIdentifierPesian;
+```
+![persian](https://cloud.githubusercontent.com/assets/5186464/11204304/5914a0ea-8d38-11e5-8e6c-e354fe910290.jpg)
+
+## Hebrew
+```objective-c
+calendar.identifier = NSCalendarIdentifierHebrew;
+```
+![hebrew](https://cloud.githubusercontent.com/assets/5186464/11204307/59254760-8d38-11e5-83c4-e3b963c29206.jpg)
+
+## Islamic
+```objective-c
+calendar.identifier = NSCalendarIdentifierIslamic;
+```
+![islamic](https://cloud.githubusercontent.com/assets/5186464/11204306/592386c8-8d38-11e5-8dd5-68b99b3b83c1.jpg)
+
 ### <a id="roll_with_interface_builder"></a> Roll with Interface Builder
 ![fscalendar - ibdesignable](https://cloud.githubusercontent.com/assets/5186464/9301716/2e76a2ca-4503-11e5-8450-1fa7aa93e9fd.gif)
 

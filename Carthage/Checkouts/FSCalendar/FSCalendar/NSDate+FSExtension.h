@@ -23,6 +23,7 @@
 @property (readonly, nonatomic) NSDate *fs_firstDayOfMonth;
 @property (readonly, nonatomic) NSDate *fs_lastDayOfMonth;
 @property (readonly, nonatomic) NSDate *fs_firstDayOfWeek;
+@property (readonly, nonatomic) NSDate *fs_middleOfWeek;
 @property (readonly, nonatomic) NSDate *fs_tomorrow;
 @property (readonly, nonatomic) NSDate *fs_yesterday;
 @property (readonly, nonatomic) NSInteger fs_numberOfDaysInMonth;
@@ -58,4 +59,18 @@
 + (instancetype)fs_sharedCalendar;
 
 @end
+
+@interface NSDateFormatter (FSExtension)
+
++ (instancetype)fs_sharedDateFormatter;
+
+@end
+
+@interface NSDateComponents (FSExtension)
+
++ (instancetype)fs_sharedDateComponents;
+
+@end
+
+
 

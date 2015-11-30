@@ -99,12 +99,26 @@
 {
     NSCalendar *calendar = [NSCalendar fs_sharedCalendar];
     NSDateComponents *weekdayComponents = [calendar components:NSCalendarUnitWeekday fromDate:self];
-    NSDateComponents *componentsToSubtract = [[NSDateComponents alloc] init];
+    NSDateComponents *componentsToSubtract = [NSDateComponents fs_sharedDateComponents];
     componentsToSubtract.day = - (weekdayComponents.weekday - calendar.firstWeekday);
     NSDate *beginningOfWeek = [calendar dateByAddingComponents:componentsToSubtract toDate:self options:0];
     NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:beginningOfWeek];
     beginningOfWeek = [calendar dateFromComponents:components];
+    componentsToSubtract.day = NSIntegerMax;
     return beginningOfWeek;
+}
+
+- (NSDate *)fs_middleOfWeek
+{
+    NSCalendar *calendar = [NSCalendar fs_sharedCalendar];
+    NSDateComponents *weekdayComponents = [calendar components:NSCalendarUnitWeekday fromDate:self];
+    NSDateComponents *componentsToSubtract = [NSDateComponents fs_sharedDateComponents];
+    componentsToSubtract.day = - (weekdayComponents.weekday - calendar.firstWeekday) + 3;
+    NSDate *middleOfWeek = [calendar dateByAddingComponents:componentsToSubtract toDate:self options:0];
+    NSDateComponents *components = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:middleOfWeek];
+    middleOfWeek = [calendar dateFromComponents:components];
+    componentsToSubtract.day = NSIntegerMax;
+    return middleOfWeek;
 }
 
 - (NSDate *)fs_tomorrow
@@ -134,7 +148,7 @@
 
 + (instancetype)fs_dateFromString:(NSString *)string format:(NSString *)format
 {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *formatter = [NSDateFormatter fs_sharedDateFormatter];
     formatter.dateFormat = format;
     return [formatter dateFromString:string];
 }
@@ -142,19 +156,25 @@
 + (instancetype)fs_dateWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day
 {
     NSCalendar *calendar = [NSCalendar fs_sharedCalendar];
-    NSDateComponents *components = [[NSDateComponents alloc] init];
+    NSDateComponents *components = [NSDateComponents fs_sharedDateComponents];
     components.year = year;
     components.month = month;
     components.day = day;
-    return [calendar dateFromComponents:components];
+    NSDate *date = [calendar dateFromComponents:components];
+    components.year = NSIntegerMax;
+    components.month = NSIntegerMax;
+    components.day = NSIntegerMax;
+    return date;
 }
 
 - (NSDate *)fs_dateByAddingYears:(NSInteger)years
 {
     NSCalendar *calendar = [NSCalendar fs_sharedCalendar];
-    NSDateComponents *components = [[NSDateComponents alloc] init];
+    NSDateComponents *components = [NSDateComponents fs_sharedDateComponents];
     components.year = years;
-    return [calendar dateByAddingComponents:components toDate:self options:0];
+    NSDate *date = [calendar dateByAddingComponents:components toDate:self options:0];
+    components.year = NSIntegerMax;
+    return date;
 }
 
 - (NSDate *)fs_dateBySubtractingYears:(NSInteger)years
@@ -165,9 +185,11 @@
 - (NSDate *)fs_dateByAddingMonths:(NSInteger)months
 {
     NSCalendar *calendar = [NSCalendar fs_sharedCalendar];
-    NSDateComponents *components = [[NSDateComponents alloc] init];
+    NSDateComponents *components = [NSDateComponents fs_sharedDateComponents];
     components.month = months;
-    return [calendar dateByAddingComponents:components toDate:self options:0];
+    NSDate *date = [calendar dateByAddingComponents:components toDate:self options:0];
+    components.month = NSIntegerMax;
+    return date;
 }
 
 - (NSDate *)fs_dateBySubtractingMonths:(NSInteger)months
@@ -178,9 +200,11 @@
 - (NSDate *)fs_dateByAddingWeeks:(NSInteger)weeks
 {
     NSCalendar *calendar = [NSCalendar fs_sharedCalendar];
-    NSDateComponents *components = [[NSDateComponents alloc] init];
+    NSDateComponents *components = [NSDateComponents fs_sharedDateComponents];
     components.weekOfYear = weeks;
-    return [calendar dateByAddingComponents:components toDate:self options:0];
+    NSDate *date = [calendar dateByAddingComponents:components toDate:self options:0];
+    components.weekOfYear = NSIntegerMax;
+    return date;
 }
 
 -(NSDate *)fs_dateBySubtractingWeeks:(NSInteger)weeks
@@ -191,9 +215,11 @@
 - (NSDate *)fs_dateByAddingDays:(NSInteger)days
 {
     NSCalendar *calendar = [NSCalendar fs_sharedCalendar];
-    NSDateComponents *components = [[NSDateComponents alloc] init];
-    [components setDay:days];
-    return [calendar dateByAddingComponents:components toDate:self options:0];
+    NSDateComponents *components = [NSDateComponents fs_sharedDateComponents];
+    components.day = days;
+    NSDate *date = [calendar dateByAddingComponents:components toDate:self options:0];
+    components.day = NSIntegerMax;
+    return date;
 }
 
 - (NSDate *)fs_dateBySubtractingDays:(NSInteger)days
@@ -243,7 +269,7 @@
 
 - (NSString *)fs_stringWithFormat:(NSString *)format
 {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSDateFormatter *formatter = [NSDateFormatter fs_sharedDateFormatter];
     formatter.dateFormat = format;
     return [formatter stringFromDate:self];
 }
@@ -285,4 +311,34 @@
 }
 
 @end
+
+
+@implementation NSDateFormatter (FSExtension)
+
++ (instancetype)fs_sharedDateFormatter
+{
+    static id instance;
+    static dispatch_once_t fs_sharedDateFormatter_onceToken;
+    dispatch_once(&fs_sharedDateFormatter_onceToken, ^{
+        instance = [[NSDateFormatter alloc] init];
+    });
+    return instance;
+}
+
+@end
+
+@implementation NSDateComponents (FSExtension)
+
++ (instancetype)fs_sharedDateComponents
+{
+    static id instance;
+    static dispatch_once_t fs_sharedDateFormatter_onceToken;
+    dispatch_once(&fs_sharedDateFormatter_onceToken, ^{
+        instance = [[NSDateComponents alloc] init];
+    });
+    return instance;
+}
+
+@end
+
 

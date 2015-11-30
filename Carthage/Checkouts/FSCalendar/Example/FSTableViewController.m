@@ -11,7 +11,8 @@
 #import "ViewDidLoadExampleViewController.h"
 #import "MultipleSelectionViewController.h"
 #import "FullScreenExampleViewController.h"
-#import "RollViewController.h"
+#import "DelegateAppearanceViewController.h"
+#import "CalendarIdentifierViewController.h"
 
 @implementation FSTableViewController
 
@@ -22,7 +23,8 @@
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
     
     self.viewControllers = @[
-                             [RollViewController class],
+                             [CalendarIdentifierViewController class],
+                             [DelegateAppearanceViewController class],
                              [FullScreenExampleViewController class],
                              [MultipleSelectionViewController class],
                              [NSObject class],
@@ -30,6 +32,8 @@
                              [LoadViewExampleViewController class],
                              [ViewDidLoadExampleViewController class] // Deprecated
                             ];
+    
+    self.tableView.rowHeight = [[UIDevice currentDevice].model hasSuffix:@"iPad"] ? 60.0 : 44.0;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

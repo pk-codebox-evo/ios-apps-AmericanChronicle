@@ -16,34 +16,21 @@ FOUNDATION_EXPORT double FSCalendarVersionNumber;
 //! Project version string for FSCalendar.
 FOUNDATION_EXPORT const unsigned char FSCalendarVersionString[];
 
-@class FSCalendar;
-
-FSCalendarDeprecated("use \'FSCalendarScrollDirection\' instead")
-typedef NS_ENUM(NSInteger, FSCalendarFlow) {
-    FSCalendarFlowVertical,
-    FSCalendarFlowHorizontal
-};
-
-typedef NS_ENUM(NSInteger, FSCalendarScope) {
+typedef NS_ENUM(NSUInteger, FSCalendarScope) {
     FSCalendarScopeMonth,
     FSCalendarScopeWeek
 };
 
-typedef NS_ENUM(NSInteger, FSCalendarScrollDirection) {
+typedef NS_ENUM(NSUInteger, FSCalendarScrollDirection) {
     FSCalendarScrollDirectionVertical,
     FSCalendarScrollDirectionHorizontal
 };
 
-typedef NS_ENUM(NSInteger, FSCalendarCellState) {
-    FSCalendarCellStateNormal      = 0,
-    FSCalendarCellStateSelected    = 1,
-    FSCalendarCellStatePlaceholder = 1 << 1,
-    FSCalendarCellStateDisabled    = 1 << 2,
-    FSCalendarCellStateToday       = 1 << 3,
-    FSCalendarCellStateWeekend     = 1 << 4
-};
 
-@protocol FSCalendarDelegate <NSObject>
+@class FSCalendar;
+@protocol FSCalendarDelegateDeprecatedProtocol,FSCalendarDelegateAppearanceDeprecatedProtocol;
+
+@protocol FSCalendarDelegate <FSCalendarDelegateDeprecatedProtocol>
 
 @optional
 - (BOOL)calendar:(FSCalendar *)calendar shouldSelectDate:(NSDate *)date;
@@ -52,8 +39,6 @@ typedef NS_ENUM(NSInteger, FSCalendarCellState) {
 - (void)calendar:(FSCalendar *)calendar didDeselectDate:(NSDate *)date;
 - (void)calendarCurrentPageDidChange:(FSCalendar *)calendar;
 - (void)calendarCurrentScopeWillChange:(FSCalendar *)calendar animated:(BOOL)animated;
-
-- (void)calendarCurrentMonthDidChange:(FSCalendar *)calendar FSCalendarDeprecated("use \'calendarCurrentPageDidChange\' instead");
 
 @end
 
@@ -68,7 +53,7 @@ typedef NS_ENUM(NSInteger, FSCalendarCellState) {
 
 @end
 
-@protocol FSCalendarDelegateAppearance <NSObject>
+@protocol FSCalendarDelegateAppearance <FSCalendarDelegateAppearanceDeprecatedProtocol>
 
 @optional
 - (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance selectionColorForDate:(NSDate *)date;
@@ -81,9 +66,9 @@ typedef NS_ENUM(NSInteger, FSCalendarCellState) {
 - (UIColor *)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance borderSelectionColorForDate:(NSDate *)date;
 - (FSCalendarCellShape)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance cellShapeForDate:(NSDate *)date;
 
-- (FSCalendarCellStyle)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance cellStyleForDate:(NSDate *)date FSCalendarDeprecated("use \'calendar:appearance:cellShapeForDate:\' instead");
-
 @end
+
+#pragma mark - Primary
 
 IB_DESIGNABLE
 @interface FSCalendar : UIView
@@ -94,11 +79,12 @@ IB_DESIGNABLE
 @property (strong, nonatomic) NSDate *today;
 @property (strong, nonatomic) NSDate *currentPage;
 @property (strong, nonatomic) NSLocale *locale;
-
+@property (strong, nonatomic) NSString *identifier;
 @property (assign, nonatomic) FSCalendarScrollDirection scrollDirection;
 @property (assign, nonatomic) FSCalendarScope scope;
 @property (assign, nonatomic) IBInspectable NSUInteger firstWeekday;
 @property (assign, nonatomic) IBInspectable CGFloat headerHeight;
+@property (assign, nonatomic) IBInspectable CGFloat weekdayHeight;
 @property (assign, nonatomic) IBInspectable BOOL allowsSelection;
 @property (assign, nonatomic) IBInspectable BOOL allowsMultipleSelection;
 @property (assign, nonatomic) IBInspectable BOOL pagingEnabled;
@@ -125,14 +111,71 @@ IB_DESIGNABLE
 @end
 
 
-@interface FSCalendar (Deprecated)
+#pragma mark - DateTools
 
-@property (strong, nonatomic) NSDate *currentMonth FSCalendarDeprecated("use \'currentPage\' instead");
-@property (assign, nonatomic) FSCalendarFlow flow FSCalendarDeprecated("use \'scrollDirection\' instead");
+@interface FSCalendar (DateTools)
 
-- (void)setSelectedDate:(NSDate *)selectedDate FSCalendarDeprecated("use \'selectDate:\' instead");
-- (void)setSelectedDate:(NSDate *)selectedDate animate:(BOOL)animate FSCalendarDeprecated("use \'selectDate:scrollToDate:\' instead");
+- (NSInteger)yearOfDate:(NSDate *)date;
+- (NSInteger)monthOfDate:(NSDate *)date;
+- (NSInteger)dayOfDate:(NSDate *)date;
+- (NSInteger)weekdayOfDate:(NSDate *)date;
+- (NSInteger)weekOfDate:(NSDate *)date;
+- (NSInteger)hourOfDate:(NSDate *)date;
+- (NSInteger)miniuteOfDate:(NSDate *)date;
+- (NSInteger)secondOfDate:(NSDate *)date;
+
+- (NSDate *)dateByIgnoringTimeComponentsOfDate:(NSDate *)date;
+- (NSDate *)beginingOfMonthOfDate:(NSDate *)date;
+- (NSDate *)endOfMonthOfDate:(NSDate *)date;
+- (NSDate *)beginingOfWeekOfDate:(NSDate *)date;
+- (NSDate *)middleOfWeekFromDate:(NSDate *)date;
+- (NSDate *)tomorrowOfDate:(NSDate *)date;
+- (NSDate *)yesterdayOfDate:(NSDate *)date;
+- (NSInteger)numberOfDatesInMonthOfDate:(NSDate *)date;
+
+- (NSDate *)dateFromString:(NSString *)string format:(NSString *)format;
+- (NSDate *)dateWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day;
+
+- (NSDate *)dateByAddingYears:(NSInteger)years toDate:(NSDate *)date;
+- (NSDate *)dateBySubstractingYears:(NSInteger)years fromDate:(NSDate *)date;
+- (NSDate *)dateByAddingMonths:(NSInteger)months toDate:(NSDate *)date;
+- (NSDate *)dateBySubstractingMonths:(NSInteger)months fromDate:(NSDate *)date;
+- (NSDate *)dateByAddingWeeks:(NSInteger)weeks toDate:(NSDate *)date;
+- (NSDate *)dateBySubstractingWeeks:(NSInteger)weeks fromDate:(NSDate *)date;
+- (NSDate *)dateByAddingDays:(NSInteger)days toDate:(NSDate *)date;
+- (NSDate *)dateBySubstractingDays:(NSInteger)days fromDate:(NSDate *)date;
+
+- (NSInteger)yearsFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate;
+- (NSInteger)monthsFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate;
+- (NSInteger)daysFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate;
+- (NSInteger)weeksFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate;
+
+- (BOOL)date:(NSDate *)date sharesSameMonthWithDate:(NSDate *)anotherDate;
+- (BOOL)date:(NSDate *)date sharesSameWeekWithDate:(NSDate *)anotherDate;
+- (BOOL)date:(NSDate *)date sharesSameDayWithDate:(NSDate *)anotherDate;
+
+- (NSString *)stringFromDate:(NSDate *)date format:(NSString *)format;
+- (NSString *)stringFromDate:(NSDate *)date;
 
 @end
 
+
+#pragma mark - Deprecate
+
+@interface FSCalendar (Deprecated)
+@property (strong, nonatomic) NSDate *currentMonth FSCalendarDeprecated("use \'currentPage\' instead");
+@property (assign, nonatomic) FSCalendarFlow flow FSCalendarDeprecated("use \'scrollDirection\' instead");
+- (void)setSelectedDate:(NSDate *)selectedDate FSCalendarDeprecated("use \'selectDate:\' instead");
+- (void)setSelectedDate:(NSDate *)selectedDate animate:(BOOL)animate FSCalendarDeprecated("use \'selectDate:scrollToDate:\' instead");
+@end
+
+@protocol FSCalendarDelegateDeprecatedProtocol <NSObject>
+@optional
+- (void)calendarCurrentMonthDidChange:(FSCalendar *)calendar FSCalendarDeprecated("use \'calendarCurrentPageDidChange\' instead");
+@end
+
+@protocol FSCalendarDelegateAppearanceDeprecatedProtocol <NSObject>
+@optional
+- (FSCalendarCellStyle)calendar:(FSCalendar *)calendar appearance:(FSCalendarAppearance *)appearance cellStyleForDate:(NSDate *)date FSCalendarDeprecated("use \'calendar:appearance:cellShapeForDate:\' instead");
+@end
 

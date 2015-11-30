@@ -7,14 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FSCalendarCollectionView.h"
 
-@class FSCalendarHeader, FSCalendar, FSCalendarAppearance;
+@class FSCalendar,FSCalendarAppearance;
 
 @interface FSCalendarHeader : UIView
 
+@property (weak, nonatomic) FSCalendarCollectionView *collectionView;
+@property (weak, nonatomic) FSCalendar *calendar;
+@property (weak, nonatomic) FSCalendarAppearance *appearance;
+
 @property (assign, nonatomic) CGFloat scrollOffset;
 @property (assign, nonatomic) UICollectionViewScrollDirection scrollDirection;
-@property (weak, nonatomic) FSCalendarAppearance *appearance;
 @property (assign, nonatomic) BOOL scrollEnabled;
 
 - (void)reloadData;
@@ -25,6 +29,14 @@
 @interface FSCalendarHeaderCell : UICollectionViewCell
 
 @property (weak, nonatomic) UILabel *titleLabel;
-@property (readonly, nonatomic) FSCalendarHeader *header;
+@property (weak, nonatomic) FSCalendarHeader *header;
+
+@end
+
+
+@interface FSCalendarHeaderTouchDeliver : UIView
+
+@property (weak, nonatomic) FSCalendar *calendar;
+@property (weak, nonatomic) FSCalendarHeader *header;
 
 @end

@@ -7,16 +7,8 @@
 //
 
 #import "FSCalendarScopeExampleViewController.h"
-#import "NSDate+FSExtension.h"
 
 @implementation FSCalendarScopeExampleViewController
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-//    _calendar.scrollDirection = FSCalendarScrollDirectionVertical;
-    _calendar.firstWeekday = 1;
-}
 
 - (void)calendarCurrentScopeWillChange:(FSCalendar *)calendar animated:(BOOL)animated
 {
@@ -27,11 +19,11 @@
 
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date
 {
-    NSLog(@"did select date %@",[date fs_stringWithFormat:@"yyyy/MM/dd"]);
+    NSLog(@"did select date %@",[calendar stringFromDate:date format:@"yyyy/MM/dd"]);
     
     NSMutableArray *selectedDates = [NSMutableArray arrayWithCapacity:calendar.selectedDates.count];
     [calendar.selectedDates enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [selectedDates addObject:[obj fs_stringWithFormat:@"yyyy/MM/dd"]];
+        [selectedDates addObject:[calendar stringFromDate:date format:@"yyyy/MM/dd"]];
     }];
     NSLog(@"selected dates is %@",selectedDates);
     
@@ -67,7 +59,6 @@
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
     
     FSCalendarScope selectedScope = indexPath.row == 0 ? FSCalendarScopeMonth : FSCalendarScopeWeek;
-    //    _calendar.scope = selectedScope;
     [_calendar setScope:selectedScope animated:_animationSwitch.on];
     
 }

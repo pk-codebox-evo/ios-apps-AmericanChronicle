@@ -7,14 +7,8 @@
 //
 
 #import "StoryboardExampleViewController.h"
-#import "NSDate+FSExtension.h"
 #import "SSLunarDate.h"
 #import "CalendarConfigViewController.h"
-#import "FSCalendarTestMacros.h"
-
-#define kPink [UIColor colorWithRed:198/255.0 green:51/255.0 blue:42/255.0 alpha:1.0]
-#define kBlue [UIColor colorWithRed:31/255.0 green:119/255.0 blue:219/255.0 alpha:1.0]
-#define kBlueText [UIColor colorWithRed:14/255.0 green:69/255.0 blue:221/255.0 alpha:1.0]
 
 @interface StoryboardExampleViewController ()
 
@@ -34,20 +28,34 @@
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:nil action:nil];
     
     _currentCalendar = [NSCalendar currentCalendar];
-//    _firstWeekday = _calendar.firstWeekday;
-//    _calendar.firstWeekday = 2; // Monday
-//    _calendar.flow = FSCalendarFlowVertical;
-//    _calendar.selectedDate = [NSDate fs_dateWithYear:2015 month:2 day:1];
     _scrollDirection = _calendar.scrollDirection;
-//    _calendar.appearance.useVeryShortWeekdaySymbols = YES;
-//    _calendar.scope = FSCalendarScopeWeek;
-//    _calendar.allowsMultipleSelection = YES;
+    _calendar.appearance.caseOptions = FSCalendarCaseOptionsHeaderUsesUpperCase|FSCalendarCaseOptionsWeekdayUsesUpperCase;
     
-    [_calendar selectDate:[NSDate date]];
+    [_calendar selectDate:[_calendar dateWithYear:2015 month:10 day:5]];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [_calendar deselectDate:[NSDate date]];
+    _datesShouldNotBeSelected = @[@"2015/08/07",
+                                  @"2015/09/07",
+                                  @"2015/10/07",
+                                  @"2015/11/07",
+                                  @"2015/12/07",
+                                  @"2016/01/07",
+                                  @"2016/02/07"];
+    
+    _datesWithEvent = @[@"2015-10-03",
+                        @"2015-10-07",
+                        @"2015-10-15",
+                        @"2015-10-25"];
+    
+    // Uncomment this to test the month->week & week->month transition
+    /*
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [_calendar setScope:FSCalendarScopeWeek animated:YES];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [_calendar setScope:FSCalendarScopeMonth animated:YES];
+        });
     });
+     */
+    
     
 #if 0
     FSCalendarTestSelectDate
@@ -70,53 +78,54 @@
     return _lunarDate.dayString;
 }
 
-//- (BOOL)calendar:(FSCalendar *)calendar hasEventForDate:(NSDate *)date
-//{
-//    return date.fs_day % 5 == 0;
-//}
+- (BOOL)calendar:(FSCalendar *)calendar hasEventForDate:(NSDate *)date
+{
+    return [_datesWithEvent containsObject:[calendar stringFromDate:date format:@"yyyy-MM-dd"]];
+}
 
-//- (NSDate *)minimumDateForCalendar:(FSCalendar *)calendar
-//{
-//    return [NSDate fs_dateWithYear:2015 month:6 day:15];
-//}
-//
-//- (NSDate *)maximumDateForCalendar:(FSCalendar *)calendar
-//{
-//    return [NSDate fs_dateWithYear:2025 month:7 day:15];
-//}
+
+- (NSDate *)minimumDateForCalendar:(FSCalendar *)calendar
+{
+    return [calendar dateWithYear:2015 month:2 day:1];
+}
+
+- (NSDate *)maximumDateForCalendar:(FSCalendar *)calendar
+{
+    return [calendar dateWithYear:2016 month:5 day:31];
+}
 
 
 - (void)calendar:(FSCalendar *)calendar didDeselectDate:(NSDate *)date
 {
-    NSLog(@"Did deselect date %@",date.fs_string);
+    NSLog(@"Did deselect date %@",[calendar stringFromDate:date]);
 }
 
 #pragma mark - FSCalendarDelegate
 
 - (BOOL)calendar:(FSCalendar *)calendar shouldSelectDate:(NSDate *)date
 {
-    BOOL shouldSelect = date.fs_day != 7;
+    BOOL shouldSelect = ![_datesShouldNotBeSelected containsObject:[calendar stringFromDate:date format:@"yyyy/MM/dd"]];
     if (!shouldSelect) {
         [[[UIAlertView alloc] initWithTitle:@"FSCalendar"
-                                    message:[NSString stringWithFormat:@"FSCalendar delegate forbid %@  to be selected",[date fs_stringWithFormat:@"yyyy/MM/dd"]]
+                                    message:[NSString stringWithFormat:@"FSCalendar delegate forbid %@  to be selected",[calendar stringFromDate:date format:@"yyyy/MM/dd"]]
                                    delegate:nil
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil, nil] show];
     } else {
-        NSLog(@"Should select date %@",[date fs_stringWithFormat:@"yyyy/MM/dd"]);
+        NSLog(@"Should select date %@",[calendar stringFromDate:date format:@"yyyy/MM/dd"]);
     }
     return shouldSelect;
 }
 
 - (void)calendar:(FSCalendar *)calendar didSelectDate:(NSDate *)date
 {
-    NSLog(@"did select date %@",[date fs_stringWithFormat:@"yyyy/MM/dd"]);
+    NSLog(@"did select date %@",[calendar stringFromDate:date format:@"yyyy/MM/dd"]);
     
 }
 
-- (void)calendarCurrentMonthDidChange:(FSCalendar *)calendar
+- (void)calendarCurrentPageDidChange:(FSCalendar *)calendar
 {
-    NSLog(@"did change to month %@",[calendar.currentMonth fs_stringWithFormat:@"MMMM yyyy"]);
+    NSLog(@"did change to page %@",[calendar stringFromDate:calendar.currentPage format:@"MMMM yyyy"]);
 }
 
 - (void)calendarCurrentScopeWillChange:(FSCalendar *)calendar animated:(BOOL)animated
@@ -142,12 +151,12 @@
         _theme = theme;
         switch (theme) {
             case 0: {
-                _calendar.appearance.weekdayTextColor = kBlueText;
-                _calendar.appearance.headerTitleColor = kBlueText;
-                _calendar.appearance.eventColor = [kBlueText colorWithAlphaComponent:0.75];
-                _calendar.appearance.selectionColor = kBlue;
+                _calendar.appearance.weekdayTextColor = FSCalendarStandardTitleTextColor;
+                _calendar.appearance.headerTitleColor = FSCalendarStandardTitleTextColor;
+                _calendar.appearance.eventColor = FSCalendarStandardEventDotColor;
+                _calendar.appearance.selectionColor = FSCalendarStandardSelectionColor;
                 _calendar.appearance.headerDateFormat = @"MMMM yyyy";
-                _calendar.appearance.todayColor = kPink;
+                _calendar.appearance.todayColor = FSCalendarStandardTodayColor;
                 _calendar.appearance.cellShape = FSCalendarCellShapeCircle;
                 _calendar.appearance.headerMinimumDissolvedAlpha = 0.2;
                 break;

@@ -9,7 +9,6 @@
 #import "FSCalendarCell.h"
 #import "FSCalendar.h"
 #import "UIView+FSExtension.h"
-#import "NSDate+FSExtension.h"
 #import "FSCalendarDynamicHeader.h"
 #import "FSCalendarConstance.h"
 
@@ -31,6 +30,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
         UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         titleLabel.textAlignment = NSTextAlignmentCenter;
         titleLabel.font = [UIFont systemFontOfSize:14];
@@ -66,6 +66,7 @@
         
         self.clipsToBounds = NO;
         self.contentView.clipsToBounds = NO;
+        
     }
     return self;
 }
@@ -75,6 +76,7 @@
     [super setBounds:bounds];
     CGFloat titleHeight = self.bounds.size.height*5.0/6.0;
     CGFloat diameter = MIN(self.bounds.size.height*5.0/6.0,self.bounds.size.width);
+    diameter = diameter > FSCalendarStandardCellDiameter ? (diameter - (diameter-FSCalendarStandardCellDiameter)*0.5) : diameter;
     _backgroundLayer.frame = CGRectMake((self.bounds.size.width-diameter)/2,
                                         (titleHeight-diameter)/2,
                                         diameter,
@@ -83,7 +85,7 @@
     _backgroundLayer.borderColor = [UIColor clearColor].CGColor;
     
     CGFloat eventSize = _backgroundLayer.frame.size.height/6.0;
-    _eventLayer.frame = CGRectMake((_backgroundLayer.frame.size.width-eventSize)/2+_backgroundLayer.frame.origin.x, CGRectGetMaxY(_backgroundLayer.frame)+eventSize*0.2, eventSize*0.8, eventSize*0.8);
+    _eventLayer.frame = CGRectMake((_backgroundLayer.frame.size.width-eventSize)/2+_backgroundLayer.frame.origin.x, CGRectGetMaxY(_backgroundLayer.frame)+eventSize*0.17, eventSize*0.83, eventSize*0.83);
     _eventLayer.path = [UIBezierPath bezierPathWithOvalInRect:_eventLayer.bounds].CGPath;
     _imageView.frame = self.contentView.bounds;
 }
@@ -98,6 +100,7 @@
 {
     [super prepareForReuse];
     [CATransaction setDisableActions:YES];
+    _backgroundLayer.hidden = YES;
 }
 
 #pragma mark - Public
@@ -108,7 +111,7 @@
     _backgroundLayer.path = [UIBezierPath bezierPathWithOvalInRect:_backgroundLayer.bounds].CGPath;
     _backgroundLayer.fillColor = self.colorForBackgroundLayer.CGColor;
     
-#define kAnimationDuration kFSCalendarDefaultBounceAnimationDuration
+#define kAnimationDuration FSCalendarDefaultBounceAnimationDuration
     
     CAAnimationGroup *group = [CAAnimationGroup animation];
     CABasicAnimation *zoomOut = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
@@ -131,16 +134,25 @@
 - (void)configureCell
 {
     _titleLabel.font = [UIFont systemFontOfSize:_appearance.titleTextSize];
-    _titleLabel.text = [NSString stringWithFormat:@"%@",@(_date.fs_day)];
+    _titleLabel.text = [NSString stringWithFormat:@"%@",@([_calendar dayOfDate:_date])];
+    
+    __block CGFloat titleHeight = 0;
+    __block CGFloat subtitleHeight = 0;
+    
+    if (_subtitle) {
+        _subtitleLabel.font = [UIFont systemFontOfSize:_appearance.subtitleTextSize];
+    }
     
 #define m_calculateTitleHeight \
-        CGFloat titleHeight = [_titleLabel.text sizeWithAttributes:@{NSFontAttributeName:self.titleLabel.font}].height;
+    if (_subtitle) { \
+        titleHeight = [@"1" sizeWithAttributes:@{NSFontAttributeName:_titleLabel.font}].height; \
+        subtitleHeight = [@"1" sizeWithAttributes:@{NSFontAttributeName:_subtitleLabel.font}].height;\
+    }
+
 #define m_adjustLabelFrame \
     if (_subtitle) { \
         _subtitleLabel.hidden = NO; \
         _subtitleLabel.text = _subtitle; \
-        _subtitleLabel.font = [UIFont systemFontOfSize:_appearance.subtitleTextSize]; \
-        CGFloat subtitleHeight = [_subtitleLabel.text sizeWithAttributes:@{NSFontAttributeName:self.subtitleLabel.font}].height;\
         CGFloat height = titleHeight + subtitleHeight; \
         _titleLabel.frame = CGRectMake(0, \
                                        (self.contentView.fs_height*5.0/6.0-height)*0.5, \
@@ -191,7 +203,7 @@
 
 - (BOOL)isWeekend
 {
-    return self.date.fs_weekday == 1 || self.date.fs_weekday == 7;
+    return [_calendar weekdayOfDate:_date] == 1 || [_calendar weekdayOfDate:_date] == 7;
 }
 
 - (UIColor *)colorForCurrentStateInDictionary:(NSDictionary *)dictionary
@@ -251,6 +263,14 @@
 - (FSCalendarCellShape)cellShape
 {
     return _preferedCellShape ?: _appearance.cellShape;
+}
+
+- (void)setCalendar:(FSCalendar *)calendar
+{
+    if (![_calendar isEqual:calendar]) {
+        _calendar = calendar;
+        _appearance = calendar.appearance;
+    }
 }
 
 @end

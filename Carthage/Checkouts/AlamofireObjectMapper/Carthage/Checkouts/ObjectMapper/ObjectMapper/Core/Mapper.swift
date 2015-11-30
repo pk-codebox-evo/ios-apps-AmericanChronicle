@@ -135,10 +135,6 @@ public final class Mapper<N: Mappable> {
 	public func mapArray(JSONArray: [[String : AnyObject]]) -> [N]? {
 		// map every element in JSON array to type N
 		let result = JSONArray.flatMap(map)
-		if result.isEmpty {
-			return nil
-		}
-		
 		return result
 	}
 	
@@ -288,7 +284,7 @@ extension Mapper {
 			}
 			
 			if let JSON = JSONData {
-				return NSString(data: JSON, encoding: NSUTF8StringEncoding) as? String
+				return String(data: JSON, encoding: NSUTF8StringEncoding)
 			}
 		}
 		

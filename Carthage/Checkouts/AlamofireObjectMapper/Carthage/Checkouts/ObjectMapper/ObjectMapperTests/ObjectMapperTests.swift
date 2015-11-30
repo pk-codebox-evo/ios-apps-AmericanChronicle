@@ -256,6 +256,15 @@ class ObjectMapperTests: XCTestCase {
 		expect(students?[0].name).to(equal(name1))
 	}
 
+	func testMapArrayJSONWithEmptyArray() {
+		let JSONString = "[]"
+
+		let students = Mapper<Student>().mapArray(JSONString)
+
+		expect(students).to(beEmpty())
+		expect(students?.count).to(equal(0))
+	}
+
 	func testArrayOfCustomObjects(){
 		let percentage1: Double = 0.1
 		let percentage2: Double = 1792.41
@@ -283,8 +292,8 @@ class ObjectMapperTests: XCTestCase {
 		expect(dictionaryOfTasks?["mondayTasks"]?[0].percentage).to(equal(percentage1))
 		expect(dictionaryOfTasks?["mondayTasks"]?[1].percentage).to(equal(percentage2))
 		
-		let planToJSON = Mapper().toJSONString(plan!, prettyPrint: false)
-		//print(planToJSON)
+		let planToJSON = Mapper().toJSONString(plan!, prettyPrint: true)
+		//print(planToJSON!)
 		let planFromJSON = Mapper<Plan>().map(planToJSON!)
 
 		let dictionaryOfTasks2 = planFromJSON?.dictionaryOfTasks
