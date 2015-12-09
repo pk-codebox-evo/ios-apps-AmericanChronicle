@@ -46,6 +46,8 @@
 {
     _scrollDirection = UICollectionViewScrollDirectionHorizontal;
     _scrollEnabled = YES;
+    _needsAdjustingMonthPosition = YES;
+    _needsAdjustingViewFrame = YES;
     
     UICollectionViewFlowLayout *collectionViewFlowLayout = [[UICollectionViewFlowLayout alloc] init];
     collectionViewFlowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
@@ -61,6 +63,8 @@
     collectionView.backgroundColor = [UIColor clearColor];
     collectionView.dataSource = self;
     collectionView.delegate = self;
+    collectionView.showsHorizontalScrollIndicator = NO;
+    collectionView.showsVerticalScrollIndicator = NO;
     [self addSubview:collectionView];
     [collectionView registerClass:[FSCalendarHeaderCell class] forCellWithReuseIdentifier:@"cell"];
     self.collectionView = collectionView;
@@ -70,7 +74,8 @@
 {
     [super layoutSubviews];
     
-    if (_collectionView) {
+    if (_needsAdjustingViewFrame) {
+        _needsAdjustingViewFrame = NO;
         _collectionView.frame = CGRectMake(0, self.fs_height*0.1, self.fs_width, self.fs_height*0.9);
         _collectionViewFlowLayout.itemSize = CGSizeMake(
                                                         _collectionView.fs_width*((_scrollDirection==UICollectionViewScrollDirectionHorizontal)?0.5:1),
@@ -81,11 +86,12 @@
     if (_needsAdjustingMonthPosition) {
         _needsAdjustingMonthPosition = NO;
         if (self.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
-            _collectionView.contentOffset = CGPointMake((_scrollOffset+0.5)*_collectionViewFlowLayout.itemSize.width, 0);
+            [_collectionView setContentOffset:CGPointMake((_scrollOffset+0.5)*_collectionViewFlowLayout.itemSize.width, 0) animated:NO];
         } else {
-            _collectionView.contentOffset = CGPointMake(0, _scrollOffset * _collectionViewFlowLayout.itemSize.height);
+            [_collectionView setContentOffset:CGPointMake(0, _scrollOffset * _collectionViewFlowLayout.itemSize.height) animated:NO];
         }
-    }
+    };
+    
 }
 
 - (void)dealloc
@@ -140,7 +146,7 @@
 {
     FSCalendarHeaderCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     cell.header = self;
-    cell.titleLabel.font = [UIFont systemFontOfSize:_appearance.headerTitleTextSize];
+    cell.titleLabel.font = _appearance.preferredHeaderTitleFont;
     cell.titleLabel.textColor = _appearance.headerTitleColor;
     _calendar.formatter.dateFormat = _appearance.headerDateFormat;
     BOOL usesUpperCase = (_appearance.caseOptions & 15) == FSCalendarCaseOptionsHeaderUsesUpperCase;
@@ -181,7 +187,7 @@
     return cell;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [cell setNeedsLayout];
 }
@@ -189,7 +195,6 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [_collectionView.visibleCells makeObjectsPerformSelector:@selector(setNeedsLayout)];
-
 }
 
 #pragma mark - Properties
@@ -218,12 +223,9 @@
     if (_scrollDirection != scrollDirection) {
         _scrollDirection = scrollDirection;
         _collectionViewFlowLayout.scrollDirection = scrollDirection;
-        CGPoint newOffset = CGPointMake(
-                                        scrollDirection == UICollectionViewScrollDirectionHorizontal ? (_scrollOffset-0.5)*_collectionViewFlowLayout.itemSize.width : 0,
-                                        scrollDirection == UICollectionViewScrollDirectionVertical ? _scrollOffset * _collectionViewFlowLayout.itemSize.height : 0
-                                        );
-        _collectionView.contentOffset = newOffset;
-        [_collectionView reloadData];
+        _needsAdjustingMonthPosition = YES;
+        _needsAdjustingViewFrame = YES;
+        [self setNeedsLayout];
     }
 }
 
@@ -287,6 +289,16 @@
         self.contentView.alpha = 1.0 - (1.0-self.header.appearance.headerMinimumDissolvedAlpha)*ABS(center-position)/self.fs_height;
     }
     
+}
+
+- (void)invalidateHeaderFont
+{
+    _titleLabel.font = self.header.appearance.headerTitleFont;
+}
+
+- (void)invalidateHeaderTextColor
+{
+    _titleLabel.textColor = self.header.appearance.headerTitleColor;
 }
 
 @end
