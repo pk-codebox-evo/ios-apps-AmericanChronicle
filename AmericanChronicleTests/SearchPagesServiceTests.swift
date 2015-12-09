@@ -8,6 +8,7 @@
 
 import XCTest
 import AmericanChronicle
+import Alamofire
 
 class SearchPagesServiceTests: XCTestCase {
 
@@ -63,7 +64,9 @@ class SearchPagesServiceTests: XCTestCase {
             returnedResults = results
         }
         let expectedResults = SearchResults()
-        manager.stubbedReturnValue.finishWithResponseObject(expectedResults, error: nil)
+        let result: Result<SearchResults, NSError> = .Success(expectedResults)
+        let response = Response(request: nil, response: nil, data: nil, result: result)
+        manager.stubbedReturnValue.finishWithResponseObject(response)
         XCTAssertEqual(returnedResults, expectedResults)
     }
 
@@ -75,8 +78,9 @@ class SearchPagesServiceTests: XCTestCase {
             returnedError = error as? NSError
         }
         let expectedError = NSError(code: .InvalidParameter, message: "")
-        let obj: SearchResults? = nil
-        request.finishWithResponseObject(obj, error: expectedError)
+        let result: Result<SearchResults, NSError> = .Failure(expectedError)
+        let response = Response(request: nil, response: nil, data: nil, result: result)
+        request.finishWithResponseObject(response)
         XCTAssertEqual(returnedError, expectedError)
     }
 
@@ -87,8 +91,9 @@ class SearchPagesServiceTests: XCTestCase {
         subject.startSearch("volcano", page: 2, contextID: "context") { _, error in
             isInProgress = self.subject.isSearchInProgress("volcano", page: 2, contextID: "context")
         }
-        let obj: SearchResults? = nil
-        request.finishWithResponseObject(obj, error: nil)
+        let result: Result<SearchResults, NSError> = .Failure(NSError(code: .DuplicateRequest, message: nil))
+        let response = Response(request: nil, response: nil, data: nil, result: result)
+        request.finishWithResponseObject(response)
         XCTAssertFalse(isInProgress)
     }
     

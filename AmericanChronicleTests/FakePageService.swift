@@ -8,6 +8,8 @@
 
 import AmericanChronicle
 import ObjectMapper
+import Alamofire
+import AlamofireObjectMapper
 
 class FakeRequest: RequestProtocol {
 
@@ -15,24 +17,25 @@ class FakeRequest: RequestProtocol {
     var task: NSURLSessionTask = NSURLSessionTask()
 
 
+
     private var responseObjectWasCalled_withCompletionHandler: Any?
     private var responseWasCalled_withCompletionHandler: ((NSURLRequest?, NSHTTPURLResponse?, NSData?, ErrorType?) -> Void)?
 
-    func responseObject<T: Mappable>(completionHandler: ((T?, ErrorType?) -> Void)) -> Self {
+    func responseObject<T: Mappable>(completionHandler: Response<T, NSError> -> Void) -> Self {
         responseObjectWasCalled_withCompletionHandler = completionHandler
         return self
     }
 
-    func response(completionHandler: (NSURLRequest?, NSHTTPURLResponse?, NSData?, ErrorType?) -> Void) -> Self {
-        responseWasCalled_withCompletionHandler = completionHandler
+    func response(queue queue: dispatch_queue_t?, completionHandler: ((NSURLRequest?, NSHTTPURLResponse?, NSData?, NSError?) -> Void)) -> Self {
+//        responseWasCalled_withCompletionHandler = completionHandler
         return self
     }
 
     func cancel() {}
 
-    func finishWithResponseObject<T: Mappable>(responseObject: T?, error: ErrorType?) {
-        let handler = responseObjectWasCalled_withCompletionHandler as? ((T?, ErrorType?) -> Void)
-        handler?(responseObject, error)
+    func finishWithResponseObject<T: Mappable>(responseObject: Response<T, NSError>) {
+        let handler = responseObjectWasCalled_withCompletionHandler as? (Response<T, NSError> -> Void)
+        handler?(responseObject)
     }
 
     func finishWithRequest(request: NSURLRequest?, response: NSHTTPURLResponse?, data: NSData?, error: NSError?) {

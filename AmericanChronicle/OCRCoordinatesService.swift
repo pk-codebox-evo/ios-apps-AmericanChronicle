@@ -40,11 +40,11 @@ public class OCRCoordinatesService: OCRCoordinatesServiceInterface {
 
         let URLString = URLStringForID(id)
 
-        let request = self.manager.request(.GET, URLString: URLString, parameters: nil)?.responseObject { (obj: OCRCoordinates?, error) in
+        let request = self.manager.request(.GET, URLString: URLString, parameters: nil)?.responseObject { (response: Response<OCRCoordinates, NSError>) in
             dispatch_sync(self.queue) {
                 self.activeRequests[URLString] = nil
             }
-            completionHandler(obj, error)
+            completionHandler(response.result.value, response.result.error)
         }
 
         dispatch_sync(queue) {

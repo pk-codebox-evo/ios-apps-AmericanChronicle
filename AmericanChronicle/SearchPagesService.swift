@@ -63,11 +63,11 @@ public class SearchPagesService: SearchPagesServiceInterface {
 
         let params: [String: AnyObject] = ["format": "json", "rows": 20, "proxtext": term, "page": page]
         let URLString = ChroniclingAmericaEndpoint.PagesSearch.fullURLString ?? ""
-        let request = self.manager.request(.GET, URLString: URLString, parameters: params)?.responseObject { (obj: SearchResults?, error) in
+        let request = self.manager.request(.GET, URLString: URLString, parameters: params)?.responseObject { (response: Response<SearchResults, NSError>) in
             dispatch_sync(self.queue) {
                 self.activeRequests[self.keyForTerm(term, page: page, contextID: contextID)] = nil
             }
-            completionHandler(obj, error)
+            completionHandler(response.result.value, response.result.error)
         }
 
         dispatch_sync(queue) {

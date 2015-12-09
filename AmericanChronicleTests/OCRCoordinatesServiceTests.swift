@@ -9,6 +9,7 @@
 import XCTest
 import AmericanChronicle
 import ObjectMapper
+import Alamofire
 
 class OCRCoordinatesServiceTests: XCTestCase {
 
@@ -52,7 +53,10 @@ class OCRCoordinatesServiceTests: XCTestCase {
             returnedCoordinates = coordinates
         }
         let expectedCoordinates = OCRCoordinates(Map(mappingType: .FromJSON, JSONDictionary: [:]))
-        manager.stubbedReturnValue.finishWithResponseObject(expectedCoordinates, error: nil)
+        let result: Result<OCRCoordinates, NSError> = .Success(expectedCoordinates!)
+        let response = Alamofire.Response(request: nil, response: nil, data: nil, result: result)
+        XCTAssertNotNil(manager.stubbedReturnValue)
+        manager.stubbedReturnValue.finishWithResponseObject(response)
         XCTAssertEqual(returnedCoordinates, expectedCoordinates)
     }
 
@@ -62,8 +66,9 @@ class OCRCoordinatesServiceTests: XCTestCase {
             returnedError = err as? NSError
         }
         let expectedError = NSError(code: .InvalidParameter, message: "")
-        let obj: OCRCoordinates? = nil
-        manager.stubbedReturnValue.finishWithResponseObject(obj, error: expectedError)
+        let result: Result<OCRCoordinates, NSError> = .Failure(expectedError)
+        let response = Alamofire.Response(request: nil, response: nil, data: nil, result: result)
+        manager.stubbedReturnValue.finishWithResponseObject(response)
         XCTAssertEqual(returnedError, expectedError)
     }
 
@@ -74,8 +79,9 @@ class OCRCoordinatesServiceTests: XCTestCase {
         subject.startRequest("", contextID: "") { _, _ in
             isInProgress = self.subject.isRequestInProgress("", contextID: "")
         }
-        let obj: OCRCoordinates? = nil
-        request.finishWithResponseObject(obj, error: nil)
+        let result: Result<OCRCoordinates, NSError> = .Failure(NSError(code: .DuplicateRequest, message: nil))
+        let response = Response(request: nil, response: nil, data: nil, result: result)
+        request.finishWithResponseObject(response)
         XCTAssertFalse(isInProgress)
     }
 }

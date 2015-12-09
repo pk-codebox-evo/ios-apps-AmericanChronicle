@@ -12,13 +12,14 @@ import AlamofireObjectMapper
 
 public protocol RequestProtocol {
     var task: NSURLSessionTask { get }
-    func responseObject<T: Mappable>(completionHandler: (T?, ErrorType?) -> Void) -> Self
-    func response(completionHandler: (NSURLRequest?, NSHTTPURLResponse?, NSData?, ErrorType?) -> Void) -> Self
+    func responseObject<T: Mappable>(completionHandler: Response<T, NSError> -> Void) -> Self
+    func response(queue queue: dispatch_queue_t?, completionHandler: (NSURLRequest?, NSHTTPURLResponse?, NSData?, NSError?) -> Void) -> Self
     func cancel()
 }
 
 extension Request: RequestProtocol {
-    public func response(completionHandler: (NSURLRequest?, NSHTTPURLResponse?, NSData?, ErrorType?) -> Void) -> Self {
-        return response(queue: nil, completionHandler: completionHandler)
-    }
+    
+//    public func response(queue queue: dispatch_queue_t? = default, completionHandler: (NSURLRequest?, NSHTTPURLResponse?, NSData?, NSError?) -> Void) -> Self {
+//        return response(queue: nil, completionHandler: completionHandler)
+//    }
 }

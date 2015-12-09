@@ -93,12 +93,12 @@ public class PageService: NSObject, PageServiceInterface {
             } else {
                 let requester = PageDownloadRequester(contextID: contextID, completionHandler: completionHandler)
                 let request = self.manager.download(.GET, URLString: remoteURL.absoluteString, parameters: nil, destination: destination)?
-                    .response { [weak self] request, response, data, error in
-                    if let error = error as? NSError where error.code == NSFileWriteFileExistsError {
+                    .response(queue: nil) { [weak self] request, response, data, error in
+                    if let error = error where error.code == NSFileWriteFileExistsError {
                         // Not a real error, the file was found on disk.
                         self?.finishRequestWithRemoteURL(remoteURL, fileURL: fileURL, error: nil)
                     } else {
-                        self?.finishRequestWithRemoteURL(remoteURL, fileURL: fileURL, error: error as? NSError)
+                        self?.finishRequestWithRemoteURL(remoteURL, fileURL: fileURL, error: error)
                     }
                 }
                 if let request = request {

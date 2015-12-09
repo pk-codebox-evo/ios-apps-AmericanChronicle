@@ -34,22 +34,22 @@ extension NSFileManager {
     }
 
     class func printAllDirectoryURLs() {
-        print("[RP] defaultDocumentDirectoryURL: \(defaultDocumentDirectoryURL)")
-        print("[RP] defaultApplicationDirectoryURL: \(defaultApplicationDirectoryURL)")
-        print("[RP] defaultLibraryDirectoryURL: \(defaultLibraryDirectoryURL)")
-        print("[RP] defaultCachesDirectoryURL: \(defaultCachesDirectoryURL)")
-        print("[RP] defaultDownloadsDirectoryURL: \(defaultDownloadsDirectoryURL)")
-        print("[RP] defaultItemReplacementDirectoryURL: \(defaultItemReplacementDirectoryURL)")
+        print("defaultDocumentDirectoryURL: \(defaultDocumentDirectoryURL)")
+        print("defaultApplicationDirectoryURL: \(defaultApplicationDirectoryURL)")
+        print("defaultLibraryDirectoryURL: \(defaultLibraryDirectoryURL)")
+        print("defaultCachesDirectoryURL: \(defaultCachesDirectoryURL)")
+        print("defaultDownloadsDirectoryURL: \(defaultDownloadsDirectoryURL)")
+        print("defaultItemReplacementDirectoryURL: \(defaultItemReplacementDirectoryURL)")
     }
 
     class var contentsOfTemporaryDirectory: [String] {
         let tempDirURL = NSTemporaryDirectory()
         do {
             let contents = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(tempDirURL)
-            print("[RP] contents: \(contents)")
+            print("contents: \(contents)")
             return contents
         } catch let error {
-            print("[RP] error: \(error)")
+            print("error: \(error)")
         }
         return []
     }
@@ -67,7 +67,7 @@ extension NSFileManager {
                 let attributes = try NSFileManager.defaultManager().attributesOfItemAtPath(fullURLString)
                 return attributes
             } catch let error {
-                print("[RP] error: \(error)")
+                print("error: \(error)")
             }
         }
         return [:]
