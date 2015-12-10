@@ -173,6 +173,10 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
         }
     }
 
+    @IBAction func filterButtonTapped(sender: UIButton) {
+        presenter?.userDidTapFilter()
+    }
+
     public func currentSearchTerm() -> String {
         return searchField?.text ?? ""
     }

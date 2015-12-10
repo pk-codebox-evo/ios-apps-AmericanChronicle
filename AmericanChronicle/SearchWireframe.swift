@@ -11,6 +11,7 @@ import UIKit
 public protocol SearchWireframeInterface: class {
     func userDidSelectSearchResult(row: SearchResultsRow, forTerm: String)
     func userDidTapCancel()
+    func userDidTapFilter()
 }
 
 public protocol SearchWireframeDelegate: class {
@@ -23,6 +24,7 @@ public protocol SearchWireframeDelegate: class {
 public class SearchWireframe: NSObject, SearchWireframeInterface, UIViewControllerTransitioningDelegate {
     let dependencies: SearchModuleDependencies
     var pageWireframe: PageWireframe?
+    var filtersWireframe: SearchFiltersWireframeInterface?
     weak var delegate: SearchWireframeDelegate?
     var showPageHandler: ((NSURL, Int, UIViewController) -> Void)?
 
@@ -32,6 +34,7 @@ public class SearchWireframe: NSObject, SearchWireframeInterface, UIViewControll
         self.dependencies = dependencies
         super.init()
         dependencies.presenter.wireframe = self
+//        dependencies.view?.presenter = dependencies.presenter
     }
 
     public func presentSearchFromViewController(presenting: UIViewController?) {
@@ -52,6 +55,12 @@ public class SearchWireframe: NSObject, SearchWireframeInterface, UIViewControll
             pageWireframe = PageWireframe(remoteURL: remoteURL, id: id, searchTerm: term, date: row.date, lccn: row.lccn, edition: row.edition, sequence: row.sequence)
             pageWireframe?.beginFromViewController(dependencies.view as? SearchViewController, withRemoteURL: remoteURL)
         }
+    }
+
+    public func userDidTapFilter() {
+        let view = SearchFiltersViewController(nibName: "SearchFiltersViewController", bundle: nil)
+        filtersWireframe = SearchFiltersWireframe(view: view)
+        filtersWireframe?.beginFromViewController(dependencies.view as? SearchViewController)
     }
 }
 

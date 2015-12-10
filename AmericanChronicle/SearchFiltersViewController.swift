@@ -232,7 +232,11 @@ class LocationsHeader: UICollectionReusableView {
     }
 }
 
-class SearchFiltersViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+protocol SearchFiltersViewInterface {
+
+}
+
+class SearchFiltersViewController: UIViewController, SearchFiltersViewInterface, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var collectionView: UICollectionView!
     var saveCallback: ((SearchFilters) -> ())?
