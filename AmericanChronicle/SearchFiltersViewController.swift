@@ -287,15 +287,6 @@ class SearchFiltersViewController: UIViewController, SearchFiltersViewInterface,
     }
 
     func locationsCellTapped() {
-        let vc = LocationSearchViewController(nibName: "LocationSearchViewController", bundle: nil)
-        vc.locationSelectedCallback = { [weak self] location in
-            var locations = self?.searchFilters.cities ?? []
-            locations.append(location)
-            self?.searchFilters.cities = locations
-            self?.collectionView.reloadData()
-            self?.navigationController?.popViewControllerAnimated(true)
-        }
-        navigationController?.pushViewController(vc, animated: true)
     }
 
     override func viewDidLoad() {

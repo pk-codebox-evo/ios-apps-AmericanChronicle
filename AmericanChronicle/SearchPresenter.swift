@@ -18,7 +18,7 @@ public protocol SearchPresenterInterface: class, SearchInteractorDelegate {
 
     func userDidTapCancel()
     func userDidTapReturn()
-    func userDidTapFilter()
+    func userDidTapUSStates()
     func userDidChangeSearchToTerm(term: String?)
     func userIsApproachingLastRow(term: String?, inCollection: [SearchResultsRow])
     func userDidSelectSearchResult(row: SearchResultsRow)
@@ -63,8 +63,8 @@ public class SearchPresenter: NSObject, SearchPresenterInterface {
         view?.resignFirstResponder()
     }
 
-    public func userDidTapFilter() {
-        wireframe?.userDidTapFilter()
+    public func userDidTapUSStates() {
+        wireframe?.userDidTapUSStates()
     }
 
     public func viewDidLoad() {

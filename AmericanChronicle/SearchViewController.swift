@@ -174,7 +174,7 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
     }
 
     @IBAction func filterButtonTapped(sender: UIButton) {
-        presenter?.userDidTapFilter()
+        presenter?.userDidTapUSStates()
     }
 
     public func currentSearchTerm() -> String {

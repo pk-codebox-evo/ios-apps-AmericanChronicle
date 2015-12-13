@@ -13,16 +13,15 @@ protocol SearchFiltersPresenterInterface {
 class SearchFiltersPresenter: SearchFiltersPresenterInterface {
     var wireframe: SearchFiltersWireframeInterface?
 
-
     func userDidTapEarliestDate() {
-        wireframe?.earliestDateButtonTapped(sender)
+        wireframe?.userDidTapEarliestDate()
     }
 
     func userDidTapLatestDate() {
-        wireframe?.latestDateButtonTapped(sender)
+        wireframe?.userDidTapLatestDate()
     }
 
     func userDidTapAddLocation() {
-        wireframe?.addLocationButtonTapped(sender)
+        wireframe?.userDidTapAddLocation()
     }
 }
