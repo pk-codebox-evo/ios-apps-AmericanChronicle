@@ -9,21 +9,33 @@
 import Foundation
 
 protocol USStatePickerPresenterInterface: USStatePickerViewDelegate {
+    var wireframe: USStatePickerWireframeInterface? { get set }
+    var view: USStatePickerViewInterface? { get set }
+    var interactor: USStatePickerInteractorInterface? { get set }
 
+    func begin(selectedStateNames: [String])
 }
 
 class USStatePickerPresenter: USStatePickerPresenterInterface {
-    var interactor: USStatePickerInteractorInterface?
+
+    var wireframe: USStatePickerWireframeInterface?
     var view: USStatePickerViewInterface?
-    func begin() {
+    var interactor: USStatePickerInteractorInterface?
+
+    func begin(selectedStateNames: [String]) {
         interactor?.loadStateNames { names, error in
             if let names = names {
                 self.view?.states = names
+                self.view?.setSelectedStateNames(selectedStateNames)
             }
         }
     }
 
-    func userDidTapState(stateName: String) {
+    func userDidTapSave(selectedStateNames: [String]) {
+        self.wireframe?.userDidTapSave(selectedStateNames)
+    }
 
+    func userDidTapCancel() {
+        self.wireframe?.userDidTapCancel()
     }
 }

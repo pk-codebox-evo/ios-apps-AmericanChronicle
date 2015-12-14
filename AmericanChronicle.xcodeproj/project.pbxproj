@@ -38,6 +38,7 @@
 		974E4FBE1BAF61FC006A8231 /* LoggingURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974E4FBD1BAF61FC006A8231 /* LoggingURLProtocol.swift */; };
 		974EFBF01C1DFDBC00E7D4CB /* USStatePickerDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974EFBEF1C1DFDBC00E7D4CB /* USStatePickerDataManager.swift */; };
 		974EFBF21C1E00BB00E7D4CB /* USStatePickerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974EFBF11C1E00BB00E7D4CB /* USStatePickerPresenter.swift */; };
+		974EFBF71C1E26AA00E7D4CB /* USStatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974EFBF51C1E26AA00E7D4CB /* USStatePickerViewController.swift */; };
 		975355681BF5A8550028B7FD /* KeyboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975355671BF5A8550028B7FD /* KeyboardService.swift */; };
 		975914AA1B7A47C40031BD13 /* SearchResultsPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975914A91B7A47C40031BD13 /* SearchResultsPageCell.swift */; };
 		97597C1E1BF8025300363A00 /* KeyboardServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97597C1D1BF8025300363A00 /* KeyboardServiceTests.swift */; };
@@ -80,7 +81,6 @@
 		978E9B171BAFA5400001690C /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978E9B161BAFA5400001690C /* SearchResult.swift */; };
 		978E9B1A1BAFA6360001690C /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978E9B191BAFA6360001690C /* SearchResults.swift */; };
 		978E9B1C1BAFB29E0001690C /* String+AMC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978E9B1B1BAFB29E0001690C /* String+AMC.swift */; };
-		979082701B8135150056CA9C /* USStatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9790826E1B8135150056CA9C /* USStatePickerViewController.swift */; };
 		9791A5D41BABC868008CF0A6 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970A00C11BABB19D00B3BB87 /* ObjectMapper.framework */; };
 		97924DF61BDC14F30035E5F6 /* PageDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97924DF51BDC14F30035E5F6 /* PageDataManagerTests.swift */; };
 		97963F871BCC31D700248942 /* PageWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97963F861BCC31D700248942 /* PageWireframe.swift */; };
@@ -205,6 +205,7 @@
 		974E4FBD1BAF61FC006A8231 /* LoggingURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggingURLProtocol.swift; sourceTree = "<group>"; };
 		974EFBEF1C1DFDBC00E7D4CB /* USStatePickerDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USStatePickerDataManager.swift; sourceTree = "<group>"; };
 		974EFBF11C1E00BB00E7D4CB /* USStatePickerPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USStatePickerPresenter.swift; sourceTree = "<group>"; };
+		974EFBF51C1E26AA00E7D4CB /* USStatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USStatePickerViewController.swift; sourceTree = "<group>"; };
 		975355671BF5A8550028B7FD /* KeyboardService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardService.swift; sourceTree = "<group>"; };
 		975914A91B7A47C40031BD13 /* SearchResultsPageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsPageCell.swift; sourceTree = "<group>"; };
 		97597C1D1BF8025300363A00 /* KeyboardServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardServiceTests.swift; sourceTree = "<group>"; };
@@ -248,7 +249,6 @@
 		978E9B161BAFA5400001690C /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		978E9B191BAFA6360001690C /* SearchResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 		978E9B1B1BAFB29E0001690C /* String+AMC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+AMC.swift"; sourceTree = "<group>"; };
-		9790826E1B8135150056CA9C /* USStatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USStatePickerViewController.swift; sourceTree = "<group>"; };
 		979082761B8147590056CA9C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		97924DF51BDC14F30035E5F6 /* PageDataManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageDataManagerTests.swift; sourceTree = "<group>"; };
 		97963F861BCC31D700248942 /* PageWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageWireframe.swift; sourceTree = "<group>"; };
@@ -710,7 +710,7 @@
 		97D542C11C1B4DAD00402D9A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9790826E1B8135150056CA9C /* USStatePickerViewController.swift */,
+				974EFBF51C1E26AA00E7D4CB /* USStatePickerViewController.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -919,7 +919,6 @@
 				978D11581B956F2D003B98C5 /* SearchField.swift in Sources */,
 				9725E5B21BDC547800E74370 /* CachedPageService.swift in Sources */,
 				974BA36A1B892D8900D7ACA2 /* Location.swift in Sources */,
-				979082701B8135150056CA9C /* USStatePickerViewController.swift in Sources */,
 				9787414B1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift in Sources */,
 				97EAC1DF1B9D3E0300956EBC /* RootWireframe.swift in Sources */,
 				97604E4E1C09238C00FA2805 /* ShareWireframe.swift in Sources */,
@@ -961,6 +960,7 @@
 				9725E5B41BDC571600E74370 /* SearchResultsRow.swift in Sources */,
 				97963F901BCC795D00248942 /* Request+AMC.swift in Sources */,
 				978D11541B955C39003B98C5 /* UIAppearance+AMC.m in Sources */,
+				974EFBF71C1E26AA00E7D4CB /* USStatePickerViewController.swift in Sources */,
 				97963F941BCC7BFE00248942 /* SearchPagesService.swift in Sources */,
 				9704921B1BC4D8C4001DA2DE /* CGPDFPageRef+AMC.swift in Sources */,
 				975914AA1B7A47C40031BD13 /* SearchResultsPageCell.swift in Sources */,
