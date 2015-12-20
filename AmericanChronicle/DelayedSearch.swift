@@ -8,40 +8,38 @@
 
 import UIKit
 
-public protocol DelayedSearchFactoryInterface {
-    func newSearchForTerm(term: String, page: Int, callback: ((SearchResults?, ErrorType?) -> ())) -> DelayedSearchInterface?
+protocol DelayedSearchFactoryInterface {
+    func newSearch(parameters: SearchParameters, page: Int, callback: ((SearchResults?, ErrorType?) -> ())) -> DelayedSearchInterface?
 }
 
-public class DelayedSearchFactory: DelayedSearchFactoryInterface {
+class DelayedSearchFactory: DelayedSearchFactoryInterface {
 
     let dataManager: SearchDataManagerInterface
-    public init(dataManager: SearchDataManagerInterface) {
+    init(dataManager: SearchDataManagerInterface) {
         self.dataManager = dataManager
     }
 
-    public func newSearchForTerm(term: String,
-                page: Int,
-                callback: ((SearchResults?, ErrorType?) -> ())) -> DelayedSearchInterface? {
-            return DelayedSearch(term: term, page: page, dataManager: dataManager, completionHandler: callback)
+    func newSearch(parameters: SearchParameters, page: Int, callback: ((SearchResults?, ErrorType?) -> ())) -> DelayedSearchInterface? {
+        return DelayedSearch(parameters: parameters, page: page, dataManager: dataManager, completionHandler: callback)
     }
 }
 
-public protocol DelayedSearchInterface {
-    var term: String { get }
-    init(term: String, page: Int, dataManager: SearchDataManagerInterface, runLoop: RunLoopInterface, completionHandler: ((SearchResults?, ErrorType?) -> ()))
+protocol DelayedSearchInterface {
+    var parameters: SearchParameters { get }
+    init(parameters: SearchParameters, page: Int, dataManager: SearchDataManagerInterface, runLoop: RunLoopInterface, completionHandler: ((SearchResults?, ErrorType?) -> ()))
     func cancel()
     func isSearchInProgress() -> Bool
 }
 
-public protocol RunLoopInterface {
+protocol RunLoopInterface {
     func addTimer(timer: NSTimer, forMode mode: String)
 }
 
 extension NSRunLoop: RunLoopInterface {}
 
-public class DelayedSearch: NSObject, DelayedSearchInterface {
+class DelayedSearch: NSObject, DelayedSearchInterface {
 
-    public let term: String
+    let parameters: SearchParameters
     private let page: Int
     private let dataManager: SearchDataManagerInterface
     private let completionHandler: (SearchResults?, ErrorType?) -> ()
@@ -49,14 +47,14 @@ public class DelayedSearch: NSObject, DelayedSearchInterface {
 
     // MARK: Init methods
 
-    public required init(
-                        term: String,
-                        page: Int,
-                        dataManager: SearchDataManagerInterface,
-                        runLoop: RunLoopInterface = NSRunLoop.currentRunLoop(),
-                        completionHandler: ((SearchResults?, ErrorType?) -> ()))
+    required init(
+        parameters: SearchParameters,
+        page: Int,
+        dataManager: SearchDataManagerInterface,
+        runLoop: RunLoopInterface = NSRunLoop.currentRunLoop(),
+        completionHandler: ((SearchResults?, ErrorType?) -> ()))
     {
-        self.term = term
+        self.parameters = parameters
         self.page = page
         self.dataManager = dataManager
         self.completionHandler = completionHandler
@@ -67,25 +65,25 @@ public class DelayedSearch: NSObject, DelayedSearchInterface {
         runLoop.addTimer(timer!, forMode: NSDefaultRunLoopMode)
     }
     
-    public func cancel() {
+    func cancel() {
         if timer.valid { // Request hasn't started yet
             timer.invalidate()
             let error = NSError(domain: "", code: -999, userInfo: nil)
             completionHandler(nil, error)
         } else { // Request has started already.
-            dataManager.cancelSearch(term, page: page) // Cancelling will trigger the completionHandler.
+            dataManager.cancelSearch(parameters, page: page) // Cancelling will trigger the completionHandler.
         }
     }
 
     /// This will return the correct value by the time the completion handler is called.
-    public func isSearchInProgress() -> Bool {
+    func isSearchInProgress() -> Bool {
         if timer.valid {
             return true
         }
-        return dataManager.isSearchInProgress(term, page: page)
+        return dataManager.isSearchInProgress(parameters, page: page)
     }
 
     func timerFired(sender: NSTimer) {
-        dataManager.startSearch(term, page: page, completionHandler: completionHandler)
+        dataManager.startSearch(parameters, page: page, completionHandler: completionHandler)
     }
 }

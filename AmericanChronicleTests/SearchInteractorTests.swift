@@ -8,7 +8,7 @@
 
 import UIKit
 import XCTest
-import AmericanChronicle
+@testable import AmericanChronicle
 
 class SearchInteractorTests: XCTestCase {
 
@@ -24,25 +24,27 @@ class SearchInteractorTests: XCTestCase {
         subject.delegate = delegate
     }
 
-    // --- startSearchForTerm(_, existingRows:) --- //
+    // --- startSearch(_, existingRows:) --- //
 
-    // * New term
-    //   * No existing rows
+    // * New parameters
+    //     * No existing rows
 
-    func testThat_whenStartSearchIsCalled_withANewTerm_andNoExistingRows_itAsksTheDataManagerToStartASearchWithTheSameTerm() {
-        subject.startSearchForTerm("Jibberish", existingRows: [])
-        XCTAssertEqual(searchFactory.newSearchForTerm_wasCalled_withTerm, "Jibberish")
+    func testThat_whenStartSearchIsCalled_withNewParameters_andNoExistingRows_itAsksTheDataManagerToStartASearchWithTheSameParameters() {
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject.startSearch(SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"]), existingRows: [])
+        XCTAssertEqual(searchFactory.newSearch_wasCalled_withParameters, params)
     }
 
-    func testThat_whenStartSearchIsCalled_withANewTerm_andNoExistingRows_itAsksTheDataManagerToStartASearchWithTheCorrectPage() {
-        subject.startSearchForTerm("Jibberish", existingRows: [])
-        XCTAssertEqual(searchFactory.newSearchForTerm_wasCalled_withPage, 1)
+    func testThat_whenStartSearchIsCalled_withNewParameters_andNoExistingRows_itAsksTheDataManagerToStartASearchWithTheCorrectPage() {
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject.startSearch(params, existingRows: [])
+        XCTAssertEqual(searchFactory.newSearch_wasCalled_withPage, 1)
     }
 
-    // * New term
+    // * New parameters
     //   * existingRows % 20 == 0
 
-    func testThat_whenStartSearchIsCalled_withANewTerm_andNumberOfExistingRowsEvenlyDivisibleByPageSize_itAsksTheDataManagerToStartASearchWithTheCorrectPage() {
+    func testThat_whenStartSearchIsCalled_withNewParameters_andNumberOfExistingRowsEvenlyDivisibleByPageSize_itAsksTheDataManagerToStartASearchWithTheCorrectPage() {
         let rows = (0..<40).map { _ in
             SearchResultsRow(
                 id: "",
@@ -55,21 +57,25 @@ class SearchInteractorTests: XCTestCase {
                 edition: 0,
                 sequence: 0)
         }
-        subject.startSearchForTerm("Jibberish", existingRows: rows)
-        XCTAssertEqual(searchFactory.newSearchForTerm_wasCalled_withPage, 3)
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject.startSearch(params, existingRows: rows)
+        XCTAssertEqual(searchFactory.newSearch_wasCalled_withPage, 3)
     }
 
-    func testThat_whenStartSearchIsCalled_withANewTerm_andNumberOfExistingRowsEvenlyDivisibleByPageSize_itCancelsTheLastSearch() {
-        subject.startSearchForTerm("First Search", existingRows: [])
+    func testThat_whenStartSearchIsCalled_withNewParameters_andNumberOfExistingRowsEvenlyDivisibleByPageSize_itCancelsTheLastSearch() {
+        let firstParams = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject.startSearch(firstParams, existingRows: [])
         let firstSearch = searchFactory.newSearchForTerm_lastReturnedSearch
-        subject.startSearchForTerm("Second Search", existingRows: [])
+        let secondParams = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado", "New Mexico"])
+        subject.startSearch(secondParams, existingRows: [])
         XCTAssert(firstSearch?.cancel_wasCalled ?? false)
     }
 
-    // * New term
+    // * New parameters
     //   * existingRows % 20 != 0
 
-    func testThat_whenStartSearchIsCalled_withANewTerm_andNumberOfExistingRowsNotEvenlyDivisibleByPageSize_itFailsImmediatelyWithAnInvalidParameterError() {
+    func testThat_whenStartSearchIsCalled_withNewParameters_andNumberOfExistingRowsNotEvenlyDivisibleByPageSize_itFailsImmediatelyWithAnInvalidParameterError() {
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
         let rows = (0..<25).map { _ in
             SearchResultsRow(
                 id: "",
@@ -82,12 +88,14 @@ class SearchInteractorTests: XCTestCase {
                 edition: 0,
                 sequence: 0)
         }
-        subject.startSearchForTerm("Jibberish", existingRows: rows)
+
+        subject.startSearch(params, existingRows: rows)
         XCTAssert(delegate.searchForTerm_didFinish_wasCalled_withError?.isInvalidParameterError() ?? false)
     }
 
-    func testThat_whenStartSearchIsCalled_withANewTerm_andNumberOfExistingRowsNotEvenlyDivisibleByPageSize_itDoesNotCancelTheLastSearch() {
-        subject.startSearchForTerm("First Search", existingRows: [])
+    func testThat_whenStartSearchIsCalled_withNewParameters_andNumberOfExistingRowsNotEvenlyDivisibleByPageSize_itDoesNotCancelTheLastSearch() {
+        let firstParams = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject.startSearch(firstParams, existingRows: [])
         let firstSearch = searchFactory.newSearchForTerm_lastReturnedSearch
         let rows = (0..<25).map { _ in
             SearchResultsRow(
@@ -101,54 +109,59 @@ class SearchInteractorTests: XCTestCase {
                 edition: 0,
                 sequence: 0)
         }
-        subject.startSearchForTerm("Second Search", existingRows: rows)
+        let secondParams = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado", "New Mexico"])
+        subject.startSearch(secondParams, existingRows: rows)
         XCTAssertFalse(firstSearch?.cancel_wasCalled ?? true)
     }
 
-    // * Duplicate term
-    //   * First search still in progress
+    // * Duplicate parameters
+    //    * First search still in progress
 
-    func testThat_whenStartSearchIsCalled_withADuplicateTerm_andTheFirstSearchIsStillInProgress_itFailsImmediatelyWithADuplicateRequestError() {
-        subject.startSearchForTerm("First Search", existingRows: [])
+    func testThat_whenStartSearchIsCalled_withDuplicateParameters_andTheFirstSearchIsStillInProgress_itFailsImmediatelyWithADuplicateRequestError() {
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject.startSearch(params, existingRows: [])
         let firstSearch = searchFactory.newSearchForTerm_lastReturnedSearch
         firstSearch?.isSearchInProgress_returnValue = true
-        subject.startSearchForTerm("First Search", existingRows: [])
+        subject.startSearch(params, existingRows: [])
         XCTAssert(delegate.searchForTerm_didFinish_wasCalled_withError!.isDuplicateRequestError() ?? false)
-
     }
 
-    func testThat_whenStartSearchIsCalled_withADuplicateTerm_andTheFirstSearchIsStillInProgress_itDoesNotCancelTheLastSearch() {
-        subject.startSearchForTerm("First Search", existingRows: [])
+    func testThat_whenStartSearchIsCalled_withDuplicateParameters_andTheFirstSearchIsStillInProgress_itDoesNotCancelTheLastSearch() {
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject.startSearch(params, existingRows: [])
         let firstSearch = searchFactory.newSearchForTerm_lastReturnedSearch
         firstSearch?.isSearchInProgress_returnValue = true
-        subject.startSearchForTerm("First Search", existingRows: [])
+        subject.startSearch(params, existingRows: [])
         XCTAssertFalse(firstSearch?.cancel_wasCalled ?? true)
     }
 
     // * Duplicate term
     //   * First search has already finished
 
-    func testThat_whenStartSearchIsCalled_withADuplicateTerm_andTheFirstSearchHasFinished_itAsksTheDataManagerToStartASearchWithTheDuplicateTerm() {
-        subject.startSearchForTerm("First Search", existingRows: [])
+    func testThat_whenStartSearchIsCalled_withDuplicateParameters_andTheFirstSearchHasFinished_itAsksTheDataManagerToStartASearchWithTheDuplicateTerm() {
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject.startSearch(params, existingRows: [])
         let firstSearch = searchFactory.newSearchForTerm_lastReturnedSearch
         firstSearch?.cancel()
-        searchFactory.newSearchForTerm_wasCalled_withTerm = nil
-        subject.startSearchForTerm("First Search", existingRows: [])
+        searchFactory.newSearch_wasCalled_withParameters = nil
+        subject.startSearch(params, existingRows: [])
 
-        XCTAssertEqual(searchFactory.newSearchForTerm_wasCalled_withTerm, "First Search")
+        XCTAssertEqual(searchFactory.newSearch_wasCalled_withParameters, params)
     }
 
-    // --- startSearchForTerm(_, existingRows:) -> (results, error) --- //
+    // --- startSearchForTerm(_, inStates: [], existingRows:) -> (results, error) --- //
 
     func testThat_whenASearchSucceeds_itPassesTheResultsToItsDelegate() {
-        subject.startSearchForTerm("", existingRows: [])
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject.startSearch(params, existingRows: [])
         let results = SearchResults()
         searchFactory.newSearchForTerm_lastReturnedSearch?.finishRequestWithSearchResults(results, error: nil)
         XCTAssertEqual(delegate.searchForTerm_didFinish_wasCalled_withResults, results)
     }
 
     func testThat_whenASearchFails_itPassesTheErrorToItsDelegate() {
-        subject.startSearchForTerm("", existingRows: [])
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject.startSearch(params, existingRows: [])
         let error = NSError(code: .InvalidParameter, message: "")
         searchFactory.newSearchForTerm_lastReturnedSearch?.finishRequestWithSearchResults(nil, error: error)
         XCTAssertEqual(delegate.searchForTerm_didFinish_wasCalled_withError, error)
@@ -157,7 +170,8 @@ class SearchInteractorTests: XCTestCase {
     // --- isSearchInProgress() --- //
 
     func testThat_whenAskedWhetherASearchIsInProgress_itAsksTheActiveSearch() {
-        subject.startSearchForTerm("sample search", existingRows: [])
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject.startSearch(params, existingRows: [])
         let search = searchFactory.newSearchForTerm_lastReturnedSearch
         subject.isSearchInProgress()
         XCTAssert(search?.isSearchInProgress_wasCalled ?? false)
@@ -166,7 +180,8 @@ class SearchInteractorTests: XCTestCase {
     // --- cancelLastSearch() --- //
 
     func testThat_whenCancelLastSearchIsCalled_itCancelsTheActiveSearch() {
-        subject.startSearchForTerm("some term", existingRows: [])
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject.startSearch(params, existingRows: [])
         let search = searchFactory.newSearchForTerm_lastReturnedSearch
         subject.cancelLastSearch()
         XCTAssert(search?.cancel_wasCalled ?? false)

@@ -264,7 +264,7 @@ class SearchFiltersViewController: UIViewController, SearchFiltersViewInterface,
     
     func earliestDateCellTapped() {
         let vc = DatePickerViewController(
-            latestPossibleDate: searchFilters.latestDate ?? SearchParameters.latestPossibleDate(),
+            latestPossibleDate: searchFilters.latestDate ?? SearchConstants.latestPossibleDate(),
             selectedDateOnInit: searchFilters.earliestDate)
         vc.saveCallback = { [weak self] selectedDate in
             self?.searchFilters.earliestDate = selectedDate
@@ -276,8 +276,8 @@ class SearchFiltersViewController: UIViewController, SearchFiltersViewInterface,
 
     func latestDateCellTapped() {
         let vc = DatePickerViewController(
-            earliestPossibleDate: searchFilters.earliestDate ?? SearchParameters.earliestPossibleDate(),
-            selectedDateOnInit: searchFilters.latestDate ?? SearchParameters.latestPossibleDate())
+            earliestPossibleDate: searchFilters.earliestDate ?? SearchConstants.earliestPossibleDate(),
+            selectedDateOnInit: searchFilters.latestDate ?? SearchConstants.latestPossibleDate())
         vc.saveCallback = { [weak self] selectedDate in
             self?.searchFilters.latestDate = selectedDate
             self?.collectionView.reloadData()

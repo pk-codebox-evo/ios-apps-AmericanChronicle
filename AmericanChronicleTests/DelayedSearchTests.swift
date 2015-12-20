@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import AmericanChronicle
+@testable import AmericanChronicle
 
 
 
@@ -31,7 +31,8 @@ class DelayedSearchTests: XCTestCase {
         runLoop = FakeRunLoop()
         dataManager = FakeSearchDataManager()
 
-        subject = DelayedSearch(term: "twain", page: 2, dataManager: dataManager, runLoop: runLoop, completionHandler: { results, error in
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject = DelayedSearch(parameters: params, page: 2, dataManager: dataManager, runLoop: runLoop, completionHandler: { results, error in
             self.results = results
             self.error = error as? NSError
             self.completionHandlerExpectation?.fulfill()
@@ -42,27 +43,27 @@ class DelayedSearchTests: XCTestCase {
         XCTAssert(runLoop.addTimer_wasCalled_withTimer?.valid ?? false)
     }
 
-    func testThat_beforeTheTimerHasFired_cancelInvalidatesTheTimer() {
+    func testThat_beforeTheTimerHasFired_cancel_invalidatesTheTimer() {
         subject.cancel()
         XCTAssertFalse(runLoop.addTimer_wasCalled_withTimer?.valid ?? true)
     }
 
-    func testThat_beforeTheTimerHasFired_cancelTriggersTheCompletionHandler_withACancelledError() {
+    func testThat_beforeTheTimerHasFired_cancel_triggersTheCompletionHandler_withACancelledError() {
         subject.cancel()
         XCTAssertEqual(error?.code, -999)
     }
 
-    func testThat_afterTheTimerHasFired_cancelWillCallCancelOnTheDataManager() {
+    func testThat_afterTheTimerHasFired_cancel_callsCancelOnTheDataManager() {
         runLoop.addTimer_wasCalled_withTimer?.fire()
         subject.cancel()
         XCTAssert(dataManager.cancelSearch_wasCalled)
     }
 
-    func testThat_beforeTheTimerHasFired_isSearchInProgressWillReturnTrue() {
+    func testThat_beforeTheTimerHasFired_isSearchInProgress_returnsTrue() {
         XCTAssert(subject.isSearchInProgress())
     }
 
-    func testThat_afterTheTimerHasFired_isSearchInProgressWillReturnTheValueReturnedByTheDataManager() {
+    func testThat_afterTheTimerHasFired_isSearchInProgress_returnsTheValueReturnedByTheDataManager() {
         runLoop.addTimer_wasCalled_withTimer?.fire()
         dataManager.isSearchInProgress_stubbedReturnValue = true
         XCTAssert(subject.isSearchInProgress())
@@ -70,9 +71,9 @@ class DelayedSearchTests: XCTestCase {
         XCTAssertFalse(subject.isSearchInProgress())
     }
 
-    func testThat_whenTheTimerFires_itStartsSearchOnTheDataManager_withTheCorrectTerm() {
+    func testThat_whenTheTimerFires_itStartsSearchOnTheDataManager_withTheCorrectParameters() {
         runLoop.addTimer_wasCalled_withTimer?.fire()
-        XCTAssertEqual(dataManager.startSearch_wasCalled_withTerm, "twain")
+        XCTAssertEqual(dataManager.startSearch_wasCalled_withParameters, SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"]))
     }
 
     func testThat_whenTheTimerFires_itStartsSearchOnTheDataManager_withTheCorrectPage() {

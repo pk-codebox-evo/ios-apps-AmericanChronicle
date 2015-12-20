@@ -12,10 +12,10 @@ import FSCalendar
 class CalendarViewDataSource: NSObject, FSCalendarDataSource {
 
     func minimumDateForCalendar(calendar: FSCalendar) -> NSDate {
-        return SearchParameters.earliestPossibleDate()
+        return SearchConstants.earliestPossibleDate()
     }
 
     func maximumDateForCalendar(calendar: FSCalendar) -> NSDate {
-        return SearchParameters.latestPossibleDate()
+        return SearchConstants.latestPossibleDate()
     }
 }

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 ryanipete. All rights reserved.
 //
 
-import AmericanChronicle
+@testable import AmericanChronicle
 
 class FakeSearchInteractor: SearchInteractorInterface {
 
@@ -14,10 +14,11 @@ class FakeSearchInteractor: SearchInteractorInterface {
     var delegate: SearchInteractorDelegate?
 
     var startSearch_wasCalled = false
-    var startSearch_wasCalled_withTerm: String?
-    func startSearchForTerm(term: String, existingRows: [SearchResultsRow]) {
+    var startSearch_wasCalled_withParameters: SearchParameters?
+
+    func startSearch(parameters: SearchParameters, existingRows: [SearchResultsRow]) {
         startSearch_wasCalled = true
-        startSearch_wasCalled_withTerm = term
+        startSearch_wasCalled_withParameters = parameters
     }
 
     var fake_isSearchInProgress = false

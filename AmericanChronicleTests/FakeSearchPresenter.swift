@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 ryanipete. All rights reserved.
 //
 
-import AmericanChronicle
+@testable import AmericanChronicle
 
 class FakeSearchPresenter: NSObject, SearchPresenterInterface {
 
@@ -18,15 +18,18 @@ class FakeSearchPresenter: NSObject, SearchPresenterInterface {
 
     func userDidTapReturn() {}
 
+    func userDidTapUSStates() {}
+
     func userDidChangeSearchToTerm(term: String?) {}
 
     func userIsApproachingLastRow(term: String?, inCollection: [SearchResultsRow]) {}
 
     func userDidSelectSearchResult(row: SearchResultsRow) {}
 
-    func searchForTerm(term: String, existingRows: [SearchResultsRow], didFinishWithResults: SearchResults?, error: NSError?) {}
+    func search(parameters: SearchParameters, existingRows: [SearchResultsRow], didFinishWithResults: SearchResults?, error: NSError?) {}
 
-    func viewDidLoad() {
+    func viewDidLoad() {}
 
-    }
+    func userDidSaveFilteredUSStates(stateNames: [String]) {}
+    func userDidNotSaveFilteredUSStates() {}
 }

@@ -9,23 +9,23 @@
 // MARK: -
 // MARK: SearchDataManagerProtocol
 
-public protocol SearchDataManagerInterface {
+protocol SearchDataManagerInterface {
     var service: SearchPagesServiceInterface? { get set }
-    func startSearch(term: String, page: Int, completionHandler: ((SearchResults?, NSError?) -> Void))
-    func cancelSearch(term: String, page: Int)
-    func isSearchInProgress(term: String, page: Int) -> Bool
+    func startSearch(parameters: SearchParameters, page: Int, completionHandler: ((SearchResults?, NSError?) -> Void))
+    func cancelSearch(parameters: SearchParameters, page: Int)
+    func isSearchInProgress(parameters: SearchParameters, page: Int) -> Bool
 }
 
 // MARK: -
 // MARK: SearchDataManager
 
-public class SearchDataManager: SearchDataManagerInterface {
+class SearchDataManager: SearchDataManagerInterface {
 
-    public var service: SearchPagesServiceInterface?
+    var service: SearchPagesServiceInterface?
 
     // MARK: Init methods
 
-    public init(service: SearchPagesServiceInterface = SearchPagesService()) {
+    init(service: SearchPagesServiceInterface = SearchPagesService()) {
         self.service = service
     }
 
@@ -35,20 +35,19 @@ public class SearchDataManager: SearchDataManagerInterface {
 
     // MARK: SearchDataManagerProtocol conformance
 
-    public func startSearch(term: String, page: Int, completionHandler: ((SearchResults?, NSError?) -> Void)) {
-        
-        service?.startSearch(term, page: page, contextID: contextID, completionHandler: { request, error in
+    func startSearch(parameters: SearchParameters, page: Int, completionHandler: ((SearchResults?, NSError?) -> Void)) {
+        service?.startSearch(parameters, page: page, contextID: contextID, completionHandler: { request, error in
             // TODO: Handle caching if not done via HTTP
             let err = error as? NSError
             completionHandler(request, err)
         })
     }
 
-    public func cancelSearch(term: String, page: Int) {
-        service?.cancelSearch(term, page: page, contextID: contextID)
+    func cancelSearch(parameters: SearchParameters, page: Int) {
+        service?.cancelSearch(parameters, page: page, contextID: contextID)
     }
 
-    public func isSearchInProgress(term: String, page: Int) -> Bool {
-        return service?.isSearchInProgress(term, page: page, contextID: contextID) ?? false
+    func isSearchInProgress(parameters: SearchParameters, page: Int) -> Bool {
+        return service?.isSearchInProgress(parameters, page: page, contextID: contextID) ?? false
     }
 }
