@@ -150,7 +150,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="feH-ow-6C3" userLabel="errorView">
-                                <rect key="frame" x="20" y="308" width="374" height="120"/>
+                                <rect key="frame" x="20" y="335" width="374" height="66"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZ8-rd-esP" userLabel="errorTitle">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="21"/>
@@ -164,26 +164,16 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Abw-pN-7F4" userLabel="dismissButton">
-                                        <rect key="frame" x="0.0" y="66" width="374" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="xaQ-h8-MFr"/>
-                                        </constraints>
-                                        <state key="normal" title="Dismiss"/>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="j2P-Tj-twH" firstAttribute="top" secondItem="fZ8-rd-esP" secondAttribute="bottom" constant="12" id="4kQ-OQ-8QW"/>
                                     <constraint firstItem="fZ8-rd-esP" firstAttribute="top" secondItem="feH-ow-6C3" secondAttribute="top" id="4pc-cM-gfm"/>
+                                    <constraint firstAttribute="bottom" secondItem="j2P-Tj-twH" secondAttribute="bottom" constant="12" id="5iz-6y-KXF"/>
                                     <constraint firstAttribute="trailing" secondItem="fZ8-rd-esP" secondAttribute="trailing" id="9ej-bE-TiP"/>
-                                    <constraint firstItem="Abw-pN-7F4" firstAttribute="leading" secondItem="feH-ow-6C3" secondAttribute="leading" id="MfM-Kc-85u"/>
                                     <constraint firstItem="fZ8-rd-esP" firstAttribute="leading" secondItem="feH-ow-6C3" secondAttribute="leading" id="R4Y-eN-qfR"/>
-                                    <constraint firstAttribute="bottom" secondItem="Abw-pN-7F4" secondAttribute="bottom" constant="10" id="Y6u-xq-J2S"/>
-                                    <constraint firstAttribute="trailing" secondItem="Abw-pN-7F4" secondAttribute="trailing" id="Zsl-ly-vnH"/>
                                     <constraint firstAttribute="bottom" secondItem="j2P-Tj-twH" secondAttribute="bottom" constant="325" id="cBo-iI-dlk"/>
                                     <constraint firstItem="j2P-Tj-twH" firstAttribute="leading" secondItem="feH-ow-6C3" secondAttribute="leading" id="sEJ-Kv-gvH"/>
-                                    <constraint firstItem="Abw-pN-7F4" firstAttribute="top" secondItem="j2P-Tj-twH" secondAttribute="bottom" constant="12" id="sM4-4c-a1A"/>
                                     <constraint firstAttribute="trailing" secondItem="j2P-Tj-twH" secondAttribute="trailing" id="upJ-Er-keF"/>
                                 </constraints>
                                 <variation key="default">

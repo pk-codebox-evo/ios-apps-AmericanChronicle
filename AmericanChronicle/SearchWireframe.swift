@@ -30,13 +30,10 @@ class SearchWireframe: NSObject, SearchWireframeInterface, UIViewControllerTrans
     weak var delegate: SearchWireframeDelegate?
     var showPageHandler: ((NSURL, Int, UIViewController) -> Void)?
 
-    init(
-        dependencies: SearchModuleDependencies = SearchModuleDependencies())
-    {
+    init(dependencies: SearchModuleDependencies = SearchModuleDependencies()) {
         self.dependencies = dependencies
         super.init()
         dependencies.presenter.wireframe = self
-//        dependencies.view?.presenter = dependencies.presenter
     }
 
     func presentSearchFromViewController(presenting: UIViewController?) {

@@ -73,7 +73,7 @@ class USStatePickerViewController: UICollectionViewController, USStatePickerView
         collectionView?.allowsMultipleSelection = true
         collectionView?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
         let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
-        layout?.sectionInset = UIEdgeInsets(top: 200, left: 20, bottom: 20, right: 20)
+        layout?.sectionInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
         layout?.minimumInteritemSpacing = 1.0
         layout?.minimumLineSpacing = 1.0
     }
