@@ -14,6 +14,7 @@ public extension NSError {
     public enum Code: Int {
         case InvalidParameter
         case DuplicateRequest
+        case MissingBundleFile
     }
 
     public convenience init(code: Code, message: String?) {
@@ -23,6 +24,8 @@ public extension NSError {
             userInfo[NSLocalizedDescriptionKey] = "InvalidParameter"
         case .DuplicateRequest:
             userInfo[NSLocalizedDescriptionKey] = "DuplicateRequest"
+        case .MissingBundleFile:
+            userInfo[NSLocalizedDescriptionKey] = "MissingBundleFile"
         }
         userInfo[NSLocalizedRecoverySuggestionErrorKey] = message
         self.init(domain: NSError.appDomain, code: code.rawValue, userInfo: userInfo)
@@ -35,5 +38,9 @@ public extension NSError {
 
     public func isDuplicateRequestError() -> Bool {
         return (Code(rawValue: code) == .DuplicateRequest) && (domain == NSError.appDomain)
+    }
+
+    public func isMissingBundleFileError() -> Bool {
+        return (Code(rawValue: code) == .MissingBundleFile) && (domain == NSError.appDomain)
     }
 }

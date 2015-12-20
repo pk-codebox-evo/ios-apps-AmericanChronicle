@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import AmericanChronicle
+@testable import AmericanChronicle
 import ObjectMapper
 
 class OCRCoordinatesTests: XCTestCase {

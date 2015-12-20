@@ -8,33 +8,35 @@
 
 import UIKit
 
-public protocol SearchWireframeInterface: class {
+protocol SearchWireframeInterface: class {
     func userDidSelectSearchResult(row: SearchResultsRow, forTerm: String)
     func userDidTapCancel()
+    func userDidTapUSStates(currentSelectedStateNames: [String])
+    func userDidSaveFilteredUSStates(stateNames: [String])
+    func userDidNotSaveFilteredUSStates()
 }
 
-public protocol SearchWireframeDelegate: class {
+protocol SearchWireframeDelegate: class {
     func userDidTapCancel()
 }
 
 // MARK: -
 // MARK: SearchWireframe class
 
-public class SearchWireframe: NSObject, SearchWireframeInterface, UIViewControllerTransitioningDelegate {
+class SearchWireframe: NSObject, SearchWireframeInterface, UIViewControllerTransitioningDelegate {
     let dependencies: SearchModuleDependencies
     var pageWireframe: PageWireframe?
+    var statePickerWireframe: USStatePickerWireframe?
     weak var delegate: SearchWireframeDelegate?
     var showPageHandler: ((NSURL, Int, UIViewController) -> Void)?
 
-    public init(
-        dependencies: SearchModuleDependencies = SearchModuleDependencies())
-    {
+    init(dependencies: SearchModuleDependencies = SearchModuleDependencies()) {
         self.dependencies = dependencies
         super.init()
         dependencies.presenter.wireframe = self
     }
 
-    public func presentSearchFromViewController(presenting: UIViewController?) {
+    func presentSearchFromViewController(presenting: UIViewController?) {
         if let vc = dependencies.view as? SearchViewController {
             let nvc = UINavigationController(rootViewController: vc)
             nvc.modalPresentationStyle = .Custom
@@ -43,30 +45,44 @@ public class SearchWireframe: NSObject, SearchWireframeInterface, UIViewControll
         }
     }
 
-    public func userDidTapCancel() {
+    func userDidTapCancel() {
         delegate?.userDidTapCancel()
     }
 
-    public func userDidSelectSearchResult(row: SearchResultsRow, forTerm term: String) {
+    func userDidSelectSearchResult(row: SearchResultsRow, forTerm term: String) {
         if let remoteURL = row.pdfURL, id = row.id {
             pageWireframe = PageWireframe(remoteURL: remoteURL, id: id, searchTerm: term, date: row.date, lccn: row.lccn, edition: row.edition, sequence: row.sequence)
             pageWireframe?.beginFromViewController(dependencies.view as? SearchViewController, withRemoteURL: remoteURL)
         }
+    }
+
+    func userDidTapUSStates(currentSelectedStateNames: [String]) {
+        statePickerWireframe = USStatePickerWireframe(parentWireframe: self)
+        statePickerWireframe?.beginFromViewController(dependencies.view as? SearchViewController, selectedStateNames: currentSelectedStateNames)
+    }
+
+    func userDidSaveFilteredUSStates(stateNames: [String]) {
+        dependencies.presenter.userDidSaveFilteredUSStates(stateNames)
+        statePickerWireframe?.finish()
+    }
+
+    func userDidNotSaveFilteredUSStates() {
+        statePickerWireframe?.finish()
     }
 }
 
 // MARK: -
 // MARK: SearchWireframe (UIViewControllerTransitioningDelegate)
 
-public extension SearchWireframe {
-    public func animationControllerForPresentedController(
+extension SearchWireframe {
+    func animationControllerForPresentedController(
         presented: UIViewController,
         presentingController presenting: UIViewController,
         sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return ShowSearchTransitionController()
     }
 
-    public func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return HideSearchTransitionController()
     }
 }
@@ -74,11 +90,11 @@ public extension SearchWireframe {
 // MARK: -
 // MARK: ShowSearchTransitionController
 
-public class ShowSearchTransitionController: NSObject, UIViewControllerAnimatedTransitioning {
+class ShowSearchTransitionController: NSObject, UIViewControllerAnimatedTransitioning {
 
     let duration = 0.1
 
-    public func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
 
         let fromNVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as? UINavigationController
         let toNVC = transitionContext.viewControllerForKey(UITransitionContextToViewControllerKey) as? UINavigationController
@@ -99,7 +115,7 @@ public class ShowSearchTransitionController: NSObject, UIViewControllerAnimatedT
         }
     }
 
-    public func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return duration
     }
 }
@@ -107,11 +123,11 @@ public class ShowSearchTransitionController: NSObject, UIViewControllerAnimatedT
 // MARK: -
 // MARK: HideSearchTransitionController class
 
-public class HideSearchTransitionController: NSObject, UIViewControllerAnimatedTransitioning {
+class HideSearchTransitionController: NSObject, UIViewControllerAnimatedTransitioning {
 
     let duration = 0.1
 
-    public func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
 
         if let fromView = transitionContext.viewForKey(UITransitionContextFromViewKey) {
             UIView.animateWithDuration(duration, animations: {
@@ -123,7 +139,7 @@ public class HideSearchTransitionController: NSObject, UIViewControllerAnimatedT
         }
     }
 
-    public func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return duration
     }
 }

@@ -6,17 +6,14 @@
 //  Copyright © 2015 ryanipete. All rights reserved.
 //
 
-import AmericanChronicle
+@testable import AmericanChronicle
 import ObjectMapper
 import Alamofire
 import AlamofireObjectMapper
 
 class FakeRequest: RequestProtocol {
 
-
     var task: NSURLSessionTask = NSURLSessionTask()
-
-
 
     private var responseObjectWasCalled_withCompletionHandler: Any?
     private var responseWasCalled_withCompletionHandler: ((NSURLRequest?, NSHTTPURLResponse?, NSData?, ErrorType?) -> Void)?
@@ -31,7 +28,10 @@ class FakeRequest: RequestProtocol {
         return self
     }
 
-    func cancel() {}
+    var cancel_wasCalled = false
+    func cancel() {
+        cancel_wasCalled = true
+    }
 
     func finishWithResponseObject<T: Mappable>(responseObject: Response<T, NSError>) {
         let handler = responseObjectWasCalled_withCompletionHandler as? (Response<T, NSError> -> Void)

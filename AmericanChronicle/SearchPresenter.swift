@@ -11,62 +11,57 @@ import UIKit
 // MARK: -
 // MARK: SearchPresenterInterface
 
-public protocol SearchPresenterInterface: class, SearchInteractorDelegate {
+protocol SearchPresenterInterface: class, SearchInteractorDelegate {
     var wireframe: SearchWireframeInterface? { get set }
     var view: SearchViewInterface? { get set }
     var interactor: SearchInteractorInterface? { get set }
 
     func userDidTapCancel()
     func userDidTapReturn()
+    func userDidTapUSStates()
     func userDidChangeSearchToTerm(term: String?)
     func userIsApproachingLastRow(term: String?, inCollection: [SearchResultsRow])
     func userDidSelectSearchResult(row: SearchResultsRow)
     func viewDidLoad()
+    func userDidSaveFilteredUSStates(stateNames: [String])
+    func userDidNotSaveFilteredUSStates()
 }
 
 // MARK: -
 // MARK: SearchPresenter
 
-public class SearchPresenter: NSObject, SearchPresenterInterface {
+class SearchPresenter: NSObject, SearchPresenterInterface {
 
-    // MARK: Public Properties
+    // MARK: Properties
 
-    weak public var wireframe: SearchWireframeInterface?
-    weak public var view: SearchViewInterface? {
+    weak var wireframe: SearchWireframeInterface?
+    weak var view: SearchViewInterface? {
         didSet {
             updateViewForKeyboardFrame(KeyboardService.sharedInstance.keyboardFrame)
         }
     }
-    weak public var interactor: SearchInteractorInterface?
+    weak var interactor: SearchInteractorInterface?
 
-    public override init() {
+    override init() {
         super.init()
         KeyboardService.sharedInstance.addFrameChangeHandler("\(unsafeAddressOf(self))") { [weak self] rect in
             self?.updateViewForKeyboardFrame(rect)
         }
     }
 
-    func updateViewForKeyboardFrame(rect: CGRect?) {
-        view?.setBottomContentInset(rect?.size.height ?? 0)
-    }
-
-    public func userDidTapCancel() {
+    func userDidTapCancel() {
         wireframe?.userDidTapCancel()
     }
 
-    public func userDidSelectSearchResult(row: SearchResultsRow) {
-        wireframe?.userDidSelectSearchResult(row, forTerm: view?.currentSearchTerm() ?? "")
-    }
-
-    public func userDidTapReturn() {
+    func userDidTapReturn() {
         view?.resignFirstResponder()
     }
 
-    public func viewDidLoad() {
-        updateViewForKeyboardFrame(KeyboardService.sharedInstance.keyboardFrame)
+    func userDidTapUSStates() {
+        wireframe?.userDidTapUSStates(filteredUSStates)
     }
 
-    public func userDidChangeSearchToTerm(term: String?) {
+    func userDidChangeSearchToTerm(term: String?) {
 
         let nonNilTerm = term ?? ""
         if (nonNilTerm.characters.count == 0) {
@@ -77,19 +72,33 @@ public class SearchPresenter: NSObject, SearchPresenterInterface {
 
         view?.setViewState(.LoadingNewTerm)
 
-        interactor?.startSearchForTerm(nonNilTerm, existingRows: [])
+        let parameters = SearchParameters(term: nonNilTerm, states: filteredUSStates)
+        interactor?.startSearch(parameters, existingRows: [])
     }
 
-    public func userIsApproachingLastRow(term: String?, inCollection collection: [SearchResultsRow]) {
+    func userIsApproachingLastRow(term: String?, inCollection collection: [SearchResultsRow]) {
         let nonNilTerm = term ?? ""
         if (nonNilTerm.characters.count == 0) {
             return
         }
         view?.setViewState(.LoadingMoreRows)
-        interactor?.startSearchForTerm(nonNilTerm, existingRows: collection)
+        let parameters = SearchParameters(term: nonNilTerm, states: filteredUSStates)
+        interactor?.startSearch(parameters, existingRows: collection)
     }
 
-    public func searchForTerm(term: String, existingRows: [SearchResultsRow], didFinishWithResults results: SearchResults?, error: NSError?) {
+    func userDidSelectSearchResult(row: SearchResultsRow) {
+        wireframe?.userDidSelectSearchResult(row, forTerm: view?.currentSearchTerm() ?? "")
+    }
+
+    func viewDidLoad() {
+        updateViewForKeyboardFrame(KeyboardService.sharedInstance.keyboardFrame)
+    }
+
+
+
+
+
+    func search(parameters: SearchParameters, existingRows: [SearchResultsRow], didFinishWithResults results: SearchResults?, error: NSError?) {
 
         if let results = results, items = results.items {
             var allRows = existingRows
@@ -120,7 +129,7 @@ public class SearchPresenter: NSObject, SearchPresenterInterface {
             }
 
             if allRows.count > 0 {
-                let title = "\(results.totalItems ?? 0) matches for \(term)"
+                let title = "\(results.totalItems ?? 0) matches for '\(parameters.term)'"
                 view?.setViewState(.Ideal(title: title, rows: allRows))
             } else {
                 view?.setViewState(.EmptyResults)
@@ -136,6 +145,20 @@ public class SearchPresenter: NSObject, SearchPresenterInterface {
         } else {
             view?.setViewState(.EmptyResults)
         }
+    }
+
+    private var filteredUSStates: [String] = []
+
+    func userDidSaveFilteredUSStates(stateNames: [String]) {
+        filteredUSStates = stateNames
+    }
+
+    func userDidNotSaveFilteredUSStates() {
+        
+    }
+
+    func updateViewForKeyboardFrame(rect: CGRect?) {
+        view?.setBottomContentInset(rect?.size.height ?? 0)
     }
 
     deinit {

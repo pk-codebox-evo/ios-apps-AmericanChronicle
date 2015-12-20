@@ -11,16 +11,16 @@ import Alamofire
 // MARK: -
 // MARK: SearchPagesWebServiceProtocol
 
-public protocol SearchPagesServiceInterface {
-    func startSearch(term: String, page: Int, contextID: String, completionHandler: ((SearchResults?, ErrorType?) -> Void))
-    func isSearchInProgress(term: String, page: Int, contextID: String) -> Bool
-    func cancelSearch(term: String, page: Int, contextID: String)
+protocol SearchPagesServiceInterface {
+    func startSearch(parameters: SearchParameters, page: Int, contextID: String, completionHandler: ((SearchResults?, ErrorType?) -> Void))
+    func isSearchInProgress(parameters: SearchParameters, page: Int, contextID: String) -> Bool
+    func cancelSearch(parameters: SearchParameters, page: Int, contextID: String)
 }
 
 // MARK: -
 // MARK: SearchPagesWebService
 
-public class SearchPagesService: SearchPagesServiceInterface {
+class SearchPagesService: SearchPagesServiceInterface {
 
     // MARK: Properties
 
@@ -30,7 +30,7 @@ public class SearchPagesService: SearchPagesServiceInterface {
 
     // MARK: Init methods
 
-    public init(manager: ManagerProtocol = Manager()) {
+    init(manager: ManagerProtocol = Manager()) {
         self.manager = manager
     }
 
@@ -44,56 +44,57 @@ public class SearchPagesService: SearchPagesServiceInterface {
     ///
     /// `term` must have a non-zero character count
     /// `page` must be 1 or greater
-    public func startSearch(term: String, page: Int, contextID: String, completionHandler: ((SearchResults?, ErrorType?) -> Void)) {
-
-        if term.characters.count <= 0 {
-            completionHandler(nil, NSError(code: .InvalidParameter, message: "Tried to search for an empty term."))
+    func startSearch(parameters: SearchParameters, page: Int, contextID: String, completionHandler: ((SearchResults?, ErrorType?) -> Void)) {
+        guard parameters.term.characters.count > 0 else {
+            let error = NSError(code: .InvalidParameter, message: "Tried to search for an empty term.")
+            completionHandler(nil, error)
             return
         }
 
-        if page < 1 {
+        guard page > 0 else {
             completionHandler(nil, NSError(code: .InvalidParameter, message: "Tried to search for an invalid page."))
             return
         }
 
-        if isSearchInProgress(term, page: page, contextID: contextID) {
+        guard !isSearchInProgress(parameters, page: page, contextID: contextID) else {
             completionHandler(nil, NSError(code: .DuplicateRequest, message: "Message tried to send a duplicate request."))
             return
         }
 
-        let params: [String: AnyObject] = ["format": "json", "rows": 20, "proxtext": term, "page": page]
-        let URLString = ChroniclingAmericaEndpoint.PagesSearch.fullURLString ?? ""
+        let params: [String: AnyObject] = ["format": "json", "rows": 20, "proxtext": parameters.term, "page": page]
+        let statesString = parameters.states.map { "state=\($0)" }.joinWithSeparator("&")
+        let URLString = "\(ChroniclingAmericaEndpoint.PagesSearch.fullURLString ?? "")?\(statesString)"
         let request = self.manager.request(.GET, URLString: URLString, parameters: params)?.responseObject { (response: Response<SearchResults, NSError>) in
             dispatch_sync(self.queue) {
-                self.activeRequests[self.keyForTerm(term, page: page, contextID: contextID)] = nil
+                self.activeRequests[self.keyForParameters(parameters, page: page, contextID: contextID)] = nil
             }
             completionHandler(response.result.value, response.result.error)
         }
 
         dispatch_sync(queue) {
-            self.activeRequests[self.keyForTerm(term, page: page, contextID: contextID)] = request
+            self.activeRequests[self.keyForParameters(parameters, page: page, contextID: contextID)] = request
         }
     }
 
-    public func cancelSearch(term: String, page: Int, contextID: String) {
+    func cancelSearch(parameters: SearchParameters, page: Int, contextID: String) {
         var request: RequestProtocol? = nil
         dispatch_sync(queue) {
-            request = self.activeRequests[self.keyForTerm(term, page: page, contextID: contextID)]
+            request = self.activeRequests[self.keyForParameters(parameters, page: page, contextID: contextID)]
         }
         request?.cancel()
     }
 
-    public func isSearchInProgress(term: String, page: Int, contextID: String) -> Bool {
+    func isSearchInProgress(parameters: SearchParameters, page: Int, contextID: String) -> Bool {
         var isInProgress = false
         dispatch_sync(queue) {
-            isInProgress = self.activeRequests[self.keyForTerm(term, page: page, contextID: contextID)] != nil
+            isInProgress = self.activeRequests[self.keyForParameters(parameters, page: page, contextID: contextID)] != nil
         }
         return isInProgress
     }
 
     // MARK: Private methods
 
-    private func keyForTerm(term: String, page: Int, contextID: String) -> String {
-        return "\(term)-\(page)-\(contextID)"
+    private func keyForParameters(parameters: SearchParameters, page: Int, contextID: String) -> String {
+        return "\(parameters.term)-\(parameters.states.joinWithSeparator("."))-\(page)-\(contextID)"
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 import XCTest
-import AmericanChronicle
+@testable import AmericanChronicle
 
 class SearchPresenterTests: XCTestCase {
 
@@ -37,7 +37,7 @@ class SearchPresenterTests: XCTestCase {
 
     func testThat_whenTheSearchTermChanges_andTheNewTermIsNotEmpty_itStartsASearch() {
         subject.userDidChangeSearchToTerm("Blah")
-        XCTAssertEqual(interactor.startSearch_wasCalled_withTerm ?? "", "Blah")
+        XCTAssertEqual(interactor.startSearch_wasCalled_withParameters?.term, "Blah")
     }
 
     func testThat_whenTheSearchTermChanges_andTheNewTermIsNotEmpty_itAsksTheViewToShowItsLoadingIndicator() {
@@ -62,7 +62,7 @@ class SearchPresenterTests: XCTestCase {
 
     func testThat_whenASearchFinishes_andTheInteractorHasNoWork_itAsksTheViewToShowResults() {
         interactor.fake_isSearchInProgress = false
-        subject.searchForTerm("Blah", existingRows: [], didFinishWithResults: nil, error: nil)
+        subject.search(SearchParameters(term: "", states: []), existingRows: [], didFinishWithResults: nil, error: nil)
         XCTAssertEqual(view.setViewState_wasCalled_withState, ViewState.EmptyResults)
     }
 
@@ -70,23 +70,23 @@ class SearchPresenterTests: XCTestCase {
         let results = SearchResults()
         results.items = [SearchResult()]
 
-        subject.searchForTerm("Blah", existingRows: [], didFinishWithResults: results, error: nil)
+        subject.search(SearchParameters(term: "Blah", states: []), existingRows: [], didFinishWithResults: results, error: nil)
 
         let row = SearchResultsRow(id: "", date: nil, cityState: "", publicationTitle: "", thumbnailURL: nil, pdfURL: nil, lccn: "", edition: 1, sequence: 18)
 
-        XCTAssertEqual(view.setViewState_wasCalled_withState, ViewState.Ideal(title: "0 matches for Blah", rows: [row]))
+        XCTAssertEqual(view.setViewState_wasCalled_withState, ViewState.Ideal(title: "0 matches for 'Blah'", rows: [row]))
     }
 
     func testThat_whenASearchSucceeds_andThereAreNoResults_itAsksTheViewToShowItsEmptyResultsMessage() {
         let results = SearchResults()
         results.items = []
-        subject.searchForTerm("Blah", existingRows: [], didFinishWithResults: results, error: nil)
+        subject.search(SearchParameters(term: "", states: []), existingRows: [], didFinishWithResults: results, error: nil)
         XCTAssertEqual(view.setViewState_wasCalled_withState, ViewState.EmptyResults)
     }
 
     func testThat_whenASearchFails_itAsksTheViewToShowAnErrorMessage() {
         let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: ""])
-        subject.searchForTerm("Blah", existingRows: [], didFinishWithResults: nil, error: error)
+        subject.search(SearchParameters(term: "", states: []), existingRows: [], didFinishWithResults: nil, error: error)
         XCTAssertEqual(view.setViewState_wasCalled_withState, ViewState.Error(title: "", message: nil))
     }
 

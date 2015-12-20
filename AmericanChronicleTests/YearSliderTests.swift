@@ -8,7 +8,7 @@
 
 import UIKit
 import XCTest
-import AmericanChronicle
+@testable import AmericanChronicle
 
 class YearSliderTests: XCTestCase {
 

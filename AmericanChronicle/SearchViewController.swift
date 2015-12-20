@@ -13,7 +13,7 @@ import UIKit
 // The View is passive. It waits for the Presenter to give it content to display; it never asks the Presenter for data.
 // The view controller shouldn’t be making decisions based on (user) actions, but it should pass these events along to something that can.
 
-public protocol SearchViewInterface: class {
+protocol SearchViewInterface: class {
     weak var presenter: SearchPresenterInterface? { get set }
     func setViewState(state: ViewState)
     func setBottomContentInset(bottom: CGFloat)
@@ -22,7 +22,7 @@ public protocol SearchViewInterface: class {
 }
 
 // http://scotthurff.com/posts/why-your-user-interface-is-awkward-youre-ignoring-the-ui-stack
-public enum ViewState: Equatable, CustomStringConvertible {
+enum ViewState: Equatable, CustomStringConvertible {
     case EmptySearchField // Blank (A)
     case EmptyResults // Blank (B)
     case LoadingNewTerm
@@ -31,7 +31,7 @@ public enum ViewState: Equatable, CustomStringConvertible {
     case Ideal(title: String, rows: [SearchResultsRow])
     case Error(title: String?, message: String?)
 
-    public var description: String {
+    var description: String {
         var desc = "<ViewState: "
         switch self {
         	case .EmptySearchField: desc += "EmptySearchField"
@@ -55,7 +55,7 @@ public enum ViewState: Equatable, CustomStringConvertible {
     }
 }
 
-public func ==(a: ViewState, b: ViewState) -> Bool {
+func ==(a: ViewState, b: ViewState) -> Bool {
     switch (a, b) {
         case (.EmptySearchField, .EmptySearchField): return true
         case (.EmptyResults, .EmptyResults): return true
@@ -71,11 +71,11 @@ public func ==(a: ViewState, b: ViewState) -> Bool {
     }
 }
 
-public class SearchViewController: UIViewController, SearchViewInterface, UITableViewDelegate, UITableViewDataSource {
+class SearchViewController: UIViewController, SearchViewInterface, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: Properties
 
-    public weak var presenter: SearchPresenterInterface?
+    weak var presenter: SearchPresenterInterface?
 
     @IBOutlet weak var emptyResultsLabel: UILabel!
     @IBOutlet weak var errorView: UIView!
@@ -98,7 +98,7 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
         presenter?.userDidTapCancel()
     }
 
-    public func setBottomContentInset(bottom: CGFloat) {
+    func setBottomContentInset(bottom: CGFloat) {
         if !isViewLoaded() {
             return
         }
@@ -116,7 +116,7 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
     //   up on your product.
     //
     // - http://scotthurff.com/posts/why-your-user-interface-is-awkward-youre-ignoring-the-ui-stack
-    public func setViewState(state: ViewState) {
+    func setViewState(state: ViewState) {
         switch state {
         case .EmptySearchField:
             setLoadingIndicatorsVisible(false)
@@ -173,7 +173,11 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
         }
     }
 
-    public func currentSearchTerm() -> String {
+    @IBAction func filterButtonTapped(sender: UIButton) {
+        presenter?.userDidTapUSStates()
+    }
+
+    func currentSearchTerm() -> String {
         return searchField?.text ?? ""
     }
 
@@ -190,17 +194,17 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
 
     // MARK: UITableViewDelegate & -DataSource methods
 
-    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("Header") as? TableHeaderView
         headerView?.label.text = sectionTitle
         return headerView
     }
 
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return rows.count ?? 0
     }
 
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell: UITableViewCell
         let pageCell = tableView.dequeueReusableCellWithIdentifier("SearchResultsPageCell") as! SearchResultsPageCell
         let result = rows[indexPath.row]
@@ -220,7 +224,7 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
         return cell
     }
 
-    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         searchField.resignFirstResponder()
         let row = rows[indexPath.row]
@@ -229,7 +233,7 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
 
     static let approachingCount = 5
 
-    public func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
 
         if (rows.count > 0) && ((rows.count - indexPath.row) < SearchViewController.approachingCount) {
             presenter?.userIsApproachingLastRow(searchField.text, inCollection: rows)
@@ -238,12 +242,12 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
 
     // MARK: UIViewController overrides
 
-    override public func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.navigationBarHidden = false
     }
 
-    override public func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
 
         searchField.shouldChangeCharactersHandler = { [weak self] original, range, replacement in
@@ -279,11 +283,11 @@ public class SearchViewController: UIViewController, SearchViewInterface, UITabl
 
     // MARK: UIResponder methods
 
-    public override func becomeFirstResponder() -> Bool {
+    override func becomeFirstResponder() -> Bool {
         return searchField.becomeFirstResponder()
     }
 
-    public override func resignFirstResponder() -> Bool {
+    override func resignFirstResponder() -> Bool {
         return searchField.resignFirstResponder()
     }
 }

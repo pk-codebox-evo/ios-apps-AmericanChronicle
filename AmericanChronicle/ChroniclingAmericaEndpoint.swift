@@ -16,7 +16,7 @@ enum ChroniclingAmericaEndpoint: String {
     var fullURL: NSURL? { return NSURL(string: fullURLString ?? "") }
 }
 
-struct SearchParameters {
+struct SearchConstants {
     static func earliestPossibleDate() -> NSDate {
         let calendar = NSCalendar.currentCalendar()
         let components = NSDateComponents()

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Cf1-V8-EKb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Cf1-V8-EKb">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -21,16 +21,38 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JF5-Ev-fZm" userLabel="Table View">
                                 <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="7Qm-bS-WYt" customClass="SearchField" customModule="AmericanChronicle" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="4Ud-UD-nvs">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SPn-8z-ic0" customClass="SearchField" customModule="AmericanChronicle" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="62"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qxF-54-N3s">
+                                            <rect key="frame" x="12" y="72" width="390" height="44"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="yej-ba-CwK"/>
+                                            </constraints>
+                                            <state key="normal" title="Filter search results..."/>
+                                            <connections>
+                                                <action selector="filterButtonTapped:" destination="Cf1-V8-EKb" eventType="touchUpInside" id="q1o-YK-R1y"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="64" id="501-1s-E7P"/>
+                                        <constraint firstItem="qxF-54-N3s" firstAttribute="top" secondItem="SPn-8z-ic0" secondAttribute="bottom" constant="10" id="0C6-aH-mXh"/>
+                                        <constraint firstItem="SPn-8z-ic0" firstAttribute="leading" secondItem="4Ud-UD-nvs" secondAttribute="leading" id="0pQ-AU-oeU"/>
+                                        <constraint firstItem="SPn-8z-ic0" firstAttribute="top" secondItem="4Ud-UD-nvs" secondAttribute="top" id="6nx-NN-Gra"/>
+                                        <constraint firstAttribute="bottom" secondItem="qxF-54-N3s" secondAttribute="bottom" constant="12" id="CNV-FO-UfY"/>
+                                        <constraint firstItem="qxF-54-N3s" firstAttribute="leading" secondItem="4Ud-UD-nvs" secondAttribute="leading" constant="12" id="Fjk-vu-paI"/>
+                                        <constraint firstAttribute="trailing" secondItem="qxF-54-N3s" secondAttribute="trailing" constant="12" id="WOf-0S-eQp"/>
+                                        <constraint firstAttribute="trailing" secondItem="SPn-8z-ic0" secondAttribute="trailing" id="dOp-en-PQ7"/>
                                     </constraints>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="YZb-Iw-Oe4" userLabel="footerView">
-                                    <rect key="frame" x="0.0" y="324" width="414" height="44"/>
+                                    <rect key="frame" x="0.0" y="388" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="VgR-Lg-rf5">
@@ -45,7 +67,7 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SearchResultsPageCell" rowHeight="150" id="EA8-rU-m7R" customClass="SearchResultsPageCell" customModule="AmericanChronicle" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="86" width="414" height="150"/>
+                                        <rect key="frame" x="0.0" y="150" width="414" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EA8-rU-m7R" id="GW3-Va-jNq">
                                             <rect key="frame" x="0.0" y="0.0" width="381" height="149"/>
@@ -99,7 +121,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RecentSearchCell" id="feU-Eg-QlU">
-                                        <rect key="frame" x="0.0" y="236" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="300" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="feU-Eg-QlU" id="Yi2-gm-fcN">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
@@ -107,7 +129,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchResultsNewspaperCell" id="ZCO-lc-azT">
-                                        <rect key="frame" x="0.0" y="280" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="344" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZCO-lc-azT" id="Q7d-VI-Fgp">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
@@ -128,7 +150,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="feH-ow-6C3" userLabel="errorView">
-                                <rect key="frame" x="20" y="308" width="374" height="120"/>
+                                <rect key="frame" x="20" y="335" width="374" height="66"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fZ8-rd-esP" userLabel="errorTitle">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="21"/>
@@ -142,26 +164,16 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Abw-pN-7F4" userLabel="dismissButton">
-                                        <rect key="frame" x="0.0" y="66" width="374" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="xaQ-h8-MFr"/>
-                                        </constraints>
-                                        <state key="normal" title="Dismiss"/>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="j2P-Tj-twH" firstAttribute="top" secondItem="fZ8-rd-esP" secondAttribute="bottom" constant="12" id="4kQ-OQ-8QW"/>
                                     <constraint firstItem="fZ8-rd-esP" firstAttribute="top" secondItem="feH-ow-6C3" secondAttribute="top" id="4pc-cM-gfm"/>
+                                    <constraint firstAttribute="bottom" secondItem="j2P-Tj-twH" secondAttribute="bottom" constant="12" id="5iz-6y-KXF"/>
                                     <constraint firstAttribute="trailing" secondItem="fZ8-rd-esP" secondAttribute="trailing" id="9ej-bE-TiP"/>
-                                    <constraint firstItem="Abw-pN-7F4" firstAttribute="leading" secondItem="feH-ow-6C3" secondAttribute="leading" id="MfM-Kc-85u"/>
                                     <constraint firstItem="fZ8-rd-esP" firstAttribute="leading" secondItem="feH-ow-6C3" secondAttribute="leading" id="R4Y-eN-qfR"/>
-                                    <constraint firstAttribute="bottom" secondItem="Abw-pN-7F4" secondAttribute="bottom" constant="10" id="Y6u-xq-J2S"/>
-                                    <constraint firstAttribute="trailing" secondItem="Abw-pN-7F4" secondAttribute="trailing" id="Zsl-ly-vnH"/>
                                     <constraint firstAttribute="bottom" secondItem="j2P-Tj-twH" secondAttribute="bottom" constant="325" id="cBo-iI-dlk"/>
                                     <constraint firstItem="j2P-Tj-twH" firstAttribute="leading" secondItem="feH-ow-6C3" secondAttribute="leading" id="sEJ-Kv-gvH"/>
-                                    <constraint firstItem="Abw-pN-7F4" firstAttribute="top" secondItem="j2P-Tj-twH" secondAttribute="bottom" constant="12" id="sM4-4c-a1A"/>
                                     <constraint firstAttribute="trailing" secondItem="j2P-Tj-twH" secondAttribute="trailing" id="upJ-Er-keF"/>
                                 </constraints>
                                 <variation key="default">
@@ -216,7 +228,7 @@
                         <outlet property="errorMessageLabel" destination="j2P-Tj-twH" id="y6y-Jg-M7l"/>
                         <outlet property="errorTitleLabel" destination="fZ8-rd-esP" id="Z1Q-eO-D44"/>
                         <outlet property="errorView" destination="feH-ow-6C3" id="ZZs-ff-2Ea"/>
-                        <outlet property="searchField" destination="7Qm-bS-WYt" id="dbM-Zr-cIW"/>
+                        <outlet property="searchField" destination="SPn-8z-ic0" id="Z4e-4j-gub"/>
                         <outlet property="tableView" destination="JF5-Ev-fZm" id="kKc-gd-ILw"/>
                     </connections>
                 </viewController>

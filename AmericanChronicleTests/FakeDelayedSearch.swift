@@ -6,19 +6,19 @@
 //  Copyright © 2015 ryanipete. All rights reserved.
 //
 
-import AmericanChronicle
+@testable import AmericanChronicle
 
 class FakeDelayedSearch: DelayedSearchInterface {
 
     // MARK: Properties
 
-    var term: String
+    var parameters: SearchParameters
     private let completionHandler: ((SearchResults?, ErrorType?) -> ())
 
     // MARK: DelayedSearchInterface methods
 
-    required init(term: String, page: Int, dataManager: SearchDataManagerInterface, runLoop: RunLoopInterface, completionHandler: ((SearchResults?, ErrorType?) -> ())) {
-        self.term = term
+    required init(parameters: SearchParameters, page: Int, dataManager: SearchDataManagerInterface, runLoop: RunLoopInterface, completionHandler: ((SearchResults?, ErrorType?) -> ())) {
+        self.parameters = parameters
         self.completionHandler = completionHandler
     }
 

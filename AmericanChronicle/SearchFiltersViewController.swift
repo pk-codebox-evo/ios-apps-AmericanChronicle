@@ -232,7 +232,11 @@ class LocationsHeader: UICollectionReusableView {
     }
 }
 
-class SearchFiltersViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+protocol SearchFiltersViewInterface {
+
+}
+
+class SearchFiltersViewController: UIViewController, SearchFiltersViewInterface, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var collectionView: UICollectionView!
     var saveCallback: ((SearchFilters) -> ())?
@@ -260,7 +264,7 @@ class SearchFiltersViewController: UIViewController, UICollectionViewDelegate, U
     
     func earliestDateCellTapped() {
         let vc = DatePickerViewController(
-            latestPossibleDate: searchFilters.latestDate ?? SearchParameters.latestPossibleDate(),
+            latestPossibleDate: searchFilters.latestDate ?? SearchConstants.latestPossibleDate(),
             selectedDateOnInit: searchFilters.earliestDate)
         vc.saveCallback = { [weak self] selectedDate in
             self?.searchFilters.earliestDate = selectedDate
@@ -272,8 +276,8 @@ class SearchFiltersViewController: UIViewController, UICollectionViewDelegate, U
 
     func latestDateCellTapped() {
         let vc = DatePickerViewController(
-            earliestPossibleDate: searchFilters.earliestDate ?? SearchParameters.earliestPossibleDate(),
-            selectedDateOnInit: searchFilters.latestDate ?? SearchParameters.latestPossibleDate())
+            earliestPossibleDate: searchFilters.earliestDate ?? SearchConstants.earliestPossibleDate(),
+            selectedDateOnInit: searchFilters.latestDate ?? SearchConstants.latestPossibleDate())
         vc.saveCallback = { [weak self] selectedDate in
             self?.searchFilters.latestDate = selectedDate
             self?.collectionView.reloadData()
@@ -283,15 +287,6 @@ class SearchFiltersViewController: UIViewController, UICollectionViewDelegate, U
     }
 
     func locationsCellTapped() {
-        let vc = LocationSearchViewController(nibName: "LocationSearchViewController", bundle: nil)
-        vc.locationSelectedCallback = { [weak self] location in
-            var locations = self?.searchFilters.cities ?? []
-            locations.append(location)
-            self?.searchFilters.cities = locations
-            self?.collectionView.reloadData()
-            self?.navigationController?.popViewControllerAnimated(true)
-        }
-        navigationController?.pushViewController(vc, animated: true)
     }
 
     override func viewDidLoad() {

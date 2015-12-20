@@ -6,7 +6,7 @@
 //  Copyright © 2015 ryanipete. All rights reserved.
 //
 
-import AmericanChronicle
+@testable import AmericanChronicle
 import XCTest
 
 class SearchDataManagerTests: XCTestCase {
@@ -21,45 +21,51 @@ class SearchDataManagerTests: XCTestCase {
         subject.service = service
     }
 
-    func testThat_whenStartSearchIsCalled_itStartsAServiceSearch_withTheSameTerm() {
-        subject.startSearch("Jibberish", page: 0, completionHandler: { _, _ in })
-        XCTAssertEqual(service.startSearch_wasCalled_withTerm, "Jibberish")
+    func testThat_whenStartSearchIsCalled_itStartsAServiceSearch_withTheSameParameters() {
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject.startSearch(params, page: 0, completionHandler: { _, _ in })
+        XCTAssertEqual(service.startSearch_wasCalled_withParameters, params)
     }
 
     func testThat_whenStartSearchIsCalled_itStartsAServiceSearch_withTheSamePage() {
-        subject.startSearch("", page: 11, completionHandler: { _, _ in })
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject.startSearch(params, page: 11, completionHandler: { _, _ in })
         XCTAssertEqual(service.startSearch_wasCalled_withPage, 11)
     }
 
-    func testThat_whenCancelSearchIsCalled_itCalls_cancelSearch_onTheService_withTheSameTerm() {
-        subject.cancelSearch("nonsense", page: 0)
-        XCTAssertEqual(service.cancelSearch_wasCalled_withTerm, "nonsense")
+    func testThat_whenCancelSearchIsCalled_itCalls_cancelSearch_onTheService_withTheSameParameters() {
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject.cancelSearch(params, page: 0)
+        XCTAssertEqual(service.cancelSearch_wasCalled_withParameters, params)
     }
 
     func testThat_whenCancelSearchIsCalled_itCalls_cancelSearch_onTheService_withTheSamePage() {
-        subject.cancelSearch("", page: 7)
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject.cancelSearch(params, page: 7)
         XCTAssertEqual(service.cancelSearch_wasCalled_withPage, 7)
     }
 
-    func testThat_whenIsSearchInProgressIsCalled_itCalls_isSearchInProgress_onTheService_withTheSameTerm() {
-        subject.isSearchInProgress("blah", page: 0)
-        XCTAssertEqual(service.isSearchInProgress_wasCalled_withTerm, "blah")
+    func testThat_whenIsSearchInProgressIsCalled_itCalls_isSearchInProgress_onTheService_withTheSameParameters() {
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject.isSearchInProgress(params, page: 0)
+        XCTAssertEqual(service.isSearchInProgress_wasCalled_withParameters, params)
     }
 
     func testThat_whenIsSearchInProgressIsCalled_itCallsIsSearchInProgress_onTheService_withTheSamePage() {
-        subject.isSearchInProgress("", page: 4)
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject.isSearchInProgress(params, page: 4)
         XCTAssertEqual(service.isSearchInProgress_wasCalled_withPage, 4)
     }
 
     func testThat_whenIsSearchInProgressIsCalled_itReturnsTheValueReturnedByCalling_isSearchInProgress_onTheService() {
         service.isSearchInProgress_mock_returnValue = true
-        XCTAssert(subject.isSearchInProgress("", page: 0))
-
+        XCTAssert(subject.isSearchInProgress(SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"]), page: 0))
     }
 
     func testThat_whenASearchSucceeds_itCallsTheAssociatedCompletionHandler_withTheSearchResults() {
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
         var searchResults: SearchResults?
-        subject.startSearch("", page: 11, completionHandler: { results, _ in
+        subject.startSearch(params, page: 11, completionHandler: { results, _ in
             searchResults = results
         })
         let mockResults = SearchResults()
@@ -68,8 +74,9 @@ class SearchDataManagerTests: XCTestCase {
     }
 
     func testThat_whenASearchFails_itCallsTheAssociatedCompletionHandler_withTheError() {
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
         var searchError: NSError?
-        subject.startSearch("", page: 11, completionHandler: { _, error in
+        subject.startSearch(params, page: 11, completionHandler: { _, error in
             searchError = error
         })
         let mockError = NSError(domain: "", code: 0, userInfo: nil)

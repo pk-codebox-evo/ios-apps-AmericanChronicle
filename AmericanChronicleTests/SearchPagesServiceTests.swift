@@ -7,8 +7,8 @@
 //
 
 import XCTest
-import AmericanChronicle
 import Alamofire
+@testable import AmericanChronicle
 
 class SearchPagesServiceTests: XCTestCase {
 
@@ -22,45 +22,55 @@ class SearchPagesServiceTests: XCTestCase {
     }
     
     func testThat_whenStartSearchIsCalled_withAnEmptyTerm_itImmediatelyReturnsAnInvalidParameterError() {
+        let params = SearchParameters(term: "", states: ["Alabama", "Colorado"])
         var error: NSError? = nil
-        subject.startSearch("", page: 3, contextID: "context") { _, err in
+        subject.startSearch(params, page: 3, contextID: "context") { _, err in
             error = err as? NSError
         }
         XCTAssert(error?.isInvalidParameterError() ?? false)
     }
 
     func testThat_whenStartSearchIsCalled_withAPageBelowOne_itImmediatelyReturnsAnInvalidParameterError() {
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
         var error: NSError? = nil
-        subject.startSearch("volcano", page: 0, contextID: "context") { _, err in
+        subject.startSearch(params, page: 0, contextID: "context") { _, err in
             error = err as? NSError
         }
         XCTAssert(error?.isInvalidParameterError() ?? false)
     }
 
-    func testThat_whenStartSearchIsCalled_withTheCorrectParameters_itStartsARequest_withTheCorrectTerm() {
-        subject.startSearch("tsunami", page: 4, contextID: "context") { _, _ in }
+    func testThat_whenStartSearchIsCalled_withADuplicateRequest_itImmediatelyReturnsADuplicateRequestError() {
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject.startSearch(params, page: 2, contextID: "context") { _, err in }
+        var error: NSError? = nil
+        subject.startSearch(params, page: 2, contextID: "context") { _, err in
+            error = err as? NSError
+        }
+        XCTAssert(error?.isDuplicateRequestError() ?? false)
+    }
+
+    func testThat_whenStartSearchIsCalled_withValidParameters_itStartsARequest_withTheCorrectTerm() {
+        let params = SearchParameters(term: "tsunami", states: ["Alabama", "Colorado"])
+        subject.startSearch(params, page: 4, contextID: "context") { _, _ in }
         XCTAssertEqual(manager.request_wasCalled_withParameters?["proxtext"] as? String, "tsunami")
     }
 
-    func testThat_whenStartSearchIsCalled_withTheCorrectParameters_itStartsARequest_withTheCorrectPage() {
-        subject.startSearch("tsunami", page: 4, contextID: "context") { _, _ in }
-        XCTAssertEqual(manager.request_wasCalled_withParameters?["page"] as? Int, 4)
+    func testThat_whenStartSearchIsCalled_withValidParameters_itStartsARequest_withTheCorrectStates() {
+        let params = SearchParameters(term: "tsunami", states: ["Alabama", "Colorado"])
+        subject.startSearch(params, page: 4, contextID: "context") { _, _ in }
+        XCTAssert(manager.request_wasCalled_withURLString?.URLString.hasSuffix("state=Alabama&state=Colorado") ?? false)
     }
 
-    func testThat_whenStartSearchIsCalled_withADuplicateRequest_itImmediatelyReturnsADuplicateRequestError() {
-
-        subject.startSearch("volcano", page: 2, contextID: "context") { _, err in }
-        var error: NSError? = nil
-        subject.startSearch("volcano", page: 2, contextID: "context") { _, err in
-            error = err as? NSError
-        }
-
-        XCTAssert(error?.isDuplicateRequestError() ?? false)
+    func testThat_whenStartSearchIsCalled_withValidParameters_itStartsARequest_withTheCorrectPage() {
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject.startSearch(params, page: 4, contextID: "context") { _, _ in }
+        XCTAssertEqual(manager.request_wasCalled_withParameters?["page"] as? Int, 4)
     }
 
     func testThat_whenASearchSucceeds_itCallsTheCompletionHandler_withTheSearchResults() {
         var returnedResults: SearchResults?
-        subject.startSearch("volcano", page: 2, contextID: "context") { results, _ in
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject.startSearch(params, page: 2, contextID: "context") { results, _ in
             returnedResults = results
         }
         let expectedResults = SearchResults()
@@ -71,10 +81,11 @@ class SearchPagesServiceTests: XCTestCase {
     }
 
     func testThat_whenASearchFails_itCallsTheCompletionHandler_withTheError() {
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
         var returnedError: NSError?
         let request = FakeRequest()
         manager.stubbedReturnValue = request
-        subject.startSearch("volcano", page: 2, contextID: "context") { _, error in
+        subject.startSearch(params, page: 2, contextID: "context") { _, error in
             returnedError = error as? NSError
         }
         let expectedError = NSError(code: .InvalidParameter, message: "")
@@ -84,17 +95,46 @@ class SearchPagesServiceTests: XCTestCase {
         XCTAssertEqual(returnedError, expectedError)
     }
 
-    func testThat_byTheTimeTheCompletionHandlerIsCalled_theRequestIsNoConsideredToBeInProgress() {
+    func testThat_byTheTimeTheCompletionHandlerIsCalled_theRequestIsNotInProgress() {
         var isInProgress = true
         let request = FakeRequest()
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
         manager.stubbedReturnValue = request
-        subject.startSearch("volcano", page: 2, contextID: "context") { _, error in
-            isInProgress = self.subject.isSearchInProgress("volcano", page: 2, contextID: "context")
+        subject.startSearch(params, page: 2, contextID: "context") { _, error in
+            isInProgress = self.subject.isSearchInProgress(params, page: 2, contextID: "context")
         }
         let result: Result<SearchResults, NSError> = .Failure(NSError(code: .DuplicateRequest, message: nil))
         let response = Response(request: nil, response: nil, data: nil, result: result)
         request.finishWithResponseObject(response)
         XCTAssertFalse(isInProgress)
+    }
+
+    func testThat_whenCancelSearchIsCalled_withParametersOfAnActiveRequest_itCancelsTheRequest() {
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject.startSearch(params, page: 2, contextID: "context") { _, _ in }
+        subject.cancelSearch(params, page: 2, contextID: "context")
+        XCTAssert(manager.stubbedReturnValue.cancel_wasCalled)
+    }
+
+    func testThat_whenCancelSearchIsCalled_withParametersThatDoNotMatchAnActiveRequest_itDoesNotCancelsTheActiveRequest() {
+        let activeParams = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject.startSearch(activeParams, page: 2, contextID: "context") { _, _ in }
+        let inactiveParams = SearchParameters(term: "Jabberish", states: ["Alabama", "Colorado"])
+        subject.cancelSearch(inactiveParams, page: 2, contextID: "context")
+        XCTAssertFalse(manager.stubbedReturnValue.cancel_wasCalled)
+    }
+
+    func testThat_whenTheSpecifiedSearchIsActive_isSearchInProgress_returnsTrue() {
+        let activeParams = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject.startSearch(activeParams, page: 2, contextID: "context") { _, _ in }
+        XCTAssert(subject.isSearchInProgress(activeParams, page: 2, contextID: "context"))
+    }
+
+    func testThat_whenTheSpecifiedSearchIsNotActive_isSearchInProgress_returnsFalse() {
+        let activeParams = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
+        subject.startSearch(activeParams, page: 2, contextID: "context") { _, _ in }
+        let inactiveParams = SearchParameters(term: "Jibberish", states: ["Alabama"])
+        XCTAssertFalse(subject.isSearchInProgress(inactiveParams, page: 2, contextID: "context"))
     }
     
 }

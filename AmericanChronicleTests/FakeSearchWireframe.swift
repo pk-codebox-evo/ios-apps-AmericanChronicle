@@ -6,7 +6,7 @@
 //  Copyright © 2015 ryanipete. All rights reserved.
 //
 
-import AmericanChronicle
+@testable import AmericanChronicle
 
 class FakeSearchWireframe: SearchWireframe {
     var userDidTapCancel_wasCalled = false

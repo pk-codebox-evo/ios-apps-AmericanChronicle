@@ -6,13 +6,22 @@
 //  Copyright (c) 2015 ryanipete. All rights reserved.
 //
 
+struct SearchParameters: Equatable {
+    let term: String
+    let states: [String]
+}
+
+func ==(lhs: SearchParameters, rhs: SearchParameters) -> Bool {
+    return (lhs.term == rhs.term) && (lhs.states == rhs.states)
+}
+
 // MARK: -
 // MARK: SearchInteractorInterface
 
-public protocol SearchInteractorInterface: class {
+protocol SearchInteractorInterface: class {
     var delegate: SearchInteractorDelegate? { get set }
 
-    func startSearchForTerm(term: String, existingRows: [SearchResultsRow])
+    func startSearch(parameters: SearchParameters, existingRows: [SearchResultsRow])
     func isSearchInProgress() -> Bool
     func cancelLastSearch()
 }
@@ -20,8 +29,8 @@ public protocol SearchInteractorInterface: class {
 // MARK: -
 // MARK: SearchInteractorDelegate
 
-public protocol SearchInteractorDelegate {
-    func searchForTerm(term: String, existingRows: [SearchResultsRow], didFinishWithResults: SearchResults?, error: NSError?)
+protocol SearchInteractorDelegate {
+    func search(parameters: SearchParameters, existingRows: [SearchResultsRow], didFinishWithResults: SearchResults?, error: NSError?)
 }
 
 // MARK: -
@@ -30,9 +39,9 @@ public protocol SearchInteractorDelegate {
 // Responsibilities:
 //  * Ensures that only one request is ongoing at a time.
 //  * Waits for some time before starting a new search.
-public class SearchInteractor: NSObject, SearchInteractorInterface {
+class SearchInteractor: NSObject, SearchInteractorInterface {
 
-    public var delegate: SearchInteractorDelegate?
+    var delegate: SearchInteractorDelegate?
 
     // MARK: Private Properties
 
@@ -41,20 +50,19 @@ public class SearchInteractor: NSObject, SearchInteractorInterface {
 
     // MARK: Init methods
 
-    public init(searchFactory: DelayedSearchFactoryInterface) {
+    init(searchFactory: DelayedSearchFactoryInterface) {
         self.searchFactory = searchFactory
         super.init()
     }
 
-    ///
-    public func startSearchForTerm(term: String, existingRows: [SearchResultsRow]) {
-        
-        if (term == delayedSearch?.term) && isSearchInProgress() {
+    func startSearch(parameters: SearchParameters, existingRows: [SearchResultsRow]) {
+
+        if (parameters == delayedSearch?.parameters) && isSearchInProgress() {
             // There is already a search in progress for this term.
             // It's not possible to request a new page until the
             // previous page has loaded, so fail.
             let error = NSError(code: .DuplicateRequest, message: "Tried to start a search that is already ongoing. Taking no action.")
-            self.delegate?.searchForTerm(term, existingRows: existingRows, didFinishWithResults: nil, error: error)
+            self.delegate?.search(parameters, existingRows: existingRows, didFinishWithResults: nil, error: error)
             return
         }
 
@@ -62,7 +70,7 @@ public class SearchInteractor: NSObject, SearchInteractorInterface {
             // The last search returned partial results, so we can
             // assume that there are no more results to fetch. 
             let error = NSError(code: .InvalidParameter, message: "Existing row count isn't evenly divisible by 20, there are no more rows.")
-            self.delegate?.searchForTerm(term, existingRows: existingRows, didFinishWithResults: nil, error: error)
+            self.delegate?.search(parameters, existingRows: existingRows, didFinishWithResults: nil, error: error)
             return
         }
 
@@ -74,17 +82,17 @@ public class SearchInteractor: NSObject, SearchInteractorInterface {
         // the new delayedSearch has been created.
         let oldDelayedSearch = delayedSearch
 
-        delayedSearch = searchFactory.newSearchForTerm(term, page: page) { (results, error) in
-            self.delegate?.searchForTerm(term, existingRows: existingRows, didFinishWithResults: results, error: error as? NSError)
+        delayedSearch = searchFactory.newSearch(parameters, page: page) { (results, error) in
+            self.delegate?.search(parameters, existingRows: existingRows, didFinishWithResults: results, error: error as? NSError)
         }
         oldDelayedSearch?.cancel()
     }
 
-    public func isSearchInProgress() -> Bool {
+    func isSearchInProgress() -> Bool {
         return delayedSearch?.isSearchInProgress() ?? false
     }
 
-    public func cancelLastSearch() {
+    func cancelLastSearch() {
         delayedSearch?.cancel()
     }
 }
