@@ -61,9 +61,29 @@ class SearchPagesService: SearchPagesServiceInterface {
             return
         }
 
-        let params: [String: AnyObject] = ["format": "json", "rows": 20, "proxtext": parameters.term, "page": page]
-        let statesString = parameters.states.map { "state=\($0)" }.joinWithSeparator("&")
-        let URLString = "\(ChroniclingAmericaEndpoint.PagesSearch.fullURLString ?? "")?\(statesString)"
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+
+
+        let date1 = dateFormatter.stringFromDate(parameters.earliestDate)
+        let date2 = dateFormatter.stringFromDate(parameters.latestDate)
+
+        let params: [String: AnyObject] = [
+            "format": "json",
+            "rows": 20,
+            "proxtext": parameters.term,
+            "page": page,
+            "dateFilterType": "range",
+            "date1": date1,
+            "date2": date2
+        ]
+
+        var URLString = ChroniclingAmericaEndpoint.PagesSearch.fullURLString ?? ""
+        if parameters.states.count > 0 {
+            let statesString = parameters.states.map { "state=\($0)" }.joinWithSeparator("&")
+            URLString.appendContentsOf("?\(statesString)")
+        }
+
         let request = self.manager.request(.GET, URLString: URLString, parameters: params)?.responseObject { (response: Response<SearchResults, NSError>) in
             dispatch_sync(self.queue) {
                 self.activeRequests[self.keyForParameters(parameters, page: page, contextID: contextID)] = nil

@@ -11,9 +11,12 @@ import UIKit
 protocol SearchWireframeInterface: class {
     func userDidSelectSearchResult(row: SearchResultsRow, forTerm: String)
     func userDidTapCancel()
-    func userDidTapUSStates(currentSelectedStateNames: [String])
+    func showUSStatesPicker(activeStates: [String])
+    func userDidTapDate(date: NSDate?)
     func userDidSaveFilteredUSStates(stateNames: [String])
     func userDidNotSaveFilteredUSStates()
+    func userDidSaveDate(date: NSDate)
+    func userDidNotSaveDate()
 }
 
 protocol SearchWireframeDelegate: class {
@@ -27,6 +30,7 @@ class SearchWireframe: NSObject, SearchWireframeInterface, UIViewControllerTrans
     let dependencies: SearchModuleDependencies
     var pageWireframe: PageWireframe?
     var statePickerWireframe: USStatePickerWireframe?
+    var datePickerWireframe: DatePickerWireframe?
     weak var delegate: SearchWireframeDelegate?
     var showPageHandler: ((NSURL, Int, UIViewController) -> Void)?
 
@@ -56,9 +60,9 @@ class SearchWireframe: NSObject, SearchWireframeInterface, UIViewControllerTrans
         }
     }
 
-    func userDidTapUSStates(currentSelectedStateNames: [String]) {
+    func showUSStatesPicker(selectedStates: [String]) {
         statePickerWireframe = USStatePickerWireframe(parentWireframe: self)
-        statePickerWireframe?.beginFromViewController(dependencies.view as? SearchViewController, selectedStateNames: currentSelectedStateNames)
+        statePickerWireframe?.beginFromViewController(dependencies.view as? SearchViewController, selectedStateNames: selectedStates)
     }
 
     func userDidSaveFilteredUSStates(stateNames: [String]) {
@@ -68,6 +72,20 @@ class SearchWireframe: NSObject, SearchWireframeInterface, UIViewControllerTrans
 
     func userDidNotSaveFilteredUSStates() {
         statePickerWireframe?.finish()
+    }
+
+    func userDidTapDate(date: NSDate?) {
+        datePickerWireframe = DatePickerWireframe(parentWireframe: self)
+        datePickerWireframe?.beginFromViewController(dependencies.view as? SearchViewController, date: date)
+    }
+
+    func userDidSaveDate(date: NSDate) {
+        dependencies.presenter.userDidSaveDate(date)
+        datePickerWireframe?.finish()
+    }
+
+    func userDidNotSaveDate() {
+        datePickerWireframe?.finish()
     }
 }
 

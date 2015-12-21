@@ -22,7 +22,7 @@ public final class SearchModuleDependencies {
         dataManager = SearchDataManager()
         let searchFactory = DelayedSearchFactory(dataManager: dataManager)
         interactor = SearchInteractor(searchFactory: searchFactory)
-        view?.presenter = presenter
+        view?.delegate = presenter
         presenter.view = view
         presenter.interactor = interactor
         interactor.delegate = presenter

@@ -31,8 +31,8 @@ class DelayedSearchTests: XCTestCase {
         runLoop = FakeRunLoop()
         dataManager = FakeSearchDataManager()
 
-        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"])
-        subject = DelayedSearch(parameters: params, page: 2, dataManager: dataManager, runLoop: runLoop, completionHandler: { results, error in
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"], earliestDate: SearchConstants.earliestPossibleDate(), latestDate: SearchConstants.latestPossibleDate())
+        subject = DelayedSearch(parameters: params, dataManager: dataManager, runLoop: runLoop, completionHandler: { results, error in
             self.results = results
             self.error = error as? NSError
             self.completionHandlerExpectation?.fulfill()
@@ -73,11 +73,12 @@ class DelayedSearchTests: XCTestCase {
 
     func testThat_whenTheTimerFires_itStartsSearchOnTheDataManager_withTheCorrectParameters() {
         runLoop.addTimer_wasCalled_withTimer?.fire()
-        XCTAssertEqual(dataManager.startSearch_wasCalled_withParameters, SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"]))
-    }
-
-    func testThat_whenTheTimerFires_itStartsSearchOnTheDataManager_withTheCorrectPage() {
-        runLoop.addTimer_wasCalled_withTimer?.fire()
-        XCTAssertEqual(dataManager.startSearch_wasCalled_withPage, 2)
+        let expectedParameters = SearchParameters(
+            term: "Jibberish",
+            states: ["Alabama", "Colorado"],
+            earliestDate: SearchConstants.earliestPossibleDate(),
+            latestDate: SearchConstants.latestPossibleDate()
+        )
+        XCTAssertEqual(dataManager.fetchMoreResults_wasCalled_withParameters, expectedParameters)
     }
 }

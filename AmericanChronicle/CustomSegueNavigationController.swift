@@ -9,11 +9,4 @@
 import UIKit
 
 class CustomSegueNavigationController: UINavigationController {
-    override func segueForUnwindingToViewController(toViewController: UIViewController, fromViewController: UIViewController, identifier: String?) -> UIStoryboardSegue {
-
-        if let fromViewController = fromViewController as? PageViewController {
-            return NewspaperPageUnfocusSegue(identifier: identifier, source: fromViewController, destination: toViewController)
-        }
-        return super.segueForUnwindingToViewController(toViewController, fromViewController: fromViewController, identifier: identifier)!
-    }
 }

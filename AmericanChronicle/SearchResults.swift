@@ -15,8 +15,14 @@ public class SearchResults: NSObject, Mappable {
     var totalItems: Int?
     var endIndex: Int?
     var startIndex: Int?
-    var itemsPerPage: Int?
+    var itemsPerPage: Int = 20
     public var items: [SearchResult]?
+    var allItemsLoaded: Bool {
+        return items?.count >= totalItems
+    }
+    var numLoadedPages: Int {
+        return Int(ceilf(Float(items?.count ?? 0)/Float(itemsPerPage)))
+    }
 
     public override init() {
         super.init()
@@ -48,7 +54,7 @@ public class SearchResults: NSObject, Mappable {
         str += " totalItems=\(totalItems?.description ?? empty)"
         str += ", endIndex=\(endIndex?.description ?? empty)"
         str += ", startIndex=\(startIndex?.description ?? empty)"
-        str += ", itemsPerPage=\(itemsPerPage?.description ?? empty)"
+        str += ", itemsPerPage=\(itemsPerPage.description ?? empty)"
         str += ", items.count=\(items?.count ?? 0)"
         str += ">"
         return str

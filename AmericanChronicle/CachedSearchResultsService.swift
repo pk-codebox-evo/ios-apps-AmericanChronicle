@@ -1,5 +1,5 @@
 //
-//  CachedSearchPagesService.swift
+//  CachedSearchResultsService.swift
 //  AmericanChronicle
 //
 //  Created by Ryan Peterson on 11/7/15.
@@ -7,17 +7,17 @@
 //
 
 protocol CachedSearchResultsServiceInterface {
-
+    func resultsForParameters(parameters: SearchParameters) -> SearchResults?
+    func cacheResults(results: SearchResults, forParameters parameters: SearchParameters)
 }
 
 class CachedSearchResultsService: CachedSearchResultsServiceInterface {
-    var cachedResults: [String: [SearchResults]] = [:]
-    func resultsForTerm(term: String) -> [SearchResults]? {
-        return cachedResults[term]
+    private var cachedResults: [SearchParameters: SearchResults] = [:]
+    func resultsForParameters(parameters: SearchParameters) -> SearchResults? {
+        return cachedResults[parameters]
     }
 
-    func cacheResults(results: SearchResults, forTerm term: String) {
-        var allResults = cachedResults[term] ?? []
-        allResults.append(results)
+    func cacheResults(results: SearchResults, forParameters parameters: SearchParameters) {
+        cachedResults[parameters] = results
     }
 }

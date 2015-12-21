@@ -9,14 +9,28 @@
 
 
 class TableHeaderView: UITableViewHeaderFooterView {
-    let label = UILabel()
+    var text: String? {
+        get {
+            return label.text
+        }
+        set {
+            label.text = newValue
+            invalidateIntrinsicContentSize()
+            setNeedsLayout()
+        }
+    }
+    private let label = UILabel()
     func commonInit() {
+
+//        translatesAutoresizingMaskIntoConstraints = false
         addSubview(label)
-        label.translatesAutoresizingMaskIntoConstraints = true
         label.font = UIFont(name: "AvenirNext-Regular", size: UIFont.systemFontSize())
+        label.numberOfLines = 2
         label.snp_makeConstraints { make in
-            make.leading.equalTo(10.0)
-            make.bottom.equalTo(-4.0)
+            make.leading.equalTo(Measurements.horizontalMargin)
+            make.trailing.equalTo(-Measurements.horizontalMargin)
+            make.bottom.equalTo(-1.0)
+            make.top.equalTo(1.0)
         }
     }
 
@@ -30,4 +44,19 @@ class TableHeaderView: UITableViewHeaderFooterView {
         commonInit()
     }
 
+//    override func sizeThatFits(size: CGSize) -> CGSize {
+//        var updatedSize = label.sizeThatFits(size)
+//        updatedSize.width += CGFloat(2 * Measurements.horizontalMargin)
+//        updatedSize.height += CGFloat(2 * Measurements.verticalMargin)
+//        print("[RP] sizeThatFits(\(size)): \(updatedSize)")
+//        return size
+//    }
+//
+//    override func intrinsicContentSize() -> CGSize {
+//        var size = label.intrinsicContentSize()
+//        size.width += CGFloat(2 * Measurements.horizontalMargin)
+//        size.height += CGFloat(2 * Measurements.verticalMargin)
+//        print("[RP] intrinsicContentSize: \(size)")
+//        return size
+//    }
 }

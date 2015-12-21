@@ -7,13 +7,12 @@
 //
 
 // MARK: -
-// MARK: SearchDataManagerProtocol
+// MARK: SearchDataManagerInterface
 
 protocol SearchDataManagerInterface {
-    var service: SearchPagesServiceInterface? { get set }
-    func startSearch(parameters: SearchParameters, page: Int, completionHandler: ((SearchResults?, NSError?) -> Void))
-    func cancelSearch(parameters: SearchParameters, page: Int)
-    func isSearchInProgress(parameters: SearchParameters, page: Int) -> Bool
+    func fetchMoreResults(parameters: SearchParameters, completionHandler: ((SearchResults?, NSError?) -> Void))
+    func cancelFetch(parameters: SearchParameters)
+    func isFetchInProgress(parameters: SearchParameters) -> Bool
 }
 
 // MARK: -
@@ -21,33 +20,71 @@ protocol SearchDataManagerInterface {
 
 class SearchDataManager: SearchDataManagerInterface {
 
-    var service: SearchPagesServiceInterface?
+    let webService: SearchPagesServiceInterface
+    let cacheService: CachedSearchResultsServiceInterface
 
     // MARK: Init methods
 
-    init(service: SearchPagesServiceInterface = SearchPagesService()) {
-        self.service = service
+    internal init(
+        webService: SearchPagesServiceInterface = SearchPagesService(),
+        cacheService: CachedSearchResultsServiceInterface = CachedSearchResultsService())
+    {
+        self.webService = webService
+        self.cacheService = cacheService
     }
 
     // MARK: Private Properties
 
     private var contextID: String { return "\(unsafeAddressOf(self))" }
 
-    // MARK: SearchDataManagerProtocol conformance
+    // MARK: SearchDataManagerInterface conformance
 
-    func startSearch(parameters: SearchParameters, page: Int, completionHandler: ((SearchResults?, NSError?) -> Void)) {
-        service?.startSearch(parameters, page: page, contextID: contextID, completionHandler: { request, error in
-            // TODO: Handle caching if not done via HTTP
-            let err = error as? NSError
-            completionHandler(request, err)
+    func fetchMoreResults(parameters: SearchParameters, completionHandler: ((SearchResults?, NSError?) -> Void)) {
+        let page: Int
+        if let cachedResults = cacheService.resultsForParameters(parameters) {
+            guard !cachedResults.allItemsLoaded else {
+                completionHandler(nil, NSError(code: .AllItemsLoaded, message: nil))
+                return
+            }
+            page = cachedResults.numLoadedPages + 1
+        } else {
+            page = 1
+        }
+
+        webService.startSearch(parameters, page: page, contextID: contextID, completionHandler: { results, error in
+            let allResults: SearchResults?
+            if let results = results {
+                if let cachedResults = self.cacheService.resultsForParameters(parameters) {
+                    cachedResults.items?.appendContentsOf(results.items ?? [])
+                    allResults = cachedResults
+                } else {
+                    allResults = results
+                }
+                self.cacheService.cacheResults(allResults!, forParameters: parameters)
+            } else {
+                allResults = nil
+            }
+            completionHandler(allResults, error as? NSError)
         })
     }
 
-    func cancelSearch(parameters: SearchParameters, page: Int) {
-        service?.cancelSearch(parameters, page: page, contextID: contextID)
+    func cancelFetch(parameters: SearchParameters) {
+        let page: Int
+        if let cachedResults = cacheService.resultsForParameters(parameters) {
+            page = cachedResults.numLoadedPages + 1
+        } else {
+            page = 1
+        }
+        webService.cancelSearch(parameters, page: page, contextID: contextID)
     }
 
-    func isSearchInProgress(parameters: SearchParameters, page: Int) -> Bool {
-        return service?.isSearchInProgress(parameters, page: page, contextID: contextID) ?? false
+    func isFetchInProgress(parameters: SearchParameters) -> Bool {
+        let page: Int
+        if let cachedResults = cacheService.resultsForParameters(parameters) {
+            page = cachedResults.numLoadedPages + 1
+        } else {
+            page = 1
+        }
+        return webService.isSearchInProgress(parameters, page: page, contextID: contextID) ?? false
     }
 }

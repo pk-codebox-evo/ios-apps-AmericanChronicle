@@ -263,26 +263,23 @@ class SearchFiltersViewController: UIViewController, SearchFiltersViewInterface,
     }
     
     func earliestDateCellTapped() {
-        let vc = DatePickerViewController(
-            latestPossibleDate: searchFilters.latestDate ?? SearchConstants.latestPossibleDate(),
-            selectedDateOnInit: searchFilters.earliestDate)
-        vc.saveCallback = { [weak self] selectedDate in
-            self?.searchFilters.earliestDate = selectedDate
-            self?.collectionView.reloadData()
-            self?.navigationController?.popViewControllerAnimated(true)
-        }
+        let vc = DatePickerViewController(latestPossibleDate: searchFilters.latestDate ?? SearchConstants.latestPossibleDate())
+//        vc.saveCallback = { [weak self] selectedDate in
+//            self?.searchFilters.earliestDate = selectedDate
+//            self?.collectionView.reloadData()
+//            self?.navigationController?.popViewControllerAnimated(true)
+//        }
         navigationController?.pushViewController(vc, animated: true)
     }
 
     func latestDateCellTapped() {
         let vc = DatePickerViewController(
-            earliestPossibleDate: searchFilters.earliestDate ?? SearchConstants.earliestPossibleDate(),
-            selectedDateOnInit: searchFilters.latestDate ?? SearchConstants.latestPossibleDate())
-        vc.saveCallback = { [weak self] selectedDate in
-            self?.searchFilters.latestDate = selectedDate
-            self?.collectionView.reloadData()
-            self?.navigationController?.popViewControllerAnimated(true)
-        }
+            earliestPossibleDate: searchFilters.earliestDate ?? SearchConstants.earliestPossibleDate())
+//        vc.saveCallback = { [weak self] selectedDate in
+//            self?.searchFilters.latestDate = selectedDate
+//            self?.collectionView.reloadData()
+//            self?.navigationController?.popViewControllerAnimated(true)
+//        }
         navigationController?.pushViewController(vc, animated: true)
     }
 

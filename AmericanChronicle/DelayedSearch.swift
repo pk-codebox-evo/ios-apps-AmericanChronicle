@@ -9,7 +9,7 @@
 import UIKit
 
 protocol DelayedSearchFactoryInterface {
-    func newSearch(parameters: SearchParameters, page: Int, callback: ((SearchResults?, ErrorType?) -> ())) -> DelayedSearchInterface?
+    func fetchMoreResults(parameters: SearchParameters, callback: ((SearchResults?, ErrorType?) -> ())) -> DelayedSearchInterface?
 }
 
 class DelayedSearchFactory: DelayedSearchFactoryInterface {
@@ -19,14 +19,14 @@ class DelayedSearchFactory: DelayedSearchFactoryInterface {
         self.dataManager = dataManager
     }
 
-    func newSearch(parameters: SearchParameters, page: Int, callback: ((SearchResults?, ErrorType?) -> ())) -> DelayedSearchInterface? {
-        return DelayedSearch(parameters: parameters, page: page, dataManager: dataManager, completionHandler: callback)
+    func fetchMoreResults(parameters: SearchParameters, callback: ((SearchResults?, ErrorType?) -> ())) -> DelayedSearchInterface? {
+        return DelayedSearch(parameters: parameters, dataManager: dataManager, completionHandler: callback)
     }
 }
 
 protocol DelayedSearchInterface {
     var parameters: SearchParameters { get }
-    init(parameters: SearchParameters, page: Int, dataManager: SearchDataManagerInterface, runLoop: RunLoopInterface, completionHandler: ((SearchResults?, ErrorType?) -> ()))
+    init(parameters: SearchParameters, dataManager: SearchDataManagerInterface, runLoop: RunLoopInterface, completionHandler: ((SearchResults?, ErrorType?) -> ()))
     func cancel()
     func isSearchInProgress() -> Bool
 }
@@ -40,7 +40,6 @@ extension NSRunLoop: RunLoopInterface {}
 class DelayedSearch: NSObject, DelayedSearchInterface {
 
     let parameters: SearchParameters
-    private let page: Int
     private let dataManager: SearchDataManagerInterface
     private let completionHandler: (SearchResults?, ErrorType?) -> ()
     private var timer: NSTimer!
@@ -49,13 +48,11 @@ class DelayedSearch: NSObject, DelayedSearchInterface {
 
     required init(
         parameters: SearchParameters,
-        page: Int,
         dataManager: SearchDataManagerInterface,
         runLoop: RunLoopInterface = NSRunLoop.currentRunLoop(),
         completionHandler: ((SearchResults?, ErrorType?) -> ()))
     {
         self.parameters = parameters
-        self.page = page
         self.dataManager = dataManager
         self.completionHandler = completionHandler
 
@@ -71,7 +68,7 @@ class DelayedSearch: NSObject, DelayedSearchInterface {
             let error = NSError(domain: "", code: -999, userInfo: nil)
             completionHandler(nil, error)
         } else { // Request has started already.
-            dataManager.cancelSearch(parameters, page: page) // Cancelling will trigger the completionHandler.
+            dataManager.cancelFetch(parameters) // Cancelling will trigger the completionHandler.
         }
     }
 
@@ -80,10 +77,10 @@ class DelayedSearch: NSObject, DelayedSearchInterface {
         if timer.valid {
             return true
         }
-        return dataManager.isSearchInProgress(parameters, page: page)
+        return dataManager.isFetchInProgress(parameters)
     }
 
     func timerFired(sender: NSTimer) {
-        dataManager.startSearch(parameters, page: page, completionHandler: completionHandler)
+        dataManager.fetchMoreResults(parameters, completionHandler: completionHandler)
     }
 }

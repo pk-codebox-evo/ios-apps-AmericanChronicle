@@ -8,7 +8,14 @@
 
 import UIKit
 
+struct Measurements {
+    static let horizontalMargin = 16.0
+    static let verticalMargin = 10.0
+}
+
 extension UIButton {
+
+
 
     static func bgImage() -> UIImage {
         let pxHeight = 1.0/UIScreen.mainScreen().scale

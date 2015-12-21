@@ -17,7 +17,7 @@ class FakeDelayedSearch: DelayedSearchInterface {
 
     // MARK: DelayedSearchInterface methods
 
-    required init(parameters: SearchParameters, page: Int, dataManager: SearchDataManagerInterface, runLoop: RunLoopInterface, completionHandler: ((SearchResults?, ErrorType?) -> ())) {
+    required init(parameters: SearchParameters, dataManager: SearchDataManagerInterface, runLoop: RunLoopInterface, completionHandler: ((SearchResults?, ErrorType?) -> ())) {
         self.parameters = parameters
         self.completionHandler = completionHandler
     }

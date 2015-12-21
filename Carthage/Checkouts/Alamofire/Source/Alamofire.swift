@@ -84,7 +84,7 @@ extension NSURLRequest: URLRequestConvertible {
 // MARK: - Convenience
 
 func URLRequest(
-    e: Method,
+    method: Method,
     _ URLString: URLStringConvertible,
     headers: [String: String]? = nil)
     -> NSMutableURLRequest

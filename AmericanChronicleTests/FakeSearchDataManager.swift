@@ -10,33 +10,27 @@
 
 class FakeSearchDataManager: SearchDataManagerInterface {
 
-    var service: SearchPagesServiceInterface?
+    var fetchMoreResults_wasCalled_withParameters: SearchParameters?
 
-    var startSearch_wasCalled_withParameters: SearchParameters?
-    var startSearch_wasCalled_withPage: Int?
-
-    func startSearch(parameters: SearchParameters, page: Int, completionHandler: ((SearchResults?, NSError?) -> Void)) {
-        startSearch_wasCalled_withParameters = parameters
-        startSearch_wasCalled_withPage = page
+    func fetchMoreResults(parameters: SearchParameters, completionHandler: ((SearchResults?, NSError?) -> Void)) {
+        fetchMoreResults_wasCalled_withParameters = parameters
     }
 
     var cancelSearch_wasCalled = false
     var cancelSearch_wasCalled_withParameters: SearchParameters?
     var cancelSearch_wasCalled_withPage: Int?
-    func cancelSearch(parameters: SearchParameters, page: Int) {
+    func cancelFetch(parameters: SearchParameters) {
         cancelSearch_wasCalled = true
         cancelSearch_wasCalled_withParameters = parameters
-        cancelSearch_wasCalled_withPage = page
     }
 
     var isSearchInProgress_wasCalled = false
     var isSearchInProgress_wasCalled_withParameters: SearchParameters?
     var isSearchInProgress_wasCalled_withPage: Int?
     var isSearchInProgress_stubbedReturnValue = false
-    func isSearchInProgress(parameters: SearchParameters, page: Int) -> Bool {
+    func isFetchInProgress(parameters: SearchParameters) -> Bool {
         isSearchInProgress_wasCalled = true
         cancelSearch_wasCalled_withParameters = parameters
-        isSearchInProgress_wasCalled_withPage = page
         return isSearchInProgress_stubbedReturnValue
     }
 }

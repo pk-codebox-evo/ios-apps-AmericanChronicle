@@ -24,11 +24,7 @@ extension Manager: ManagerProtocol {
         method: Alamofire.Method,
         URLString: URLStringConvertible,
         parameters: [String: AnyObject]?) -> RequestProtocol? {
-            print("[RP] method: \(method)")
-            print("[RP] URLString: \(URLString)")
-            print("[RP] parameters: \(parameters)")
-            return request(method, URLString, parameters: parameters, encoding: .URL,
-                headers: nil)
+            return request(method, URLString, parameters: parameters, encoding: .URL, headers: nil)
     }
 
     public func download(

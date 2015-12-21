@@ -10,7 +10,7 @@
 
 class FakeSearchView: SearchViewInterface {
 
-    weak var presenter: SearchPresenterInterface?
+    weak var delegate: SearchViewDelegate?
 
     var setViewState_wasCalled_withState: ViewState?
     func setViewState(state: ViewState) {
@@ -18,7 +18,7 @@ class FakeSearchView: SearchViewInterface {
     }
 
     func setBottomContentInset(bottom: CGFloat) {
-        
+
     }
 
     func resignFirstResponder() -> Bool {
@@ -27,5 +27,13 @@ class FakeSearchView: SearchViewInterface {
 
     func currentSearchTerm() -> String {
         return ""
+    }
+
+    func setEarliestDateString(str: String) {
+
+    }
+
+    func setLatestDateString(str: String) {
+
     }
 }

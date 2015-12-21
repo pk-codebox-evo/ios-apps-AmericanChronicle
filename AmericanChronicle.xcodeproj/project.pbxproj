@@ -56,12 +56,13 @@
 		976D6EB21C02588800EF2B03 /* OCRCoordinatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976D6EB11C02588800EF2B03 /* OCRCoordinatesTests.swift */; };
 		976D6EB61C0259B300EF2B03 /* ocr_coordinates-response.json in Resources */ = {isa = PBXBuildFile; fileRef = 976D6EB41C0259B300EF2B03 /* ocr_coordinates-response.json */; };
 		976D6EB71C0259B300EF2B03 /* search_pages-response.json in Resources */ = {isa = PBXBuildFile; fileRef = 976D6EB51C0259B300EF2B03 /* search_pages-response.json */; };
+		976F5DC41C398E2E00AEF6D3 /* TitleValueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976F5DC31C398E2E00AEF6D3 /* TitleValueButton.swift */; };
+		97728BB31C30EB0D00ADEFE2 /* NSDate+AMC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97728BB21C30EB0D00ADEFE2 /* NSDate+AMC.swift */; };
+		97728BB51C30ECD600ADEFE2 /* FakeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97728BB41C30ECD600ADEFE2 /* FakeManager.swift */; };
+		97728BB71C30ED4900ADEFE2 /* NSDate+AMCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97728BB61C30ED4900ADEFE2 /* NSDate+AMCTests.swift */; };
 		97789B941BB10206000B298C /* PageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97789B931BB10206000B298C /* PageInteractor.swift */; };
 		97789B961BB10316000B298C /* PageInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97789B951BB10316000B298C /* PageInteractorTests.swift */; };
 		977F0A581B7FC3E700C4B0FC /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977F0A561B7FC3E700C4B0FC /* DatePickerViewController.swift */; };
-		977F0A591B7FC3E700C4B0FC /* DatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 977F0A571B7FC3E700C4B0FC /* DatePickerViewController.xib */; };
-		977F0A5B1B7FC58200C4B0FC /* CalendarViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977F0A5A1B7FC58200C4B0FC /* CalendarViewDelegate.swift */; };
-		977F0A5D1B7FC5BA00C4B0FC /* CalendarViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977F0A5C1B7FC5BA00C4B0FC /* CalendarViewDataSource.swift */; };
 		977F10991BA51B86003BEF11 /* TestURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977F10941BA50B53003BEF11 /* TestURLProtocol.swift */; };
 		977F109B1BA54A98003BEF11 /* FakeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977F109A1BA54A98003BEF11 /* FakeViewController.swift */; };
 		977F109D1BA54B1A003BEF11 /* FakeSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977F109C1BA54B1A003BEF11 /* FakeSearchPresenter.swift */; };
@@ -69,8 +70,6 @@
 		977F10A21BA54C62003BEF11 /* FakeSearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977F10A11BA54C62003BEF11 /* FakeSearchInteractor.swift */; };
 		978236191B7FD0D00056FDF6 /* ChroniclingAmericaEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978236181B7FD0D00056FDF6 /* ChroniclingAmericaEndpoint.swift */; };
 		9782361B1B7FD1F00056FDF6 /* SearchFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782361A1B7FD1F00056FDF6 /* SearchFilters.swift */; };
-		9782361D1B7FFCF80056FDF6 /* YearSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782361C1B7FFCF80056FDF6 /* YearSlider.swift */; };
-		9782361F1B8000CE0056FDF6 /* YearSliderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782361E1B8000CE0056FDF6 /* YearSliderTests.swift */; };
 		978741471B7832660014D1F0 /* NewspaperPagesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978741461B7832660014D1F0 /* NewspaperPagesDataSource.swift */; };
 		9787414B1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9787414A1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift */; };
 		978D11541B955C39003B98C5 /* UIAppearance+AMC.m in Sources */ = {isa = PBXBuildFile; fileRef = 978D11531B955C39003B98C5 /* UIAppearance+AMC.m */; };
@@ -101,7 +100,6 @@
 		97B829331BC08C5700B35538 /* PDFPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B829321BC08C5700B35538 /* PDFPageView.swift */; };
 		97BDE1151B76ED6B00A3E57F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE1141B76ED6B00A3E57F /* AppDelegate.swift */; };
 		97BDE1171B76ED6B00A3E57F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE1161B76ED6B00A3E57F /* HomeViewController.swift */; };
-		97BDE1191B76ED6B00A3E57F /* NewspaperIssuesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE1181B76ED6B00A3E57F /* NewspaperIssuesViewController.swift */; };
 		97BDE11C1B76ED6B00A3E57F /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97BDE11A1B76ED6B00A3E57F /* Home.storyboard */; };
 		97BDE11E1B76ED6B00A3E57F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97BDE11D1B76ED6B00A3E57F /* Images.xcassets */; };
 		97BDE1211B76ED6B00A3E57F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97BDE11F1B76ED6B00A3E57F /* LaunchScreen.xib */; };
@@ -111,8 +109,12 @@
 		97BE674A1B7B004B00761033 /* SearchFiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BE67491B7B004B00761033 /* SearchFiltersViewController.swift */; };
 		97C02B011B9E51FA00126611 /* SearchPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C02B001B9E51FA00126611 /* SearchPresenterTests.swift */; };
 		97C02B031B9E5B3E00126611 /* SearchWireframeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C02B021B9E5B3E00126611 /* SearchWireframeTests.swift */; };
+		97C3ABB11C39CA2B00165FEA /* SearchParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C3ABB01C39CA2B00165FEA /* SearchParameters.swift */; };
 		97C99FB81B96BAC5001310DE /* SearchFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C99FB71B96BAC5001310DE /* SearchFieldCell.swift */; };
 		97CC38511BB0EB1800E1B67A /* SearchResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CC38501BB0EB1800E1B67A /* SearchResultTests.swift */; };
+		97D3293E1C2773AE0088FF21 /* DatePickerWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D3293D1C2773AE0088FF21 /* DatePickerWireframe.swift */; };
+		97D329401C2778C10088FF21 /* DatePickerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D3293F1C2778C10088FF21 /* DatePickerInteractor.swift */; };
+		97D329421C2778E40088FF21 /* DatePickerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D329411C2778E40088FF21 /* DatePickerPresenter.swift */; };
 		97D3F84A1B994B5E008B8D81 /* Page.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97D3F8491B994B5E008B8D81 /* Page.storyboard */; };
 		97D542C01C1B4CDC00402D9A /* USStatePickerWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D542BF1C1B4CDC00402D9A /* USStatePickerWireframe.swift */; };
 		97DB4FAD1C02E2990091F33D /* OCRCoordinatesServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB4FAC1C02E2990091F33D /* OCRCoordinatesServiceTests.swift */; };
@@ -123,7 +125,6 @@
 		97DD1C5E1BF0002700A67538 /* FakeSearchWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DD1C5D1BF0002700A67538 /* FakeSearchWireframe.swift */; };
 		97DFA8021B9026C8006578CF /* NewspaperIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DFA8011B9026C8006578CF /* NewspaperIssue.swift */; };
 		97DFA8041B903025006578CF /* NewspaperIssueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DFA8031B903025006578CF /* NewspaperIssueCell.swift */; };
-		97E744181BD750D700963C62 /* PageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E744171BD750D700963C62 /* PageServiceTests.swift */; };
 		97EAC1DB1B9D2DB600956EBC /* SearchWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EAC1DA1B9D2DB600956EBC /* SearchWireframe.swift */; };
 		97EAC1DD1B9D2F0C00956EBC /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EAC1DC1B9D2F0C00956EBC /* SearchPresenter.swift */; };
 		97EAC1DF1B9D3E0300956EBC /* RootWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EAC1DE1B9D3E0300956EBC /* RootWireframe.swift */; };
@@ -223,12 +224,13 @@
 		976D6EB11C02588800EF2B03 /* OCRCoordinatesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OCRCoordinatesTests.swift; sourceTree = "<group>"; };
 		976D6EB41C0259B300EF2B03 /* ocr_coordinates-response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ocr_coordinates-response.json"; sourceTree = "<group>"; };
 		976D6EB51C0259B300EF2B03 /* search_pages-response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "search_pages-response.json"; sourceTree = "<group>"; };
+		976F5DC31C398E2E00AEF6D3 /* TitleValueButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleValueButton.swift; sourceTree = "<group>"; };
+		97728BB21C30EB0D00ADEFE2 /* NSDate+AMC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+AMC.swift"; sourceTree = "<group>"; };
+		97728BB41C30ECD600ADEFE2 /* FakeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeManager.swift; sourceTree = "<group>"; };
+		97728BB61C30ED4900ADEFE2 /* NSDate+AMCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+AMCTests.swift"; sourceTree = "<group>"; };
 		97789B931BB10206000B298C /* PageInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageInteractor.swift; sourceTree = "<group>"; };
 		97789B951BB10316000B298C /* PageInteractorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageInteractorTests.swift; sourceTree = "<group>"; };
 		977F0A561B7FC3E700C4B0FC /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
-		977F0A571B7FC3E700C4B0FC /* DatePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerViewController.xib; sourceTree = "<group>"; };
-		977F0A5A1B7FC58200C4B0FC /* CalendarViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewDelegate.swift; sourceTree = "<group>"; };
-		977F0A5C1B7FC5BA00C4B0FC /* CalendarViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewDataSource.swift; sourceTree = "<group>"; };
 		977F10941BA50B53003BEF11 /* TestURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestURLProtocol.swift; sourceTree = "<group>"; };
 		977F109A1BA54A98003BEF11 /* FakeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeViewController.swift; sourceTree = "<group>"; };
 		977F109C1BA54B1A003BEF11 /* FakeSearchPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeSearchPresenter.swift; sourceTree = "<group>"; };
@@ -236,8 +238,6 @@
 		977F10A11BA54C62003BEF11 /* FakeSearchInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeSearchInteractor.swift; sourceTree = "<group>"; };
 		978236181B7FD0D00056FDF6 /* ChroniclingAmericaEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChroniclingAmericaEndpoint.swift; sourceTree = "<group>"; };
 		9782361A1B7FD1F00056FDF6 /* SearchFilters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFilters.swift; sourceTree = "<group>"; };
-		9782361C1B7FFCF80056FDF6 /* YearSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YearSlider.swift; sourceTree = "<group>"; };
-		9782361E1B8000CE0056FDF6 /* YearSliderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YearSliderTests.swift; sourceTree = "<group>"; };
 		978741461B7832660014D1F0 /* NewspaperPagesDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPagesDataSource.swift; sourceTree = "<group>"; };
 		9787414A1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPagesPreviewDelegate.swift; sourceTree = "<group>"; };
 		978D11521B955C39003B98C5 /* UIAppearance+AMC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAppearance+AMC.h"; sourceTree = "<group>"; };
@@ -283,8 +283,12 @@
 		97BE67491B7B004B00761033 /* SearchFiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFiltersViewController.swift; sourceTree = "<group>"; };
 		97C02B001B9E51FA00126611 /* SearchPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPresenterTests.swift; sourceTree = "<group>"; };
 		97C02B021B9E5B3E00126611 /* SearchWireframeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchWireframeTests.swift; sourceTree = "<group>"; };
+		97C3ABB01C39CA2B00165FEA /* SearchParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchParameters.swift; sourceTree = "<group>"; };
 		97C99FB71B96BAC5001310DE /* SearchFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFieldCell.swift; sourceTree = "<group>"; };
 		97CC38501BB0EB1800E1B67A /* SearchResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultTests.swift; sourceTree = "<group>"; };
+		97D3293D1C2773AE0088FF21 /* DatePickerWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerWireframe.swift; sourceTree = "<group>"; };
+		97D3293F1C2778C10088FF21 /* DatePickerInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerInteractor.swift; sourceTree = "<group>"; };
+		97D329411C2778E40088FF21 /* DatePickerPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerPresenter.swift; sourceTree = "<group>"; };
 		97D3F8491B994B5E008B8D81 /* Page.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Page.storyboard; sourceTree = "<group>"; };
 		97D542BF1C1B4CDC00402D9A /* USStatePickerWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USStatePickerWireframe.swift; sourceTree = "<group>"; };
 		97DB4FAC1C02E2990091F33D /* OCRCoordinatesServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OCRCoordinatesServiceTests.swift; sourceTree = "<group>"; };
@@ -404,11 +408,10 @@
 		975DA6C81C19294B00D7211A /* DatePicker */ = {
 			isa = PBXGroup;
 			children = (
-				977F0A5A1B7FC58200C4B0FC /* CalendarViewDelegate.swift */,
-				977F0A5C1B7FC5BA00C4B0FC /* CalendarViewDataSource.swift */,
-				9782361C1B7FFCF80056FDF6 /* YearSlider.swift */,
+				97D3293D1C2773AE0088FF21 /* DatePickerWireframe.swift */,
 				977F0A561B7FC3E700C4B0FC /* DatePickerViewController.swift */,
-				977F0A571B7FC3E700C4B0FC /* DatePickerViewController.xib */,
+				97D329411C2778E40088FF21 /* DatePickerPresenter.swift */,
+				97D3293F1C2778C10088FF21 /* DatePickerInteractor.swift */,
 			);
 			name = DatePicker;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				97DD1C591BEFFEF100A67538 /* FakeSearchInteractorDelegate.swift */,
 				97DD1C5B1BEFFF4800A67538 /* FakeDelayedSearchFactory.swift */,
 				97DD1C5D1BF0002700A67538 /* FakeSearchWireframe.swift */,
+				97728BB41C30ECD600ADEFE2 /* FakeManager.swift */,
 			);
 			name = Fakes;
 			sourceTree = "<group>";
@@ -533,6 +537,7 @@
 				97963F8F1BCC795D00248942 /* Request+AMC.swift */,
 				97ED42CB1BDD879300884B3E /* NSError+AMC.swift */,
 				97963F911BCC7ACE00248942 /* NSFileManager+AMC.swift */,
+				97728BB21C30EB0D00ADEFE2 /* NSDate+AMC.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -589,9 +594,11 @@
 				978E9B1D1BAFB5340001690C /* View */,
 				97EAC1DC1B9D2F0C00956EBC /* SearchPresenter.swift */,
 				97EAC1E21B9D434800956EBC /* SearchInteractor.swift */,
+				97C3ABB01C39CA2B00165FEA /* SearchParameters.swift */,
 				97963F951BCC84D700248942 /* SearchDataManager.swift */,
 				978E9B181BAFA6120001690C /* Entities */,
 				978E9B141BAFA3950001690C /* DelayedSearch.swift */,
+				976F5DC31C398E2E00AEF6D3 /* TitleValueButton.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -690,7 +697,7 @@
 				970782391BC4DD0900D23517 /* PDF_Samples */,
 				97BDE12A1B76ED6B00A3E57F /* Supporting Files */,
 				977F109E1BA54BCA003BEF11 /* Fakes */,
-				9782361E1B8000CE0056FDF6 /* YearSliderTests.swift */,
+				97728BB61C30ED4900ADEFE2 /* NSDate+AMCTests.swift */,
 				9725E5B71BDC784100E74370 /* Services */,
 				978E9B121BAF9F380001690C /* Modules */,
 				9739FE311BA28A04009ACD94 /* AlamofireIntegrationTests.swift */,
@@ -842,7 +849,6 @@
 				97A7D9AE1B866E7E00DDBF59 /* SearchFiltersViewController.xib in Resources */,
 				97D3F84A1B994B5E008B8D81 /* Page.storyboard in Resources */,
 				979BEBC91C1B87E3003BA3CA /* states.json in Resources */,
-				977F0A591B7FC3E700C4B0FC /* DatePickerViewController.xib in Resources */,
 				978D11561B956EAA003B98C5 /* Search.storyboard in Resources */,
 				97BDE1211B76ED6B00A3E57F /* LaunchScreen.xib in Resources */,
 				97BDE11E1B76ED6B00A3E57F /* Images.xcassets in Resources */,
@@ -895,18 +901,16 @@
 				972613DD1C024EF500EDF550 /* OCRCoordinatesDataManager.swift in Sources */,
 				97D542C01C1B4CDC00402D9A /* USStatePickerWireframe.swift in Sources */,
 				978236191B7FD0D00056FDF6 /* ChroniclingAmericaEndpoint.swift in Sources */,
-				97BDE1191B76ED6B00A3E57F /* NewspaperIssuesViewController.swift in Sources */,
 				97DFA8041B903025006578CF /* NewspaperIssueCell.swift in Sources */,
 				97963F961BCC84D700248942 /* SearchDataManager.swift in Sources */,
 				978E9B1C1BAFB29E0001690C /* String+AMC.swift in Sources */,
 				97EAC1DB1B9D2DB600956EBC /* SearchWireframe.swift in Sources */,
-				977F0A5B1B7FC58200C4B0FC /* CalendarViewDelegate.swift in Sources */,
 				974BA36C1B892DD500D7ACA2 /* Newspaper.swift in Sources */,
 				974BA36E1B89343A00D7ACA2 /* StateName.swift in Sources */,
 				974E4FBE1BAF61FC006A8231 /* LoggingURLProtocol.swift in Sources */,
-				977F0A5D1B7FC5BA00C4B0FC /* CalendarViewDataSource.swift in Sources */,
 				977F0A581B7FC3E700C4B0FC /* DatePickerViewController.swift in Sources */,
 				97BDE1391B7703CA00A3E57F /* PageViewController.swift in Sources */,
+				97D329421C2778E40088FF21 /* DatePickerPresenter.swift in Sources */,
 				97ED42CC1BDD879300884B3E /* NSError+AMC.swift in Sources */,
 				97963F8E1BCC792400248942 /* Manager+AMC.swift in Sources */,
 				975DA6C21C19262000D7211A /* SearchFiltersInteractor.swift in Sources */,
@@ -918,6 +922,7 @@
 				979E20751BD2F669007C7F5F /* SearchModuleDependencies.swift in Sources */,
 				978D11581B956F2D003B98C5 /* SearchField.swift in Sources */,
 				9725E5B21BDC547800E74370 /* CachedPageService.swift in Sources */,
+				976F5DC41C398E2E00AEF6D3 /* TitleValueButton.swift in Sources */,
 				974BA36A1B892D8900D7ACA2 /* Location.swift in Sources */,
 				9787414B1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift in Sources */,
 				97EAC1DF1B9D3E0300956EBC /* RootWireframe.swift in Sources */,
@@ -929,11 +934,13 @@
 				97DFA8021B9026C8006578CF /* NewspaperIssue.swift in Sources */,
 				97BE674A1B7B004B00761033 /* SearchFiltersViewController.swift in Sources */,
 				978E9B1A1BAFA6360001690C /* SearchResults.swift in Sources */,
+				97728BB31C30EB0D00ADEFE2 /* NSDate+AMC.swift in Sources */,
 				9764976D1B7DA0270035A388 /* Month.swift in Sources */,
 				97415AE41B785D8400326239 /* CustomSegueNavigationController.swift in Sources */,
 				97EAC1E31B9D434800956EBC /* SearchInteractor.swift in Sources */,
-				9782361D1B7FFCF80056FDF6 /* YearSlider.swift in Sources */,
 				974BA3681B892D5200D7ACA2 /* City.swift in Sources */,
+				97C3ABB11C39CA2B00165FEA /* SearchParameters.swift in Sources */,
+				97D329401C2778C10088FF21 /* DatePickerInteractor.swift in Sources */,
 				978E9B151BAFA3950001690C /* DelayedSearch.swift in Sources */,
 				97B829331BC08C5700B35538 /* PDFPageView.swift in Sources */,
 				97604E4C1C08F2D000FA2805 /* CALayer+AMC.swift in Sources */,
@@ -946,6 +953,7 @@
 				979BEBCF1C1BC388003BA3CA /* USStatesService.swift in Sources */,
 				97F707D11BB8AE8F00A3D760 /* PagePresenter.swift in Sources */,
 				972613DF1C024F1700EDF550 /* OCRCoordinatesService.swift in Sources */,
+				97D3293E1C2773AE0088FF21 /* DatePickerWireframe.swift in Sources */,
 				9721FDC91B93FF26006798B2 /* Style.swift in Sources */,
 				9782361B1B7FD1F00056FDF6 /* SearchFilters.swift in Sources */,
 				978741471B7832660014D1F0 /* NewspaperPagesDataSource.swift in Sources */,
@@ -976,15 +984,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				97DD1C5A1BEFFEF100A67538 /* FakeSearchInteractorDelegate.swift in Sources */,
-				9782361F1B8000CE0056FDF6 /* YearSliderTests.swift in Sources */,
 				97DD1C5C1BEFFF4800A67538 /* FakeDelayedSearchFactory.swift in Sources */,
-				97E744181BD750D700963C62 /* PageServiceTests.swift in Sources */,
 				97597C1E1BF8025300363A00 /* KeyboardServiceTests.swift in Sources */,
 				97DD1C581BEFFEAC00A67538 /* FakeSearchDataManager.swift in Sources */,
 				97DD1C5E1BF0002700A67538 /* FakeSearchWireframe.swift in Sources */,
 				97F622031BE9E94000F0DB63 /* DelayedSearchTests.swift in Sources */,
 				97DB4FAD1C02E2990091F33D /* OCRCoordinatesServiceTests.swift in Sources */,
 				97789B961BB10316000B298C /* PageInteractorTests.swift in Sources */,
+				97728BB51C30ECD600ADEFE2 /* FakeManager.swift in Sources */,
 				977F109B1BA54A98003BEF11 /* FakeViewController.swift in Sources */,
 				979E207A1BD30E40007C7F5F /* FakePageService.swift in Sources */,
 				977F10A21BA54C62003BEF11 /* FakeSearchInteractor.swift in Sources */,
@@ -995,6 +1002,7 @@
 				97DD1C561BEFFE7A00A67538 /* FakeDelayedSearch.swift in Sources */,
 				9762A0901BB0E19D002A57C8 /* FakeSearchView.swift in Sources */,
 				976D6EB21C02588800EF2B03 /* OCRCoordinatesTests.swift in Sources */,
+				97728BB71C30ED4900ADEFE2 /* NSDate+AMCTests.swift in Sources */,
 				97FE01521BDC48C00098E45F /* PageWireframeTests.swift in Sources */,
 				9767C7331BBA518400F5CBEC /* PagePresenterTests.swift in Sources */,
 				9725E5B61BDC783600E74370 /* SearchPagesServiceTests.swift in Sources */,
@@ -1074,7 +1082,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1112,7 +1120,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

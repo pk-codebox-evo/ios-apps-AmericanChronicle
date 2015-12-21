@@ -65,7 +65,7 @@ class HomeViewController: UITableViewController, UITextFieldDelegate, UIViewCont
 
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("Header") as? TableHeaderView
-        headerView?.label.text = StateName.alphabeticalList[section].rawValue
+        headerView?.text = StateName.alphabeticalList[section].rawValue
         return headerView
     }
 
@@ -92,11 +92,11 @@ class HomeViewController: UITableViewController, UITextFieldDelegate, UIViewCont
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let paper = newspaperAtIndexPath(indexPath),
-               vc = UIStoryboard.instantiateInitialViewControllerFor("Browse") as? NewspaperIssuesViewController {
-            vc.newspaper = paper
-            navigationController?.pushViewController(vc, animated: true)
-        }
+//        if let paper = newspaperAtIndexPath(indexPath),
+//               vc = UIStoryboard.instantiateInitialViewControllerFor("Browse") as? NewspaperIssuesViewController {
+//            vc.newspaper = paper
+//            navigationController?.pushViewController(vc, animated: true)
+//        }
     }
 
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {

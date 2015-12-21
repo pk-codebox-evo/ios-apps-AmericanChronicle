@@ -14,18 +14,32 @@ import UIKit
 // The view controller shouldn’t be making decisions based on (user) actions, but it should pass these events along to something that can.
 
 protocol SearchViewInterface: class {
-    weak var presenter: SearchPresenterInterface? { get set }
+    weak var delegate: SearchViewDelegate? { get set }
     func setViewState(state: ViewState)
     func setBottomContentInset(bottom: CGFloat)
     func resignFirstResponder() -> Bool
     func currentSearchTerm() -> String
+    func setEarliestDateString(str: String)
+    func setLatestDateString(str: String)
+}
+
+protocol SearchViewDelegate: class {
+    func userDidTapCancel()
+    func userDidTapReturn()
+    func userDidTapUSStates()
+    func userDidTapEarliestDateButton()
+    func userDidTapLatestDateButton()
+    func userDidChangeSearchToTerm(term: String?)
+    func userIsApproachingLastRow(term: String?, inCollection: [SearchResultsRow])
+    func userDidSelectSearchResult(row: SearchResultsRow)
+    func viewDidLoad()
 }
 
 // http://scotthurff.com/posts/why-your-user-interface-is-awkward-youre-ignoring-the-ui-stack
 enum ViewState: Equatable, CustomStringConvertible {
     case EmptySearchField // Blank (A)
     case EmptyResults // Blank (B)
-    case LoadingNewTerm
+    case LoadingNewParamaters
     case LoadingMoreRows
     case Partial(title: String, rows: [SearchResultsRow])
     case Ideal(title: String, rows: [SearchResultsRow])
@@ -36,7 +50,7 @@ enum ViewState: Equatable, CustomStringConvertible {
         switch self {
         	case .EmptySearchField: desc += "EmptySearchField"
             case .EmptyResults: desc += "EmptyResults"
-            case .LoadingNewTerm: desc += "LoadingNewTerm"
+            case .LoadingNewParamaters: desc += "LoadingNewParamaters"
             case .LoadingMoreRows: desc += "LoadingMoreRows"
             case let .Partial(title, rows):
                 desc += "Partial, title=\(title), rows=["
@@ -48,7 +62,6 @@ enum ViewState: Equatable, CustomStringConvertible {
                 desc += "]"
             case let .Error(title, message):
                 desc += "Error, title=\(title), message=\(message)"
-
         }
         desc += ">"
         return desc
@@ -59,7 +72,7 @@ func ==(a: ViewState, b: ViewState) -> Bool {
     switch (a, b) {
         case (.EmptySearchField, .EmptySearchField): return true
         case (.EmptyResults, .EmptyResults): return true
-        case (.LoadingNewTerm, .LoadingNewTerm): return true
+        case (.LoadingNewParamaters, .LoadingNewParamaters): return true
         case (.LoadingMoreRows, .LoadingMoreRows): return true
         case (let .Partial(titleA, rowsA), let .Partial(titleB, rowsB)):
             return (titleA == titleB) && (rowsA == rowsB)
@@ -75,7 +88,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
 
     // MARK: Properties
 
-    weak var presenter: SearchPresenterInterface?
+    weak var delegate: SearchViewDelegate?
 
     @IBOutlet weak var emptyResultsLabel: UILabel!
     @IBOutlet weak var errorView: UIView!
@@ -84,19 +97,34 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var searchField: SearchField!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var earliestDateButton: TitleValueButton!
+    @IBOutlet weak var latestDateButton: TitleValueButton!
 
-    var filters: SearchFilters?
     var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+
+    var earliestDateTitle: String? {
+        didSet {
+            // Set button title
+        }
+    }
+
+    var latestDateTitle: String? {
+        didSet {
+            // Set button title
+        }
+    }
+
+    var statesTitle: String? {
+        didSet {
+            // Set button title
+        }
+    }
 
     var sectionTitle = ""
 
     private var rows: [SearchResultsRow] = []
 
     // MARK: Internal methods
-
-    @IBAction func cancelButtonTapped(sender: UIBarButtonItem) {
-        presenter?.userDidTapCancel()
-    }
 
     func setBottomContentInset(bottom: CGFloat) {
         if !isViewLoaded() {
@@ -134,7 +162,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
             rows = []
             tableView.reloadData()
             tableView.tableFooterView?.alpha = 0
-        case .LoadingNewTerm:
+        case .LoadingNewParamaters:
             setLoadingIndicatorsVisible(true)
             emptyResultsLabel.alpha = 0
             errorView.alpha = 0
@@ -149,16 +177,20 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
             emptyResultsLabel.alpha = 0
             errorView.alpha = 0
             sectionTitle = title
-            self.rows = rows
-            tableView.reloadData()
+            if self.rows != rows {
+                self.rows = rows
+                tableView.reloadData()
+            }
             tableView.tableFooterView?.alpha = 0
         case let .Ideal(title, rows):
             setLoadingIndicatorsVisible(false)
             emptyResultsLabel.alpha = 0
             errorView.alpha = 0
             sectionTitle = title
-            self.rows = rows
-            tableView.reloadData()
+            if self.rows != rows {
+                self.rows = rows
+                tableView.reloadData()
+            }
             tableView.tableFooterView?.alpha = 0
         case let .Error(title, message):
             setLoadingIndicatorsVisible(false)
@@ -173,12 +205,28 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
         }
     }
 
-    @IBAction func filterButtonTapped(sender: UIButton) {
-        presenter?.userDidTapUSStates()
-    }
-
     func currentSearchTerm() -> String {
         return searchField?.text ?? ""
+    }
+
+    @IBAction func statesButtonTapped(sender: AnyObject) {
+        delegate?.userDidTapUSStates()
+    }
+
+    @IBAction func earliestDateButtonTapped(sender: AnyObject) {
+        delegate?.userDidTapEarliestDateButton()
+    }
+
+    @IBAction func latestDateButtonTapped(sender: AnyObject) {
+        delegate?.userDidTapLatestDateButton()
+    }
+
+    func setEarliestDateString(str: String) {
+        earliestDateButton.value = str
+    }
+
+    func setLatestDateString(str: String) {
+        latestDateButton.value = str
     }
 
     // MARK: SearchView properties and methods
@@ -196,7 +244,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
 
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("Header") as? TableHeaderView
-        headerView?.label.text = sectionTitle
+        headerView?.text = sectionTitle
         return headerView
     }
 
@@ -228,15 +276,14 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         searchField.resignFirstResponder()
         let row = rows[indexPath.row]
-        presenter?.userDidSelectSearchResult(row)
+        delegate?.userDidSelectSearchResult(row)
     }
 
     static let approachingCount = 5
 
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-
         if (rows.count > 0) && ((rows.count - indexPath.row) < SearchViewController.approachingCount) {
-            presenter?.userIsApproachingLastRow(searchField.text, inCollection: rows)
+            delegate?.userIsApproachingLastRow(searchField.text, inCollection: rows)
         }
     }
 
@@ -256,18 +303,24 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
                 text.replaceRange(range, with: replacement)
             }
 
-            self?.presenter?.userDidChangeSearchToTerm(text)
+            self?.delegate?.userDidChangeSearchToTerm(text)
 
             return true
         }
 
         searchField.shouldReturnHandler = { [weak self] in
-            self?.presenter?.userDidTapReturn()
+            self?.delegate?.userDidTapReturn()
             return false
         }
 
+        earliestDateButton.title = "Earliest Date"
+        earliestDateButton.value = "--"
+
+        latestDateButton.title = "Latest Date"
+        latestDateButton.value = "--"
+
         tableView.registerClass(TableHeaderView.self, forHeaderFooterViewReuseIdentifier: "Header")
-        tableView.sectionHeaderHeight = 40.0
+        tableView.sectionHeaderHeight = 60.0
         tableView.rowHeight = 150.0
 
         view.addSubview(activityIndicator)
@@ -276,12 +329,12 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
             make.center.equalTo(view.snp_center)
         }
 
-        presenter?.viewDidLoad()
+        delegate?.viewDidLoad()
 
         setViewState(.EmptySearchField)
     }
 
-    // MARK: UIResponder methods
+    // MARK: UIResponder overrides
 
     override func becomeFirstResponder() -> Bool {
         return searchField.becomeFirstResponder()

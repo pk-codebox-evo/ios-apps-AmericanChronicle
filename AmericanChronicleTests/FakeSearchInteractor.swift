@@ -10,15 +10,11 @@
 
 class FakeSearchInteractor: SearchInteractorInterface {
 
-    var dataManager: SearchDataManagerInterface?
     var delegate: SearchInteractorDelegate?
 
-    var startSearch_wasCalled = false
-    var startSearch_wasCalled_withParameters: SearchParameters?
-
-    func startSearch(parameters: SearchParameters, existingRows: [SearchResultsRow]) {
-        startSearch_wasCalled = true
-        startSearch_wasCalled_withParameters = parameters
+    var fetchNextPageOfResults_wasCalled_withParameters: SearchParameters?
+    func fetchNextPageOfResults(parameters: SearchParameters) {
+        fetchNextPageOfResults_wasCalled_withParameters = parameters
     }
 
     var fake_isSearchInProgress = false

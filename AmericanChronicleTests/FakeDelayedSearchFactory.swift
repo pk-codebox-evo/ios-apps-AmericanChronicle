@@ -11,14 +11,12 @@
 class FakeDelayedSearchFactory: DelayedSearchFactoryInterface {
 
     var newSearch_wasCalled_withParameters: SearchParameters?
-    var newSearch_wasCalled_withPage: Int?
 
     private(set) var newSearchForTerm_lastReturnedSearch: FakeDelayedSearch?
 
-    func newSearch(parameters: SearchParameters, page: Int, callback: ((SearchResults?, ErrorType?) -> ())) -> DelayedSearchInterface? {
+    func fetchMoreResults(parameters: SearchParameters, callback: ((SearchResults?, ErrorType?) -> ())) -> DelayedSearchInterface? {
         newSearch_wasCalled_withParameters = parameters
-        newSearch_wasCalled_withPage = page
-        newSearchForTerm_lastReturnedSearch = FakeDelayedSearch(parameters: parameters, page: page, dataManager: FakeSearchDataManager(), runLoop: FakeRunLoop(), completionHandler: callback)
+        newSearchForTerm_lastReturnedSearch = FakeDelayedSearch(parameters: parameters, dataManager: FakeSearchDataManager(), runLoop: FakeRunLoop(), completionHandler: callback)
         return newSearchForTerm_lastReturnedSearch
     }
 

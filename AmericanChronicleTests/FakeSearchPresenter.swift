@@ -15,21 +15,17 @@ class FakeSearchPresenter: NSObject, SearchPresenterInterface {
     var interactor: SearchInteractorInterface?
 
     func userDidTapCancel() {}
-
     func userDidTapReturn() {}
-
     func userDidTapUSStates() {}
-
+    func userDidTapEarliestDateButton() {}
+    func userDidTapLatestDateButton() {}
     func userDidChangeSearchToTerm(term: String?) {}
-
     func userIsApproachingLastRow(term: String?, inCollection: [SearchResultsRow]) {}
-
     func userDidSelectSearchResult(row: SearchResultsRow) {}
-
-    func search(parameters: SearchParameters, existingRows: [SearchResultsRow], didFinishWithResults: SearchResults?, error: NSError?) {}
-
     func viewDidLoad() {}
-
     func userDidSaveFilteredUSStates(stateNames: [String]) {}
     func userDidNotSaveFilteredUSStates() {}
+    func userDidSaveDate(date: NSDate) {}
+
+    func search(parameters: SearchParameters, didFinishWithResults: SearchResults?, error: NSError?) {}
 }

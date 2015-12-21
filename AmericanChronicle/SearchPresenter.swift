@@ -11,26 +11,25 @@ import UIKit
 // MARK: -
 // MARK: SearchPresenterInterface
 
-protocol SearchPresenterInterface: class, SearchInteractorDelegate {
+protocol SearchPresenterInterface: class, SearchViewDelegate, SearchInteractorDelegate {
     var wireframe: SearchWireframeInterface? { get set }
     var view: SearchViewInterface? { get set }
     var interactor: SearchInteractorInterface? { get set }
 
-    func userDidTapCancel()
-    func userDidTapReturn()
-    func userDidTapUSStates()
-    func userDidChangeSearchToTerm(term: String?)
-    func userIsApproachingLastRow(term: String?, inCollection: [SearchResultsRow])
-    func userDidSelectSearchResult(row: SearchResultsRow)
-    func viewDidLoad()
     func userDidSaveFilteredUSStates(stateNames: [String])
-    func userDidNotSaveFilteredUSStates()
+    func userDidSaveDate(date: NSDate)
 }
 
 // MARK: -
 // MARK: SearchPresenter
 
 class SearchPresenter: NSObject, SearchPresenterInterface {
+
+    private enum DateType {
+        case Earliest
+        case Latest
+        case None
+    }
 
     // MARK: Properties
 
@@ -42,12 +41,50 @@ class SearchPresenter: NSObject, SearchPresenterInterface {
     }
     weak var interactor: SearchInteractorInterface?
 
+    var term: String?
+    var states: [String] = []
+    var earliestDate: NSDate = SearchConstants.earliestPossibleDate()
+    var latestDate: NSDate = SearchConstants.latestPossibleDate()
+
+    private let dateFormatter: NSDateFormatter = {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "MMM dd, yyyy"
+        return formatter
+    }()
+    private var typeBeingEdited = DateType.None
+
+    // MARK: Init methods
+
     override init() {
         super.init()
         KeyboardService.sharedInstance.addFrameChangeHandler("\(unsafeAddressOf(self))") { [weak self] rect in
             self?.updateViewForKeyboardFrame(rect)
         }
     }
+
+    // MARK: SearchPresenterInterface methods
+
+    func userDidSaveFilteredUSStates(stateNames: [String]) {
+        states = stateNames
+        searchIfReady()
+    }
+
+    func userDidSaveDate(date: NSDate) {
+        switch typeBeingEdited {
+        case .Earliest:
+            earliestDate = date
+            view?.setEarliestDateString(dateFormatter.stringFromDate(date))
+            searchIfReady()
+        case .Latest:
+            latestDate = date
+            view?.setLatestDateString(dateFormatter.stringFromDate(date))
+            searchIfReady()
+        case .None:
+            break
+        }
+    }
+
+    // MARK: SearchViewDelegate methods
 
     func userDidTapCancel() {
         wireframe?.userDidTapCancel()
@@ -58,32 +95,32 @@ class SearchPresenter: NSObject, SearchPresenterInterface {
     }
 
     func userDidTapUSStates() {
-        wireframe?.userDidTapUSStates(filteredUSStates)
+        wireframe?.showUSStatesPicker(states)
+    }
+
+    func userDidTapEarliestDateButton() {
+        typeBeingEdited = .Earliest
+        wireframe?.userDidTapDate(earliestDate)
+    }
+
+    func userDidTapLatestDateButton() {
+        typeBeingEdited = .Latest
+        wireframe?.userDidTapDate(latestDate)
     }
 
     func userDidChangeSearchToTerm(term: String?) {
-
-        let nonNilTerm = term ?? ""
-        if (nonNilTerm.characters.count == 0) {
+        self.term = term
+        if (term?.characters.count == 0) {
             view?.setViewState(.EmptySearchField)
             interactor?.cancelLastSearch()
             return
         }
-
-        view?.setViewState(.LoadingNewTerm)
-
-        let parameters = SearchParameters(term: nonNilTerm, states: filteredUSStates)
-        interactor?.startSearch(parameters, existingRows: [])
+        searchIfReady()
     }
 
     func userIsApproachingLastRow(term: String?, inCollection collection: [SearchResultsRow]) {
-        let nonNilTerm = term ?? ""
-        if (nonNilTerm.characters.count == 0) {
-            return
-        }
-        view?.setViewState(.LoadingMoreRows)
-        let parameters = SearchParameters(term: nonNilTerm, states: filteredUSStates)
-        interactor?.startSearch(parameters, existingRows: collection)
+        guard (term?.characters.count > 0) else { return }
+        searchIfReady(.LoadingMoreRows)
     }
 
     func userDidSelectSearchResult(row: SearchResultsRow) {
@@ -94,72 +131,80 @@ class SearchPresenter: NSObject, SearchPresenterInterface {
         updateViewForKeyboardFrame(KeyboardService.sharedInstance.keyboardFrame)
     }
 
+    // MARK: SearchInteractorDelegate methods
 
-
-
-
-    func search(parameters: SearchParameters, existingRows: [SearchResultsRow], didFinishWithResults results: SearchResults?, error: NSError?) {
-
+    func search(parameters: SearchParameters, didFinishWithResults results: SearchResults?, error: NSError?) {
         if let results = results, items = results.items {
-            var allRows = existingRows
-            for result in items {
-                let date = result.date
-                var cityStateComponents: [String] = []
-
-                if let city = result.city?.first {
-                    cityStateComponents.append(city)
-                }
-                if let state = result.state?.first {
-                    cityStateComponents.append(state)
-                }
-
-
-                let publicationTitle = result.titleNormal ?? ""
-                let row = SearchResultsRow(
-                    id: result.id,
-                    date: date,
-                    cityState: cityStateComponents.joinWithSeparator(", "),
-                    publicationTitle: publicationTitle,
-                    thumbnailURL: result.thumbnailURL,
-                    pdfURL: result.pdfURL,
-                    lccn: result.lccn,
-                    edition: result.edition,
-                    sequence: result.sequence)
-                allRows.append(row)
-            }
-
-            if allRows.count > 0 {
-                let title = "\(results.totalItems ?? 0) matches for '\(parameters.term)'"
-                view?.setViewState(.Ideal(title: title, rows: allRows))
+            let rows = rowsForSearchResultItems(items)
+            if rows.count > 0 {
+                let title = "\(results.totalItems ?? 0) matches"
+                view?.setViewState(.Ideal(title: title, rows: rows))
             } else {
                 view?.setViewState(.EmptyResults)
             }
         } else if let err = error {
-            if err.code == -999 {
-                return
-            }
-            if err.isDuplicateRequestError() {
-                return
-            }
+            guard !err.isCancelledRequestError() else { return }
+            guard !err.isDuplicateRequestError() else { return }
             view?.setViewState(.Error(title: err.localizedDescription, message: err.localizedRecoverySuggestion))
         } else {
             view?.setViewState(.EmptyResults)
         }
     }
 
-    private var filteredUSStates: [String] = []
+    // MARK: Private methods
 
-    func userDidSaveFilteredUSStates(stateNames: [String]) {
-        filteredUSStates = stateNames
-    }
-
-    func userDidNotSaveFilteredUSStates() {
-        
-    }
-
-    func updateViewForKeyboardFrame(rect: CGRect?) {
+    private func updateViewForKeyboardFrame(rect: CGRect?) {
         view?.setBottomContentInset(rect?.size.height ?? 0)
     }
+
+    private func rowsForSearchResultItems(items: [SearchResult]) -> [SearchResultsRow] {
+        var rows: [SearchResultsRow] = []
+
+        for result in items {
+            let date = result.date
+            var cityStateComponents: [String] = []
+
+            if let city = result.city?.first {
+                cityStateComponents.append(city)
+            }
+            if let state = result.state?.first {
+                cityStateComponents.append(state)
+            }
+
+            let publicationTitle = result.titleNormal ?? ""
+            let row = SearchResultsRow(
+                id: result.id,
+                date: date,
+                cityState: cityStateComponents.joinWithSeparator(", "),
+                publicationTitle: publicationTitle,
+                thumbnailURL: result.thumbnailURL,
+                pdfURL: result.pdfURL,
+                lccn: result.lccn,
+                edition: result.edition,
+                sequence: result.sequence)
+            rows.append(row)
+        }
+
+        return rows
+    }
+
+    private func searchIfReady(loadingViewState: ViewState = .LoadingNewParamaters) {
+
+        if let term = term {
+            view?.setViewState(loadingViewState)
+            let params = SearchParameters(term: term, states: states, earliestDate: earliestDate, latestDate: latestDate)
+            interactor?.fetchNextPageOfResults(params)
+        }
+    }
+
+    private func descriptionForSearchParameters(params: SearchParameters) -> String {
+        var title = "'\(params.term)'"
+        title.appendContentsOf(" between \(dateFormatter.stringFromDate(params.earliestDate))")
+        title.appendContentsOf(" and \(dateFormatter.stringFromDate(params.latestDate))")
+        return title
+    }
+
+    // MARK: Deinit method
 
     deinit {
         KeyboardService.sharedInstance.removeFrameChangeHandler("\(unsafeAddressOf(self))")
