@@ -21,6 +21,7 @@ protocol SearchViewInterface: class {
     func currentSearchTerm() -> String
     func setEarliestDateString(str: String)
     func setLatestDateString(str: String)
+    func setStatesString(str: String)
 }
 
 protocol SearchViewDelegate: class {
@@ -99,6 +100,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var earliestDateButton: TitleValueButton!
     @IBOutlet weak var latestDateButton: TitleValueButton!
+    @IBOutlet weak var statesButton: TitleValueButton!
 
     var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
 
@@ -229,6 +231,10 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
         latestDateButton.value = str
     }
 
+    func setStatesString(str: String) {
+        statesButton.value = str
+    }
+
     // MARK: SearchView properties and methods
 
     private func setLoadingIndicatorsVisible(visible: Bool) {
@@ -318,6 +324,9 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
 
         latestDateButton.title = "Latest Date"
         latestDateButton.value = "--"
+
+        statesButton.title = "States"
+        statesButton.value = "(all states)"
 
         tableView.registerClass(TableHeaderView.self, forHeaderFooterViewReuseIdentifier: "Header")
         tableView.sectionHeaderHeight = 60.0

@@ -65,7 +65,16 @@ class SearchPresenter: NSObject, SearchPresenterInterface {
     // MARK: SearchPresenterInterface methods
 
     func userDidSaveFilteredUSStates(stateNames: [String]) {
-        states = stateNames
+        states = stateNames.sort()
+        let str: String
+        if states.count == 0 {
+            str = "All US states"
+        } else if states.count <= 3 {
+            str = states.joinWithSeparator(", ")
+        } else {
+            str = "\(states[0..<3].joinWithSeparator(", ")) (and \(states.count - 3) more)"
+        }
+        view?.setStatesString(str)
         searchIfReady()
     }
 
