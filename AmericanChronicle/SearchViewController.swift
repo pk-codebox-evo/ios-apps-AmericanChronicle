@@ -168,6 +168,9 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
             setLoadingIndicatorsVisible(true)
             emptyResultsLabel.alpha = 0
             errorView.alpha = 0
+            sectionTitle = ""
+            rows = []
+            tableView.reloadData()
             tableView.tableFooterView?.alpha = 0
         case .LoadingMoreRows:
             setLoadingIndicatorsVisible(false)
@@ -335,7 +338,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
         view.addSubview(activityIndicator)
 
         activityIndicator.snp_makeConstraints { make in
-            make.center.equalTo(view.snp_center)
+            make.center.equalTo(view.snp_center).offset(CGPoint(x: 0, y: 90))
         }
 
         delegate?.viewDidLoad()

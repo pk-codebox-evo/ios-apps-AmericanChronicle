@@ -93,7 +93,6 @@ protocol DatePickerViewInterface {
              make.leading.equalTo(20)
              make.trailing.equalTo(-20)
         }
-        dateLabel.backgroundColor = UIColor.greenColor()
 
         datePicker.addTarget(self, action: "datePickerValueChanged:", forControlEvents: .ValueChanged)
         datePicker.datePickerMode = .Date
