@@ -89,9 +89,9 @@ protocol DatePickerViewInterface {
 
         view.addSubview(dateLabel)
         dateLabel.snp_makeConstraints { make in
-             make.top.equalTo(self.snp_topLayoutGuideBottom).offset(20)
-             make.leading.equalTo(20)
-             make.trailing.equalTo(-20)
+             make.top.equalTo(self.snp_topLayoutGuideBottom).offset(Measurements.verticalMargin)
+             make.leading.equalTo(Measurements.horizontalMargin)
+             make.trailing.equalTo(-Measurements.horizontalMargin)
         }
 
         datePicker.addTarget(self, action: "datePickerValueChanged:", forControlEvents: .ValueChanged)

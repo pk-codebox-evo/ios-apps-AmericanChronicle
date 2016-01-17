@@ -8,14 +8,51 @@
 
 import UIKit
 
+class TopMarginConstraint: NSLayoutConstraint {
+    override var constant: CGFloat {
+        get { return Measurements.verticalMargin }
+        set {}
+    }
+}
+
+class BottomMarginConstraint: NSLayoutConstraint {
+    override var constant: CGFloat {
+        get { return -Measurements.verticalMargin }
+        set {}
+    }
+}
+
+class LeadingMarginConstraint: NSLayoutConstraint {
+    override var constant: CGFloat {
+        get { return Measurements.horizontalMargin }
+        set {}
+    }
+}
+
+class TrailingMarginConstraint: NSLayoutConstraint {
+    override var constant: CGFloat {
+        get { return -Measurements.horizontalMargin }
+        set {}
+    }
+}
+
+class ButtonHeightConstraint: NSLayoutConstraint {
+    override var constant: CGFloat {
+        get { return Measurements.buttonHeight }
+        set {}
+    }
+}
+
 struct Measurements {
-    static let horizontalMargin = 16.0
-    static let verticalMargin = 10.0
+    static let verticalMargin: CGFloat = 16.0
+    static let horizontalMargin: CGFloat = 24.0
+    static let buttonHeight: CGFloat = 48.0
+
+    static let verticalSiblingSpacing: CGFloat = 16.0
+    static let horizontalSiblingSpacing: CGFloat = 16.0
 }
 
 extension UIButton {
-
-
 
     static func bgImage() -> UIImage {
         let pxHeight = 1.0/UIScreen.mainScreen().scale

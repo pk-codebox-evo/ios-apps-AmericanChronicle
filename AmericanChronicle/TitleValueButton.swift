@@ -55,6 +55,7 @@ class TitleValueButton: UIControl {
             make.top.equalTo(self.titleLabel.snp_bottom).offset(4)
             make.leading.equalTo(8)
             make.trailing.equalTo(-8)
+            make.bottom.equalTo(-4)
         }
     }
 
@@ -70,5 +71,9 @@ class TitleValueButton: UIControl {
 
     func buttonTapped(sender: UIButton) {
         sendActionsForControlEvents(.TouchUpInside)
+    }
+
+    override func intrinsicContentSize() -> CGSize {
+        return CGSize(width: UIViewNoIntrinsicMetric, height: Measurements.buttonHeight)
     }
 }

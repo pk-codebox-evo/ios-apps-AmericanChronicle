@@ -78,6 +78,10 @@ class SearchField: UIView, UITextFieldDelegate {
         return textField.resignFirstResponder()
     }
 
+    override func intrinsicContentSize() -> CGSize {
+        return CGSize(width: UIViewNoIntrinsicMetric, height: 64)
+    }
+
     // MARK: UITextFieldDelegate methods
 
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {

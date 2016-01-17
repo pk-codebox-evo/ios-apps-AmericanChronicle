@@ -15,13 +15,14 @@ import UIKit
 
 protocol SearchViewInterface: class {
     weak var delegate: SearchViewDelegate? { get set }
+    var searchTerm: String? { get set }
+    var earliestDate: String? { get set }
+    var latestDate: String? { get set }
+    var USStates: String? { get set }
+
     func setViewState(state: ViewState)
     func setBottomContentInset(bottom: CGFloat)
     func resignFirstResponder() -> Bool
-    func currentSearchTerm() -> String
-    func setEarliestDateString(str: String)
-    func setLatestDateString(str: String)
-    func setStatesString(str: String)
 }
 
 protocol SearchViewDelegate: class {
@@ -85,45 +86,61 @@ func ==(a: ViewState, b: ViewState) -> Bool {
     }
 }
 
+
+
 class SearchViewController: UIViewController, SearchViewInterface, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: Properties
 
     weak var delegate: SearchViewDelegate?
 
-    @IBOutlet weak var emptyResultsLabel: UILabel!
-    @IBOutlet weak var errorView: UIView!
-    @IBOutlet weak var errorTitleLabel: UILabel!
-    @IBOutlet weak var errorMessageLabel: UILabel!
-    @IBOutlet weak var cancelButton: UIBarButtonItem!
-    @IBOutlet weak var searchField: SearchField!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var earliestDateButton: TitleValueButton!
-    @IBOutlet weak var latestDateButton: TitleValueButton!
-    @IBOutlet weak var statesButton: TitleValueButton!
-
-    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-
-    var earliestDateTitle: String? {
-        didSet {
-            // Set button title
+    var searchTerm: String? {
+        get {
+            return tableHeaderView.searchTerm
+        }
+        set {
+            tableHeaderView.searchTerm = newValue
         }
     }
 
-    var latestDateTitle: String? {
-        didSet {
-            // Set button title
+    var earliestDate: String? {
+        get {
+            return tableHeaderView.earliestDate
+        }
+        set {
+            tableHeaderView.earliestDate = newValue
         }
     }
 
-    var statesTitle: String? {
-        didSet {
-            // Set button title
+    var latestDate: String? {
+        get {
+            return tableHeaderView.latestDate
+        }
+        set {
+            tableHeaderView.latestDate = newValue
         }
     }
 
-    var sectionTitle = ""
+    var USStates: String? {
+        get { return tableHeaderView.USStates }
+        set { tableHeaderView.USStates = newValue }
+    }
 
+    private static let approachingCount = 5
+
+    private let emptyResultsView = EmptyResultsView()
+    private let errorView = ErrorView()
+    private let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+
+    private let tableView = UITableView()
+    private var tableHeaderView = SearchTableHeaderView()
+    private let dateFormatter: NSDateFormatter = {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "MMM dd, yyyy"
+        return formatter
+    }()
+
+    private var sectionTitle = ""
     private var rows: [SearchResultsRow] = []
 
     // MARK: Internal methods
@@ -150,7 +167,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
         switch state {
         case .EmptySearchField:
             setLoadingIndicatorsVisible(false)
-            emptyResultsLabel.alpha = 0
+            emptyResultsView.alpha = 0
             errorView.alpha = 0
             sectionTitle = ""
             rows = []
@@ -158,7 +175,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
             tableView.tableFooterView?.alpha = 0
         case .EmptyResults:
             setLoadingIndicatorsVisible(false)
-            emptyResultsLabel.alpha = 1.0
+            emptyResultsView.alpha = 1.0
             errorView.alpha = 0
             sectionTitle = ""
             rows = []
@@ -166,7 +183,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
             tableView.tableFooterView?.alpha = 0
         case .LoadingNewParamaters:
             setLoadingIndicatorsVisible(true)
-            emptyResultsLabel.alpha = 0
+            emptyResultsView.alpha = 0
             errorView.alpha = 0
             sectionTitle = ""
             rows = []
@@ -174,12 +191,12 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
             tableView.tableFooterView?.alpha = 0
         case .LoadingMoreRows:
             setLoadingIndicatorsVisible(false)
-            emptyResultsLabel.alpha = 0
+            emptyResultsView.alpha = 0
             errorView.alpha = 0
             tableView.tableFooterView?.alpha = 1.0
         case let .Partial(title, rows):
             setLoadingIndicatorsVisible(false)
-            emptyResultsLabel.alpha = 0
+            emptyResultsView.alpha = 0
             errorView.alpha = 0
             sectionTitle = title
             if self.rows != rows {
@@ -189,7 +206,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
             tableView.tableFooterView?.alpha = 0
         case let .Ideal(title, rows):
             setLoadingIndicatorsVisible(false)
-            emptyResultsLabel.alpha = 0
+            emptyResultsView.alpha = 0
             errorView.alpha = 0
             sectionTitle = title
             if self.rows != rows {
@@ -199,53 +216,14 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
             tableView.tableFooterView?.alpha = 0
         case let .Error(title, message):
             setLoadingIndicatorsVisible(false)
-            emptyResultsLabel.alpha = 0
+            emptyResultsView.alpha = 0
             errorView.alpha = 1.0
             sectionTitle = ""
             rows = []
             tableView.reloadData()
-            errorTitleLabel.text = title
-            errorMessageLabel.text = message
+            errorView.title = title
+            errorView.message = message
             tableView.tableFooterView?.alpha = 0
-        }
-    }
-
-    func currentSearchTerm() -> String {
-        return searchField?.text ?? ""
-    }
-
-    @IBAction func statesButtonTapped(sender: AnyObject) {
-        delegate?.userDidTapUSStates()
-    }
-
-    @IBAction func earliestDateButtonTapped(sender: AnyObject) {
-        delegate?.userDidTapEarliestDateButton()
-    }
-
-    @IBAction func latestDateButtonTapped(sender: AnyObject) {
-        delegate?.userDidTapLatestDateButton()
-    }
-
-    func setEarliestDateString(str: String) {
-        earliestDateButton.value = str
-    }
-
-    func setLatestDateString(str: String) {
-        latestDateButton.value = str
-    }
-
-    func setStatesString(str: String) {
-        statesButton.value = str
-    }
-
-    // MARK: SearchView properties and methods
-
-    private func setLoadingIndicatorsVisible(visible: Bool) {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = visible
-        if visible {
-            activityIndicator.startAnimating()
-        } else {
-            activityIndicator.stopAnimating()
         }
     }
 
@@ -262,14 +240,10 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: UITableViewCell
-        let pageCell = tableView.dequeueReusableCellWithIdentifier("SearchResultsPageCell") as! SearchResultsPageCell
+        let pageCell = tableView.dequeueReusableCellWithIdentifier(_stdlib_getDemangledTypeName(SearchResultsPageCell)) as! SearchResultsPageCell
         let result = rows[indexPath.row]
-
         if let date = result.date {
-            let formatter = NSDateFormatter()
-            formatter.dateFormat = "MMM dd, yyyy"
-            pageCell.dateLabel.text = formatter.stringFromDate(date)
+            pageCell.dateLabel.text = dateFormatter.stringFromDate(date)
         } else {
             pageCell.dateLabel.text = ""
         }
@@ -277,36 +251,81 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
         pageCell.publicationTitleLabel.text = result.publicationTitle ?? ""
         pageCell.thumbnailImageView.backgroundColor = UIColor.lightGrayColor()
         pageCell.thumbnailImageView.sd_setImageWithURL(result.thumbnailURL)
-        cell = pageCell
-        return cell
+        return pageCell
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        searchField.resignFirstResponder()
-        let row = rows[indexPath.row]
-        delegate?.userDidSelectSearchResult(row)
+        tableHeaderView.resignFirstResponder()
+        delegate?.userDidSelectSearchResult(rows[indexPath.row])
     }
 
-    static let approachingCount = 5
-
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (rows.count > 0) && ((rows.count - indexPath.row) < SearchViewController.approachingCount) {
-            delegate?.userIsApproachingLastRow(searchField.text, inCollection: rows)
-        }
+        guard (rows.count > 0) else { return }
+        guard ((rows.count - indexPath.row) < SearchViewController.approachingCount) else { return }
+
+        delegate?.userIsApproachingLastRow(tableHeaderView.searchTerm, inCollection: rows)
     }
 
     // MARK: UIViewController overrides
+
+    override func loadView() {
+        view = UIView()
+
+        loadTableView()
+        loadTableHeaderView()
+        loadErrorView()
+        loadEmptyResultsView()
+        loadActivityIndicator()
+
+        setViewState(.EmptySearchField)
+
+        delegate?.viewDidLoad()
+    }
 
     override func viewWillAppear(animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.navigationBarHidden = false
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.tableHeaderView = tableHeaderView
+    }
 
-        searchField.shouldChangeCharactersHandler = { [weak self] original, range, replacement in
+    // MARK: UIResponder overrides
+
+    override func becomeFirstResponder() -> Bool {
+        return tableHeaderView.becomeFirstResponder() ?? false
+    }
+
+    override func resignFirstResponder() -> Bool {
+        return tableHeaderView.resignFirstResponder() ?? false
+    }
+
+    // MARK: Private methods
+
+    private func loadTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.registerClass(SearchResultsPageCell.self, forCellReuseIdentifier:  _stdlib_getDemangledTypeName(SearchResultsPageCell))
+        tableView.registerClass(TableHeaderView.self, forHeaderFooterViewReuseIdentifier: "Header")
+        tableView.sectionHeaderHeight = 24.0
+        tableView.rowHeight = 150.0
+        view.addSubview(tableView)
+        tableView.snp_makeConstraints { make in
+            make.top.equalTo(0)
+            make.bottom.equalTo(0)
+            make.leading.equalTo(0)
+            make.trailing.equalTo(0)
+        }
+    }
+
+    private func loadTableHeaderView() {
+
+        tableHeaderView.frame = CGRect(x: 0, y: 0, width: 0, height: tableHeaderView.intrinsicContentSize().height)
+
+        tableHeaderView.shouldChangeCharactersHandler = { [weak self] original, range, replacement in
             var text = original
             if let range = original.rangeFromNSRange(range) {
                 text.replaceRange(range, with: replacement)
@@ -316,43 +335,48 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
 
             return true
         }
-
-        searchField.shouldReturnHandler = { [weak self] in
+        tableHeaderView.shouldReturnHandler = { [weak self] in
             self?.delegate?.userDidTapReturn()
             return false
         }
+        tableHeaderView.earliestDateButtonTapHandler = { [weak self] _ in
+            self?.delegate?.userDidTapEarliestDateButton()
+        }
+        tableHeaderView.latestDateButtonTapHandler = { [weak self] _ in
+            self?.delegate?.userDidTapLatestDateButton()
+        }
+        tableHeaderView.USStatesButtonTapHandler = { [weak self] _ in
+            self?.delegate?.userDidTapUSStates()
+        }
+    }
 
-        earliestDateButton.title = "Earliest Date"
-        earliestDateButton.value = "--"
+    private func loadErrorView() {
+        view.addSubview(errorView)
+        errorView.snp_makeConstraints { make in
+            make.center.equalTo(self.view.snp_center)
+        }
+    }
 
-        latestDateButton.title = "Latest Date"
-        latestDateButton.value = "--"
+    private func loadEmptyResultsView() {
+        view.addSubview(emptyResultsView)
+        emptyResultsView.snp_makeConstraints { make in
+            make.center.equalTo(self.view.snp_center)
+        }
+    }
 
-        statesButton.title = "States"
-        statesButton.value = "(all states)"
-
-        tableView.registerClass(TableHeaderView.self, forHeaderFooterViewReuseIdentifier: "Header")
-        tableView.sectionHeaderHeight = 60.0
-        tableView.rowHeight = 150.0
-
+    private func loadActivityIndicator() {
         view.addSubview(activityIndicator)
-
         activityIndicator.snp_makeConstraints { make in
             make.center.equalTo(view.snp_center).offset(CGPoint(x: 0, y: 90))
         }
-
-        delegate?.viewDidLoad()
-
-        setViewState(.EmptySearchField)
     }
 
-    // MARK: UIResponder overrides
-
-    override func becomeFirstResponder() -> Bool {
-        return searchField.becomeFirstResponder()
-    }
-
-    override func resignFirstResponder() -> Bool {
-        return searchField.resignFirstResponder()
+    private func setLoadingIndicatorsVisible(visible: Bool) {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = visible
+        if visible {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
     }
 }

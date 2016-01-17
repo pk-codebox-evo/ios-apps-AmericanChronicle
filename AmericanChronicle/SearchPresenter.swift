@@ -74,7 +74,7 @@ class SearchPresenter: NSObject, SearchPresenterInterface {
         } else {
             str = "\(states[0..<3].joinWithSeparator(", ")) (and \(states.count - 3) more)"
         }
-        view?.setStatesString(str)
+        view?.USStates = str
         searchIfReady()
     }
 
@@ -82,11 +82,11 @@ class SearchPresenter: NSObject, SearchPresenterInterface {
         switch typeBeingEdited {
         case .Earliest:
             earliestDate = date
-            view?.setEarliestDateString(dateFormatter.stringFromDate(date))
+            view?.earliestDate = dateFormatter.stringFromDate(date)
             searchIfReady()
         case .Latest:
             latestDate = date
-            view?.setLatestDateString(dateFormatter.stringFromDate(date))
+            view?.latestDate = dateFormatter.stringFromDate(date)
             searchIfReady()
         case .None:
             break
@@ -133,7 +133,7 @@ class SearchPresenter: NSObject, SearchPresenterInterface {
     }
 
     func userDidSelectSearchResult(row: SearchResultsRow) {
-        wireframe?.userDidSelectSearchResult(row, forTerm: view?.currentSearchTerm() ?? "")
+        wireframe?.userDidSelectSearchResult(row, forTerm: view?.searchTerm ?? "")
     }
 
     func viewDidLoad() {
@@ -198,19 +198,11 @@ class SearchPresenter: NSObject, SearchPresenterInterface {
     }
 
     private func searchIfReady(loadingViewState: ViewState = .LoadingNewParamaters) {
-
         if let term = term {
             view?.setViewState(loadingViewState)
             let params = SearchParameters(term: term, states: states, earliestDate: earliestDate, latestDate: latestDate)
             interactor?.fetchNextPageOfResults(params)
         }
-    }
-
-    private func descriptionForSearchParameters(params: SearchParameters) -> String {
-        var title = "'\(params.term)'"
-        title.appendContentsOf(" between \(dateFormatter.stringFromDate(params.earliestDate))")
-        title.appendContentsOf(" and \(dateFormatter.stringFromDate(params.latestDate))")
-        return title
     }
 
     // MARK: Deinit method

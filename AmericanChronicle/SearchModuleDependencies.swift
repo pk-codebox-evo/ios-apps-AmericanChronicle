@@ -9,10 +9,7 @@
 public final class SearchModuleDependencies {
     let dataManager: SearchDataManagerInterface
     let interactor: SearchInteractorInterface
-    lazy var view: SearchViewInterface? = {
-        let sb = UIStoryboard(name: "Search", bundle: nil)
-        return sb.instantiateInitialViewController() as? SearchViewController
-    }()
+    lazy var view: SearchViewInterface? = SearchViewController()
 
     lazy var presenter: SearchPresenterInterface = SearchPresenter()
 
