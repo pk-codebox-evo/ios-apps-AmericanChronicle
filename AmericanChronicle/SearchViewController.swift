@@ -243,14 +243,13 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
         let pageCell = tableView.dequeueReusableCellWithIdentifier(_stdlib_getDemangledTypeName(SearchResultsPageCell)) as! SearchResultsPageCell
         let result = rows[indexPath.row]
         if let date = result.date {
-            pageCell.dateLabel.text = dateFormatter.stringFromDate(date)
+            pageCell.date = dateFormatter.stringFromDate(date)
         } else {
-            pageCell.dateLabel.text = ""
+            pageCell.date = ""
         }
-        pageCell.cityStateLabel.text = result.cityState ?? ""
-        pageCell.publicationTitleLabel.text = result.publicationTitle ?? ""
-        pageCell.thumbnailImageView.backgroundColor = UIColor.lightGrayColor()
-        pageCell.thumbnailImageView.sd_setImageWithURL(result.thumbnailURL)
+        pageCell.cityState = result.cityState ?? ""
+        pageCell.publicationTitle = result.publicationTitle ?? ""
+        pageCell.thumbnailURL = result.thumbnailURL
         return pageCell
     }
 
