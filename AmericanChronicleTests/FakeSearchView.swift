@@ -11,6 +11,10 @@
 class FakeSearchView: SearchViewInterface {
 
     weak var delegate: SearchViewDelegate?
+    var searchTerm: String?
+    var earliestDate: String?
+    var latestDate: String?
+    var USStates: String?
 
     var setViewState_wasCalled_withState: ViewState?
     func setViewState(state: ViewState) {
@@ -25,15 +29,5 @@ class FakeSearchView: SearchViewInterface {
         return true
     }
 
-    func currentSearchTerm() -> String {
-        return ""
-    }
 
-    func setEarliestDateString(str: String) {
-
-    }
-
-    func setLatestDateString(str: String) {
-
-    }
 }
