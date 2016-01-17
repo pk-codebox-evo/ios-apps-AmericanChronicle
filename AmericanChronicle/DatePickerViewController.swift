@@ -54,8 +54,8 @@ protocol DatePickerViewInterface {
         selectedDate = earliestPossibleDate
 
         super.init(nibName: nil, bundle: nil)
-
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: "saveButtonTapped:")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancelButtonTapped:")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveButtonTapped:")
     }
 
     @available(*, unavailable) init() {
@@ -74,6 +74,10 @@ protocol DatePickerViewInterface {
 
     func saveButtonTapped(sender: UIBarButtonItem) {
         delegate?.userDidSave(datePicker.date)
+    }
+
+    func cancelButtonTapped(sender: UIBarButtonItem) {
+        delegate?.userDidCancel()
     }
 
     func updateLabelToMatchPicker() {
