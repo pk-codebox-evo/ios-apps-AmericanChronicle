@@ -22,12 +22,14 @@ class TitleValueButton: UIControl {
 
     private let titleLabel: UILabel = {
         let label = UILabel()
+        label.textColor = Colors.lightBlueBright
         label.textAlignment = .Center
         label.font = UIFont.systemFontOfSize(12.0)
         return label
     }()
     private let valueLabel: UILabel = {
         let label = UILabel()
+        label.textColor = Colors.darkGray
         label.font = UIFont.systemFontOfSize(14.0)
         label.textAlignment = .Center
         return label
@@ -46,7 +48,7 @@ class TitleValueButton: UIControl {
         }
 
         titleLabel.snp_makeConstraints { make in
-            make.top.equalTo(4)
+            make.top.equalTo(5)
             make.leading.equalTo(8)
             make.trailing.equalTo(-8)
         }
@@ -55,7 +57,6 @@ class TitleValueButton: UIControl {
             make.top.equalTo(self.titleLabel.snp_bottom).offset(4)
             make.leading.equalTo(8)
             make.trailing.equalTo(-8)
-            make.bottom.equalTo(-4)
         }
     }
 

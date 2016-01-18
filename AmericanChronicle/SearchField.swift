@@ -32,6 +32,12 @@ class SearchField: UIView, UITextFieldDelegate {
         }
     }
 
+    private let bottomBorder: UIView = {
+        let border = UIView()
+        border.backgroundColor = Colors.offWhite
+        return border
+    }()
+
     // Init methods
 
     func commonInit() {
@@ -41,7 +47,8 @@ class SearchField: UIView, UITextFieldDelegate {
         textField.delegate = self
 
         let searchIcon = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
-        searchIcon.image = UIImage(named: "apd_toolbar_search")
+        searchIcon.image = UIImage(named: "apd_toolbar_search")?.imageWithRenderingMode(.AlwaysTemplate)
+        searchIcon.tintColor = Colors.darkGray
         searchIcon.contentMode = .Center
         textField.leftView = searchIcon
         textField.leftViewMode = .Always
@@ -50,11 +57,21 @@ class SearchField: UIView, UITextFieldDelegate {
         textField.autocapitalizationType = .None
         textField.autocorrectionType = .No
         textField.returnKeyType = .Search
+        textField.tintColor = Colors.lightBlueBright
+        textField.textColor = Colors.darkGray
         textField.snp_makeConstraints { make in
             make.leading.equalTo(10.0)
             make.top.equalTo(10.0)
             make.trailing.equalTo(-10.0)
             make.bottom.equalTo(-10.0)
+        }
+
+        addSubview(bottomBorder)
+        bottomBorder.snp_makeConstraints { make in
+            make.bottom.equalTo(0)
+            make.leading.equalTo(0)
+            make.trailing.equalTo(0)
+            make.height.equalTo(1)
         }
     }
 

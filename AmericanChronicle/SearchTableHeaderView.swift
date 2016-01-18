@@ -86,7 +86,7 @@ class SearchTableHeaderView: UIView {
         earliestDateButton.addTarget(self, action: "earliestDateButtonTapped:", forControlEvents: .TouchUpInside)
         addSubview(earliestDateButton)
         earliestDateButton.snp_makeConstraints { make in
-            make.top.equalTo(searchField.snp_bottom).offset(Measurements.verticalSiblingSpacing)
+            make.top.equalTo(searchField.snp_bottom).offset(Measurements.verticalMargin)
             make.leading.equalTo(Measurements.horizontalMargin)
         }
 
@@ -95,7 +95,7 @@ class SearchTableHeaderView: UIView {
         latestDateButton.addTarget(self, action: "latestDateButtonTapped:", forControlEvents: .TouchUpInside)
         addSubview(latestDateButton)
         latestDateButton.snp_makeConstraints { make in
-            make.top.equalTo(searchField.snp_bottom).offset(Measurements.verticalSiblingSpacing)
+            make.top.equalTo(searchField.snp_bottom).offset(Measurements.verticalMargin)
             make.leading.equalTo(earliestDateButton.snp_trailing).offset(Measurements.horizontalSiblingSpacing)
             make.trailing.equalTo(-Measurements.horizontalMargin)
             make.width.equalTo(earliestDateButton.snp_width)
@@ -126,7 +126,7 @@ class SearchTableHeaderView: UIView {
     override func intrinsicContentSize() -> CGSize {
         var size = CGSize(width: UIViewNoIntrinsicMetric, height: 0)
         size.height += searchField.intrinsicContentSize().height
-        size.height += Measurements.verticalSiblingSpacing
+        size.height += Measurements.verticalMargin
         size.height += earliestDateButton.intrinsicContentSize().height
         size.height += Measurements.verticalSiblingSpacing
         size.height += USStatesButton.intrinsicContentSize().height

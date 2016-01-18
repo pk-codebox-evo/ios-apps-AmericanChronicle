@@ -22,9 +22,11 @@ class TableHeaderView: UITableViewHeaderFooterView {
     private let label = UILabel()
     func commonInit() {
 
-//        translatesAutoresizingMaskIntoConstraints = false
-        addSubview(label)
+        contentView.backgroundColor = Colors.offWhite
+
+        contentView.addSubview(label)
         label.font = UIFont(name: "AvenirNext-Regular", size: UIFont.systemFontSize())
+        label.textColor = Colors.darkBlue
         label.numberOfLines = 2
         label.snp_makeConstraints { make in
             make.leading.equalTo(Measurements.horizontalMargin)

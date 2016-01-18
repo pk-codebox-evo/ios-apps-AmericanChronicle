@@ -7,40 +7,23 @@
 //
 
 import UIKit
+import DynamicColor
 
-class TopMarginConstraint: NSLayoutConstraint {
-    override var constant: CGFloat {
-        get { return Measurements.verticalMargin }
-        set {}
-    }
-}
-
-class BottomMarginConstraint: NSLayoutConstraint {
-    override var constant: CGFloat {
-        get { return -Measurements.verticalMargin }
-        set {}
-    }
-}
-
-class LeadingMarginConstraint: NSLayoutConstraint {
-    override var constant: CGFloat {
-        get { return Measurements.horizontalMargin }
-        set {}
-    }
-}
-
-class TrailingMarginConstraint: NSLayoutConstraint {
-    override var constant: CGFloat {
-        get { return -Measurements.horizontalMargin }
-        set {}
-    }
-}
-
-class ButtonHeightConstraint: NSLayoutConstraint {
-    override var constant: CGFloat {
-        get { return Measurements.buttonHeight }
-        set {}
-    }
+struct Colors {
+//    https://dribbble.com/colors/3E3F42
+    static let darkGray = UIColor(hex: 0x3e3f42)
+//    https://dribbble.com/colors/2BA9E1
+    static let lightBlueBright = UIColor(hex: 0x2ba9e1)
+//    https://dribbble.com/colors/A2A2A4
+    static let lightGray = UIColor(hex: 0xa2a2a4)
+//    https://dribbble.com/colors/5484A0
+    static let darkBlue = UIColor(hex: 0x5484a0)
+//    https://dribbble.com/colors/D5D8DC
+    static let offWhite = UIColor(hex: 0xd5d8dc)
+//    https://dribbble.com/colors/ABC5D7
+    static let lightBlueDull = UIColor(hex: 0xabc5d7)
+//    https://dribbble.com/colors/98AEC0
+    static let blueGray = UIColor(hex: 0x98aec0)
 }
 
 struct Measurements {
@@ -48,17 +31,17 @@ struct Measurements {
     static let horizontalMargin: CGFloat = 24.0
     static let buttonHeight: CGFloat = 48.0
 
-    static let verticalSiblingSpacing: CGFloat = 16.0
-    static let horizontalSiblingSpacing: CGFloat = 16.0
+    static let verticalSiblingSpacing: CGFloat = 8.0
+    static let horizontalSiblingSpacing: CGFloat = 8.0
 }
 
 extension UIButton {
 
-    static func bgImage() -> UIImage {
+    class func bgImage() -> UIImage {
         let pxHeight = 1.0/UIScreen.mainScreen().scale
         let rect = CGRect(x: 0, y: 0, width: 3.0, height: 3.0)
         UIGraphicsBeginImageContext(rect.size)
-        UIColor.lightGrayColor().set()
+        Colors.lightBlueBright.set()
         CGContextFillRect(UIGraphicsGetCurrentContext(), rect)
         UIColor.whiteColor().set()
         CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectInset(rect, pxHeight, pxHeight))
@@ -68,10 +51,9 @@ extension UIButton {
     }
 
     class func applyAppearance() {
-
         appearance().setBackgroundImage(bgImage(), forState: .Normal)
         AMC_appearanceWhenContainedIn(UITableViewCell.self).setBackgroundImage(nil, forState: .Normal)
-        appearance().setTitleColor(UIColor.darkTextColor(), forState: .Normal)
+        appearance().setTitleColor(Colors.darkGray, forState: .Normal)
     }
 }
 
@@ -80,16 +62,33 @@ extension UILabel {
     }
 }
 
-extension UINavigationItem {
+extension UINavigationBar {
+    class func bgImage() -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: 3.0, height: 3.0)
+        UIGraphicsBeginImageContext(rect.size)
+        UIColor.whiteColor().set()
+        CGContextFillRect(UIGraphicsGetCurrentContext(), rect)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img.resizableImageWithCapInsets(UIEdgeInsets(top: 1.0, left: 1.0, bottom: 1.0, right: 1.0))
+    }
     class func applyAppearance() {
-        
+        appearance().setBackgroundImage(bgImage(), forBarPosition: .Any, barMetrics: .Default)
+    }
+}
+
+extension UIActivityIndicatorView {
+    class func applyAppearance() {
+        appearance().color = Colors.lightBlueBright
     }
 }
 
 class Appearance {
     class func apply() {
+        UINavigationBar.applyAppearance()
         UIButton.applyAppearance()
         UILabel.applyAppearance()
+        UIActivityIndicatorView.applyAppearance()
     }
 }
 
