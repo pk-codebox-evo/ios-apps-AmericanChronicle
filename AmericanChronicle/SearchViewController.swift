@@ -143,6 +143,17 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
     private var sectionTitle = ""
     private var rows: [SearchResultsRow] = []
 
+    // MARK: UIViewController Init methods
+
+    @available(*, unavailable) required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) not supported. Use designated initializer instead")
+    }
+
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Info", style: .Plain, target: self, action: "infoButtonTapped:")
+    }
+
     // MARK: Internal methods
 
     func setBottomContentInset(bottom: CGFloat) {
@@ -225,6 +236,15 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
             errorView.message = message
             tableView.tableFooterView?.alpha = 0
         }
+    }
+
+    func infoButtonTapped(sender: UIBarButtonItem) {
+        let vc = InfoViewController()
+        vc.userDidDismiss = { [weak self] in
+            self?.dismissViewControllerAnimated(true, completion: nil)
+        }
+        let nvc = UINavigationController(rootViewController: vc)
+        presentViewController(nvc, animated: true, completion: nil)
     }
 
     // MARK: UITableViewDelegate & -DataSource methods

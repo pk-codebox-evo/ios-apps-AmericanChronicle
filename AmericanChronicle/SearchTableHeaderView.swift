@@ -73,9 +73,6 @@ class SearchTableHeaderView: UIView {
 
     func commonInit() {
 
-        self.layer.borderColor = UIColor.blueColor().CGColor
-        self.layer.borderWidth = 1
-
         addSubview(searchField)
         searchField.snp_makeConstraints { make in
             make.top.equalTo(0)
