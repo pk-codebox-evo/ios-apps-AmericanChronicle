@@ -77,6 +77,14 @@ extension UINavigationBar {
     }
 }
 
+extension UIBarButtonItem {
+    class func applyAppearance() {
+        var attributes: [String: AnyObject] = [:]
+        attributes[NSForegroundColorAttributeName] = Colors.lightBlueBright
+        appearance().setTitleTextAttributes(attributes, forState: .Normal)
+    }
+}
+
 extension UIActivityIndicatorView {
     class func applyAppearance() {
         appearance().color = Colors.lightBlueBright
@@ -86,6 +94,7 @@ extension UIActivityIndicatorView {
 class Appearance {
     class func apply() {
         UINavigationBar.applyAppearance()
+        UIBarButtonItem.applyAppearance()
         UIButton.applyAppearance()
         UILabel.applyAppearance()
         UIActivityIndicatorView.applyAppearance()

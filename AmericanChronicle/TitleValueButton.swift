@@ -29,7 +29,7 @@ class TitleValueButton: UIControl {
     }()
     private let valueLabel: UILabel = {
         let label = UILabel()
-        label.textColor = Colors.darkGray
+        label.textColor = Colors.lightGray
         label.font = UIFont.systemFontOfSize(14.0)
         label.textAlignment = .Center
         return label

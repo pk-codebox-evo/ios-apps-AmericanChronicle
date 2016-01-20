@@ -48,7 +48,7 @@ class SearchField: UIView, UITextFieldDelegate {
 
         let searchIcon = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         searchIcon.image = UIImage(named: "apd_toolbar_search")?.imageWithRenderingMode(.AlwaysTemplate)
-        searchIcon.tintColor = Colors.darkGray
+        searchIcon.tintColor = Colors.lightGray
         searchIcon.contentMode = .Center
         textField.leftView = searchIcon
         textField.leftViewMode = .Always
