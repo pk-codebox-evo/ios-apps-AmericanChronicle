@@ -18,7 +18,7 @@ class FakeRequest: RequestProtocol {
     private var responseObjectWasCalled_withCompletionHandler: Any?
     private var responseWasCalled_withCompletionHandler: ((NSURLRequest?, NSHTTPURLResponse?, NSData?, ErrorType?) -> Void)?
 
-    func responseObject<T: Mappable>(completionHandler: Response<T, NSError> -> Void) -> Self {
+    func responseObject<T: Mappable>(queue: dispatch_queue_t?, completionHandler: Response<T, NSError> -> Void) -> Self {
         responseObjectWasCalled_withCompletionHandler = completionHandler
         return self
     }
