@@ -154,6 +154,7 @@ class SearchPresenter: NSObject, SearchPresenterInterface {
         } else if let err = error {
             guard !err.isCancelledRequestError() else { return }
             guard !err.isDuplicateRequestError() else { return }
+            guard !err.isAllItemsLoadedError() else { return }
             view?.setViewState(.Error(title: err.localizedDescription, message: err.localizedRecoverySuggestion))
         } else {
             view?.setViewState(.EmptyResults)
