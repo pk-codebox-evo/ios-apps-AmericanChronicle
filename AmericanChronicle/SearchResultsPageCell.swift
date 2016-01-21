@@ -45,18 +45,32 @@ class SearchResultsPageCell: UITableViewCell {
 
     private let thumbnailImageView: UIImageView = {
         let view = UIImageView()
+        view.contentMode = .ScaleAspectFill
+        view.clipsToBounds = true
         return view
     }()
     private let cityStateLabel: UILabel = {
         let label = UILabel()
+        label.textColor = Colors.darkGray
+        label.numberOfLines = 0
+        label.textAlignment = .Right
+        label.font = UIFont.systemFontOfSize(14)
         return label
     }()
     private let dateLabel: UILabel = {
         let label = UILabel()
+        label.textColor = Colors.darkGray
+        label.numberOfLines = 0
+        label.textAlignment = .Right
+        label.font = UIFont.systemFontOfSize(14)
         return label
     }()
     private let publicationTitleLabel: UILabel = {
         let label = UILabel()
+        label.textColor = Colors.darkGray
+        label.numberOfLines = 0
+        label.textAlignment = .Right
+        label.font = UIFont.systemFontOfSize(14)
         return label
     }()
 
@@ -86,10 +100,10 @@ class SearchResultsPageCell: UITableViewCell {
 
         addSubview(publicationTitleLabel)
         publicationTitleLabel.snp_makeConstraints { make in
-            make.top.equalTo(dateLabel.snp_bottom).offset(Measurements.verticalSiblingSpacing)
+            make.top.greaterThanOrEqualTo(dateLabel.snp_bottom).offset(Measurements.verticalSiblingSpacing)
             make.leading.equalTo(thumbnailImageView.snp_trailing).offset(Measurements.horizontalSiblingSpacing)
-            make.bottom.equalTo(Measurements.verticalMargin)
-            make.trailing.equalTo(Measurements.horizontalMargin)
+            make.bottom.equalTo(-Measurements.verticalMargin)
+            make.trailing.equalTo(-Measurements.horizontalMargin)
         }
     }
 

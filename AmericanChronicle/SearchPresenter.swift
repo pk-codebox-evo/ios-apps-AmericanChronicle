@@ -185,7 +185,7 @@ class SearchPresenter: NSObject, SearchPresenterInterface {
                 id: result.id,
                 date: date,
                 cityState: cityStateComponents.joinWithSeparator(", "),
-                publicationTitle: publicationTitle,
+                publicationTitle: publicationTitle.capitalizedString.stringByReplacingOccurrencesOfString(".", withString: ""),
                 thumbnailURL: result.thumbnailURL,
                 pdfURL: result.pdfURL,
                 lccn: result.lccn,
