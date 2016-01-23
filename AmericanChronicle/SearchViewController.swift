@@ -359,6 +359,10 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
             self?.delegate?.userDidTapReturn()
             return false
         }
+        tableHeaderView.shouldClearHandler = { [weak self] in
+            self?.delegate?.userDidChangeSearchToTerm("")
+            return true
+        }
         tableHeaderView.earliestDateButtonTapHandler = { [weak self] _ in
             self?.delegate?.userDidTapEarliestDateButton()
         }

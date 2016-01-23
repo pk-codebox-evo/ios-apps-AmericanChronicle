@@ -13,6 +13,7 @@ class SearchField: UIView, UITextFieldDelegate {
     let textField: UITextField
     var shouldBeginEditingHandler: ((Void) -> Bool)?
     var shouldChangeCharactersHandler: ((text: String, range: NSRange, replacementString: String) -> Bool)?
+    var shouldClearHandler: ((Void) -> Bool)?
     var shouldReturnHandler: ((Void) -> Bool)?
     var placeholder: String? {
         get {
@@ -55,6 +56,7 @@ class SearchField: UIView, UITextFieldDelegate {
         textField.placeholder = "Search all Newspapers"
         textField.font = UIFont(name: "AvenirNext-Regular", size: 20.0)
         textField.autocapitalizationType = .None
+        textField.clearButtonMode = .WhileEditing
         textField.autocorrectionType = .No
         textField.returnKeyType = .Search
         textField.tintColor = Colors.lightBlueBright
@@ -100,6 +102,10 @@ class SearchField: UIView, UITextFieldDelegate {
     }
 
     // MARK: UITextFieldDelegate methods
+
+    func textFieldShouldClear(textField: UITextField) -> Bool {
+        return shouldClearHandler?() ?? true
+    }
 
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         return shouldBeginEditingHandler?() ?? true

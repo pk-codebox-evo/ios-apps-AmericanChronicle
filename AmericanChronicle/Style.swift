@@ -53,6 +53,7 @@ extension UIButton {
     class func applyAppearance() {
         appearance().setBackgroundImage(bgImage(), forState: .Normal)
         AMC_appearanceWhenContainedIn(UITableViewCell.self).setBackgroundImage(nil, forState: .Normal)
+        AMC_appearanceWhenContainedIn(UITextField.self).setBackgroundImage(nil, forState: .Normal)
         appearance().setTitleColor(Colors.darkGray, forState: .Normal)
     }
 }

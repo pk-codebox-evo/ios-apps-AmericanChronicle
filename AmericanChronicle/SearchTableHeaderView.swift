@@ -62,6 +62,15 @@ class SearchTableHeaderView: UIView {
         }
     }
 
+    var shouldClearHandler: ((Void) -> Bool)? {
+        get {
+            return searchField.shouldClearHandler
+        }
+        set {
+            searchField.shouldClearHandler = newValue
+        }
+    }
+
     var earliestDateButtonTapHandler: ((Void) -> Void)?
     var latestDateButtonTapHandler: ((Void) -> Void)?
     var USStatesButtonTapHandler: ((Void) -> Void)?
