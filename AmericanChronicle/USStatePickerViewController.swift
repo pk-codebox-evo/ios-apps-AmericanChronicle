@@ -26,7 +26,7 @@ class USStateCell: UICollectionViewCell {
 
         backgroundColor = UIColor.whiteColor()
         selectedBackgroundView = UIView()
-        selectedBackgroundView?.backgroundColor = UIColor.blueColor()
+        selectedBackgroundView?.backgroundColor = Colors.lightBlueBright
         label.textAlignment = .Center
         label.font = UIFont(name: "AvenirNext-Regular", size: UIFont.labelFontSize())
         label.frame = self.bounds
