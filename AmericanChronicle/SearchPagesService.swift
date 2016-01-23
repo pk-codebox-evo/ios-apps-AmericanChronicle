@@ -80,10 +80,13 @@ class SearchPagesService: SearchPagesServiceInterface {
 
         var URLString = ChroniclingAmericaEndpoint.PagesSearch.fullURLString ?? ""
         if parameters.states.count > 0 {
-            let statesString = parameters.states.map { "state=\($0)" }.joinWithSeparator("&")
+            let allowedCharacterSet = NSCharacterSet.alphanumericCharacterSet()
+            let statesString = parameters.states.map { state in
+                let escapedState = state.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacterSet) ?? ""
+                return "state=\(escapedState)"
+            }.joinWithSeparator("&")
             URLString.appendContentsOf("?\(statesString)")
         }
-
         let request = self.manager.request(.GET, URLString: URLString, parameters: params)?.responseObject(nil) { (response: Response<SearchResults, NSError>) in
             dispatch_sync(self.queue) {
                 self.activeRequests[self.keyForParameters(parameters, page: page, contextID: contextID)] = nil

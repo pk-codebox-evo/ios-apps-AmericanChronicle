@@ -46,7 +46,6 @@ class SearchInteractor: NSObject, SearchInteractorInterface {
     }
 
     func fetchNextPageOfResults(parameters: SearchParameters) {
-        print("[RP] \(_stdlib_getDemangledTypeName(self)) | \(__FUNCTION__) | line \(__LINE__)")
         if (parameters == activeSearch?.parameters) {
             if isSearchInProgress() {
                 // There is already a search in progress for these parameters.
@@ -55,7 +54,6 @@ class SearchInteractor: NSObject, SearchInteractorInterface {
                 return
             }
         }
-        print("[RP] \(_stdlib_getDemangledTypeName(self)) | \(__FUNCTION__) | line \(__LINE__)")
         // Calling cancel() on delayedSearch can sometimes trigger the completionHandler
         // synchronously, and the delegate might then call isSearchInProgress to see if
         // it can hide the progress indicator. Wait to start this chain of events until
@@ -65,9 +63,7 @@ class SearchInteractor: NSObject, SearchInteractorInterface {
         activeSearch = searchFactory.fetchMoreResults(parameters) { (results, error) in
             self.delegate?.search(parameters, didFinishWithResults: results, error: error as? NSError)
         }
-        print("[RP] \(_stdlib_getDemangledTypeName(self)) | \(__FUNCTION__) | line \(__LINE__)")
         oldActiveSearch?.cancel()
-        print("[RP] \(_stdlib_getDemangledTypeName(self)) | \(__FUNCTION__) | line \(__LINE__)")
     }
 
     func isSearchInProgress() -> Bool {

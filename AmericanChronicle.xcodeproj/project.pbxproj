@@ -138,7 +138,6 @@
 		97ED42CC1BDD879300884B3E /* NSError+AMC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED42CB1BDD879300884B3E /* NSError+AMC.swift */; };
 		97F622031BE9E94000F0DB63 /* DelayedSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F622021BE9E94000F0DB63 /* DelayedSearchTests.swift */; };
 		97F707D11BB8AE8F00A3D760 /* PagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F707D01BB8AE8F00A3D760 /* PagePresenter.swift */; };
-		97FC5EA91BABD04B0097CB29 /* copy_dsyms.rb in Resources */ = {isa = PBXBuildFile; fileRef = 97FC5EA81BABD04B0097CB29 /* copy_dsyms.rb */; };
 		97FE01521BDC48C00098E45F /* PageWireframeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FE01511BDC48C00098E45F /* PageWireframeTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -291,15 +290,8 @@
 		97EAC1E21B9D434800956EBC /* SearchInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
 		97EAC1E41B9D442800956EBC /* SearchInteractorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchInteractorTests.swift; sourceTree = "<group>"; };
 		97ED42CB1BDD879300884B3E /* NSError+AMC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+AMC.swift"; sourceTree = "<group>"; };
-		97F0F8D31BB51125004753F0 /* Alamofire.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Alamofire.framework.dSYM; path = Carthage/Build/iOS/Alamofire.framework.dSYM; sourceTree = "<group>"; };
-		97F0F8D41BB51125004753F0 /* AlamofireObjectMapper.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = AlamofireObjectMapper.framework.dSYM; path = Carthage/Build/iOS/AlamofireObjectMapper.framework.dSYM; sourceTree = "<group>"; };
-		97F0F8D51BB51125004753F0 /* FSCalendar.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = FSCalendar.framework.dSYM; path = Carthage/Build/iOS/FSCalendar.framework.dSYM; sourceTree = "<group>"; };
-		97F0F8D61BB51125004753F0 /* ObjectMapper.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = ObjectMapper.framework.dSYM; path = Carthage/Build/iOS/ObjectMapper.framework.dSYM; sourceTree = "<group>"; };
-		97F0F8D71BB51125004753F0 /* SnapKit.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = SnapKit.framework.dSYM; path = Carthage/Build/iOS/SnapKit.framework.dSYM; sourceTree = "<group>"; };
-		97F0F8D81BB51125004753F0 /* WebImage.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = WebImage.framework.dSYM; path = Carthage/Build/iOS/WebImage.framework.dSYM; sourceTree = "<group>"; };
 		97F622021BE9E94000F0DB63 /* DelayedSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelayedSearchTests.swift; sourceTree = "<group>"; };
 		97F707D01BB8AE8F00A3D760 /* PagePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagePresenter.swift; sourceTree = "<group>"; };
-		97FC5EA81BABD04B0097CB29 /* copy_dsyms.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = copy_dsyms.rb; sourceTree = "<group>"; };
 		97FE01511BDC48C00098E45F /* PageWireframeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageWireframeTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -331,6 +323,7 @@
 		315BF8B2FAAA7D968A3BFE28 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				971F4B141C4D6F6B0088E696 /* DynamicColor.framework */,
 				9730C1331BB0F20500355D7D /* WebImage.framework */,
 				970A00BE1BABB19D00B3BB87 /* Alamofire.framework */,
 				970A00BF1BABB19D00B3BB87 /* AlamofireObjectMapper.framework */,
@@ -360,20 +353,6 @@
 				9725E5B51BDC783600E74370 /* SearchPagesServiceTests.swift */,
 			);
 			name = Services;
-			sourceTree = "<group>";
-		};
-		974E4FBC1BAF6160006A8231 /* dSYMs */ = {
-			isa = PBXGroup;
-			children = (
-				97F0F8D31BB51125004753F0 /* Alamofire.framework.dSYM */,
-				97F0F8D41BB51125004753F0 /* AlamofireObjectMapper.framework.dSYM */,
-				97F0F8D51BB51125004753F0 /* FSCalendar.framework.dSYM */,
-				97F0F8D61BB51125004753F0 /* ObjectMapper.framework.dSYM */,
-				97F0F8D71BB51125004753F0 /* SnapKit.framework.dSYM */,
-				97F0F8D81BB51125004753F0 /* WebImage.framework.dSYM */,
-				97FC5EA81BABD04B0097CB29 /* copy_dsyms.rb */,
-			);
-			name = dSYMs;
 			sourceTree = "<group>";
 		};
 		975DA6C51C1928FD00D7211A /* USStatePicker */ = {
@@ -649,8 +628,6 @@
 		97BDE1061B76ED6B00A3E57F = {
 			isa = PBXGroup;
 			children = (
-				971F4B141C4D6F6B0088E696 /* DynamicColor.framework */,
-				974E4FBC1BAF6160006A8231 /* dSYMs */,
 				97BDE1111B76ED6B00A3E57F /* AmericanChronicle */,
 				97BDE1291B76ED6B00A3E57F /* AmericanChronicleTests */,
 				97BDE1101B76ED6B00A3E57F /* Products */,
@@ -841,7 +818,6 @@
 			files = (
 				971C2CD91B9BC94F00F00323 /* Browse.storyboard in Resources */,
 				97BDE11C1B76ED6B00A3E57F /* Home.storyboard in Resources */,
-				97FC5EA91BABD04B0097CB29 /* copy_dsyms.rb in Resources */,
 				97A7D9AE1B866E7E00DDBF59 /* SearchFiltersViewController.xib in Resources */,
 				97D3F84A1B994B5E008B8D81 /* Page.storyboard in Resources */,
 				979BEBC91C1B87E3003BA3CA /* states.json in Resources */,

@@ -45,20 +45,4 @@ class TableHeaderView: UITableViewHeaderFooterView {
         super.init(coder: aDecoder)
         commonInit()
     }
-
-//    override func sizeThatFits(size: CGSize) -> CGSize {
-//        var updatedSize = label.sizeThatFits(size)
-//        updatedSize.width += CGFloat(2 * Measurements.horizontalMargin)
-//        updatedSize.height += CGFloat(2 * Measurements.verticalMargin)
-//        print("[RP] sizeThatFits(\(size)): \(updatedSize)")
-//        return size
-//    }
-//
-//    override func intrinsicContentSize() -> CGSize {
-//        var size = label.intrinsicContentSize()
-//        size.width += CGFloat(2 * Measurements.horizontalMargin)
-//        size.height += CGFloat(2 * Measurements.verticalMargin)
-//        print("[RP] intrinsicContentSize: \(size)")
-//        return size
-//    }
 }
