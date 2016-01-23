@@ -58,7 +58,7 @@ class DelayedSearch: NSObject, DelayedSearchInterface {
 
         super.init()
 
-        timer = NSTimer(timeInterval: 0.3, target: self, selector: "timerFired:", userInfo: nil, repeats: false)
+        timer = NSTimer(timeInterval: 0.5, target: self, selector: "timerFired:", userInfo: nil, repeats: false)
         runLoop.addTimer(timer!, forMode: NSDefaultRunLoopMode)
     }
     

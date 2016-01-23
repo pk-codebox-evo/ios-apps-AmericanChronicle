@@ -7,7 +7,7 @@
 //
 
 enum ChroniclingAmericaEndpoint: String {
-    case PagesSearch = "search/pages/results"
+    case PagesSearch = "search/pages/results/"
 
     // ---
 
