@@ -62,9 +62,9 @@ class SearchField: UIView, UITextFieldDelegate {
         textField.tintColor = Colors.lightBlueBright
         textField.textColor = Colors.darkGray
         textField.snp_makeConstraints { make in
-            make.leading.equalTo(10.0)
+            make.leading.equalTo(12.0)
             make.top.equalTo(10.0)
-            make.trailing.equalTo(-10.0)
+            make.trailing.equalTo(-17.0)
             make.bottom.equalTo(-10.0)
         }
 
