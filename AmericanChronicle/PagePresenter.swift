@@ -66,12 +66,15 @@ public class PagePresenter: NSObject, PagePresenterInterface {
     }
 
     public func requestDidFinishWithOCRCoordinates(coordinates: OCRCoordinates?, error: NSError?) {
-        let terms = searchTerm?.componentsSeparatedByString(" ") ?? []
+        guard let searchTerm = searchTerm else { return }
+        var terms = [searchTerm]
+        terms.appendContentsOf(searchTerm.componentsSeparatedByString(" "))
+
         var matchingCoordinates: [String: [CGRect]] = [:]
         if let wordsWithCoordinates = coordinates?.wordCoordinates?.keys {
             for word in wordsWithCoordinates {
                 for term in terms {
-                    if word.lowercaseString.containsString(term.lowercaseString) {
+                    if word.lowercaseString == term.lowercaseString {
                         matchingCoordinates[word] = coordinates?.wordCoordinates?[word]
                         continue
                     }

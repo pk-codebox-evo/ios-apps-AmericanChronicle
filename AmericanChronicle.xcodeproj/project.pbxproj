@@ -22,7 +22,6 @@
 		9725E5B21BDC547800E74370 /* CachedPageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9725E5B11BDC547800E74370 /* CachedPageService.swift */; };
 		9725E5B41BDC571600E74370 /* SearchResultsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9725E5B31BDC571600E74370 /* SearchResultsRow.swift */; };
 		9725E5B61BDC783600E74370 /* SearchPagesServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9725E5B51BDC783600E74370 /* SearchPagesServiceTests.swift */; };
-		972613DD1C024EF500EDF550 /* OCRCoordinatesDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972613DC1C024EF500EDF550 /* OCRCoordinatesDataManager.swift */; };
 		972613DF1C024F1700EDF550 /* OCRCoordinatesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972613DE1C024F1700EDF550 /* OCRCoordinatesService.swift */; };
 		9730C1341BB0F20500355D7D /* WebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9730C1331BB0F20500355D7D /* WebImage.framework */; };
 		97369DCE1BD45B5A0090EC38 /* SearchDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97369DCD1BD45B5A0090EC38 /* SearchDataManagerTests.swift */; };
@@ -169,7 +168,6 @@
 		9725E5B11BDC547800E74370 /* CachedPageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedPageService.swift; sourceTree = "<group>"; };
 		9725E5B31BDC571600E74370 /* SearchResultsRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsRow.swift; sourceTree = "<group>"; };
 		9725E5B51BDC783600E74370 /* SearchPagesServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPagesServiceTests.swift; sourceTree = "<group>"; };
-		972613DC1C024EF500EDF550 /* OCRCoordinatesDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OCRCoordinatesDataManager.swift; sourceTree = "<group>"; };
 		972613DE1C024F1700EDF550 /* OCRCoordinatesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OCRCoordinatesService.swift; sourceTree = "<group>"; };
 		9730C1331BB0F20500355D7D /* WebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebImage.framework; path = Carthage/Build/iOS/WebImage.framework; sourceTree = "<group>"; };
 		97369DCD1BD45B5A0090EC38 /* SearchDataManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchDataManagerTests.swift; sourceTree = "<group>"; };
@@ -619,7 +617,6 @@
 				97F707D01BB8AE8F00A3D760 /* PagePresenter.swift */,
 				97789B931BB10206000B298C /* PageInteractor.swift */,
 				979E20721BD2B8CD007C7F5F /* PageDataManager.swift */,
-				972613DC1C024EF500EDF550 /* OCRCoordinatesDataManager.swift */,
 				976D6EAF1C02543C00EF2B03 /* OCRCoordinates.swift */,
 			);
 			name = Page;
@@ -870,7 +867,6 @@
 			files = (
 				97963F921BCC7ACE00248942 /* NSFileManager+AMC.swift in Sources */,
 				979BF8211B928697006482F1 /* NewspaperPage.swift in Sources */,
-				972613DD1C024EF500EDF550 /* OCRCoordinatesDataManager.swift in Sources */,
 				97D542C01C1B4CDC00402D9A /* USStatePickerWireframe.swift in Sources */,
 				978236191B7FD0D00056FDF6 /* ChroniclingAmericaEndpoint.swift in Sources */,
 				97DFA8041B903025006578CF /* NewspaperIssueCell.swift in Sources */,
