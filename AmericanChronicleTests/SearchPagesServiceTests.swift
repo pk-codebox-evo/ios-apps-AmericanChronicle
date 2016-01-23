@@ -50,15 +50,15 @@ class SearchPagesServiceTests: XCTestCase {
     }
 
     func testThat_whenStartSearchIsCalled_withValidParameters_itStartsARequest_withTheCorrectTerm() {
-        let params = SearchParameters(term: "tsunami", states: ["Alabama", "Colorado"], earliestDate: SearchConstants.earliestPossibleDate(), latestDate: SearchConstants.latestPossibleDate())
+        let params = SearchParameters(term: "tsunami wave", states: ["Alabama", "Colorado"], earliestDate: SearchConstants.earliestPossibleDate(), latestDate: SearchConstants.latestPossibleDate())
         subject.startSearch(params, page: 4, contextID: "context") { _, _ in }
-        XCTAssertEqual(manager.request_wasCalled_withParameters?["proxtext"] as? String, "tsunami")
+        XCTAssert(manager.request_wasCalled_withURLString?.URLString.containsString("proxtext=tsunami+wave") ?? false)
     }
 
     func testThat_whenStartSearchIsCalled_withValidParameters_itStartsARequest_withTheCorrectStates() {
         let params = SearchParameters(term: "tsunami", states: ["New York", "Colorado"], earliestDate: SearchConstants.earliestPossibleDate(), latestDate: SearchConstants.latestPossibleDate())
         subject.startSearch(params, page: 4, contextID: "context") { _, _ in }
-        XCTAssert(manager.request_wasCalled_withURLString?.URLString.hasSuffix("state=New%20York&state=Colorado") ?? false)
+        XCTAssert(manager.request_wasCalled_withURLString?.URLString.hasSuffix("state=New+York&state=Colorado") ?? false)
     }
 
     func testThat_whenStartSearchIsCalled_withValidParameters_itStartsARequest_withTheCorrectPage() {

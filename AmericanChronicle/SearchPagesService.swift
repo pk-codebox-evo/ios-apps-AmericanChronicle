@@ -71,7 +71,6 @@ class SearchPagesService: SearchPagesServiceInterface {
         let params: [String: AnyObject] = [
             "format": "json",
             "rows": 20,
-            "proxtext": parameters.term,
             "page": page,
             "dateFilterType": "range",
             "date1": date1,
@@ -79,14 +78,15 @@ class SearchPagesService: SearchPagesServiceInterface {
         ]
 
         var URLString = ChroniclingAmericaEndpoint.PagesSearch.fullURLString ?? ""
+        URLString.appendContentsOf("?proxtext=\(parameters.term.stringByReplacingOccurrencesOfString(" ", withString: "+"))")
         if parameters.states.count > 0 {
-            let allowedCharacterSet = NSCharacterSet.alphanumericCharacterSet()
             let statesString = parameters.states.map { state in
-                let escapedState = state.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacterSet) ?? ""
-                return "state=\(escapedState)"
+                let formattedState = state.stringByReplacingOccurrencesOfString(" ", withString: "+")
+                return "state=\(formattedState)"
             }.joinWithSeparator("&")
-            URLString.appendContentsOf("?\(statesString)")
+            URLString.appendContentsOf("&\(statesString)")
         }
+
         let request = self.manager.request(.GET, URLString: URLString, parameters: params)?.responseObject(nil) { (response: Response<SearchResults, NSError>) in
             dispatch_sync(self.queue) {
                 self.activeRequests[self.keyForParameters(parameters, page: page, contextID: contextID)] = nil
