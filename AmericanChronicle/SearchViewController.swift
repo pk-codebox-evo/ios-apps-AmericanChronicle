@@ -187,6 +187,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
         case .EmptyResults:
             setLoadingIndicatorsVisible(false)
             emptyResultsView.alpha = 1.0
+            emptyResultsView.title = "No results"
             errorView.alpha = 0
             sectionTitle = ""
             rows = []

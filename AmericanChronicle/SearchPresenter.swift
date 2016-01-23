@@ -146,17 +146,21 @@ class SearchPresenter: NSObject, SearchPresenterInterface {
         if let results = results, items = results.items {
             let rows = rowsForSearchResultItems(items)
             if rows.count > 0 {
+                print("[RP] \(_stdlib_getDemangledTypeName(self)) | \(__FUNCTION__) | line \(__LINE__)")
                 let title = "\(results.totalItems ?? 0) matches"
                 view?.setViewState(.Ideal(title: title, rows: rows))
             } else {
+                print("[RP] \(_stdlib_getDemangledTypeName(self)) | \(__FUNCTION__) | line \(__LINE__)")
                 view?.setViewState(.EmptyResults)
             }
         } else if let err = error {
+            print("[RP] \(_stdlib_getDemangledTypeName(self)) | \(__FUNCTION__) | line \(__LINE__)")
             guard !err.isCancelledRequestError() else { return }
             guard !err.isDuplicateRequestError() else { return }
             guard !err.isAllItemsLoadedError() else { return }
             view?.setViewState(.Error(title: err.localizedDescription, message: err.localizedRecoverySuggestion))
         } else {
+            print("[RP] \(_stdlib_getDemangledTypeName(self)) | \(__FUNCTION__) | line \(__LINE__)")
             view?.setViewState(.EmptyResults)
         }
     }
@@ -199,6 +203,13 @@ class SearchPresenter: NSObject, SearchPresenterInterface {
     }
 
     private func searchIfReady(loadingViewState: ViewState = .LoadingNewParamaters) {
+        print("[RP] \(_stdlib_getDemangledTypeName(self)) | \(__FUNCTION__) | line \(__LINE__)")
+
+        print("[RP] * loadingViewState: \(loadingViewState)")
+        print("[RP] * term: \(term)")
+        print("[RP] * states: \(states)")
+        print("[RP] * earliestDate: \(earliestDate)")
+        print("[RP] * latestDate: \(latestDate)")
         if let term = term {
             view?.setViewState(loadingViewState)
             let params = SearchParameters(term: term, states: states, earliestDate: earliestDate, latestDate: latestDate)
