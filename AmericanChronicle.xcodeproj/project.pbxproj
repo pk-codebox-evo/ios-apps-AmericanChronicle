@@ -136,12 +136,6 @@
 		97EAC1E31B9D434800956EBC /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EAC1E21B9D434800956EBC /* SearchInteractor.swift */; };
 		97EAC1E51B9D442800956EBC /* SearchInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EAC1E41B9D442800956EBC /* SearchInteractorTests.swift */; };
 		97ED42CC1BDD879300884B3E /* NSError+AMC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED42CB1BDD879300884B3E /* NSError+AMC.swift */; };
-		97F0F8D91BB51125004753F0 /* Alamofire.framework.dSYM in Copy Files */ = {isa = PBXBuildFile; fileRef = 97F0F8D31BB51125004753F0 /* Alamofire.framework.dSYM */; };
-		97F0F8DA1BB51125004753F0 /* AlamofireObjectMapper.framework.dSYM in Copy Files */ = {isa = PBXBuildFile; fileRef = 97F0F8D41BB51125004753F0 /* AlamofireObjectMapper.framework.dSYM */; };
-		97F0F8DB1BB51125004753F0 /* FSCalendar.framework.dSYM in Copy Files */ = {isa = PBXBuildFile; fileRef = 97F0F8D51BB51125004753F0 /* FSCalendar.framework.dSYM */; };
-		97F0F8DC1BB51125004753F0 /* ObjectMapper.framework.dSYM in Copy Files */ = {isa = PBXBuildFile; fileRef = 97F0F8D61BB51125004753F0 /* ObjectMapper.framework.dSYM */; };
-		97F0F8DD1BB51125004753F0 /* SnapKit.framework.dSYM in Copy Files */ = {isa = PBXBuildFile; fileRef = 97F0F8D71BB51125004753F0 /* SnapKit.framework.dSYM */; };
-		97F0F8DE1BB51125004753F0 /* WebImage.framework.dSYM in Copy Files */ = {isa = PBXBuildFile; fileRef = 97F0F8D81BB51125004753F0 /* WebImage.framework.dSYM */; };
 		97F622031BE9E94000F0DB63 /* DelayedSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F622021BE9E94000F0DB63 /* DelayedSearchTests.swift */; };
 		97F707D11BB8AE8F00A3D760 /* PagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F707D01BB8AE8F00A3D760 /* PagePresenter.swift */; };
 		97FC5EA91BABD04B0097CB29 /* copy_dsyms.rb in Resources */ = {isa = PBXBuildFile; fileRef = 97FC5EA81BABD04B0097CB29 /* copy_dsyms.rb */; };
@@ -157,25 +151,6 @@
 			remoteInfo = AmericanChronicle;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		970A00C91BABB27800B3BB87 /* Copy Files */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 16;
-			files = (
-				97F0F8D91BB51125004753F0 /* Alamofire.framework.dSYM in Copy Files */,
-				97F0F8DA1BB51125004753F0 /* AlamofireObjectMapper.framework.dSYM in Copy Files */,
-				97F0F8DB1BB51125004753F0 /* FSCalendar.framework.dSYM in Copy Files */,
-				97F0F8DC1BB51125004753F0 /* ObjectMapper.framework.dSYM in Copy Files */,
-				97F0F8DD1BB51125004753F0 /* SnapKit.framework.dSYM in Copy Files */,
-				97F0F8DE1BB51125004753F0 /* WebImage.framework.dSYM in Copy Files */,
-			);
-			name = "Copy Files";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		970492181BC4D898001DA2DE /* PageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
@@ -791,7 +766,6 @@
 				97BDE10C1B76ED6B00A3E57F /* Frameworks */,
 				97BDE10D1B76ED6B00A3E57F /* Resources */,
 				970A00C81BABB1BD00B3BB87 /* Carthage - Copy Frameworks */,
-				970A00C91BABB27800B3BB87 /* Copy Files */,
 			);
 			buildRules = (
 			);
