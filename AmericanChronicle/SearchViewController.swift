@@ -133,7 +133,8 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
     private let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
 
     private let tableView = UITableView()
-    private var tableHeaderView = SearchTableHeaderView()
+    private let tableHeaderView = SearchTableHeaderView()
+    private let tableFooterView = UIView()
     private let dateFormatter: NSDateFormatter = {
         let formatter = NSDateFormatter()
         formatter.dateFormat = "MMM dd, yyyy"
@@ -183,7 +184,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
             sectionTitle = ""
             rows = []
             tableView.reloadData()
-            tableView.tableFooterView?.alpha = 0
+            tableFooterView.alpha = 0
         case .EmptyResults:
             setLoadingIndicatorsVisible(false)
             emptyResultsView.alpha = 1.0
@@ -192,7 +193,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
             sectionTitle = ""
             rows = []
             tableView.reloadData()
-            tableView.tableFooterView?.alpha = 0
+            tableFooterView.alpha = 0
         case .LoadingNewParamaters:
             setLoadingIndicatorsVisible(true)
             emptyResultsView.alpha = 0
@@ -200,12 +201,12 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
             sectionTitle = ""
             rows = []
             tableView.reloadData()
-            tableView.tableFooterView?.alpha = 0
+            tableFooterView.alpha = 0
         case .LoadingMoreRows:
             setLoadingIndicatorsVisible(false)
             emptyResultsView.alpha = 0
             errorView.alpha = 0
-            tableView.tableFooterView?.alpha = 1.0
+            tableFooterView.alpha = 1.0
         case let .Partial(title, rows):
             setLoadingIndicatorsVisible(false)
             emptyResultsView.alpha = 0
@@ -215,7 +216,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
                 self.rows = rows
                 tableView.reloadData()
             }
-            tableView.tableFooterView?.alpha = 0
+            tableFooterView.alpha = 0
         case let .Ideal(title, rows):
             setLoadingIndicatorsVisible(false)
             emptyResultsView.alpha = 0
@@ -225,7 +226,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
                 self.rows = rows
                 tableView.reloadData()
             }
-            tableView.tableFooterView?.alpha = 0
+            tableFooterView.alpha = 0
         case let .Error(title, message):
             setLoadingIndicatorsVisible(false)
             emptyResultsView.alpha = 0
@@ -235,7 +236,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
             tableView.reloadData()
             errorView.title = title
             errorView.message = message
-            tableView.tableFooterView?.alpha = 0
+            tableFooterView.alpha = 0
         }
     }
 
@@ -294,6 +295,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
 
         loadTableView()
         loadTableHeaderView()
+        loadTableFooterView()
         loadErrorView()
         loadEmptyResultsView()
         loadActivityIndicator()
@@ -311,6 +313,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.tableHeaderView = tableHeaderView
+        tableView.tableFooterView = tableFooterView
     }
 
     // MARK: UIResponder overrides
@@ -371,6 +374,17 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
         }
         tableHeaderView.USStatesButtonTapHandler = { [weak self] _ in
             self?.delegate?.userDidTapUSStates()
+        }
+    }
+
+    private func loadTableFooterView() {
+        tableFooterView.frame = CGRect(x: 0, y: 0, width: 300, height: 48)
+
+        let spinner = UIActivityIndicatorView()
+        spinner.startAnimating()
+        tableFooterView.addSubview(spinner)
+        spinner.snp_makeConstraints { make in
+            make.center.equalTo(0)
         }
     }
 
