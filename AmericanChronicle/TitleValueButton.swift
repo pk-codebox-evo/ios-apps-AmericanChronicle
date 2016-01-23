@@ -22,14 +22,14 @@ class TitleValueButton: UIControl {
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = Colors.lightBlueBright
+        label.textColor = Colors.lightGray
         label.textAlignment = .Center
         label.font = UIFont.systemFontOfSize(12.0)
         return label
     }()
     private let valueLabel: UILabel = {
         let label = UILabel()
-        label.textColor = Colors.lightGray
+        label.textColor = Colors.lightBlueBright
         label.font = UIFont.systemFontOfSize(14.0)
         label.textAlignment = .Center
         return label

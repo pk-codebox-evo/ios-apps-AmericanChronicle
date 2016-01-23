@@ -37,6 +37,8 @@ class SearchPresenter: NSObject, SearchPresenterInterface {
     weak var view: SearchViewInterface? {
         didSet {
             updateViewForKeyboardFrame(KeyboardService.sharedInstance.keyboardFrame)
+            view?.earliestDate = dateFormatter.stringFromDate(earliestDate)
+            view?.latestDate = dateFormatter.stringFromDate(latestDate)
         }
     }
     weak var interactor: SearchInteractorInterface?
