@@ -329,6 +329,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
     // MARK: Private methods
 
     private func loadTableView() {
+        tableView.backgroundColor = UIColor.whiteColor()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.registerClass(SearchResultsPageCell.self, forCellReuseIdentifier:  _stdlib_getDemangledTypeName(SearchResultsPageCell))

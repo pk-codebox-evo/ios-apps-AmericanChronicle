@@ -22,7 +22,7 @@ class TableHeaderView: UITableViewHeaderFooterView {
     private let label = UILabel()
     func commonInit() {
 
-        contentView.backgroundColor = Colors.offWhite
+        contentView.backgroundColor = UIColor(hex: 0xf4f4f4)
 
         contentView.addSubview(label)
         label.font = UIFont(name: "AvenirNext-Regular", size: UIFont.systemFontSize())

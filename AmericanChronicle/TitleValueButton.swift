@@ -23,6 +23,7 @@ class TitleValueButton: UIControl {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = Colors.lightGray
+        label.highlightedTextColor = UIColor.whiteColor()
         label.textAlignment = .Center
         label.font = UIFont.systemFontOfSize(12.0)
         return label
@@ -30,14 +31,20 @@ class TitleValueButton: UIControl {
     private let valueLabel: UILabel = {
         let label = UILabel()
         label.textColor = Colors.lightBlueBright
+        label.highlightedTextColor = UIColor.whiteColor()
         label.font = UIFont.systemFontOfSize(14.0)
         label.textAlignment = .Center
         return label
     }()
     private let button = UIButton()
 
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        highlighted = button.highlighted
+    }
+
     func commonInit() {
         button.addTarget(self, action: "buttonTapped:", forControlEvents: .TouchUpInside)
+        button.addObserver(self, forKeyPath: "highlighted", options: NSKeyValueObservingOptions.Initial, context: nil)
 
         addSubview(button)
         addSubview(titleLabel)
@@ -68,6 +75,13 @@ class TitleValueButton: UIControl {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.commonInit()
+    }
+
+    override var highlighted: Bool {
+        didSet {
+            titleLabel.highlighted = highlighted
+            valueLabel.highlighted = highlighted
+        }
     }
 
     func buttonTapped(sender: UIButton) {

@@ -82,6 +82,8 @@ class SearchTableHeaderView: UIView {
 
     func commonInit() {
 
+        backgroundColor = UIColor(hex: 0xf4f4f4)
+
         addSubview(searchField)
         searchField.snp_makeConstraints { make in
             make.top.equalTo(0)

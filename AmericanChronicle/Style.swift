@@ -37,24 +37,34 @@ struct Measurements {
 
 extension UIButton {
 
-    class func bgImage() -> UIImage {
+    class func bgImage(borderColor: UIColor, fillColor: UIColor) -> UIImage {
         let pxHeight = 1.0/UIScreen.mainScreen().scale
         let rect = CGRect(x: 0, y: 0, width: 3.0, height: 3.0)
         UIGraphicsBeginImageContext(rect.size)
-        Colors.lightBlueBright.set()
+        borderColor.set()
         CGContextFillRect(UIGraphicsGetCurrentContext(), rect)
-        UIColor.whiteColor().set()
+        fillColor.set()
         CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectInset(rect, pxHeight, pxHeight))
         let img = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return img.resizableImageWithCapInsets(UIEdgeInsets(top: 1.0, left: 1.0, bottom: 1.0, right: 1.0))
     }
 
+    class func normalBgImage() -> UIImage {
+        return bgImage(Colors.lightBlueBright, fillColor: UIColor.whiteColor())
+    }
+
+    class func highlightedBgImage() -> UIImage {
+        return bgImage(Colors.lightBlueBright, fillColor: Colors.lightBlueBright)
+    }
+
     class func applyAppearance() {
-        appearance().setBackgroundImage(bgImage(), forState: .Normal)
+        appearance().setBackgroundImage(normalBgImage(), forState: .Normal)
+        appearance().setBackgroundImage(highlightedBgImage(), forState: .Highlighted)
         AMC_appearanceWhenContainedIn(UITableViewCell.self).setBackgroundImage(nil, forState: .Normal)
         AMC_appearanceWhenContainedIn(UITextField.self).setBackgroundImage(nil, forState: .Normal)
         appearance().setTitleColor(Colors.darkGray, forState: .Normal)
+        appearance().setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
     }
 }
 
