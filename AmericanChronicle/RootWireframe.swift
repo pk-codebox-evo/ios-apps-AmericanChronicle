@@ -9,8 +9,11 @@
 import UIKit
 
 class RootWireframe: NSObject {
-    let homeWireframe = HomeWireframe()
+    let searchWireframe = SearchWireframe()
     func rootViewController() -> UIViewController? {
-        return homeWireframe.homeViewController
+        if let vc = searchWireframe.dependencies.view as? SearchViewController {
+            return UINavigationController(rootViewController: vc)
+        }
+        return nil
     }
 }

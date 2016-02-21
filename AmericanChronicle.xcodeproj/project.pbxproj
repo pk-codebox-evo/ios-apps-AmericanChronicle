@@ -16,6 +16,9 @@
 		970A00C51BABB19D00B3BB87 /* FSCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970A00C01BABB19D00B3BB87 /* FSCalendar.framework */; };
 		970A00C61BABB19D00B3BB87 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970A00C11BABB19D00B3BB87 /* ObjectMapper.framework */; };
 		970A00C71BABB19D00B3BB87 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970A00C21BABB19D00B3BB87 /* SnapKit.framework */; };
+		970F3D831C957E9300D50106 /* PagedKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970F3D821C957E9300D50106 /* PagedKeyboard.swift */; };
+		971359311C820D8800A58E35 /* PrevNextKeyboardAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971359301C820D8800A58E35 /* PrevNextKeyboardAccessoryView.swift */; };
+		971359331C82281600A58E35 /* UIImage+AMC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971359321C82281600A58E35 /* UIImage+AMC.swift */; };
 		971C2CD91B9BC94F00F00323 /* Browse.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 971C2CD81B9BC94F00F00323 /* Browse.storyboard */; };
 		9721FDC91B93FF26006798B2 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9721FDC81B93FF26006798B2 /* Style.swift */; };
 		9721FDCB1B940EE7006798B2 /* TableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9721FDCA1B940EE7006798B2 /* TableHeaderView.swift */; };
@@ -39,6 +42,7 @@
 		974EFBF21C1E00BB00E7D4CB /* USStatePickerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974EFBF11C1E00BB00E7D4CB /* USStatePickerPresenter.swift */; };
 		974EFBF71C1E26AA00E7D4CB /* USStatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974EFBF51C1E26AA00E7D4CB /* USStatePickerViewController.swift */; };
 		975355681BF5A8550028B7FD /* KeyboardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975355671BF5A8550028B7FD /* KeyboardService.swift */; };
+		975694631C767D7E00FC8D5F /* DateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975694621C767D7E00FC8D5F /* DateTextField.swift */; };
 		975914AA1B7A47C40031BD13 /* SearchResultsPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975914A91B7A47C40031BD13 /* SearchResultsPageCell.swift */; };
 		97597C1E1BF8025300363A00 /* KeyboardServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97597C1D1BF8025300363A00 /* KeyboardServiceTests.swift */; };
 		975A8C8C1C50FB2B000792FB /* ChroniclingAmericaWebsiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975A8C8B1C50FB2B000792FB /* ChroniclingAmericaWebsiteViewController.swift */; };
@@ -75,12 +79,14 @@
 		9787414B1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9787414A1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift */; };
 		978D11541B955C39003B98C5 /* UIAppearance+AMC.m in Sources */ = {isa = PBXBuildFile; fileRef = 978D11531B955C39003B98C5 /* UIAppearance+AMC.m */; };
 		978D11581B956F2D003B98C5 /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978D11571B956F2D003B98C5 /* SearchField.swift */; };
+		978E45C61C9482EB00316435 /* RestrictedInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978E45C51C9482EB00316435 /* RestrictedInputField.swift */; };
 		978E95D81BEF2E9E00A4E71E /* CachedSearchResultsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978E95D71BEF2E9E00A4E71E /* CachedSearchResultsService.swift */; };
 		978E9B151BAFA3950001690C /* DelayedSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978E9B141BAFA3950001690C /* DelayedSearch.swift */; };
 		978E9B171BAFA5400001690C /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978E9B161BAFA5400001690C /* SearchResult.swift */; };
 		978E9B1A1BAFA6360001690C /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978E9B191BAFA6360001690C /* SearchResults.swift */; };
 		978E9B1C1BAFB29E0001690C /* String+AMC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978E9B1B1BAFB29E0001690C /* String+AMC.swift */; };
 		9791A5D41BABC868008CF0A6 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970A00C11BABB19D00B3BB87 /* ObjectMapper.framework */; };
+		9791B5BB1C8C77EA00A90F39 /* DayMonthYear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9791B5BA1C8C77EA00A90F39 /* DayMonthYear.swift */; };
 		97924DF61BDC14F30035E5F6 /* PageDataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97924DF51BDC14F30035E5F6 /* PageDataManagerTests.swift */; };
 		97963F871BCC31D700248942 /* PageWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97963F861BCC31D700248942 /* PageWireframe.swift */; };
 		97963F8A1BCC784000248942 /* PageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97963F891BCC784000248942 /* PageService.swift */; };
@@ -128,6 +134,10 @@
 		97DE1C971C4C0DCC00AD12F0 /* SearchTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DE1C961C4C0DCC00AD12F0 /* SearchTableHeaderView.swift */; };
 		97DFA8021B9026C8006578CF /* NewspaperIssue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DFA8011B9026C8006578CF /* NewspaperIssue.swift */; };
 		97DFA8041B903025006578CF /* NewspaperIssueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DFA8031B903025006578CF /* NewspaperIssueCell.swift */; };
+		97E501BB1C7A27F2005DC18F /* MonthKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E501BA1C7A27F2005DC18F /* MonthKeyboard.swift */; };
+		97E501BD1C7A3D22005DC18F /* DayKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E501BC1C7A3D22005DC18F /* DayKeyboard.swift */; };
+		97E501BF1C7A3ECF005DC18F /* ByDecadeYearPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E501BE1C7A3ECF005DC18F /* ByDecadeYearPicker.swift */; };
+		97E501C11C7A5221005DC18F /* VerticalStrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E501C01C7A5221005DC18F /* VerticalStrip.swift */; };
 		97EAC1DB1B9D2DB600956EBC /* SearchWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EAC1DA1B9D2DB600956EBC /* SearchWireframe.swift */; };
 		97EAC1DD1B9D2F0C00956EBC /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EAC1DC1B9D2F0C00956EBC /* SearchPresenter.swift */; };
 		97EAC1DF1B9D3E0300956EBC /* RootWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EAC1DE1B9D3E0300956EBC /* RootWireframe.swift */; };
@@ -161,6 +171,9 @@
 		970A00C11BABB19D00B3BB87 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		970A00C21BABB19D00B3BB87 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		970E81221B7DB32D00D795EB /* AmericanChronicle-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AmericanChronicle-Bridging-Header.h"; sourceTree = "<group>"; };
+		970F3D821C957E9300D50106 /* PagedKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagedKeyboard.swift; sourceTree = "<group>"; };
+		971359301C820D8800A58E35 /* PrevNextKeyboardAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrevNextKeyboardAccessoryView.swift; sourceTree = "<group>"; };
+		971359321C82281600A58E35 /* UIImage+AMC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+AMC.swift"; sourceTree = "<group>"; };
 		971C2CD81B9BC94F00F00323 /* Browse.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Browse.storyboard; sourceTree = "<group>"; };
 		971F4B141C4D6F6B0088E696 /* DynamicColor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DynamicColor.framework; path = Carthage/Build/iOS/DynamicColor.framework; sourceTree = "<group>"; };
 		9721FDC81B93FF26006798B2 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
@@ -185,6 +198,7 @@
 		974EFBF11C1E00BB00E7D4CB /* USStatePickerPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USStatePickerPresenter.swift; sourceTree = "<group>"; };
 		974EFBF51C1E26AA00E7D4CB /* USStatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USStatePickerViewController.swift; sourceTree = "<group>"; };
 		975355671BF5A8550028B7FD /* KeyboardService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardService.swift; sourceTree = "<group>"; };
+		975694621C767D7E00FC8D5F /* DateTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTextField.swift; sourceTree = "<group>"; };
 		975914A91B7A47C40031BD13 /* SearchResultsPageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsPageCell.swift; sourceTree = "<group>"; };
 		97597C1D1BF8025300363A00 /* KeyboardServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardServiceTests.swift; sourceTree = "<group>"; };
 		975A8C8B1C50FB2B000792FB /* ChroniclingAmericaWebsiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChroniclingAmericaWebsiteViewController.swift; sourceTree = "<group>"; };
@@ -222,12 +236,14 @@
 		978D11521B955C39003B98C5 /* UIAppearance+AMC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAppearance+AMC.h"; sourceTree = "<group>"; };
 		978D11531B955C39003B98C5 /* UIAppearance+AMC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAppearance+AMC.m"; sourceTree = "<group>"; };
 		978D11571B956F2D003B98C5 /* SearchField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchField.swift; sourceTree = "<group>"; };
+		978E45C51C9482EB00316435 /* RestrictedInputField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestrictedInputField.swift; sourceTree = "<group>"; };
 		978E95D71BEF2E9E00A4E71E /* CachedSearchResultsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedSearchResultsService.swift; sourceTree = "<group>"; };
 		978E9B141BAFA3950001690C /* DelayedSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelayedSearch.swift; sourceTree = "<group>"; };
 		978E9B161BAFA5400001690C /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		978E9B191BAFA6360001690C /* SearchResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 		978E9B1B1BAFB29E0001690C /* String+AMC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+AMC.swift"; sourceTree = "<group>"; };
 		979082761B8147590056CA9C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		9791B5BA1C8C77EA00A90F39 /* DayMonthYear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayMonthYear.swift; sourceTree = "<group>"; };
 		97924DF51BDC14F30035E5F6 /* PageDataManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageDataManagerTests.swift; sourceTree = "<group>"; };
 		97963F861BCC31D700248942 /* PageWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageWireframe.swift; sourceTree = "<group>"; };
 		97963F891BCC784000248942 /* PageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageService.swift; sourceTree = "<group>"; };
@@ -280,6 +296,10 @@
 		97DE1C961C4C0DCC00AD12F0 /* SearchTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableHeaderView.swift; sourceTree = "<group>"; };
 		97DFA8011B9026C8006578CF /* NewspaperIssue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperIssue.swift; sourceTree = "<group>"; };
 		97DFA8031B903025006578CF /* NewspaperIssueCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperIssueCell.swift; sourceTree = "<group>"; };
+		97E501BA1C7A27F2005DC18F /* MonthKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthKeyboard.swift; sourceTree = "<group>"; };
+		97E501BC1C7A3D22005DC18F /* DayKeyboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayKeyboard.swift; sourceTree = "<group>"; };
+		97E501BE1C7A3ECF005DC18F /* ByDecadeYearPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByDecadeYearPicker.swift; sourceTree = "<group>"; };
+		97E501C01C7A5221005DC18F /* VerticalStrip.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalStrip.swift; sourceTree = "<group>"; };
 		97E744171BD750D700963C62 /* PageServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageServiceTests.swift; sourceTree = "<group>"; };
 		97EAC1DA1B9D2DB600956EBC /* SearchWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchWireframe.swift; sourceTree = "<group>"; };
 		97EAC1DC1B9D2F0C00956EBC /* SearchPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
@@ -371,6 +391,14 @@
 			children = (
 				97D3293D1C2773AE0088FF21 /* DatePickerWireframe.swift */,
 				977F0A561B7FC3E700C4B0FC /* DatePickerViewController.swift */,
+				975694621C767D7E00FC8D5F /* DateTextField.swift */,
+				978E45C51C9482EB00316435 /* RestrictedInputField.swift */,
+				97E501BA1C7A27F2005DC18F /* MonthKeyboard.swift */,
+				97E501BC1C7A3D22005DC18F /* DayKeyboard.swift */,
+				970F3D821C957E9300D50106 /* PagedKeyboard.swift */,
+				97E501BE1C7A3ECF005DC18F /* ByDecadeYearPicker.swift */,
+				971359301C820D8800A58E35 /* PrevNextKeyboardAccessoryView.swift */,
+				97E501C01C7A5221005DC18F /* VerticalStrip.swift */,
 				97D329411C2778E40088FF21 /* DatePickerPresenter.swift */,
 				97D3293F1C2778C10088FF21 /* DatePickerInteractor.swift */,
 			);
@@ -508,6 +536,7 @@
 				97ED42CB1BDD879300884B3E /* NSError+AMC.swift */,
 				97963F911BCC7ACE00248942 /* NSFileManager+AMC.swift */,
 				97728BB21C30EB0D00ADEFE2 /* NSDate+AMC.swift */,
+				971359321C82281600A58E35 /* UIImage+AMC.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -596,6 +625,7 @@
 				9721FDC81B93FF26006798B2 /* Style.swift */,
 				97BDE11F1B76ED6B00A3E57F /* LaunchScreen.xib */,
 				9764976C1B7DA0270035A388 /* Month.swift */,
+				9791B5BA1C8C77EA00A90F39 /* DayMonthYear.swift */,
 				978D11571B956F2D003B98C5 /* SearchField.swift */,
 				97415AE31B785D8400326239 /* CustomSegueNavigationController.swift */,
 				97EAC1DE1B9D3E0300956EBC /* RootWireframe.swift */,
@@ -881,6 +911,7 @@
 				977F0A581B7FC3E700C4B0FC /* DatePickerViewController.swift in Sources */,
 				97BDE1391B7703CA00A3E57F /* PageViewController.swift in Sources */,
 				97D329421C2778E40088FF21 /* DatePickerPresenter.swift in Sources */,
+				97E501BB1C7A27F2005DC18F /* MonthKeyboard.swift in Sources */,
 				97ED42CC1BDD879300884B3E /* NSError+AMC.swift in Sources */,
 				97963F8E1BCC792400248942 /* Manager+AMC.swift in Sources */,
 				975DA6C21C19262000D7211A /* SearchFiltersInteractor.swift in Sources */,
@@ -903,6 +934,7 @@
 				97604E511C0925E100FA2805 /* SharePresenter.swift in Sources */,
 				970492191BC4D898001DA2DE /* PageView.swift in Sources */,
 				979E20731BD2B8CD007C7F5F /* PageDataManager.swift in Sources */,
+				97E501BF1C7A3ECF005DC18F /* ByDecadeYearPicker.swift in Sources */,
 				97DFA8021B9026C8006578CF /* NewspaperIssue.swift in Sources */,
 				97BE674A1B7B004B00761033 /* SearchFiltersViewController.swift in Sources */,
 				978E9B1A1BAFA6360001690C /* SearchResults.swift in Sources */,
@@ -911,18 +943,26 @@
 				97415AE41B785D8400326239 /* CustomSegueNavigationController.swift in Sources */,
 				97EAC1E31B9D434800956EBC /* SearchInteractor.swift in Sources */,
 				974BA3681B892D5200D7ACA2 /* City.swift in Sources */,
+				97E501C11C7A5221005DC18F /* VerticalStrip.swift in Sources */,
 				97C3ABB11C39CA2B00165FEA /* SearchParameters.swift in Sources */,
+				97E501BD1C7A3D22005DC18F /* DayKeyboard.swift in Sources */,
 				97D329401C2778C10088FF21 /* DatePickerInteractor.swift in Sources */,
+				978E45C61C9482EB00316435 /* RestrictedInputField.swift in Sources */,
 				978E9B151BAFA3950001690C /* DelayedSearch.swift in Sources */,
 				97B829331BC08C5700B35538 /* PDFPageView.swift in Sources */,
 				97604E4C1C08F2D000FA2805 /* CALayer+AMC.swift in Sources */,
 				976D6EB01C02543C00EF2B03 /* OCRCoordinates.swift in Sources */,
 				97EAC1DD1B9D2F0C00956EBC /* SearchPresenter.swift in Sources */,
 				97C99FB81B96BAC5001310DE /* SearchFieldCell.swift in Sources */,
+				9791B5BB1C8C77EA00A90F39 /* DayMonthYear.swift in Sources */,
+				971359311C820D8800A58E35 /* PrevNextKeyboardAccessoryView.swift in Sources */,
 				975DA6C41C1926A800D7211A /* SearchFiltersPresenter.swift in Sources */,
 				975355681BF5A8550028B7FD /* KeyboardService.swift in Sources */,
 				97BDE1171B76ED6B00A3E57F /* HomeViewController.swift in Sources */,
+				970F3D831C957E9300D50106 /* PagedKeyboard.swift in Sources */,
 				979BEBCF1C1BC388003BA3CA /* USStatesService.swift in Sources */,
+				971359331C82281600A58E35 /* UIImage+AMC.swift in Sources */,
+				975694631C767D7E00FC8D5F /* DateTextField.swift in Sources */,
 				97F707D11BB8AE8F00A3D760 /* PagePresenter.swift in Sources */,
 				972613DF1C024F1700EDF550 /* OCRCoordinatesService.swift in Sources */,
 				97D3293E1C2773AE0088FF21 /* DatePickerWireframe.swift in Sources */,

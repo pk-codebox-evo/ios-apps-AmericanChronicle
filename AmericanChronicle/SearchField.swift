@@ -54,7 +54,7 @@ class SearchField: UIView, UITextFieldDelegate {
         textField.leftView = searchIcon
         textField.leftViewMode = .Always
         textField.placeholder = "Search all Newspapers"
-        textField.font = UIFont(name: "AvenirNext-Regular", size: 20.0)
+        textField.font = Font.largeBody
         textField.autocapitalizationType = .None
         textField.clearButtonMode = .WhileEditing
         textField.autocorrectionType = .No

@@ -17,21 +17,8 @@ enum ChroniclingAmericaEndpoint: String {
 }
 
 struct SearchConstants {
-    static func earliestPossibleDate() -> NSDate {
-        let calendar = NSCalendar.currentCalendar()
-        let components = NSDateComponents()
-        components.year = 1836
-        return calendar.dateFromComponents(components)!
-    }
-
-    static func latestPossibleDate() -> NSDate {
-        let calendar = NSCalendar.currentCalendar()
-        let components = NSDateComponents()
-        components.year = 1922
-        components.month = 12
-        components.day = 31
-        return calendar.dateFromComponents(components)!
-    }
+    static let earliestPossibleDayMonthYear = DayMonthYear(day: 1, month: 1, year: 1836)
+    static let latestPossibleDayMonthYear = DayMonthYear(day: 31, month: 12, year: 1922)
 }
 
 

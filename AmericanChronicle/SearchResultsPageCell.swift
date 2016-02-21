@@ -46,6 +46,9 @@ class SearchResultsPageCell: UITableViewCell {
     private let thumbnailImageView: UIImageView = {
         let view = UIImageView()
         view.contentMode = .ScaleAspectFill
+        view.backgroundColor = UIColor.whiteColor()
+        view.layer.borderColor = UIColor.whiteColor().CGColor
+        view.layer.borderWidth = 2.0
         view.clipsToBounds = true
         return view
     }()
@@ -54,7 +57,7 @@ class SearchResultsPageCell: UITableViewCell {
         label.textColor = Colors.darkGray
         label.numberOfLines = 0
         label.textAlignment = .Right
-        label.font = UIFont.systemFontOfSize(14)
+        label.font = Font.mediumBody
         return label
     }()
     private let dateLabel: UILabel = {
@@ -62,7 +65,7 @@ class SearchResultsPageCell: UITableViewCell {
         label.textColor = Colors.darkGray
         label.numberOfLines = 0
         label.textAlignment = .Right
-        label.font = UIFont.systemFontOfSize(14)
+        label.font = Font.largeBodyBold
         return label
     }()
     private let publicationTitleLabel: UILabel = {
@@ -70,12 +73,15 @@ class SearchResultsPageCell: UITableViewCell {
         label.textColor = Colors.darkGray
         label.numberOfLines = 0
         label.textAlignment = .Right
-        label.font = UIFont.systemFontOfSize(14)
+        label.font = Font.mediumBody
         return label
     }()
 
 
     func commonInit() {
+
+        contentView.backgroundColor = Colors.lightBackground
+
         addSubview(thumbnailImageView)
         thumbnailImageView.snp_makeConstraints { make in
             make.top.equalTo(Measurements.verticalMargin)
@@ -84,23 +90,23 @@ class SearchResultsPageCell: UITableViewCell {
             make.width.equalTo(snp_height).multipliedBy(0.6)
         }
 
-        addSubview(cityStateLabel)
-        cityStateLabel.snp_makeConstraints { make in
+        addSubview(dateLabel)
+        dateLabel.snp_makeConstraints { make in
             make.top.equalTo(Measurements.verticalMargin)
             make.leading.equalTo(thumbnailImageView.snp_trailing).offset(Measurements.horizontalSiblingSpacing)
             make.trailing.equalTo(-Measurements.horizontalMargin)
         }
 
-        addSubview(dateLabel)
-        dateLabel.snp_makeConstraints { make in
-            make.top.equalTo(cityStateLabel.snp_bottom).offset(Measurements.verticalSiblingSpacing)
+        addSubview(cityStateLabel)
+        cityStateLabel.snp_makeConstraints { make in
+            make.top.equalTo(dateLabel.snp_bottom).offset(Measurements.verticalSiblingSpacing)
             make.leading.equalTo(thumbnailImageView.snp_trailing).offset(Measurements.horizontalSiblingSpacing)
             make.trailing.equalTo(-Measurements.horizontalMargin)
         }
 
         addSubview(publicationTitleLabel)
         publicationTitleLabel.snp_makeConstraints { make in
-            make.top.greaterThanOrEqualTo(dateLabel.snp_bottom).offset(Measurements.verticalSiblingSpacing)
+            make.top.greaterThanOrEqualTo(cityStateLabel.snp_bottom).offset(Measurements.verticalSiblingSpacing)
             make.leading.equalTo(thumbnailImageView.snp_trailing).offset(Measurements.horizontalSiblingSpacing)
             make.bottom.equalTo(-Measurements.verticalMargin)
             make.trailing.equalTo(-Measurements.horizontalMargin)

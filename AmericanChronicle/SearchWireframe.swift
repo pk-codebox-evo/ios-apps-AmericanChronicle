@@ -12,10 +12,10 @@ protocol SearchWireframeInterface: class {
     func userDidSelectSearchResult(row: SearchResultsRow, forTerm: String)
     func userDidTapCancel()
     func showUSStatesPicker(activeStates: [String])
-    func userDidTapDate(date: NSDate?)
+    func userDidTapDayMonthYear(dayMonthYear: DayMonthYear?, title: String?)
     func userDidSaveFilteredUSStates(stateNames: [String])
     func userDidNotSaveFilteredUSStates()
-    func userDidSaveDate(date: NSDate)
+    func userDidSaveDayMonthYear(dayMonthYear: DayMonthYear)
     func userDidNotSaveDate()
 }
 
@@ -74,13 +74,13 @@ class SearchWireframe: NSObject, SearchWireframeInterface, UIViewControllerTrans
         statePickerWireframe?.finish()
     }
 
-    func userDidTapDate(date: NSDate?) {
+    func userDidTapDayMonthYear(dayMonthYear: DayMonthYear?, title: String?) {
         datePickerWireframe = DatePickerWireframe(parentWireframe: self)
-        datePickerWireframe?.beginFromViewController(dependencies.view as? SearchViewController, date: date)
+        datePickerWireframe?.beginFromViewController(dependencies.view as? SearchViewController, dayMonthYear: dayMonthYear, title: title)
     }
 
-    func userDidSaveDate(date: NSDate) {
-        dependencies.presenter.userDidSaveDate(date)
+    func userDidSaveDayMonthYear(dayMonthYear: DayMonthYear) {
+        dependencies.presenter.userDidSaveDayMonthYear(dayMonthYear)
         datePickerWireframe?.finish()
     }
 

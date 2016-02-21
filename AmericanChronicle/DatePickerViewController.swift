@@ -11,51 +11,44 @@ import FSCalendar
 
 protocol DatePickerViewInterface {
     var delegate: DatePickerViewDelegate? { get set }
-    var selectedDate: NSDate { get set }
+    var selectedDayMonthYear: DayMonthYear { get set }
 }
 
-@objc protocol DatePickerViewDelegate {
-    func userDidSave(date: NSDate)
+protocol DatePickerViewDelegate {
+    func userDidSave(dayMonthYear: DayMonthYear)
     func userDidCancel()
 }
 
-@objc class DatePickerViewController: UIViewController, DatePickerViewInterface {
+@objc class DatePickerViewController: UIViewController, DatePickerViewInterface, DateTextFieldDelegate {
 
-    weak var delegate: DatePickerViewDelegate?
+    var delegate: DatePickerViewDelegate?
 
-    var selectedDate: NSDate {
-        didSet {
-            datePicker.date = selectedDate
-        }
-    }
-    
-    private let earliestPossibleDate: NSDate
-    private let latestPossibleDate: NSDate
-    private let dateFormatter: NSDateFormatter = {
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "MMM dd, yyyy"
-        return formatter
-    }()
-    private lazy var dateLabel: UILabel! = {
+    var selectedDayMonthYear: DayMonthYear
+    private let earliestPossibleDayMonthYear: DayMonthYear
+    private let latestPossibleDayMonthYear: DayMonthYear
+    private let dateField = DateTextField()
+    private let hintLabel: UILabel = {
         let label = UILabel()
+        label.font = Font.mediumBody
         label.textAlignment = .Center
         return label
     }()
-    private lazy var datePicker = UIDatePicker()
 
     // MARK: UIViewController Init methods
 
     internal init(
-        earliestPossibleDate: NSDate = SearchConstants.earliestPossibleDate(),
-        latestPossibleDate: NSDate = SearchConstants.latestPossibleDate())
+        earliestPossibleDayMonthYear: DayMonthYear = SearchConstants.earliestPossibleDayMonthYear,
+        latestPossibleDayMonthYear: DayMonthYear = SearchConstants.latestPossibleDayMonthYear)
     {
-        self.earliestPossibleDate = earliestPossibleDate
-        self.latestPossibleDate = latestPossibleDate
-        selectedDate = earliestPossibleDate
+        self.earliestPossibleDayMonthYear = earliestPossibleDayMonthYear
+        self.latestPossibleDayMonthYear = latestPossibleDayMonthYear
+        selectedDayMonthYear = earliestPossibleDayMonthYear
 
         super.init(nibName: nil, bundle: nil)
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancelButtonTapped:")
+        navigationItem.leftBarButtonItem?.setTitlePositionAdjustment(Measurements.leftBarButtonItemTitleAdjustment, forBarMetrics: .Default)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveButtonTapped:")
+        navigationItem.rightBarButtonItem?.setTitlePositionAdjustment(Measurements.rightBarButtonItemTitleAdjustment, forBarMetrics: .Default)
     }
 
     @available(*, unavailable) init() {
@@ -73,15 +66,11 @@ protocol DatePickerViewInterface {
     // MARK: Internal methods
 
     func saveButtonTapped(sender: UIBarButtonItem) {
-        delegate?.userDidSave(datePicker.date)
+        delegate?.userDidSave(selectedDayMonthYear)
     }
 
     func cancelButtonTapped(sender: UIBarButtonItem) {
         delegate?.userDidCancel()
-    }
-
-    func updateLabelToMatchPicker() {
-        dateLabel.text = dateFormatter.stringFromDate(datePicker.date)
     }
 
     // MARK: UIViewController overrides
@@ -90,30 +79,44 @@ protocol DatePickerViewInterface {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.whiteColor()
-
-        view.addSubview(dateLabel)
-        dateLabel.snp_makeConstraints { make in
-             make.top.equalTo(self.snp_topLayoutGuideBottom).offset(Measurements.verticalMargin)
-             make.leading.equalTo(Measurements.horizontalMargin)
-             make.trailing.equalTo(-Measurements.horizontalMargin)
+        dateField.delegate = self
+        dateField.selectedDayMonthYear = selectedDayMonthYear
+        view.addSubview(dateField)
+        dateField.snp_makeConstraints { make in
+            make.top.equalTo(self.snp_topLayoutGuideBottom).offset(Measurements.verticalMargin)
+            make.leading.equalTo(Measurements.horizontalMargin)
+            make.trailing.equalTo(-Measurements.horizontalMargin)
+            make.height.equalTo(66)
         }
 
-        datePicker.addTarget(self, action: "datePickerValueChanged:", forControlEvents: .ValueChanged)
-        datePicker.datePickerMode = .Date
-        view.addSubview(datePicker)
-        datePicker.snp_makeConstraints { make in
-             make.bottom.equalTo(0)
-             make.leading.equalTo(0)
-             make.trailing.equalTo(0)
+        view.addSubview(hintLabel)
+        hintLabel.snp_makeConstraints { make in
+            make.leading.equalTo(Measurements.horizontalMargin)
+            make.top.equalTo(dateField.snp_bottom).offset(Measurements.verticalSiblingSpacing)
+            make.trailing.equalTo(-Measurements.horizontalMargin)
         }
-        datePicker.minimumDate = earliestPossibleDate
-        datePicker.maximumDate = latestPossibleDate
-        datePicker.date = selectedDate
-
-        updateLabelToMatchPicker()
     }
 
-    func datePickerValueChanged(sender: UIDatePicker) {
-        updateLabelToMatchPicker()
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        dateField.becomeFirstResponder()
+    }
+
+    func monthFieldDidBecomeActive() {
+        hintLabel.text = "Month label is active"
+    }
+
+    func dayFieldDidBecomeActive() {
+        hintLabel.text = "Day label is active"
+    }
+
+    func yearFieldDidBecomeActive() {
+        hintLabel.text = "Year label is active"
+    }
+
+    func selectedDayMonthYearDidChange(dayMonthYear: DayMonthYear?) {
+        if let dayMonthYear = dayMonthYear {
+            selectedDayMonthYear = dayMonthYear
+        }
     }
 }

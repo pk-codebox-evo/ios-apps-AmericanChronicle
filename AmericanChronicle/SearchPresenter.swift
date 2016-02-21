@@ -17,7 +17,7 @@ protocol SearchPresenterInterface: class, SearchViewDelegate, SearchInteractorDe
     var interactor: SearchInteractorInterface? { get set }
 
     func userDidSaveFilteredUSStates(stateNames: [String])
-    func userDidSaveDate(date: NSDate)
+    func userDidSaveDayMonthYear(DayMonthYear: DayMonthYear)
 }
 
 // MARK: -
@@ -37,16 +37,16 @@ class SearchPresenter: NSObject, SearchPresenterInterface {
     weak var view: SearchViewInterface? {
         didSet {
             updateViewForKeyboardFrame(KeyboardService.sharedInstance.keyboardFrame)
-            view?.earliestDate = dateFormatter.stringFromDate(earliestDate)
-            view?.latestDate = dateFormatter.stringFromDate(latestDate)
+            view?.earliestDate = earliestDayMonthYear.userVisibleString
+            view?.latestDate = latestDayMonthYear.userVisibleString
         }
     }
     weak var interactor: SearchInteractorInterface?
 
     var term: String?
     var states: [String] = []
-    var earliestDate: NSDate = SearchConstants.earliestPossibleDate()
-    var latestDate: NSDate = SearchConstants.latestPossibleDate()
+    var earliestDayMonthYear = SearchConstants.earliestPossibleDayMonthYear
+    var latestDayMonthYear = SearchConstants.latestPossibleDayMonthYear
 
     private let dateFormatter: NSDateFormatter = {
         let formatter = NSDateFormatter()
@@ -80,15 +80,15 @@ class SearchPresenter: NSObject, SearchPresenterInterface {
         searchIfReady()
     }
 
-    func userDidSaveDate(date: NSDate) {
+    func userDidSaveDayMonthYear(dayMonthYear: DayMonthYear) {
         switch typeBeingEdited {
         case .Earliest:
-            earliestDate = date
-            view?.earliestDate = dateFormatter.stringFromDate(date)
+            earliestDayMonthYear = dayMonthYear
+            view?.earliestDate = earliestDayMonthYear.userVisibleString
             searchIfReady()
         case .Latest:
-            latestDate = date
-            view?.latestDate = dateFormatter.stringFromDate(date)
+            latestDayMonthYear = dayMonthYear
+            view?.latestDate = latestDayMonthYear.userVisibleString
             searchIfReady()
         case .None:
             break
@@ -111,12 +111,12 @@ class SearchPresenter: NSObject, SearchPresenterInterface {
 
     func userDidTapEarliestDateButton() {
         typeBeingEdited = .Earliest
-        wireframe?.userDidTapDate(earliestDate)
+        wireframe?.userDidTapDayMonthYear(earliestDayMonthYear, title: "Earliest Date")
     }
 
     func userDidTapLatestDateButton() {
         typeBeingEdited = .Latest
-        wireframe?.userDidTapDate(latestDate)
+        wireframe?.userDidTapDayMonthYear(latestDayMonthYear, title: "Latest Date")
     }
 
     func userDidChangeSearchToTerm(term: String?) {
@@ -203,7 +203,7 @@ class SearchPresenter: NSObject, SearchPresenterInterface {
     private func searchIfReady(loadingViewState: ViewState = .LoadingNewParamaters) {
         if let term = term {
             view?.setViewState(loadingViewState)
-            let params = SearchParameters(term: term, states: states, earliestDate: earliestDate, latestDate: latestDate)
+            let params = SearchParameters(term: term, states: states, earliestDayMonthYear: earliestDayMonthYear, latestDayMonthYear: latestDayMonthYear)
             interactor?.fetchNextPageOfResults(params)
         }
     }

@@ -61,12 +61,15 @@ class SearchPagesService: SearchPagesServiceInterface {
             return
         }
 
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
+        let earliestMonth = "\(parameters.earliestDayMonthYear.month)"
+        let earliestDay = "\(parameters.earliestDayMonthYear.day)"
+        let earliestYear = "\(parameters.earliestDayMonthYear.year)"
+        let date1 = "\(earliestMonth)\\\(earliestDay)\\\(earliestYear)"
 
-
-        let date1 = dateFormatter.stringFromDate(parameters.earliestDate)
-        let date2 = dateFormatter.stringFromDate(parameters.latestDate)
+        let latestMonth = "\(parameters.latestDayMonthYear.month)"
+        let latestDay = "\(parameters.latestDayMonthYear.day)"
+        let latestYear = "\(parameters.latestDayMonthYear.year)"
+        let date2 = "\(latestMonth)\\\(latestDay)\\\(latestYear)"
 
         let params: [String: AnyObject] = [
             "format": "json",

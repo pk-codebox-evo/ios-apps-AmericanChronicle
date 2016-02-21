@@ -28,7 +28,7 @@ class USStateCell: UICollectionViewCell {
         selectedBackgroundView = UIView()
         selectedBackgroundView?.backgroundColor = Colors.lightBlueBright
         label.textAlignment = .Center
-        label.font = UIFont(name: "AvenirNext-Regular", size: UIFont.labelFontSize())
+        label.font = Font.largeBody
         label.frame = self.bounds
         label.highlightedTextColor = UIColor.whiteColor()
         contentView.addSubview(label)
@@ -71,7 +71,7 @@ class USStatePickerViewController: UICollectionViewController, USStatePickerView
 
         collectionView?.registerClass(USStateCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         collectionView?.allowsMultipleSelection = true
-        collectionView?.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
+        collectionView?.backgroundColor = Colors.lightBackground.colorWithAlphaComponent(0.8)
         let layout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
         layout?.sectionInset = UIEdgeInsets(top: Measurements.verticalMargin, left: Measurements.horizontalMargin, bottom: Measurements.verticalMargin, right: Measurements.horizontalMargin)
         layout?.minimumInteritemSpacing = 1.0
@@ -120,9 +120,9 @@ class USStatePickerViewController: UICollectionViewController, USStatePickerView
         let totalInteritemSpacing = (flowLayout?.minimumInteritemSpacing ?? 0) * CGFloat(columnCount - 1)
         let availableWidth = collectionView.bounds.width - (left + totalInteritemSpacing + right)
         let columnWidth = availableWidth/CGFloat(columnCount)
-        return CGSize(width: columnWidth, height: 44)
+        return CGSize(width: columnWidth, height: Measurements.buttonHeight)
     }
 
-    let columnCount = 2
+    let columnCount = 1
 
 }

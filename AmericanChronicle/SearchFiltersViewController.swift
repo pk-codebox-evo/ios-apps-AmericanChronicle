@@ -263,24 +263,24 @@ class SearchFiltersViewController: UIViewController, SearchFiltersViewInterface,
     }
     
     func earliestDateCellTapped() {
-        let vc = DatePickerViewController(latestPossibleDate: searchFilters.latestDate ?? SearchConstants.latestPossibleDate())
+//        let vc = DatePickerViewController(latestPossibleDate: searchFilters.latestDate ?? SearchConstants.latestPossibleDate())
 //        vc.saveCallback = { [weak self] selectedDate in
 //            self?.searchFilters.earliestDate = selectedDate
 //            self?.collectionView.reloadData()
 //            self?.navigationController?.popViewControllerAnimated(true)
 //        }
-        navigationController?.pushViewController(vc, animated: true)
+//        navigationController?.pushViewController(vc, animated: true)
     }
 
     func latestDateCellTapped() {
-        let vc = DatePickerViewController(
-            earliestPossibleDate: searchFilters.earliestDate ?? SearchConstants.earliestPossibleDate())
+//        let vc = DatePickerViewController(
+//            earliestPossibleDate: searchFilters.earliestDate ?? SearchConstants.earliestPossibleDate())
 //        vc.saveCallback = { [weak self] selectedDate in
 //            self?.searchFilters.latestDate = selectedDate
 //            self?.collectionView.reloadData()
 //            self?.navigationController?.popViewControllerAnimated(true)
 //        }
-        navigationController?.pushViewController(vc, animated: true)
+//        navigationController?.pushViewController(vc, animated: true)
     }
 
     func locationsCellTapped() {

@@ -22,17 +22,17 @@ class TitleValueButton: UIControl {
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = Colors.lightGray
+        label.textColor = Colors.darkGray
         label.highlightedTextColor = UIColor.whiteColor()
         label.textAlignment = .Center
-        label.font = UIFont.systemFontOfSize(12.0)
+        label.font = Font.smallBody
         return label
     }()
     private let valueLabel: UILabel = {
         let label = UILabel()
         label.textColor = Colors.lightBlueBright
         label.highlightedTextColor = UIColor.whiteColor()
-        label.font = UIFont.systemFontOfSize(14.0)
+        label.font = Font.mediumBody
         label.textAlignment = .Center
         return label
     }()
@@ -45,6 +45,10 @@ class TitleValueButton: UIControl {
     func commonInit() {
         button.addTarget(self, action: "buttonTapped:", forControlEvents: .TouchUpInside)
         button.addObserver(self, forKeyPath: "highlighted", options: NSKeyValueObservingOptions.Initial, context: nil)
+
+        button.setBackgroundImage(UIImage.imageWithFillColor(UIColor.whiteColor(), borderColor: Colors.lightBlueBright), forState: .Normal)
+        button.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBlueBright, borderColor: Colors.lightBlueBright), forState: .Highlighted)
+        button.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBlueBright, borderColor: Colors.lightBlueBright), forState: .Selected)
 
         addSubview(button)
         addSubview(titleLabel)
@@ -61,7 +65,7 @@ class TitleValueButton: UIControl {
         }
 
         valueLabel.snp_makeConstraints { make in
-            make.top.equalTo(self.titleLabel.snp_bottom).offset(4)
+            make.top.equalTo(self.titleLabel.snp_bottom).offset(2)
             make.leading.equalTo(8)
             make.trailing.equalTo(-8)
         }

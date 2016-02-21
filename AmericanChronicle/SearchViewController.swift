@@ -153,6 +153,8 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Info", style: .Plain, target: self, action: "infoButtonTapped:")
+        navigationItem.leftBarButtonItem?.setTitlePositionAdjustment(Measurements.leftBarButtonItemTitleAdjustment, forBarMetrics: .Default)
+        navigationItem.title = "Search"
     }
 
     // MARK: Internal methods
@@ -292,6 +294,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
 
     override func loadView() {
         view = UIView()
+        view.backgroundColor = Colors.lightBackground
 
         loadTableView()
         loadTableHeaderView()
@@ -329,13 +332,14 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
     // MARK: Private methods
 
     private func loadTableView() {
-        tableView.backgroundColor = UIColor.whiteColor()
+        tableView.backgroundColor = Colors.lightBackground
         tableView.delegate = self
         tableView.dataSource = self
         tableView.registerClass(SearchResultsPageCell.self, forCellReuseIdentifier:  _stdlib_getDemangledTypeName(SearchResultsPageCell))
         tableView.registerClass(TableHeaderView.self, forHeaderFooterViewReuseIdentifier: "Header")
         tableView.sectionHeaderHeight = 24.0
-        tableView.rowHeight = 150.0
+        tableView.separatorColor = UIColor.whiteColor()
+        tableView.rowHeight = 160.0
         view.addSubview(tableView)
         tableView.snp_makeConstraints { make in
             make.top.equalTo(0)
@@ -406,7 +410,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
     private func loadActivityIndicator() {
         view.addSubview(activityIndicator)
         activityIndicator.snp_makeConstraints { make in
-            make.center.equalTo(view.snp_center).offset(CGPoint(x: 0, y: 90))
+            make.center.equalTo(view.snp_center)
         }
     }
 

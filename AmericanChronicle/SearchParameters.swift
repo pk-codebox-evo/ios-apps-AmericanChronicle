@@ -9,8 +9,8 @@
 struct SearchParameters {
     let term: String
     let states: [String]
-    let earliestDate: NSDate
-    let latestDate: NSDate
+    let earliestDayMonthYear: DayMonthYear
+    let latestDayMonthYear: DayMonthYear
 }
 
 extension SearchParameters: Hashable {
@@ -23,6 +23,6 @@ extension SearchParameters: Equatable {}
 func ==(lhs: SearchParameters, rhs: SearchParameters) -> Bool {
     return (lhs.term == rhs.term)
         && (lhs.states == rhs.states)
-        && (lhs.earliestDate == rhs.earliestDate)
-        && (lhs.latestDate == rhs.latestDate)
+        && (lhs.earliestDayMonthYear == rhs.earliestDayMonthYear)
+        && (lhs.latestDayMonthYear == rhs.latestDayMonthYear)
 }

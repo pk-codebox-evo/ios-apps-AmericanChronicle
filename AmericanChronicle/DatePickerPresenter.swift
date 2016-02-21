@@ -11,7 +11,7 @@ protocol DatePickerPresenterInterface: DatePickerViewDelegate {
     var view: DatePickerViewInterface? { get set }
     var interactor: DatePickerInteractorInterface? { get set }
 
-    func begin(date: NSDate?)
+    func beginWithSelectedDayMonthYear(dayMonthYear: DayMonthYear?)
 }
 
 class DatePickerPresenter: NSObject, DatePickerPresenterInterface {
@@ -19,14 +19,14 @@ class DatePickerPresenter: NSObject, DatePickerPresenterInterface {
     var view: DatePickerViewInterface?
     var interactor: DatePickerInteractorInterface?
 
-    func begin(date: NSDate?) {
-        if let date = date {
-            self.view?.selectedDate = date
+    func beginWithSelectedDayMonthYear(dayMonthYear: DayMonthYear?) {
+        if let dayMonthYear = dayMonthYear {
+            self.view?.selectedDayMonthYear = dayMonthYear
         }
     }
 
-    func userDidSave(date: NSDate) {
-        wireframe?.userDidTapSave(date)
+    func userDidSave(dayMonthYear: DayMonthYear) {
+        wireframe?.userDidTapSave(dayMonthYear)
     }
 
     func userDidCancel() {

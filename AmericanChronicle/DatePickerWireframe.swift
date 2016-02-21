@@ -12,8 +12,8 @@ import UIKit
 // MARK: DatePickerWireframeInterface class
 
 protocol DatePickerWireframeInterface: class {
-    func beginFromViewController(parentModuleViewController: UIViewController?, date: NSDate?)
-    func userDidTapSave(date: NSDate)
+    func beginFromViewController(parentModuleViewController: UIViewController?, dayMonthYear: DayMonthYear?, title: String?)
+    func userDidTapSave(dayMonthYear: DayMonthYear)
     func userDidTapCancel()
     func finish()
 }
@@ -53,13 +53,14 @@ class DatePickerWireframe: NSObject, DatePickerWireframeInterface {
         self.presenter.wireframe = self
     }
 
-    func beginFromViewController(parentModuleViewController: UIViewController?, date: NSDate?) {
+    func beginFromViewController(parentModuleViewController: UIViewController?, dayMonthYear: DayMonthYear?, title: String?) {
         if let vc = view as? DatePickerViewController {
+            vc.title = title
             let nvc = UINavigationController(rootViewController: vc)
             nvc.modalPresentationStyle = .Custom
             nvc.transitioningDelegate = self
             parentModuleViewController?.presentViewController(nvc, animated: true, completion: nil)
-            presenter.begin(date)
+            presenter.beginWithSelectedDayMonthYear(dayMonthYear)
         }
     }
 
@@ -69,8 +70,8 @@ class DatePickerWireframe: NSObject, DatePickerWireframeInterface {
         }
     }
 
-    func userDidTapSave(date: NSDate) {
-        parentWireframe.userDidSaveDate(date)
+    func userDidTapSave(dayMonthYear: DayMonthYear) {
+        parentWireframe.userDidSaveDayMonthYear(dayMonthYear)
     }
 
     func userDidTapCancel() {

@@ -14,9 +14,9 @@ class InfoViewController: UIViewController {
         let label = UILabel()
         label.textColor = Colors.darkGray
         label.textAlignment = .Center
-        label.font = UIFont.boldSystemFontOfSize(16)
+        label.font = Font.largeBodyBold
         label.numberOfLines = 0
-        label.text = "About this app"
+        label.text = "American Chronicle gets its data from the Chronicling America website."
         return label
     }()
 
@@ -25,13 +25,18 @@ class InfoViewController: UIViewController {
         label.textColor = Colors.darkGray
         label.textAlignment = .Center
         label.numberOfLines = 0
-        label.font = UIFont.systemFontOfSize(16)
-        label.text = "American Chronicle gets its data from the Chronicling America website.\n\nChronicling America is a project funded by the National Endowment for the Humanities and maintained by the Library of Congress."
+        label.font = Font.largeBody
+        label.text = "Chronicling America is a project funded by the National Endowment for the Humanities and maintained by the Library of Congress."
         return label
     }()
 
     private let websiteButton: UIButton = {
         let btn = UIButton()
+        btn.titleLabel?.font = Font.largeBody
+        btn.setTitleColor(Colors.lightBlueBright, forState: .Normal)
+        btn.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
+        btn.setBackgroundImage(UIImage.imageWithFillColor(UIColor.whiteColor(), borderColor: Colors.lightBlueBright), forState: .Normal)
+        btn.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBlueBright, borderColor: Colors.lightBlueBright), forState: .Highlighted)
         btn.setTitle("Visit chroniclingamerica.gov.loc", forState: .Normal)
 
         return btn
@@ -48,6 +53,7 @@ class InfoViewController: UIViewController {
 
         navigationItem.title = "About this app"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Dismiss", style: .Plain, target: self, action: "dismissButtonTapped:")
+        navigationItem.leftBarButtonItem?.setTitlePositionAdjustment(Measurements.leftBarButtonItemTitleAdjustment, forBarMetrics: .Default)
     }
 
     override func viewDidLoad() {
@@ -56,9 +62,16 @@ class InfoViewController: UIViewController {
 
         view.backgroundColor = UIColor.whiteColor()
 
+        view.addSubview(titleLabel)
+        titleLabel.snp_makeConstraints { make in
+            make.top.equalTo(Measurements.verticalMargin * 3)
+            make.leading.equalTo(Measurements.horizontalMargin)
+            make.trailing.equalTo(-Measurements.horizontalMargin)
+        }
+
         view.addSubview(bodyLabel)
         bodyLabel.snp_makeConstraints { make in
-            make.top.equalTo(Measurements.verticalMargin)
+            make.top.equalTo(titleLabel.snp_bottom).offset(Measurements.verticalMargin * 3)
             make.leading.equalTo(Measurements.horizontalMargin)
             make.trailing.equalTo(-Measurements.horizontalMargin)
         }
