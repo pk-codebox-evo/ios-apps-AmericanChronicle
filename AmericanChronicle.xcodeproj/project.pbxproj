@@ -65,6 +65,7 @@
 		97728BB31C30EB0D00ADEFE2 /* NSDate+AMC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97728BB21C30EB0D00ADEFE2 /* NSDate+AMC.swift */; };
 		97728BB51C30ECD600ADEFE2 /* FakeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97728BB41C30ECD600ADEFE2 /* FakeManager.swift */; };
 		97728BB71C30ED4900ADEFE2 /* NSDate+AMCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97728BB61C30ED4900ADEFE2 /* NSDate+AMCTests.swift */; };
+		97757CBA1C961A9D006422FC /* AmericanChronicleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97757CB91C961A9D006422FC /* AmericanChronicleUITests.swift */; };
 		97789B941BB10206000B298C /* PageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97789B931BB10206000B298C /* PageInteractor.swift */; };
 		97789B961BB10316000B298C /* PageInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97789B951BB10316000B298C /* PageInteractorTests.swift */; };
 		977F0A581B7FC3E700C4B0FC /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977F0A561B7FC3E700C4B0FC /* DatePickerViewController.swift */; };
@@ -157,6 +158,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		97757CBC1C961A9D006422FC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 97BDE1071B76ED6B00A3E57F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 97BDE10E1B76ED6B00A3E57F;
+			remoteInfo = AmericanChronicle;
+		};
 		97BDE1271B76ED6B00A3E57F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 97BDE1071B76ED6B00A3E57F /* Project object */;
@@ -227,6 +235,9 @@
 		97728BB21C30EB0D00ADEFE2 /* NSDate+AMC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+AMC.swift"; sourceTree = "<group>"; };
 		97728BB41C30ECD600ADEFE2 /* FakeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeManager.swift; sourceTree = "<group>"; };
 		97728BB61C30ED4900ADEFE2 /* NSDate+AMCTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+AMCTests.swift"; sourceTree = "<group>"; };
+		97757CB71C961A9D006422FC /* AmericanChronicleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmericanChronicleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		97757CB91C961A9D006422FC /* AmericanChronicleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericanChronicleUITests.swift; sourceTree = "<group>"; };
+		97757CBB1C961A9D006422FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97789B931BB10206000B298C /* PageInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageInteractor.swift; sourceTree = "<group>"; };
 		97789B951BB10316000B298C /* PageInteractorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageInteractorTests.swift; sourceTree = "<group>"; };
 		977F0A561B7FC3E700C4B0FC /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
@@ -326,6 +337,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		97757CB41C961A9D006422FC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		97BDE10C1B76ED6B00A3E57F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -482,6 +500,15 @@
 				975A8C8B1C50FB2B000792FB /* ChroniclingAmericaWebsiteViewController.swift */,
 			);
 			name = Info;
+			sourceTree = "<group>";
+		};
+		97757CB81C961A9D006422FC /* AmericanChronicleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				97757CB91C961A9D006422FC /* AmericanChronicleUITests.swift */,
+				97757CBB1C961A9D006422FC /* Info.plist */,
+			);
+			path = AmericanChronicleUITests;
 			sourceTree = "<group>";
 		};
 		977F109E1BA54BCA003BEF11 /* Fakes */ = {
@@ -679,6 +706,7 @@
 			children = (
 				97BDE1111B76ED6B00A3E57F /* AmericanChronicle */,
 				97BDE1291B76ED6B00A3E57F /* AmericanChronicleTests */,
+				97757CB81C961A9D006422FC /* AmericanChronicleUITests */,
 				97BDE1101B76ED6B00A3E57F /* Products */,
 				315BF8B2FAAA7D968A3BFE28 /* Frameworks */,
 			);
@@ -689,6 +717,7 @@
 			children = (
 				97BDE10F1B76ED6B00A3E57F /* AmericanChronicle.app */,
 				97BDE1261B76ED6B00A3E57F /* AmericanChronicleTests.xctest */,
+				97757CB71C961A9D006422FC /* AmericanChronicleUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -784,6 +813,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		97757CB61C961A9D006422FC /* AmericanChronicleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97757CC01C961A9E006422FC /* Build configuration list for PBXNativeTarget "AmericanChronicleUITests" */;
+			buildPhases = (
+				97757CB31C961A9D006422FC /* Sources */,
+				97757CB41C961A9D006422FC /* Frameworks */,
+				97757CB51C961A9D006422FC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				97757CBD1C961A9D006422FC /* PBXTargetDependency */,
+			);
+			name = AmericanChronicleUITests;
+			productName = AmericanChronicleUITests;
+			productReference = 97757CB71C961A9D006422FC /* AmericanChronicleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		97BDE10E1B76ED6B00A3E57F /* AmericanChronicle */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 97BDE1301B76ED6B00A3E57F /* Build configuration list for PBXNativeTarget "AmericanChronicle" */;
@@ -828,10 +875,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0700;
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = ryanipete;
 				TargetAttributes = {
+					97757CB61C961A9D006422FC = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 97BDE10E1B76ED6B00A3E57F;
+					};
 					97BDE10E1B76ED6B00A3E57F = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = NZMN2ALEXL;
@@ -857,11 +908,19 @@
 			targets = (
 				97BDE10E1B76ED6B00A3E57F /* AmericanChronicle */,
 				97BDE1251B76ED6B00A3E57F /* AmericanChronicleTests */,
+				97757CB61C961A9D006422FC /* AmericanChronicleUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		97757CB51C961A9D006422FC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		97BDE10D1B76ED6B00A3E57F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -930,6 +989,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		97757CB31C961A9D006422FC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97757CBA1C961A9D006422FC /* AmericanChronicleUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		97BDE10B1B76ED6B00A3E57F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1070,6 +1137,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		97757CBD1C961A9D006422FC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 97BDE10E1B76ED6B00A3E57F /* AmericanChronicle */;
+			targetProxy = 97757CBC1C961A9D006422FC /* PBXContainerItemProxy */;
+		};
 		97BDE1281B76ED6B00A3E57F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 97BDE10E1B76ED6B00A3E57F /* AmericanChronicle */;
@@ -1097,6 +1169,31 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		97757CBE1C961A9D006422FC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = AmericanChronicleUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryanipete.AmericanChronicleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = AmericanChronicle;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		97757CBF1C961A9D006422FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = AmericanChronicleUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryanipete.AmericanChronicleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = AmericanChronicle;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
 		97BDE12E1B76ED6B00A3E57F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1265,6 +1362,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		97757CC01C961A9E006422FC /* Build configuration list for PBXNativeTarget "AmericanChronicleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97757CBE1C961A9D006422FC /* Debug */,
+				97757CBF1C961A9D006422FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		97BDE10A1B76ED6B00A3E57F /* Build configuration list for PBXProject "AmericanChronicle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
