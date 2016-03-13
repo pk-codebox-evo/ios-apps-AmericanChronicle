@@ -62,7 +62,7 @@ class SearchPresenterTests: XCTestCase {
 
     func testThat_whenASearchFinishes_andTheInteractorHasNoWork_itAsksTheViewToShowResults() {
         interactor.fake_isSearchInProgress = false
-        subject.search(SearchParameters(term: "", states: [], earliestDate: SearchConstants.earliestPossibleDate(), latestDate: SearchConstants.latestPossibleDate()), didFinishWithResults: nil, error: nil)
+        subject.search(SearchParameters(term: "", states: [], earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear, latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear), didFinishWithResults: nil, error: nil)
         XCTAssertEqual(view.setViewState_wasCalled_withState, ViewState.EmptyResults)
     }
 
@@ -70,7 +70,7 @@ class SearchPresenterTests: XCTestCase {
         let results = SearchResults()
         results.items = [SearchResult()]
 
-        subject.search(SearchParameters(term: "Blah", states: [], earliestDate: SearchConstants.earliestPossibleDate(), latestDate: SearchConstants.latestPossibleDate()), didFinishWithResults: results, error: nil)
+        subject.search(SearchParameters(term: "Blah", states: [], earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear, latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear), didFinishWithResults: results, error: nil)
 
         let row = SearchResultsRow(id: "", date: nil, cityState: "", publicationTitle: "", thumbnailURL: nil, pdfURL: nil, lccn: "", edition: 1, sequence: 18)
 
@@ -80,13 +80,13 @@ class SearchPresenterTests: XCTestCase {
     func testThat_whenASearchSucceeds_andThereAreNoResults_itAsksTheViewToShowItsEmptyResultsMessage() {
         let results = SearchResults()
         results.items = []
-        subject.search(SearchParameters(term: "", states: [], earliestDate: SearchConstants.earliestPossibleDate(), latestDate: SearchConstants.latestPossibleDate()), didFinishWithResults: results, error: nil)
+        subject.search(SearchParameters(term: "", states: [], earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear, latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear), didFinishWithResults: results, error: nil)
         XCTAssertEqual(view.setViewState_wasCalled_withState, ViewState.EmptyResults)
     }
 
     func testThat_whenASearchFails_itAsksTheViewToShowAnErrorMessage() {
         let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: ""])
-        subject.search(SearchParameters(term: "", states: [], earliestDate: SearchConstants.earliestPossibleDate(), latestDate: SearchConstants.latestPossibleDate()), didFinishWithResults: nil, error: error)
+        subject.search(SearchParameters(term: "", states: [], earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear, latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear), didFinishWithResults: nil, error: error)
         XCTAssertEqual(view.setViewState_wasCalled_withState, ViewState.Error(title: "", message: nil))
     }
 

@@ -30,8 +30,8 @@ class SearchInteractorTests: XCTestCase {
         let params = SearchParameters(
             term: "Jibberish",
             states: ["Alabama", "Colorado"],
-            earliestDate: SearchConstants.earliestPossibleDate(),
-            latestDate: SearchConstants.latestPossibleDate()
+            earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear,
+            latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear
         )
         subject.fetchNextPageOfResults(params)
         XCTAssertEqual(searchFactory.newSearch_wasCalled_withParameters, params)
@@ -41,8 +41,8 @@ class SearchInteractorTests: XCTestCase {
         let firstParams = SearchParameters(
             term: "Jibberish",
             states: ["Alabama", "Colorado"],
-            earliestDate: SearchConstants.earliestPossibleDate(),
-            latestDate: SearchConstants.latestPossibleDate()
+            earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear,
+            latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear
         )
         subject.fetchNextPageOfResults(firstParams)
         let firstSearch = searchFactory.newSearchForTerm_lastReturnedSearch
@@ -50,8 +50,8 @@ class SearchInteractorTests: XCTestCase {
         let secondParams = SearchParameters(
             term: "Jibberish",
             states: ["Alabama", "Colorado", "New Mexico"],
-            earliestDate: SearchConstants.earliestPossibleDate(),
-            latestDate: SearchConstants.latestPossibleDate()
+            earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear,
+            latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear
         )
         subject.fetchNextPageOfResults(secondParams)
         XCTAssert(firstSearch?.cancel_wasCalled ?? false)
@@ -64,8 +64,8 @@ class SearchInteractorTests: XCTestCase {
         let params = SearchParameters(
             term: "Jibberish",
             states: ["Alabama", "Colorado"],
-            earliestDate: SearchConstants.earliestPossibleDate(),
-            latestDate: SearchConstants.latestPossibleDate()
+            earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear,
+            latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear
         )
         subject.fetchNextPageOfResults(params)
         let firstSearch = searchFactory.newSearchForTerm_lastReturnedSearch
@@ -79,8 +79,8 @@ class SearchInteractorTests: XCTestCase {
         let params = SearchParameters(
             term: "Jibberish",
             states: ["Alabama", "Colorado"],
-            earliestDate: SearchConstants.earliestPossibleDate(),
-            latestDate: SearchConstants.latestPossibleDate()
+            earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear,
+            latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear
         )
         subject.fetchNextPageOfResults(params)
         let firstSearch = searchFactory.newSearchForTerm_lastReturnedSearch
@@ -98,8 +98,8 @@ class SearchInteractorTests: XCTestCase {
         let params = SearchParameters(
             term: "Jibberish",
             states: ["Alabama", "Colorado"],
-            earliestDate: SearchConstants.earliestPossibleDate(),
-            latestDate: SearchConstants.latestPossibleDate()
+            earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear,
+            latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear
         )
 
         subject.fetchNextPageOfResults(params)
@@ -118,8 +118,8 @@ class SearchInteractorTests: XCTestCase {
         let params = SearchParameters(
             term: "Jibberish",
             states: ["Alabama", "Colorado"],
-            earliestDate: SearchConstants.earliestPossibleDate(),
-            latestDate: SearchConstants.latestPossibleDate()
+            earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear,
+            latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear
         )
 
         subject.fetchNextPageOfResults(params)
@@ -133,8 +133,8 @@ class SearchInteractorTests: XCTestCase {
         let params = SearchParameters(
             term: "Jibberish",
             states: ["Alabama", "Colorado"],
-            earliestDate: SearchConstants.earliestPossibleDate(),
-            latestDate: SearchConstants.latestPossibleDate()
+            earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear,
+            latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear
         )
 
         subject.fetchNextPageOfResults(params)
@@ -147,7 +147,7 @@ class SearchInteractorTests: XCTestCase {
     // --- isSearchInProgress() --- //
 
     func testThat_whenAskedWhetherASearchIsInProgress_itAsksTheActiveSearch() {
-        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"], earliestDate: SearchConstants.earliestPossibleDate(), latestDate: SearchConstants.latestPossibleDate())
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"], earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear, latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear)
         subject.fetchNextPageOfResults(params)
         let search = searchFactory.newSearchForTerm_lastReturnedSearch
         subject.isSearchInProgress()
@@ -157,7 +157,7 @@ class SearchInteractorTests: XCTestCase {
     // --- cancelLastSearch() --- //
 
     func testThat_whenCancelLastSearchIsCalled_itCancelsTheActiveSearch() {
-        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"], earliestDate: SearchConstants.earliestPossibleDate(), latestDate: SearchConstants.latestPossibleDate())
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"], earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear, latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear)
         subject.fetchNextPageOfResults(params)
         let search = searchFactory.newSearchForTerm_lastReturnedSearch
         subject.cancelLastSearch()

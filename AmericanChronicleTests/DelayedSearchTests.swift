@@ -31,7 +31,7 @@ class DelayedSearchTests: XCTestCase {
         runLoop = FakeRunLoop()
         dataManager = FakeSearchDataManager()
 
-        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"], earliestDate: SearchConstants.earliestPossibleDate(), latestDate: SearchConstants.latestPossibleDate())
+        let params = SearchParameters(term: "Jibberish", states: ["Alabama", "Colorado"], earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear, latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear)
         subject = DelayedSearch(parameters: params, dataManager: dataManager, runLoop: runLoop, completionHandler: { results, error in
             self.results = results
             self.error = error as? NSError
@@ -76,8 +76,8 @@ class DelayedSearchTests: XCTestCase {
         let expectedParameters = SearchParameters(
             term: "Jibberish",
             states: ["Alabama", "Colorado"],
-            earliestDate: SearchConstants.earliestPossibleDate(),
-            latestDate: SearchConstants.latestPossibleDate()
+            earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear,
+            latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear
         )
         XCTAssertEqual(dataManager.fetchMoreResults_wasCalled_withParameters, expectedParameters)
     }

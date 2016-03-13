@@ -23,9 +23,9 @@ class FakeSearchPresenter: NSObject, SearchPresenterInterface {
     func userIsApproachingLastRow(term: String?, inCollection: [SearchResultsRow]) {}
     func userDidSelectSearchResult(row: SearchResultsRow) {}
     func viewDidLoad() {}
-    func userDidSaveFilteredUSStates(stateNames: [String]) {}
     func userDidNotSaveFilteredUSStates() {}
-    func userDidSaveDate(date: NSDate) {}
+    func userDidSaveFilteredUSStates(stateNames: [String]) {}
+    func userDidSaveDayMonthYear(dayMonthYear: DayMonthYear) {}
 
     func search(parameters: SearchParameters, didFinishWithResults: SearchResults?, error: NSError?) {}
 }

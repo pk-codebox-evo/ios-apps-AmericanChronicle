@@ -36,8 +36,8 @@ class SearchDataManagerTests: XCTestCase {
         let params = SearchParameters(
             term: "Jibberish",
             states: ["Alabama", "Colorado"],
-            earliestDate: SearchConstants.earliestPossibleDate(),
-            latestDate: SearchConstants.latestPossibleDate()
+            earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear,
+            latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear
         )
         subject.fetchMoreResults(params, completionHandler: { _, _ in })
         XCTAssertEqual(webService.startSearch_wasCalled_withParameters, params)
@@ -47,8 +47,8 @@ class SearchDataManagerTests: XCTestCase {
         let params = SearchParameters(
             term: "Jibberish",
             states: ["Alabama", "Colorado"],
-            earliestDate: SearchConstants.earliestPossibleDate(),
-            latestDate: SearchConstants.latestPossibleDate()
+            earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear,
+            latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear
         )
         cacheService.resultsForParameters_stubbedReturnValue = nil
         subject.fetchMoreResults(params, completionHandler: { _, _ in })
@@ -59,8 +59,8 @@ class SearchDataManagerTests: XCTestCase {
         let params = SearchParameters(
             term: "Jibberish",
             states: ["Alabama", "Colorado"],
-            earliestDate: SearchConstants.earliestPossibleDate(),
-            latestDate: SearchConstants.latestPossibleDate()
+            earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear,
+            latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear
         )
         cacheService.resultsForParameters_stubbedReturnValue = searchResultsWithItemCount(40, totalItemCount: 50)
         subject.fetchMoreResults(params, completionHandler: { _, _ in })
@@ -71,8 +71,8 @@ class SearchDataManagerTests: XCTestCase {
         let params = SearchParameters(
             term: "Jibberish",
             states: ["Alabama", "Colorado"],
-            earliestDate: SearchConstants.earliestPossibleDate(),
-            latestDate: SearchConstants.latestPossibleDate()
+            earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear,
+            latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear
         )
         cacheService.resultsForParameters_stubbedReturnValue = searchResultsWithItemCount(50, totalItemCount: 50)
         var returnedError: NSError?
@@ -88,8 +88,8 @@ class SearchDataManagerTests: XCTestCase {
         let params = SearchParameters(
             term: "Jibberish",
             states: ["Alabama", "Colorado"],
-            earliestDate: SearchConstants.earliestPossibleDate(),
-            latestDate: SearchConstants.latestPossibleDate()
+            earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear,
+            latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear
         )
         cacheService.resultsForParameters_stubbedReturnValue = searchResultsWithItemCount(50, totalItemCount: 50)
         subject.fetchMoreResults(params, completionHandler: { _, _ in })
@@ -100,8 +100,8 @@ class SearchDataManagerTests: XCTestCase {
         let params = SearchParameters(
             term: "Jibberish",
             states: ["Alabama", "Colorado"],
-            earliestDate: SearchConstants.earliestPossibleDate(),
-            latestDate: SearchConstants.latestPossibleDate()
+            earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear,
+            latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear
         )
         subject.cancelFetch(params)
         XCTAssertEqual(webService.cancelSearch_wasCalled_withParameters, params)
@@ -112,8 +112,8 @@ class SearchDataManagerTests: XCTestCase {
         let params = SearchParameters(
             term: "Jibberish",
             states: ["Alabama", "Colorado"],
-            earliestDate: SearchConstants.earliestPossibleDate(),
-            latestDate: SearchConstants.latestPossibleDate()
+            earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear,
+            latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear
         )
         subject.cancelFetch(params)
         XCTAssertEqual(webService.cancelSearch_wasCalled_withPage, 1)
@@ -124,8 +124,8 @@ class SearchDataManagerTests: XCTestCase {
         let params = SearchParameters(
             term: "Jibberish",
             states: ["Alabama", "Colorado"],
-            earliestDate: SearchConstants.earliestPossibleDate(),
-            latestDate: SearchConstants.latestPossibleDate()
+            earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear,
+            latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear
         )
 
         subject.cancelFetch(params)
@@ -136,8 +136,8 @@ class SearchDataManagerTests: XCTestCase {
         let params = SearchParameters(
             term: "Jibberish",
             states: ["Alabama", "Colorado"],
-            earliestDate: SearchConstants.earliestPossibleDate(),
-            latestDate: SearchConstants.latestPossibleDate()
+            earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear,
+            latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear
         )
         subject.isFetchInProgress(params)
         XCTAssertEqual(webService.isSearchInProgress_wasCalled_withParameters, params)
@@ -148,8 +148,8 @@ class SearchDataManagerTests: XCTestCase {
         let params = SearchParameters(
             term: "Jibberish",
             states: ["Alabama", "Colorado"],
-            earliestDate: SearchConstants.earliestPossibleDate(),
-            latestDate: SearchConstants.latestPossibleDate()
+            earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear,
+            latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear
         )
         subject.isFetchInProgress(params)
         XCTAssertEqual(webService.isSearchInProgress_wasCalled_withPage, 1)
@@ -160,8 +160,8 @@ class SearchDataManagerTests: XCTestCase {
         let params = SearchParameters(
             term: "Jibberish",
             states: ["Alabama", "Colorado"],
-            earliestDate: SearchConstants.earliestPossibleDate(),
-            latestDate: SearchConstants.latestPossibleDate()
+            earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear,
+            latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear
         )
         subject.isFetchInProgress(params)
         XCTAssertEqual(webService.isSearchInProgress_wasCalled_withPage, 3)
@@ -172,8 +172,8 @@ class SearchDataManagerTests: XCTestCase {
         let params = SearchParameters(
             term: "Jibberish",
             states: ["Alabama", "Colorado"],
-            earliestDate: SearchConstants.earliestPossibleDate(),
-            latestDate: SearchConstants.latestPossibleDate()
+            earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear,
+            latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear
         )
         XCTAssert(subject.isFetchInProgress(params))
     }
@@ -182,8 +182,8 @@ class SearchDataManagerTests: XCTestCase {
         let params = SearchParameters(
             term: "Jibberish",
             states: ["Alabama", "Colorado"],
-            earliestDate: SearchConstants.earliestPossibleDate(),
-            latestDate: SearchConstants.latestPossibleDate()
+            earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear,
+            latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear
         )
         var searchResults: SearchResults?
         subject.fetchMoreResults(params, completionHandler: { results, _ in
@@ -198,8 +198,8 @@ class SearchDataManagerTests: XCTestCase {
         let params = SearchParameters(
             term: "Jibberish",
             states: ["Alabama", "Colorado"],
-            earliestDate: SearchConstants.earliestPossibleDate(),
-            latestDate: SearchConstants.latestPossibleDate()
+            earliestDayMonthYear: SearchConstants.earliestPossibleDayMonthYear,
+            latestDayMonthYear: SearchConstants.latestPossibleDayMonthYear
         )
         var searchError: NSError?
         subject.fetchMoreResults(params, completionHandler: { _, error in
