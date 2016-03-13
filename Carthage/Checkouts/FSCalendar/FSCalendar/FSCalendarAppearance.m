@@ -92,7 +92,7 @@
         _backgroundColors[@(FSCalendarCellStateToday)]       = FSCalendarStandardTodayColor;
         
         _titleColors = [NSMutableDictionary dictionaryWithCapacity:5];
-        _titleColors[@(FSCalendarCellStateNormal)]      = [UIColor darkTextColor];
+        _titleColors[@(FSCalendarCellStateNormal)]      = [UIColor blackColor];
         _titleColors[@(FSCalendarCellStateSelected)]    = [UIColor whiteColor];
         _titleColors[@(FSCalendarCellStateDisabled)]    = [UIColor grayColor];
         _titleColors[@(FSCalendarCellStatePlaceholder)] = [UIColor lightGrayColor];
@@ -491,6 +491,16 @@
     }
 }
 
+- (void)setAdjustsFontSizeToFitContentSize:(BOOL)adjustsFontSizeToFitContentSize
+{
+    if (_adjustsFontSizeToFitContentSize != adjustsFontSizeToFitContentSize) {
+        _adjustsFontSizeToFitContentSize = adjustsFontSizeToFitContentSize;
+        if (adjustsFontSizeToFitContentSize) {
+            [self invalidateFonts];
+        }
+    }
+}
+
 - (UIFont *)preferredTitleFont
 {
     return [UIFont fontWithName:_titleFontName size:_adjustsFontSizeToFitContentSize?_preferredTitleFontSize:_titleFontSize];
@@ -535,10 +545,7 @@
     }
     
     // reload appearance
-    [_calendar.collectionView.visibleCells makeObjectsPerformSelector:@selector(setNeedsLayout)];
-    [_calendar.header.collectionView.visibleCells makeObjectsPerformSelector:@selector(setNeedsLayout)];
-    [_calendar.visibleStickyHeaders makeObjectsPerformSelector:@selector(setNeedsLayout)];
-    [_calendar.weekdays setValue:self.preferredWeekdayFont forKeyPath:@"font"];
+    [self invalidateFonts];
 }
 
 - (void)setCaseOptions:(FSCalendarCaseOptions)caseOptions

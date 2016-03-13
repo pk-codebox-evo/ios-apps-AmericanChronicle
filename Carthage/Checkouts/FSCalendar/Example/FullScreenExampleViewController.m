@@ -53,15 +53,6 @@
     self.navigationItem.rightBarButtonItems = @[lunarItem, todayItem];
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-#if 0
-    FSCalendarTestSelectDate
-#endif
-
-}
-
 - (void)todayItemClicked:(id)sender
 {
     [_calendar setCurrentPage:[NSDate date] animated:YES];
@@ -76,7 +67,7 @@
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
-    _calendar.frame = CGRectMake(0, 64, self.view.bounds.size.width, self.view.bounds.size.height-64);
+    _calendar.frame = CGRectMake(0, CGRectGetMaxY(self.navigationController.navigationBar.frame), self.view.bounds.size.width, self.view.bounds.size.height-CGRectGetMaxY(self.navigationController.navigationBar.frame));
 }
 
 /*

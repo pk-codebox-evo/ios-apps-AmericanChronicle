@@ -13,12 +13,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _calendar.scope = FSCalendarScopeWeek;
+    [_calendar selectDate:[NSDate date]];
 }
 
 - (void)calendarCurrentScopeWillChange:(FSCalendar *)calendar animated:(BOOL)animated
 {
-    CGSize size = [calendar sizeThatFits:calendar.frame.size];
+    CGSize size = [calendar sizeThatFits:_calendar.frame.size];
     _calendarHeightConstraint.constant = size.height;
     [self.view layoutIfNeeded];
 }
@@ -72,6 +72,15 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 20;
+}
+
+- (IBAction)toggleClicked:(id)sender
+{
+    if (self.calendar.scope == FSCalendarScopeMonth) {
+        [self.calendar setScope:FSCalendarScopeWeek animated:_animationSwitch.on];
+    } else {
+        [self.calendar setScope:FSCalendarScopeMonth animated:_animationSwitch.on];
+    }
 }
 
 @end

@@ -36,10 +36,11 @@
         UILabel *label;
         CAShapeLayer *shapeLayer;
         UIImageView *imageView;
+        FSCalendarEventIndicator *eventIndicator;
         
         label = [[UILabel alloc] initWithFrame:CGRectZero];
         label.textAlignment = NSTextAlignmentCenter;
-        label.textColor = [UIColor darkTextColor];
+        label.textColor = [UIColor blackColor];
         [self.contentView addSubview:label];
         self.titleLabel = label;
         
@@ -55,13 +56,11 @@
         [self.contentView.layer insertSublayer:shapeLayer below:_titleLabel.layer];
         self.backgroundLayer = shapeLayer;
         
-        shapeLayer = [CAShapeLayer layer];
-        shapeLayer.backgroundColor = [UIColor clearColor].CGColor;
-        shapeLayer.fillColor = [UIColor cyanColor].CGColor;
-        shapeLayer.path = [UIBezierPath bezierPathWithOvalInRect:shapeLayer.bounds].CGPath;
-        shapeLayer.hidden = YES;
-        [self.contentView.layer addSublayer:shapeLayer];
-        self.eventLayer = shapeLayer;
+        eventIndicator = [[FSCalendarEventIndicator alloc] initWithFrame:CGRectZero];
+        eventIndicator.backgroundColor = [UIColor clearColor];
+        eventIndicator.hidden = YES;
+        [self.contentView addSubview:eventIndicator];
+        self.eventIndicator = eventIndicator;
         
         imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
         imageView.contentMode = UIViewContentModeBottom|UIViewContentModeCenter;
@@ -89,8 +88,7 @@
     _backgroundLayer.borderColor = [UIColor clearColor].CGColor;
     
     CGFloat eventSize = _backgroundLayer.frame.size.height/6.0;
-    _eventLayer.frame = CGRectMake((_backgroundLayer.frame.size.width-eventSize)/2+_backgroundLayer.frame.origin.x, CGRectGetMaxY(_backgroundLayer.frame)+eventSize*0.17, eventSize*0.83, eventSize*0.83);
-    _eventLayer.path = [UIBezierPath bezierPathWithOvalInRect:_eventLayer.bounds].CGPath;
+    _eventIndicator.frame = CGRectMake(0, CGRectGetMaxY(_backgroundLayer.frame)+eventSize*0.17, bounds.size.width, eventSize*0.83);
     _imageView.frame = self.contentView.bounds;
 }
 
@@ -105,6 +103,7 @@
     [super prepareForReuse];
     [CATransaction setDisableActions:YES];
     _backgroundLayer.hidden = YES;
+    [self.contentView.layer removeAnimationForKey:@"opacity"];
 }
 
 #pragma mark - Public
@@ -164,7 +163,7 @@
                                               self.fs_width,
                                               subtitleHeight);
         } else {
-            _titleLabel.frame = CGRectMake(0, _appearance.titleVerticalOffset, self.fs_width, floor(self.contentView.fs_height*5.0/6.0));
+            _titleLabel.frame = CGRectMake(0, _appearance.titleVerticalOffset, self.contentView.fs_width, floor(self.contentView.fs_height*5.0/6.0));
         }
         
     }
@@ -211,15 +210,11 @@
         [self invalidateImage];
     }
     
-    if (_eventLayer.hidden == _hasEvent) {
-        _eventLayer.hidden = !_hasEvent;
-        if (_hasEvent) {
-            CGColorRef color = self.preferedEventColor.CGColor ?: _appearance.eventColor.CGColor;
-            if (!CGColorEqualToColor(color, _eventLayer.fillColor)) {
-                _eventLayer.fillColor = color;
-            }
-        }
+    if (_eventIndicator.hidden == (_numberOfEvents > 0)) {
+        _eventIndicator.hidden = !_numberOfEvents;
     }
+    _eventIndicator.numberOfEvents = self.numberOfEvents;
+    _eventIndicator.color = self.preferredEventColor ?: _appearance.eventColor;
 }
 
 - (BOOL)isWeekend
@@ -249,7 +244,7 @@
 
 - (void)invalidateTitleFont
 {
-    _titleLabel.font = _appearance.titleFont;
+    _titleLabel.font = self.appearance.preferredTitleFont;
 }
 
 - (void)invalidateTitleTextColor
@@ -259,7 +254,7 @@
 
 - (void)invalidateSubtitleFont
 {
-    _subtitleLabel.font = _appearance.subtitleFont;
+    _subtitleLabel.font = self.appearance.preferredSubtitleFont;
 }
 
 - (void)invalidateSubtitleTextColor
@@ -279,7 +274,7 @@
 
 - (void)invalidateEventColors
 {
-    _eventLayer.fillColor = self.preferedEventColor.CGColor ?: _appearance.eventColor.CGColor;
+    _eventIndicator.color = self.preferredEventColor ?: _appearance.eventColor;
 }
 
 - (void)invalidateCellShapes
@@ -301,7 +296,7 @@
 - (UIColor *)colorForBackgroundLayer
 {
     if (self.dateIsSelected || self.isSelected) {
-        return self.preferedSelectionColor ?: [self colorForCurrentStateInDictionary:_appearance.backgroundColors];
+        return self.preferredSelectionColor ?: [self colorForCurrentStateInDictionary:_appearance.backgroundColors];
     }
     return [self colorForCurrentStateInDictionary:_appearance.backgroundColors];
 }
@@ -309,30 +304,30 @@
 - (UIColor *)colorForTitleLabel
 {
     if (self.dateIsSelected || self.isSelected) {
-        return self.preferedTitleSelectionColor ?: [self colorForCurrentStateInDictionary:_appearance.titleColors];
+        return self.preferredTitleSelectionColor ?: [self colorForCurrentStateInDictionary:_appearance.titleColors];
     }
-    return self.preferedTitleDefaultColor ?: [self colorForCurrentStateInDictionary:_appearance.titleColors];
+    return self.preferredTitleDefaultColor ?: [self colorForCurrentStateInDictionary:_appearance.titleColors];
 }
 
 - (UIColor *)colorForSubtitleLabel
 {
     if (self.dateIsSelected || self.isSelected) {
-        return self.preferedSubtitleSelectionColor ?: [self colorForCurrentStateInDictionary:_appearance.subtitleColors];
+        return self.preferredSubtitleSelectionColor ?: [self colorForCurrentStateInDictionary:_appearance.subtitleColors];
     }
-    return self.preferedSubtitleDefaultColor ?: [self colorForCurrentStateInDictionary:_appearance.subtitleColors];
+    return self.preferredSubtitleDefaultColor ?: [self colorForCurrentStateInDictionary:_appearance.subtitleColors];
 }
 
 - (UIColor *)colorForCellBorder
 {
     if (self.dateIsSelected || self.isSelected) {
-        return _preferedBorderSelectionColor ?: _appearance.borderSelectionColor;
+        return _preferredBorderSelectionColor ?: _appearance.borderSelectionColor;
     }
-    return _preferedBorderDefaultColor ?: _appearance.borderDefaultColor;
+    return _preferredBorderDefaultColor ?: _appearance.borderDefaultColor;
 }
 
 - (FSCalendarCellShape)cellShape
 {
-    return _preferedCellShape ?: _appearance.cellShape;
+    return _preferredCellShape ?: _appearance.cellShape;
 }
 
 - (void)setCalendar:(FSCalendar *)calendar
