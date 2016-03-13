@@ -66,6 +66,7 @@
 		97728BB51C30ECD600ADEFE2 /* FakeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97728BB41C30ECD600ADEFE2 /* FakeManager.swift */; };
 		97728BB71C30ED4900ADEFE2 /* NSDate+AMCTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97728BB61C30ED4900ADEFE2 /* NSDate+AMCTests.swift */; };
 		97757CBA1C961A9D006422FC /* AmericanChronicleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97757CB91C961A9D006422FC /* AmericanChronicleUITests.swift */; };
+		97757CC21C961B21006422FC /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97757CC11C961B21006422FC /* SnapshotHelper.swift */; };
 		97789B941BB10206000B298C /* PageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97789B931BB10206000B298C /* PageInteractor.swift */; };
 		97789B961BB10316000B298C /* PageInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97789B951BB10316000B298C /* PageInteractorTests.swift */; };
 		977F0A581B7FC3E700C4B0FC /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977F0A561B7FC3E700C4B0FC /* DatePickerViewController.swift */; };
@@ -238,6 +239,7 @@
 		97757CB71C961A9D006422FC /* AmericanChronicleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmericanChronicleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		97757CB91C961A9D006422FC /* AmericanChronicleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmericanChronicleUITests.swift; sourceTree = "<group>"; };
 		97757CBB1C961A9D006422FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97757CC11C961B21006422FC /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		97789B931BB10206000B298C /* PageInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageInteractor.swift; sourceTree = "<group>"; };
 		97789B951BB10316000B298C /* PageInteractorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageInteractorTests.swift; sourceTree = "<group>"; };
 		977F0A561B7FC3E700C4B0FC /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
@@ -506,6 +508,7 @@
 			isa = PBXGroup;
 			children = (
 				97757CB91C961A9D006422FC /* AmericanChronicleUITests.swift */,
+				97757CC11C961B21006422FC /* SnapshotHelper.swift */,
 				97757CBB1C961A9D006422FC /* Info.plist */,
 			);
 			path = AmericanChronicleUITests;
@@ -994,6 +997,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				97757CBA1C961A9D006422FC /* AmericanChronicleUITests.swift in Sources */,
+				97757CC21C961B21006422FC /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

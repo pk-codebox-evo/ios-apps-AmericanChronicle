@@ -42,7 +42,7 @@ struct DayMonthYear {
     private static let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
 
     static func allMonthSymbols() -> [String] {
-        return formatter.shortStandaloneMonthSymbols
+        return ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     }
 
     init(day: Int, month: Int, year: Int) {

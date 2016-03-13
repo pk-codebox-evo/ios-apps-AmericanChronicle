@@ -12,15 +12,10 @@ class AmericanChronicleUITests: XCTestCase {
         
     override func setUp() {
         super.setUp()
-        
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
+        let app = XCUIApplication()
+        setupSnapshot(app)
         continueAfterFailure = false
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        app.launch()
     }
     
     override func tearDown() {
@@ -31,6 +26,38 @@ class AmericanChronicleUITests: XCTestCase {
     func testExample() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let app = XCUIApplication()
+        app.tables.textFields["Search all Newspapers"].typeText("mark twain")
+        snapshot("01Search")
+        app.tables.staticTexts["Earliest Date"].tap()
+
+        
+        let elementsQuery = app.scrollViews.otherElements
+        elementsQuery.buttons["Mar"].tap()
+        app.buttons["Day"].tap()
+        elementsQuery.buttons["17"].tap()
+        app.buttons["Year"].tap()
+        snapshot("02DatePicker")
+
+        app.navigationBars["Earliest Date"].buttons["Save"].tap()
+        app.tables.staticTexts["U.S. States"].tap()
+        app.collectionViews.staticTexts["California"].tap()
+        snapshot("03StatePicker")
+        app.navigationBars["U.S. States"].buttons["Save"].tap()
+
+        app.tables.childrenMatchingType(.Cell).elementBoundByIndex(0).staticTexts["San Francisco, California"].tap()
+        snapshot("04PageZoomedOut")
+
+//        let element = app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Other).element
+
+        snapshot("05PageZoomedIn")
+        app.buttons["Share"].tap()
+        snapshot("06Share")
+        
+        let cancelButton = app.sheets.buttons["Cancel"]
+        cancelButton.tap()
+        app.buttons["UIAccessoryButtonX"].pressForDuration(0.6);
+
     }
     
 }
