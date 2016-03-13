@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 // NOTES:
 //
@@ -372,6 +373,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
             return true
         }
         tableHeaderView.earliestDateButtonTapHandler = { [weak self] _ in
+            Crashlytics.sharedInstance().crash()
             self?.delegate?.userDidTapEarliestDateButton()
         }
         tableHeaderView.latestDateButtonTapHandler = { [weak self] _ in

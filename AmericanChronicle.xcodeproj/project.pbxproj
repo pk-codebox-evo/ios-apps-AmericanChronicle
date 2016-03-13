@@ -148,6 +148,8 @@
 		97F622031BE9E94000F0DB63 /* DelayedSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F622021BE9E94000F0DB63 /* DelayedSearchTests.swift */; };
 		97F707D11BB8AE8F00A3D760 /* PagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F707D01BB8AE8F00A3D760 /* PagePresenter.swift */; };
 		97FE01521BDC48C00098E45F /* PageWireframeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FE01511BDC48C00098E45F /* PageWireframeTests.swift */; };
+		97FF38651C95D673009625F4 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97FF38631C95D673009625F4 /* Crashlytics.framework */; };
+		97FF38661C95D673009625F4 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97FF38641C95D673009625F4 /* Fabric.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -311,6 +313,8 @@
 		97F622021BE9E94000F0DB63 /* DelayedSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelayedSearchTests.swift; sourceTree = "<group>"; };
 		97F707D01BB8AE8F00A3D760 /* PagePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagePresenter.swift; sourceTree = "<group>"; };
 		97FE01511BDC48C00098E45F /* PageWireframeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageWireframeTests.swift; sourceTree = "<group>"; };
+		97FF38631C95D673009625F4 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Fabric/Crashlytics.framework; sourceTree = "<group>"; };
+		97FF38641C95D673009625F4 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Fabric/Fabric.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,6 +322,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97FF38651C95D673009625F4 /* Crashlytics.framework in Frameworks */,
+				97FF38661C95D673009625F4 /* Fabric.framework in Frameworks */,
 				970A00C31BABB19D00B3BB87 /* Alamofire.framework in Frameworks */,
 				970A00C41BABB19D00B3BB87 /* AlamofireObjectMapper.framework in Frameworks */,
 				970A00C51BABB19D00B3BB87 /* FSCalendar.framework in Frameworks */,
@@ -341,6 +347,8 @@
 		315BF8B2FAAA7D968A3BFE28 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				97FF38631C95D673009625F4 /* Crashlytics.framework */,
+				97FF38641C95D673009625F4 /* Fabric.framework */,
 				971F4B141C4D6F6B0088E696 /* DynamicColor.framework */,
 				9730C1331BB0F20500355D7D /* WebImage.framework */,
 				970A00BE1BABB19D00B3BB87 /* Alamofire.framework */,
@@ -770,6 +778,7 @@
 				97BDE10C1B76ED6B00A3E57F /* Frameworks */,
 				97BDE10D1B76ED6B00A3E57F /* Resources */,
 				970A00C81BABB1BD00B3BB87 /* Carthage - Copy Frameworks */,
+				97FF385E1C95D3FF009625F4 /* Fabric - Run Script */,
 			);
 			buildRules = (
 			);
@@ -887,6 +896,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		97FF385E1C95D3FF009625F4 /* Fabric - Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Fabric - Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric/Fabric.framework/run 9d279c54c14ee851116c8be92a8ef54f6f584213 4f6de8a683632a24d6b2549e8b706cdf90389d71577835096b77d5b0a64855c7";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1150,6 +1173,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Fabric",
 				);
 				INFOPLIST_FILE = AmericanChronicle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1171,6 +1196,8 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Fabric",
 				);
 				INFOPLIST_FILE = AmericanChronicle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
