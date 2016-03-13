@@ -79,11 +79,33 @@ class InfoViewController: UIViewController {
         navigationItem.title = "About this app"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Dismiss", style: .Plain, target: self, action: "dismissButtonTapped:")
         navigationItem.leftBarButtonItem?.setTitlePositionAdjustment(Measurements.leftBarButtonItemTitleAdjustment, forBarMetrics: .Default)
+
+        ZDKConfig.instance().initializeWithAppId("f5f58e30fdcc4f60ff675d3021c6511429ca7c318e7e7eb6",
+            zendeskUrl: "https://ryanpeterson.zendesk.com",
+            clientId: "mobile_sdk_client_6653f492fd785f23ee1a",
+            onSuccess: {
+                print("[RP] Zendesk request sent successfully")
+            }, onError: { error in
+                print("[RP] Zendesk request failed")
+        })
+        let identity = ZDKAnonymousIdentity()
+        ZDKConfig.instance().userIdentity = identity
     }
+
+    let versionNumber: String = {
+        let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as? String
+        return version ?? "not found"
+    }()
+
+    var buildNumber: String = {
+        let build = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleVersion") as? String
+        return build ?? "not found"
+    }()
 
     func suggestionsButtonTapped(sender: UIButton) {
         ZDKRequests.configure { account, config in
-            config.tags = ["One"]
+            config.tags = [self.versionNumber]
+            config.additionalRequestInfo = "Build: \(self.buildNumber)"
             config.subject = "American Chronicle"
         }
         ZDKRequests.showRequestCreationWithNavController(self.navigationController)
@@ -94,17 +116,9 @@ class InfoViewController: UIViewController {
 
         view.backgroundColor = Colors.lightBackground
 
-//        view.addSubview(titleLabel)
-//        titleLabel.snp_makeConstraints { make in
-//            make.top.equalTo(Measurements.verticalMargin)
-//            make.leading.equalTo(Measurements.horizontalMargin)
-//            make.trailing.equalTo(-Measurements.horizontalMargin)
-//        }
-
         view.addSubview(bodyLabel)
         bodyLabel.snp_makeConstraints { make in
             make.top.equalTo(Measurements.verticalMargin)
-//            make.top.equalTo(titleLabel.snp_bottom).offset(Measurements.verticalSiblingSpacing)
             make.leading.equalTo(Measurements.horizontalMargin)
             make.trailing.equalTo(-Measurements.horizontalMargin)
         }
