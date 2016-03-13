@@ -37,20 +37,19 @@ class AmericanChronicleUITests: XCTestCase {
         app.buttons["Day"].tap()
         elementsQuery.buttons["17"].tap()
         app.buttons["Year"].tap()
-        snapshot("02DatePicker")
 
         app.navigationBars["Earliest Date"].buttons["Save"].tap()
         app.tables.staticTexts["U.S. States"].tap()
         app.collectionViews.staticTexts["California"].tap()
-        snapshot("03StatePicker")
         app.navigationBars["U.S. States"].buttons["Save"].tap()
 
         app.tables.childrenMatchingType(.Cell).elementBoundByIndex(0).staticTexts["San Francisco, California"].tap()
-        snapshot("04PageZoomedOut")
+        snapshot("02PageZoomedOut")
 
-//        let element = app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Other).element
+        let element = app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Other).element
+        element.pinchWithScale(2.0, velocity: 1.0)
 
-        snapshot("05PageZoomedIn")
+        snapshot("03PageZoomedIn")
         app.buttons["Share"].tap()
         snapshot("06Share")
         
