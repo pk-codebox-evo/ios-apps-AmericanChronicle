@@ -118,6 +118,10 @@
 		97C3ABB11C39CA2B00165FEA /* SearchParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C3ABB01C39CA2B00165FEA /* SearchParameters.swift */; };
 		97C99FB81B96BAC5001310DE /* SearchFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C99FB71B96BAC5001310DE /* SearchFieldCell.swift */; };
 		97CC38511BB0EB1800E1B67A /* SearchResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CC38501BB0EB1800E1B67A /* SearchResultTests.swift */; };
+		97D08E0C1C95F10000AB7C86 /* ZendeskProviderSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97D08E081C95F10000AB7C86 /* ZendeskProviderSDK.framework */; };
+		97D08E0D1C95F10000AB7C86 /* ZendeskSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 97D08E091C95F10000AB7C86 /* ZendeskSDK.bundle */; };
+		97D08E0E1C95F10000AB7C86 /* ZendeskSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97D08E0A1C95F10000AB7C86 /* ZendeskSDK.framework */; };
+		97D08E0F1C95F10000AB7C86 /* ZendeskSDKStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 97D08E0B1C95F10000AB7C86 /* ZendeskSDKStrings.bundle */; };
 		97D3293E1C2773AE0088FF21 /* DatePickerWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D3293D1C2773AE0088FF21 /* DatePickerWireframe.swift */; };
 		97D329401C2778C10088FF21 /* DatePickerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D3293F1C2778C10088FF21 /* DatePickerInteractor.swift */; };
 		97D329421C2778E40088FF21 /* DatePickerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D329411C2778E40088FF21 /* DatePickerPresenter.swift */; };
@@ -282,6 +286,10 @@
 		97C3ABB01C39CA2B00165FEA /* SearchParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchParameters.swift; sourceTree = "<group>"; };
 		97C99FB71B96BAC5001310DE /* SearchFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFieldCell.swift; sourceTree = "<group>"; };
 		97CC38501BB0EB1800E1B67A /* SearchResultTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultTests.swift; sourceTree = "<group>"; };
+		97D08E081C95F10000AB7C86 /* ZendeskProviderSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZendeskProviderSDK.framework; path = Frameworks/Zendesk/ZendeskProviderSDK.framework; sourceTree = "<group>"; };
+		97D08E091C95F10000AB7C86 /* ZendeskSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ZendeskSDK.bundle; path = Frameworks/Zendesk/ZendeskSDK.bundle; sourceTree = "<group>"; };
+		97D08E0A1C95F10000AB7C86 /* ZendeskSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZendeskSDK.framework; path = Frameworks/Zendesk/ZendeskSDK.framework; sourceTree = "<group>"; };
+		97D08E0B1C95F10000AB7C86 /* ZendeskSDKStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = ZendeskSDKStrings.bundle; path = Frameworks/Zendesk/ZendeskSDKStrings.bundle; sourceTree = "<group>"; };
 		97D3293D1C2773AE0088FF21 /* DatePickerWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerWireframe.swift; sourceTree = "<group>"; };
 		97D3293F1C2778C10088FF21 /* DatePickerInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerInteractor.swift; sourceTree = "<group>"; };
 		97D329411C2778E40088FF21 /* DatePickerPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerPresenter.swift; sourceTree = "<group>"; };
@@ -322,7 +330,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97D08E0E1C95F10000AB7C86 /* ZendeskSDK.framework in Frameworks */,
 				97FF38651C95D673009625F4 /* Crashlytics.framework in Frameworks */,
+				97D08E0C1C95F10000AB7C86 /* ZendeskProviderSDK.framework in Frameworks */,
 				97FF38661C95D673009625F4 /* Fabric.framework in Frameworks */,
 				970A00C31BABB19D00B3BB87 /* Alamofire.framework in Frameworks */,
 				970A00C41BABB19D00B3BB87 /* AlamofireObjectMapper.framework in Frameworks */,
@@ -347,6 +357,10 @@
 		315BF8B2FAAA7D968A3BFE28 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				97D08E081C95F10000AB7C86 /* ZendeskProviderSDK.framework */,
+				97D08E091C95F10000AB7C86 /* ZendeskSDK.bundle */,
+				97D08E0A1C95F10000AB7C86 /* ZendeskSDK.framework */,
+				97D08E0B1C95F10000AB7C86 /* ZendeskSDKStrings.bundle */,
 				97FF38631C95D673009625F4 /* Crashlytics.framework */,
 				97FF38641C95D673009625F4 /* Fabric.framework */,
 				971F4B141C4D6F6B0088E696 /* DynamicColor.framework */,
@@ -858,7 +872,9 @@
 				97D3F84A1B994B5E008B8D81 /* Page.storyboard in Resources */,
 				979BEBC91C1B87E3003BA3CA /* states.json in Resources */,
 				97BDE1211B76ED6B00A3E57F /* LaunchScreen.xib in Resources */,
+				97D08E0F1C95F10000AB7C86 /* ZendeskSDKStrings.bundle in Resources */,
 				97BDE11E1B76ED6B00A3E57F /* Images.xcassets in Resources */,
+				97D08E0D1C95F10000AB7C86 /* ZendeskSDK.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1175,6 +1191,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Fabric",
+					"$(PROJECT_DIR)/Frameworks/Zendesk",
 				);
 				INFOPLIST_FILE = AmericanChronicle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1198,6 +1215,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Fabric",
+					"$(PROJECT_DIR)/Frameworks/Zendesk",
 				);
 				INFOPLIST_FILE = AmericanChronicle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
