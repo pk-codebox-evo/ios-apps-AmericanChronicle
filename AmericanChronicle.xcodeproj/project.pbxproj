@@ -1295,6 +1295,7 @@
 					"$(PROJECT_DIR)/Frameworks/Zendesk",
 				);
 				INFOPLIST_FILE = AmericanChronicle/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ryanipete.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1319,6 +1320,7 @@
 					"$(PROJECT_DIR)/Frameworks/Zendesk",
 				);
 				INFOPLIST_FILE = AmericanChronicle/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ryanipete.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1373,6 +1375,7 @@
 				97757CBF1C961A9D006422FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		97BDE10A1B76ED6B00A3E57F /* Build configuration list for PBXProject "AmericanChronicle" */ = {
 			isa = XCConfigurationList;
