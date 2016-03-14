@@ -27,21 +27,10 @@ class AmericanChronicleUITests: XCTestCase {
         let app = XCUIApplication()
         app.tables.textFields["Search all Newspapers"].typeText("mark twain")
         snapshot("01Search")
-//        app.tables.staticTexts["Earliest Date"].tap()
-//
-//        
-//        let elementsQuery = app.scrollViews.otherElements
-//        elementsQuery.buttons["Mar"].tap()
-//        app.buttons["Day"].tap()
-//        elementsQuery.buttons["17"].tap()
-//        app.buttons["Year"].tap()
 
-//        app.navigationBars["Earliest Date"].buttons["Save"].tap()
-//        app.tables.staticTexts["U.S. States"].tap()
-//        app.collectionViews.staticTexts["California"].tap()
-//        app.navigationBars["U.S. States"].buttons["Save"].tap()
+        app.buttons["Search"].tap()
 
-        app.tables.childrenMatchingType(.Cell).elementBoundByIndex(0).staticTexts["Washington, District of Columbia"].tap()
+        app.tables.elementBoundByIndex(0).tap()
 
         let element = app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Other).element
         snapshot("02PageZoomedOut")
