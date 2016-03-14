@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FSCalendar
 
 protocol DatePickerViewInterface {
     var delegate: DatePickerViewDelegate? { get set }
