@@ -3,27 +3,27 @@
   <testsuite name="fastlane.lanes">
     
       
-      <testcase classname="fastlane.lanes" name="0: Verifying required fastlane version" time="0.000517">
+      <testcase classname="fastlane.lanes" name="0: Verifying required fastlane version" time="0.000417">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.000347">
+      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.000262">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: carthage" time="319.137527">
+      <testcase classname="fastlane.lanes" name="2: carthage" time="350.458167">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: gym" time="89.733276">
+      <testcase classname="fastlane.lanes" name="3: gym" time="102.86972">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: deliver" time="217.716445">
+      <testcase classname="fastlane.lanes" name="4: deliver" time="421.157673">
         
           <failure message="/Users/ryanipete/.gem/ruby/2.2.0/gems/fastlane-1.66.0/lib/fastlane/actions/actions_helper.rb:33:in `execute_action'&#10;/Users/ryanipete/.gem/ruby/2.2.0/gems/fastlane-1.66.0/lib/fastlane/runner.rb:129:in `block in execute_action'&#10;/Users/ryanipete/.gem/ruby/2.2.0/gems/fastlane-1.66.0/lib/fastlane/runner.rb:128:in `chdir'&#10;/Users/ryanipete/.gem/ruby/2.2.0/gems/fastlane-1.66.0/lib/fastlane/runner.rb:128:in `execute_action'&#10;/Users/ryanipete/.gem/ruby/2.2.0/gems/fastlane-1.66.0/lib/fastlane/fast_file.rb:149:in `method_missing'&#10;Fastfile:51:in `block (2 levels) in parsing_binding'&#10;/Users/ryanipete/.gem/ruby/2.2.0/gems/fastlane-1.66.0/lib/fastlane/lane.rb:36:in `call'&#10;/Users/ryanipete/.gem/ruby/2.2.0/gems/fastlane-1.66.0/lib/fastlane/lane.rb:36:in `call'&#10;/Users/ryanipete/.gem/ruby/2.2.0/gems/fastlane-1.66.0/lib/fastlane/runner.rb:52:in `block in execute'&#10;/Users/ryanipete/.gem/ruby/2.2.0/gems/fastlane-1.66.0/lib/fastlane/runner.rb:46:in `chdir'&#10;/Users/ryanipete/.gem/ruby/2.2.0/gems/fastlane-1.66.0/lib/fastlane/runner.rb:46:in `execute'&#10;/Users/ryanipete/.gem/ruby/2.2.0/gems/fastlane-1.66.0/lib/fastlane/lane_manager.rb:46:in `cruise_lane'&#10;/Users/ryanipete/.gem/ruby/2.2.0/gems/fastlane-1.66.0/lib/fastlane/command_line_handler.rb:30:in `handle'&#10;/Users/ryanipete/.gem/ruby/2.2.0/gems/fastlane-1.66.0/bin/fastlane:38:in `block (2 levels) in run'&#10;/Users/ryanipete/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/commander-4.3.5/lib/commander/command.rb:178:in `call'&#10;/Users/ryanipete/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/commander-4.3.5/lib/commander/command.rb:178:in `call'&#10;/Users/ryanipete/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/commander-4.3.5/lib/commander/command.rb:153:in `run'&#10;/Users/ryanipete/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/commander-4.3.5/lib/commander/runner.rb:428:in `run_active_command'&#10;/Users/ryanipete/.gem/ruby/2.2.0/gems/fastlane_core-0.37.0/lib/fastlane_core/ui/fastlane_runner.rb:23:in `run!'&#10;/Users/ryanipete/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/commander-4.3.5/lib/commander/delegates.rb:15:in `run!'&#10;/Users/ryanipete/.gem/ruby/2.2.0/gems/fastlane-1.66.0/bin/fastlane:156:in `run'&#10;/Users/ryanipete/.gem/ruby/2.2.0/gems/fastlane-1.66.0/bin/fastlane:162:in `&lt;top (required)&gt;'&#10;/Users/ryanipete/.rbenv/versions/2.2.3/bin/fastlane:23:in `load'&#10;/Users/ryanipete/.rbenv/versions/2.2.3/bin/fastlane:23:in `&lt;main&gt;'&#10;&#10;Could not upload binary to iTunes Connect. Check out the error above" />
         

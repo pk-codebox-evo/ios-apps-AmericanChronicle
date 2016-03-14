@@ -13,7 +13,6 @@
 		9707823D1BC4DD0900D23517 /* seq-18.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 9707823B1BC4DD0900D23517 /* seq-18.pdf */; };
 		970A00C31BABB19D00B3BB87 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970A00BE1BABB19D00B3BB87 /* Alamofire.framework */; };
 		970A00C41BABB19D00B3BB87 /* AlamofireObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970A00BF1BABB19D00B3BB87 /* AlamofireObjectMapper.framework */; };
-		970A00C51BABB19D00B3BB87 /* FSCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970A00C01BABB19D00B3BB87 /* FSCalendar.framework */; };
 		970A00C61BABB19D00B3BB87 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970A00C11BABB19D00B3BB87 /* ObjectMapper.framework */; };
 		970A00C71BABB19D00B3BB87 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 970A00C21BABB19D00B3BB87 /* SnapKit.framework */; };
 		970F3D831C957E9300D50106 /* PagedKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970F3D821C957E9300D50106 /* PagedKeyboard.swift */; };
@@ -356,7 +355,6 @@
 				97FF38661C95D673009625F4 /* Fabric.framework in Frameworks */,
 				970A00C31BABB19D00B3BB87 /* Alamofire.framework in Frameworks */,
 				970A00C41BABB19D00B3BB87 /* AlamofireObjectMapper.framework in Frameworks */,
-				970A00C51BABB19D00B3BB87 /* FSCalendar.framework in Frameworks */,
 				970A00C61BABB19D00B3BB87 /* ObjectMapper.framework in Frameworks */,
 				970A00C71BABB19D00B3BB87 /* SnapKit.framework in Frameworks */,
 				9730C1341BB0F20500355D7D /* WebImage.framework in Frameworks */,
