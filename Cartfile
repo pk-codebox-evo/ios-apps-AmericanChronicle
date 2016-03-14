@@ -1,4 +1,3 @@
-github "WenchaoIOS/FSCalendar"
 github "SnapKit/SnapKit"
 github "tristanhimmelman/AlamofireObjectMapper"
 github "rs/SDWebImage"
