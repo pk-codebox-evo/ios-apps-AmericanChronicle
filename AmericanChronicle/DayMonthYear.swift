@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct DayMonthYear {
+struct DayMonthYear: CustomStringConvertible {
     private let components = NSDateComponents()
 
     let day: Int // 1-based
@@ -110,6 +110,9 @@ struct DayMonthYear {
         return components
     }
 
+    var description: String {
+        return userVisibleString
+    }
 }
 
 extension DayMonthYear: Equatable {}

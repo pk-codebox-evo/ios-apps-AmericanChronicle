@@ -18,13 +18,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let rootWireframe = RootWireframe()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        Fabric.with([Crashlytics.self])
+        Reporter.sharedInstance.applicationDidFinishLaunching()
         KeyboardService.sharedInstance.applicationDidFinishLaunching()
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window?.rootViewController = rootWireframe.rootViewController()
         window?.makeKeyAndVisible()
         Appearance.apply()
         return true
+    }
+
+    func applicationDidBecomeActive(application: UIApplication) {
+        Reporter.sharedInstance.applicationDidBecomeActive()
     }
 }
 

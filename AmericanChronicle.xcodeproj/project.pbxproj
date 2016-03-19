@@ -53,6 +53,7 @@
 		97604E4E1C09238C00FA2805 /* ShareWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97604E4D1C09238C00FA2805 /* ShareWireframe.swift */; };
 		97604E511C0925E100FA2805 /* SharePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97604E501C0925E100FA2805 /* SharePresenter.swift */; };
 		9762A0901BB0E19D002A57C8 /* FakeSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9762A08F1BB0E19D002A57C8 /* FakeSearchView.swift */; };
+		97647C2E1C9D778B002D2B93 /* Reporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97647C2D1C9D778B002D2B93 /* Reporter.swift */; };
 		9764976D1B7DA0270035A388 /* Month.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9764976C1B7DA0270035A388 /* Month.swift */; };
 		9767C7331BBA518400F5CBEC /* PagePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9767C7321BBA518400F5CBEC /* PagePresenterTests.swift */; };
 		976D6EB01C02543C00EF2B03 /* OCRCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 976D6EAF1C02543C00EF2B03 /* OCRCoordinates.swift */; };
@@ -224,6 +225,7 @@
 		97604E4D1C09238C00FA2805 /* ShareWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareWireframe.swift; sourceTree = "<group>"; };
 		97604E501C0925E100FA2805 /* SharePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharePresenter.swift; sourceTree = "<group>"; };
 		9762A08F1BB0E19D002A57C8 /* FakeSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeSearchView.swift; sourceTree = "<group>"; };
+		97647C2D1C9D778B002D2B93 /* Reporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reporter.swift; sourceTree = "<group>"; };
 		9764976C1B7DA0270035A388 /* Month.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Month.swift; sourceTree = "<group>"; };
 		9767C7321BBA518400F5CBEC /* PagePresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagePresenterTests.swift; sourceTree = "<group>"; };
 		976D6EAF1C02543C00EF2B03 /* OCRCoordinates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OCRCoordinates.swift; sourceTree = "<group>"; };
@@ -684,6 +686,7 @@
 				97963F881BCC779000248942 /* Services */,
 				97DE1C8E1C4BF30600AD12F0 /* ErrorView.swift */,
 				97DE1C901C4BF50400AD12F0 /* EmptyResultsView.swift */,
+				97647C2D1C9D778B002D2B93 /* Reporter.swift */,
 			);
 			name = "App-wide";
 			sourceTree = "<group>";
@@ -1073,6 +1076,7 @@
 				97F707D11BB8AE8F00A3D760 /* PagePresenter.swift in Sources */,
 				972613DF1C024F1700EDF550 /* OCRCoordinatesService.swift in Sources */,
 				97D3293E1C2773AE0088FF21 /* DatePickerWireframe.swift in Sources */,
+				97647C2E1C9D778B002D2B93 /* Reporter.swift in Sources */,
 				9721FDC91B93FF26006798B2 /* Style.swift in Sources */,
 				9782361B1B7FD1F00056FDF6 /* SearchFilters.swift in Sources */,
 				978741471B7832660014D1F0 /* NewspaperPagesDataSource.swift in Sources */,

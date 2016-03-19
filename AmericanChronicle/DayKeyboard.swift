@@ -38,7 +38,7 @@ class DayKeyboard: UIView {
             subview.removeFromSuperview()
         }
         guard let selectedDayMonthYear = selectedDayMonthYear else { return }
-
+        Reporter.sharedInstance.logMessage("selectedDayMonthYear: %@", arguments: [selectedDayMonthYear.description])
         guard let rangeOfDaysThisMonth = selectedDayMonthYear.rangeOfDaysInMonth() else { return }
         var weeks: [[Int?]] = []
         for day in (1...rangeOfDaysThisMonth.length) {
