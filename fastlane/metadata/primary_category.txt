@@ -1,1 +1,1 @@
-MZGenre.Apps.Newsstand
+MZGenre.Reference
