@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0720"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -8,9 +8,9 @@
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
@@ -26,20 +26,6 @@
             buildForProfiling = "NO"
             buildForArchiving = "NO"
             buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "97BDE1251B76ED6B00A3E57F"
-               BuildableName = "AmericanChronicleTests.xctest"
-               BlueprintName = "AmericanChronicleTests"
-               ReferencedContainer = "container:AmericanChronicle.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "NO"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "97757CB61C961A9D006422FC"
@@ -60,9 +46,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "97BDE1251B76ED6B00A3E57F"
-               BuildableName = "AmericanChronicleTests.xctest"
-               BlueprintName = "AmericanChronicleTests"
+               BlueprintIdentifier = "97757CB61C961A9D006422FC"
+               BuildableName = "AmericanChronicleUITests.xctest"
+               BlueprintName = "AmericanChronicleUITests"
                ReferencedContainer = "container:AmericanChronicle.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -70,9 +56,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "97BDE10E1B76ED6B00A3E57F"
-            BuildableName = "AmericanChronicle.app"
-            BlueprintName = "AmericanChronicle"
+            BlueprintIdentifier = "97757CB61C961A9D006422FC"
+            BuildableName = "AmericanChronicleUITests.xctest"
+            BlueprintName = "AmericanChronicleUITests"
             ReferencedContainer = "container:AmericanChronicle.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -89,16 +75,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "97BDE10E1B76ED6B00A3E57F"
-            BuildableName = "AmericanChronicle.app"
-            BlueprintName = "AmericanChronicle"
-            ReferencedContainer = "container:AmericanChronicle.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -108,16 +84,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "97BDE10E1B76ED6B00A3E57F"
-            BuildableName = "AmericanChronicle.app"
-            BlueprintName = "AmericanChronicle"
-            ReferencedContainer = "container:AmericanChronicle.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

@@ -182,7 +182,6 @@
 		9707823B1BC4DD0900D23517 /* seq-18.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "seq-18.pdf"; sourceTree = "<group>"; };
 		970A00BE1BABB19D00B3BB87 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		970A00BF1BABB19D00B3BB87 /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireObjectMapper.framework; path = Carthage/Build/iOS/AlamofireObjectMapper.framework; sourceTree = "<group>"; };
-		970A00C01BABB19D00B3BB87 /* FSCalendar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FSCalendar.framework; path = Carthage/Build/iOS/FSCalendar.framework; sourceTree = "<group>"; };
 		970A00C11BABB19D00B3BB87 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
 		970A00C21BABB19D00B3BB87 /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		970E81221B7DB32D00D795EB /* AmericanChronicle-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AmericanChronicle-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -387,7 +386,6 @@
 				9730C1331BB0F20500355D7D /* WebImage.framework */,
 				970A00BE1BABB19D00B3BB87 /* Alamofire.framework */,
 				970A00BF1BABB19D00B3BB87 /* AlamofireObjectMapper.framework */,
-				970A00C01BABB19D00B3BB87 /* FSCalendar.framework */,
 				970A00C11BABB19D00B3BB87 /* ObjectMapper.framework */,
 				970A00C21BABB19D00B3BB87 /* SnapKit.framework */,
 				979082761B8147590056CA9C /* MapKit.framework */,

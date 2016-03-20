@@ -30,7 +30,14 @@ class AmericanChronicleUITests: XCTestCase {
 
         app.buttons["Search"].tap()
 
-        app.tables.elementBoundByIndex(0).tap()
+        let cell = app.tables.elementBoundByIndex(0)
+        cell.tap()
+
+
+        let predicate = NSPredicate(format: "self.count = 0")
+        let spinners = app.childrenMatchingType(.ActivityIndicator)
+        expectationForPredicate(predicate, evaluatedWithObject: spinners, handler: nil)
+        waitForExpectationsWithTimeout(5.0, handler: nil)
 
         let element = app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Other).element
         snapshot("02PageZoomedOut")
