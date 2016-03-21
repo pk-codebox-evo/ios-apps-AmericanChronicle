@@ -23,21 +23,25 @@ class AmericanChronicleUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
+    func testHappyPath() {
         let app = XCUIApplication()
         app.tables.textFields["Search all Newspapers"].typeText("mark twain")
         snapshot("01Search")
 
         app.buttons["Search"].tap()
+        let cell = app.tables.childrenMatchingType(.Cell).elementBoundByIndex(0)
+        expectationForPredicate(NSPredicate(format: "self.exists == true"), evaluatedWithObject: cell, handler: nil)
+        waitForExpectationsWithTimeout(10.0, handler: nil)
+        print("[RP] cell.exists: \(cell.exists)")
+        XCTAssert(cell.exists);
+        let coordinate = cell.coordinateWithNormalizedOffset(CGVector(dx: 0.5, dy: 0.5))
+        coordinate.tap()
 
-        let cell = app.tables.elementBoundByIndex(0)
-        cell.tap()
+        let cancelLoadButton = app.buttons["Cancel Page Load"]
+        print("[RP] cancelLoadButton.hittable: \(cancelLoadButton.hittable)")
 
-
-        let predicate = NSPredicate(format: "self.count = 0")
-        let spinners = app.childrenMatchingType(.ActivityIndicator)
-        expectationForPredicate(predicate, evaluatedWithObject: spinners, handler: nil)
-        waitForExpectationsWithTimeout(5.0, handler: nil)
+        expectationForPredicate(NSPredicate(format: "self.hittable == false"), evaluatedWithObject: cancelLoadButton, handler: nil)
+        waitForExpectationsWithTimeout(10.0, handler: nil)
 
         let element = app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Other).element
         snapshot("02PageZoomedOut")
@@ -50,7 +54,6 @@ class AmericanChronicleUITests: XCTestCase {
         let cancelButton = app.sheets.buttons["Cancel"]
         cancelButton.tap()
         app.buttons["UIAccessoryButtonX"].pressForDuration(0.6);
-
     }
     
 }

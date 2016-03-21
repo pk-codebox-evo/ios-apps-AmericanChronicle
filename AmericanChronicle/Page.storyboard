@@ -69,6 +69,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CV0-Tm-cID">
                                         <rect key="frame" x="152" y="376" width="110" height="30"/>
+                                        <accessibility key="accessibilityConfiguration" label="Cancel Page Load"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="110" id="Oj7-dg-auf"/>
                                             <constraint firstAttribute="height" constant="30" id="dyC-E8-JKi"/>
