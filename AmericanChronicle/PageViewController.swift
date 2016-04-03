@@ -144,7 +144,6 @@ class PageViewController: UIViewController, PageViewInterface, UIScrollViewDeleg
         shareButton.tintColor = UIColor.whiteColor()
         shareButton.setImage(UIImage(named: "UIButtonBarAction")?.imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
 
-        toastButton.addTarget(self, action: "toastButtonTapped:", forControlEvents: .TouchUpInside)
         toastButton.backgroundColor = UIColor(white: 1.0, alpha: 0.8)
         toastButton.setTitleColor(UIColor.darkGrayColor(), forState: .Normal)
         toastButton.layer.shadowColor = UIColor.blackColor().CGColor

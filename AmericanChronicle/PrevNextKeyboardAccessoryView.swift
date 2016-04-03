@@ -134,7 +134,7 @@ class PrevNextKeyboardAccessoryView: UIView {
     func commonInit() {
         backgroundColor = UIColor.whiteColor()
 
-        previousButton.addTarget(self, action: "previousButtonTapped:", forControlEvents: .TouchUpInside)
+        previousButton.addTarget(self, action: #selector(PrevNextKeyboardAccessoryView.previousButtonTapped(_:)), forControlEvents: .TouchUpInside)
         addSubview(previousButton)
         previousButton.snp_makeConstraints { make in
             make.top.equalTo(0)
@@ -143,7 +143,7 @@ class PrevNextKeyboardAccessoryView: UIView {
             make.width.equalTo(100)
         }
 
-        nextButton.addTarget(self, action: "nextButtonTapped:", forControlEvents: .TouchUpInside)
+        nextButton.addTarget(self, action: #selector(PrevNextKeyboardAccessoryView.nextButtonTapped(_:)), forControlEvents: .TouchUpInside)
         addSubview(nextButton)
         nextButton.snp_makeConstraints { make in
             make.top.equalTo(0)

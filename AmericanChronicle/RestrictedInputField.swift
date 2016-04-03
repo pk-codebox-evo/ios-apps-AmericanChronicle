@@ -72,7 +72,7 @@ class RestrictedInputField: UIView, UITextFieldDelegate {
             make.trailing.equalTo(titleLabel.snp_trailing)
         }
 
-        tapButton.addTarget(self, action: "buttonTapped:", forControlEvents: .TouchUpInside)
+        tapButton.addTarget(self, action: #selector(RestrictedInputField.buttonTapped(_:)), forControlEvents: .TouchUpInside)
         addSubview(tapButton)
         tapButton.snp_makeConstraints { make in
             make.edges.equalTo(textField)

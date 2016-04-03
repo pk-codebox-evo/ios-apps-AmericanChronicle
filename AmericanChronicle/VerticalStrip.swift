@@ -81,7 +81,7 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
             make.edges.equalTo(self)
         }
 
-        upButton.addTarget(self, action: "upButtonTapped:", forControlEvents: .TouchUpInside)
+        upButton.addTarget(self, action: #selector(VerticalStrip.upButtonTapped(_:)), forControlEvents: .TouchUpInside)
         addSubview(upButton)
         upButton.snp_makeConstraints { make in
             make.top.equalTo(0)
@@ -90,7 +90,7 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
             make.height.equalTo(44)
         }
 
-        downButton.addTarget(self, action: "downButtonTapped:", forControlEvents: .TouchUpInside)
+        downButton.addTarget(self, action: #selector(VerticalStrip.downButtonTapped(_:)), forControlEvents: .TouchUpInside)
         addSubview(downButton)
         downButton.snp_makeConstraints { make in
             make.bottom.equalTo(0)

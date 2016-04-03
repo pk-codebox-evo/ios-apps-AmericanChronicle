@@ -77,7 +77,7 @@ class InfoViewController: UIViewController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         navigationItem.title = "About this app"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Dismiss", style: .Plain, target: self, action: "dismissButtonTapped:")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Dismiss", style: .Plain, target: self, action: #selector(InfoViewController.dismissButtonTapped(_:)))
         navigationItem.leftBarButtonItem?.setTitlePositionAdjustment(Measurements.leftBarButtonItemTitleAdjustment, forBarMetrics: .Default)
 
         ZDKConfig.instance().initializeWithAppId("f5f58e30fdcc4f60ff675d3021c6511429ca7c318e7e7eb6",
@@ -123,7 +123,7 @@ class InfoViewController: UIViewController {
             make.trailing.equalTo(-Measurements.horizontalMargin)
         }
 
-        websiteButton.addTarget(self, action: "websiteButtonTapped:", forControlEvents: .TouchUpInside)
+        websiteButton.addTarget(self, action: #selector(InfoViewController.websiteButtonTapped(_:)), forControlEvents: .TouchUpInside)
         view.addSubview(websiteButton)
         websiteButton.snp_makeConstraints { make in
             make.top.equalTo(bodyLabel.snp_bottom).offset(Measurements.verticalSiblingSpacing * 2)
@@ -147,7 +147,7 @@ class InfoViewController: UIViewController {
             make.trailing.equalTo(-Measurements.horizontalMargin)
         }
 
-        suggestionsButton.addTarget(self, action: "suggestionsButtonTapped:", forControlEvents: .TouchUpInside)
+        suggestionsButton.addTarget(self, action: #selector(InfoViewController.suggestionsButtonTapped(_:)), forControlEvents: .TouchUpInside)
         view.addSubview(suggestionsButton)
         suggestionsButton.snp_makeConstraints { make in
             make.top.equalTo(suggestionsLabel.snp_bottom).offset(Measurements.verticalSiblingSpacing * 2)

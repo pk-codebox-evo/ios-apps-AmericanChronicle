@@ -78,7 +78,7 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let tap = UITapGestureRecognizer(target: self, action: "pageTapRecognized:")
+        let tap = UITapGestureRecognizer(target: self, action: #selector(NewspaperPagesViewController.pageTapRecognized(_:)))
         view.addGestureRecognizer(tap)
 //        navigationController?.hidesBarsOnTap = true
 //        navigationController?.barHideOnTapGestureRecognizer.addTarget(self, action: "pageTapRecognized:")

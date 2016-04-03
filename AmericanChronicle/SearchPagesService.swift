@@ -90,7 +90,7 @@ class SearchPagesService: SearchPagesServiceInterface {
             URLString.appendContentsOf("&\(statesString)")
         }
 
-        let request = self.manager.request(.GET, URLString: URLString, parameters: params)?.responseObject(nil) { (response: Response<SearchResults, NSError>) in
+        let request = self.manager.request(.GET, URLString: URLString, parameters: params)?.responseObject(nil, keyPath: nil, mapToObject: nil) { (response: Response<SearchResults, NSError>) in
             dispatch_sync(self.queue) {
                 self.activeRequests[self.keyForParameters(parameters, page: page, contextID: contextID)] = nil
             }

@@ -90,7 +90,7 @@ class DayKeyboard: UIView {
                 button.enabled = false
             }
 
-            button.addTarget(self, action: "buttonTapped:", forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(DayKeyboard.buttonTapped(_:)), forControlEvents: .TouchUpInside)
             addSubview(button)
 
             let leading: ConstraintItem

@@ -140,7 +140,7 @@ class LocationCell: UICollectionViewCell {
         addSubview(clearButton)
         clearButton.setTitle("X", forState: .Normal)
         clearButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
-        clearButton.addTarget(self, action: "clearButtonTapped:", forControlEvents: .TouchUpInside)
+        clearButton.addTarget(self, action: #selector(LocationCell.clearButtonTapped(_:)), forControlEvents: .TouchUpInside)
         clearButton.snp_makeConstraints { [weak self] make in
             if let _ = self {
                 make.top.equalTo(0)
@@ -206,7 +206,7 @@ class LocationsHeader: UICollectionReusableView {
         addButton.setTitle("Add", forState: .Normal)
         addButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
         addButton.titleLabel?.font = UIFont(name: "AvenirNext-Regular", size: 12.0)
-        addButton.addTarget(self, action: "addButtonTapped:", forControlEvents: .TouchUpInside)
+        addButton.addTarget(self, action: #selector(LocationsHeader.addButtonTapped(_:)), forControlEvents: .TouchUpInside)
         addButton.snp_makeConstraints { [weak self] make in
             if let _ = self {
                 make.width.equalTo(40.0)
@@ -246,8 +246,8 @@ class SearchFiltersViewController: UIViewController, SearchFiltersViewInterface,
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         navigationItem.title = "Search Filters"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancelButtonTapped:")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveButtonTapped:")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(SearchFiltersViewController.cancelButtonTapped(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(SearchFiltersViewController.saveButtonTapped(_:)))
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -94,7 +94,7 @@ class SearchTableHeaderView: UIView {
 
         earliestDateButton.title = "Earliest Date"
         earliestDateButton.value = "--"
-        earliestDateButton.addTarget(self, action: "earliestDateButtonTapped:", forControlEvents: .TouchUpInside)
+        earliestDateButton.addTarget(self, action: #selector(SearchTableHeaderView.earliestDateButtonTapped(_:)), forControlEvents: .TouchUpInside)
         addSubview(earliestDateButton)
         earliestDateButton.snp_makeConstraints { make in
             make.top.equalTo(searchField.snp_bottom).offset(Measurements.verticalMargin)
@@ -103,7 +103,7 @@ class SearchTableHeaderView: UIView {
 
         latestDateButton.title = "Latest Date"
         latestDateButton.value = "--"
-        latestDateButton.addTarget(self, action: "latestDateButtonTapped:", forControlEvents: .TouchUpInside)
+        latestDateButton.addTarget(self, action: #selector(SearchTableHeaderView.latestDateButtonTapped(_:)), forControlEvents: .TouchUpInside)
         addSubview(latestDateButton)
         latestDateButton.snp_makeConstraints { make in
             make.top.equalTo(searchField.snp_bottom).offset(Measurements.verticalMargin)
@@ -114,7 +114,7 @@ class SearchTableHeaderView: UIView {
 
         USStatesButton.title = "U.S. States"
         USStatesButton.value = "(all states)"
-        USStatesButton.addTarget(self, action: "USStatesButtonTapped:", forControlEvents: .TouchUpInside)
+        USStatesButton.addTarget(self, action: #selector(SearchTableHeaderView.USStatesButtonTapped(_:)), forControlEvents: .TouchUpInside)
         addSubview(USStatesButton)
         USStatesButton.snp_makeConstraints { make in
             make.top.equalTo(earliestDateButton.snp_bottom).offset(Measurements.verticalSiblingSpacing)

@@ -44,9 +44,9 @@ protocol DatePickerViewDelegate {
         selectedDayMonthYear = earliestPossibleDayMonthYear
 
         super.init(nibName: nil, bundle: nil)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancelButtonTapped:")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(DatePickerViewController.cancelButtonTapped(_:)))
         navigationItem.leftBarButtonItem?.setTitlePositionAdjustment(Measurements.leftBarButtonItemTitleAdjustment, forBarMetrics: .Default)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveButtonTapped:")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(DatePickerViewController.saveButtonTapped(_:)))
         navigationItem.rightBarButtonItem?.setTitlePositionAdjustment(Measurements.rightBarButtonItemTitleAdjustment, forBarMetrics: .Default)
     }
 

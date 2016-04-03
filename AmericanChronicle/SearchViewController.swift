@@ -153,7 +153,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Info", style: .Plain, target: self, action: "infoButtonTapped:")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Info", style: .Plain, target: self, action: #selector(SearchViewController.infoButtonTapped(_:)))
         navigationItem.leftBarButtonItem?.setTitlePositionAdjustment(Measurements.leftBarButtonItemTitleAdjustment, forBarMetrics: .Default)
         navigationItem.title = "Search"
     }
@@ -265,7 +265,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let pageCell = tableView.dequeueReusableCellWithIdentifier(_stdlib_getDemangledTypeName(SearchResultsPageCell)) as! SearchResultsPageCell
+        let pageCell = tableView.dequeueReusableCellWithIdentifier(String(SearchResultsPageCell)) as! SearchResultsPageCell
         let result = rows[indexPath.row]
         if let date = result.date {
             pageCell.date = dateFormatter.stringFromDate(date)
@@ -336,7 +336,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
         tableView.backgroundColor = Colors.lightBackground
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.registerClass(SearchResultsPageCell.self, forCellReuseIdentifier:  _stdlib_getDemangledTypeName(SearchResultsPageCell))
+        tableView.registerClass(SearchResultsPageCell.self, forCellReuseIdentifier:  String(SearchResultsPageCell))
         tableView.registerClass(TableHeaderView.self, forHeaderFooterViewReuseIdentifier: "Header")
         tableView.sectionHeaderHeight = 24.0
         tableView.separatorColor = UIColor.whiteColor()

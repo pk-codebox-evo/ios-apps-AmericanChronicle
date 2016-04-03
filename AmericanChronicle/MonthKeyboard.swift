@@ -33,7 +33,7 @@ class MonthKeyboard: UIView {
         for monthSymbol in DayMonthYear.allMonthSymbols() {
             let button: UIButton = MonthKeyboard.newButtonWithTitle(monthSymbol)
             button.setTitleColor(Colors.darkGray, forState: .Normal)
-            button.addTarget(self, action: "buttonTapped:", forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(MonthKeyboard.buttonTapped(_:)), forControlEvents: .TouchUpInside)
             allMonthButtons.append(button)
         }
         var buttonsToAdd = allMonthButtons // copy
