@@ -9,7 +9,7 @@
 #import "UIAppearance+AMC.h"
 
 @implementation UIView (AMC)
-+ (instancetype)AMC_appearanceWhenContainedIn:(Class<UIAppearanceContainer>)containerClass {
++ (instancetype)amc_appearanceWhenContainedIn:(Class<UIAppearanceContainer>)containerClass {
     return [self appearanceWhenContainedInInstancesOfClasses:@[containerClass]];
 }
 @end

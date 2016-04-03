@@ -11,5 +11,5 @@
 
 @interface UIView (AMC)
 // Stolen from http://stackoverflow.com/a/27807417
-+ (instancetype)AMC_appearanceWhenContainedIn:(Class<UIAppearanceContainer>)containerClass;
++ (instancetype)amc_appearanceWhenContainedIn:(Class<UIAppearanceContainer>)containerClass;
 @end
