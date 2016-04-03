@@ -62,8 +62,8 @@ class USStatePickerViewController: UICollectionViewController, USStatePickerView
         self.init(collectionViewLayout: UICollectionViewFlowLayout())
 
         navigationItem.title = "U.S. States"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "didTapCancelButton:")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "didTapSaveButton:")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(USStatePickerViewController.didTapCancelButton(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(USStatePickerViewController.didTapSaveButton(_:)))
     }
 
     override func viewDidLoad() {

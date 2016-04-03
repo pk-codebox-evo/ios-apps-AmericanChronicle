@@ -43,7 +43,7 @@ class TitleValueButton: UIControl {
     }
 
     func commonInit() {
-        button.addTarget(self, action: "buttonTapped:", forControlEvents: .TouchUpInside)
+        button.addTarget(self, action: #selector(TitleValueButton.buttonTapped(_:)), forControlEvents: .TouchUpInside)
         button.addObserver(self, forKeyPath: "highlighted", options: NSKeyValueObservingOptions.Initial, context: nil)
 
         button.setBackgroundImage(UIImage.imageWithFillColor(UIColor.whiteColor(), borderColor: Colors.lightBlueBright), forState: .Normal)
