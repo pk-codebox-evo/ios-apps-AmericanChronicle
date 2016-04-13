@@ -36,6 +36,7 @@
 		974BA36A1B892D8900D7ACA2 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974BA3691B892D8900D7ACA2 /* Location.swift */; };
 		974BA36C1B892DD500D7ACA2 /* Newspaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974BA36B1B892DD500D7ACA2 /* Newspaper.swift */; };
 		974BA36E1B89343A00D7ACA2 /* StateName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974BA36D1B89343A00D7ACA2 /* StateName.swift */; };
+		974D1C271CBECA93005FDBCE /* DayMonthYearTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974D1C261CBECA93005FDBCE /* DayMonthYearTests.swift */; };
 		974E4FBE1BAF61FC006A8231 /* LoggingURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974E4FBD1BAF61FC006A8231 /* LoggingURLProtocol.swift */; };
 		974EFBF01C1DFDBC00E7D4CB /* USStatePickerDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974EFBEF1C1DFDBC00E7D4CB /* USStatePickerDataManager.swift */; };
 		974EFBF21C1E00BB00E7D4CB /* USStatePickerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974EFBF11C1E00BB00E7D4CB /* USStatePickerPresenter.swift */; };
@@ -207,6 +208,7 @@
 		974BA3691B892D8900D7ACA2 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		974BA36B1B892DD500D7ACA2 /* Newspaper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Newspaper.swift; sourceTree = "<group>"; };
 		974BA36D1B89343A00D7ACA2 /* StateName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateName.swift; sourceTree = "<group>"; };
+		974D1C261CBECA93005FDBCE /* DayMonthYearTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayMonthYearTests.swift; sourceTree = "<group>"; };
 		974E4FBD1BAF61FC006A8231 /* LoggingURLProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggingURLProtocol.swift; sourceTree = "<group>"; };
 		974EFBEF1C1DFDBC00E7D4CB /* USStatePickerDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USStatePickerDataManager.swift; sourceTree = "<group>"; };
 		974EFBF11C1E00BB00E7D4CB /* USStatePickerPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USStatePickerPresenter.swift; sourceTree = "<group>"; };
@@ -755,6 +757,7 @@
 				978E9B121BAF9F380001690C /* Modules */,
 				9739FE311BA28A04009ACD94 /* AlamofireIntegrationTests.swift */,
 				977F10941BA50B53003BEF11 /* TestURLProtocol.swift */,
+				974D1C261CBECA93005FDBCE /* DayMonthYearTests.swift */,
 			);
 			path = AmericanChronicleTests;
 			sourceTree = "<group>";
@@ -1131,6 +1134,7 @@
 				97924DF61BDC14F30035E5F6 /* PageDataManagerTests.swift in Sources */,
 				977F109D1BA54B1A003BEF11 /* FakeSearchPresenter.swift in Sources */,
 				97CC38511BB0EB1800E1B67A /* SearchResultTests.swift in Sources */,
+				974D1C271CBECA93005FDBCE /* DayMonthYearTests.swift in Sources */,
 				9739FE321BA28A04009ACD94 /* AlamofireIntegrationTests.swift in Sources */,
 				97EAC1E51B9D442800956EBC /* SearchInteractorTests.swift in Sources */,
 				977F10A01BA54C14003BEF11 /* FakeSearchPagesService.swift in Sources */,

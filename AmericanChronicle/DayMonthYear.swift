@@ -9,7 +9,23 @@
 import Foundation
 
 struct DayMonthYear: CustomStringConvertible {
-    private let components = NSDateComponents()
+
+    private static let timeZone = NSTimeZone(forSecondsFromGMT: 0)
+    private static let calendar: NSCalendar = {
+        let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+        calendar.timeZone = DayMonthYear.timeZone
+        return calendar
+    }()
+
+    private static let dateFormatter: NSDateFormatter = {
+        let formatter = NSDateFormatter()
+        formatter.calendar = DayMonthYear.calendar
+        // Reminder - Setting the formatter's calendar doesn't
+        //  change the formatter's timeZone to match.
+        formatter.timeZone = DayMonthYear.timeZone
+        formatter.dateFormat = "MMM dd, yyyy"
+        return formatter
+    }()
 
     let day: Int // 1-based
     let month: Int // 1-based
@@ -23,23 +39,15 @@ struct DayMonthYear: CustomStringConvertible {
         return DayMonthYear.dateFormatter.stringFromDate(date)
     }
 
-    private static let dateFormatter: NSDateFormatter = {
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "MMM dd, yyyy"
-        return formatter
-    }()
-
-    /// month should be 1-based
+    /**
+     * month - should be 1-based
+     **/
     static func symbolForMonth(month: Int) -> String? {
         let zeroBasedMonth = month - 1
         let monthStrings = allMonthSymbols()
         guard zeroBasedMonth < monthStrings.count else { return nil }
         return monthStrings[zeroBasedMonth]
     }
-
-    static let formatter = NSDateFormatter()
-
-    private static let calendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
 
     static func allMonthSymbols() -> [String] {
         return ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -50,9 +58,12 @@ struct DayMonthYear: CustomStringConvertible {
         self.month = month
         self.year = year
 
+        // Guard against invalid day
         let components = NSDateComponents()
         components.calendar = DayMonthYear.calendar
-        components.timeZone = NSTimeZone(forSecondsFromGMT: 0)
+        // Reminder - Setting the components calendar doesn't
+        //  change the components timeZone to match.
+        components.timeZone = DayMonthYear.timeZone
         components.month = month
         components.year = year
         components.day = 1
@@ -103,7 +114,9 @@ struct DayMonthYear: CustomStringConvertible {
     private func dateComponents() -> NSDateComponents {
         let components = NSDateComponents()
         components.calendar = DayMonthYear.calendar
-        components.timeZone = NSTimeZone(forSecondsFromGMT: 0)
+        // Reminder - Setting the components calendar doesn't
+        //  change the components timeZone to match.
+        components.timeZone = DayMonthYear.timeZone
         components.day = day
         components.month = month
         components.year = year
