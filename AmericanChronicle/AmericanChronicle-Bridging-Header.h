@@ -1,4 +1,4 @@
 
 #import "UIAppearance+AMC.h"
 
-#import <WebImage/UIImageView+WebCache.h>
+#import <SDWebImage/UIImageView+WebCache.h>

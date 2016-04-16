@@ -1,0 +1,30 @@
+PODS:
+  - Alamofire (3.3.1)
+  - AlamofireObjectMapper (3.0.0):
+    - Alamofire (~> 3.2)
+    - ObjectMapper (~> 1.0)
+  - DynamicColor (2.4.0)
+  - netfox (1.7.2)
+  - ObjectMapper (1.2.0)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
+  - SnapKit (0.20.0)
+
+DEPENDENCIES:
+  - AlamofireObjectMapper (~> 3.0)
+  - DynamicColor (~> 2.4)
+  - netfox (~> 1.7)
+  - SDWebImage (~> 3.7)
+  - SnapKit (~> 0.20)
+
+SPEC CHECKSUMS:
+  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  AlamofireObjectMapper: 2d16585d06177be0116d76de73497e77437798af
+  DynamicColor: 2f3fd61053684667bad9f03045dcf9a2a5a007ea
+  netfox: ab995a8327995b847a7b7c1d83c574e0d4aacb25
+  ObjectMapper: b1e9c7c8a9f6400b72690c80072c131504caa66f
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650
+
+COCOAPODS: 0.39.0
