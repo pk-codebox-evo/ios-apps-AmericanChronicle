@@ -1,4 +1,5 @@
 github "SnapKit/SnapKit"
+github "Alamofire/Alamofire"
 github "tristanhimmelman/AlamofireObjectMapper"
 github "rs/SDWebImage"
 github "kasketis/netfox"
