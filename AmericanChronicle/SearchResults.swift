@@ -8,7 +8,7 @@
 
 import ObjectMapper
 
-public class SearchResults: NSObject, Mappable {
+class SearchResults: NSObject, Mappable {
 
     // MARK: Properties
 
@@ -16,7 +16,7 @@ public class SearchResults: NSObject, Mappable {
     var endIndex: Int?
     var startIndex: Int?
     var itemsPerPage: Int = 20
-    public var items: [SearchResult]?
+    var items: [SearchResult]?
     var allItemsLoaded: Bool {
         return items?.count >= totalItems
     }
@@ -24,21 +24,21 @@ public class SearchResults: NSObject, Mappable {
         return Int(ceilf(Float(items?.count ?? 0)/Float(itemsPerPage)))
     }
 
-    public override init() {
+    override init() {
         super.init()
     }
 
     // MARK: Mappable methods
 
-    public required init?(_ map: Map) {
+    required init?(_ map: Map) {
         super.init()
     }
 
-    public static func newInstance(map: Map) -> Mappable? {
+    static func newInstance(map: Map) -> Mappable? {
         return SearchResults(map)
     }
 
-    public func mapping(map: Map) {
+    func mapping(map: Map) {
         totalItems <- map["totalItems"]
         endIndex <- map["endIndex"]
         startIndex <- map["startIndex"]
@@ -48,7 +48,7 @@ public class SearchResults: NSObject, Mappable {
 
     // MARK: NSObject overrides
 
-    override public var description: String {
+    override var description: String {
         let empty = "(nil)"
         var str = "<\(self.dynamicType) \(unsafeAddressOf(self)):"
         str += " totalItems=\(totalItems?.description ?? empty)"

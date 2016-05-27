@@ -64,12 +64,12 @@ class SearchPagesService: SearchPagesServiceInterface {
         let earliestMonth = "\(parameters.earliestDayMonthYear.month)"
         let earliestDay = "\(parameters.earliestDayMonthYear.day)"
         let earliestYear = "\(parameters.earliestDayMonthYear.year)"
-        let date1 = "\(earliestMonth)\\\(earliestDay)\\\(earliestYear)"
+        let date1 = "\(earliestMonth)/\(earliestDay)/\(earliestYear)"
 
         let latestMonth = "\(parameters.latestDayMonthYear.month)"
         let latestDay = "\(parameters.latestDayMonthYear.day)"
         let latestYear = "\(parameters.latestDayMonthYear.year)"
-        let date2 = "\(latestMonth)\\\(latestDay)\\\(latestYear)"
+        let date2 = "\(latestMonth)/\(latestDay)/\(latestYear)"
 
         let params: [String: AnyObject] = [
             "format": "json",
