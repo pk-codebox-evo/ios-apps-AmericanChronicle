@@ -42,7 +42,6 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
         layout.scrollDirection = .Vertical
         let view = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
         view.registerClass(VerticalStripCell.self, forCellWithReuseIdentifier: "Cell")
-        view.backgroundColor = UIColor.blueColor()
         view.pagingEnabled = true
         view.showsVerticalScrollIndicator = false;
         return view
@@ -74,13 +73,6 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
 
         backgroundColor = Colors.lightBackground
 
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        addSubview(collectionView)
-        collectionView.snp_makeConstraints { make in
-            make.edges.equalTo(self)
-        }
-
         upButton.addTarget(self, action: #selector(VerticalStrip.upButtonTapped(_:)), forControlEvents: .TouchUpInside)
         addSubview(upButton)
         upButton.snp_makeConstraints { make in
@@ -90,9 +82,19 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
             make.height.equalTo(44)
         }
 
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        addSubview(collectionView)
+        collectionView.snp_makeConstraints { make in
+            make.top.equalTo(upButton.snp_bottom)
+            make.leading.equalTo(0)
+            make.trailing.equalTo(0)
+        }
+
         downButton.addTarget(self, action: #selector(VerticalStrip.downButtonTapped(_:)), forControlEvents: .TouchUpInside)
         addSubview(downButton)
         downButton.snp_makeConstraints { make in
+            make.top.equalTo(collectionView.snp_bottom)
             make.bottom.equalTo(0)
             make.leading.equalTo(0)
             make.trailing.equalTo(0)
@@ -112,16 +114,30 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
 
     // MARK: Internal methods
 
+    func revealElementAtIndex(bottomIndex: Int, fromBottomWithVisiblePercent visiblePercent: CGFloat, animated: Bool = false) {
+
+        let fullyHiddenY = CGFloat(bottomIndex - 1) * collectionView.bounds.height
+        var newOffset = collectionView.contentOffset
+        newOffset.y = fullyHiddenY + (visiblePercent * collectionView.bounds.height)
+        collectionView.setContentOffset(newOffset, animated: animated)
+        if (visiblePercent >= 0.5) {
+            selectedIndex = bottomIndex
+        } else if bottomIndex > 0 {
+            selectedIndex = bottomIndex - 1
+        } else {
+            selectedIndex = 0
+        }
+    }
+
     func jumpToItemAtIndex(index: Int) {
         guard index >= 0 else { return }
         guard index < items.count else { return }
-        guard selectedIndex != index else { return }
-        collectionView.scrollToItemAtIndexPath(NSIndexPath(forItem: index, inSection: 0), atScrollPosition: UICollectionViewScrollPosition.Top, animated: true)
-        selectedIndex = index;
+
+        revealElementAtIndex(index, fromBottomWithVisiblePercent: 1.0, animated: true)
     }
 
     func upButtonTapped(button: UIButton) {
-        let currentItemIndex = Int(collectionView.contentOffset.y / bounds.size.height)
+        let currentItemIndex = Int(collectionView.contentOffset.y / collectionView.frame.height)
         let nextItemIndex = currentItemIndex + 1
         if nextItemIndex < items.count {
             jumpToItemAtIndex(nextItemIndex)
@@ -130,7 +146,7 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
     }
 
     func downButtonTapped(button: UIButton) {
-        let currentItemIndex = Int(collectionView.contentOffset.y / bounds.size.height)
+        let currentItemIndex = Int(collectionView.contentOffset.y / collectionView.frame.height)
         let previousItemIndex = currentItemIndex - 1
         if previousItemIndex >= 0 {
             jumpToItemAtIndex(previousItemIndex)
@@ -144,7 +160,6 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
         userDidChangeValueHandler?(selectedIndex);
     }
 
-
     // MARK: UICollectionViewDataSource methods
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -157,78 +172,13 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
         return cell
     }
 
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 1
-    }
-
-    // MARK: UICollectionViewDelegate methods
-
-//    func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-//
-//    }
-//
-//    func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
-//
-//    }
-//
-//    func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
-//
-//    }
-//
-//    func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-//
-//    }
-//
-//    func collectionView(collectionView: UICollectionView, shouldDeselectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-//
-//    }
-
-//    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-//
-//    }
-//
-//    func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-//
-//    }
-
-    func collectionView(collectionView: UICollectionView, willDisplayCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-
-    }
-
-//    func collectionView(collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, atIndexPath indexPath: NSIndexPath) {
-//
-//    }
-//    func collectionView(collectionView: UICollectionView, didEndDisplayingCell cell: UICollectionViewCell, forItemAtIndexPath indexPath: NSIndexPath) {
-//
-//    }
-//
-//    func collectionView(collectionView: UICollectionView, didEndDisplayingSupplementaryView view: UICollectionReusableView, forElementOfKind elementKind: String, atIndexPath indexPath: NSIndexPath) {
-//
-//    }
-//
-//    func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-//
-//    }
-//
-//    func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) -> Bool {
-//
-//    }
-//
-//    func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) {
-//        
-//    }
-//    
-//    func collectionView(collectionView: UICollectionView, transitionLayoutForOldLayout fromLayout: UICollectionViewLayout, newLayout toLayout: UICollectionViewLayout) -> UICollectionViewTransitionLayout! {
-//        
-//    }
-
     // MARK: UICollectionViewDelegateFlowLayout methods
 
     func collectionView(
         collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-            return collectionView.bounds.size
+            return collectionView.frame.size
     }
 
     func collectionView(
@@ -247,60 +197,16 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
 
     // MARK: UIScrollViewDelegate methods
 
-//
-//    func scrollViewDidZoom(scrollView: UIScrollView) { // any zoom scale changes
-//    }
-//
-//    // called on start of dragging (may require some time and or distance to move)
-//    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
-//    }
-//
-//    // called on finger up if the user dragged. velocity is in points/millisecond.
-//    // targetContentOffset may be changed to adjust where the scroll view comes to rest
-//    func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-//    }
-//
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         guard !decelerate else { return } // Only act if the scrollViewDidEndDecelerating method won't be called.
-        let mostVisibleItem = Int(round(collectionView.contentOffset.y / frame.size.height))
+        let mostVisibleItem = Int(round(collectionView.contentOffset.y / collectionView.frame.height))
         jumpToItemAtIndex(mostVisibleItem)
         reportUserInitiatedChange()
     }
 
-//    func scrollViewWillBeginDecelerating(scrollView: UIScrollView) { // called on finger up as we are moving
-//    }
-//
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) { // called when scroll view grinds to a halt
-        let mostVisibleItem = Int(round(collectionView.contentOffset.y / frame.size.height))
+        let mostVisibleItem = Int(round(collectionView.contentOffset.y / collectionView.frame.height))
         jumpToItemAtIndex(mostVisibleItem)
         reportUserInitiatedChange()
     }
-//
-//    // called when setContentOffset/scrollRectVisible:animated: finishes. not called if not animating
-    func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView) {
-//        let mostVisibleItem = Int(round(collectionView.contentOffset.y / frame.size.height))
-//        self.reportUserInitiatedChangeIfNeeded(mostVisibleItem)
-    }
-//
-//    // return a view that will be scaled. if delegate returns nil, nothing happens
-//    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
-//        return nil
-//    }
-//
-//    // called before the scroll view begins zooming its content
-//    func scrollViewWillBeginZooming(scrollView: UIScrollView, withView view: UIView!) {
-//    }
-//
-//    // scale between minimum and maximum. called after any 'bounce' animations
-//    func scrollViewDidEndZooming(scrollView: UIScrollView, withView view: UIView!, atScale scale: CGFloat) {
-//    }
-//
-//    // return a yes if you want to scroll to the top. if not defined, assumes YES
-//    func scrollViewShouldScrollToTop(scrollView: UIScrollView) -> Bool {
-//        return true
-//    }
-//    
-//    // called when scrolling animation finished. may be called immediately if already at top
-//    func scrollViewDidScrollToTop(scrollView: UIScrollView) {
-//    }
 }

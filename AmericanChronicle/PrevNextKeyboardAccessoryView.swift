@@ -25,10 +25,8 @@ class PrevNextKeyboardAccessoryView: UIView {
         init(direction: Direction) {
             self.direction = direction
             super.init(frame: CGRectZero)
-            titleLabel?.font = Font.smallBody
-            titleLabel?.textAlignment = (direction == .Back)
-                ? .Left
-                : .Right
+            titleLabel?.font = Font.mediumBody
+            titleLabel?.textAlignment = (direction == .Back) ? .Left : .Right
             let normalImage = (direction == .Back)
                 ? UIImage.backArrowWithFillColor(Colors.lightBlueBright)
                 : UIImage.forwardArrowWithFillColor(Colors.lightBlueBright)

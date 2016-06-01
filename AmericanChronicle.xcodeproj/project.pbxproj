@@ -130,6 +130,7 @@
 		97DD1C5A1BEFFEF100A67538 /* FakeSearchInteractorDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DD1C591BEFFEF100A67538 /* FakeSearchInteractorDelegate.swift */; };
 		97DD1C5C1BEFFF4800A67538 /* FakeDelayedSearchFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DD1C5B1BEFFF4800A67538 /* FakeDelayedSearchFactory.swift */; };
 		97DD1C5E1BF0002700A67538 /* FakeSearchWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DD1C5D1BF0002700A67538 /* FakeSearchWireframe.swift */; };
+		97DDC3301CF9F62A002C7C2C /* ByDecadeYearPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DDC32F1CF9F62A002C7C2C /* ByDecadeYearPickerCell.swift */; };
 		97DE1C8F1C4BF30600AD12F0 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DE1C8E1C4BF30600AD12F0 /* ErrorView.swift */; };
 		97DE1C911C4BF50400AD12F0 /* EmptyResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DE1C901C4BF50400AD12F0 /* EmptyResultsView.swift */; };
 		97DE1C971C4C0DCC00AD12F0 /* SearchTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DE1C961C4C0DCC00AD12F0 /* SearchTableHeaderView.swift */; };
@@ -315,6 +316,7 @@
 		97DD1C591BEFFEF100A67538 /* FakeSearchInteractorDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeSearchInteractorDelegate.swift; sourceTree = "<group>"; };
 		97DD1C5B1BEFFF4800A67538 /* FakeDelayedSearchFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeDelayedSearchFactory.swift; sourceTree = "<group>"; };
 		97DD1C5D1BF0002700A67538 /* FakeSearchWireframe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeSearchWireframe.swift; sourceTree = "<group>"; };
+		97DDC32F1CF9F62A002C7C2C /* ByDecadeYearPickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByDecadeYearPickerCell.swift; sourceTree = "<group>"; };
 		97DE1C8E1C4BF30600AD12F0 /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		97DE1C901C4BF50400AD12F0 /* EmptyResultsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyResultsView.swift; sourceTree = "<group>"; };
 		97DE1C961C4C0DCC00AD12F0 /* SearchTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableHeaderView.swift; sourceTree = "<group>"; };
@@ -438,9 +440,9 @@
 				97E501BA1C7A27F2005DC18F /* MonthKeyboard.swift */,
 				97E501BC1C7A3D22005DC18F /* DayKeyboard.swift */,
 				970F3D821C957E9300D50106 /* PagedKeyboard.swift */,
-				97E501BE1C7A3ECF005DC18F /* ByDecadeYearPicker.swift */,
+				97DDC32E1CF9F5DC002C7C2C /* ByDecadeYearPicker */,
 				971359301C820D8800A58E35 /* PrevNextKeyboardAccessoryView.swift */,
-				97E501C01C7A5221005DC18F /* VerticalStrip.swift */,
+				97B23B541CFF081200A42D55 /* VerticalStrip */,
 				97D329411C2778E40088FF21 /* DatePickerPresenter.swift */,
 				97D3293F1C2778C10088FF21 /* DatePickerInteractor.swift */,
 			);
@@ -705,6 +707,14 @@
 			name = Page;
 			sourceTree = "<group>";
 		};
+		97B23B541CFF081200A42D55 /* VerticalStrip */ = {
+			isa = PBXGroup;
+			children = (
+				97E501C01C7A5221005DC18F /* VerticalStrip.swift */,
+			);
+			name = VerticalStrip;
+			sourceTree = "<group>";
+		};
 		97BDE1061B76ED6B00A3E57F = {
 			isa = PBXGroup;
 			children = (
@@ -779,6 +789,15 @@
 				974EFBF51C1E26AA00E7D4CB /* USStatePickerViewController.swift */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		97DDC32E1CF9F5DC002C7C2C /* ByDecadeYearPicker */ = {
+			isa = PBXGroup;
+			children = (
+				97E501BE1C7A3ECF005DC18F /* ByDecadeYearPicker.swift */,
+				97DDC32F1CF9F62A002C7C2C /* ByDecadeYearPickerCell.swift */,
+			);
+			name = ByDecadeYearPicker;
 			sourceTree = "<group>";
 		};
 		97E4C2411CF8681500A0E8A3 /* ChroniclingAmericaIntegrationTests */ = {
@@ -1139,6 +1158,7 @@
 				978E45C61C9482EB00316435 /* RestrictedInputField.swift in Sources */,
 				978E9B151BAFA3950001690C /* DelayedSearch.swift in Sources */,
 				97B829331BC08C5700B35538 /* PDFPageView.swift in Sources */,
+				97DDC3301CF9F62A002C7C2C /* ByDecadeYearPickerCell.swift in Sources */,
 				97604E4C1C08F2D000FA2805 /* CALayer+AMC.swift in Sources */,
 				976D6EB01C02543C00EF2B03 /* OCRCoordinates.swift in Sources */,
 				97EAC1DD1B9D2F0C00956EBC /* SearchPresenter.swift in Sources */,
@@ -1554,6 +1574,7 @@
 				97E4C2481CF8681600A0E8A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
