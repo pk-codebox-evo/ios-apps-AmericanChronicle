@@ -35,7 +35,20 @@ class VerticalStripCell: UICollectionViewCell {
 class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
     var userDidChangeValueHandler: ((Int) -> Void)?
     var items: [String] = [] { didSet { collectionView.reloadData() } }
-    private var selectedIndex = 0
+    var selectedIndex: Int {
+        let val = collectionView.contentOffset.y / collectionView.frame.height
+        let rounded = round(val)
+        let roundedInt = Int(rounded)
+        return roundedInt
+    }
+    var itemHeight: CGFloat {
+        return collectionView.frame.height
+    }
+    var yOffset: CGFloat {
+        return collectionView.contentOffset.y
+    }
+
+
 
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -114,26 +127,24 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
 
     // MARK: Internal methods
 
-    func revealElementAtIndex(bottomIndex: Int, fromBottomWithVisiblePercent visiblePercent: CGFloat, animated: Bool = false) {
-
-        let fullyHiddenY = CGFloat(bottomIndex - 1) * collectionView.bounds.height
+    func showItemAtIndex(index: Int, withFractionScrolled fractionScrolled: CGFloat, animated: Bool = false) {
+        let fullyVisibleY = CGFloat(index) * collectionView.frame.height
         var newOffset = collectionView.contentOffset
-        newOffset.y = fullyHiddenY + (visiblePercent * collectionView.bounds.height)
-        collectionView.setContentOffset(newOffset, animated: animated)
-        if (visiblePercent >= 0.5) {
-            selectedIndex = bottomIndex
-        } else if bottomIndex > 0 {
-            selectedIndex = bottomIndex - 1
-        } else {
-            selectedIndex = 0
+        newOffset.y = fullyVisibleY + (fractionScrolled * collectionView.frame.height)
+        if (newOffset.y < 0) {
+            newOffset.y = 0
+        } else if (newOffset.y > (collectionView.contentSize.height - collectionView.frame.height)) {
+            newOffset.y = (collectionView.contentSize.height - collectionView.frame.height)
         }
+
+        collectionView.setContentOffset(newOffset, animated: animated)
     }
 
     func jumpToItemAtIndex(index: Int) {
         guard index >= 0 else { return }
         guard index < items.count else { return }
 
-        revealElementAtIndex(index, fromBottomWithVisiblePercent: 1.0, animated: true)
+        showItemAtIndex(index, withFractionScrolled: 0, animated: true)
     }
 
     func upButtonTapped(button: UIButton) {

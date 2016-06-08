@@ -73,6 +73,7 @@
 		977F10A21BA54C62003BEF11 /* FakeSearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977F10A11BA54C62003BEF11 /* FakeSearchInteractor.swift */; };
 		978236191B7FD0D00056FDF6 /* ChroniclingAmericaEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978236181B7FD0D00056FDF6 /* ChroniclingAmericaEndpoint.swift */; };
 		9782361B1B7FD1F00056FDF6 /* SearchFilters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782361A1B7FD1F00056FDF6 /* SearchFilters.swift */; };
+		9782E8D61D068CFA00040A90 /* VerticalStripTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9782E8D51D068CFA00040A90 /* VerticalStripTests.swift */; };
 		978741471B7832660014D1F0 /* NewspaperPagesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978741461B7832660014D1F0 /* NewspaperPagesDataSource.swift */; };
 		9787414B1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9787414A1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift */; };
 		978D11541B955C39003B98C5 /* UIAppearance+AMC.m in Sources */ = {isa = PBXBuildFile; fileRef = 978D11531B955C39003B98C5 /* UIAppearance+AMC.m */; };
@@ -109,6 +110,7 @@
 		97BDE1371B76F84F00A3E57F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE1361B76F84F00A3E57F /* SearchViewController.swift */; };
 		97BDE1391B7703CA00A3E57F /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE1381B7703CA00A3E57F /* PageViewController.swift */; };
 		97BDE13B1B771B4800A3E57F /* NewspaperPagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE13A1B771B4800A3E57F /* NewspaperPagesViewController.swift */; };
+		97BDEB811D06F33F009E480B /* UICollectionView+AMC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDEB801D06F33F009E480B /* UICollectionView+AMC.swift */; };
 		97BE674A1B7B004B00761033 /* SearchFiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BE67491B7B004B00761033 /* SearchFiltersViewController.swift */; };
 		97C02B011B9E51FA00126611 /* SearchPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C02B001B9E51FA00126611 /* SearchPresenterTests.swift */; };
 		97C02B031B9E5B3E00126611 /* SearchWireframeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97C02B021B9E5B3E00126611 /* SearchWireframeTests.swift */; };
@@ -252,6 +254,7 @@
 		977F10A11BA54C62003BEF11 /* FakeSearchInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeSearchInteractor.swift; sourceTree = "<group>"; };
 		978236181B7FD0D00056FDF6 /* ChroniclingAmericaEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChroniclingAmericaEndpoint.swift; sourceTree = "<group>"; };
 		9782361A1B7FD1F00056FDF6 /* SearchFilters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFilters.swift; sourceTree = "<group>"; };
+		9782E8D51D068CFA00040A90 /* VerticalStripTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalStripTests.swift; sourceTree = "<group>"; };
 		978741461B7832660014D1F0 /* NewspaperPagesDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPagesDataSource.swift; sourceTree = "<group>"; };
 		9787414A1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPagesPreviewDelegate.swift; sourceTree = "<group>"; };
 		978D11521B955C39003B98C5 /* UIAppearance+AMC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAppearance+AMC.h"; sourceTree = "<group>"; };
@@ -295,6 +298,7 @@
 		97BDE1361B76F84F00A3E57F /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		97BDE1381B7703CA00A3E57F /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		97BDE13A1B771B4800A3E57F /* NewspaperPagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewspaperPagesViewController.swift; sourceTree = "<group>"; };
+		97BDEB801D06F33F009E480B /* UICollectionView+AMC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UICollectionView+AMC.swift"; sourceTree = "<group>"; };
 		97BE67491B7B004B00761033 /* SearchFiltersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchFiltersViewController.swift; sourceTree = "<group>"; };
 		97C02B001B9E51FA00126611 /* SearchPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchPresenterTests.swift; sourceTree = "<group>"; };
 		97C02B021B9E5B3E00126611 /* SearchWireframeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchWireframeTests.swift; sourceTree = "<group>"; };
@@ -591,6 +595,7 @@
 				97963F911BCC7ACE00248942 /* NSFileManager+AMC.swift */,
 				97728BB21C30EB0D00ADEFE2 /* NSDate+AMC.swift */,
 				971359321C82281600A58E35 /* UIImage+AMC.swift */,
+				97BDEB801D06F33F009E480B /* UICollectionView+AMC.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -771,6 +776,7 @@
 				9739FE311BA28A04009ACD94 /* AlamofireIntegrationTests.swift */,
 				977F10941BA50B53003BEF11 /* TestURLProtocol.swift */,
 				974D1C261CBECA93005FDBCE /* DayMonthYearTests.swift */,
+				9782E8D51D068CFA00040A90 /* VerticalStripTests.swift */,
 			);
 			path = AmericanChronicleTests;
 			sourceTree = "<group>";
@@ -1136,6 +1142,7 @@
 				976F5DC41C398E2E00AEF6D3 /* TitleValueButton.swift in Sources */,
 				974BA36A1B892D8900D7ACA2 /* Location.swift in Sources */,
 				9787414B1B7835C30014D1F0 /* NewspaperPagesPreviewDelegate.swift in Sources */,
+				97BDEB811D06F33F009E480B /* UICollectionView+AMC.swift in Sources */,
 				97EAC1DF1B9D3E0300956EBC /* RootWireframe.swift in Sources */,
 				97604E4E1C09238C00FA2805 /* ShareWireframe.swift in Sources */,
 				974BA3661B892D3400D7ACA2 /* State.swift in Sources */,
@@ -1214,6 +1221,7 @@
 				97F622031BE9E94000F0DB63 /* DelayedSearchTests.swift in Sources */,
 				97DB4FAD1C02E2990091F33D /* OCRCoordinatesServiceTests.swift in Sources */,
 				97789B961BB10316000B298C /* PageInteractorTests.swift in Sources */,
+				9782E8D61D068CFA00040A90 /* VerticalStripTests.swift in Sources */,
 				97728BB51C30ECD600ADEFE2 /* FakeManager.swift in Sources */,
 				977F109B1BA54A98003BEF11 /* FakeViewController.swift in Sources */,
 				979E207A1BD30E40007C7F5F /* FakePageService.swift in Sources */,

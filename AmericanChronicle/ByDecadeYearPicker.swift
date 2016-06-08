@@ -38,13 +38,9 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
 
     var yearTapHandler: ((String) -> Void)?
 
-    private let decadeStrip: VerticalStrip = {
-        let strip = VerticalStrip()
-        strip.backgroundColor = Colors.lightBackground
-        return strip
-    }()
+    private let decadeStrip: VerticalStrip
 
-    private let yearCollectionView: UICollectionView = {
+    let yearCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .Vertical
         let view = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
@@ -101,14 +97,14 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
         }
     }
 
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        self.commonInit()
+    init(decadeStrip: VerticalStrip = VerticalStrip()) {
+        self.decadeStrip = decadeStrip
+        super.init(frame: CGRectZero)
+        commonInit()
     }
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.commonInit()
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     // MARK: Private methods
@@ -133,17 +129,10 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
         yearCollectionView.reloadData()
     }
 
-    private func currentTopHeaderVisibleY() -> CGFloat {
-        let visibleHeaderPaths = yearCollectionView.indexPathsForVisibleSupplementaryElementsOfKind(UICollectionElementKindSectionHeader)
-        guard let visibleHeaderPath = visibleHeaderPaths.first else { return 0 }
-        let header = yearCollectionView.supplementaryViewForElementKind(UICollectionElementKindSectionHeader, atIndexPath: visibleHeaderPath)
-        return (header.frame.origin.y - yearCollectionView.contentOffset.y)
-    }
-
     private func settle() {
         guard !shouldIgnoreOffsetChangesUntilNextRest else { return }
 
-        guard let visibleHeaderPath = yearCollectionView.indexPathsForVisibleSupplementaryElementsOfKind(UICollectionElementKindSectionHeader).first else { return }
+        guard let visibleHeaderPath = yearCollectionView.lastVisibleHeaderPath else { return }
 
         let header = yearCollectionView.supplementaryViewForElementKind(UICollectionElementKindSectionHeader, atIndexPath: visibleHeaderPath)
         let distanceFromTop = header.frame.origin.y - yearCollectionView.contentOffset.y
@@ -158,7 +147,7 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
 
     private func updateCurrentDecadeTransitionMinY() {
 
-        let topHeaderY = currentTopHeaderVisibleY()
+        let topHeaderY = yearCollectionView.minVisibleHeaderY
 
         let visibleHalfwayY = yearCollectionView.frame.size.height / 2.0
         let typicalDecadeTransitionMinY = visibleHalfwayY - (ByDecadeYearPicker.decadeTransitionScrollArea / 2.0)
@@ -269,19 +258,46 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
 
     func scrollViewDidScroll(scrollView: UIScrollView) {
         guard !shouldIgnoreOffsetChangesUntilNextRest else { return }
-        guard let visibleHeaderPath = yearCollectionView.indexPathsForVisibleSupplementaryElementsOfKind(UICollectionElementKindSectionHeader).first else { return }
-        guard let minTransitionY = currentDecadeTransitionMinY else { return }
 
-        let maxTransitionY = minTransitionY + ByDecadeYearPicker.decadeTransitionScrollArea
-        let topHeaderY = currentTopHeaderVisibleY()
-        if ((topHeaderY >= minTransitionY) && (topHeaderY <= maxTransitionY)) { // Within range of transition
-            let relativeY = topHeaderY - minTransitionY
-            let visiblePercent = 1.0 - (relativeY / 100.0)
-            decadeStrip.revealElementAtIndex(visibleHeaderPath.section, fromBottomWithVisiblePercent: visiblePercent)
-        } else if (topHeaderY < minTransitionY) {
-            decadeStrip.revealElementAtIndex(visibleHeaderPath.section, fromBottomWithVisiblePercent: 1.0)
-        } else if (topHeaderY > maxTransitionY) {
-            decadeStrip.revealElementAtIndex(visibleHeaderPath.section - 1, fromBottomWithVisiblePercent: 1.0)
+        let headerPaths = yearCollectionView.indexPathsForVisibleSupplementaryElementsOfKind(UICollectionElementKindSectionHeader)
+
+        guard let lowerSectionHeaderPath = headerPaths.last else { return }
+
+        // When the header's y origin is here, the lower section should be
+        // shown at 100%.
+        guard let fullLowerSectionYBoundary = currentDecadeTransitionMinY else { return }
+        // When the header's y origin is here, the upper section should be
+        // shown at 100%
+        let fullUpperSectionYBoundary = fullLowerSectionYBoundary + ByDecadeYearPicker.decadeTransitionScrollArea
+
+
+        let lowerSectionHeader = yearCollectionView.supplementaryViewForElementKind(UICollectionElementKindSectionHeader, atIndexPath: lowerSectionHeaderPath)
+
+
+        // Position of the header's y origin to the user
+        let perceivedLowerSectionY = lowerSectionHeader.frame.origin.y - yearCollectionView.contentOffset.y
+
+
+        // The first visible header marks the beginning of the lower section.
+        // VerticalStrip wants the upper section, so subtract 1 (unless 0)
+        let upperSection = max(lowerSectionHeaderPath.section - 1, 0)
+
+
+        if ((perceivedLowerSectionY >= fullLowerSectionYBoundary) && (perceivedLowerSectionY <= fullUpperSectionYBoundary)) {
+//            print("[RP] perceivedLowerSectionY (\(perceivedLowerSectionY)) is within the transition zone")
+
+            // How much would the user need to scroll before upper section should be fully visible?
+            let distanceFromFullUpper = fullUpperSectionYBoundary - perceivedLowerSectionY
+
+            let fractionScrolled = distanceFromFullUpper / ByDecadeYearPicker.decadeTransitionScrollArea
+//            print("[RP] \(upperSection) @ \(fractionScrolled) scrolled")
+            decadeStrip.showItemAtIndex(upperSection, withFractionScrolled: fractionScrolled)
+        } else if (perceivedLowerSectionY < fullLowerSectionYBoundary) { // Show lower section entirely
+//            print("[RP] perceivedLowerSectionY (\(perceivedLowerSectionY)) is up enough that section \(lowerSectionHeaderPath.section) should be shown entirely")
+            decadeStrip.showItemAtIndex(lowerSectionHeaderPath.section, withFractionScrolled: 0)
+        } else if (perceivedLowerSectionY > fullUpperSectionYBoundary) {
+//            print("[RP] perceivedLowerSectionY (\(perceivedLowerSectionY)) is down enough that section \(upperSection) section should be shown entirely")
+            decadeStrip.showItemAtIndex(upperSection, withFractionScrolled: 0)
         }
     }
 }
