@@ -1,37 +1,5 @@
 import UIKit
 
-class VerticalStripCell: UICollectionViewCell {
-    private let label: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .Center
-        label.textColor = Colors.darkGray
-        label.font = Font.largeBody
-        return label
-    }()
-
-    var text: String? {
-        get { return label.text }
-        set { label.text = newValue }
-    }
-
-    func commonInit() {
-        backgroundColor = Colors.lightBackground
-        label.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-        label.frame = bounds
-        addSubview(label)
-    }
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        self.commonInit()
-    }
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.commonInit()
-    }
-}
-
 class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegate {
     var userDidChangeValueHandler: ((Int) -> Void)?
     var items: [String] = [] { didSet { collectionView.reloadData() } }
@@ -48,13 +16,12 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
         return collectionView.contentOffset.y
     }
 
-
-
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .Vertical
         let view = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
         view.registerClass(VerticalStripCell.self, forCellWithReuseIdentifier: "Cell")
+        view.backgroundColor = Colors.blueGray
         view.pagingEnabled = true
         view.showsVerticalScrollIndicator = false;
         return view
@@ -62,21 +29,27 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
 
     private let upButton: UIButton = {
         let button = UIButton()
+        button.layer.cornerRadius = 5.0
+        button.clipsToBounds = true
         button.accessibilityLabel = "Up one page"
-        button.setImage(UIImage.upArrowWithFillColor(Colors.darkGray), forState: .Normal)
-        button.setImage(UIImage.upArrowWithFillColor(Colors.lightBlueBright), forState: .Highlighted)
-        button.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBackground, borderColor: Colors.lightBackground), forState: .Normal)
-        button.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBackground, borderColor: Colors.lightBackground), forState: .Highlighted)
+        button.setImage(UIImage.upArrowWithFillColor(UIColor.whiteColor()), forState: .Normal)
+        button.setImage(UIImage.upArrowWithFillColor(UIColor.whiteColor()), forState: .Highlighted)
+        let normalBgColor = Colors.lightBlueBright.colorWithAlphaComponent(0.5)
+        button.setBackgroundImage(UIImage.imageWithFillColor(normalBgColor, borderColor: normalBgColor), forState: .Normal)
+        button.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBlueBright, borderColor: Colors.lightBlueBright), forState: .Highlighted)
         return button
     }()
 
     private let downButton: UIButton = {
         let button = UIButton()
+        button.layer.cornerRadius = 5.0
+        button.clipsToBounds = true
         button.accessibilityLabel = "Down one page"
-        button.setImage(UIImage.downArrowWithFillColor(Colors.darkGray), forState: .Normal)
-        button.setImage(UIImage.downArrowWithFillColor(Colors.lightBlueBright), forState: .Highlighted)
-        button.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBackground, borderColor: Colors.lightBackground), forState: .Normal)
-        button.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBackground, borderColor: Colors.lightBackground), forState: .Highlighted)
+        button.setImage(UIImage.downArrowWithFillColor(UIColor.whiteColor()), forState: .Normal)
+        button.setImage(UIImage.downArrowWithFillColor(UIColor.whiteColor()), forState: .Highlighted)
+        let normalBgColor = Colors.lightBlueBright.colorWithAlphaComponent(0.5)
+        button.setBackgroundImage(UIImage.imageWithFillColor(normalBgColor, borderColor: normalBgColor), forState: .Normal)
+        button.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBlueBright, borderColor: Colors.lightBlueBright), forState: .Highlighted)
         return button
     }()
 
@@ -84,14 +57,14 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
 
     func commonInit() {
 
-        backgroundColor = Colors.lightBackground
+        backgroundColor = Colors.darkBlue
 
         upButton.addTarget(self, action: #selector(VerticalStrip.upButtonTapped(_:)), forControlEvents: .TouchUpInside)
         addSubview(upButton)
         upButton.snp_makeConstraints { make in
-            make.top.equalTo(0)
-            make.leading.equalTo(0)
-            make.trailing.equalTo(0)
+            make.top.equalTo(8)
+            make.leading.equalTo(4)
+            make.trailing.equalTo(-4)
             make.height.equalTo(44)
         }
 
@@ -108,9 +81,9 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
         addSubview(downButton)
         downButton.snp_makeConstraints { make in
             make.top.equalTo(collectionView.snp_bottom)
-            make.bottom.equalTo(0)
-            make.leading.equalTo(0)
-            make.trailing.equalTo(0)
+            make.bottom.equalTo(-8)
+            make.leading.equalTo(4)
+            make.trailing.equalTo(-4)
             make.height.equalTo(44)
         }
     }
@@ -152,7 +125,7 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
         let nextItemIndex = currentItemIndex + 1
         if nextItemIndex < items.count {
             jumpToItemAtIndex(nextItemIndex)
-            reportUserInitiatedChange()
+            reportUserInitiatedChangeToIndex(nextItemIndex)
         }
     }
 
@@ -161,14 +134,14 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
         let previousItemIndex = currentItemIndex - 1
         if previousItemIndex >= 0 {
             jumpToItemAtIndex(previousItemIndex)
-            reportUserInitiatedChange()
+            reportUserInitiatedChangeToIndex(previousItemIndex)
         }
     }
 
     // MARK: Private methods
 
-    private func reportUserInitiatedChange() {
-        userDidChangeValueHandler?(selectedIndex);
+    private func reportUserInitiatedChangeToIndex(index: Int) {
+        userDidChangeValueHandler?(index);
     }
 
     // MARK: UICollectionViewDataSource methods
@@ -212,12 +185,12 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
         guard !decelerate else { return } // Only act if the scrollViewDidEndDecelerating method won't be called.
         let mostVisibleItem = Int(round(collectionView.contentOffset.y / collectionView.frame.height))
         jumpToItemAtIndex(mostVisibleItem)
-        reportUserInitiatedChange()
+        reportUserInitiatedChangeToIndex(mostVisibleItem)
     }
 
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) { // called when scroll view grinds to a halt
         let mostVisibleItem = Int(round(collectionView.contentOffset.y / collectionView.frame.height))
         jumpToItemAtIndex(mostVisibleItem)
-        reportUserInitiatedChange()
+        reportUserInitiatedChangeToIndex(mostVisibleItem)
     }
 }

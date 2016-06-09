@@ -42,6 +42,9 @@ class ByDecadeYearPickerCell: UICollectionViewCell {
         label.frame = bounds
         addSubview(label)
         updateFormat()
+
+        layer.cornerRadius = 5.0
+        clipsToBounds = true
     }
 
     required init?(coder: NSCoder) {
@@ -62,8 +65,8 @@ class ByDecadeYearPickerCell: UICollectionViewCell {
             self.contentView.backgroundColor = Colors.lightBlueBright
             self.label.textColor = UIColor.whiteColor()
         } else {
-            self.contentView.backgroundColor = Colors.lightBackground
-            self.label.textColor = Colors.darkGray
+            self.contentView.backgroundColor = Colors.lightBlueBright.colorWithAlphaComponent(0.5)
+            self.label.textColor = UIColor.whiteColor()
         }
     }
 }

@@ -44,7 +44,7 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .Vertical
         let view = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
-        view.backgroundColor = Colors.lightBackground
+        view.backgroundColor = Colors.darkBlue
         view.registerClass(ByDecadeYearPickerCell.self, forCellWithReuseIdentifier: ByDecadeYearPickerCell.defaultReuseIdentifier)
         view.registerClass(UICollectionReusableView.self,
                            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
@@ -63,9 +63,10 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
 
     func commonInit() {
 
-        backgroundColor = Colors.lightBackground
+        backgroundColor = Colors.darkBlue
 
         decadeStrip.userDidChangeValueHandler = { [weak self] index in
+            print("[RP] userDidChangeValueHandler(\(index))")
             self?.shouldIgnoreOffsetChangesUntilNextRest = true
             let indexPath = NSIndexPath(forItem: 0, inSection: index)
             self?.yearCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
@@ -73,12 +74,12 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
         addSubview(decadeStrip)
         decadeStrip.snp_makeConstraints { make in
             make.top.equalTo(0)
-            make.leading.equalTo(0)
+            make.leading.equalTo(4)
             make.bottom.equalTo(0)
             make.width.equalTo(self.snp_width).multipliedBy(0.33)
         }
 
-        let verticalBorder = UIImageView(image: UIImage.imageWithFillColor(Colors.lightGray, borderColor: Colors.lightGray))
+        let verticalBorder = UIImageView(image: UIImage.imageWithFillColor(Colors.darkBlue, borderColor: Colors.darkBlue))
         addSubview(verticalBorder)
         verticalBorder.snp_makeConstraints { make in
             make.top.equalTo(0)
@@ -89,12 +90,13 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
 
         yearCollectionView.delegate = self
         yearCollectionView.dataSource = self
+        yearCollectionView.contentInset = UIEdgeInsets(top: 4.0, left: 0, bottom: 8.0, right: 0)
         addSubview(yearCollectionView)
         yearCollectionView.snp_makeConstraints { make in
             make.top.equalTo(0)
             make.bottom.equalTo(0)
-            make.leading.equalTo(verticalBorder.snp_trailing)
-            make.trailing.equalTo(0)
+            make.leading.equalTo(verticalBorder.snp_trailing).offset(4.0)
+            make.trailing.equalTo(-8.0)
         }
     }
 
@@ -199,7 +201,7 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
         let view = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader,
                                                                          withReuseIdentifier: ByDecadeYearPicker.headerReuseIdentifier,
                                                                          forIndexPath: indexPath)
-        view.backgroundColor = Colors.offWhite
+        view.backgroundColor = Colors.darkBlue
         return view;
     }
 
@@ -226,7 +228,7 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
         collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 0
+        return 4
     }
 
     func collectionView(
@@ -239,7 +241,7 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
     func collectionView(collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: 320.0, height: 2.0)
+        return CGSize(width: 320.0, height: 4)
     }
 
     // MARK: UIScrollViewDelegate methods

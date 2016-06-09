@@ -9,14 +9,14 @@
 class PagedKeyboard: UIView {
 
     private let pages: [UIView]
-    private let topBorder = UIImageView(image: UIImage.imageWithFillColor(UIColor.whiteColor(), borderColor: UIColor.whiteColor()))
+    private let topBorder = UIImageView(image: UIImage.imageWithFillColor(Colors.darkBlue, borderColor: Colors.darkBlue))
     private let scrollView = UIScrollView()
     private let contentView = UIView()
 
     init(pages: [UIView]) {
         self.pages = pages
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 240))
-        backgroundColor = Colors.lightBackground
+        backgroundColor = Colors.darkBlue
 
         addSubview(topBorder)
         topBorder.snp_makeConstraints { make in

@@ -28,14 +28,14 @@ class PrevNextKeyboardAccessoryView: UIView {
             titleLabel?.font = Font.mediumBody
             titleLabel?.textAlignment = (direction == .Back) ? .Left : .Right
             let normalImage = (direction == .Back)
-                ? UIImage.backArrowWithFillColor(Colors.lightBlueBright)
-                : UIImage.forwardArrowWithFillColor(Colors.lightBlueBright)
+                ? UIImage.backArrowWithFillColor(UIColor.whiteColor())
+                : UIImage.forwardArrowWithFillColor(UIColor.whiteColor())
             setImage(normalImage, forState: .Normal)
             let highlightedImage = (direction == .Back)
                 ? UIImage.backArrowWithFillColor(Colors.lightBlueDull)
                 : UIImage.forwardArrowWithFillColor(Colors.lightBlueDull)
             setImage(highlightedImage, forState: .Highlighted)
-            setTitleColor(Colors.lightBlueBright, forState: .Normal)
+            setTitleColor(UIColor.whiteColor(), forState: .Normal)
             setTitleColor(Colors.lightBlueDull, forState: .Highlighted)
 
         }
@@ -130,7 +130,7 @@ class PrevNextKeyboardAccessoryView: UIView {
     }
 
     func commonInit() {
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = Colors.darkBlue
 
         previousButton.addTarget(self, action: #selector(PrevNextKeyboardAccessoryView.previousButtonTapped(_:)), forControlEvents: .TouchUpInside)
         addSubview(previousButton)
