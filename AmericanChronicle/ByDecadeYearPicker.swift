@@ -38,13 +38,13 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
 
     var yearTapHandler: ((String) -> Void)?
 
-    private let decadeStrip: VerticalStrip
-
     let yearCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .Vertical
+
         let view = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
         view.backgroundColor = Colors.darkBlue
+        view.bounces = false
         view.registerClass(ByDecadeYearPickerCell.self, forCellWithReuseIdentifier: ByDecadeYearPickerCell.defaultReuseIdentifier)
         view.registerClass(UICollectionReusableView.self,
                            forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
@@ -58,6 +58,8 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
     private var shouldIgnoreOffsetChangesUntilNextRest = false
     private var currentDecadeTransitionMinY: CGFloat?
     private var currentDecadeTransitionMaxY: CGFloat?
+
+    private let decadeStrip: VerticalStrip
 
     // MARK: Init methods
 

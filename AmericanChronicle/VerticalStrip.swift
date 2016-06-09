@@ -19,7 +19,9 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .Vertical
+
         let view = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
+        view.bounces = false
         view.registerClass(VerticalStripCell.self, forCellWithReuseIdentifier: "Cell")
         view.backgroundColor = Colors.blueGray
         view.pagingEnabled = true
