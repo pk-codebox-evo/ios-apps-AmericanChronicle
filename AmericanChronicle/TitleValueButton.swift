@@ -46,9 +46,9 @@ class TitleValueButton: UIControl {
         button.addTarget(self, action: #selector(TitleValueButton.buttonTapped(_:)), forControlEvents: .TouchUpInside)
         button.addObserver(self, forKeyPath: "highlighted", options: NSKeyValueObservingOptions.Initial, context: nil)
 
-        button.setBackgroundImage(UIImage.imageWithFillColor(UIColor.whiteColor(), borderColor: Colors.lightBlueBright), forState: .Normal)
-        button.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBlueBright, borderColor: Colors.lightBlueBright), forState: .Highlighted)
-        button.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBlueBright, borderColor: Colors.lightBlueBright), forState: .Selected)
+        button.setBackgroundImage(UIImage.imageWithFillColor(UIColor.whiteColor()), forState: .Normal)
+        button.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBlueBright), forState: .Highlighted)
+        button.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBlueBright), forState: .Selected)
 
         addSubview(button)
         addSubview(titleLabel)

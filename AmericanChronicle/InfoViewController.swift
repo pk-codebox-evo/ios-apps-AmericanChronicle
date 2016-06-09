@@ -37,8 +37,8 @@ class InfoViewController: UIViewController {
         btn.titleLabel?.font = Font.mediumBody
         btn.setTitleColor(Colors.lightBlueBright, forState: .Normal)
         btn.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
-        btn.setBackgroundImage(UIImage.imageWithFillColor(UIColor.whiteColor(), borderColor: Colors.lightBlueBright), forState: .Normal)
-        btn.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBlueBright, borderColor: Colors.lightBlueBright), forState: .Highlighted)
+        btn.setBackgroundImage(UIImage.imageWithFillColor(UIColor.whiteColor()), forState: .Normal)
+        btn.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBlueBright), forState: .Highlighted)
         btn.setTitle("Visit chroniclingamerica.gov.loc", forState: .Normal)
 
         return btn
@@ -61,8 +61,8 @@ class InfoViewController: UIViewController {
         btn.titleLabel?.font = Font.mediumBody
         btn.setTitleColor(Colors.lightBlueBright, forState: .Normal)
         btn.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
-        btn.setBackgroundImage(UIImage.imageWithFillColor(UIColor.whiteColor(), borderColor: Colors.lightBlueBright), forState: .Normal)
-        btn.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBlueBright, borderColor: Colors.lightBlueBright), forState: .Highlighted)
+        btn.setBackgroundImage(UIImage.imageWithFillColor(UIColor.whiteColor()), forState: .Normal)
+        btn.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBlueBright), forState: .Highlighted)
         btn.setTitle("Send us a message", forState: .Normal)
 
         return btn
