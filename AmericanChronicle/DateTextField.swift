@@ -124,7 +124,7 @@ class DateTextField: UIView, UITextFieldDelegate {
         addSubview(highlightUnderline)
         highlightUnderline.snp_makeConstraints { make in
             make.top.equalTo(monthField.snp_bottom)
-            make.height.equalTo(1.0)
+            make.height.equalTo(2.0)
             make.leading.equalTo(monthField.snp_leading)
             make.width.equalTo(monthField.snp_width)
         }
@@ -159,7 +159,7 @@ class DateTextField: UIView, UITextFieldDelegate {
 
     private func highlightField(field: RestrictedInputField) {
         highlightUnderline.snp_remakeConstraints { make in
-            make.height.equalTo(1)
+            make.height.equalTo(2.0)
             make.top.equalTo(field.snp_bottom)
             make.leading.equalTo(field.snp_leading)
             make.width.equalTo(field.snp_width)

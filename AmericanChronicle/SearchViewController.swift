@@ -346,7 +346,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
         tableView.registerClass(SearchResultsPageCell.self, forCellReuseIdentifier:  String(SearchResultsPageCell))
         tableView.registerClass(TableHeaderView.self, forHeaderFooterViewReuseIdentifier: "Header")
         tableView.sectionHeaderHeight = 24.0
-        tableView.separatorColor = UIColor.whiteColor()
+        tableView.separatorColor = Colors.lightGray
         tableView.rowHeight = 160.0
         view.addSubview(tableView)
         tableView.snp_makeConstraints { make in
