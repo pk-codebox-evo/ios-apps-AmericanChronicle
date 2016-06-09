@@ -57,6 +57,7 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
     private var previousContentOffset: CGPoint = CGPointZero
     private var shouldIgnoreOffsetChangesUntilNextRest = false
     private var currentDecadeTransitionMinY: CGFloat?
+    private var currentDecadeTransitionMaxY: CGFloat?
 
     // MARK: Init methods
 
@@ -149,18 +150,27 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
 
         let topHeaderY = yearCollectionView.minVisibleHeaderY
 
+
         let visibleHalfwayY = yearCollectionView.frame.size.height / 2.0
         let typicalDecadeTransitionMinY = visibleHalfwayY - (ByDecadeYearPicker.decadeTransitionScrollArea / 2.0)
         let typicalDecadeTransitionMaxY = visibleHalfwayY + (ByDecadeYearPicker.decadeTransitionScrollArea / 2.0)
+
+
 
         // if the year collectionView is resting at a point where transition
         // between decades should happen, then treat this as the decade's "full"
         // position until the drag ends.
         if ((topHeaderY >= typicalDecadeTransitionMinY) && (topHeaderY <= typicalDecadeTransitionMaxY)) {
-            currentDecadeTransitionMinY = topHeaderY
+            if (topHeaderY > visibleHalfwayY) {
+                currentDecadeTransitionMinY = (topHeaderY ?? 0) - ByDecadeYearPicker.decadeTransitionScrollArea
+            } else {
+                currentDecadeTransitionMinY = topHeaderY
+            }
         } else {
             currentDecadeTransitionMinY = typicalDecadeTransitionMinY
         }
+
+        print("[RP] currentDecadeTransitionMinY set to \(currentDecadeTransitionMinY)")
     }
 
     // MARK: UICollectionViewDataSource methods
@@ -270,33 +280,23 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
         // shown at 100%
         let fullUpperSectionYBoundary = fullLowerSectionYBoundary + ByDecadeYearPicker.decadeTransitionScrollArea
 
-
         let lowerSectionHeader = yearCollectionView.supplementaryViewForElementKind(UICollectionElementKindSectionHeader, atIndexPath: lowerSectionHeaderPath)
-
 
         // Position of the header's y origin to the user
         let perceivedLowerSectionY = lowerSectionHeader.frame.origin.y - yearCollectionView.contentOffset.y
-
 
         // The first visible header marks the beginning of the lower section.
         // VerticalStrip wants the upper section, so subtract 1 (unless 0)
         let upperSection = max(lowerSectionHeaderPath.section - 1, 0)
 
-
         if ((perceivedLowerSectionY >= fullLowerSectionYBoundary) && (perceivedLowerSectionY <= fullUpperSectionYBoundary)) {
-//            print("[RP] perceivedLowerSectionY (\(perceivedLowerSectionY)) is within the transition zone")
-
             // How much would the user need to scroll before upper section should be fully visible?
             let distanceFromFullUpper = fullUpperSectionYBoundary - perceivedLowerSectionY
-
             let fractionScrolled = distanceFromFullUpper / ByDecadeYearPicker.decadeTransitionScrollArea
-//            print("[RP] \(upperSection) @ \(fractionScrolled) scrolled")
             decadeStrip.showItemAtIndex(upperSection, withFractionScrolled: fractionScrolled)
-        } else if (perceivedLowerSectionY < fullLowerSectionYBoundary) { // Show lower section entirely
-//            print("[RP] perceivedLowerSectionY (\(perceivedLowerSectionY)) is up enough that section \(lowerSectionHeaderPath.section) should be shown entirely")
+        } else if (perceivedLowerSectionY < fullLowerSectionYBoundary) {
             decadeStrip.showItemAtIndex(lowerSectionHeaderPath.section, withFractionScrolled: 0)
         } else if (perceivedLowerSectionY > fullUpperSectionYBoundary) {
-//            print("[RP] perceivedLowerSectionY (\(perceivedLowerSectionY)) is down enough that section \(upperSection) section should be shown entirely")
             decadeStrip.showItemAtIndex(upperSection, withFractionScrolled: 0)
         }
     }
