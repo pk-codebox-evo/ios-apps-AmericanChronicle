@@ -66,16 +66,15 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
         backgroundColor = Colors.darkBlue
 
         decadeStrip.userDidChangeValueHandler = { [weak self] index in
-            print("[RP] userDidChangeValueHandler(\(index))")
             self?.shouldIgnoreOffsetChangesUntilNextRest = true
             let indexPath = NSIndexPath(forItem: 0, inSection: index)
             self?.yearCollectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
         }
         addSubview(decadeStrip)
         decadeStrip.snp_makeConstraints { make in
-            make.top.equalTo(0)
-            make.leading.equalTo(4)
-            make.bottom.equalTo(0)
+            make.top.equalTo(1.0)
+            make.leading.equalTo(1.0)
+            make.bottom.equalTo(1.0)
             make.width.equalTo(self.snp_width).multipliedBy(0.33)
         }
 
@@ -90,13 +89,13 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
 
         yearCollectionView.delegate = self
         yearCollectionView.dataSource = self
-        yearCollectionView.contentInset = UIEdgeInsets(top: 4.0, left: 0, bottom: 8.0, right: 0)
+        yearCollectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         addSubview(yearCollectionView)
         yearCollectionView.snp_makeConstraints { make in
-            make.top.equalTo(0)
-            make.bottom.equalTo(0)
-            make.leading.equalTo(verticalBorder.snp_trailing).offset(4.0)
-            make.trailing.equalTo(-8.0)
+            make.top.equalTo(1.0)
+            make.bottom.equalTo(-1.0)
+            make.leading.equalTo(verticalBorder.snp_trailing).offset(1.0)
+            make.trailing.equalTo(-1.0)
         }
     }
 
@@ -171,8 +170,6 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
         } else {
             currentDecadeTransitionMinY = typicalDecadeTransitionMinY
         }
-
-        print("[RP] currentDecadeTransitionMinY set to \(currentDecadeTransitionMinY)")
     }
 
     // MARK: UICollectionViewDataSource methods
@@ -205,6 +202,8 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
         return view;
     }
 
+    static let lineSpacing: CGFloat = 1.0
+
     // MARK: UICollectionViewDelegate methods
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -228,7 +227,7 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
         collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        return 4
+        return ByDecadeYearPicker.lineSpacing
     }
 
     func collectionView(
@@ -241,7 +240,7 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
     func collectionView(collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: 320.0, height: 4)
+        return CGSize(width: 320.0, height: ByDecadeYearPicker.lineSpacing)
     }
 
     // MARK: UIScrollViewDelegate methods

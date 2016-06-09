@@ -28,11 +28,10 @@ class MonthKeyboard: UIView {
 
     func commonInit() {
 
-        backgroundColor = Colors.lightBackground
+        backgroundColor = Colors.darkBlue
 
         for monthSymbol in DayMonthYear.allMonthSymbols() {
             let button: UIButton = MonthKeyboard.newButtonWithTitle(monthSymbol)
-            button.setTitleColor(Colors.darkGray, forState: .Normal)
             button.addTarget(self, action: #selector(MonthKeyboard.buttonTapped(_:)), forControlEvents: .TouchUpInside)
             allMonthButtons.append(button)
         }
@@ -47,7 +46,7 @@ class MonthKeyboard: UIView {
             prevRow = addRowWithButtons(row, prevRow: prevRow)
         }
         prevRow?.snp_makeConstraints { make in
-            make.bottom.equalTo(self.snp_bottom)
+            make.bottom.equalTo(self.snp_bottom).offset(-1.0)
         }
     }
 
@@ -68,18 +67,24 @@ class MonthKeyboard: UIView {
     }
 
     class func newButtonWithTitle(title: String) -> UIButton{
+
+        let selectedBgColor = Colors.lightBlueBright
+        let normalBgColor = Colors.lightBlueBrightTransparent
+
         let button = UIButton()
         button.setTitle(title, forState: .Normal)
         button.titleLabel?.font = Font.largeBody
 
-        button.setTitleColor(Colors.darkGray, forState: .Normal)
+        button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         button.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
         button.setTitleColor(UIColor.whiteColor(), forState: .Selected)
         if title == "" {
             button.enabled = false
         }
-        button.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBlueBright, borderColor: Colors.lightBlueBright), forState: .Highlighted)
-        button.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBlueBright, borderColor: Colors.lightBlueBright), forState: .Selected)
+
+        button.setBackgroundImage(UIImage.imageWithFillColor(normalBgColor), forState: .Normal)
+        button.setBackgroundImage(UIImage.imageWithFillColor(selectedBgColor), forState: .Highlighted)
+        button.setBackgroundImage(UIImage.imageWithFillColor(selectedBgColor), forState: .Selected)
 
         return button
     }
@@ -102,8 +107,8 @@ class MonthKeyboard: UIView {
                 top = self.snp_top
             }
             button.snp_makeConstraints { make in
-                make.leading.equalTo(leading)
-                make.top.equalTo(top)
+                make.leading.equalTo(leading).offset(1.0)
+                make.top.equalTo(top).offset(1.0)
                 if let width = prevColumn?.snp_width {
                     make.width.equalTo(width)
                 }
@@ -117,7 +122,7 @@ class MonthKeyboard: UIView {
         }
 
         prevColumn?.snp_makeConstraints { make in
-            make.trailing.equalTo(self.snp_trailing)
+            make.trailing.equalTo(self.snp_trailing).offset(-1.0)
         }
         return prevColumn
     }

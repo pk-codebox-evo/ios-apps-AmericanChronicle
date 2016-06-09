@@ -27,6 +27,8 @@ struct Colors {
     static let darkGray = UIColor(hex: 0x3e3f42)
 //    https://dribbble.com/colors/2BA9E1
     static let lightBlueBright = UIColor(hex: 0x2ba9e1)
+//    https://dribbble.com/colors/2BA9E1
+    static let lightBlueBrightTransparent = lightBlueBright.colorWithAlphaComponent(0.2)
 //    https://dribbble.com/colors/A2A2A4
     static let lightGray = UIColor(hex: 0xe4e4e4)
 //    https://dribbble.com/colors/5484A0

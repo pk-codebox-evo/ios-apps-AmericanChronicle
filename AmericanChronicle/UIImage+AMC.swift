@@ -20,6 +20,10 @@ extension UIImage {
         return img.resizableImageWithCapInsets(UIEdgeInsets(top: 1.0, left: 1.0, bottom: 1.0, right: 1.0))
     }
 
+    class func imageWithFillColor(fillColor: UIColor) -> UIImage {
+        return imageWithFillColor(fillColor, borderColor: fillColor)
+    }
+
     class func upArrowWithFillColor(fillColor: UIColor) -> UIImage {
         UIGraphicsBeginImageContext(CGSize(width: 16, height: 4))
         let bezierPath = UIBezierPath()

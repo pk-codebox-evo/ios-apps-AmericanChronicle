@@ -80,7 +80,6 @@ class PrevNextKeyboardAccessoryView: UIView {
                 titleRect.origin.x = imageRect.maxX + Measurements.horizontalSiblingSpacing
                 titleRect.size.width = contentRect.size.width - titleRect.origin.x
             }
-            print("[RP] backTitleRect: \(titleRect)")
             return titleRect
         }
 

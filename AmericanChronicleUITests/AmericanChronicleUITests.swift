@@ -32,13 +32,11 @@ class AmericanChronicleUITests: XCTestCase {
         let cell = app.tables.childrenMatchingType(.Cell).elementBoundByIndex(0)
         expectationForPredicate(NSPredicate(format: "self.exists == true"), evaluatedWithObject: cell, handler: nil)
         waitForExpectationsWithTimeout(10.0, handler: nil)
-        print("[RP] cell.exists: \(cell.exists)")
         XCTAssert(cell.exists);
         let coordinate = cell.coordinateWithNormalizedOffset(CGVector(dx: 0.5, dy: 0.5))
         coordinate.tap()
 
         let cancelLoadButton = app.buttons["Cancel Page Load"]
-        print("[RP] cancelLoadButton.hittable: \(cancelLoadButton.hittable)")
 
         expectationForPredicate(NSPredicate(format: "self.hittable == false"), evaluatedWithObject: cancelLoadButton, handler: nil)
         waitForExpectationsWithTimeout(10.0, handler: nil)

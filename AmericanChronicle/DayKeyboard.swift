@@ -13,14 +13,13 @@ class DayKeyboard: UIView {
 
     var dayTapHandler: ((String) -> Void)?
     var selectedDayMonthYear: DayMonthYear? {
-        didSet {
-            updateCalendar()
-        }
+        didSet { updateCalendar() }
     }
 
-    func commonInit() {
-        backgroundColor = Colors.lightBackground
+    // MARK: Init methods
 
+    func commonInit() {
+        backgroundColor = Colors.darkBlue
     }
 
     required init?(coder: NSCoder) {
@@ -32,6 +31,16 @@ class DayKeyboard: UIView {
         super.init(frame: frame)
         self.commonInit()
     }
+
+    // MARK: Internal methods
+
+    func buttonTapped(button: UIButton) {
+        if let title = button.titleForState(.Normal) {
+            dayTapHandler?(title)
+        }
+    }
+
+    // MARK: Private methods
 
     private func updateCalendar() {
         for subview in subviews {
@@ -58,7 +67,7 @@ class DayKeyboard: UIView {
 
         }
         prevRow?.snp_makeConstraints { make in
-            make.bottom.equalTo(self.snp_bottom)
+            make.bottom.equalTo(self.snp_bottom).offset(-1.0)
         }
 
         for subview in subviews {
@@ -68,27 +77,24 @@ class DayKeyboard: UIView {
         }
     }
 
-
-    func buttonTapped(button: UIButton) {
-        if let title = button.titleForState(.Normal) {
-            dayTapHandler?(title)
-        }
-    }
-
     private func addRowWithTitles(titles: [String], prevRow: UIButton? = nil) -> UIButton? {
+        let selectedBgColor = Colors.lightBlueBright
+        let normalBgColor = Colors.lightBlueBrightTransparent
+
         var prevColumn: UIButton? = nil
         for title in titles {
             let button = UIButton()
-            button.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBlueBright, borderColor: Colors.lightBlueBright), forState: .Selected)
-            button.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBlueBright, borderColor: Colors.lightBlueBright), forState: .Highlighted)
             button.setTitle(title, forState: .Normal)
-            button.setTitleColor(Colors.darkGray, forState: .Normal)
+            button.titleLabel?.font = Font.largeBody
+            button.enabled = (title != "")
+
+            button.setBackgroundImage(UIImage.imageWithFillColor(normalBgColor), forState: .Normal)
+            button.setBackgroundImage(UIImage.imageWithFillColor(UIColor.clearColor()), forState: .Disabled)
+            button.setBackgroundImage(UIImage.imageWithFillColor(selectedBgColor), forState: .Selected)
+            button.setBackgroundImage(UIImage.imageWithFillColor(selectedBgColor), forState: .Highlighted)
+            button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
             button.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
             button.setTitleColor(UIColor.whiteColor(), forState: .Selected)
-            button.titleLabel?.font = Font.largeBody
-            if title == "" {
-                button.enabled = false
-            }
 
             button.addTarget(self, action: #selector(DayKeyboard.buttonTapped(_:)), forControlEvents: .TouchUpInside)
             addSubview(button)
@@ -106,8 +112,8 @@ class DayKeyboard: UIView {
                 top = self.snp_top
             }
             button.snp_makeConstraints { make in
-                make.leading.equalTo(leading)
-                make.top.equalTo(top)
+                make.leading.equalTo(leading).offset(1.0)
+                make.top.equalTo(top).offset(1.0)
                 if let width = prevColumn?.snp_width {
                     make.width.equalTo(width)
                 }
@@ -121,9 +127,8 @@ class DayKeyboard: UIView {
         }
 
         prevColumn?.snp_makeConstraints { make in
-            make.trailing.equalTo(self.snp_trailing)
+            make.trailing.equalTo(self.snp_trailing).offset(-1.0)
         }
         return prevColumn
     }
-
 }
