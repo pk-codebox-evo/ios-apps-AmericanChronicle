@@ -28,7 +28,7 @@ class MonthKeyboard: UIView {
 
     func commonInit() {
 
-        backgroundColor = Colors.darkBlue
+        backgroundColor = UIColor.whiteColor()
 
         for monthSymbol in DayMonthYear.allMonthSymbols() {
             let button: UIButton = MonthKeyboard.newButtonWithTitle(monthSymbol)

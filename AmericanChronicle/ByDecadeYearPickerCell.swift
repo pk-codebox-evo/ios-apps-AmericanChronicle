@@ -66,7 +66,7 @@ class ByDecadeYearPickerCell: UICollectionViewCell {
             self.label.textColor = UIColor.whiteColor()
         } else {
             self.contentView.backgroundColor = Colors.lightBlueBrightTransparent
-            self.label.textColor = UIColor.whiteColor()
+            self.label.textColor = Colors.darkBlue
         }
     }
 }

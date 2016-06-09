@@ -12,7 +12,7 @@ class VerticalStripCell: UICollectionViewCell {
     private let label: UILabel = {
         let label = UILabel()
         label.textAlignment = .Center
-        label.textColor = UIColor.whiteColor()
+        label.textColor = Colors.darkBlue
         label.font = Font.largeBody
         return label
     }()
@@ -23,7 +23,7 @@ class VerticalStripCell: UICollectionViewCell {
     }
 
     func commonInit() {
-        backgroundColor = Colors.darkBlue
+        backgroundColor = UIColor.whiteColor()
         label.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         label.frame = bounds
         addSubview(label)

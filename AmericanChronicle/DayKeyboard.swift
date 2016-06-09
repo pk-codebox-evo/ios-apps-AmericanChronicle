@@ -19,7 +19,7 @@ class DayKeyboard: UIView {
     // MARK: Init methods
 
     func commonInit() {
-        backgroundColor = Colors.darkBlue
+        backgroundColor = UIColor.whiteColor()
     }
 
     required init?(coder: NSCoder) {

@@ -43,7 +43,7 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
         layout.scrollDirection = .Vertical
 
         let view = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
-        view.backgroundColor = Colors.darkBlue
+        view.backgroundColor = UIColor.whiteColor()
         view.bounces = false
         view.registerClass(ByDecadeYearPickerCell.self, forCellWithReuseIdentifier: ByDecadeYearPickerCell.defaultReuseIdentifier)
         view.registerClass(UICollectionReusableView.self,
@@ -65,7 +65,7 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
 
     func commonInit() {
 
-        backgroundColor = Colors.darkBlue
+        backgroundColor = UIColor.whiteColor()
 
         decadeStrip.userDidChangeValueHandler = { [weak self] index in
             self?.shouldIgnoreOffsetChangesUntilNextRest = true
@@ -80,7 +80,7 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
             make.width.equalTo(self.snp_width).multipliedBy(0.33)
         }
 
-        let verticalBorder = UIImageView(image: UIImage.imageWithFillColor(Colors.darkBlue, borderColor: Colors.darkBlue))
+        let verticalBorder = UIImageView(image: UIImage.imageWithFillColor(UIColor.whiteColor()))
         addSubview(verticalBorder)
         verticalBorder.snp_makeConstraints { make in
             make.top.equalTo(0)
@@ -200,7 +200,7 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
         let view = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader,
                                                                          withReuseIdentifier: ByDecadeYearPicker.headerReuseIdentifier,
                                                                          forIndexPath: indexPath)
-        view.backgroundColor = Colors.darkBlue
+        view.backgroundColor = UIColor.whiteColor()
         return view;
     }
 

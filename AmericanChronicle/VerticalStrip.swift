@@ -23,7 +23,7 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
         let view = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
         view.bounces = false
         view.registerClass(VerticalStripCell.self, forCellWithReuseIdentifier: "Cell")
-        view.backgroundColor = Colors.blueGray
+        view.backgroundColor = UIColor.whiteColor()
         view.pagingEnabled = true
         view.showsVerticalScrollIndicator = false;
         return view
@@ -37,17 +37,17 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
         button.setImage(image, forState: .Normal)
         button.setImage(image, forState: .Highlighted)
         button.setBackgroundImage(UIImage.imageWithFillColor(UIColor.clearColor()), forState: .Normal)
-        button.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBlueBright), forState: .Highlighted)
+        button.setBackgroundImage(UIImage.imageWithFillColor(UIColor.clearColor()), forState: .Highlighted)
         return button
     }
 
     private let upButton: UIButton = {
-        let arrowImage = UIImage.upArrowWithFillColor(UIColor.whiteColor())
+        let arrowImage = UIImage.upArrowWithFillColor(Colors.lightBlueBright)
         let button = VerticalStrip.newButtonWithImage(arrowImage, accessibilityLabel: "Up one page")
         return button
     }()
 
-    private static let separatorColor = Colors.lightBlueBright
+    private static let separatorColor = UIColor.whiteColor()
 
     private let upButtonSeparator: UIImageView = {
         let v = UIImageView(image: UIImage.imageWithFillColor(VerticalStrip.separatorColor))
@@ -55,7 +55,7 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
     }()
 
     private let downButton: UIButton = {
-        let arrowImage = UIImage.downArrowWithFillColor(UIColor.whiteColor())
+        let arrowImage = UIImage.downArrowWithFillColor(Colors.lightBlueBright)
         let button = VerticalStrip.newButtonWithImage(arrowImage, accessibilityLabel: "Down one page")
         return button
     }()
@@ -69,7 +69,7 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
 
     func commonInit() {
 
-        backgroundColor = Colors.darkBlue
+        backgroundColor = UIColor.whiteColor()
         let buttonHeight = 44
 
         upButton.addTarget(self, action: #selector(VerticalStrip.upButtonTapped(_:)), forControlEvents: .TouchUpInside)
