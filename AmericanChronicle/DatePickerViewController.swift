@@ -23,14 +23,17 @@ protocol DatePickerViewDelegate {
     var delegate: DatePickerViewDelegate?
 
     var selectedDayMonthYear: DayMonthYear
+    private let foregroundPanel: UIView = {
+        let v = UIView()
+        v.backgroundColor = UIColor.whiteColor()
+        return v
+    }()
     private let earliestPossibleDayMonthYear: DayMonthYear
     private let latestPossibleDayMonthYear: DayMonthYear
     private let dateField = DateTextField()
-    private let hintLabel: UILabel = {
-        let label = UILabel()
-        label.font = Font.mediumBody
-        label.textAlignment = .Center
-        return label
+    private let navigationBar: UINavigationBar = {
+        let bar = UINavigationBar()
+        return bar
     }()
 
     // MARK: UIViewController Init methods
@@ -78,23 +81,38 @@ protocol DatePickerViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
+
+        view.addSubview(foregroundPanel)
+        foregroundPanel.snp_makeConstraints { make in
+            //make.top.equalTo(0)
+            make.bottom.equalTo(0)
+            make.leading.equalTo(0)
+            make.trailing.equalTo(0)
+            make.height.equalTo(360)
+            //make.width.equalTo(0)
+        }
+
+
+        foregroundPanel.addSubview(navigationBar)
+        navigationBar.snp_makeConstraints { make in
+            make.top.equalTo(0)
+            make.leading.equalTo(0)
+            make.trailing.equalTo(0)
+        }
+        navigationBar.pushNavigationItem(navigationItem, animated: false)
+
         dateField.delegate = self
         dateField.selectedDayMonthYear = selectedDayMonthYear
-        view.addSubview(dateField)
+        foregroundPanel.addSubview(dateField)
         dateField.snp_makeConstraints { make in
-            make.top.equalTo(self.snp_topLayoutGuideBottom).offset(Measurements.verticalMargin)
+            make.top.equalTo(navigationBar.snp_bottom).offset(20.0)
             make.leading.equalTo(Measurements.horizontalMargin)
             make.trailing.equalTo(-Measurements.horizontalMargin)
             make.height.equalTo(66)
         }
 
-        view.addSubview(hintLabel)
-        hintLabel.snp_makeConstraints { make in
-            make.leading.equalTo(Measurements.horizontalMargin)
-            make.top.equalTo(dateField.snp_bottom).offset(Measurements.verticalSiblingSpacing)
-            make.trailing.equalTo(-Measurements.horizontalMargin)
-        }
+
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -103,15 +121,12 @@ protocol DatePickerViewDelegate {
     }
 
     func monthFieldDidBecomeActive() {
-        hintLabel.text = "Month label is active"
     }
 
     func dayFieldDidBecomeActive() {
-        hintLabel.text = "Day label is active"
     }
 
     func yearFieldDidBecomeActive() {
-        hintLabel.text = "Year label is active"
     }
 
     func selectedDayMonthYearDidChange(dayMonthYear: DayMonthYear?) {

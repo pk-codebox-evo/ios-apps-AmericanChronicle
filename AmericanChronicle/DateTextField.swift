@@ -77,7 +77,6 @@ class DateTextField: UIView, UITextFieldDelegate {
         monthKeyboard.monthTapHandler = monthValueChanged
 
         monthField.inputView = pagedKeyboard
-        monthField.inputAccessoryView = prevNextBar
         monthField.didBecomeActiveHandler = {
             self.prevNextBar.previousButtonTitle = nil
             self.prevNextBar.nextButtonTitle = "Day"
@@ -93,7 +92,7 @@ class DateTextField: UIView, UITextFieldDelegate {
         dayKeyboard.dayTapHandler = dayValueChanged
 
         dayField.inputView = pagedKeyboard
-        dayField.inputAccessoryView = prevNextBar
+//        dayField.inputAccessoryView = prevNextBar
         dayField.didBecomeActiveHandler = {
             self.prevNextBar.previousButtonTitle = "Month"
             self.prevNextBar.nextButtonTitle = "Year"
@@ -112,7 +111,7 @@ class DateTextField: UIView, UITextFieldDelegate {
         yearPicker.yearTapHandler = yearValueChanged
 
         yearField.inputView = pagedKeyboard
-        yearField.inputAccessoryView = prevNextBar
+//        yearField.inputAccessoryView = prevNextBar
         yearField.didBecomeActiveHandler = {
             self.prevNextBar.previousButtonTitle = "Day"
             self.prevNextBar.nextButtonTitle = nil

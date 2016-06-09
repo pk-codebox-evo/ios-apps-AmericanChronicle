@@ -56,10 +56,9 @@ class DatePickerWireframe: NSObject, DatePickerWireframeInterface {
     func beginFromViewController(parentModuleViewController: UIViewController?, dayMonthYear: DayMonthYear?, title: String?) {
         if let vc = view as? DatePickerViewController {
             vc.title = title
-            let nvc = UINavigationController(rootViewController: vc)
-            nvc.modalPresentationStyle = .Custom
-            nvc.transitioningDelegate = self
-            parentModuleViewController?.presentViewController(nvc, animated: true, completion: nil)
+            vc.modalPresentationStyle = .Custom
+            vc.transitioningDelegate = self
+            parentModuleViewController?.presentViewController(vc, animated: true, completion: nil)
             presenter.beginWithSelectedDayMonthYear(dayMonthYear)
         }
     }
@@ -107,18 +106,14 @@ class ShowDatePickerTransitionController: NSObject, UIViewControllerAnimatedTran
 
     func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
 
-        let fromNVC = transitionContext.viewControllerForKey(UITransitionContextFromViewControllerKey) as? UINavigationController
-
-        if let _ = fromNVC?.topViewController as? SearchViewController  {
-            if let toView = transitionContext.viewForKey(UITransitionContextToViewKey) {
-                toView.alpha = 0
-                transitionContext.containerView()!.addSubview(toView)
-                UIView.animateWithDuration(duration, animations: {
-                    toView.alpha = 1.0
-                    }, completion: { _ in
-                        transitionContext.completeTransition(true)
-                })
-            }
+        if let toView = transitionContext.viewForKey(UITransitionContextToViewKey) {
+            toView.alpha = 0
+            transitionContext.containerView()!.addSubview(toView)
+            UIView.animateWithDuration(duration, animations: {
+                toView.alpha = 1.0
+                }, completion: { _ in
+                    transitionContext.completeTransition(true)
+            })
         }
     }
 

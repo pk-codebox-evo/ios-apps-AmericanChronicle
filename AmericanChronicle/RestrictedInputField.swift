@@ -18,11 +18,6 @@ class RestrictedInputField: UIView, UITextFieldDelegate {
         set { textField.inputView = newValue }
     }
 
-    override var inputAccessoryView: UIView? {
-        get { return textField.inputAccessoryView }
-        set { textField.inputAccessoryView = newValue }
-    }
-
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = Font.smallBody
