@@ -45,8 +45,13 @@ class DateTextField: UIView, UITextFieldDelegate {
     private let dayField = RestrictedInputField(title: "Day")
     private let yearField = RestrictedInputField(title: "Year")
 
+    private let normalUnderline: UIImageView = {
+        let view = UIImageView(image: UIImage.imageWithFillColor(Colors.lightBlueBrightTransparent))
+        return view
+    }()
+
     private let highlightUnderline: UIImageView = {
-        let view = UIImageView(image: UIImage.imageWithFillColor(Colors.lightBlueBright, borderColor: Colors.lightBlueBright))
+        let view = UIImageView(image: UIImage.imageWithFillColor(Colors.lightBlueBright))
         return view
     }()
 
@@ -119,6 +124,16 @@ class DateTextField: UIView, UITextFieldDelegate {
             make.top.equalTo(0)
             make.width.equalTo(self.dayField.snp_width)
             make.trailing.equalTo(0)
+        }
+
+        addSubview(normalUnderline)
+        normalUnderline.snp_makeConstraints { make in
+            make.top.equalTo(monthField.snp_bottom)
+            //make.bottom.equalTo(0)
+            make.leading.equalTo(monthField.snp_leading)
+            make.trailing.equalTo(yearField.snp_trailing)
+            make.height.equalTo(2.0)
+            //make.width.equalTo(0)
         }
 
         addSubview(highlightUnderline)
