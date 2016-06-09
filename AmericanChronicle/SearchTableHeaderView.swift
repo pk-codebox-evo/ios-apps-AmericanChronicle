@@ -79,6 +79,10 @@ class SearchTableHeaderView: UIView {
     private let earliestDateButton = TitleValueButton()
     private let latestDateButton = TitleValueButton()
     private let USStatesButton = TitleValueButton()
+    private let bottomBorder: UIImageView = {
+        let v = UIImageView(image: UIImage.imageWithFillColor(Colors.lightGray))
+        return v
+    }()
 
     func commonInit() {
 
@@ -97,7 +101,7 @@ class SearchTableHeaderView: UIView {
         earliestDateButton.addTarget(self, action: #selector(SearchTableHeaderView.earliestDateButtonTapped(_:)), forControlEvents: .TouchUpInside)
         addSubview(earliestDateButton)
         earliestDateButton.snp_makeConstraints { make in
-            make.top.equalTo(searchField.snp_bottom).offset(Measurements.verticalMargin)
+            make.top.equalTo(searchField.snp_bottom).offset(8.0)
             make.leading.equalTo(Measurements.horizontalMargin)
         }
 
@@ -106,7 +110,7 @@ class SearchTableHeaderView: UIView {
         latestDateButton.addTarget(self, action: #selector(SearchTableHeaderView.latestDateButtonTapped(_:)), forControlEvents: .TouchUpInside)
         addSubview(latestDateButton)
         latestDateButton.snp_makeConstraints { make in
-            make.top.equalTo(searchField.snp_bottom).offset(Measurements.verticalMargin)
+            make.top.equalTo(searchField.snp_bottom).offset(8.0)
             make.leading.equalTo(earliestDateButton.snp_trailing).offset(Measurements.horizontalSiblingSpacing)
             make.trailing.equalTo(-Measurements.horizontalMargin)
             make.width.equalTo(earliestDateButton.snp_width)
@@ -118,9 +122,19 @@ class SearchTableHeaderView: UIView {
         addSubview(USStatesButton)
         USStatesButton.snp_makeConstraints { make in
             make.top.equalTo(earliestDateButton.snp_bottom).offset(Measurements.verticalSiblingSpacing)
-            make.bottom.equalTo(-Measurements.verticalMargin)
+            make.bottom.equalTo(-10.0)
             make.leading.equalTo(Measurements.horizontalMargin)
             make.trailing.equalTo(-Measurements.horizontalMargin)
+        }
+
+        addSubview(bottomBorder)
+        bottomBorder.snp_makeConstraints { make in
+            //make.top.equalTo(0)
+            make.bottom.equalTo(0)
+            make.leading.equalTo(0)
+            make.trailing.equalTo(0)
+            make.height.equalTo(1)
+            //make.width.equalTo(0)
         }
     }
 

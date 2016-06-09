@@ -80,7 +80,7 @@ class SearchResultsPageCell: UITableViewCell {
 
     func commonInit() {
 
-        contentView.backgroundColor = Colors.lightBackground
+        contentView.backgroundColor = UIColor.whiteColor()
 
         addSubview(thumbnailImageView)
         thumbnailImageView.snp_makeConstraints { make in

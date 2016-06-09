@@ -43,6 +43,12 @@ class TitleValueButton: UIControl {
     }
 
     func commonInit() {
+
+        layer.shadowColor = Colors.darkGray.CGColor
+        layer.shadowOffset = CGSize(width: 0, height: 0)
+        layer.shadowRadius = 1.0
+        layer.shadowOpacity = 0.5
+
         button.addTarget(self, action: #selector(TitleValueButton.buttonTapped(_:)), forControlEvents: .TouchUpInside)
         button.addObserver(self, forKeyPath: "highlighted", options: NSKeyValueObservingOptions.Initial, context: nil)
 
@@ -85,6 +91,18 @@ class TitleValueButton: UIControl {
         didSet {
             titleLabel.highlighted = highlighted
             valueLabel.highlighted = highlighted
+
+            if (highlighted) {
+                layer.shadowColor = Colors.darkGray.CGColor
+                layer.shadowOffset = CGSize(width: 0, height: 0)
+                layer.shadowRadius = 0.3
+                layer.shadowOpacity = 0.5
+            } else {
+                layer.shadowColor = Colors.darkGray.CGColor
+                layer.shadowOffset = CGSize(width: 0, height: 0)
+                layer.shadowRadius = 1.0
+                layer.shadowOpacity = 0.5
+            }
         }
     }
 

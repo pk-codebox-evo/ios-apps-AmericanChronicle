@@ -255,9 +255,16 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
     // MARK: UITableViewDelegate & -DataSource methods
 
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if (rows.count == 0) { return nil }
+
         let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("Header") as? TableHeaderView
         headerView?.text = sectionTitle
+        print("[RP] headerView: \(headerView)")
         return headerView
+    }
+
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return (rows.count > 0) ? 1 : 0
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -333,7 +340,7 @@ class SearchViewController: UIViewController, SearchViewInterface, UITableViewDe
     // MARK: Private methods
 
     private func loadTableView() {
-        tableView.backgroundColor = Colors.lightBackground
+        tableView.backgroundColor = UIColor.whiteColor()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.registerClass(SearchResultsPageCell.self, forCellReuseIdentifier:  String(SearchResultsPageCell))

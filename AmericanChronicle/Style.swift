@@ -46,7 +46,7 @@ struct Colors {
 struct Measurements {
     static let verticalMargin: CGFloat = 14.0
     static let horizontalMargin: CGFloat = 12.0
-    static let buttonHeight: CGFloat = 48.0
+    static let buttonHeight: CGFloat = 50.0
 
     static let verticalSiblingSpacing: CGFloat = 8.0
     static let horizontalSiblingSpacing: CGFloat = 8.0
@@ -68,11 +68,6 @@ extension UIButton {
     class func applyAppearance() {
         appearance().setTitleColor(Colors.darkGray, forState: .Normal)
         appearance().setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
-    }
-}
-
-extension UILabel {
-    class func applyAppearance() {
     }
 }
 
@@ -116,7 +111,6 @@ class Appearance {
         UINavigationBar.applyAppearance()
         UIBarButtonItem.applyAppearance()
         UIButton.applyAppearance()
-        UILabel.applyAppearance()
         UIActivityIndicatorView.applyAppearance()
     }
 }
