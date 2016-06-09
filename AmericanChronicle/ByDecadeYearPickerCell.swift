@@ -43,7 +43,7 @@ class ByDecadeYearPickerCell: UICollectionViewCell {
         addSubview(label)
         updateFormat()
 
-        layer.cornerRadius = 1.0
+        layer.cornerRadius = 0
         clipsToBounds = true
     }
 
