@@ -36,7 +36,7 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
         button.clipsToBounds = true
         button.setImage(image, forState: .Normal)
         button.setImage(image, forState: .Highlighted)
-        button.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBlueBrightTransparent), forState: .Normal)
+        button.setBackgroundImage(UIImage.imageWithFillColor(UIColor.clearColor()), forState: .Normal)
         button.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBlueBright), forState: .Highlighted)
         return button
     }
@@ -47,10 +47,22 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
         return button
     }()
 
+    private static let separatorColor = Colors.lightBlueBright
+
+    private let upButtonSeparator: UIImageView = {
+        let v = UIImageView(image: UIImage.imageWithFillColor(VerticalStrip.separatorColor))
+        return v
+    }()
+
     private let downButton: UIButton = {
         let arrowImage = UIImage.downArrowWithFillColor(UIColor.whiteColor())
         let button = VerticalStrip.newButtonWithImage(arrowImage, accessibilityLabel: "Down one page")
         return button
+    }()
+
+    private let downButtonSeparator: UIImageView = {
+        let v = UIImageView(image: UIImage.imageWithFillColor(VerticalStrip.separatorColor))
+        return v
     }()
 
     // MARK: Init methods
@@ -67,6 +79,14 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
             make.leading.equalTo(0)
             make.trailing.equalTo(0)
             make.height.equalTo(buttonHeight)
+        }
+
+        insertSubview(upButtonSeparator, belowSubview: upButton)
+        upButtonSeparator.snp_makeConstraints { make in
+            make.bottom.equalTo(upButton.snp_bottom)
+            make.leading.equalTo(12.0)
+            make.trailing.equalTo(-12.0)
+            make.height.equalTo(1.0)
         }
 
         collectionView.delegate = self
@@ -86,6 +106,14 @@ class VerticalStrip: UIView, UICollectionViewDataSource, UICollectionViewDelegat
             make.leading.equalTo(0)
             make.trailing.equalTo(0)
             make.height.equalTo(buttonHeight)
+        }
+
+        insertSubview(downButtonSeparator, belowSubview: downButton)
+        downButtonSeparator.snp_makeConstraints { make in
+            make.top.equalTo(downButton.snp_top)
+            make.leading.equalTo(upButtonSeparator.snp_leading)
+            make.trailing.equalTo(upButtonSeparator.snp_trailing)
+            make.height.equalTo(upButtonSeparator.snp_height)
         }
     }
 
