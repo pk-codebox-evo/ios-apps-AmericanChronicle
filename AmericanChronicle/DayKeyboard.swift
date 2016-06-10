@@ -19,7 +19,7 @@ class DayKeyboard: UIView {
     // MARK: Init methods
 
     func commonInit() {
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = Colors.lightBlueBrightTransparent
     }
 
     required init?(coder: NSCoder) {
@@ -79,7 +79,7 @@ class DayKeyboard: UIView {
 
     private func addRowWithTitles(titles: [String], prevRow: UIButton? = nil) -> UIButton? {
         let selectedBgColor = Colors.lightBlueBright
-        let normalBgColor = Colors.lightBlueBrightTransparent
+        let highlightedBgColor = Colors.lightBlueBrightTransparent
 
         var prevColumn: UIButton? = nil
         for title in titles {
@@ -88,11 +88,12 @@ class DayKeyboard: UIView {
             button.titleLabel?.font = Font.largeBody
             button.enabled = (title != "")
 
-            button.setBackgroundImage(UIImage.imageWithFillColor(normalBgColor), forState: .Normal)
-            button.setBackgroundImage(UIImage.imageWithFillColor(UIColor.clearColor()), forState: .Disabled)
+            button.setBackgroundImage(UIImage.imageWithFillColor(UIColor.whiteColor()), forState: .Normal)
+            button.setBackgroundImage(nil, forState: .Disabled)
             button.setBackgroundImage(UIImage.imageWithFillColor(selectedBgColor), forState: .Selected)
-            button.setBackgroundImage(UIImage.imageWithFillColor(selectedBgColor), forState: .Highlighted)
-            button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+            button.setBackgroundImage(UIImage.imageWithFillColor(highlightedBgColor), forState: .Highlighted)
+
+            button.setTitleColor(Colors.blueGray, forState: .Normal)
             button.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
             button.setTitleColor(UIColor.whiteColor(), forState: .Selected)
 

@@ -28,7 +28,7 @@ class MonthKeyboard: UIView {
 
     func commonInit() {
 
-        backgroundColor = UIColor.whiteColor()
+        backgroundColor = Colors.lightBlueBrightTransparent
 
         for monthSymbol in DayMonthYear.allMonthSymbols() {
             let button: UIButton = MonthKeyboard.newButtonWithTitle(monthSymbol)
@@ -69,13 +69,13 @@ class MonthKeyboard: UIView {
     class func newButtonWithTitle(title: String) -> UIButton{
 
         let selectedBgColor = Colors.lightBlueBright
-        let normalBgColor = Colors.lightBlueBrightTransparent
+        let normalBgColor = UIColor.whiteColor()
 
         let button = UIButton()
         button.setTitle(title, forState: .Normal)
         button.titleLabel?.font = Font.largeBody
 
-        button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        button.setTitleColor(Colors.darkBlue, forState: .Normal)
         button.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
         button.setTitleColor(UIColor.whiteColor(), forState: .Selected)
         if title == "" {

@@ -59,13 +59,13 @@ class ByDecadeYearPickerCell: UICollectionViewCell {
 
     private func updateFormat() {
         if self.highlighted {
-            self.contentView.backgroundColor = Colors.lightBlueBright
+            self.contentView.backgroundColor = Colors.lightBlueBrightTransparent
             self.label.textColor = UIColor.whiteColor()
         } else if self.selected {
             self.contentView.backgroundColor = Colors.lightBlueBright
             self.label.textColor = UIColor.whiteColor()
         } else {
-            self.contentView.backgroundColor = Colors.lightBlueBrightTransparent
+            self.contentView.backgroundColor = UIColor.whiteColor()
             self.label.textColor = Colors.darkBlue
         }
     }
