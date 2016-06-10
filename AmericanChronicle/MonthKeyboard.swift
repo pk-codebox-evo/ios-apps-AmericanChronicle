@@ -28,7 +28,7 @@ class MonthKeyboard: UIView {
 
     func commonInit() {
 
-        backgroundColor = Colors.lightBlueBrightTransparent
+        backgroundColor = UIColor.whiteColor()// Colors.lightBackground
 
         for monthSymbol in DayMonthYear.allMonthSymbols() {
             let button: UIButton = MonthKeyboard.newButtonWithTitle(monthSymbol)
@@ -46,7 +46,7 @@ class MonthKeyboard: UIView {
             prevRow = addRowWithButtons(row, prevRow: prevRow)
         }
         prevRow?.snp_makeConstraints { make in
-            make.bottom.equalTo(self.snp_bottom).offset(-1.0)
+            make.bottom.equalTo(self.snp_bottom).offset(-4.0)
         }
     }
 
@@ -74,6 +74,10 @@ class MonthKeyboard: UIView {
         let button = UIButton()
         button.setTitle(title, forState: .Normal)
         button.titleLabel?.font = Font.largeBody
+        button.layer.shadowColor = Colors.darkGray.CGColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 0)
+        button.layer.shadowRadius = 0.5
+        button.layer.shadowOpacity = 0.4
 
         button.setTitleColor(Colors.darkBlue, forState: .Normal)
         button.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
@@ -82,9 +86,9 @@ class MonthKeyboard: UIView {
             button.enabled = false
         }
 
-        button.setBackgroundImage(UIImage.imageWithFillColor(normalBgColor), forState: .Normal)
-        button.setBackgroundImage(UIImage.imageWithFillColor(selectedBgColor), forState: .Highlighted)
-        button.setBackgroundImage(UIImage.imageWithFillColor(selectedBgColor), forState: .Selected)
+        button.setBackgroundImage(UIImage.imageWithFillColor(normalBgColor, cornerRadius: 1.0), forState: .Normal)
+        button.setBackgroundImage(UIImage.imageWithFillColor(selectedBgColor, cornerRadius: 1.0), forState: .Highlighted)
+        button.setBackgroundImage(UIImage.imageWithFillColor(selectedBgColor, cornerRadius: 1.0), forState: .Selected)
 
         return button
     }
@@ -107,8 +111,8 @@ class MonthKeyboard: UIView {
                 top = self.snp_top
             }
             button.snp_makeConstraints { make in
-                make.leading.equalTo(leading).offset(1.0)
-                make.top.equalTo(top).offset(1.0)
+                make.leading.equalTo(leading).offset(4.0)
+                make.top.equalTo(top).offset(4.0)
                 if let width = prevColumn?.snp_width {
                     make.width.equalTo(width)
                 }
@@ -122,7 +126,7 @@ class MonthKeyboard: UIView {
         }
 
         prevColumn?.snp_makeConstraints { make in
-            make.trailing.equalTo(self.snp_trailing).offset(-1.0)
+            make.trailing.equalTo(self.snp_trailing).offset(-4.0)
         }
         return prevColumn
     }

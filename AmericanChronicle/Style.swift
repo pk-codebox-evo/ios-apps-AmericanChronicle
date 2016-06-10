@@ -48,8 +48,8 @@ struct Measurements {
     static let horizontalMargin: CGFloat = 12.0
     static let buttonHeight: CGFloat = 50.0
 
-    static let verticalSiblingSpacing: CGFloat = 8.0
-    static let horizontalSiblingSpacing: CGFloat = 8.0
+    static let verticalSiblingSpacing: CGFloat = 6.0
+    static let horizontalSiblingSpacing: CGFloat = 4.0
 
     static let leftBarButtonItemTitleAdjustment = UIOffset(horizontal: 4.0, vertical: 0)
     static let rightBarButtonItemTitleAdjustment =  UIOffset(horizontal: -4.0, vertical: 0)

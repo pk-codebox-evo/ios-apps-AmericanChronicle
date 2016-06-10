@@ -101,6 +101,7 @@
 		979E20751BD2F669007C7F5F /* SearchModuleDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E20741BD2F669007C7F5F /* SearchModuleDependencies.swift */; };
 		979E20771BD3058A007C7F5F /* PageModuleDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E20761BD3058A007C7F5F /* PageModuleDependencies.swift */; };
 		979E207A1BD30E40007C7F5F /* FakePageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 979E20791BD30E40007C7F5F /* FakePageService.swift */; };
+		97A0DE4F1D0AC509007E32AA /* ButtonPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A0DE4E1D0AC509007E32AA /* ButtonPanel.swift */; };
 		97A7D9AE1B866E7E00DDBF59 /* SearchFiltersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97A7D9AD1B866E7E00DDBF59 /* SearchFiltersViewController.xib */; };
 		97B829331BC08C5700B35538 /* PDFPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B829321BC08C5700B35538 /* PDFPageView.swift */; };
 		97BDE1151B76ED6B00A3E57F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BDE1141B76ED6B00A3E57F /* AppDelegate.swift */; };
@@ -285,6 +286,7 @@
 		979E20741BD2F669007C7F5F /* SearchModuleDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchModuleDependencies.swift; sourceTree = "<group>"; };
 		979E20761BD3058A007C7F5F /* PageModuleDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageModuleDependencies.swift; sourceTree = "<group>"; };
 		979E20791BD30E40007C7F5F /* FakePageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakePageService.swift; sourceTree = "<group>"; };
+		97A0DE4E1D0AC509007E32AA /* ButtonPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonPanel.swift; sourceTree = "<group>"; };
 		97A7D9AD1B866E7E00DDBF59 /* SearchFiltersViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchFiltersViewController.xib; sourceTree = "<group>"; };
 		97B829321BC08C5700B35538 /* PDFPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFPageView.swift; sourceTree = "<group>"; };
 		97BDE10F1B76ED6B00A3E57F /* AmericanChronicle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmericanChronicle.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -696,6 +698,7 @@
 				97DE1C8E1C4BF30600AD12F0 /* ErrorView.swift */,
 				97DE1C901C4BF50400AD12F0 /* EmptyResultsView.swift */,
 				97647C2D1C9D778B002D2B93 /* Reporter.swift */,
+				97A0DE4E1D0AC509007E32AA /* ButtonPanel.swift */,
 			);
 			name = "App-wide";
 			sourceTree = "<group>";
@@ -1157,6 +1160,7 @@
 				97BE674A1B7B004B00761033 /* SearchFiltersViewController.swift in Sources */,
 				978E9B1A1BAFA6360001690C /* SearchResults.swift in Sources */,
 				9736A80B1D092975001E2F4C /* VerticalStripCell.swift in Sources */,
+				97A0DE4F1D0AC509007E32AA /* ButtonPanel.swift in Sources */,
 				97728BB31C30EB0D00ADEFE2 /* NSDate+AMC.swift in Sources */,
 				9764976D1B7DA0270035A388 /* Month.swift in Sources */,
 				97415AE41B785D8400326239 /* CustomSegueNavigationController.swift in Sources */,

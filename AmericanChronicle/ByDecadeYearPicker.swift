@@ -65,7 +65,7 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
 
     func commonInit() {
 
-        backgroundColor = Colors.lightBlueBrightTransparent
+        backgroundColor = UIColor.whiteColor()// Colors.lightBlueBrightTransparent
 
         decadeStrip.userDidChangeValueHandler = { [weak self] index in
             self?.shouldIgnoreOffsetChangesUntilNextRest = true

@@ -20,6 +20,8 @@ class ByDecadeYearPickerCell: UICollectionViewCell {
         return label
     }()
 
+    private let insetBackgroundView = UIImageView(image: UIImage.imageWithFillColor(UIColor.whiteColor(), cornerRadius: 1.0))
+
     var text: String? {
         get { return label.text }
         set { label.text = newValue }
@@ -38,13 +40,29 @@ class ByDecadeYearPickerCell: UICollectionViewCell {
     }
 
     func commonInit() {
+
+
+        contentView.addSubview(insetBackgroundView)
+        insetBackgroundView.snp_makeConstraints { make in
+            make.edges.equalTo(contentView.snp_edges).inset(1.0)
+            //make.top.equalTo(0)
+            //make.bottom.equalTo(0)
+            //make.leading.equalTo(0)
+            //make.trailing.equalTo(0)
+            //make.height.equalTo(0)
+            //make.width.equalTo(0)
+        }
+
+        insetBackgroundView.layer.shadowColor = Colors.darkGray.CGColor
+        insetBackgroundView.layer.shadowOpacity = 0.3
+        insetBackgroundView.layer.shadowRadius = 0.5
+        insetBackgroundView.layer.shadowOffset = CGSizeZero
+
         label.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         label.frame = bounds
-        addSubview(label)
-        updateFormat()
+        contentView.addSubview(label)
 
-        layer.cornerRadius = 0
-        clipsToBounds = true
+        updateFormat()
     }
 
     required init?(coder: NSCoder) {
@@ -59,13 +77,16 @@ class ByDecadeYearPickerCell: UICollectionViewCell {
 
     private func updateFormat() {
         if self.highlighted {
-            self.contentView.backgroundColor = Colors.lightBlueBrightTransparent
+//            self.contentView.backgroundColor = Colors.lightBlueBrightTransparent
+            insetBackgroundView.image = UIImage.imageWithFillColor(Colors.lightBlueBright, cornerRadius: 1.0)
             self.label.textColor = UIColor.whiteColor()
         } else if self.selected {
-            self.contentView.backgroundColor = Colors.lightBlueBright
+            insetBackgroundView.image = UIImage.imageWithFillColor(Colors.lightBlueBright, cornerRadius: 1.0)
+//            self.contentView.backgroundColor = Colors.lightBlueBright
             self.label.textColor = UIColor.whiteColor()
         } else {
-            self.contentView.backgroundColor = UIColor.whiteColor()
+            insetBackgroundView.image = UIImage.imageWithFillColor(UIColor.whiteColor(), cornerRadius: 1.0)
+//            self.contentView.backgroundColor = UIColor.whiteColor()
             self.label.textColor = Colors.darkBlue
         }
     }

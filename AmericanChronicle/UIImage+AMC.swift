@@ -7,22 +7,47 @@
 //
 
 extension UIImage {
-    class func imageWithFillColor(fillColor: UIColor, borderColor: UIColor) -> UIImage {
+
+    class func imageWithFillColor(fillColor: UIColor,
+                                  borderColor: UIColor? = nil,
+                                  cornerRadius: CGFloat = 0) -> UIImage {
         let pxHeight = 1.0/UIScreen.mainScreen().nativeScale
-        let rect = CGRect(x: 0, y: 0, width: 3.0, height: 3.0)
+        let buttonDimension = ((cornerRadius * 2) + 1)
+        let rect = CGRect(x: 0, y: 0, width: buttonDimension, height: buttonDimension)
         UIGraphicsBeginImageContext(rect.size)
+
+        let borderColor = borderColor ?? fillColor
+
         borderColor.set()
-        CGContextFillRect(UIGraphicsGetCurrentContext(), rect)
+        let borderPath = UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius)
+        borderPath.fill()
+
         fillColor.set()
-        CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectInset(rect, pxHeight, pxHeight))
+        let fillPath = UIBezierPath(roundedRect: CGRectInset(rect, pxHeight, pxHeight),
+                                    cornerRadius: cornerRadius)
+        fillPath.fill()
+
         let img = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return img.resizableImageWithCapInsets(UIEdgeInsets(top: 1.0, left: 1.0, bottom: 1.0, right: 1.0))
+        return img.resizableImageWithCapInsets(UIEdgeInsets(top: cornerRadius, left: cornerRadius, bottom: cornerRadius, right: cornerRadius))
     }
 
-    class func imageWithFillColor(fillColor: UIColor) -> UIImage {
-        return imageWithFillColor(fillColor, borderColor: fillColor)
-    }
+//    class func imageWithFillColor(fillColor: UIColor, borderColor: UIColor) -> UIImage {
+//        let pxHeight = 1.0/UIScreen.mainScreen().nativeScale
+//        let rect = CGRect(x: 0, y: 0, width: 3.0, height: 3.0)
+//        UIGraphicsBeginImageContext(rect.size)
+//        borderColor.set()
+//        CGContextFillRect(UIGraphicsGetCurrentContext(), rect)
+//        fillColor.set()
+//        CGContextFillRect(UIGraphicsGetCurrentContext(), CGRectInset(rect, pxHeight, pxHeight))
+//        let img = UIGraphicsGetImageFromCurrentImageContext()
+//        UIGraphicsEndImageContext()
+//        return img.resizableImageWithCapInsets(UIEdgeInsets(top: 1.0, left: 1.0, bottom: 1.0, right: 1.0))
+//    }
+
+//    class func imageWithFillColor(fillColor: UIColor) -> UIImage {
+//        return imageWithFillColor(fillColor)
+//    }
 
     class func upArrowWithFillColor(fillColor: UIColor) -> UIImage {
         UIGraphicsBeginImageContext(CGSize(width: 16, height: 4))

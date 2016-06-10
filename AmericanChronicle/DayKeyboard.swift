@@ -19,7 +19,7 @@ class DayKeyboard: UIView {
     // MARK: Init methods
 
     func commonInit() {
-        backgroundColor = Colors.lightBlueBrightTransparent
+        backgroundColor = UIColor.whiteColor()//Colors.lightBackground
     }
 
     required init?(coder: NSCoder) {
@@ -87,11 +87,15 @@ class DayKeyboard: UIView {
             button.setTitle(title, forState: .Normal)
             button.titleLabel?.font = Font.largeBody
             button.enabled = (title != "")
+            button.layer.shadowColor = Colors.darkGray.CGColor
+            button.layer.shadowOffset = CGSize(width: 0, height: 0)
+            button.layer.shadowRadius = 0.5
+            button.layer.shadowOpacity = 0.4
 
-            button.setBackgroundImage(UIImage.imageWithFillColor(UIColor.whiteColor()), forState: .Normal)
+            button.setBackgroundImage(UIImage.imageWithFillColor(UIColor.whiteColor(), cornerRadius: 1.0), forState: .Normal)
             button.setBackgroundImage(nil, forState: .Disabled)
-            button.setBackgroundImage(UIImage.imageWithFillColor(selectedBgColor), forState: .Selected)
-            button.setBackgroundImage(UIImage.imageWithFillColor(highlightedBgColor), forState: .Highlighted)
+            button.setBackgroundImage(UIImage.imageWithFillColor(selectedBgColor, cornerRadius: 1.0), forState: .Selected)
+            button.setBackgroundImage(UIImage.imageWithFillColor(highlightedBgColor, cornerRadius: 1.0), forState: .Highlighted)
 
             button.setTitleColor(Colors.blueGray, forState: .Normal)
             button.setTitleColor(UIColor.whiteColor(), forState: .Highlighted)
@@ -113,8 +117,8 @@ class DayKeyboard: UIView {
                 top = self.snp_top
             }
             button.snp_makeConstraints { make in
-                make.leading.equalTo(leading).offset(1.0)
-                make.top.equalTo(top).offset(1.0)
+                make.leading.equalTo(leading).offset(2.0)
+                make.top.equalTo(top).offset(2.0)
                 if let width = prevColumn?.snp_width {
                     make.width.equalTo(width)
                 }
@@ -128,7 +132,7 @@ class DayKeyboard: UIView {
         }
 
         prevColumn?.snp_makeConstraints { make in
-            make.trailing.equalTo(self.snp_trailing).offset(-1.0)
+            make.trailing.equalTo(self.snp_trailing).offset(-2.0)
         }
         return prevColumn
     }

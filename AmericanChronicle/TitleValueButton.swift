@@ -44,17 +44,12 @@ class TitleValueButton: UIControl {
 
     func commonInit() {
 
-        layer.shadowColor = Colors.darkGray.CGColor
-        layer.shadowOffset = CGSize(width: 0, height: 0)
-        layer.shadowRadius = 1.0
-        layer.shadowOpacity = 0.5
-
         button.addTarget(self, action: #selector(TitleValueButton.buttonTapped(_:)), forControlEvents: .TouchUpInside)
         button.addObserver(self, forKeyPath: "highlighted", options: NSKeyValueObservingOptions.Initial, context: nil)
 
-        button.setBackgroundImage(UIImage.imageWithFillColor(UIColor.whiteColor()), forState: .Normal)
-        button.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBlueBright), forState: .Highlighted)
-        button.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBlueBright), forState: .Selected)
+        button.setBackgroundImage(UIImage.imageWithFillColor(UIColor.whiteColor(), cornerRadius: 1.0), forState: .Normal)
+        button.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBlueBright, cornerRadius: 1.0), forState: .Highlighted)
+        button.setBackgroundImage(UIImage.imageWithFillColor(Colors.lightBlueBright, cornerRadius: 1.0), forState: .Selected)
 
         addSubview(button)
         addSubview(titleLabel)
@@ -95,13 +90,13 @@ class TitleValueButton: UIControl {
             if (highlighted) {
                 layer.shadowColor = Colors.darkGray.CGColor
                 layer.shadowOffset = CGSize(width: 0, height: 0)
-                layer.shadowRadius = 0.3
-                layer.shadowOpacity = 0.5
+                layer.shadowRadius = 0.5
+                layer.shadowOpacity = 0.4
             } else {
                 layer.shadowColor = Colors.darkGray.CGColor
                 layer.shadowOffset = CGSize(width: 0, height: 0)
-                layer.shadowRadius = 1.0
-                layer.shadowOpacity = 0.5
+                layer.shadowRadius = 0.5
+                layer.shadowOpacity = 0.4
             }
         }
     }
