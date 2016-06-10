@@ -154,6 +154,7 @@
 		97ED42CC1BDD879300884B3E /* NSError+AMC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97ED42CB1BDD879300884B3E /* NSError+AMC.swift */; };
 		97F622031BE9E94000F0DB63 /* DelayedSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F622021BE9E94000F0DB63 /* DelayedSearchTests.swift */; };
 		97F707D11BB8AE8F00A3D760 /* PagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F707D01BB8AE8F00A3D760 /* PagePresenter.swift */; };
+		97FC22591D0AECB500D5B8B9 /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FC22581D0AECB500D5B8B9 /* ViewState.swift */; };
 		97FE01521BDC48C00098E45F /* PageWireframeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FE01511BDC48C00098E45F /* PageWireframeTests.swift */; };
 		97FF38651C95D673009625F4 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97FF38631C95D673009625F4 /* Crashlytics.framework */; };
 		97FF38661C95D673009625F4 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97FF38641C95D673009625F4 /* Fabric.framework */; };
@@ -347,6 +348,7 @@
 		97ED42CB1BDD879300884B3E /* NSError+AMC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+AMC.swift"; sourceTree = "<group>"; };
 		97F622021BE9E94000F0DB63 /* DelayedSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelayedSearchTests.swift; sourceTree = "<group>"; };
 		97F707D01BB8AE8F00A3D760 /* PagePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagePresenter.swift; sourceTree = "<group>"; };
+		97FC22581D0AECB500D5B8B9 /* ViewState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
 		97FE01511BDC48C00098E45F /* PageWireframeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageWireframeTests.swift; sourceTree = "<group>"; };
 		97FF38631C95D673009625F4 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = Fabric/Crashlytics.framework; sourceTree = "<group>"; };
 		97FF38641C95D673009625F4 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = Fabric/Fabric.framework; sourceTree = "<group>"; };
@@ -578,6 +580,7 @@
 		978E9B1D1BAFB5340001690C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				97FC22581D0AECB500D5B8B9 /* ViewState.swift */,
 				97BDE1361B76F84F00A3E57F /* SearchViewController.swift */,
 				975914A91B7A47C40031BD13 /* SearchResultsPageCell.swift */,
 				97DE1C961C4C0DCC00AD12F0 /* SearchTableHeaderView.swift */,
@@ -1197,6 +1200,7 @@
 				97415ADE1B7847AE00326239 /* NewspaperPageCell.swift in Sources */,
 				979E20771BD3058A007C7F5F /* PageModuleDependencies.swift in Sources */,
 				9721FDCB1B940EE7006798B2 /* TableHeaderView.swift in Sources */,
+				97FC22591D0AECB500D5B8B9 /* ViewState.swift in Sources */,
 				97EAC1E11B9D3FDF00956EBC /* HomeWireframe.swift in Sources */,
 				97BDE13B1B771B4800A3E57F /* NewspaperPagesViewController.swift in Sources */,
 				97BDE1371B76F84F00A3E57F /* SearchViewController.swift in Sources */,
