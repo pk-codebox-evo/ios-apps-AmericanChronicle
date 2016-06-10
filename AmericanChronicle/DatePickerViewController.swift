@@ -48,7 +48,9 @@ protocol DatePickerViewDelegate {
 
         super.init(nibName: nil, bundle: nil)
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(DatePickerViewController.cancelButtonTapped(_:)))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel,
+                                                           target: self,
+                                                           action: #selector(DatePickerViewController.cancelButtonTapped(_:)))
         navigationItem.leftBarButtonItem?.setTitlePositionAdjustment(Measurements.leftBarButtonItemTitleAdjustment, forBarMetrics: .Default)
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(DatePickerViewController.saveButtonTapped(_:)))
         navigationItem.rightBarButtonItem?.setTitlePositionAdjustment(Measurements.rightBarButtonItemTitleAdjustment, forBarMetrics: .Default)
@@ -76,21 +78,25 @@ protocol DatePickerViewDelegate {
         delegate?.userDidCancel()
     }
 
+    func tapRecognized(sender: UITapGestureRecognizer) {
+        delegate?.userDidCancel()
+    }
+
     // MARK: UIViewController overrides
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(DatePickerViewController.tapRecognized(_:)))
+        view.addGestureRecognizer(tap)
 
         view.addSubview(foregroundPanel)
         foregroundPanel.snp_makeConstraints { make in
-            //make.top.equalTo(0)
             make.bottom.equalTo(0)
             make.leading.equalTo(0)
             make.trailing.equalTo(0)
             make.height.equalTo(360)
-            //make.width.equalTo(0)
         }
 
 
