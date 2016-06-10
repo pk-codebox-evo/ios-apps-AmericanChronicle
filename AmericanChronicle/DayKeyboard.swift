@@ -79,7 +79,7 @@ class DayKeyboard: UIView {
 
     private func addRowWithTitles(titles: [String], prevRow: UIButton? = nil) -> UIButton? {
         let selectedBgColor = Colors.lightBlueBright
-        let highlightedBgColor = Colors.lightBlueBrightTransparent
+        let highlightedBgColor = Colors.lightBlueBright
 
         var prevColumn: UIButton? = nil
         for title in titles {

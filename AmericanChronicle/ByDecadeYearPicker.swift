@@ -43,7 +43,7 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
         layout.scrollDirection = .Vertical
 
         let view = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
-        view.backgroundColor = Colors.lightBlueBrightTransparent
+        view.backgroundColor = UIColor.whiteColor()//Colors.lightBlueBrightTransparent
         view.bounces = false
         view.registerClass(ByDecadeYearPickerCell.self, forCellWithReuseIdentifier: ByDecadeYearPickerCell.defaultReuseIdentifier)
         view.registerClass(UICollectionReusableView.self,
@@ -200,7 +200,7 @@ class ByDecadeYearPicker: UIView, UICollectionViewDataSource, UICollectionViewDe
         let view = collectionView.dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader,
                                                                          withReuseIdentifier: ByDecadeYearPicker.headerReuseIdentifier,
                                                                          forIndexPath: indexPath)
-        view.backgroundColor = Colors.lightBlueBrightTransparent
+        view.backgroundColor = UIColor.whiteColor()
         return view;
     }
 
