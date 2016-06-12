@@ -18,10 +18,14 @@ class NewspaperPagesPreviewDelegate: NSObject, UICollectionViewDelegate, UIColle
     var issue: NewspaperIssue?
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let width = (collectionView.frame.size.width - 20)
-        let visibleHeight = collectionView.frame.size.height - collectionView.contentInset.top
-        let height = (visibleHeight - 20)
-        return CGSize(width: width, height: height)
+        var size = CGSizeZero
+        if let layout = collectionViewLayout as? UICollectionViewFlowLayout {
+            let width = collectionView.frame.size.width - (layout.sectionInset.left + layout.sectionInset.right)
+
+            let height = collectionView.frame.size.height - (layout.sectionInset.top + layout.sectionInset.bottom + collectionView.contentInset.top + collectionView.contentInset.bottom)
+            size = CGSize(width: width, height: height)
+        }
+        return size
     }
 
     // MARK: UIScrollViewDelegate methods
@@ -29,7 +33,7 @@ class NewspaperPagesPreviewDelegate: NSObject, UICollectionViewDelegate, UIColle
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) { // called when scroll view grinds to a halt
         if let cv = scrollView as? UICollectionView {
             let visible = cv.indexPathsForVisibleItems()
-            if let indexPath = visible.last as? NSIndexPath where count(visible) == 1 {
+            if let indexPath = visible.last where visible.count == 1 {
                 actionHandler?.didScrollToPreviewAtIndexPath(indexPath)
             }
         }

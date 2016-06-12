@@ -7,91 +7,79 @@
 //
 
 import UIKit
-import FSCalendar
-import SwiftMoment
 
-@objc class DatePickerViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
+protocol DatePickerViewInterface {
+    var delegate: DatePickerViewDelegate? { get set }
+    var selectedDayMonthYear: DayMonthYear { get set }
+}
 
-    @IBOutlet weak var calendarView: FSCalendar!
-    @IBOutlet weak var slider: YearSlider!
+protocol DatePickerViewDelegate {
+    func userDidSave(dayMonthYear: DayMonthYear)
+    func userDidCancel()
+}
 
-    private let selectedDateOnInit: NSDate
-    private let earliestPossibleDate: NSDate
-    private let latestPossibleDate: NSDate
+@objc class DatePickerViewController: UIViewController, DatePickerViewInterface, DateTextFieldDelegate {
 
-    @IBAction func sliderValueDidChange(sender: YearSlider) {
-        setCalendarDate(year: sender.value)
-    }
+    var delegate: DatePickerViewDelegate?
 
-    var saveCallback: ((NSDate) -> ())?
+    var selectedDayMonthYear: DayMonthYear
+    private let foregroundPanel: UIView = {
+        let v = UIView()
+        v.backgroundColor = UIColor.whiteColor()
+        return v
+    }()
+    private let earliestPossibleDayMonthYear: DayMonthYear
+    private let latestPossibleDayMonthYear: DayMonthYear
+    private let dateField = DateTextField()
+    private let navigationBar: UINavigationBar = {
+        let bar = UINavigationBar()
+        return bar
+    }()
 
     // MARK: UIViewController Init methods
 
-    init(earliestPossibleDate: NSDate = ChroniclingAmericaArchive.earliestPossibleDate, latestPossibleDate: NSDate = ChroniclingAmericaArchive.latestPossibleDate,
-        selectedDateOnInit: NSDate? = nil) {
-            self.earliestPossibleDate = earliestPossibleDate
-            self.latestPossibleDate = latestPossibleDate
-            self.selectedDateOnInit = selectedDateOnInit ?? earliestPossibleDate
+    internal init(
+        earliestPossibleDayMonthYear: DayMonthYear = SearchConstants.earliestPossibleDayMonthYear,
+        latestPossibleDayMonthYear: DayMonthYear = SearchConstants.latestPossibleDayMonthYear)
+    {
+        self.earliestPossibleDayMonthYear = earliestPossibleDayMonthYear
+        self.latestPossibleDayMonthYear = latestPossibleDayMonthYear
+        selectedDayMonthYear = earliestPossibleDayMonthYear
 
-            super.init(nibName: "DatePickerViewController", bundle: nil)
+        super.init(nibName: nil, bundle: nil)
 
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: "saveButtonTapped:")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel,
+                                                           target: self,
+                                                           action: #selector(DatePickerViewController.cancelButtonTapped(_:)))
+        navigationItem.leftBarButtonItem?.setTitlePositionAdjustment(Measurements.leftBarButtonItemTitleAdjustment, forBarMetrics: .Default)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(DatePickerViewController.saveButtonTapped(_:)))
+        navigationItem.rightBarButtonItem?.setTitlePositionAdjustment(Measurements.rightBarButtonItemTitleAdjustment, forBarMetrics: .Default)
     }
 
-    @availability(*, unavailable) init() {
+    @available(*, unavailable) init() {
         fatalError("init not supported. Use designated initializer instead")
     }
 
-    @availability(*, unavailable) required init(coder aDecoder: NSCoder) {
+    @available(*, unavailable) required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) not supported. Use designated initializer instead")
     }
 
-    @availability(*, unavailable) override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+    @available(*, unavailable) override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         fatalError("init(nibName:bundle) not supported. Use designated initializer instead")
     }
 
     // MARK: Internal methods
 
     func saveButtonTapped(sender: UIBarButtonItem) {
-        saveCallback?(calendarView.selectedDate)
+        delegate?.userDidSave(selectedDayMonthYear)
     }
 
-    func setCalendarDate(year: Int? = nil, month: Int? = nil) {
-        if let year = year {
-            println("--- will set year ---")
-            println("* Original calendarView.selectedDate: \(calendarView.selectedDate)")
-
-            let selectedMoment = moment(calendarView.selectedDate)
-
-            println("    - year: \(selectedMoment.year)")
-            println("    - month: \(selectedMoment.month)")
-            println("    - day: \(selectedMoment.day)")
-
-            let components = NSDateComponents()
-            components.year = year
-            components.month = selectedMoment.month
-            components.day = selectedMoment.day
-
-            let newDate = NSCalendar.currentCalendar().dateFromComponents(components)
-            println("* New calendarView.selectedDate: \(newDate)")
-            println("    - year: \(components.year)")
-            println("    - month: \(components.month)")
-            println("    - day: \(components.day)")
-            calendarView.selectedDate = newDate
-
-            println("... did set year  ...")
-        }
-        if let month = month {
-            println("will set month")
-            calendarView.selectedDate = NSCalendar.currentCalendar().dateBySettingUnit(.CalendarUnitMonth, value: month, ofDate: calendarView.selectedDate, options: NSCalendarOptions.allZeros)
-            println("did set month")
-        }
+    func cancelButtonTapped(sender: UIBarButtonItem) {
+        delegate?.userDidCancel()
     }
 
-    func updateUIToMatchCurrentDate(currentDate: NSDate) {
-        if slider.state != .Highlighted {
-            slider.value = moment(currentDate).year
-        }
+    func tapRecognized(sender: UITapGestureRecognizer) {
+        delegate?.userDidCancel()
     }
 
     // MARK: UIViewController overrides
@@ -99,72 +87,57 @@ import SwiftMoment
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        slider.addTarget(self, action: "sliderValueDidChange:", forControlEvents: .ValueChanged)
-        slider.minValue = moment(earliestPossibleDate).year
-        slider.maxValue = moment(latestPossibleDate).year
-        slider.value = moment(selectedDateOnInit).year
+        view.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.8)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(DatePickerViewController.tapRecognized(_:)))
+        view.addGestureRecognizer(tap)
 
-        calendarView.selectedDate = selectedDateOnInit
-        println("calendarView.selectedDate: \(calendarView.selectedDate)")
-        updateUIToMatchCurrentDate(calendarView.selectedDate)
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        var updatedText = textField.text as NSString
-        updatedText = updatedText.stringByReplacingCharactersInRange(range, withString: string)
-        if updatedText.length > 4 {
-            return false
+        view.addSubview(foregroundPanel)
+        foregroundPanel.snp_makeConstraints { make in
+            make.bottom.equalTo(0)
+            make.leading.equalTo(0)
+            make.trailing.equalTo(0)
+            make.height.equalTo(360)
         }
 
-        if updatedText.length == 0 {
-            textField.backgroundColor = UIColor.grayColor()
-            return true
+
+        foregroundPanel.addSubview(navigationBar)
+        navigationBar.snp_makeConstraints { make in
+            make.top.equalTo(0)
+            make.leading.equalTo(0)
+            make.trailing.equalTo(0)
+        }
+        navigationBar.pushNavigationItem(navigationItem, animated: false)
+
+        dateField.delegate = self
+        dateField.selectedDayMonthYear = selectedDayMonthYear
+        foregroundPanel.addSubview(dateField)
+        dateField.snp_makeConstraints { make in
+            make.top.equalTo(navigationBar.snp_bottom).offset(20.0)
+            make.leading.equalTo(Measurements.horizontalMargin)
+            make.trailing.equalTo(-Measurements.horizontalMargin)
+            make.height.equalTo(66)
         }
 
-        if let year = (updatedText as String).toInt() {
-            if year >= 1836 && year <= 1922 {
-                setCalendarDate(year: year)
-                textField.backgroundColor = UIColor.greenColor()
-                // Setting calendar date will trigger its delegate's MonthDidChange method,
-                // which will update the textField. If we do it here, we end up modifying 
-                // the already-updated text.
-                return false
-            } else if updatedText.length == 4 {
-                textField.backgroundColor = UIColor.redColor()
-                return true
-            } else {
-                textField.backgroundColor = UIColor.grayColor()
-                return true
-            }
-        } else {
-            return false
+
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        dateField.becomeFirstResponder()
+    }
+
+    func monthFieldDidBecomeActive() {
+    }
+
+    func dayFieldDidBecomeActive() {
+    }
+
+    func yearFieldDidBecomeActive() {
+    }
+
+    func selectedDayMonthYearDidChange(dayMonthYear: DayMonthYear?) {
+        if let dayMonthYear = dayMonthYear {
+            selectedDayMonthYear = dayMonthYear
         }
     }
-
-    func calendar(calendar: FSCalendar!, shouldSelectDate date: NSDate!) -> Bool {
-        return true
-    }
-
-    func calendar(calendar: FSCalendar, didSelectDate date: NSDate) {
-
-    }
-
-    func calendarCurrentMonthDidChange(calendar: FSCalendar) {
-        updateUIToMatchCurrentDate(calendar.selectedDate)
-    }
-
-    // MARK: FSCalendarDataSource methods
-
-    func minimumDateForCalendar(calendar: FSCalendar) -> NSDate {
-        return earliestPossibleDate
-    }
-
-    func maximumDateForCalendar(calendar: FSCalendar) -> NSDate {
-        return latestPossibleDate
-    }
-
 }

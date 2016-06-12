@@ -7,261 +7,364 @@
 //
 
 import UIKit
+import Crashlytics
 
-protocol TableViewRow: Printable {
-    var cellText: String { get }
+// NOTES:
+//
+// The View is passive. It waits for the Presenter to give it content to display; it never asks the Presenter for data.
+// The view controller shouldn’t be making decisions based on (user) actions, but it should pass these events along to something that can.
+
+protocol SearchViewInterface: class {
+    weak var delegate: SearchViewDelegate? { get set }
+    var searchTerm: String? { get set }
+    var earliestDate: String? { get set }
+    var latestDate: String? { get set }
+    var USStates: String? { get set }
+
+    func setViewState(state: ViewState)
+    func setBottomContentInset(bottom: CGFloat)
+    func resignFirstResponder() -> Bool
 }
 
-extension String: TableViewRow {
-    var cellText: String {
-        return self
-    }
-
-    public var description: String {
-        return self
-    }
+protocol SearchViewDelegate: class {
+    func userDidTapCancel()
+    func userDidTapReturn()
+    func userDidTapUSStates()
+    func userDidTapEarliestDateButton()
+    func userDidTapLatestDateButton()
+    func userDidChangeSearchToTerm(term: String?)
+    func userIsApproachingLastRow(term: String?, inCollection: [SearchResultsRow])
+    func userDidSelectSearchResult(row: SearchResultsRow)
+    func viewDidLoad()
 }
 
-class TableViewData {
-    var sections: [TableViewSection] = []
-}
+class SearchViewController: UIViewController, SearchViewInterface, UITableViewDelegate, UITableViewDataSource {
 
-class TableViewSection: Printable {
-    var rows: [TableViewRow] = []
-    var maxRowsToShow: Int?
-    var title: String = ""
-    init(title: String, rows: [TableViewRow]) {
-        self.rows = rows
-        self.title = title
+    // MARK: Properties
+
+    weak var delegate: SearchViewDelegate?
+
+    var searchTerm: String? {
+        get { return tableHeaderView.searchTerm }
+        set { tableHeaderView.searchTerm = newValue }
     }
 
-    var rowsToShow: Int {
-        return maxRowsToShow ?? rows.count
+    var earliestDate: String? {
+        get { return tableHeaderView.earliestDate }
+        set { tableHeaderView.earliestDate = newValue }
     }
 
-    var description: String {
-        var desc = "TableViewSection <\(unsafeAddressOf(self))>"
-        desc += " (\(rows.count) rows)\n"
-        for row in rows {
-            desc += "* \(row)\n"
+    var latestDate: String? {
+        get { return tableHeaderView.latestDate }
+        set { tableHeaderView.latestDate = newValue }
+    }
+
+    var USStates: String? {
+        get { return tableHeaderView.USStates }
+        set { tableHeaderView.USStates = newValue }
+    }
+
+    private static let approachingCount = 5
+
+    private let emptyResultsView = EmptyResultsView()
+    private let errorView = ErrorView()
+    private let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+
+    private let tableView = UITableView()
+    private let tableHeaderView = SearchTableHeaderView()
+    private let tableFooterView = UIView()
+    private let dateFormatter: NSDateFormatter = {
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "MMM dd, yyyy"
+        return formatter
+    }()
+
+    private var sectionTitle = ""
+    private var rows: [SearchResultsRow] = []
+
+    // MARK: UIViewController Init methods
+
+    @available(*, unavailable) required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) not supported. Use designated initializer instead")
+    }
+
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Info", style: .Plain, target: self, action: #selector(SearchViewController.infoButtonTapped(_:)))
+        navigationItem.leftBarButtonItem?.setTitlePositionAdjustment(Measurements.leftBarButtonItemTitleAdjustment, forBarMetrics: .Default)
+        navigationItem.title = "Search"
+    }
+
+    // MARK: Internal methods
+
+    func setBottomContentInset(bottom: CGFloat) {
+        if !isViewLoaded() {
+            return
         }
-        return desc
-    }
-}
+        var contentInset = tableView.contentInset
+        contentInset.bottom = bottom
+        tableView.contentInset = contentInset
 
-class SearchResultsRow: TableViewRow {
-    var cellText: String {
-        return matchingText
-    }
-    var date = "Jan 3, 1902"
-    var cityState = "Denver, CO"
-    var matchingText = "…with a full season of practice, Jane Doe had learned enough to overtake the incumbent…"
-    var publicationTitle = "The Daily Mail"
-    var moreMatchesCount = "and 3 more"
-    var imageName = ""
-    init(date: String, cityState: String, matchingText: String, publicationTitle: String, moreMatchesCount: String, imageName: String) {
-        self.date = date
-        self.cityState = cityState
-        self.matchingText = matchingText
-        self.publicationTitle = publicationTitle
-        self.moreMatchesCount = moreMatchesCount
-        self.imageName = imageName
+        var indicatorInsets = tableView.scrollIndicatorInsets
+        indicatorInsets.bottom = bottom
+        tableView.scrollIndicatorInsets = indicatorInsets
     }
 
-    var description: String {
-        var desc = "SearchResultsRow <\(unsafeAddressOf(self))>\n"
-        desc += "* * date: \(date)\n"
-        desc += "* * cityState: \(cityState)\n"
-        desc += "* * matchingText: \(matchingText)\n"
-        desc += "* * publicationTitle: \(publicationTitle)\n"
-        desc += "* * moreMatchesCount: \(moreMatchesCount)\n"
-        desc += "* * imageName: \(imageName)\n"
-        return desc
-    }
-}
-
-class SearchViewController: UIViewController, UISearchBarDelegate {
-
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var filtersButton: UIButton!
-    var filters: SearchFilters?
-
-    @IBAction func addEditFiltersButtonTapped(sender: AnyObject) {
-        let vc = SearchFiltersViewController(nibName: "SearchFiltersViewController", bundle: nil)
-        vc.searchFilters = filters ?? SearchFilters()
-        vc.saveCallback = { [weak self] filters in
-            self?.filters = filters
-            self?.performSearchWithResultsCount(0)
-            self?.dismissViewControllerAnimated(true, completion: nil)
+    // > The partial state is the screen someone will see when the page is no longer empty and
+    //   sparsely populated. Your job here is to prevent people from getting discouraged and giving
+    //   up on your product.
+    //
+    // - http://scotthurff.com/posts/why-your-user-interface-is-awkward-youre-ignoring-the-ui-stack
+    func setViewState(state: ViewState) {
+        switch state {
+        case .EmptySearchField:
+            setLoadingIndicatorsVisible(false)
+            emptyResultsView.alpha = 0
+            errorView.alpha = 0
+            sectionTitle = ""
+            rows = []
+            tableView.reloadData()
+            tableFooterView.alpha = 0
+        case .EmptyResults:
+            setLoadingIndicatorsVisible(false)
+            emptyResultsView.alpha = 1.0
+            emptyResultsView.title = "No results"
+            errorView.alpha = 0
+            sectionTitle = ""
+            rows = []
+            tableView.reloadData()
+            tableFooterView.alpha = 0
+        case .LoadingNewParamaters:
+            setLoadingIndicatorsVisible(true)
+            emptyResultsView.alpha = 0
+            errorView.alpha = 0
+            sectionTitle = ""
+            rows = []
+            tableView.reloadData()
+            tableFooterView.alpha = 0
+        case .LoadingMoreRows:
+            setLoadingIndicatorsVisible(false)
+            emptyResultsView.alpha = 0
+            errorView.alpha = 0
+            tableFooterView.alpha = 1.0
+        case let .Partial(title, rows):
+            setLoadingIndicatorsVisible(false)
+            emptyResultsView.alpha = 0
+            errorView.alpha = 0
+            sectionTitle = title
+            if self.rows != rows {
+                self.rows = rows
+                tableView.reloadData()
+            }
+            tableFooterView.alpha = 0
+        case let .Ideal(title, rows):
+            setLoadingIndicatorsVisible(false)
+            emptyResultsView.alpha = 0
+            errorView.alpha = 0
+            sectionTitle = title
+            if self.rows != rows {
+                self.rows = rows
+                tableView.reloadData()
+            }
+            tableFooterView.alpha = 0
+        case let .Error(title, message):
+            setLoadingIndicatorsVisible(false)
+            emptyResultsView.alpha = 0
+            errorView.alpha = 1.0
+            sectionTitle = ""
+            rows = []
+            tableView.reloadData()
+            errorView.title = title
+            errorView.message = message
+            tableFooterView.alpha = 0
         }
-        vc.cancelCallback = { [weak self] in
+    }
+
+    func infoButtonTapped(sender: UIBarButtonItem) {
+        let vc = InfoViewController()
+        vc.userDidDismiss = { [weak self] in
             self?.dismissViewControllerAnimated(true, completion: nil)
         }
         let nvc = UINavigationController(rootViewController: vc)
         presentViewController(nvc, animated: true, completion: nil)
     }
 
-    let recentSearches: TableViewData = {
-        let data = TableViewData()
-        data.sections = [TableViewSection(title: "Recent Searches", rows: ["Eli", "The Arizona Champion", "Jane Doe"])]
-        return data
-    }()
+    // MARK: UITableViewDelegate & -DataSource methods
 
-    var activeData: TableViewData?
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if (rows.count == 0) { return nil }
 
-    @IBAction func unfocusPage(sender: UIStoryboardSegue) {
-        println("\(__FILE__) | \(__FUNCTION__) | line \(__LINE__)")
+        let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("Header") as? TableHeaderView
+        headerView?.text = sectionTitle
+        print("[RP] headerView: \(headerView)")
+        return headerView
     }
 
-    @IBAction func dismissFilters(sender: UIStoryboardSegue) {
-        println("\(__FILE__) | \(__FUNCTION__) | line \(__LINE__)")
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return (rows.count > 0) ? 1 : 0
+    }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return rows.count ?? 0
+    }
+
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let pageCell = tableView.dequeueReusableCellWithIdentifier(String(SearchResultsPageCell)) as! SearchResultsPageCell
+        let result = rows[indexPath.row]
+        if let date = result.date {
+            pageCell.date = dateFormatter.stringFromDate(date)
+        } else {
+            pageCell.date = ""
+        }
+        pageCell.cityState = result.cityState ?? ""
+        pageCell.publicationTitle = result.publicationTitle ?? ""
+        pageCell.thumbnailURL = result.thumbnailURL
+        return pageCell
+    }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableHeaderView.resignFirstResponder()
+        delegate?.userDidSelectSearchResult(rows[indexPath.row])
+    }
+
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        guard (rows.count > 0) else { return }
+        guard ((rows.count - indexPath.row) < SearchViewController.approachingCount) else { return }
+
+        delegate?.userIsApproachingLastRow(tableHeaderView.searchTerm, inCollection: rows)
+    }
+
+    // MARK: UIViewController overrides
+
+    override func loadView() {
+        view = UIView()
+        view.backgroundColor = Colors.lightBackground
+
+        loadTableView()
+        loadTableHeaderView()
+        loadTableFooterView()
+        loadErrorView()
+        loadEmptyResultsView()
+        loadActivityIndicator()
+
+        setViewState(.EmptySearchField)
+
+        delegate?.viewDidLoad()
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.navigationBarHidden = false
-        if count(searchBar.text) == 0 {
-            searchBar.becomeFirstResponder()
-            showRecentSearches()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.tableHeaderView = tableHeaderView
+        tableView.tableFooterView = tableFooterView
+    }
+
+    // MARK: UIResponder overrides
+
+    override func becomeFirstResponder() -> Bool {
+        return tableHeaderView.becomeFirstResponder() ?? false
+    }
+
+    override func resignFirstResponder() -> Bool {
+        return tableHeaderView.resignFirstResponder() ?? false
+    }
+
+    // MARK: Private methods
+
+    private func loadTableView() {
+        tableView.backgroundColor = UIColor.whiteColor()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.registerClass(SearchResultsPageCell.self, forCellReuseIdentifier:  String(SearchResultsPageCell))
+        tableView.registerClass(TableHeaderView.self, forHeaderFooterViewReuseIdentifier: "Header")
+        tableView.sectionHeaderHeight = 24.0
+        tableView.separatorColor = Colors.lightGray
+        tableView.rowHeight = 160.0
+        view.addSubview(tableView)
+        tableView.snp_makeConstraints { make in
+            make.top.equalTo(0)
+            make.bottom.equalTo(0)
+            make.leading.equalTo(0)
+            make.trailing.equalTo(0)
         }
-        let filtersTitle = (filters == nil) ? "Add Filters" : "Edit Filters"
-        filtersButton.setTitle(filtersTitle, forState: .Normal)
     }
 
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        searchBar.resignFirstResponder()
-    }
+    private func loadTableHeaderView() {
 
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        if count(searchText) > 0 {
-            performSearchWithResultsCount(count(searchText))
-        } else {
-            showRecentSearches()
+        tableHeaderView.frame = CGRect(x: 0, y: 0, width: 0, height: tableHeaderView.intrinsicContentSize().height)
+
+        tableHeaderView.shouldChangeCharactersHandler = { [weak self] original, range, replacement in
+            var text = original
+            if let range = original.rangeFromNSRange(range) {
+                text.replaceRange(range, with: replacement)
+            }
+
+            self?.delegate?.userDidChangeSearchToTerm(text)
+
+            return true
+        }
+        tableHeaderView.shouldReturnHandler = { [weak self] in
+            self?.delegate?.userDidTapReturn()
+            return false
+        }
+        tableHeaderView.shouldClearHandler = { [weak self] in
+            self?.delegate?.userDidChangeSearchToTerm("")
+            return true
+        }
+        tableHeaderView.earliestDateButtonTapHandler = { [weak self] _ in
+            self?.delegate?.userDidTapEarliestDateButton()
+        }
+        tableHeaderView.latestDateButtonTapHandler = { [weak self] _ in
+            self?.delegate?.userDidTapLatestDateButton()
+        }
+        tableHeaderView.USStatesButtonTapHandler = { [weak self] _ in
+            self?.delegate?.userDidTapUSStates()
         }
     }
 
-    var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+    private func loadTableFooterView() {
+        tableFooterView.frame = CGRect(x: 0, y: 0, width: 300, height: 48)
 
-    var searchDelayTimer: NSTimer?
+        let spinner = UIActivityIndicatorView()
+        spinner.startAnimating()
+        tableFooterView.addSubview(spinner)
+        spinner.snp_makeConstraints { make in
+            make.center.equalTo(0)
+        }
+    }
 
-    func performSearchWithResultsCount(resultsCount: Int) {
+    private func loadErrorView() {
+        view.addSubview(errorView)
+        errorView.snp_makeConstraints { make in
+            make.center.equalTo(self.view.snp_center)
+        }
+    }
 
-        // If showing recent searches, then activate loading indicator.
-        if activeData === recentSearches {
-            activeData = nil
+    private func loadEmptyResultsView() {
+        view.addSubview(emptyResultsView)
+        emptyResultsView.snp_makeConstraints { make in
+            make.center.equalTo(self.view.snp_center)
+        }
+    }
 
-            activityIndicator.center = CGPoint(x: view.bounds.size.width / 2.0, y: 300)
-            view.addSubview(activityIndicator)
+    private func loadActivityIndicator() {
+        view.addSubview(activityIndicator)
+        activityIndicator.snp_makeConstraints { make in
+            make.center.equalTo(view.snp_center)
+        }
+    }
+
+    private func setLoadingIndicatorsVisible(visible: Bool) {
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = visible
+        if visible {
             activityIndicator.startAnimating()
-            tableView.reloadData()
-        }
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-
-        searchDelayTimer?.invalidate()
-        searchDelayTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "searchDelayTimerFired:", userInfo: ["resultsCount": resultsCount], repeats: false)
-    }
-
-    func searchDelayTimerFired(timer: NSTimer) {
-        searchDelayTimer = nil
-
-        let termMatches = NSString(string: searchBar.text.lowercaseString).containsString("eli")
-        let earlyDateSet = filters?.earliestDate != nil
-        let lateDateSet = filters?.latestDate != nil
-        let locationsSet = filters?.cities?.count > 0
-        if termMatches && (earlyDateSet || lateDateSet) && locationsSet {
-            activeData = FakeData.searchResultsHit
         } else {
-            activeData = FakeData.searchResultsMiss
+            activityIndicator.stopAnimating()
         }
-        tableView.reloadData()
-        activityIndicator.removeFromSuperview()
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-    }
-
-    func showRecentSearches() {
-        searchDelayTimer?.invalidate()
-        searchDelayTimer = nil
-        self.activityIndicator.removeFromSuperview()
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-        activeData = recentSearches
-        tableView.reloadData()
-    }
-
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return activeData?.sections[section].rowsToShow ?? 0
-    }
-
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: UITableViewCell
-        if activeData === recentSearches {
-            cell = tableView.dequeueReusableCellWithIdentifier("RecentSearchCell") as! UITableViewCell
-            cell.textLabel?.text = activeData?.sections[indexPath.section].rows[indexPath.row].cellText
-        } else {
-            let pageCell = tableView.dequeueReusableCellWithIdentifier("SearchResultsPageCell") as! SearchResultsPageCell
-            let result = activeData?.sections[indexPath.section].rows[indexPath.row] as! SearchResultsRow
-            pageCell.dateLabel.text = result.date
-            pageCell.cityStateLabel.text = result.cityState
-            pageCell.matchingTextLabel.text = result.matchingText
-            pageCell.publicationTitleLabel.text = result.publicationTitle
-            pageCell.moreMatchesCountLabel.text = result.moreMatchesCount
-            cell = pageCell
-        }
-        return cell
-    }
-
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return activeData?.sections.count ?? 0
-    }
-
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return activeData?.sections[section].title
-    }
-
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if activeData === recentSearches {
-            searchBar.text = activeData?.sections[indexPath.section].rows[indexPath.row].cellText
-            performSearchWithResultsCount(count(searchBar.text))
-        }
-
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
-
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if (activeData === FakeData.searchResultsMiss) || (activeData === FakeData.searchResultsHit) {
-            return 150.0 // Page cell
-        }
-        return 44.0
-    }
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let nvc = segue.destinationViewController as? UINavigationController, let vc = nvc.viewControllers.first as? SearchFiltersViewController {
-            vc.searchFilters = filters ?? SearchFilters()
-            vc.saveCallback = { [weak self] filters in
-                self?.filters = filters
-                self?.dismissViewControllerAnimated(true, completion: nil)
-            }
-            vc.cancelCallback = { [weak self] in
-                self?.dismissViewControllerAnimated(true, completion: nil)
-            }
-        } else if let vc = segue.destinationViewController as? PageViewController,
-        let selectedIndexPath = tableView.indexPathForSelectedRow() {
-            let selectedSection = activeData?.sections[selectedIndexPath.section]
-            if let selectedItem = selectedSection?.rows[selectedIndexPath.row] as? SearchResultsRow {
-                vc.imageName = selectedItem.imageName
-            }
-            vc.doneCallback = { [weak self] in
-                self?.navigationController?.popViewControllerAnimated(true)
-            }
-        }
-    }
-
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-    }
-
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

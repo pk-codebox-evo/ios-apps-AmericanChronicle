@@ -18,7 +18,6 @@ enum StateName: String {
         case Alabama: return "AL"
         case Arizona: return "AZ"
         case Arkansas: return "AR"
-        default: return "??"
         }
     }
 }

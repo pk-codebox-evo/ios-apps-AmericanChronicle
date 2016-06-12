@@ -7,13 +7,12 @@
 //
 
 import UIKit
-import SwiftMoment
-import FSCalendar
+
 import SnapKit
 
 extension UIViewController {
     func setChildViewController(viewController : UIViewController, inContainer containerView: UIView) {
-        if let onlyChild = self.childViewControllers.first as? UIViewController {
+        if let onlyChild = self.childViewControllers.first {
             onlyChild.willMoveToParentViewController(nil)
             onlyChild.view.removeFromSuperview()
             onlyChild.removeFromParentViewController()
@@ -40,7 +39,7 @@ class FilterCell: UICollectionViewCell {
         titleLabel.font = UIFont(name: "AvenirNext-Regular", size: 14.0)
         titleLabel.textColor = UIColor.lightGrayColor()
         titleLabel.snp_makeConstraints { [weak self] make in
-            if let myself = self {
+            if let _ = self {
                 make.top.equalTo(14.0)
                 make.leading.equalTo(20.0)
                 make.trailing.equalTo(-20.0)
@@ -62,7 +61,7 @@ class FilterCell: UICollectionViewCell {
         }
     }
 
-    required init(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.commonInit()
     }
@@ -85,7 +84,7 @@ class EmptyLocationCell: UICollectionViewCell {
         titleLabel.font = UIFont(name: "AvenirNext-Regular", size: 14.0)
         titleLabel.textColor = UIColor.darkGrayColor()
         titleLabel.snp_makeConstraints { [weak self] make in
-            if let myself = self {
+            if let _ = self {
                 make.top.equalTo(20.0)
                 make.leading.equalTo(20.0)
                 make.trailing.equalTo(-20.0)
@@ -93,7 +92,7 @@ class EmptyLocationCell: UICollectionViewCell {
         }
     }
 
-    required init(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.commonInit()
     }
@@ -117,7 +116,7 @@ class LocationCell: UICollectionViewCell {
         bgView.layer.borderColor = UIColor.darkGrayColor().CGColor
         bgView.layer.borderWidth = 1.0 / UIScreen.mainScreen().scale
         bgView.snp_makeConstraints { [weak self] make in
-            if let myself = self {
+            if let _ = self {
                 make.top.equalTo(-1)
                 make.leading.equalTo(0)
                 make.trailing.equalTo(0)
@@ -130,7 +129,7 @@ class LocationCell: UICollectionViewCell {
         titleLabel.font = UIFont(name: "AvenirNext-Regular", size: 14.0)
         titleLabel.textColor = UIColor.darkGrayColor()
         titleLabel.snp_makeConstraints { [weak self] make in
-            if let myself = self {
+            if let _ = self {
                 make.top.equalTo(0)
                 make.leading.equalTo(20.0)
                 make.trailing.equalTo(-20.0)
@@ -141,9 +140,9 @@ class LocationCell: UICollectionViewCell {
         addSubview(clearButton)
         clearButton.setTitle("X", forState: .Normal)
         clearButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
-        clearButton.addTarget(self, action: "clearButtonTapped:", forControlEvents: .TouchUpInside)
+        clearButton.addTarget(self, action: #selector(LocationCell.clearButtonTapped(_:)), forControlEvents: .TouchUpInside)
         clearButton.snp_makeConstraints { [weak self] make in
-            if let myself = self {
+            if let _ = self {
                 make.top.equalTo(0)
                 make.trailing.equalTo(-4.0)
                 make.bottom.equalTo(0)
@@ -152,7 +151,7 @@ class LocationCell: UICollectionViewCell {
         }
     }
 
-    required init(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.commonInit()
     }
@@ -181,7 +180,7 @@ class LocationsHeader: UICollectionReusableView {
         backgroundView.layer.borderColor = UIColor.darkGrayColor().CGColor
         backgroundView.layer.borderWidth = 1.0 / UIScreen.mainScreen().scale
         backgroundView.snp_makeConstraints { [weak self] make in
-            if let myself = self {
+            if let _ = self {
                 make.top.equalTo(0)
                 make.leading.equalTo(20.0)
                 make.bottom.equalTo(0)
@@ -195,7 +194,7 @@ class LocationsHeader: UICollectionReusableView {
         titleLabel.font = UIFont(name: "AvenirNext-Regular", size: 14.0)
         titleLabel.textColor = UIColor.lightGrayColor()
         titleLabel.snp_makeConstraints { [weak self] make in
-            if let myself = self {
+            if let _ = self {
                 make.top.equalTo(0)
                 make.leading.equalTo(20.0)
                 make.bottom.equalTo(0)
@@ -207,9 +206,9 @@ class LocationsHeader: UICollectionReusableView {
         addButton.setTitle("Add", forState: .Normal)
         addButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
         addButton.titleLabel?.font = UIFont(name: "AvenirNext-Regular", size: 12.0)
-        addButton.addTarget(self, action: "addButtonTapped:", forControlEvents: .TouchUpInside)
+        addButton.addTarget(self, action: #selector(LocationsHeader.addButtonTapped(_:)), forControlEvents: .TouchUpInside)
         addButton.snp_makeConstraints { [weak self] make in
-            if let myself = self {
+            if let _ = self {
                 make.width.equalTo(40.0)
                 make.top.equalTo(0)
                 make.trailing.equalTo(-30)
@@ -222,7 +221,7 @@ class LocationsHeader: UICollectionReusableView {
         addCallback?()
     }
 
-    required init(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.commonInit()
     }
@@ -233,7 +232,11 @@ class LocationsHeader: UICollectionReusableView {
     }
 }
 
-class SearchFiltersViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+protocol SearchFiltersViewInterface {
+
+}
+
+class SearchFiltersViewController: UIViewController, SearchFiltersViewInterface, UICollectionViewDelegate, UICollectionViewDataSource {
 
     @IBOutlet weak var collectionView: UICollectionView!
     var saveCallback: ((SearchFilters) -> ())?
@@ -243,11 +246,11 @@ class SearchFiltersViewController: UIViewController, UICollectionViewDelegate, U
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         navigationItem.title = "Search Filters"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancelButtonTapped:")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveButtonTapped:")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(SearchFiltersViewController.cancelButtonTapped(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(SearchFiltersViewController.saveButtonTapped(_:)))
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -260,39 +263,27 @@ class SearchFiltersViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func earliestDateCellTapped() {
-        let vc = DatePickerViewController(
-            latestPossibleDate: searchFilters.latestDate ?? ChroniclingAmericaArchive.latestPossibleDate,
-            selectedDateOnInit: searchFilters.earliestDate)
-        vc.saveCallback = { [weak self] selectedDate in
-            self?.searchFilters.earliestDate = selectedDate
-            self?.collectionView.reloadData()
-            self?.navigationController?.popViewControllerAnimated(true)
-        }
-        navigationController?.pushViewController(vc, animated: true)
+//        let vc = DatePickerViewController(latestPossibleDate: searchFilters.latestDate ?? SearchConstants.latestPossibleDate())
+//        vc.saveCallback = { [weak self] selectedDate in
+//            self?.searchFilters.earliestDate = selectedDate
+//            self?.collectionView.reloadData()
+//            self?.navigationController?.popViewControllerAnimated(true)
+//        }
+//        navigationController?.pushViewController(vc, animated: true)
     }
 
     func latestDateCellTapped() {
-        let vc = DatePickerViewController(
-            earliestPossibleDate: searchFilters.earliestDate ?? ChroniclingAmericaArchive.earliestPossibleDate,
-            selectedDateOnInit: searchFilters.latestDate ?? ChroniclingAmericaArchive.latestPossibleDate)
-        vc.saveCallback = { [weak self] selectedDate in
-            self?.searchFilters.latestDate = selectedDate
-            self?.collectionView.reloadData()
-            self?.navigationController?.popViewControllerAnimated(true)
-        }
-        navigationController?.pushViewController(vc, animated: true)
+//        let vc = DatePickerViewController(
+//            earliestPossibleDate: searchFilters.earliestDate ?? SearchConstants.earliestPossibleDate())
+//        vc.saveCallback = { [weak self] selectedDate in
+//            self?.searchFilters.latestDate = selectedDate
+//            self?.collectionView.reloadData()
+//            self?.navigationController?.popViewControllerAnimated(true)
+//        }
+//        navigationController?.pushViewController(vc, animated: true)
     }
 
     func locationsCellTapped() {
-        let vc = LocationSearchViewController(nibName: "LocationSearchViewController", bundle: nil)
-        vc.locationSelectedCallback = { [weak self] location in
-            var locations = self?.searchFilters.cities ?? []
-            locations.append(location)
-            self?.searchFilters.cities = locations
-            self?.collectionView.reloadData()
-            self?.navigationController?.popViewControllerAnimated(true)
-        }
-        navigationController?.pushViewController(vc, animated: true)
     }
 
     override func viewDidLoad() {
@@ -349,14 +340,14 @@ class SearchFiltersViewController: UIViewController, UICollectionViewDelegate, U
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 
-        let formatString = "MMM dd, yyyy"
+//        let formatString = "MMM dd, yyyy"
 
         switch indexPath.section {
         case 0:
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("FilterCell", forIndexPath: indexPath) as! FilterCell
             cell.titleLabel.text = "Earliest Date"
-            if let earliestDate = searchFilters.earliestDate {
-                cell.subtitleLabel.text = moment(earliestDate).format(dateFormat: formatString)
+            if let _ = searchFilters.earliestDate {
+//                cell.subtitleLabel.text = moment(earliestDate).format(dateFormat: formatString)
             } else {
                 cell.subtitleLabel.text = "--"
             }
@@ -364,8 +355,8 @@ class SearchFiltersViewController: UIViewController, UICollectionViewDelegate, U
         case 1:
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("FilterCell", forIndexPath: indexPath) as! FilterCell
             cell.titleLabel.text = "Latest Date"
-            if let latestDate = searchFilters.latestDate {
-                cell.subtitleLabel.text = moment(latestDate).format(dateFormat: formatString)
+            if let _ = searchFilters.latestDate {
+//                cell.subtitleLabel.text = moment(latestDate).format(dateFormat: formatString)
             } else {
                 cell.subtitleLabel.text = "--"
             }

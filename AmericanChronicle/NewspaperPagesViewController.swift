@@ -8,29 +8,90 @@
 
 import UIKit
 
+extension UIView {
+    func addForAutolayout(subview: UIView) {
+        subview.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(subview)
+    }
+}
+
+class CustomLayout: UICollectionViewFlowLayout {
+
+}
+
 class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, NewspaperPagesPreviewActionHandler {
 
     @IBOutlet weak var previewCollectionView: UICollectionView!
     @IBOutlet weak var stripCollectionView: UICollectionView!
     @IBOutlet var previewDelegate: NewspaperPagesPreviewDelegate!
     @IBOutlet var dataSource: NewspaperPagesDataSource!
+    @IBOutlet weak var stripCollectionViewBottom: NSLayoutConstraint!
+
     var issue: NewspaperIssue? {
         didSet {
             if !isViewLoaded() {
                 return
             }
-            println("\(__FILE__) | \(__FUNCTION__) | line \(__LINE__)")
             previewDelegate.issue = issue
         }
     }
 
+    @IBAction func pageTapRecognized(sender: UITapGestureRecognizer) {
+        if chromeHidden {
+            showStrip()
+        } else {
+            hideStrip()
+        }
+    }
+
+    override func prefersStatusBarHidden() -> Bool {
+        return chromeHidden
+    }
+
+    var chromeHidden = false
+
+    func showStrip() {
+        chromeHidden = false
+        stripCollectionViewBottom.constant = 0
+
+        UIView.animateWithDuration(0.3, animations: {
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+            self.view.layoutIfNeeded()
+
+        }, completion: { finished in
+        })
+    }
+
+    func hideStrip() {
+
+        stripCollectionViewBottom.constant = -stripCollectionView.frame.size.height
+
+        UIView.animateWithDuration(0.3, animations: {
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+            self.view.layoutIfNeeded()
+            self.chromeHidden = true
+            self.setNeedsStatusBarAppearanceUpdate()
+        }, completion: { finished in
+        })
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(NewspaperPagesViewController.pageTapRecognized(_:)))
+        view.addGestureRecognizer(tap)
+//        navigationController?.hidesBarsOnTap = true
+//        navigationController?.barHideOnTapGestureRecognizer.addTarget(self, action: "pageTapRecognized:")
+
         previewDelegate.issue = issue
         previewDelegate.actionHandler = self
 
         dataSource.issue = issue
         stripCollectionView.selectItemAtIndexPath(NSIndexPath(forItem: 0, inSection: 0), animated: false, scrollPosition: .Left)
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
     }
 
 
@@ -49,16 +110,16 @@ class NewspaperPagesViewController: UIViewController, UICollectionViewDelegate, 
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let vc = segue.destinationViewController as? PageViewController,
-        let selectedPath = previewCollectionView.indexPathsForSelectedItems().first as? NSIndexPath {
-
-            vc.imageName = issue?.pages[selectedPath.item].imageName
-            vc.doneCallback = { [unowned self] in
-
-                let segue = NewspaperPageUnfocusSegue(identifier: nil, source: vc, destination: self)
-                segue.perform()
-            }
-        }
+//        if let vc = segue.destinationViewController as? PageViewController,
+//        let selectedPath = previewCollectionView.indexPathsForSelectedItems()!.first {
+//
+//            vc.imageName = issue?.pages[selectedPath.item].imageName
+//            vc.doneCallback = { [unowned self] in
+//
+//                let segue = NewspaperPageUnfocusSegue(identifier: nil, source: vc, destination: self)
+//                segue.perform()
+//            }
+//        }
     }
 }
 

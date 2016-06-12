@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 ryanipete. All rights reserved.
 //
 
-struct Newspaper: Printable {
+struct Newspaper: CustomStringConvertible {
     let title: String
     let city: City
     var startYear: Int?
