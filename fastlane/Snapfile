@@ -1,0 +1,14 @@
+devices([
+  "iPhone 6s",
+  "iPhone 6s Plus",
+  "iPhone 5s",
+  "iPhone 4s"
+])
+
+languages([
+  "en-US"
+])
+
+scheme "AmericanChronicle UITests"
+
+clear_previous_screenshots true # clear all previously generated screenshots before creating new ones

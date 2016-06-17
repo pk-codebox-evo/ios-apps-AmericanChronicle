@@ -1,0 +1,1090 @@
+{
+  "totalItems": 457226, 
+  "endIndex": 20, 
+  "startIndex": 1, 
+  "itemsPerPage": 20, 
+  "items": [
+    {
+      "sequence": 18, 
+      "county": [
+        "Cook"
+      ], 
+      "edition": null, 
+      "frequency": "Daily (except Sunday and holidays)", 
+      "id": "/lccn/sn83045487/1913-02-20/ed-1/seq-18/", 
+      "subject": [
+        "Chicago (Ill.)--Newspapers.", 
+        "Illinois--Chicago.--fast--(OCoLC)fst01204048"
+      ], 
+      "city": [
+        "Chicago"
+      ], 
+      "date": "19130220", 
+      "title": "The day book.", 
+      "end_year": 1917, 
+      "note": [
+        "\"An adless daily newspaper.\"", 
+        "Archived issues are available in digital format as part of the Library of Congress Chronicling America online collection.", 
+        "Available on microfilm;", 
+        "Description based on: Nov. 1, 1911.", 
+        "Issue for <Nov. 24, 1911> lacks vol., no., and chronological designation.", 
+        "Issue for Nov. 4, 1911 erroneously designated as Oct. 4, 1911.", 
+        "Issue for v. 3, no. 290 (Sept. 7, 1914) erroneously designated as v. 3, no. 300 (Sept. 7, 1914). The error in numbering continues.", 
+        "Issue for v. 5, no. 214 (June 7, 1916) erroneously designated as v. 5, no. 214 (June 6, 1916).", 
+        "Issue for v. 5, no. 7 (Oct. 5, 1915) erroneously designated as v. 5, no. 7 (Sept. 5, 1915).", 
+        "Issues <May 7-17, 1915> called also \"Moving Picture Edition.\"", 
+        "Issues have no page numbering.", 
+        "Saturdays have Noon and Final editions, Dec. 28, 1912-June 21, 1913; Saturdays have Noon and Last editions, June 28, 1913-<Dec. 13, 1913>; began issuing daily Noon and Last editions, Dec. 20, 1913-July 6, 1917.", 
+        "Vol. 5, no. 36 (Nov. 6, 1915) issue called also \"Garment Workers' Special Edition.\"", 
+        "Volume numbering begins with Nov. 20, 1911 issue."
+      ], 
+      "state": [
+        "Illinois"
+      ], 
+      "section_label": "", 
+      "type": "page", 
+      "place_of_publication": "Chicago, Ill.", 
+      "start_year": 1911, 
+      "edition_label": "", 
+      "publisher": "N.D. Cochran", 
+      "language": [
+        "English"
+      ], 
+      "alt_title": [], 
+      "lccn": "sn83045487", 
+      "country": "Illinois", 
+      "ocr_eng": "w\nTHE PETERSON PLAN\nBy Henry P. Benton.\n(Copyright by V. G. Chapman.)\nIn the first days of their en\ngagement Ralph and Cynthia\nloved each other to distraction.\nRalph Blair was twenty-five, and\nhad a prosperous future in the of\nfice of the telephone company;\nCynthia was just a nice American\ngirl of a well-to-do family. There\n1 L pi\nInstead It Looked Worse.\ncould not have been a more aver\nage couple in the world.\nThat was just why they loved\neach other so much. They had\ngrown up in the same circle in the\nsame town ; they had always been\nexpected to marry, and they were\nto be married at the end of the\nyear.\n\"I tell ycu, I'm as happy as a\nking, old man,\" said Ralph to his\nchum. Peterson. \"It seems as\nthough I want to sing all the\ntime.-'\n\"How long have you been en\ngaged?\" asked Peterson gloom\nily. \"Two weeks,\" answered Ralph\necstatically.\n\"Wait till it's two months,\"\nsaid Peterson darkly.\nHenry Peterson was nearly\nthirty. His life was supposed to\nhave been permanently blighted\nby an unfortunate and mysterious\nlove affair a year previously. The\ndiscriminating, indeed, claimed\nthat they could see signs of a\nswift recovery, but nevertheless\nPeterson, as a gloomy ascetic,\nconvinced of the hollowness of\nlife ,and experienced in the ways\nof women, occupied a romantic\nniche in the minds of his friends\nof both sexes which he did noth\ning to destroy.\n\"What do you mean by that?\"\ndemanded Ralph Blair hotly.\n\"I mean,\" answered Peterson,\n\"speaking quite impersonally, of\ncourse I mean that woman must\nbe kept in subjection in order to\ninsure happiness. The worst of\nit is, they are so cunning.\"\n\"Cynthia isn't cunning!' ex\nclaimed Ralph indignantly. \"At\nleast, not in the way you mean.\"\n\"They are all cunning,\" insist\ned Peterson. \"At first they are as\nmeek as milk; then, when they\nhave wound their tentacles firm\nly round their victims they begin\nto exercise their power. Little by\nlittle they claim dominion; at last", 
+      "batch": "batch_iune_foxtrot_ver01", 
+      "title_normal": "day book.", 
+      "url": "http://chroniclingamerica.loc.gov/lccn/sn83045487/1913-02-20/ed-1/seq-18.json", 
+      "place": [
+        "Illinois--Cook--Chicago"
+      ], 
+      "page": ""
+    }, 
+    {
+      "sequence": 33, 
+      "county": [
+        "Cook"
+      ], 
+      "edition": null, 
+      "frequency": "Daily (except Sunday and holidays)", 
+      "id": "/lccn/sn83045487/1916-02-25/ed-1/seq-33/", 
+      "subject": [
+        "Chicago (Ill.)--Newspapers.", 
+        "Illinois--Chicago.--fast--(OCoLC)fst01204048"
+      ], 
+      "city": [
+        "Chicago"
+      ], 
+      "date": "19160225", 
+      "title": "The day book.", 
+      "end_year": 1917, 
+      "note": [
+        "\"An adless daily newspaper.\"", 
+        "Archived issues are available in digital format as part of the Library of Congress Chronicling America online collection.", 
+        "Available on microfilm;", 
+        "Description based on: Nov. 1, 1911.", 
+        "Issue for <Nov. 24, 1911> lacks vol., no., and chronological designation.", 
+        "Issue for Nov. 4, 1911 erroneously designated as Oct. 4, 1911.", 
+        "Issue for v. 3, no. 290 (Sept. 7, 1914) erroneously designated as v. 3, no. 300 (Sept. 7, 1914). The error in numbering continues.", 
+        "Issue for v. 5, no. 214 (June 7, 1916) erroneously designated as v. 5, no. 214 (June 6, 1916).", 
+        "Issue for v. 5, no. 7 (Oct. 5, 1915) erroneously designated as v. 5, no. 7 (Sept. 5, 1915).", 
+        "Issues <May 7-17, 1915> called also \"Moving Picture Edition.\"", 
+        "Issues have no page numbering.", 
+        "Saturdays have Noon and Final editions, Dec. 28, 1912-June 21, 1913; Saturdays have Noon and Last editions, June 28, 1913-<Dec. 13, 1913>; began issuing daily Noon and Last editions, Dec. 20, 1913-July 6, 1917.", 
+        "Vol. 5, no. 36 (Nov. 6, 1915) issue called also \"Garment Workers' Special Edition.\"", 
+        "Volume numbering begins with Nov. 20, 1911 issue."
+      ], 
+      "state": [
+        "Illinois"
+      ], 
+      "section_label": "", 
+      "type": "page", 
+      "place_of_publication": "Chicago, Ill.", 
+      "start_year": 1911, 
+      "edition_label": "LAST EDITION", 
+      "publisher": "N.D. Cochran", 
+      "language": [
+        "English"
+      ], 
+      "alt_title": [], 
+      "lccn": "sn83045487", 
+      "country": "Illinois", 
+      "ocr_eng": "4\n'TAKING SHAPE!\"\n\" \"\nJacob Brackett, 1348 W. Erie, shot , Ernest Peterson, saloonkeeper,\nby policeman chasing alleged chicken 6901 S. Ashland av., dead. Shot by\nthieves in Wilmette. Arrested. J robber Wednesday.\nir f\"rr -nrrai\n- - -JS-lSa", 
+      "batch": "batch_iune_hotel_ver01", 
+      "title_normal": "day book.", 
+      "url": "http://chroniclingamerica.loc.gov/lccn/sn83045487/1916-02-25/ed-1/seq-33.json", 
+      "place": [
+        "Illinois--Cook--Chicago"
+      ], 
+      "page": ""
+    }, 
+    {
+      "sequence": 9, 
+      "county": [
+        "Cook"
+      ], 
+      "edition": null, 
+      "frequency": "Daily (except Sunday and holidays)", 
+      "id": "/lccn/sn83045487/1916-11-25/ed-1/seq-9/", 
+      "subject": [
+        "Chicago (Ill.)--Newspapers.", 
+        "Illinois--Chicago.--fast--(OCoLC)fst01204048"
+      ], 
+      "city": [
+        "Chicago"
+      ], 
+      "date": "19161125", 
+      "title": "The day book.", 
+      "end_year": 1917, 
+      "note": [
+        "\"An adless daily newspaper.\"", 
+        "Archived issues are available in digital format as part of the Library of Congress Chronicling America online collection.", 
+        "Available on microfilm;", 
+        "Description based on: Nov. 1, 1911.", 
+        "Issue for <Nov. 24, 1911> lacks vol., no., and chronological designation.", 
+        "Issue for Nov. 4, 1911 erroneously designated as Oct. 4, 1911.", 
+        "Issue for v. 3, no. 290 (Sept. 7, 1914) erroneously designated as v. 3, no. 300 (Sept. 7, 1914). The error in numbering continues.", 
+        "Issue for v. 5, no. 214 (June 7, 1916) erroneously designated as v. 5, no. 214 (June 6, 1916).", 
+        "Issue for v. 5, no. 7 (Oct. 5, 1915) erroneously designated as v. 5, no. 7 (Sept. 5, 1915).", 
+        "Issues <May 7-17, 1915> called also \"Moving Picture Edition.\"", 
+        "Issues have no page numbering.", 
+        "Saturdays have Noon and Final editions, Dec. 28, 1912-June 21, 1913; Saturdays have Noon and Last editions, June 28, 1913-<Dec. 13, 1913>; began issuing daily Noon and Last editions, Dec. 20, 1913-July 6, 1917.", 
+        "Vol. 5, no. 36 (Nov. 6, 1915) issue called also \"Garment Workers' Special Edition.\"", 
+        "Volume numbering begins with Nov. 20, 1911 issue."
+      ], 
+      "state": [
+        "Illinois"
+      ], 
+      "section_label": "", 
+      "type": "page", 
+      "place_of_publication": "Chicago, Ill.", 
+      "start_year": 1911, 
+      "edition_label": "LAST EDITION", 
+      "publisher": "N.D. Cochran", 
+      "language": [
+        "English"
+      ], 
+      "alt_title": [], 
+      "lccn": "sn83045487", 
+      "country": "Illinois", 
+      "ocr_eng": "OUTBURSTS OF EVERETT TRUE\nSO YOU INSIST THESE CHICLY K 23 I ft 1\nMORNINGS ON KECPINC A WINDOW ' I Ml I U\nOPCN SO YOU CAN CHW tobacco 0 T 1 HP\nALL THE. UAY'SOWN \"TOWN TO THS b ffl\nDISCOMFORT ANl OISSUST OF f jLjf? 11 II 1\nHarvey Hill, rich youngster, arrest\n, ed on bad check charge, jumped\nbond.\nSmall fire attacked. White Light\n- . Electrical Supply . Co.,. 207 S. J)ear-Jjorn,\nThos. F. Holgate, N'western Uni\nversity, says \"slapstick movies\" are\nunfit for children to see.\nH. Aayid Peterson got divorce from\nAnna Peterson. Said she admitted\nshe didn't love mm.", 
+      "batch": "batch_iune_india_ver01", 
+      "title_normal": "day book.", 
+      "url": "http://chroniclingamerica.loc.gov/lccn/sn83045487/1916-11-25/ed-1/seq-9.json", 
+      "place": [
+        "Illinois--Cook--Chicago"
+      ], 
+      "page": ""
+    }, 
+    {
+      "sequence": 43, 
+      "county": [
+        "Beltrami"
+      ], 
+      "edition": null, 
+      "frequency": "Daily (except Sunday)", 
+      "id": "/lccn/sn86063381/1909-03-27/ed-1/seq-43/", 
+      "subject": [
+        "Bemidji (Minn.)--Newspapers.", 
+        "Minnesota--Bemidji.--fast--(OCoLC)fst01218730"
+      ], 
+      "city": [
+        "Bemidji"
+      ], 
+      "date": "19090327", 
+      "title": "The Bemidji daily pioneer.", 
+      "end_year": 1971, 
+      "note": [
+        "Archived issues are available in digital format as part of the Library of Congress Chronicling America online collection.", 
+        "Available on microfilm from the Minnesota Historical Society."
+      ], 
+      "state": [
+        "Minnesota"
+      ], 
+      "section_label": "History of Bemidji", 
+      "type": "page", 
+      "place_of_publication": "Bemidji, Minn.", 
+      "start_year": 1904, 
+      "edition_label": "", 
+      "publisher": "Pioneer Pub. Co.", 
+      "language": [
+        "English"
+      ], 
+      "alt_title": [], 
+      "lccn": "sn86063381", 
+      "country": "Minnesota", 
+      "ocr_eng": "1/\nA W. DANAHER, Chairman, Fifth District.\nA. W. DANAHER.\nA. W. Danaher, more intimately known\nto his close personal friends as \"Andy,\"\nis the present chairman of the Board\nof County Commissioners of Beltrami\ncounty, a position which is deserving of\ncompliment to one who is serving the\ncounty for the best interests of the tax\npayers.\nMr. Danaher comes from good old Irish\nstockthe kind that is always \"true\nblue\" and always dependable, a trait\nwhich is one of Mr. Danaher's principal\ncharacteristics.\nMr. Danaher came to Beltrami county\nsome ten years ago, and for a time was\na resident of Bemidji. Seven years ago\nhe moved to Tenstrike and has made his\nhome in the community since that time.\nIn 1904 Mr. Danaher was elected coun\nty commissioner to represent the Fifth\ncommissioner district, which position he\n'6 VIGGO PETERSON, Fourth District,\nBEMIDJI, BELTRAMI COUNTY AND NORTHERN MINNESOTA.\nBELTRAMI COUNTY BOARD\nhas held continuously since that time.\nMr. Danaher served the county well, and\nat the January, 1909, meeting of the\ncounty board, he was elected chairman\nof the board. His slogan is \"economy\nin the administration of the county's\naffairs,\" and in this he is ably seconded\nby the other members of the board.\nMr. Danaher has always been a true\nblue Republican, a good politician, and\none who has always been loyal to his\nfriends.\nMr. Danaher is a pioneer of Beltrami\ncounty and one of her most respected\nand progressive citizens.\nVIGGO PETERSON.\nMr. Peterson is serving his first term\nas one of the county commissioners, hav\ning been elected as an independent can\ndidate. He represents the town and\ntownship of Durand, where he is now a\nsupervisor of that place. Previous to his\nselection to the latter-named office, Mr.\nWES WRIGHT, First District.\nPeterson had served in the capacity of\nchairman of the village board, distinctions\nwhich indicate the genuine worth of Mr.\nPeterson as a citizen, and his attainments\nas a business man and executive.\nMr. Peterson has been a resident of\nDurand for seven years, where he settled\nin order to homestead a section of timber\nand farm land. A native of Denmark,\nhe migrated direct to the place where\nhe now resides, and his prosperity in his\npresent location affords but another ex\nample of what Beltrami county has to\noffer to the true husbandman of the soil.\nMr. Peterson is among the county's\nmost responsible and able men. Public\nspirited to the last letter, a firm believer\nand advocate in and for the greatness\nof this county, Mr. Peterson is indeed\nto be appreciated not only for his quali\nties as a resident of Beltrami county, but\nbecause he has so rapidly ascended the\nladder of success, an element which goes\nto show how he is esteemed by his\nneighbors.\nHELIC CLEMENTSON, Second District.\nWES WRIGHT.\nHaving been one of the county oom\nmisisoners for eight consecutive years,\nMr. WTight requires no frills to com\nprehensively elucidate his virtue as a\nservant of the people.\nMr. Wright was elected from Bemidji,\na ity noted for its critical observance\nof the policy of its representatives,\nand that be has fulfilled the most ardent\nexpectations of those who placed him in\noffice is apparent by his return to office\nyear after year. Mr. Wright was a res\nident of Beltrami county before It was\norganizedabout nineteen years ago. He\nis a homesteader, having taken up a\nclaim near Kelliher. Coming to Bemidji,\nhe engaged in the business of draying,\nand continued in that occupation until\nhe took up street work contracting, a\nbusiness he followed for some years.\nLater he represented the Standard Oil\ncompany in this field, a position he held\nfor eight years, resigning a few months\n5re\"v er\n1 I\n3\nF. O. SIBLEY. Third District.", 
+      "batch": "batch_mnhi_kerns_ver01", 
+      "title_normal": "bemidji daily pioneer.", 
+      "url": "http://chroniclingamerica.loc.gov/lccn/sn86063381/1909-03-27/ed-1/seq-43.json", 
+      "place": [
+        "Minnesota--Beltrami--Bemidji"
+      ], 
+      "page": ""
+    }, 
+    {
+      "sequence": 22, 
+      "county": [
+        "Cook"
+      ], 
+      "edition": null, 
+      "frequency": "Daily (except Sunday and holidays)", 
+      "id": "/lccn/sn83045487/1913-12-10/ed-1/seq-22/", 
+      "subject": [
+        "Chicago (Ill.)--Newspapers.", 
+        "Illinois--Chicago.--fast--(OCoLC)fst01204048"
+      ], 
+      "city": [
+        "Chicago"
+      ], 
+      "date": "19131210", 
+      "title": "The day book.", 
+      "end_year": 1917, 
+      "note": [
+        "\"An adless daily newspaper.\"", 
+        "Archived issues are available in digital format as part of the Library of Congress Chronicling America online collection.", 
+        "Available on microfilm;", 
+        "Description based on: Nov. 1, 1911.", 
+        "Issue for <Nov. 24, 1911> lacks vol., no., and chronological designation.", 
+        "Issue for Nov. 4, 1911 erroneously designated as Oct. 4, 1911.", 
+        "Issue for v. 3, no. 290 (Sept. 7, 1914) erroneously designated as v. 3, no. 300 (Sept. 7, 1914). The error in numbering continues.", 
+        "Issue for v. 5, no. 214 (June 7, 1916) erroneously designated as v. 5, no. 214 (June 6, 1916).", 
+        "Issue for v. 5, no. 7 (Oct. 5, 1915) erroneously designated as v. 5, no. 7 (Sept. 5, 1915).", 
+        "Issues <May 7-17, 1915> called also \"Moving Picture Edition.\"", 
+        "Issues have no page numbering.", 
+        "Saturdays have Noon and Final editions, Dec. 28, 1912-June 21, 1913; Saturdays have Noon and Last editions, June 28, 1913-<Dec. 13, 1913>; began issuing daily Noon and Last editions, Dec. 20, 1913-July 6, 1917.", 
+        "Vol. 5, no. 36 (Nov. 6, 1915) issue called also \"Garment Workers' Special Edition.\"", 
+        "Volume numbering begins with Nov. 20, 1911 issue."
+      ], 
+      "state": [
+        "Illinois"
+      ], 
+      "section_label": "", 
+      "type": "page", 
+      "place_of_publication": "Chicago, Ill.", 
+      "start_year": 1911, 
+      "edition_label": "", 
+      "publisher": "N.D. Cochran", 
+      "language": [
+        "English"
+      ], 
+      "alt_title": [], 
+      "lccn": "sn83045487", 
+      "country": "Illinois", 
+      "ocr_eng": "TiJnJpfflp\nANOTHER RAY OF LIGHT FLASHED ON THE\nMETHODS OF THE UNITED CHARITIES\nWhy not make her support the Peter\nson family?\nThen the persecution commenced.\nMrs. Douthergy was threatened with\narrest. The United Charities de\nmanded that slie support Mrs. Peter\nson and her three children on her\nmunificient earnings of $6 a week.\nMrs. Douthergy refused. \"How\ncauld I feed and shelter si on $6 a\nweek?\" she asked, with tears in her\neyes.\nUnable to shift the burden on Mrs.\nDouthergy's shoulders they started\nto dun Mrs. Peterson's family.\nMrs. Peterson's sister was the next\nto receive a visit. \"Why don't you\nhelp your sister?\" the investigator\ndemanded.\n\"When lam able to spare anything\nI shall give it to her myself and not\nthrough the United Charities,\" was\nthe -reply.\nMrs. Peterson got work. Unable,\nto leave the children at home alone\nshe brought her husband back from\nOak Forest. \"I had to have some\none to keep an eye on the children,\"\nshe said, \"I couldn't live on prom\nises. \"I was lifed of the United Chari\nties and wanted them to leave us\nalone. But they wouldn't do it. They\nwent to all my relatives and made\nthem sore at me.\n\"Look at this,\" she said, and hand\ned the 'reporter a letter dated Jan.\n10th, 1912.\nIt read as follows:\n\"You are doubtless acquainted\nwith the circumstances of your niece,\nMrs. Peterson. Relief to be given\nmust be considerable and we want\nyou to co-operate and give something\ndefinite each week. The rent has\nb6en due-since the first of the month.\n(Signed) \"Caroline L. Bedford:,\n\"Ass't Dist. Supt.\"\n\"As if my family wasn't doing its\nbest,\"' she 'said.\n''Please read the postscript\nFurther light on the methods of the\nUnited Charities in \"distributing\ncharity\" and preventing \"justice\" is\ngiven in the story -of Mrs. Frank\nPeterson, 1152 West Harrison street.\nAbout eighteen months ago Frank\nPeterson was dying of tuberculosis.\nHis wife, unable to support her dying\nhusband and three little children,\nFrank, aged 9, Harold, 7, and Ruth,\n3, applied to the United Charities for\nassistance.\nThey would do nothing for her\nuntil they \"investigated.\" Several\nweeks went by. Finally they came\nand made an offer. \"Send your hus\nband to Oak Forest,\" they said, \"and\nwe will get you a mother's persion.\"\n\"Mrs. Peterson preferred to keep\nher husband at home, to give the\ndying man her personal attention, a\nwife's care. But necessity forced her\nto send him away. She had her chil\ndren. Once the husband was gone, the U.\nC. refused to do a thing for the wife.\nShe begged them for work, although\nalmost too ill to stand on her feet.\nAfter some delay they ga,ve her a\nticket for four days' work at the\nMary Crane Nursery.\n\"I was told,\" she says, \"not to tell\nthem that I was illr. I kept still, I\nneeded the money to feed my babes.\n\"I worked one day and was told not\nto return. I had done my best, but\nwas too 111 to keep up the pace set\nby the management. For nine hours'\nwork I'received $1.\"\nMrsDouthergy, 56 years old, the\nmother of Mrs. Peterson, was stop\nping with\" her daughter. She is a\nwidow and has a girl aged 12. She\nis a.hard-working woman whp sup\nports herself and child on the $6 a\nweek she earns.\nThe investigators got husy. Here\nwas a woman independent enough to\ntake care of herself and child. Too\nproud to be a recipient of charity.\nWhy not shift the responsibility?\n--. ASMt? .. 'i'v'-i'aattA\ntei", 
+      "batch": "batch_iune_delta_ver01", 
+      "title_normal": "day book.", 
+      "url": "http://chroniclingamerica.loc.gov/lccn/sn83045487/1913-12-10/ed-1/seq-22.json", 
+      "place": [
+        "Illinois--Cook--Chicago"
+      ], 
+      "page": ""
+    }, 
+    {
+      "sequence": 1, 
+      "county": [
+        "Honolulu"
+      ], 
+      "edition": null, 
+      "frequency": "Daily", 
+      "id": "/lccn/sn85047084/1894-05-04/ed-1/seq-1/", 
+      "subject": [
+        "Hawaii--Honolulu.--fast--(OCoLC)fst01204916", 
+        "Honolulu (Hawaii)--Newspapers."
+      ], 
+      "city": [
+        "Honolulu"
+      ], 
+      "date": "18940504", 
+      "title": "The Pacific commercial advertiser.", 
+      "end_year": 1921, 
+      "note": [
+        "Also issued on microfilm from UMI.", 
+        "Archived issues are available in digital format from the Library of Congress Chronicling America online collection.", 
+        "Issue for Aug. 4, 1898 also called: \"Boys in blue edition.\"", 
+        "Republican. Cf. Ayer, 1921.", 
+        "Sunday issues carry separate numbering.", 
+        "Until May 1888, issued concurrently with a weekly newspaper of the same title: Pacific commercial advertiser (Honolulu, Hawaii : 1856)."
+      ], 
+      "state": [
+        "Hawaii"
+      ], 
+      "section_label": "", 
+      "type": "page", 
+      "place_of_publication": "Honolulu, Hawaiian Islands", 
+      "start_year": 1885, 
+      "edition_label": "", 
+      "publisher": "[s.n.]", 
+      "language": [
+        "English"
+      ], 
+      "alt_title": [
+        "Daily Pacific commercial advertiser", 
+        "Sunday advertiser"
+      ], 
+      "lccn": "sn85047084", 
+      "country": "Hawaii", 
+      "ocr_eng": "mi n i\ni, M jfi M f.J :\nI\nestablished J nix 9, 1806.\nVOL. XIX., KO. 3679.\nHOOLTJIiTJ, HAWAIIAX ISLANDS, FRIDAY. MAY 4, 1S94.\nPRICE: 5 CENTS,\nS I - . a 1 If K n. M\nBnsuifss Cards.\nHAWAIIAN\nAbstract aim Title Co.\nXO. 43 MERCHANT 8T.\nHONOLULU, H. I.\n. M. Mfttcn\nCecil Brown\nW. B. Castle\nJ. F. Brown,\nW. Y. Frear\nPresident\n- Vice-President\n- - Secretary\nTreasurer & Manager\nAnditor\nThis Company is prepared to search\nrecords and furnish abstracts of title to\nail real property in the Kingdom.\nParties placing loans on, or contemplat\ning the purchase of real estate will find it\nto their advantage to consult the company\nin regard to title.\nG?-A11 orders attended to with prompt\nness. Bell Telephone 225: P.O.Box 15.\nC. BREWER k CO, LIMITED\nQueen Street, Honolulu, II. I.\nAGENTS. FOR\nHawaiian Agricultural Co., Onomea\nSupir Co., Honomu Sugar Co , Wailuku\nSugar Co , Waiho Sugar Co., Makee\nSugar Co., Haleakala Ranch Co., Kapa\npal Ranch\nPlanters' Lint? San Francisco Packets.\nChas. Brewer & Co.'s Line of Boston\nAgents Boston Board of Undrwi iters.\nAgents Philadelphia Boird f Under\nwriters. I.IST OF OFF1CISKS:\nP. C. J ones President\nGeo. H. Robertson Manager\nE. F. Bisuop Tres. and Secy\nCol. W. F. Allen Auditor\nC. M. Cooke . . )\nH. Watekhousk . . .\nC. L. Carter )\n...Directors\nNational \" iron Works\nQTJiCIGISr STREKT,\nBetween Alakea and ttichard Streets.\nrpHE UNDKSIjND. ARE PRE\nJL pared to make all kinds of Iron,\nBrass, Bronze, Zinc and Lead Castings ;\nalso a general Repair Shop for, Steam\nEngines, Rice Mills, Corn Mills. Water\nWheels, Wind Mills, etc. ; Machines for\nthe cleaning of Coffee, Castor oil Beans,\nRamie, Sissal, Pineapple Leaves and\nother fibrous plaots ; also. Machines for\nPaper Stock, Machines tor extracting\nStarch from Maniock, Arrow Root, etc.\nOS?\" All orders promptly attended to.\nWhite, JKitman & Co.\n3428-tf\nNew Goods\nA FINE ASSORTMENT.\nTILES FOR FLOOR !\nAnd for Decorating Purposes;\nMatting of all Kinds,\nManila Cigars.\nOhinssa Fire Crackers, Rockets and\nbombs, Japanese Provision and Soy.\nSand-paiiited Porcelain Dinner Set,\na. tew ol tnose fine hand-embroidered\nJ!!-. bud SATIN SCREENS.\nK'J302sTY FBAMS8.\nAssorted colors and patterns of Crepe\n8ilkShawl8. Elegant Tete-ateCups\nmid Saucers. A fine lot of\nBOATS AND ACCESSORIES\nA lew of those handy Mosquito Drn\n! Also, an assortment of new styles of\ntlattan. Ohuira and Tables\nAlsw, a smdll selection of JAPANESE\nOOSTUMES.\nWING WO CHAN & CO.\nNo. SSt JN\"tiu.anu. 6t7t.\n2651-Q\nHUSTACE & CO.\nDealers in\nWOOD AND COAi.\nAlso White and Black Sand -which w\nwill sell at the very lowest market rate3.\nIEST-Bell Tblephonk No. 414.\nSSMuttjal Telephone No. 414.\n. 3493-ly\nBusiness Cante.\nM. E. Grossman, D.D.8.\nDENTIST,\n93 HOTJL 3TES1T.\nCC07FICX HOCBS H A. M. TO 4 P. I.\nDR. R. I. MOORE\nDENTIST.\n05ic8: Arlington Hoasa, Hotel St, Parlor 2.\n2PGas Administered.\nOffice Hooks : 9 to 12 and 1 to 4.\n3271-1 m\n\"SAKS S0DG1\" HOTEL\nSKAiDE RESORT,\nT7AIKIKI, : HOisTOILiTJLtJ.\nltl desire to find no quieter haven\nthan the 'S'ans Souci and may well\nadd with the poet:\n'In a more sacred or sequestered bower,\nNor nymph nor Faunus haunted.'\nROBERT LO UIS STEVENSON.\"\nP. C. Advertiser, Oct 7, 1S93.\nT. A. Simpson,\n3523-ly MANAGER.\nC. U. RIPLEY,\nARTHUR REYNOLDS,\nARCHITECTS.\nOffice New ? af8 Deposit Building,\nHonolulu, H. I.\nPlans, Specifications, and Superintend\nence given for every description of Build\nIng.\nOld Buildings mccessfnlly remodelled\nand enlarged.\nDesigns for Interior Decorations.\nMaps or Mechanical Drawing, Tracing,\nand Blueprinting.\nCSyDra wings for Boos or Newspajei\nIllustration.\nCiixlH-HORN\n1863\nPionyer Steam\nCANDY FACTORY and BAKEBY\nF. HOK.N Practical Uoniectioner.\nPaatrv Cook and Baker.\nNo. 71 Hotel St.\nTelephone,\nCENTfiAL MARKET !\nSTREET.\nFirst-class Market in every respect ; be\nsides carrying a full line of Meats,\nwe make a specialty of\nBreakfast Sausaees,\nHead Clieese,\nPressed Corn Beof.\nWESTBROOK & GARES,\n3437-q Peopbietob.\nThe Planters' Monthly.\nCONTENTS FOR APRIL,\nPearl Harbor.\nWith Our Readers.\nHawaiian Commercial Statistics.\nCommercial Fertilizers.\nA New Paint for Sugar Mill Machinery.\nLime for Sugar Cane Soils.\nCold Storage of Fruits\nCuba and its buar industry.\nBanana Cultivation iu Jamaica.\nCane Fertilization.\nSuperheat Clarification.\nTraining and Afier-Treatn ent of the\nGrape Vine.\nSubscription $2.50 a ye r.\nForeign Subscription $3 a year.\nBound Volumes 3 50\nBack Volumes bound to order.\nAddress\nG1ZETTE PUBLISHING CO.,\n46 Merchant St.. Honolulu\nHAWAIIAN HARDWARE CO.,\nHARDWARE,\nCutlery and Glassware\n307 Fort Street.\n3575-1 y\nJ. M. DAVIDSON.\nAttorney ad Ocaasallor-at-lnw.\n(jtilr.f-gu Merchant tit rm\nWILLlAJYi G. r'ARKK,\nATTORNEY - AT - CAW\nAM\nA.gam to taka Acknowl.itg m.nu\nOricx No. 13 Kaahumanu trei, Hono-\nlulu, H.I.\nLEWERS a COOKE.\n(Sacceaaort to Lewera 4. DIckor\nIuiiMrterH nutl Dealer tn Luvul?\nAnd a.11 Klcda of Bnildlna Mte;ih2.\nNo.83 FOBT STBKlr. Hocolvr.\nThe New Jewelry Store\n503 Fort Street,\nABE PREPARED TO MANUFACTURE ANY\nTHING IN THEIR LINE.\nSouvenir Spoons!\na specialty. Also, on hand a fine stock\nof imported\nJ EWELEY.\nEVERYTHING IN THE LATEST DESIGNS.\nCTsland 01ders promptly attended to.\nP. O. BOX 287. ,\nMUTUAL TELEPHONE 468.\nE. A. JACOBSON\nCriterion Saloon\nS1R AUSTRALIA\nAuother Invoice of the celebrated\nJOHN W1ELAND EXTR1 PALE\nLager Beer\nAlso, a fresh Invoice of\nCAL.IFOHNI OYSTERS\nOYSTER COCKTAILS\nL. H. DEE, - Proprietor.\n3406\nCASTLE & COOKE\nLtlWJSl AND FIRE\nINSURANCE\nAGENTS\nAGENT8 FOR\nNEW ENGLAND MUTUAL\nJLiffe Insurance Co.\nOF BOSTON,\nItna Fire I j simmer Vo,\nHARTFORD\npiano notice\nAs our Piano Tuner and Uepairer has\nnow arrived, we are prepared to take\norders for work, which will be executed\nin the very best manner possible, as\nwithout question we have secured (in the\nperson of Mr. G. H. Harrison) the most\nskillful and finished Artist in his Trade\nwho has ever visited the Islands.\nALL. WORK GUARANTEED.\nTELEI'IIOSE US TOUR .ORDERS\nAT ONCE.\nMusic Department.\nTHE HAWAIIAN NEWS\nCOMPANY, LIMITED.\nDR. C. B. COOPER.\nOffice Houbs 8 :30 to 10 a. m. ; 2 to\n4 p. m. ; 7 to S p. m.\nSundays : 9 :30 to 10 :30 a. m.\nCOR ALAKEA AND HOTEL STREETS.\nE7\"Both Telephones 154. 3671-lm\nF. M. WAKEFIELD,\nAttorney and Counsellor at Lav\nTemporary Office with C. W. Ashford,\nMerchant Street, Honolulu.\n' 3394-ly\nB. W. M'CHISmY, J. H. h T. W. M'CHliKSY.\n124 Clay 8t., 8. F. 40 Queen St, Rono.\nM. W. McOHESNEY & SONS,\nWholesale Grocara. Coramission Mer-\nchants and Importers.\n40 Queen St., Honolulu.\nLEWIS & CO.,\nholesale and Retail Grocers,\n111 FORT STREET.\nBEAVER SALOON,\nFort Street, Opposite Wilder A Co.'s\n, H. J. NOLTE, PE0PEIET0B. '\nVlrst-olAsi Lnnehei Served with Tea, OoCee\nBo2 Water, Qlnger Ale or Milk.\nOpen From S a. m. till 10 p. m.\ngrSiuokera'Beqaleltee BpecUlty.\nJOHN T. WATERH0USE,\nImporter and Dealer to\nGENEEAL MEBOHANDISS,\nSo. 35-31 Qqeen Street, Jtlonolnln .\nH. HACKFELD & C0-,\nGener-H.1 Commission Agents\nOor. ifort J Qneen Bta.. Iionolnln.\nHONOLULU IRON WORKS CO.,\nSteam BJisrines,\nKollerw. .uitrair Mill, Cooler, Cral\nAnd machinery of every description made\nto order. Particular attention paid to\nships' blackemithinsr. Job work escuted\non the shortest notic.\nARTHUR HARRISON,\nBuilder and Contractor\nHaving a large quantity of Grauite\nCurbing, to save removal of same, will\nsell at reduced rates.\nBELL TELEPHONE 319.\n3667-tf\nO YOU FEED\nTHE BABY ?\nThe 8kin needs foot-. If the Com\nplexion l? p-allow, rough, scaly, pimply,\nit 13 because it is not fed with\nLOLA JM0NTEZ CliEME\nThe Skin Food. and. Tissue Builder,\npositively the only sate and eeliablk ar\nticle for the Complexion. Absolutely\nHarmless, opens the pores, increases the\nnatural and necessary secretions cf the\nskin. Restores the flesh to firm healthy\nstate of youth. Prevents wrinkles.\nGood for burns, chapped lipa and handp.\ngjgf Pot lasts three months.\nPRICE 75 CENTS.\n27\" Ask vour druggist for it.\nHOW CAN YOU TOLERATE\nFreckles, Pim\nples, Blackheads,\nyellow or mud\ndy Skin, mouth\nWrinkles or anv\nform of facial dia\n6gurement when\nMrs. Nettie Hak\neison guarantees\ni . to cure you. Don't\n?tnsi S consider your\n' N--l--, case a hopeless\none.\n4 .r, t .\nMrs. Harrison trats ladies for all de\nfects of face and figure. The perma\nnent removal of superfluous hair\nguaranteed.\nMRS. NKTTIE HARRISON\n-Ajxierioa'B Beauty Doctor.\n26 Gearv Street, San Francisco, Cel.\nSSSTFor sale by HOLLI8TER DRUG\nCO., 109 Fort St., Honolulu.\nS556-tf\nCorporation Notice.\nTOTICE IS HEREBY GIVEN',\nthat the charter of t e North Pacific\nPho?phat and Ferti-izer Co. has been\namended by chanaitir tb name of rhe\nCorporation to \"The vaciue Guano ami\nFertilizer Company,\" and that p;!:h\namendaent was dnl3 accepted by the\nCompanv at a meeting held on the Sth\nof April,\" 1S9.\nE. SCHR,\nSecrearv.\nHonolula, pril 9. 1SP4.\n3GG9-5t\nD\nBEN GALLAGHER EXAMINED.\nHe Is Committed for Trial to the\nCircuit Court.\nTHE TESTIMONY AS GIVEN IN COURT.\nTwo Witnesses Swear to IlavlDg Seen\nthe Defendant Bite Peterson's Ear\nThe Defense Otters no Evidence Gal\nlagher l'ut I'nder a Bond of 810OO.\nThe examination of Ben Gallagher,\nthe man who ia accused of bitimr off\na piece of Bert Peterson's right ear,\ntook place yesterday afternoon iu\ntheDistrict Court.\nTliere was a motley\ngathering in the\ncourt room during\nthe hearing. The\nfirst witness called\nwas W. F. Love,\nwho described how\nthe fight started.\nHe stated that he\nand Peterson were\ntalking in a friend\nly manner and dur\ning the conversa\ntion Peterson jok\ningly referred to\nLiove as a royalist,\n1\nand the next be\nBert. Peterson,\nthe\nknew or saw was\nman tchose ear was\nbitten by Gallagher\nthat Gallagher\nmade a rush for\nPeterson and struck him.\nLove then\nleft the saloon.\nPeter M. Lucas, a barkeeper at the\nhotel, was next called. He said the\ntrouble started about ten o'clock.\nGallsgher had been in the barroom\nfor about an hour and during that\ntime he had several drinks, but did\nnot appear to be in a quarrelsome\nmood. Lucas was behind the bar,\nand when the trouble commenced he\nimmediately ran out in front of the\ncounter and saw Gallagher holding\nPeterson with one hand and punching\nhim with the other. A moment later\nboth men fer to the floor. The wit\nness then tried to stop the fight, but\nwas interfered with by Brown, who\nthrew him to one side, saying, ''Xjet\nthem alone; let them have a fair\nfight.\" Lucas replied that it was not\na fair fight as he (meaning Peterson),\nwas only a boy. He then appealed to\n\"Wilson, saying, \"Don't let them fight;\nhe will kill the boy.\" Wilson then\nseparated Gallagher and Peterson and\nboth men got on their feet and im\nmediately clinched again. Mr. Lewis,\nthe manager of the Hotel, then ap\npealed to the crowd to stop the fight\nand tried to get near Gallagher him\nself but was prevented from doing so7\nby Brown. The witness was not in\nthe room when the biting took place\nAfter the first interference by Wilson\nnothing was done to stop Gallagher\nfrom assaulting Peterson, and later on\nboth Wilson and Brown remarked,\n\"let them have a fair light.\" Brown\nwas walking around keeping people\naway from the two fighters. Peterson\ntook a billiard cue from Wilson and\nstarted towards Gallagher. Wilson\ntook the cue away from Peterson and\nGallagher again attacked him. Pet\nerson jumped over the table and Gal\nlagher went after him. Both fell\ndown, and Gallagher got on top of\nPeterson. I heard Peterson say some\nthing, but I could not tell whether it\nBEN GALLAGHER.\n(Front a Photograph.)\nwas an appeal for help or not. Pet\nerson got up again, and went over an\nother table. They were fighting all\nthe time, but Peterson had the worst\nof it. The next I saw of Peterson, he\npicked up a billiard ball and tried to\nthrow it at Gallagher. After that he\nran upstairs. He was badly bleeding\nand bruised. A piece was off his ear,\nfor I .saw it on the floor.\nCross-examined There were about\ntwenty people in the room when the\nfight commenced. After it was over\nthere were about fifty present. I do\nnot know what started the trouble. I\nasked Wilson to take Gallagher off,\nand he did it, but the' came together\nagain. I do not know who separated\nthem the second lime. I tiied to get\nto the center of the ring several times,\nbut each time I was pushed away by\nBrown. I did not see Peterson on top\nat any time.\nB. II. Wright was the next witness\ncalled. His testimouy was as follows:\nI\n\"I was at the Hotel on Friday even-\ning when the trouble began. I was\nwatchiug Petersonjplay a game of bil\nliards. Then I went across the room\nto watch another game. I saw Gal\nlagher strike Peterson, and saw them\nclinch. Peterson held Gallagher up\nagainst the bar. I did not see Pet\nerson strike back. I heard no\naltercation before the blow was\nstruck. Gallagher tried to pull\nPeterson away from the bar.\nThey then fell to the floor, with\nGallagher on top.. Gallagher punched\nPeterson in the head several times. I\nsaw that Peterson was getting badly\nhurt. He lay like a dead man. When\nthey first fell Gallagher bumped his\nhead against the floor. Peterson was\nface down. I did not interfere, as I\nhave had a little experience with\nthose people. I thought it dangerous.\nI appealed to a bystander to help me,\nbut he wouldn't do it. Peterson did\nnot seem to have any show, and was\nmaking no fight. I heard some one\nsay 'lie's done,1 and then I went up\nstairs and telephoned for a police\nman. Peterson had appealed for help\nseveral times, but he got none. When\nI got back Gallagher was sittingdown\nand a policeman came in. The police\nman came in. The policeman told\nGallagher to come - with him, and\nGallagher said he would not go unless\nhe had a warrant. Other people in\nthe saloon objected to Gallagher's\narrest. He was not arrested.\"\nFrank Vida testified as follows:\n\"I was playing billiards with Peter-,\nson. I had my back turned when the\nfight commenced. I turned around,\nand saw Gallagher and Peterson\nstruggling. Peterson had one hand on\nthe bar and . the other around Galla\ngher's neck. They fell to the floor.\nPeterson called for help while on the\nfloor. I wanted to help him, but I was\nprevented by someone; I do not know\nwhom. All through the fight Peter\nson was trying to defend himself from \"\nBen. Gallagher was bumping his\nhead on the floor. When they were\nseparated Peterson took a billiard cue\nand started for Gallagher. He had\ngone about six feet, when Wilson in\nterfered and took the cue from his\nhands. At this time Gallagher was\ncoming toward Peterson. When Gal\nlagher reached Peterson the cue was\nout of his hands. They began to fight\nagain. I did not see the biting, as I\nwas on the other side of the room. I\nheard Peterson call out, 'He's got my\nthumb!' He 9poke like a person who\nwas in pain. The next I saw, Peter\nson and Gallagher were against the\ntable, still fighting. Their heads were\nclose together, .Gallagher leaning over\nPeterson. Then they separated, and\nI was told that Peterson's . ear was\nbitten. I heard no altercation be\ntween Peterson and Gallagher prior\nto the fight. While they were light\ning against the billiard table they\nfell and rolled out backwards and\nPeterson kicked him.\"\nCross examination Peterson had\nonly had one drink that I know of.\nWhen he came back to the room he\nhad two bottles with him. I saw\nWilson try to separate the fighters\nOnce.\ni W. T. Monsarrat said: \"When\n'On 1 In rriicT inH Piifiircnn urora 4 r cmt )m\nagainst the table I came toward them.\nI baid: lMy God, he's got his ear in\nhis mouth.' They then broke away,\nand Gallagher spat on the table. A .\nbilliard ball came sailing in that di\nrection and I left. I do not know how\nlong Gallagher had Peterson's ear iu\nhis mouth. Gallagher spit outcome\nblood on the table. Peterson's ear\nwas bleedin. I went out then.\"\nMortimer Snow \"I was present at\nthe fight last Friday. I was upstairs\nand heard some one say there was a\nfight. I went down stairs, and as I\nentered the room I saw one man with\nanother's ear in his mouth. I did not\nknow either one. The man who was\ndoing the biting was the assailant.\nThe other man was not striking, but\nwas struggling. The cur was in the\nbiter's mouth for some time, perhaps\nhalf a minute or a minute. At that\ntime Peterson was making no de\nfense.\" No cross-examination.\nDr. C. B. Cooper \"Last Friday\nnight at the hotel I was called upon to\nattend Bert Peterson. His ear was\nbleeding; his left thumb showed\ntooth marks, two teeth were loosened\nand his eyes were badly bruised. He\nwas very much excited, but sober.\nWhile I was washing his ear, the\nwatchman brought up the missing\npiece of the ear, which I sewed on.\nThere was a small piece missing. The\near will never be as before, even if the\npiece grows on. It showed the looth\nmarks plainly, and seemed to have\nbeen chewed. It will probably cause\na disfigurement for Jife.\"\nCross-examined ,4The wounds to\nthe ear could not be caused by-com ing\ninto contact with the sharp edge of a\ntable in a fall.\"\nBert Peterson : \"I went to the hotel\nabout 9:45. I met F'rank Vida and\nplayed a game of billiards. During\nthe second game I went to the end of\nthe bar. I met a friend and while\ntalking to him I was struck several\ntime:. I jumped for my assailant and\nheld him against the bar. Someone\nthen kicked me on the leg. I let co\nof the bar anJ we airuggled into the\nmain room. We fell, I on top. Some\none kicked me again and I rolled\nover. .Gallagher was then on top,\nand was striking me. I turned no\nCharley Wilson and asked him to\ntop it. He said, 'No interference,\nfair play.' He was standing over us.\nBefore this Wilson had said, 'Kill the\nP. G spy!' 'Opium' Brown had said\nthe same thing. We were then separ\nated and I tried to get a billiard cue,\"\nbut Wilson would not permit it. Wo\nclinched again and Gallagher got my\ntiiumb in his mouth. I called for\nhelp. We fell again and Gallagher\nrolled under the table. I rose and\nkicked him. We clinched again and\nhe got my ear in his mouth. I said,\n'Ben Gallagher, If you bite my ear\nv\nft-", 
+      "batch": "batch_hihouml_caliban_ver02", 
+      "title_normal": "pacific commercial advertiser.", 
+      "url": "http://chroniclingamerica.loc.gov/lccn/sn85047084/1894-05-04/ed-1/seq-1.json", 
+      "place": [
+        "Hawaii--Honolulu--Honolulu"
+      ], 
+      "page": ""
+    }, 
+    {
+      "sequence": 15, 
+      "county": [
+        "Cook"
+      ], 
+      "edition": null, 
+      "frequency": "Daily (except Sunday and holidays)", 
+      "id": "/lccn/sn83045487/1912-11-21/ed-1/seq-15/", 
+      "subject": [
+        "Chicago (Ill.)--Newspapers.", 
+        "Illinois--Chicago.--fast--(OCoLC)fst01204048"
+      ], 
+      "city": [
+        "Chicago"
+      ], 
+      "date": "19121121", 
+      "title": "The day book.", 
+      "end_year": 1917, 
+      "note": [
+        "\"An adless daily newspaper.\"", 
+        "Archived issues are available in digital format as part of the Library of Congress Chronicling America online collection.", 
+        "Available on microfilm;", 
+        "Description based on: Nov. 1, 1911.", 
+        "Issue for <Nov. 24, 1911> lacks vol., no., and chronological designation.", 
+        "Issue for Nov. 4, 1911 erroneously designated as Oct. 4, 1911.", 
+        "Issue for v. 3, no. 290 (Sept. 7, 1914) erroneously designated as v. 3, no. 300 (Sept. 7, 1914). The error in numbering continues.", 
+        "Issue for v. 5, no. 214 (June 7, 1916) erroneously designated as v. 5, no. 214 (June 6, 1916).", 
+        "Issue for v. 5, no. 7 (Oct. 5, 1915) erroneously designated as v. 5, no. 7 (Sept. 5, 1915).", 
+        "Issues <May 7-17, 1915> called also \"Moving Picture Edition.\"", 
+        "Issues have no page numbering.", 
+        "Saturdays have Noon and Final editions, Dec. 28, 1912-June 21, 1913; Saturdays have Noon and Last editions, June 28, 1913-<Dec. 13, 1913>; began issuing daily Noon and Last editions, Dec. 20, 1913-July 6, 1917.", 
+        "Vol. 5, no. 36 (Nov. 6, 1915) issue called also \"Garment Workers' Special Edition.\"", 
+        "Volume numbering begins with Nov. 20, 1911 issue."
+      ], 
+      "state": [
+        "Illinois"
+      ], 
+      "section_label": "", 
+      "type": "page", 
+      "place_of_publication": "Chicago, Ill.", 
+      "start_year": 1911, 
+      "edition_label": "", 
+      "publisher": "N.D. Cochran", 
+      "language": [
+        "English"
+      ], 
+      "alt_title": [], 
+      "lccn": "sn83045487", 
+      "country": "Illinois", 
+      "ocr_eng": "HEART BALM GREATLY REDUCED BY WOMEN JURORS\nA young and pretty woman\nsued one of the handsomest men\nin Seattle for breach 'of promise\nrecently.\nThe plaintiff's- couniel-in-chief\nwas a woman lawyer, famed lo-\nimrtririmiirnm iirr\nMiss Ethel Peterson and Ross L.\nPhillippi.'-\ncally for the persuasive, quality of\nher eloquence. \" . -\"\nThere were seven women on\nthe jury.\nThe plaintiff asked for damages\nof $27,500 and received but\n$1,500, which sum, in the opinion\nof the jury, was a correct expres\nsion in terms tf dollars- and cents\njof the value of the young man's\naffections, and a sufficient balm to\nheal the young woman's heart.\nWhat's the answer?\nDid the feminine majority on\nthe jury have so small an opinion\nof the worth of a handsome man's\naffection? Or was it lack of sym\npathy for the fair plaintiff?\nThe plaintiff was Miss Ethel\nPeterson. The defendant was\nRoss L. Phillippi. Mrs. Leona W.\nBrowne was counsel-in-chief for\nMiss Peterson.\nThe complaint sets forth that\nPhillippi and Miss Peterson be\ncame engaged to be married on\nDecember 15, 1908; that the de\nfendant subsequently postponed\nthe marriage day several times,\nand finally, in October, 1911,\ndefinitely refused to marry her.\nThe plaintiff's counsel had 180\nletters from Phillippi to Miss Pet\nerson, though only paft of them\nwere introduced in evidence, one\nof them acknowledging the en\ngagement. ,\nOn April 12, 1912, Phillippi\nmarried Miss Bemice Smith.\nJudge Tallman made no comment\non the verdict of the jury scaling\ndown the claim from $27,500 to\n$1,500.\nWashing Shirts -Easily.\nTo wash a-shirt easily take\nsour milk and dilute with water.\nSoak the shirt in it overnight.\nThen wash in the usual way.\no o lr\n\"Did you ever attend any of\nMiss Budd's 'At Homes'?\"\n\"No, but I'xve attended a good\nmany of her not at homes\"", 
+      "batch": "batch_iune_echo_ver01", 
+      "title_normal": "day book.", 
+      "url": "http://chroniclingamerica.loc.gov/lccn/sn83045487/1912-11-21/ed-1/seq-15.json", 
+      "place": [
+        "Illinois--Cook--Chicago"
+      ], 
+      "page": ""
+    }, 
+    {
+      "sequence": 26, 
+      "county": [
+        null
+      ], 
+      "edition": null, 
+      "frequency": "Daily", 
+      "id": "/lccn/sn83045433/1922-10-08/ed-1/seq-26/", 
+      "subject": [
+        "Washington (D.C.)--fast--(OCoLC)fst01204505", 
+        "Washington (D.C.)--Newspapers."
+      ], 
+      "city": [
+        "Washington"
+      ], 
+      "date": "19221008", 
+      "title": "The Washington herald.", 
+      "end_year": 1939, 
+      "note": [
+        "Also available on microfilm from the Library of Congress,Photoduplication Service.", 
+        "Archived issues are available in digital format as part of the Library of Congress Chronicling America online collection.", 
+        "On Sunday published as: Washington times-herald, Nov. 19, 1922-Apr. 15, 1923; Washington herald times, Sept. 26, 1937-Jan. 29, 1939."
+      ], 
+      "state": [
+        "District of Columbia"
+      ], 
+      "section_label": "", 
+      "type": "page", 
+      "place_of_publication": "Washington, D.C.", 
+      "start_year": 1906, 
+      "edition_label": "Sunday Edition", 
+      "publisher": "Washington Herald Co.", 
+      "language": [
+        "English"
+      ], 
+      "alt_title": [
+        "Washington herald times", 
+        "Washington times-herald"
+      ], 
+      "lccn": "sn83045433", 
+      "country": "District of Columbia", 
+      "ocr_eng": "Spotlight\nReflections\nr Isabel Mc\nLaughlin in\n\"Spice of 1922\"\nat the ^nter\nGarden. ?\nMarjorie Peterson\nin the Greenwich\nVillage Follies.\nMargaret Lawrence\nin \"The Endless\nChain\" at the Cohan\nTheater.\nMarion Courtney in\nGeorge White's\nScandals.\n^, .uiTVS as- Ina Heath in .<r,\nrJSSrtf TSfttr. ^\nMiss Lily Cahill in George M. Cohan's production of Arthur\nGoodrich's English-American play, \"So This Is London,\" at\nthe Hudson Theater.", 
+      "batch": "batch_dlc_greyhound_ver02", 
+      "title_normal": "washington herald.", 
+      "url": "http://chroniclingamerica.loc.gov/lccn/sn83045433/1922-10-08/ed-1/seq-26.json", 
+      "place": [
+        "District of Columbia--Washington"
+      ], 
+      "page": "Page 3"
+    }, 
+    {
+      "sequence": 105, 
+      "county": [
+        "Beltrami"
+      ], 
+      "edition": null, 
+      "frequency": "Daily (except Sunday)", 
+      "id": "/lccn/sn86063381/1909-03-27/ed-1/seq-105/", 
+      "subject": [
+        "Bemidji (Minn.)--Newspapers.", 
+        "Minnesota--Bemidji.--fast--(OCoLC)fst01218730"
+      ], 
+      "city": [
+        "Bemidji"
+      ], 
+      "date": "19090327", 
+      "title": "The Bemidji daily pioneer.", 
+      "end_year": 1971, 
+      "note": [
+        "Archived issues are available in digital format as part of the Library of Congress Chronicling America online collection.", 
+        "Available on microfilm from the Minnesota Historical Society."
+      ], 
+      "state": [
+        "Minnesota"
+      ], 
+      "section_label": "History of Bemidji", 
+      "type": "page", 
+      "place_of_publication": "Bemidji, Minn.", 
+      "start_year": 1904, 
+      "edition_label": "", 
+      "publisher": "Pioneer Pub. Co.", 
+      "language": [
+        "English"
+      ], 
+      "alt_title": [], 
+      "lccn": "sn86063381", 
+      "country": "Minnesota", 
+      "ocr_eng": "J. PHILLIPPI\nS. D., being assistant superintendent of the\ngovernment school at that place for eight\nyears and all his life he has been prom\ninently identified with affairs, always\nwith great credit to himself.\nMr. Phillippi is an honored member of\nthe Grand Army of the Republic, and one\nof the enjoyments which he characterizes\nas a real pleasure is meeting with the local\n\"boys in blue,\" at their eampfires at Be\nmidji. Mr. Phillippi \"saw service\" of the\ntrying kind with the Union army, and he re\nceived injuries during the great struggle\nbetween the North and the South that have\nbeen considerable trouble to him in recent\nyears.\nWhen he came to Bemidji, Mr. Phillippi\nfiled on a homestead and after he had\nproved up (four yqars ago) he took charge\nof the Beltrami county poor farm, where\nhe held the position of superintendent until\nthe present time, gaining more friends by\nthe admirable maner in which he conducted\nthe farm.\nMr. Phillippi is a progressive, liberal citi\nzen who is honored and respected by all\nwho know him, and especially is he well\nliked by his neighbors and comrades.\nINTERIOR GEO. T. BAKER & CO.'S JEWELRY STORE.\nBEMIDJI, BELTRAMI COUNTY AND NORTHERN MINNESOTA.\nM. D. STONER.\nCity Engineer Stoner, though still a\nyoung man, is one of Bemidji's oldest set\ntlers, so to speak. He settled here when\nthis city was a village, coming here from\nOiiio. He took up a timber claim in this\ncounty, and since his advent here he has\nbeen one ot the guiding factors in the city's\ndestinies. As an expert civil engineer, Mr.\nStoner has had to do with all con\nstruction work in Bemidji he has assisted\nin building all railroads which penetrate the\ncity, and through private survey, he was\nchiefly instrumental in attracting the Great\nNorthern railroad officials, with the result\nthat they directed the main line of that\ngreat system through this city. Mr. Stoner\nalso made the preliminary survey for the\nM. & I. out of Bemidji, and the responsible\nposition of chief engineer during the con\nstruction ot the Minneapolis Red Lake and\nManitoba railroad.\nAt present, Mr. Stoner is engaged in\nbuilding twenty miles of railroad Kittson\ncounty, this state. He has located and built\nnearly all the logging spurs located on the\nM. & I. from Walker to Blackduck, and has\nbeen entrusted with numerous other im\nportant undertakings, all of which he com\npleted with comprehensive management\nand dispatch.\nAs city engineer, Mr. Stoner has made\nhimself as popular as he was when he was\nengaged in completing the extensive im\nprovements above enumerated. He is an\nadept as a surveyor and civil engineer he\nis especialy esteemed by the rank and file\nas well as by the property owners ot the\ncounty, and it is safe to predict that his\nretention in his present office is an assured\nfact so long as\"he desires to hold the same.\nGEORGE T. BAKER & CO.\nMr. Baker, the manager of this concern,\nhas been a prominent business man of\nBemidji for about five years. He is an\nother of our thrifty business men who\nsought this section owing to the glowing\nopportunities offered by its scenic beauty\nas a pleasure resort, its virgin soil, and its\nsituation as a key city. His conclusions\nalong this line have resulted in his present\npossession of the largest manufacturing\njewelry establishments and jewelry stores\nin north-central Minnesota.\nThey carry an elegant line of the popular\nmakes of watches natty things in chains,\nbracelets and jewelry novelties, rings of\nevery price, precious stones of all descrip\ntions and art goods of numerous kinds.\nThey are also experts in repair work, and\nhave every facility for disposing of such\nwork. This is evident from the fact that\nthey are official time keepers for a great\nnumber of the railroad men who reside here.\nThey also receive a vast patronage from\ntowns from all the surrounding country,\nand have earned a reputation in their\nchosen line that is to be appreciated.\nMr. Baker, the manager, is not only an\nexemplary citizen, but a prosperous one.\nHis extensive business serves as another\nexample of how business men succeed when\nthey locate here. As a member of the\nBemidji Commercial Club he shoulders his\nshare of labor in advertising the city, and\nwe are glad to mention his name in connec\ntion with other patriotic citizens who are\nresponsible for Bemidji's greatness.\nJ. PETERSON, JR.\nBemidji is also large enough to loyally\nand liberally support an exclusive confec\ntionery and fruit parlor and notion head\nquarters, which is the enterprise conducted\nby J. Peterson, Jr., the veteran confectioner\nof this city.\nMr. Peterson began his business career in\nBemidji with a small but neatly-conducted\nJ. PETERSON, JR.\nfruit and confectionery stand, which at once\nbecame popular, through the square treat\nment accorded patrons by the proprietor\nand also to the fact that nothing but the\nvery best stocks were kept on hand. After\ntwo years in the small stand, Mr. Peterson's\ntrade grew to such proportions that he was\nof necessity compelled to seek newer and\nlarger quarters, with the result that he\nleased a prominent stand in the center of\nthe business section, which he had reno\nvated and arranged especially after his own\nideas, and where he now has the most com\nplete fruit and confectionery stand-in north\ncentral Minnesota. Mr. Peterson's aim has\nalways been to excel in his particular line,\nand in his efforts he has attained a great\nmeasure of success. It is the consensus of\nopinion of those who visit Mr. Peterson's\nstore that he has the finest establishment of\nits kind in this part of the state, outside of\nDuluth.\nIn connection with the fruit and confec\ntionery business Mr. Peterson handles\ncigars and tobaccos of the best-known\nbrands, toys and books, and also conducts\nan up-to-date news stand.\nMr. Peterson has stood steadfastly by the\nmottoes which he adopted when he first en-", 
+      "batch": "batch_mnhi_kerns_ver01", 
+      "title_normal": "bemidji daily pioneer.", 
+      "url": "http://chroniclingamerica.loc.gov/lccn/sn86063381/1909-03-27/ed-1/seq-105.json", 
+      "place": [
+        "Minnesota--Beltrami--Bemidji"
+      ], 
+      "page": ""
+    }, 
+    {
+      "sequence": 2, 
+      "county": [
+        "Honolulu"
+      ], 
+      "edition": null, 
+      "frequency": "Daily (except Sun.)", 
+      "id": "/lccn/sn82016412/1886-01-30/ed-1/seq-2/", 
+      "subject": [
+        "Hawaii--Honolulu.--fast--(OCoLC)fst01204916", 
+        "Honolulu (Hawaii)--Newspapers."
+      ], 
+      "city": [
+        "Honolulu"
+      ], 
+      "date": "18860130", 
+      "title": "The Daily bulletin.", 
+      "end_year": 1895, 
+      "note": [
+        "Archived issues are available in digital format as part of the Library of Congress Chronicling America online collection.", 
+        "Has semimonthly supplements, 1888, called: Daily bulletin summary; has weekly supplements, 1889-May 15, 1895, called: Weekly bulletin summary (varies).", 
+        "Issues for 1882-Dec. 19, 1891 called also v. 1-15; Dec. 21, 1891-1895, called v. 2-9."
+      ], 
+      "state": [
+        "Hawaii"
+      ], 
+      "section_label": "", 
+      "type": "page", 
+      "place_of_publication": "Honolulu [Hawaii]", 
+      "start_year": 1882, 
+      "edition_label": "", 
+      "publisher": "J.W. Robertson", 
+      "language": [
+        "English"
+      ], 
+      "alt_title": [
+        "J.W. Robertson's daily bulletin"
+      ], 
+      "lccn": "sn82016412", 
+      "country": "Hawaii", 
+      "ocr_eng": "'\nBY AUTHORITY.\nTo the Imfcctors of Election in the fev\netnl Disliicts of the Kimftlomi\nInquiries lmvlng been Hindu whether\npersons who lire exempt from the pay\nlncnt of personal taxes by reason of be\ning clergymen, teacher?, pupils In High\nSchools, firemen, ifcc, or by reason of\nbeing over the ago of sixty years or\nwhosu taxes have been excused by tho\nAssessor on account of Infirmity or\npoverty, are nllowcd by law lo vote nl\nthe Election lor ltcpicsciilntivcs.\n11 is my opinion that all Mich persons\nnic entitled lo vote. The Tax Collector\nshould issue to each Mich peitou u tax\nreceipt with the woids \"(Jualllled lo\nVole \" upon it, which he must sign and\nin plaeo of the amount of taxes ho must\nwrltu \" exempt\" or \"excised.\" On the\npresentation of this Tax Receipt to the\nInspectors of Election at their sessions\npicvlous to the election, ttionnme of the\nvoter must bo put on the list of voteis\nand the ltccclpt returned to the voter.\nAt the general Election lo be held on\ntho aril February, 18S0, Ihc votes of biieh\npersons must bo received, unless chal\nlenged for other reasons.\nPAUL NEUMANN,\nAttoiney.Oeneral.\nHonolulu, January 13, 1SS0. 221\nBISHOP & Co., BANKERS\nHonolulu, Hawaiian Islands\nDraw Exchange on the\nJSuiilc oi Culiloriiin, S. JP.\nAnd their agents in\nNEW YORK, BOSTON, HONO KONG.\nMessrs. N. M. Rothschild &Son, London.\nTho Commercial Bank Co., of Sydney,\nLondon,\nTho Commercial Bank Co., of Sydney,\nSydney.\nTho Bank of New Zealand: Auckland,\nChristchurch, and Wellington.\nThe Bank of British Columbia, Vic\ntoria, B. C. ami Portland, Or.\nAND\nTransact a General Banking Business.\nGG9 lv\nSit gattjj 8nita,\nFledgod to neither Sect nor Fatty.\nSat established for tho benefit of all.\nSATURDAY, JAN. 30. 188C.\nrn\nHie Post-Ollice Robberv.\nTltlAL OF THOMAS II. WAI.KUK.\nSUPREME COURT.\nSatukiuy, Jan. 30th.\nThe Court opened at nine o'clock,\nMr. Justice Preston presiding. A\njury was impanelled, consisting of\nE. A. Jones, II. Gunn, S. M. \"Whit\nman, Fr. Eckley, II. W. Morse, E.\nMclnerny, C. Hammer, J. J. Locker,\nA. Mossnian, A. L. Smith, II.\nWaterhouse, Henry Davis. The\njury was sworn, on motion of Mr.\nF. M. Hatch, to answer truly all\nquestions put them. The jurors\nwere questioned severally by Mr.\nHatch, all except Mr. Walcrhousc\nanswering Uiat they had formed no\nopinions. Mr. Watcrhousc said lie\nhad formed opinions which it would\nrequire evidence to remove. Mr.\n\"Waterliousc was excused. Mr. II.\nMclntyrc was then called. Messrs.\nMclntyrc and Hammer were chal\nlenged by Mr. Hatch. Mr. George\nLucas was called, and interrogated.\nThe jury was then sworn well and\ntruly to try the issue.\nThe Attorney -General appeared\nfor the Crown, and Messrs. F. M.\nHatch and A. C. Smith for the de\nfendant, Tlios. U. Walker, who yes\nterday pleaded not guilty.\nNathan \"VVh.i.foxo, sworn : I was\nin the Post Ofllce, as Money Order\nClerk, on the 2nd and 3rd of Janu\nary. On Saturday evening, Jan.\n2nd, 1 left the oflice about 5 o'clock ;\nI left every thing all right ; I had a\nsafe there ; I left it locked ; I set\nthe combination. I next 'Went to\ntho ofllce on Sunday morning at 7\no'clock ; I found one of the drawers\nthat belonged in the safe out on the\ntabic in front of the safe ; I found\nthe safe locked, and the combination\na little injured, so that I could not\nset it again. I found Mr. Marcos,\nthe policeman, there ; I stayed there\nall day. Mr. Peterson was not there ;\nlie came back about 1 o'clock in the\nafternoon. The Minister of the\nInterior sent for Mr. More, who\napplied pliers to the knob so that\nthe door was opened. I had a key\nto tho inner door; I think I took out\ntho key of the inner j I did not take\nit to unlock the door. The two\ndrawers wero taken out, tho one I\nfound on the table and another.\nThey were taken out, and a lot of\nmoney. One drawer was locked in\nthe safe ; I had one key ; I do not\nknow who opened tho other. That\ndrawer was forced open ; I had in it\nsome.- private money of my own.\nTim other drawer contained a lot of\ncoin and certificates of deposit\nbelonging to tho Government ; the\ndrafts were all there ; I and Mr.\nPeterson had tho combination of\nthat safo ; I do not know of any\nother person having tho combination.\n$180 certificates, $1,375 gold coin,\n87 American Currency, $482 1 think\nin Hawaiian silver coin, were in tbc\nsafe.\nCross'cxamincd by Mr. Ilntcli :\nThere were books kept in my safe'\nwhich I keep tho money order ac\ncount in, mid all the books I use.\nThere were no books except those I\nkeep, kept in it. I think it was about\n7 o'clock 1 went, because I was\ncalled. I usually go there on .Sunday\nmorning; I found Mr. Marcos, Air.\nSwain, and I think David Maiiaku.\nTills money had been in the safe, I\ndo not know how long, ns we are\nalways paying out and receiving\nmoney; there was not very much\nmore money than usual in at that lime ;\nnone of the amounts given belonged\ntome, $180, $l,37'i and $7. No\nattempt, was made lo open lliu safes\nUnit morning until Mr. Peterson\ncame; I tried Ihc combination when\nI first got there, but could not turn\nil. The disc outside of tho knob\nhad been pounded and indented, so\nthat the knob would not turn; was\nnot there previous Saturday night\nafter ft o'clock ; I left two clerks\nthere working at live o'clock.\n\"When no mail is about leaving, or\nmail about to arrive, the usual time\nto shut up on Saturday is 2 o'clock ;\nemployees are usually all gone at\n1 o'clock ; I know of no owrk that\nwas on hand that Saturday night, to\nkeep the clerks late at woik. The\nsafe I use is a Magncso-Calci, made\nin lloslon. Mr. Peterson did not\nsay anything that I recollect about\nHie business Hint Sunday afternoon.\nI found Hie two doors of the other\nsafe wide open ; I do not know what\nwas kept in that safe, except money\nreceived for salcof stamps, supposed\nto be kept there. I do not know what\nkind of a safe that was. It was a\nvery old one; had a combination\nlock ; 1 never knew the combination\nof that safe.\nMit. C. O. Bi:i!(iKii, sworn: I\nwas in the Honolulu Post Olllcc on\nthe morning of Jan. 3rd ; I saw the\nsafe ; it was opened by Mr. More ;\nI am agent for safe ; 1 understand\nwhat is necessary for me to under\nstand about combinations; I noticed\nan indentation on the safe ; the in\ndentation must have been made\nafter the safe was opened ; the lock\nwas in perfect order ; tho effect of\nthe indentation was that the dial\nwas so tight that we could not turn\nit ; the blow must have been given\nafter the safe hail been opened ; the\ndial would just turn it far enough to\nlock the safe again ; it stood on\n\"ten,\" butdonotlrciiioiiiber exactly:\nthe blow may have been struck be\nfore it was te-lockcd or after ; after\nthe blow, the door could not be\nopened.\nCross-examined by Hatch: It\nwas a fire-proof safe ; a three num\nber safe ; the last number was fixed ;\nit was numbers not letters ; you can\nchange any number on the lock ; I\ndid not examine the old safe; I\nlooked at it; there was a combina\ntion and key, both on the outer\ndoor ; it was an old style safe.\nMn. Swain, sworn: I am de\nlivery clerk at the Post Olllcc. I\nwas there on the 2nd January. Tho\nolllce usually closes at 2 on Satur\ndays. I was there from 0:30 a. m.,\ntill 10 !. m. that day, taking tiie\ninventory of the olllcc. On that\nevening I was taking an inventory\nof stock of tiic olllcc ; Mr. Maiiaku\nwas with me; Mr. Peterson came\nin about seven o'clock ; he did no\nwork then ; lie told me lie was going\nto write his cash book. After Ma\niiaku and T would take an inventory\nof stock, we were to give it to Mr.\nPeterson ; we finished our work\nabout o'clock ; we finished our\nwork, left it locked up with our\nbooks in the safe; Mr. Peterson\nhad been in at intervals during the\nevening; we left Mr. Peterson\nthere whe'n we went out ; there is a\nlight fastened under the verandah\non Merchant street; I went up\nBethel to King street ; I do not re\nmember whether the light was burn\ning while we were working in the\nolllcc.\nCross-examined: Mr. Peterson\nwas doing nothing when we left that\nnight ; ho intimated ho had to write\nup his cash book. There was noth\ning I know of to prevent him doing\nthat during the evening ; I remember\nof him going in and out twice. Ho\nseemed to be out more than in. I\npaid no special attention to his\nmovements, I was attending to my\nown work. He seemed to be doing\nno work ; at times when he came in\nhe talked to us, seemed to have his\nsenses. Appeared as usual. Ma\niiaku and I had keys of the outer\ndoor. Wc are never in the olllce\nevenings except when thcro is\nolllce work to do. I did not see\nMr. Peterson take off his books that\nevening while I was there. His safe\nwas in the back part of the office.\nI did not notice it when I went out.\nMoney received at the window was\nkept in that safe. I do not know\nhow much money was in his safo.\nEvery evening the cash was turned\nover to him. I would know by re\nferring to the books how much\nmoney was turned over that evening.\nDavid Manaku, sworn: 1 am\nemployed in the Post Olllcc. I was\nthcro Saturday evening before theft\nwas committed. The olllco closed\nnbout 2 o'clock. \"Wo were taking an\ninventory of the stock in tho olllce,\nand making out the advertised list of\nforoign letters. Mr. Peterson was\nnot thcro at 0 o'clock. Mr. Peter\nson cruno thefc u little after sun\ndown. 1 left between 0:80 and 10.\nI left Mr. Peterson there. When I\ngot through 1 handed him I he lamp\nand stamp account book.\nCross-examined: The stamp ac\ncount book was given him to enter\nin his cash book. He has an ollicc\nupstairs. I lis safe is down stairs.\nlie kept his books, some in tliu safe\ndownstairs, some in his desk up\nstairs. I had conversation with Mr.\nPeterson that evening. I cannot\nny if he had been drinking; did not\nlook like il lo me. Spoke quite na\ntural to us. The stamp account is\ntaken every day. He told me a few\ndays before that lie wanted the in\nventory of all the stock in the olllce.\nThat caused me lo stay all thai Sat\nurday afternoon. The invcnloiy\nmade that day, that is the part made\nthat day pait of it shows on tho\nstamp account book. I got through\nwitli the stamp account the first\ntiling in the evening. We handed it\nto Mr. Peterson when we left tho\nolllce. For a few nights previous, I\nwas there till sometimes half-past 11.\nMr. Peterson was not there on these\noccasions. I did not know if lie was\ncoining down Ihat evening. On\nSunday morning, 1 got there about\nhalf-past (!. (Witness named a\nnumber of persons lie found there).\nMr. Peterson was not there then:\nKaialoa is one of the sorting clerks.\nI generally get there about that time\non Sunday morning to receive mails.\nMr. Peterson, Mr. Swain and my\nself usually come there at that lime\non Sunday mornings. 1 saw one\nsafe open, the other shut. I did\nnot notice the contents of Mr. Peter\nson's safe.\nIlouniiT Mom: sworn: I am a\nmachinist, lock and gunsmith, etc.\nI was in the Post Ofllce Sunday\nmorning, January 3rd. My expe\nrience in safes is that I have done a\ngood deal of work about their lucks.\nI found one safe all right. It was\nopen. I examined the lock on the\noutsido door. I am positive there\nwas no violence done to this safe.\nThe othorsafe could not be opened\nby hand. The dial could not be\nturned by hand. I used an instru\nment to turn the dial. Tho safe\nseemed to have opened, closed and\nthen stuck. \"Willi reference to the\nlocks of both outer and inner doors\nthere were nok signs of violence. I\ncould have discovered an inspicture\nif any violence had been done. The\nsafe could not be opened after the\nblow was struck, except ns I des\ncribed. After opening the safe, the\ninside was so that there evidently\niiad been violence used in opened\nthe drawers. It looked as if two\nscrew drivers had been used. It\ntook me about five minutes to open\nthe safe after I got there. It must\nhave been about eleven or half-past\neleven.\nDavid Dayton, sworn : I was in\nthe Post Olllcc, on Sunday morning,\nthe 3rd of this month. I made a\nminute examination after I got\nthere. 1 found the hasp of the\nniauka door had been pried off. The\nupper screw showed bright. The\nbolt of the lock was bnck. The\nhasp had been taken off without\nbeing forced off by the lock bolt.\nThe hasp showed ns if taken off\nwith the door open. (Witness here\ngave a statement of the condition in\nwhich lie found the safes, which is\nsubstantially the same as given b\nprevious witnesses.) I think the\nupper screw of the hasp had been\nunscrewed and tho lower one forced.\n1 had some conversation witli Mr.\nPeterson. (Attorney-General ob\njected lo mentioning what passed\nbetween him and Mr. Peterson. )\nKai.ai:i.oa, sworn: I work in Hie\nPost Olllcc ; I stamp letters and sort\nnewspapers for tho other islands.\nI left the office on Saturday the 2nd\nJanuary, at half-past three ; I went\nfrom the Post Olllco to Mr. Peter\nson's, and afterward to my own place\njust beyond. At half-past -1, next\nmorning, I called at Mr. Peterson's,\nharnessed the horse, and drove to\nthe Post Olllce. Got there about\nfi.-t. I remained to tic tho horse,\nMr. Peterson opened tho door. Then\nwe both went in together. The first\nthing I did was to light a lamp. Mr.\nPeterson went towards the telephone\nto ask how far off the Kinau was.\nPassing along I saw that \"Willfong's\nsafe was open ; I was alarmed at\nseeing it open and looking on the\nfloor saw some certificates. I then\nwent to look at niauka door to see\nhow that was. Called to Peterson,\nwho followed me. Found the door\nclosed, but opened easily. Then Peter\nson took the lamp mid started to look\nat his own safe, and found it open.\nWe did not go close up to this safe.\nIt was beforo daylight ; wo were\nalarmed. Wc went then to the\nother room ; there was a hammer\nbelonging to tho ofllce ; Mr. Peter\nson told me to strike a blow on the\nsafe ; I did so. The door was shut\nwhen he told mc lo strike the blow.\nWc went again to the mauka door.\nHo told mo to take the- hasp off,\nwhich I did witli a claw hammer.\n1 went to tho door on the Ewa side.\nWhilo thcro I heard Mr. Peterson\ntelephoning to the Police Station.\nAfter a few minutes, a policeman\ncame along. I left tho hasp I had\ntaken off on tho floor near tho door.\nI did not meet Peterson between 0 j\ni'. m. nud 41 a. m.\nCross-examined i It woo Mr,\nPeterson's horso I harnessed on\nSunday morning. I broke oft\" tho\nhasp; know it wao wrong; was\nexcited. I thought that people might\ncome in afterwards, and finding the\nplace lobbed, they might think\nwc had perpetrated the robbery. He\ntold mc to take It off, and it coin\ncided witli my views to do so. I\ndid it as soon as lie had made the\nsuggestion. It did occur to me that\nit was wrong to strike the safo, but\nI was. confused and excited. The\nmoney we found on the lloor was\nleft there. Akau came in answer to\nMr. Peterson's telephone. Next a\nnative policeman, by name of Jack,\nthen Mr. Kawainui, the editor. I\nremained there nil the forenoon.\nMr. Peterson slopped there until he\nshowed the policemen round, then\nsaid he was going to Nollo's lo gel a\ncup of coffee. I tell what I did for\nthe first time now; from that time\nuntil now 1 have told nobody of\nwhat had Happened ; Mr. Peterson\nmay have told ; was questioned on\nSunday, and on Tuesday; Mr. Day\nton asked me questions.\nThe Attv.-Gi:ni.. asksd liberty to\ncall this witness again for direct ex\namination, as lo what became of cer\ntificates seen on lloor.\nThe Couut put the question, to\nwhich witness replied that he did not\nknow; tho papers appeared to be\ndrafts from Sprcckclsvillc ; when we\nbroke hasp, I picked up a piece of\niron twisted round might be used to\ninsert in a lock; had never seen that\niron before.\nCross-examined: Found iron on\nlloor near the door.\nThe Attv.-Gi:ni,. introduced hasp\nand skeleton key in evidence.\nLi:iai.oiia, sworn : I am a hack dri\nver, on tho stand near Hie Anchor\nSaloon ; saw Peterson on that Satur\nday evening, half-past ten, near An\nchor Saloon ; lie came along and said,\n\" Wait for me,\" and then went into\nmillion, remaining there till eleven\no'clock, when lie came out, alone,\nami I took him home. Anchor Saloon\nis at corner of King and Niiuanu\nstreets ; 1 was on King street, mauka\nof the saloon ; know it was ten be\ncausa when he went iu 1 followed\nhim and looked at the clock.\n1'. O. Sin.i.ivAN, sworn: I am bar\nkeeper of Anchor Saloon ; was there\non the Saturday evening in ques\ntion ; saw Peterson there about 1 1\no'clock; do not think he stopped\nover five minutes ; there was quite a\nnumber of people there ; do not re\nmember any person coming with\nPeterson ; he took a glass of beer.\nPeterson was there since on a Satur\nday; Walker was there at same\ntime ; both did not come in together ;\nPeterson called for a glass of beer ;\nWalker went up to him and asked\nhim to take a glass of wine ; Peter\nson declined, saying beer and wine\nwould not mix ; did not hear them\ntalk except about drinks ; they stood\nside by side ; there were a number\nof people in at the time; it was\nabout half-past 10 in forenoon ; did\nnot see them having anything like a\nprivate conversation ; might have\nbeen without my having heard it;\nbar is 15 or 18 feet long, and I was\npassing bade and forth ; when they\nwere drinking they stood within a\nfoot or two of each other.\nCross-examined : When Walker\nspoke to Peterson, ho walked back,\nfour or five feet, lo where his wine\nstood ; when Walker asked Peterson\nto take wine I was pouring out Pe\nterson's beer ; Walker was speaking\nin ordinary tone of voice ; he hail\nbeen drinking freely and was quite\njolly ; Peterson did not remain more\nthan about five minutes ; he waited a\nlittle after drinking his beer.\nFuaxk Maiecos, sworn ; I am a\npolice olllcer; was in Post Olllce\nmorning of robbery; these things\n(hasp and key) were lying near\nback door.\nCross-examined : Lock on back\ndoor was a common one; I tried\nthis key and it opened Hie lock.\nAkau, sworn: I am turnkey at\nthe Police Station; was at Post\nOHlcc on morning of robbery ; left\nPolice Station at 10 minutes after\nfive and went straight to Post Ofllce ;\nwhen I got there Peterson and n\nnative were standing at the door on\nUcthcl street; Peterson took mc\ninto largo room, first one entered,\nand told me there was a robbery,\nand showed me the safes open. I\nasked Peterson who had the keys,\nhow were the safes opened? Ho said\nhe had the keys but did not know\nhow the safes were opened ; when\nwo got into inside room, Peterson\nshowed mo a box containing small\nchange and papers, and said the\nmoney had been taken out of it. I\nasked him how it was safo was\nclosed, and he said he shut it. I\ntold him he did very wrong, and\nordered him not to touch anything\nelse. Native then told mc the back\ndoor was open, and I found it so,\nwith hasp forced off as if by force\nfrom outside; do not recollect see\ning key there. I told Peterson and\nnative to stay there, and I would go\nto Station and report matters ; went\nup and reported to olllcer in charge\nthat Post Olllco had been robbed ;\nho said to not say anything about it\njust then.\nCross-examined: 1 did not tell\nolllcer what Peterson hail said ; told\nMr. Dayton, nbout noon on Sunday,\nsamo day ; enw quite a utimber of\narticles, papers, etc., on lloor thcro\nwero some ton-cent nieces i mi initio\n, and lloor weie papers looking like\ndrafts ; do not remember seeing\nI any Government coi tillcatcs. When\nI I went back I left Peterson and the\nnative alone in Hie building.\nWilliam II. Place, sworn: My\noccupation al New Year's was bar\ntender at the Royal Hotel; was\nworking for Mr. Walker; was there\non Saturday evening, 2nd January;\nRoyal is one nqtiaro from Post Olllce ;\nit is on corner of Niiuanu and Mer\nchant. There were a great many\npeople there that night; Peterson\nwas there in early part of Hie even\ning, again at 9, and then at a later\nhour ; first time was about 7, long\nenough to have a drink ; Walker was\nthere and Peterson asked him to\nhave a drink ; at !l tlicy met again,\nbut had no conversation ; it was\nabout half-past. 10 when they were\nnext there ; they went into a back\nroom together and had a drink, stay\ning only a few minutes. Mr. Sliar\nratl was there one time, left witli\nPeterson ; don't think Walker went\nout with them; Walker ordered a\nquantity of beer for Sharratt, which\nwas taken out to a carriage. Walker\nand Peterson had u drink each in the\nback room. Royal Saloon lias four\nentrances, one of which leads out to\nNtiuanii and one to Merchant street.\nI know a man named Ilastie ; he was\nat the Royal that evening; Mr.\nWalker told mo Ilastie wanted to\nborrow money from him ; I left\nWalker and Ilastie together when I\nleft Saloon at 1 1 o'clock.\nCross-examined: Ilastie was not\nin when Peterson was there ; it would\nbo about half-past ten when Peter\nson went out; he drank claret punch\neach time when alone, and plain cla\nret when with Walker. Peterson\ngenerally had two drinks in an after\nnoon. I have been there about two\nmonths and a half.\nJohn Di: Ghavks, sworn: I am\na hack driver. On that Saturday\nnight Walker told mc two gentlemen\nwere on the corner, wanting a hack ;\nwent out and found Peterson and\nSharratt, and went with them to\nSharratt's, taking Peterson back\nbetween 0 and 10 o'clock. Peterson\ntold me the boys were working in\nthe Post Olllce,\" and I asked him if\n1 should wait to drive him home ;\nho said not to do so. Uctwccn ten\nand eleven, seeing no lights in the\nPost Olllce, I drove off.\nCross-examined: I did not see\nMr. Peterson again that night.\nAt noon the Court took recess of\notic hour.\nTii is afternoon several witnesses\nhave been examined, Mr. Peterson\ngoing on shortly before two o'clock.\nIn the Police Court Peterson testi\nfied that on the Saturday night in\nquestion he had left the safes un\nlocked, and the back door and gate\nopen, to enable Walker to carry out\nan arrangement made between them\nforgetting away with the books,\nwhich showed a deficiency in Peter\nson's accounts, and that afterward,\nat the Anchor Saloon, Walker told\nhim he had $1,000 for him whenever\nhe wanted it.\nA \"dark horso\" has appeared at\nLahaina, to disturb the Govern\nment's calculations of a \"walk-over.\"\nThe Independents have kept the\nsecret well.\nThe Advertiser lias an interesting\narticle on \"Tho End of theRuffalo.\"\nOn Thursday next it may have an\nother on \"The End of the Hash\nhouse Administration.\"\nSUNDAY SERVICES.\nEi.imu W. JL Hkai.i:v will preach at\n7::t() l'. ji., In the tent, corner of Alaken\nami Hotel streets.\nRoman Catholic Cathkdiial.\nHigh mass at 10 a. m. Jteneilletlon of\nthe Messed Sacrament at A v. si.\nY. M. G. Ai Young Men's Bible\nClass In the parlor at li:4,\"A. m., con\nducted by the General Secretary. Gos\npel pi-.ilso service at (1 :;10 v. m.\nW. C. T. U. A gospel temperance\nmeeting will bu bold on the wharf, foot\nof Fort street, 3:30 i m. Good singing,\nled by a band cornet, will bo provided.\nHktiiki. Union Oiiukcii. Kev. E.\nC. Oggcl. pastor. Preaching by tlio\npastor at 11 a. si. and 7:110 l. si. Morn\ning Mibjeet, \"Uk'Uovo In the Commu\nnion of .Saints.\" Evening, a pralso and\ngospel service, In which tho church\nchoir ami a full chorus choir of voung\npeoplo will assist. Subject, \"House\nlluildiiig.\" Seats free, and everybody\nInvited.\nFour STitr.UT Oiiiincii. Rev. J. A.\nCruzan, pastor. Preaching by tho\npastor at 11 a. ji., and 7:110 i si.\nEvening subject: \"A Young Man\namong Sti-.ingu Companions. \" At the\nlatter service, in addition to tho con\ngregational singing, led by cornet,\nviolin and other ii.trimicnt, tho\nchurch choir will sing selections from\nWeber, Buck and Bach, and Schubert's\nexquisite \"Boverln\" will bo given on\norgan and violin by Messrs. Jones and\nYarndloy. Seats free, no collection\nami a coullal welcome\nSt. Andiikw's Catiikdual. Tho\nBishop of Honolulu will have hcrvlees\nas follow: Holy communion nt (1:!)0;\nmatins, I); choral clebratlon of holy\ncoininuniou, !).:10; Sunday school, 11\nA. si. Evensong with leeturo at (i i M.\nTho second congregation, conducted by\nlluv. Geo. Wallace, will have Sunday\nschool at 10 a. st. In tho Punnhou\nPreparatory school. Morning prayer\nwith sermon, at 11 :15 a. si., and even\ning prayer at 7:30 v. u.\nThcro nro now -140 men employed\nin iho More Island Nuvy Yard.\nA man named Maurltz shot at a\ncoyote near Palousc Junction, W. '\nT., but missed it and the boll glanced\noff, striking a Chinaman half a mile\naway and inflicting a serious wound.\nCaptain Charles C. Morton, aged\n70 years, died in Sonoma recently.\nHe was a nativo of Nantucket and\nwus nmslcr of tliu hark John W.\nCollin, which sailed from Boston on\nDecember 8, 1818, being the first\nvessel leaving Boston for California\nafter the discovery of gold.\nThe wonderful \"artesian well\"\nrecently struck at Santa Rosa, which\ngave such a stream ns to flood all\nthe surroundings in a short time,\nturns out to have been pioduccd by\na fracture of one of the water com\npany's pipes, the water coming fiom\nthe Santa Rosa Water Company's\nreservoir.\nThe Rev. Sam Jones, the noted\nGeorgian evangelist, has been preach\ning to great audiences in Si. Louis\nfor some weeks. The largestchurches\nhave been crowded, and even the\nlarge hall in the Exposition building,\nwhere (1,000 people can be seated,\nhas been filled night after night.\nThe American Congregation Year\nBook, 188C, shows 5,170 churches,\n1,013 ministers and -118,501 church\nmembers. These indicate again of\n09 churches and 17,015 church mem\nbers. The whole number in Sunday\nschools is 5IO,:i.1!). The bcnovolent\ncontributions aggregate $1,700,235,\nC. K. MILLER,\nGonoral Business & Purchasing Agent.\nMy most faithful atten ion will be\ngiven for tho\nPurchase of Merchandise\nin Honolulu for tho residents of the\n.!!)J hoveral Islands of this group, ly\nAnnual Meeting Notice.\n'PRE Annual Meeting of C. Brewer &\nJ. Co. wlM be held al their olllcc,\nHonolulu, on W. DNKSDAY, Fcbruaiy\n:i. 18S0, at 10 o'clock a.m.\n210 id J. Q. QAUTEIt, Sccrefiry.\nAnnual Meeting Notice.\nTUB Annual Meeting of the Hawaii,\nan Ramie Company (Limited), will\nbe held at the office of A. .1. Cartwright,\nEq., ICaahumann Street, on MONDAY,\nFebiuary 8, 18S0, at 10 o'clock a.m.\nmw NOP. ALLEN, Sec'y.\nFOR SALE,\n-I WINDMILL, 10ft. diameter,- com\nL plctc, with Composition rump and\nFrame. work, 14ft. high. 1 l.OOO.gallon\nWooden Tauk (nearly now) and Frame\nfor same, 7ft. high, all in good ordor.\nAlso, 300 feet, more or less, of Gal.\nvanized Pipe, second hand. Apply to\nRun.vnx Ofllce. 38 2w\nEstate oi' T. E. Krouse.\nTlIU undersigned, having been elect,\ned assignee of the above estate,\nhereby requests all persons indebted to\nthis estate to pai immediately, and all\npersons having claims against this\nestate lo send their bills immediately to\nT. R. LUCAS.\nHonolulu, Jim. 29, 1830. 38 3w\nMRS. GASC0YNE,\nITnwIiioiml)le Clonic and\nDrcMS Alnlcci,\nCorner of Alakca & King Sts.\nFeathors Cleaned and Dyed.\n37 Cm\nElection of Officers.\nAT tho Annual Meeting of tho East\nMaul Plantation Company, held\nou tho 20th Jnnuary, 1880, tliu following\nofficers wero duly elected for tho cur\nrent year:\nCoi,. Wm. F. Ai.i.en President\nJ. Kn. Hoffmann Vice-President\nP. C. Jones Secretary & Treasurer\nCoi.. Wm. F. Allkn Auditor\nDirector: Col. Win. F. Allen, Hon. C.\nIt. llishop and P. C. Jones.\nJ. O. UAKTEK,\nSec'y pro tern E. Maul Plantation Co.\nR0 lm\nAUSTRALIAN\nCanned Ox Tonpe,\nBEEF IN KEGS,\nEacli lOOlbs. For sale by\nH. Hackfeld & Co.\n37 lw\nAdministrators' Notice.\nHAVING been appointed by the\nSupremo Couit In Probalo tcni.\nporary Administrator)! of the Estate of\nAhuna, otherwlso Leong Tut Plo, lato of\nWnialua, of iho Island of Oahti, dr.\nceased, wo hereby notify all creditors\nof tho kald Ahuna to present their\nclaims against the said Estate, and all\npersons owing to tho suld Estate to\ninako Immediate payment to us, nt thu\nolllco of M. S. Grlnbauni & Co, In\nHonolulu 8.8ELIG,\nFAT NGEE,\nTemporary Administrators.\nHonolulu. January 10, 1880. S7 4w\nm\nv\n1\nl\nj&", 
+      "batch": "batch_hihouml_flying_ver01", 
+      "title_normal": "daily bulletin.", 
+      "url": "http://chroniclingamerica.loc.gov/lccn/sn82016412/1886-01-30/ed-1/seq-2.json", 
+      "place": [
+        "Hawaii--Honolulu--Honolulu"
+      ], 
+      "page": ""
+    }, 
+    {
+      "sequence": 2, 
+      "county": [
+        "Honolulu"
+      ], 
+      "edition": null, 
+      "frequency": "Daily (except Sun.)", 
+      "id": "/lccn/sn85047264/1886-02-02/ed-1/seq-2/", 
+      "subject": [
+        "Hawaii--Newspapers.", 
+        "Hawaii.--fast--(OCoLC)fst01208724"
+      ], 
+      "city": [
+        "Honolulu"
+      ], 
+      "date": "18860202", 
+      "title": "Daily Honolulu press.", 
+      "end_year": 1886, 
+      "note": [
+        "Archived issues are available in digital format as part of the Library of Congress Chronicling America online collection.", 
+        "Editor: A. Johnstone."
+      ], 
+      "state": [
+        "Hawaii"
+      ], 
+      "section_label": "", 
+      "type": "page", 
+      "place_of_publication": "Honolulu, Hawaiian Islands", 
+      "start_year": 1885, 
+      "edition_label": "", 
+      "publisher": "[s.n.]", 
+      "language": [
+        "English"
+      ], 
+      "alt_title": [], 
+      "lccn": "sn85047264", 
+      "country": "Hawaii", 
+      "ocr_eng": "'\nt\n'I\nlit\nw\n?\nI1\ni,f\"\nH-\nR\ni \"\nr,\nm\n1\nTHE\nJ)mty If oitalulu JVsss\nIS PUBLISHED\nEVE11Y MORNING\nlOxcupt Suiiiityn.\nAt the Office, No. 29 Merchant St.\ntbrus o' mmsaiin;Tiox.\nPer annum .$6 oo\nSIt months ..... ,...... 300\nThree months 1.50\nPermonth socls\nPostage additional.\n91135\" STibicrtptlonn I'njable atu'iiys in\nBrief communications from all parts of the Kingdom\nwill always be very acceptable.\nMatter intended for publication in the editorial\nolumus should be addressed to\nICoItoh Daily Honolulu I'rbis,\n3uiness rommufitcationft and aavertisementt should\nbe addressed simply \"tlusiness Manager,\"\nSDaily Honolulu Pkss,\nHonolulu, Hawaiian Islands.\nAdvertisements, to ensure prompt insertion, should\nb' handed in before 6 V. M.\nTUESDAY FEB. 2, 1886.\nTlio \"indoriomTont Opposition \" Tioliot\nfor 1886-\nOahu.\nHonolulu.... J. O. Cnrter, H. Waterhouse.\n'' .H, Swinton, Knpolena.\nEwn and Waianae. A. Kuuhl.\nWaialua V. E. Rowell.\nKoolauloa \"Cecil Llrowm\nKoolaupoko .\"Frank1 Brown.\nMaui.\nLahaina J. V. Kaluaj Jas. Campbell.\nKaanapali , '. J. Richardson.\nWailuku,.\"V. R. Castle, L. W. P. Kanealii.\nMakawao , , Clias. H. Dickey.\nHana .'. W. H. Halstead.\nMolokai and Lanai L. A. Thurston,\n\"\" - ..... A. P. Paehaole.\nHawaii.\nHilo J. Nawahi, D. H. Hilchcock.\nHamaktia , . .. W. A. Kinney.\nKohala ....'. :... Dr. J. Wight.\nNorth ICona G. W. Pilipo.\nSouth Kona A. P. Kalauko.i.\nKau, 1.. ...J. Kauhane.\nPuna J. M. Kauila.\nKauai.\nLihue and Koloa S. B. -Doli\nHanalci and Kawaihau D. H. Kaupena.\nWaimca and Niihau ......... C. W. Ashford.\nRepresentatives in former sessions.\nFAILURE t\nThe campaign as conducted by the\ngentle organ for the Government has\nbeen a break-down and failure throughout.\nThe Advertiser has failed in\nmeeting and- answering the charges\nbrought against the Gibson Administration\n; it has failed in its attempt to establish\nthe Government's cause within\nthe shadow of truth, or to back its positions\nwith the logic of facts ; it has\nfailed in its attempts to blacken the\ncharacters of Opposition candidates as\nit has tailed in attempting to-prove\ncharacters for Government officials by\npersistent lying and the \"indirect\"\nof a criminal libel suit, which,\nthrough the fault of the Attorney-General,\nnevei reached a trial by jury ; it\nhas failed in its attempt to drag the pri\nvate business of Colonel Claus\neh' through the mud of a political\ncampaign, ns it has also failed, in its\nattempt to prevent the record, and to\ndrag ' Messrs. Bishop & Co. through\nthe same political mud that the Opposition\npress ' objected to its dragging\nColonel Sprpckels it has failed to con-\nrect the history of the Opposition with\nthe f.icts as alleged in its columns, as\nit has ff.iled to square the actions of its\npolitical sponsors with the ficcs of politi\ncal history. The Advertiser has failed\nin its use of every logical form to pro\ntect the false cause of the Gibson Administration\n: political induction\" hjs\nburied it; the argument of\nhas overwhelmed it ; analogy broke\nits political back, until it crawled to its\ninkstand and in utUr despair tried a\npolitical deduction, which fie w . back,\nlike a boomerang, and knocked (he\nwhole Government argument silly.\nSince last Friday the' Advertiser has\nbeen daily drivelling and laughing at\nits own 1 i in bccility.\nBy the way, gentle organ, is it not\nabout time you were fulfilling those\n-reiterated political threats of yours anent\ncertain exposures of the friends of the'\nUpposmonf You see ydu have only\none day left before the election in\nwhich to keep your word and the public\nremembers quite well that you said,\nwhen Opposition papers chaffed you,\nthat you would , do it in \"due .time,;\"\nbut then, perhaps, you meant to include\nin the little term \"due time\" a short\nperiod after election. If you don't\nnidke your little alleged exposures tomorrow\nmorning the will not\nhave to tickle itself in order to Ijueh at\nyou, and if you should muster courage\nenough to print these alleged exposures\non the, morrow the will know\nthat yqu were afraid to publish thern\nbelt re, and will laugh immoderately in\neither case. In fact your reputation is\nsuch that any allegations you might\nmake would not lose the Opposition a\nvote.\nMr. John A. Beckwith, U. S. Consular\nAgent at Hilo, and J. H. Kimball,\nM. D., Government Physician,\nHilo District, have' both written tor,the\nAdvertiser, giving the lie to thu.1 charge\npublished in-the Elelt. and \"indirectly\"\nindorsed bylthe Soap bubble, which, as-\n1. pt r , m ,\nserts that these gentlcmeti were subscribers\nto a political funu) to be used\nfur' the benefit of the Independent can\ndidates. It is humiliating, we know,\nbut tlit'ii we' told you that whatever you\nindorsed either directly or \"indirectly\"\nconcerning the Government party, you\nwould be forced to retrace It is logical\nretribution I\nAdvertiser logic : 'We grant \"section\n5 of the 'Appropriation .Act, 1880,\"\ncovered the expenditure of the Pali\nRotfd appropriation on the King's PaU\nace; uuc as we assume u am not entirely\ncover our view of the matter, there-\nfoie we conclude tliat the wishes of the\nLegislature were not carried out in the\nbuilding of the Pali Road and that the\nmoney went up the Palace flume.' To\nbe logical, fdear Soap-bubble, you mus\nprove thai \"section 5 of the 'Appropriation\nAct\" of ,1880 was not passed by the\nLegislature.\nThe daily libel undertook the\" defense of its\npatrons last Saturday, and got ns badly\n\"mixed\" about 'the kaleidoscopic Ministries\nthat preceded the present honest and loyal Administration\nas were the babies in, \" Pinafore.\"\nIt is iWt Worth while corrcciing the libelous\nsheet, however.'. C. Advertiser ofFeb. 1st.\nYes, and we made a successful defense\nbacked by the law and the facts,\nwhich the Advertiser dares not answer.\nWe ask the to carefully compare\nthe editorial column of the Press of\nlast Saturday 'with the editorial columns\nof the Advertiser of Monday and today.\nI It is rather funny that the Advertiser\nis not even able to answer the alleged\n\"daily libel\" of the Press. It is unfortunate,\ntoo, fur the thieving Gibson\nAdministration.\nLet every man who is in favor of\ngood Governmenttspend to-day and tomorrow\nin the inteiests of the Opposition.\n,lThe people are always right when\nthey defend themselves,\" is what you\nought to have said,. gentle Soap-bubble.\nTHE PO sfqmGTROBBERY\nTrial of Tlios. B. Walker.\nconcluded from yesterday's issue\nthe defense.\nII. M. Whitney, sworn: I am\nPostmaster-General. I have held\nthe position nearly three years. Mr.\nPeterson was in the office, I think,\ntwo years previously. Previous to\nthe robbery, Mr. Peterson's books\nhave not been kept with that accuracy\nI could desire ; during the past\ntwo years I several times took\nhim to task for it, how often I cannot\nsay. I do not remember of\never charging him with his books\nbeing inaccurate as well as behind\nlninri, but I did not considor tllem\nkept as accurately as they might. I\ndo not think I said anything to him\nbefore the rdbbery thai would lead to\nhis being uueasy or distuibed about\nthe matter.\nCross-examination by Attorney-tGener.il:\nI was aware that the\nAuditor-General was having an examination\nmade of accounts in all\nthe departments. Mr. Peterson's\nbooks were examined by the Auditor-General,\nMr. Walker. Mr.\nWalker looked through the books,\naie appeared to be satisfied. He\nsaid he had found nothing in the\nbooks so far as he had examined to\nwhich he could take exception.\nP. O'Suu.ivAh, sworn : Mr. Peterson\nremained upstairs a portion of the\nday in the barkeeper's room, one\nday about the middle of the week\nprevious to Mr. Walker being arrested.\nI went up and said, Mr.\nPeterson, why don't you go home.\nHe said I'm rcstiug; ray wife thinks\nI'm on my way to San Francisco,\nI said, what would you go to 'Frisco\nfor. Ho said, I'm bothered about\nthis business. I said, You better go\nhome, if you go to 'Frisco, people\nwill think you committed the robbery\nyourself.\nMns. Jackson, sworn : Wo llvo\nnext house to the Post Office. I was\nliving there the night of the robbery.\nI remember tlio occasion. I heard\nparties going in and out, doors open\ning and closing, and footsteps on\nthe side walk. Tho hour was shortly\nafter three o'clock. The footsteps\nI heard come out of the office were\nvery light. I have knoivn Mr.\nPeterson by sight for tho past three\nyears. I heard a carriage that I\nthought drove past our house. It\nwas going very slowly. Could not\ntell how many people there were. I\nhi aril like the voices of two persons\nconversing together. I fix the hour\nby having heard the clock striko\nthree. Tho footsteps seemed to\ncomo from the side door, At different\ntimes, I had heard persons come\nput of the Post Office and walk, between\n8 and 4 o'clock in the morning,\nI have often noticed Mr.\nPeterson wealing a sort of low shoo\nor slipper.\nCross-examination: About 3 weeks\nbBforo the robbery I heard a carriage\ncome down and stop, as it\nMl .U..-M\n'\"' \"V \"\nDAILY HONOLULU PRESS, TUESDAY, FEBRUARY 2, 1886.\nseemed, at the corner of our house,\nbut heard no voices.\nGeorge Dunn, sworn: I am h\npractical machinist. I was in the\nAnchor Saloon when Mr. Petorson\noamc in. Mr. Walker was thcro.\nlib offered Mr. Petersou a drink of\nWine. Somo jovial remarks wore\npassed between Mr. Peterson, Sullivan\nand Walker. Thcro was some\nconfusion got up elsewhere, and Mr.\nPeterson went out. I heard all that\nWalker said to Peterson on that occasion.\nWalker was boisterous.\nEverybody could hear him. At tho\ntime Walker spoke to Peterson, the\nlatter had .not drunk his beer.\nWalker was standing near Peterson\nwhen he spoko to him. Mr, Sullivan\nseemed t6 have heard them, for\nhe was waiting as if wanting to see if\nMr. Peterson would take wine. I\nhad not met Mr. Walker there that\nday before. I came back to Honolulu\nfrom Paia Plantation two\nmonths ago. I had had two drinks\nwith Mr. Walker there that day.\nWalker stayed there till about half-past\n11 or 12. I did not think\nWalker whispered to Mr, Peterson.\nI could not tell whether Mr. Walker\nspoko to Mr. Peterson or not. He\nmight have done so in a very low tone\nof voice without my knowing it. (The\nabove includes Mr. Dunn's evidence\nboth on direct and cross-examination).\n,\nMr. Doyle, sworn : On the second\nJanuary, I was\" at work at Mr.\nNowlein's place, on King street. Mr\nWalker was in thero that evening a\nlittle after nine o'clock. lie was\nthere until after ten o'clock. Ho\nsaid he was lookinj for a man of the\nname of Murray. He returnep again\nabout half-past ten. Left about a\nquarter to eleven. He remarked it\nwas time to close up. They were\nall strangers, sea-faring men, in the\nsaloon. Joe, a Portuguese, was\nthere when Mr. Walker came. Mr.\nWalker was then drinking with some\nmen and Officers of the bark Hesper.\nJoe waited on Mr. Walker. I was\noutside the bar, taking a drink with\nthem. I worked inside at tho bar\nthat evening of t an hour. I never\nleft the barroom that night. I know\nit was after nine, by the time Joe\ncame off the watch, I could not tell\nhow many drinks Walker took there.\nI am quite certain, Mr. Walker\nstayed there till after ten. I was\nnot out of the saloon between 8 and\nII o'clock. He came back again\nabout half-past ten. He was there\ntill about a quarter to eleven. He\ncame in alone.\nMr. It. S. Sorimgeour, sworn : I\nremember the night of the Post\nOffice robbery. Between 10:20 and\n11:15 I saw Mr. Peterson on the\nvacant lot where the Advertiser\noffice used to be. He was conversing\nwith two men ; they were about\nsix feet from the street ; I did not\nobserve them more than half a\nminute; his condition was argumentative;\none of the men said\n\"good evening,\" I merely said\n\"good evening\" and passed on.\nCross-examined by Attorney-General:\nI fix the time by having\nheard of the robbery next morning.\nI know I left the coffee saloon\nilO :20, because I heard of the\nnext day, and remembered of\nhaving seen Peterson, and this naturally\nmade me try to recall the\nhour. I had not been drinking that\nevening.\nTun Defendant, sworn : I have\nbeen acquainted with Mr. Peterson\nabout a year. My business is bricklayer.\nDuring the past eight mouths\nI have been engaged as manager of\nthe Royal Saloon. Mr. Peterson\ncame in there frequently. Hi; took\nbeer principally. lie came in two\nor three times a day to my knowledge.\nHe would talk to me ; pass\ntho time of the day, and so on. He\nwould often talk about different\nfamily troubles. About the conversation\nsix months ago referred to\nby Mr. Peterson, I met him in the\nmorning near tho Bethel Church.\nI told hiin he did not look well.\nWhat was the cause of it? He said\nhe had a good deal of bother on his\nmind. I never mentioned anything\nto him about the Post Office. I\noften heard liim talk about the condition\nof his books. He said Mr.\nWhitney might shove him out of\nthere ; that he didn't like Mr. Whitney\nand Mr. Whitney didn't like\nhim. He said his books were away\nbehind. On Saturday night, the\n2nd January, Mr. Peterson came\nin atjout. 8 o'clock. I came from\nbehind tho bar to play a game;\nafter a while Mr. Sharratt came in ;\nMr. Sharratt asked him to come in\nand take a drink, and asked me to\ncome too. Mr. Sharratt said he\nwould like a hack to go home. I\nemployed a hack. Mr, Peterson\ngot in with him. Mr. Sharratt\nordered three bottles of beer, which\nI got and put in the hack. I had\nno other conversation with Peterson,\nat that time. Peterson was in later\non. Mr. Peterson pulled my coat\nand walked towaids the little room ;\nhe began to tell me about his books\nagain. Ho appeared very much\nexcited; called for a drink; he\nwished to God ho was dead; ho\nwould leavo the door opened if somebody\ncould come and take his books\naway; Mr. Whitney was coming\ndown in the morning; I said,\nQ bosh, don't talk like that.\nThis was after 10 o'clock. Just\nthen a man camo to the door, saw\nub in, drew back again. That was\nall the conversation at that time. I\ndd not uudertake to desttoy his\nbooks. 1 did not tell him I would\nblow up the safe with dynamite,\ntlat is a tiling I know nothing about,\nexcept what I have read. Wo got\nup and went put. At the door, ho\nturned in the direction of the Post\nOffice, and\nL went up to tho Mer\nchant's ExclJingc (Nowloin's). I do\nnot know wh tho person wns who\nhad come to ho door when wo were\nspeaking. Ientto Nowlein's to sco\ntwo follows that had come on a\nvessel from Jio place I came from\nmyself. I w ntcd to sco tho captain\nof tho Lizzie, Lredalc I did not go to\nthe Post Offi :o between those times.\nAfter leaving Nowlein's, I went down\nto the Royjil Saloon by Nuuanu\nstreet. Whei'I got back, one of\ntho back doois was closed. When I\ngot hack Has io was there. I had\nbeen to his pi tco the foro part of the\nevening. He wanted to know if I\nwould let hhr havO the glass of his\nlantern, that ! held, also two bottles\nof liquor, nnc' he would pay me his\nformer bill, a so for the two Dottles\non Monday I let him have the\nliquor and ic glass. 1 tlien put\nout tho lights Took the cash into\nthe back room about 11 . o'clock.\nCounted the money, made a note of\nit, and put It in the safe. I then\nwent upstairs I noxt we'nt out between\n1 and 2 o'clock next afternoon.\nWhen 1 went upstairs, I\nwent to bed. I know nothing at all\nabout that robbery at the Post\nOffice.\nby the Attorney-General:\nWhen I went to call that\nhack for Sharratt it was between 8\nand 9. After Sharratt and Peterson\nleft, I stopped about the barroom.\nI usually take a tun round every\nSaturday night to see if anything\nhad not been paid. I stayed a few\nminuiesiat the Empire Saloon. I\nwent acrbss from thero to the Cosmopolitan,\nbut did not go in ; from there\nI went as; far as the Commercial. I\ndid not stop there more than five\nminutes. From there I came down\npast Fort-street church to Dodd's. I\nwent in there. I stayed there 10\nminutes to a quarter of an hour. I\nhad a dink there; I went from\nthere to the Koystone, stayed there\nabout three or four minutes, spoke\nto Mr. Velsh, and others that I\nknew ; I then called at Hastie's, I\nstayed there 2 or 3 minutes, asked\nHastie if lie had any money for me\nthat he ow'ed mo ; I called him out\nand aked him on the side walk; he\nsaid ho hadn't, asked me to lei\nhim have his glass, that his wife had\ngot tho consent of the Y. M. C. A.\nto have a show, that he was to give\ntho show oi the nuxt week ; there\nwas nothing else said ; the conversation\nlasted about a couple of\nminutes. I went from there down\nto the Royal Saloon, thiough Bethel\nstreet, went straight to the saloon ;\nit was close on 9 o'clock. I had\nloaned Hastie 25 on the glass. It\nwas a magnifying glass. I gave him\nthe money some four months ago\nwhen he had the shooting gallery. I\nhail let him have the shooting gallery\nat $15 a week. He owed me 45\nfor rent. He carried it on some\nthree months after I went to the\nRoyal. When I loaned him the $25\nhe had the shooting gallery about 2J\nmonths. lie owed me altogether\nnearly 70. When I returned from\nthis conversation with Hastie tw 0 or\nthree strangers were in the room ; I\nremnined there a quaiterof an hour;\nnone whom I knew came in while I\nwas there ; I went from there to\nMerchant's Exchange; met a man\nnamed Schwartz opposite Afong's,\nand talked with him about two\nminutes ; met persons I was looking\nfor at Merchant's Exchange ; they\nbelonged to bark Lizzie Iredale ; I\nstopped with them until ten or\nthereabout. Between 7 and 8 that\nevening I was behind the bar at my\nown place; took my supper at G\no'clock; did not go out anywhere\nbetween 7 and 8. I do not know\nof anything happening between 7 and\n8 ; must have been after 8 that\nPeterson came ; ho did not stay\nlong ; Sharratt asked him and me to\ntake a drink; he had been there\nabout half an hour before Peterson\ncame ; it was about ten minutes\nafter 8 that I called the express for\nSharratt ; I always do have wagons\ndrive to back yard ; Mr. Sharratt\nhad a little more than usual in hiin\nthat night, and I did not want him\nto go out in that state. Came down\nfrom Exchange directly to saloon;\ndid not meot anyone in particular\non the way down ; was alone ; told\nthese men to stop, as I would be\nback ; could not have been more\nthan two or three minutes after 10 ;\nstayed at saloon till nearly half-past\n10. Mr. Peterson came in after I\nhad boon there a while; after we\nwent in back room together he pulled\nme by tho coat ; all tlio conversation\nabout the books and wanting t,o die\ntook place in those two or three\nminutes; must have been between\n10 and half-past. I left saloon with\nPeterson by the same door, the one\nfacing on Merchant street. I bade\nhim goodnight, and I went up\nstreet to Merchant's Exchange,\nwhere I had promised io meet those\nmen again. The glass Hastio pawned\nwith mo I kept in small drawer in\nBafo ; I gave it to him that evening\nafter I closed saloon, very nearly\n11; one back door was open, although\nI had not shut tho gates.\nThat day I took in altogether over\n8200 ; Hastie was not there when I\ncounted it. While I was in back\nroom with Peterson someone enme\nto back door, muttered something,\nand withdrew. Back door leads to\nyard, that is fenced, a small gate\nleading to Nuuanu street. That is\nnot tho door customers usually\ncomo ; there aro threo doors. It is\ncommon for people to conic to back,\nto see who is in saloon. I have had\nwomen come there, to soe if their\nhusbands aro there, and rush away\nlike a flash of lightning. Last time\nI was in saloon, stayed about twenty\nminutes, and left alone; did not\nmeet nnyono on way down. Peterson\nnever told mo he left tho doors\nopen. When ho pulled my coat ho\nsaid his books wero in such a condition;\nlie said nothing cbout leaving\ndoors open ; am sure ho said nothing\nof the kind. 1 could not have said\nso in my direct examination. Mr.\nPeterson got a chair and beckoned\nfor me to sit down ; I noticed he\nwas very much excited ; and shaky ;\nI had beer but do not rcmombor\nwhat he had. Ho said : \"The trouble\nIs this: my books aro in such a\nbad state that I do not know what\nto do ; I wish I was dead.\" I asked\nwhat was the matter with his books,\nand ho told mo ho had not time to\nrectify them, and Mr. Whitney was\ncoming down Sunday morning. He\ndid not like Mr. Whitney, and knew\nMr. W. did not like him. I said,\n\"Oh bosh I\" Just then tho footstep\ncame to the door. I said that\nbecauso he was so excited. I am\nquite sure Petorson did not say he\nwished somebody would go through\nthe Post Office. The money borrowed\nwas not from me but from\nray wife. One evening the dog\nbarked at end of ray verandah, on\nBeretania street, and my wife went\nout and met Mr. Peterson. Ho asked\nif Mr. Cummins lived there, and\nmy wife said no. I also went out,\nand spoke to him ; he said he wanted\nto see Mr. Cummins on some little\nbusiness; he had heard Mr. C.'s\nclerk at Waimanalo was coming up\nto go into Mr. Boltc's office; he\nwould like to see if there was any\npossible chance for him (P.) to get\nemployment on the plantation. I\nsaid 1 had heard nothing about\nclerk leaving. He started to go\naway, but after going a . fow\nsteps camo back, and said there\nwas one little thing he wanted to\nask Mr. C. 5 he wanted to know if\nhe would let him havo $G00 or $700,\nas ho was in difficulty, and it was\nnear end of quarter ; asked me if I\nwould not speak to Mr. C. about\ngetting this money. I said I would\nnot like to ask Mr. C. anything like\nthat, as ho had given himself and\nwife $100 each, and tho children\n$10 each, as Christinas presents,\nlie went away, saying he might be\nback in a short time. This was\nail ; it took place about two weeks\nago. I did not lend him the money,\nlie called again I think on the\n13th and asked if Mr. Cummins\nhad come over, or if she had ascertained\nwhen he would come. He\nspoke chiefly to my wife on this\noccasion, talking about his family,\nand saying if anyone lent him this\nmoney he would return it in about\nsix months. My wife said: \"As\nyou are in such pilikia, I have a\nlittle money belonging to the children,\nbut not as much as you\n$400 or $500. Walker\nspent $300 fitting up that place on\nKing street, which has lost money ;\nbut I can let you have $400, if that\nwill do.\" Peterson thought it would,\nand he and my wife went into the\nparlor, where she gave him the\nmoney, he promising to pay her $4\na month. He drew out a note. I\ndid not advise her to lend the money\nbut told her she could please herself.\nShe said she knew Mr. Peterson's\nfamily a long time, especially\nthe daughter. I did not say anything\nto my wife about Peterson's\ndifficulties ; he spoke about danger\nof losing his place on his first visit.\nHad heard about Post Office robbery,\nbut nothing but outside talk\npointing suspicion at anybody ; had\nnot suspicion of Peterson myself,\nalthough ho had spoken to me about\nbooks. I do not think anybody\ncould have heard our conversation\nin back room ; a person would havo\nto be right at the door to hear. After\nI called on Hastie, on sidewalk, I\ncame right down to Royal Saloon ;\nHastie said he would be down there.\nBy Mr. Hatch, with permission of\nCrown and Court At Anchor Saloon,\na week after robbery, I was there,\ntalking with Sullivan the bar-keeper\nand some others. Sullivan said he\ncould give a bottle between us, I\nasked Peterson, who came in afterward,\nif he would have wine. He\nsaid no, as beer and wine would not\nmix. I was pretty \"comfortable\"\nthat morning. I met Dunn that\nmorning, and treated him at two or\nthree places ; he did not treat at all.\nMrs. Thos. B. Walker, sworn:\nWe have been married over six\nyeara. I remember night when\nPost Office was robbed ; were living\nthen above Royal Saloop ; saw Mr.\nWalker that evening; went down\nabout 5 minutes past 11, when he\nwas counting money received that\nday ; when done counting money he\nlocked door and we both went up\nstairs; from that time we never\nwent out of yard till between one\nand two on Sunday afternoon. We\nboth occupied same room. I was\nnever acquainted intimately with\nPeterson; havo only known his\ndaughter, could not say exactly how\nlong, about 8 or 11 years. I remember\nPeterson coining twice to\nour house on Beretania street; first\ntime asked if my father lived there ;\ntold him ho lived on King street.\nHe said Mr. Whitney and he did\nnot get along well together, and he\nwanted to get a place on my father's\nplantation. He came again three or\nfour nights after; he was pretty\nnervous ; I asked him to sit down,\nwhich ho did ; he asked mo when\nmy fathor would be down ; said he\nwould like to borrow $G00 or $700\nfrom my father. I told him I could\nlend him $400 or $500 if ho would\npay it back within six months ; he\nsaid ho would, and promised $4 a\nmonth interest on it ; ho wrote out\na note 5 tho money I let hirn have\nbelonged to ray children ; it was\ngiven little by little by my father\nand others. My husband did not\nconsent, bnt I gave tho money because\nI know Peterson's daughter,\nand felt bad becauso of what he told\nmo about his family. I kept the\nmoney ; my husband had nothing to\ndo with it.\nby Attorney-General\n: I do not know of my husband\nhaving been from home after 11\no'clock, or a little after, since he\nhas been keeping the Royal. Mr.\nPeterson spoke about wanting money\non his two visits ; it was three or\nfour days after lfo first camo that I\ngave him tlio money. Never havo\nbeen long in company with Peter\nson's daughter, I presume all Mr.\nCummins' friends know ho lives on\nKing street ; ho has been there about\ntwo years. It was on occasion of\nPeterson's visit, after ho left, that\nWalker objected to my lending the\nmoney\nA. Carter, sworn : I had a conversation\nwith Mr. Peterson nbOiit P.O.\nrobbery since its occurrence ; have\nbeen acquainted with him, intimately,\nsince he cntne to the country.\nThe conversation was lieforc lliu examination\nin tho Police Couit.\n(Tho Attorney-General objects to\na question as to the nature of the\nconversation, and the Court sustains\nthe objection, on tho ground that\nPeterson could not bo discredited\niiow when ho had not been asked\nregarding this conversation on his\ncross-examination. )\nMr. Hatch submits, in the absence\nof Justice Bickerton, by permission\nof the Court and consent of\nthe Crown, the evidence of I. B.\nPeterson at the preliminary examination\nin the Police Court.\nAt six o'clock the defense rested,\nand a recess of an hour and a quarter\nwas taken.\nafter recess.\nThe Court resumed at 7:15 p. in.\nMr. F. M. Hatch addressed the jury\nin behalf of defendant, and claimed\nthat the evidence presented by the\nCrown was insufficient to convict,\ntho only point made being that the\ndefendant had been furnished with\nsuch information as would tender it\npossible for him to commit the\noffense.\nHis Excellency the Attorney-General\naddressed the jury on behalf\nof the Crown, claiming that Mr.\nPeterson's evidence was reliable,\nand that there was a hiatus between\ntho hours of 10 and 11 o'clock on\nthat Saturday night, in the alibi\nattempted to be proven by the defense.\nHe said he did not believe\nthat Walker was not out of his house\nafter 11 at night for four months,\nand he did not believe that when all\nthe telephone bells in the town were\nringing with the news, and everybody\ntalking about it, that Mr.\nWalker remained quietly and privately\nin his house until between 1\nand 2 o'clock in the afternoon. He\ntook Mr. Peterson's evidence to be\ntrue from A all the way down to Z.\nAs to Mr. Dunn's evidence, he\nthought, \"Dunn won't do.\"\nHastie, ho thought, was well\nnamed, from the haste with which\nhe left tho country. He thought\nMr. Walker should suffer, if for\nnothing else, if he was Mr. Peterson's\nfriend that night, he should\nhave taken care of him ; if not his\nfriend, he should have reported him\nto the authorities. Ho did not ask\nthe jury to convict on the uncorroborated\nevidence of Mr. Peterson,\nbut he held that Mr. Peterson was\nstrongly corroborated in three very\nimportant particulars : (1) Mr.\nWalker's saying nothing when Mr.\nPeterson proposed to destroy his\nbooks; (2) his being with Mr.\nPeterson immediately before tho\ncrime; and (3) the matter of the\nmoney borrowed from Mrs. Walker.\nMr. Justice Preston said the\nprisoner was charged under Chap.\n14, sees. 1G and 17, Penal Code,\nwhich stated that whoever in the\nnight enters, or breaks and enters\nany building used for purposes,\nwith intent to commit a felony\ntherein, shall be punished by imprisonment,\netc. It was immaterial\nin this case whether Walker took this\nmoney or not; if he entered this\nplace, whether with guilty intent or\nnot, he is guilty. If he went in to\nsteal those books he is guilty under\nthis act. The removal of those\nbooks would be a felony. The testimony\nof Peterson was direct and\npositive, and you will bear in mind\nthat the suggestion was made by\nWalker not only then, but on a previous\noccasion. Walker snid on his\ndirect examination that Peterson\ntold him the state of affairs:\n\"I had como from behind tho\nbar; Sharratt came in\" then ho\nnarrates how Sharratt went away\n\"I went out with Peterson; he\nwalked about the little room;\nhe got excited ; wished ho was dead ;\nhe would leave tho doors open ; I\nanswered, 'Oh bosh!' \" If he said\nso it is as strong corroboration of\nPeterson's evidence as any you can\nhavo. Whether there aro any other\ncircumstances of corroboration it is\nfor you to say ; in my opinion ho is\ncorroborated. What can you think\nof a mau who said that in that box\nand half an hour afterward denied\nit? Is ho worthy of belief? If it is\ntrue that Walker said that he had a\nthousand dollars for him it is important.\nIt is possible Walker\nmight havo whispered to him with-out\ntho having heard it\nThere was no doubt Peterson was in\nthe Roynl Saloon; that he went\ninto tho little room and had a drink\nwith Walker. People aro often\nmistaken as to the oxact time of an\noccurrence. How does Walker account\nfor himself when he last went\nout of the saloon that night? lie is\nable to tell you at what house he\nstopped ; ho wont to tho Merchant's\nExchange to look for a friend ono\nof tho crow of the Lizzie Ircdalo ; ho\nwent away at ajjquarter to eleven.\nIlls II6nor comincnted on the\nto Hastio being at tho\nMcrcianfs Exchange Saloon a littlo\nbefore 11, lcavijig to go to sec\nWalker and beihg at tho Royal\nSaloon a littlo lifter 11. It was\nclear that Peterson and Walker had\nleft the Royal togcthor. According\nto Peterson, Walker went to tho Post\nOffice and was let in by Peterson\nin nnswer to his knock. If a man\nis let in by an accomplice it is breaking\nin. The next thing wo hear of\nWalker he Is at the Merchant's Exchange.\nI think it is fair to as-sumo\nthat there was time ami opportunity\nto commit that offense\ntho time ho left the Merchant's\nExchange 11 nd got back after 11.\nThe proof of an alibi must be clear\nand connected. Mrs. Jackson's and\nMr. Melu ten's evidence wns briefly\ncommented upon to show how important\nlittle things were in such a\ncase. Mr. Scringeour might have\nseen Peterson talking with a man,\nbut it would have been much more\nsatisfactory if that man had been\npioducudthnt is if there was anything\nIn it. Peterson snys he\ndid not speak to anybody at tho\nplace indicated that night,\nbut is that important? Peterson\ncould not havo been in a very bad\nstale when he took Sharratt home.\nHis Honor again spoko of tho difficulty\nof people stating the time of\nevents fiom memory. Peterson tells\nyou that after leaving Walker at the\nAnchor saloon ho then went home ;\na haekman proves that he took Hira\nhome. Why should Peterson and\nWalker have a conversation about\nthose books Peterson said they had\na talk six months ago. With regard\ntfy tho loan of Mrs. Walker thero is\nspmething strange. Mr. Walker,\nwith his knowlcdgo of Peterson's\ndifficulties 'With the\" lattcr'a 6ffer to\nleave the safe open allowed his\nwife to loan him her children's\nnjioney. What can wo think when\nwe come to compare conduct of a\nman v?hb would allow his wife to\nlend a man her children's money\nwithout nuyJiope of his ever paying\nit? With regard to Peterson's statement,\nif there is any corroborative\ntestimony you will believe it, and\ntherd is no other alternative but to\nbring in a verdict of guilty. If\nyou find that ho entered tho Post\nQfileo ,with guilty intent you\nmust find him guilty. If Walker\nhas accounted for his conduct on\ntiiat occasion you must give him the\nbenefit of it. It must be a reasonable\ndoubt. The Crown must make\nout their case. They have charged\nWalker with a felony, and you must\nfind if they have made it out. It is\nyour duty to render such a verdict\nthat you may go home to your beds\nand feel that you have done right. In\nsmall communities it is hard for a\nCourt and jury to pass upon people\nWhom we know well. If you think\nifj is not possible that the robbery\nwas not committed before 11, it is\nfor you to say whether Mrs. Walker\nis, to be believed. His Honor, in\nclosing, commented on the folly of\nl'eterson's object of having the\nbpoks destroyed ; saying, very fow\nrrjen who commit crime ever\nthink of the consequences. If they\ndd, thero would be very much less\ncrime committed.\nThe jury retired at about 9:40, and\nat 11:20 sent in a message that they\ncould not a.ree. Being called ,mto\nCourt, they were, after a short colloquy,\nwith the Judge, recommended, by\nHisHHonor to try once more. They\nreturned at 11:42 and reported disagreement\nstill, and were discharged.\nHis Honor then fixed' defendant's\"\nbail at $5,000, with two sureties in\n$2,500, additional, each.\nitcto JSbcrtiecmcttte.\nThe White House.\nNo. 118 Nuuanu Seet, Honolulu, between\nand Kukui.Strtm.\nMrs. J. Vierra, Proprietress.\nFURNISHED llOO MS TO RENT\nWith and without buard, by the week or month.\nTerms reasonable. accommodations.\nTHE WHITE HOUSE.\nWhich Is situateU.on ihe outskirts, ol the city, is hand-\nteCtUre. bllt frr ttin ln.4 ntii II w ItM n... n.A..n.t. !\nwhich it stands. '\nAll tiiu Rooms auk LAlir.it and I.nrrv.\nAnd no expense has been kpared to render them as attractive\nas puiklble. .\nA READING ROOM,\nI Iltfll till Willi Cfililv , unnvnliimii ...,! A... (; ,-\n\"\" f 1 uiim uiiu luuiaiuiiig wits\nof Koscner l'unus. is set apart for fiuots,\nTIIU TADLi:\nS Of ill Tu.C 1l 1 .. t\n. ,V ' \" w.u., aim never waiuiui\ntropical fruits and flowers in abundance.\nA I.AKUU UATII WITH SHOWER ATTACHED,\nanj eery convenience, on the premises.,\nMrs. Vtrm rmienlt. tl. An.rn.. r t f?..:... n\nall occasions, and none but the respectable are ad.\nTHE WOOD AND COAL BUSINESS\nherelofnrf. r.lrrii.rl nn lii, G Ti t Irnlinni\n& Co. has this day been sold io S. M. Car.\nter, who will continue the business at the old\nstand, No. 82 King street.\nMr. S. M, Carter is authorized to receive\nmoney and receipt hills on account of S. F.\nGraham & Co.\nS. F. GRAHAM & CO.\nHonolulu, January 23, 1886.\nS. M. CARTER,\nWood and Coal Merchant.\nNo. 82 Kino STUuur,\nTelephone Number, in both Companies, 187.\nWnnrl nnA r...! n-.1... n... I....t.tr cnlu.tted. and\nwill be delivered at any locality within the city limits-\nDopurturo Bay Coal, Nowomtlo Coul,\naiid.ultnroonl.\nHard and Soft Wood, lawed and split, always on\nhand, and sold in quantities to suit. '?\"\ni\nWl\n'-'I\n. t.I\n''\n1\nft )\n..\n'1\n1\nI", 
+      "batch": "batch_hihouml_eel_ver01", 
+      "title_normal": "daily honolulu press.", 
+      "url": "http://chroniclingamerica.loc.gov/lccn/sn85047264/1886-02-02/ed-1/seq-2.json", 
+      "place": [
+        "Hawaii--Honolulu--Honolulu"
+      ], 
+      "page": ""
+    }, 
+    {
+      "sequence": 3, 
+      "county": [
+        "Cook"
+      ], 
+      "edition": null, 
+      "frequency": "Daily (except Sunday and holidays)", 
+      "id": "/lccn/sn83045487/1915-02-27/ed-1/seq-3/", 
+      "subject": [
+        "Chicago (Ill.)--Newspapers.", 
+        "Illinois--Chicago.--fast--(OCoLC)fst01204048"
+      ], 
+      "city": [
+        "Chicago"
+      ], 
+      "date": "19150227", 
+      "title": "The day book.", 
+      "end_year": 1917, 
+      "note": [
+        "\"An adless daily newspaper.\"", 
+        "Archived issues are available in digital format as part of the Library of Congress Chronicling America online collection.", 
+        "Available on microfilm;", 
+        "Description based on: Nov. 1, 1911.", 
+        "Issue for <Nov. 24, 1911> lacks vol., no., and chronological designation.", 
+        "Issue for Nov. 4, 1911 erroneously designated as Oct. 4, 1911.", 
+        "Issue for v. 3, no. 290 (Sept. 7, 1914) erroneously designated as v. 3, no. 300 (Sept. 7, 1914). The error in numbering continues.", 
+        "Issue for v. 5, no. 214 (June 7, 1916) erroneously designated as v. 5, no. 214 (June 6, 1916).", 
+        "Issue for v. 5, no. 7 (Oct. 5, 1915) erroneously designated as v. 5, no. 7 (Sept. 5, 1915).", 
+        "Issues <May 7-17, 1915> called also \"Moving Picture Edition.\"", 
+        "Issues have no page numbering.", 
+        "Saturdays have Noon and Final editions, Dec. 28, 1912-June 21, 1913; Saturdays have Noon and Last editions, June 28, 1913-<Dec. 13, 1913>; began issuing daily Noon and Last editions, Dec. 20, 1913-July 6, 1917.", 
+        "Vol. 5, no. 36 (Nov. 6, 1915) issue called also \"Garment Workers' Special Edition.\"", 
+        "Volume numbering begins with Nov. 20, 1911 issue."
+      ], 
+      "state": [
+        "Illinois"
+      ], 
+      "section_label": "", 
+      "type": "page", 
+      "place_of_publication": "Chicago, Ill.", 
+      "start_year": 1911, 
+      "edition_label": "LAST EDITION", 
+      "publisher": "N.D. Cochran", 
+      "language": [
+        "English"
+      ], 
+      "alt_title": [], 
+      "lccn": "sn83045487", 
+      "country": "Illinois", 
+      "ocr_eng": "wmmmmzmmmmwmm\n;POLICE FEAR LYNCHING Of AURORA MURi?R;\nSUSPECT HUNT FOR NEW EVIDENCE\n7 .1!\n.b\ni in\nEmma Peterson, the\nFrank Ramsey, arrested in Chi\ncago today as the suspected murder\ner of -Emma Pederson, \"third woman\nto be mysteriously beaten to death in\na year at Aurora, was taken to Auro\nra today. He went under heavy guard\nas theaty is in a frenzy and a lynch\ning has been threatened.\nRamsey wasarrested as a suspect\nwhen Jennie Siller, one of the other\nvictims was murdered.\nIn Ramsey's room at 811 Wash\nington blvd, Chicago, was found a\npiece of lead pipe that was similar to\nthe piece found by the body of the\ndead girl\nSearch for the murderer: of Jimma\n\"Gas Pipe\" Victim\nPeterson of Aurora has. spra\nthroughout Northern Illinois .,(In\nAurora, the city where the \"gas\npipe murder\" is third of a series of\nbrutal attacks resulting in the dth\nof young girls, the chase for the,4ejm\nhas lead to the. Hungarian settlement\non the outskirts of the city. ,v\nIn Chicago, where the authorities\nfear the fleejng man has hidden.Jfwo\narrests Were made on suspicion\nIn an effort to regain, scent 9 ine\nmurderer, who was traced 10 jjhe\nbanks of the Fox river by blood\nhounds, the dogs were \"raced jip apd\ndown the stream last night u\n.The city \"council of Aurora, in 4\n)mmmm", 
+      "batch": "batch_iune_golf_ver01", 
+      "title_normal": "day book.", 
+      "url": "http://chroniclingamerica.loc.gov/lccn/sn83045487/1915-02-27/ed-1/seq-3.json", 
+      "place": [
+        "Illinois--Cook--Chicago"
+      ], 
+      "page": ""
+    }, 
+    {
+      "sequence": 14, 
+      "county": [
+        "Goodhue"
+      ], 
+      "edition": null, 
+      "frequency": "Weekly", 
+      "id": "/lccn/sn85025567/1874-04-15/ed-1/seq-14/", 
+      "subject": [
+        "Minnesota--Red Wing.--fast--(OCoLC)fst01206394", 
+        "Red Wing (Minn.)--Newspapers."
+      ], 
+      "city": [
+        "Red Wing"
+      ], 
+      "date": "18740415", 
+      "title": "The Grange advance.", 
+      "end_year": 1877, 
+      "note": [
+        "Archived issues are available in digital format as part of the Library of Congress Chronicling America online collection.", 
+        "Available on microfilm from the Minnesota Historical Society.", 
+        "Description based on: Vol. 2, no. 18 (Feb. 9, 1875)."
+      ], 
+      "state": [
+        "Minnesota"
+      ], 
+      "section_label": "", 
+      "type": "page", 
+      "place_of_publication": "Red Wing, Minn.", 
+      "start_year": 1873, 
+      "edition_label": "", 
+      "publisher": "[s.n.]", 
+      "language": [
+        "English"
+      ], 
+      "alt_title": [], 
+      "lccn": "sn85025567", 
+      "country": "Minnesota", 
+      "ocr_eng": "THE following persons were made\nhappy or miserable for life ia thii County\nduring the past month\nMaroh2. \u00a3. J. Gardner and R. E.\nWright.\nMarch 8. Ferdinand Frihet and Augus\nta Maute.\nMarch 10. John Anthony Olson and An\nna Peterson.\nMaroh 10. Chas. A. Floren and Betsy\nNelson.\nMarch 14. James Foster and Margaret\nDemey.\nMaroh 14. Charles F. Eneroth and Jo\nsephine W. Rogers.\nMarch 16. Ole Peterson and Carrie\nOlson.\nMarch 16. Daniel M. Drum and Betsy\nM. Oilman.\nMarch 20. John Loungberg and Carrie\nStephens.\nMarch 23. Andrew Olson Strone and\nJulia Olsdatter Tassen.\nMarch 23. John Swenson Wiklem and\nCarrie Johnson.\nMarch 25. Oliver R. Pool and Flora E.\nBlain.\nMarch 25. Ole Olson Bjagan and Isabel\nJohnson Kylle.\nMaroh 28. Nils Hanson and Isabella\nHanson.\nMarch 30. Botolf Halvorson and Meta\nPetersdatter.\nMarch 30. Samuel Seeler and Josephine\nTwombly.\nThey seem to hare been pretty evenly\ndistributed through the month, though the\nseven days from the 3d tobhe 10th did not\nseem to be particularly good for getting\nmarried. 1\n\u2014The blonde compositor of the Republi\ncan office will shortly return to bisfirstlove\nthe Arqut office.", 
+      "batch": "batch_mnhi_datsun_ver01", 
+      "title_normal": "grange advance.", 
+      "url": "http://chroniclingamerica.loc.gov/lccn/sn85025567/1874-04-15/ed-1/seq-14.json", 
+      "place": [
+        "Minnesota--Goodhue--Red Wing"
+      ], 
+      "page": ""
+    }, 
+    {
+      "sequence": 25, 
+      "county": [
+        "Cook"
+      ], 
+      "edition": null, 
+      "frequency": "Daily (except Sunday and holidays)", 
+      "id": "/lccn/sn83045487/1917-04-06/ed-2/seq-25/", 
+      "subject": [
+        "Chicago (Ill.)--Newspapers.", 
+        "Illinois--Chicago.--fast--(OCoLC)fst01204048"
+      ], 
+      "city": [
+        "Chicago"
+      ], 
+      "date": "19170406", 
+      "title": "The day book.", 
+      "end_year": 1917, 
+      "note": [
+        "\"An adless daily newspaper.\"", 
+        "Archived issues are available in digital format as part of the Library of Congress Chronicling America online collection.", 
+        "Available on microfilm;", 
+        "Description based on: Nov. 1, 1911.", 
+        "Issue for <Nov. 24, 1911> lacks vol., no., and chronological designation.", 
+        "Issue for Nov. 4, 1911 erroneously designated as Oct. 4, 1911.", 
+        "Issue for v. 3, no. 290 (Sept. 7, 1914) erroneously designated as v. 3, no. 300 (Sept. 7, 1914). The error in numbering continues.", 
+        "Issue for v. 5, no. 214 (June 7, 1916) erroneously designated as v. 5, no. 214 (June 6, 1916).", 
+        "Issue for v. 5, no. 7 (Oct. 5, 1915) erroneously designated as v. 5, no. 7 (Sept. 5, 1915).", 
+        "Issues <May 7-17, 1915> called also \"Moving Picture Edition.\"", 
+        "Issues have no page numbering.", 
+        "Saturdays have Noon and Final editions, Dec. 28, 1912-June 21, 1913; Saturdays have Noon and Last editions, June 28, 1913-<Dec. 13, 1913>; began issuing daily Noon and Last editions, Dec. 20, 1913-July 6, 1917.", 
+        "Vol. 5, no. 36 (Nov. 6, 1915) issue called also \"Garment Workers' Special Edition.\"", 
+        "Volume numbering begins with Nov. 20, 1911 issue."
+      ], 
+      "state": [
+        "Illinois"
+      ], 
+      "section_label": "", 
+      "type": "page", 
+      "place_of_publication": "Chicago, Ill.", 
+      "start_year": 1911, 
+      "edition_label": "LAST EDITION", 
+      "publisher": "N.D. Cochran", 
+      "language": [
+        "English"
+      ], 
+      "alt_title": [], 
+      "lccn": "sn83045487", 
+      "country": "Illinois", 
+      "ocr_eng": "mffKBKUAJJ. JL9AJ&JMJJLJULaJLMiJLJUHLWJUUi V'U\nMILITIA GUARDING RAILROAD TUNNEL\n\"SOMEWHERE IN NEW YORK\"\nHere Are Soldiers of the 71st New York Regiment Guarding a Railroad\nTunnel \"Somewhere in New York State,\" Near New York City. '\n\"L\" STATION AGENT OFFERS TO\nSERVE THIEF'S TERM ,\nBecause Kenyon Peterson con\nfessed to robbing the Ravenswood\nstation of the Northwestern road\nyesterday and was sentenced to pris\non for a term from one year to life,\nWm. Gaughrin, 1808 Warren av., the\nstation agent, was willing to serve\nthe sentence for Peterson.\nThis he offered to do at the time\nof the robbery because the North\nwestern road held suspicions that the\nrobbery was a put-up job.\nBut Gaughrin was told that Peter-1\nson would have to serve his own sentence.\nFEDERATION OF LABOR WONT'\nAID STRIKE OF CITY TEAMS\nThe Chicago Federation of Labor\nis not in sympathy with the strike of\nthe garbage team owners, described\nin the city council as \"an attempt\nto sandbag the city out of $250,000 a\nyear.\"\nNeither the teamsters' joint coun\ncil nor the federation will give any\nsupport, morally or financially to th\n\"union\" of team -owners.\ni Uriri ff ll", 
+      "batch": "batch_iune_india_ver01", 
+      "title_normal": "day book.", 
+      "url": "http://chroniclingamerica.loc.gov/lccn/sn83045487/1917-04-06/ed-2/seq-25.json", 
+      "place": [
+        "Illinois--Cook--Chicago"
+      ], 
+      "page": ""
+    }, 
+    {
+      "sequence": 5, 
+      "county": [
+        "Kandiyohi"
+      ], 
+      "edition": null, 
+      "frequency": "Weekly", 
+      "id": "/lccn/sn89081022/1909-12-22/ed-1/seq-5/", 
+      "subject": [
+        "Minnesota--Willmar.--fast--(OCoLC)fst01203392", 
+        "Willmar (Minn.)--Newspapers."
+      ], 
+      "city": [
+        "Willmar"
+      ], 
+      "date": "19091222", 
+      "title": "Willmar tribune.", 
+      "end_year": 1931, 
+      "note": [
+        "Archived issues are available in digital format as part of the Library of Congress Chronicling America online collection.", 
+        "Available on microfilm from the Minnesota Historical Society."
+      ], 
+      "state": [
+        "Minnesota"
+      ], 
+      "section_label": "", 
+      "type": "page", 
+      "place_of_publication": "Willmar, Minn.", 
+      "start_year": 1895, 
+      "edition_label": "", 
+      "publisher": "[s.n.]", 
+      "language": [
+        "English"
+      ], 
+      "alt_title": [
+        "Twice-a-week Willmar tribune", 
+        "Willmar weekly tribune"
+      ], 
+      "lccn": "sn89081022", 
+      "country": "Minnesota", 
+      "ocr_eng": "iC/I\nWillmar Hardware Co.\nI. C. Olson. Undertaker\nWillmar steam Laundry\nW. M. Chase & Co.\nJ. J. Ekander\nPerson & Johnson\nAndrew Peterson\nBoston Candy Kitchen\nCharles Nelson, Furs\nA. P. Adams, Real Estate\nS. L. Benton, Real Estate\nPalm's Ideal Bakery\nSinger Sewing Machine Co. A. L. Nelson\nJohn Lundquist E. T. Sandbo\nBerkness, Peterson &\nPeterson & Welli\nCarlso Bros. & Frost\nA E Mossber\nJ. C. Strand\nPeterson & Qvale\nJ. E. Maloney\nCommercial Hotel\nElfstrum & Co.\nO. A. Jacobson\nTommy's Confectionery\nWalter DeLa Hunt\nthe neighborhood\nFarmer's Restaurant\nJ. W. Kent\nwith cordial thanks for the liberal patronage they have given us during the past year\nMay the Holiday season bring them all the richest blessings of COMFORT, CHEE and HAPPINESS\n1909-1910\nAnd we jointly and severally resolve that we will pull together during the coming year to the end that the year A. D. 1910 may become\na red letter year in the history of the development of our community.\nBank of Willmar Kandiyohi County Bank First National Bank\nS. E. Stansberry KaT*\nGilbert 0. Sand Co.\nThe Progress\nAnderson Land Co.\nJ. H. Wiggins Co.\nOman & Johnson\nC. A. Nelson, Jeweler\nS. S. Glarum\nD. Elmquist, Jeweler\nDelmonico Cafe\nMetropolitan Barber Shop\nThe Glarum Hotel\nWhite House Confectionery\nElkjer Bros., Studio\nNe Londo Millin Co\nWillmar MillingCo.\nCentral Life Assurance Society\nJ. F. BRANTON, State Manager\nJ. S. Bobbin\nKelly & Sanderson, Livery\nG. P. Karwand\nP. E. Parson\nRobt B. Otterness\nSkoog & Anderson\nMinn. & Western Grain Co.\n0. A. Sandven\n1. T. Cramer\nLUMBER\nWOOD and\nCOAL\nAnderson Bros. & Co.\nLocken & Soderling\nhe a Furniture Store\nWold & Simons.Studio\n0. K. Severinson\nTribune Printing Co.\nLyder Berg, Confectionery\nWillmar Green House\nOriginal Package Grocery\nBen Benson, Heatin and Plumbing\nWillmar Sash & Door Fact.\nAndrew Bjorsell, Contractor\nWillmar Fuel Company\nC. Ackerman & Co.\ni\u00abs\u20ac)\n\"3)\nOhsberg, Selvig & Co\nS. A. Rasmusson", 
+      "batch": "batch_mnhi_ford_ver01", 
+      "title_normal": "willmar tribune.", 
+      "url": "http://chroniclingamerica.loc.gov/lccn/sn89081022/1909-12-22/ed-1/seq-5.json", 
+      "place": [
+        "Minnesota--Kandiyohi--Willmar"
+      ], 
+      "page": ""
+    }, 
+    {
+      "sequence": 5, 
+      "county": [
+        "Cook"
+      ], 
+      "edition": null, 
+      "frequency": "Daily (except Sunday and holidays)", 
+      "id": "/lccn/sn83045487/1916-01-29/ed-2/seq-5/", 
+      "subject": [
+        "Chicago (Ill.)--Newspapers.", 
+        "Illinois--Chicago.--fast--(OCoLC)fst01204048"
+      ], 
+      "city": [
+        "Chicago"
+      ], 
+      "date": "19160129", 
+      "title": "The day book.", 
+      "end_year": 1917, 
+      "note": [
+        "\"An adless daily newspaper.\"", 
+        "Archived issues are available in digital format as part of the Library of Congress Chronicling America online collection.", 
+        "Available on microfilm;", 
+        "Description based on: Nov. 1, 1911.", 
+        "Issue for <Nov. 24, 1911> lacks vol., no., and chronological designation.", 
+        "Issue for Nov. 4, 1911 erroneously designated as Oct. 4, 1911.", 
+        "Issue for v. 3, no. 290 (Sept. 7, 1914) erroneously designated as v. 3, no. 300 (Sept. 7, 1914). The error in numbering continues.", 
+        "Issue for v. 5, no. 214 (June 7, 1916) erroneously designated as v. 5, no. 214 (June 6, 1916).", 
+        "Issue for v. 5, no. 7 (Oct. 5, 1915) erroneously designated as v. 5, no. 7 (Sept. 5, 1915).", 
+        "Issues <May 7-17, 1915> called also \"Moving Picture Edition.\"", 
+        "Issues have no page numbering.", 
+        "Saturdays have Noon and Final editions, Dec. 28, 1912-June 21, 1913; Saturdays have Noon and Last editions, June 28, 1913-<Dec. 13, 1913>; began issuing daily Noon and Last editions, Dec. 20, 1913-July 6, 1917.", 
+        "Vol. 5, no. 36 (Nov. 6, 1915) issue called also \"Garment Workers' Special Edition.\"", 
+        "Volume numbering begins with Nov. 20, 1911 issue."
+      ], 
+      "state": [
+        "Illinois"
+      ], 
+      "section_label": "", 
+      "type": "page", 
+      "place_of_publication": "Chicago, Ill.", 
+      "start_year": 1911, 
+      "edition_label": "LAST EDITION", 
+      "publisher": "N.D. Cochran", 
+      "language": [
+        "English"
+      ], 
+      "alt_title": [], 
+      "lccn": "sn83045487", 
+      "country": "Illinois", 
+      "ocr_eng": "OUTBURSTS OF EVERETT TRUE\nbid ouT- i ' \"j:\n(Miss k) m, fT .h.S\nft IUAS ONLY V -\nCHASINC IT CUT J ry, ,s--\"a-- ?!\nII (1\nCRACK THIS NUT\nThe killing of Birdeen Peterson,\naged 24, by Miss Olga Aagevedt, age\n21, at Stanwood last week was acci\ndental, a coroner's jury found. She\nshot herself and took poison and has\nrecovered. Deek Park, Wash., Jour\nnal. o o\nMules in mines at Nevada City,\nCal., like tobacco so well that they re\nfuse to work till given a \"chaw.\" y\ntigmgutsmmtmmmammmmmimmmmmamamiMmmmmammm", 
+      "batch": "batch_iune_hotel_ver01", 
+      "title_normal": "day book.", 
+      "url": "http://chroniclingamerica.loc.gov/lccn/sn83045487/1916-01-29/ed-2/seq-5.json", 
+      "place": [
+        "Illinois--Cook--Chicago"
+      ], 
+      "page": ""
+    }, 
+    {
+      "sequence": 9, 
+      "county": [
+        "Cook"
+      ], 
+      "edition": null, 
+      "frequency": "Daily (except Sunday and holidays)", 
+      "id": "/lccn/sn83045487/1916-01-29/ed-1/seq-9/", 
+      "subject": [
+        "Chicago (Ill.)--Newspapers.", 
+        "Illinois--Chicago.--fast--(OCoLC)fst01204048"
+      ], 
+      "city": [
+        "Chicago"
+      ], 
+      "date": "19160129", 
+      "title": "The day book.", 
+      "end_year": 1917, 
+      "note": [
+        "\"An adless daily newspaper.\"", 
+        "Archived issues are available in digital format as part of the Library of Congress Chronicling America online collection.", 
+        "Available on microfilm;", 
+        "Description based on: Nov. 1, 1911.", 
+        "Issue for <Nov. 24, 1911> lacks vol., no., and chronological designation.", 
+        "Issue for Nov. 4, 1911 erroneously designated as Oct. 4, 1911.", 
+        "Issue for v. 3, no. 290 (Sept. 7, 1914) erroneously designated as v. 3, no. 300 (Sept. 7, 1914). The error in numbering continues.", 
+        "Issue for v. 5, no. 214 (June 7, 1916) erroneously designated as v. 5, no. 214 (June 6, 1916).", 
+        "Issue for v. 5, no. 7 (Oct. 5, 1915) erroneously designated as v. 5, no. 7 (Sept. 5, 1915).", 
+        "Issues <May 7-17, 1915> called also \"Moving Picture Edition.\"", 
+        "Issues have no page numbering.", 
+        "Saturdays have Noon and Final editions, Dec. 28, 1912-June 21, 1913; Saturdays have Noon and Last editions, June 28, 1913-<Dec. 13, 1913>; began issuing daily Noon and Last editions, Dec. 20, 1913-July 6, 1917.", 
+        "Vol. 5, no. 36 (Nov. 6, 1915) issue called also \"Garment Workers' Special Edition.\"", 
+        "Volume numbering begins with Nov. 20, 1911 issue."
+      ], 
+      "state": [
+        "Illinois"
+      ], 
+      "section_label": "", 
+      "type": "page", 
+      "place_of_publication": "Chicago, Ill.", 
+      "start_year": 1911, 
+      "edition_label": "NOON EDITION", 
+      "publisher": "N.D. Cochran", 
+      "language": [
+        "English"
+      ], 
+      "alt_title": [], 
+      "lccn": "sn83045487", 
+      "country": "Illinois", 
+      "ocr_eng": "OUTBURSTS OF EVERETT TRUE\nfJLJUL\n4&\n7? - 3e-rx T 'I ,Lflll\nf DID YOU ii\nMiss vjur ) A, OT f fcuFPH\nchosinc it our ) s ----r-1\n0 o\nCRACK THIS NUT\nThe killing of Birdeen Peterson,\naged 24, by Miss Olga Aagevedt, age\n21, at Stanwood last week was acci\ndental, a coroner's juryfoundv She\nshot herself and took poison and has\nrecovered.-naL\n-Deek Park, Wash., Jour-\nMules in mines at Nevada City,\nCal., like tobacco so well that they re\nfuse to work till given a \"chaw.\"", 
+      "batch": "batch_iune_hotel_ver01", 
+      "title_normal": "day book.", 
+      "url": "http://chroniclingamerica.loc.gov/lccn/sn83045487/1916-01-29/ed-1/seq-9.json", 
+      "place": [
+        "Illinois--Cook--Chicago"
+      ], 
+      "page": ""
+    }, 
+    {
+      "sequence": 4, 
+      "county": [
+        "Cook"
+      ], 
+      "edition": null, 
+      "frequency": "Daily (except Sunday and holidays)", 
+      "id": "/lccn/sn83045487/1913-11-08/ed-2/seq-4/", 
+      "subject": [
+        "Chicago (Ill.)--Newspapers.", 
+        "Illinois--Chicago.--fast--(OCoLC)fst01204048"
+      ], 
+      "city": [
+        "Chicago"
+      ], 
+      "date": "19131108", 
+      "title": "The day book.", 
+      "end_year": 1917, 
+      "note": [
+        "\"An adless daily newspaper.\"", 
+        "Archived issues are available in digital format as part of the Library of Congress Chronicling America online collection.", 
+        "Available on microfilm;", 
+        "Description based on: Nov. 1, 1911.", 
+        "Issue for <Nov. 24, 1911> lacks vol., no., and chronological designation.", 
+        "Issue for Nov. 4, 1911 erroneously designated as Oct. 4, 1911.", 
+        "Issue for v. 3, no. 290 (Sept. 7, 1914) erroneously designated as v. 3, no. 300 (Sept. 7, 1914). The error in numbering continues.", 
+        "Issue for v. 5, no. 214 (June 7, 1916) erroneously designated as v. 5, no. 214 (June 6, 1916).", 
+        "Issue for v. 5, no. 7 (Oct. 5, 1915) erroneously designated as v. 5, no. 7 (Sept. 5, 1915).", 
+        "Issues <May 7-17, 1915> called also \"Moving Picture Edition.\"", 
+        "Issues have no page numbering.", 
+        "Saturdays have Noon and Final editions, Dec. 28, 1912-June 21, 1913; Saturdays have Noon and Last editions, June 28, 1913-<Dec. 13, 1913>; began issuing daily Noon and Last editions, Dec. 20, 1913-July 6, 1917.", 
+        "Vol. 5, no. 36 (Nov. 6, 1915) issue called also \"Garment Workers' Special Edition.\"", 
+        "Volume numbering begins with Nov. 20, 1911 issue."
+      ], 
+      "state": [
+        "Illinois"
+      ], 
+      "section_label": "", 
+      "type": "page", 
+      "place_of_publication": "Chicago, Ill.", 
+      "start_year": 1911, 
+      "edition_label": "LAST EDITION", 
+      "publisher": "N.D. Cochran", 
+      "language": [
+        "English"
+      ], 
+      "alt_title": [], 
+      "lccn": "sn83045487", 
+      "country": "Illinois", 
+      "ocr_eng": "PETERSON-TROUT FIGHT WILL\nBE A HOT ONE\nPeoria, III., Nov. 8. Mrs. Florence\nBennett Peterson, secretary of the\nIllinois Equal Suffrage Ass'n, has\nbeen selected to run against Mrs.\nGrace Wilbur Trout as presidential\ncandidate at today's election. Mrs.\nCatherine Waugh McCulloch will\nnominate her.\nDr. Anna Blount and Mrs. Peterson\nhas issued a statement explaining\nthe cause of the very evident split\nin the ranks of the women's suffrage\nparty, in which they claim that a\nminority of five pf the ten or eleven\nboard members have stood with per\nsistence for parliamentary procedure,\nwhile Mrs. Trout has adopted the\nmethod of deciding beforehand what\nmotions should be made, thus caus\ning most questions to be decided first\nand discussed afterward.\n\"Such methods have made board\nmeetings seem like farce comedy,\"\nthe statement declares. \"Mrs. Trout\nhas refused to put questions present\ned and seconded in due form. .\n\"The president has repeatedly, and\nwe think, willfully, arrogated to her\nself the functions of the. board, as\nwhen she signed the lease of the new\nheadquarters without authority, and\nwhen, she signed a contract for the\nsuffrage edition of the Examiner, in\nvolving the honorable name of the\nboard. In fact, in most important\nmatters throughout the year she has\nacted and then asked the board to\nratify her action.\"\nMrs. Trout has strong support in\nthe convention and it is believed that\nshe has a good chance of re-election.\nCatherine Waugh McCulloch, pio\nneer suffragist of Illinois, today was\nhissed and Grace Wilbur Trout\ncheered in a demonstration that\ncaused the president's supporters to\nrise to their feet, fluttering their\nhandkerchiefs and cheering wildly.\nThe situation was dramatic. Mrs.\nTrout started the fireworks by de\nnouncing as \"lies\" published rumors\nthat the condition of the finances of\nthe association was open to investiga\ntion. She also attacked a signed\nstatement in which Dr. Anna Blount\nand Florence Bennett Peterson crit\nicized the administration of Presi\ndent Trout.\no o-\n\"V\nI as fldw sout-ir i\n(BE VOIW& TMflN (WELL- l\nTHflT! U(MJ 7LU V-r-\nJ WAS fl COSBL&R.V\n( WHAT OttY HflLF-SOLEX)\nOTHER. PCOftES SOLeS )\nVvMlCrt WAS NOT\n. atiiTe so bad\n\"fr'i-x d\n. nsajt&&&t!b&SMjiui", 
+      "batch": "batch_iune_delta_ver01", 
+      "title_normal": "day book.", 
+      "url": "http://chroniclingamerica.loc.gov/lccn/sn83045487/1913-11-08/ed-2/seq-4.json", 
+      "place": [
+        "Illinois--Cook--Chicago"
+      ], 
+      "page": ""
+    }, 
+    {
+      "sequence": 7, 
+      "county": [
+        "Cook"
+      ], 
+      "edition": null, 
+      "frequency": "Daily (except Sunday and holidays)", 
+      "id": "/lccn/sn83045487/1915-10-12/ed-1/seq-7/", 
+      "subject": [
+        "Chicago (Ill.)--Newspapers.", 
+        "Illinois--Chicago.--fast--(OCoLC)fst01204048"
+      ], 
+      "city": [
+        "Chicago"
+      ], 
+      "date": "19151012", 
+      "title": "The day book.", 
+      "end_year": 1917, 
+      "note": [
+        "\"An adless daily newspaper.\"", 
+        "Archived issues are available in digital format as part of the Library of Congress Chronicling America online collection.", 
+        "Available on microfilm;", 
+        "Description based on: Nov. 1, 1911.", 
+        "Issue for <Nov. 24, 1911> lacks vol., no., and chronological designation.", 
+        "Issue for Nov. 4, 1911 erroneously designated as Oct. 4, 1911.", 
+        "Issue for v. 3, no. 290 (Sept. 7, 1914) erroneously designated as v. 3, no. 300 (Sept. 7, 1914). The error in numbering continues.", 
+        "Issue for v. 5, no. 214 (June 7, 1916) erroneously designated as v. 5, no. 214 (June 6, 1916).", 
+        "Issue for v. 5, no. 7 (Oct. 5, 1915) erroneously designated as v. 5, no. 7 (Sept. 5, 1915).", 
+        "Issues <May 7-17, 1915> called also \"Moving Picture Edition.\"", 
+        "Issues have no page numbering.", 
+        "Saturdays have Noon and Final editions, Dec. 28, 1912-June 21, 1913; Saturdays have Noon and Last editions, June 28, 1913-<Dec. 13, 1913>; began issuing daily Noon and Last editions, Dec. 20, 1913-July 6, 1917.", 
+        "Vol. 5, no. 36 (Nov. 6, 1915) issue called also \"Garment Workers' Special Edition.\"", 
+        "Volume numbering begins with Nov. 20, 1911 issue."
+      ], 
+      "state": [
+        "Illinois"
+      ], 
+      "section_label": "", 
+      "type": "page", 
+      "place_of_publication": "Chicago, Ill.", 
+      "start_year": 1911, 
+      "edition_label": "LAST EDITION", 
+      "publisher": "N.D. Cochran", 
+      "language": [
+        "English"
+      ], 
+      "alt_title": [], 
+      "lccn": "sn83045487", 
+      "country": "Illinois", 
+      "ocr_eng": "PPPPPPPPPPPPPPWW?\nWALL STREET CLERKS UP ALL NIGHT WITH\n\"WAR BABIES!\"\nM 1 1 mill ii MwaMaw'v.iu'Auwy ffwwiii'iwiii 't'llMJg?\"S;'\"yiTriS\nBeowiiiiRos\nHere's a typical scene on Wail street these nights. The photo show3\nclerks asleep on cots in the busy brokerage offices.\no o\nJUST WHAT RIGHT HAS ANY ONE\nUNDER POLICE RULES?\nA complaint that he was refused\nthe right of counsel when \"he ap\npeared at the Warren av. police sta\ntion to make sure the booking of\nthree youthful prisoners was filed\nwith Chief of Police Healey by Att'y\nCharles B. Peterson.\nWalter Isser, 19; Walter Knowles,\n19, and John Crisby, 22, were picked\nup by the police at 10:30 p. m. last\nTuesday. The boys did not satisfy\nthe officer that questioned them and\nthey were taken first to the Shef\nfield av., then to the Warren av. station.\nTheir fathers, hearing that ' they\nwere locked up, phoned Peterson to\nget them booked and out on baiL\nWhen Peterson appeared he was\ntold he could not see the youths.\nSo he filed charges before Healey\nto see just what rights a detained\nperson has under the present police\nrule.\nTHE BASHFUL TAR\n\"And did youspeak to father about\nme?\"\n\"Yes.\"\n\"Then he gave his consent to our\nmarriage?\"\n\"Why-er-er I didn't get that far '\nI just said you were a fine girL\"\n.laa", 
+      "batch": "batch_iune_hotel_ver01", 
+      "title_normal": "day book.", 
+      "url": "http://chroniclingamerica.loc.gov/lccn/sn83045487/1915-10-12/ed-1/seq-7.json", 
+      "place": [
+        "Illinois--Cook--Chicago"
+      ], 
+      "page": ""
+    }, 
+    {
+      "sequence": 16, 
+      "county": [
+        "King", 
+        "King"
+      ], 
+      "edition": null, 
+      "frequency": "Semimonthly", 
+      "id": "/lccn/sn98047754/1907-11-15/ed-1/seq-16/", 
+      "subject": [
+        "Agriculture--Washington (State)--Newspapers.", 
+        "Agriculture.--fast--(OCoLC)fst00801355", 
+        "Livestock--Washington (State)--Newspapers.", 
+        "Livestock.--fast--(OCoLC)fst01000722", 
+        "Washington (State)--fast--(OCoLC)fst01204703", 
+        "Washington (State)--Newspapers."
+      ], 
+      "city": [
+        "Kent", 
+        "Seattle"
+      ], 
+      "date": "19071115", 
+      "title": "The ranch.", 
+      "end_year": 1914, 
+      "note": [
+        "\"A journal of the land and the home in the New West.\"--Publisher's statement.", 
+        "Archived issues are available in digital format as part of the Library of Congress Chronicling America online collection.", 
+        "Editor: Miller Freeman.", 
+        "Issues for Feb. 1, 1903-June 1, 1914 also called v. 20, no. 3-v. 35, no. 11.", 
+        "Official organ of: State Dairymen's Association and State Live Stock Breeders' Association, Sept. 1, 1902-June 1, 1903.", 
+        "Published in: Kent and Seattle, Wash., Oct. 1, 1909-; published variously by: Miller Freeman, The Ranch Co., or Freeman & Axling, Aug. 15, 1903-Dec. 1, 1905; by: Ranch Pub. Co., Dec. 15, 1905-"
+      ], 
+      "state": [
+        "Washington", 
+        "Washington"
+      ], 
+      "section_label": "", 
+      "type": "page", 
+      "place_of_publication": "Seattle, Wash.", 
+      "start_year": 1902, 
+      "edition_label": "", 
+      "publisher": "[s.n.", 
+      "language": [
+        "English"
+      ], 
+      "alt_title": [], 
+      "lccn": "sn98047754", 
+      "country": "Washington", 
+      "ocr_eng": "]6\nPETERSON BROS.\nTwo of the most attractive and\nenterprising mercantile stores in\nthe city of Arlington are those\nof Peterson Bros. This firm oper\nates both a general merchandise\nand dry goods store and a gentle\nmen's furnishing store at different\npoints along Arlington's main busi\nness street. The stock of goods in\nthese stores is as complete as one\nwould expect to find in a much\nlarger city.\nTHE MAMMOTH PLANT OF THE STANWOOD LUMBER COMPANY, WHICH ADDS MATERIALLY TO STANWOOD'S PAYROLL.\nSTANWOOD LUMBER CO.\nIn addition to being an agricultural cen\nter, Stanwood is also an important milling\ntown. The Stanwood Lumber Co.'s plant in\nthis city is one of the largest mills in Sno\nhomish County. It employs many men and\nadds very substantially to Stanwood's an\nnual payroll. The picture shown on this\npage gives a good idea of the size of the\nplant.\nTHE TWO STORES OF PETERSON BROTHERS AT ARLINGTON, WASH.\nINTERIOR OF THE OWL PHARMACY, ARLINGTON.\nTHE PALACE HOTEL, STANWOOD, WASH.\nTHE RANCH\nTHE OWL PHARMACY.\nThe excellent cut of the interior\nof the Owl Pharmacy of Arlington\nwhich is shown on this page gives\na very good idea of the fine stock,\nequipment and general attractive\nness of interior of this metropol\nitan drug store. One thing that im\npresses the stranger who goes to\nArlington is the number of fine\nstores of every sort. As the lead\ning pharmacy in the city, the Owl\nPharmacy certainly does its part\nin carrying out this impression.\nTHE PALACE HOTEL.\nThe person going to Stanwood may feol\nsure of good hotel accommodation. The\nPalace Hotel in this city is a popular and\nreasonably priced hostelry with modern con\nveniences and good accommodations. It\nis a popular stopping place for commercial\ntravelers and for hunters who come to the\nStanwood flats after ducks.", 
+      "batch": "batch_wa_cedar_ver01", 
+      "title_normal": "ranch.", 
+      "url": "http://chroniclingamerica.loc.gov/lccn/sn98047754/1907-11-15/ed-1/seq-16.json", 
+      "place": [
+        "Washington--King--Kent", 
+        "Washington--King--Seattle"
+      ], 
+      "page": "16"
+    }
+  ]
+}

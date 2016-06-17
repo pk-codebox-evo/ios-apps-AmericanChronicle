@@ -1,0 +1,44 @@
+disabled_rules:
+  - force_cast # UITableView and UICollectionView dequeue generic cell types
+  - function_parameter_count
+  - variable_name # Tests violate this rule
+
+opt_in_rules:
+  - missing_docs
+
+custom_rules:
+  no_header_comments: # rule identifier
+    name: "Header Comments" # rule name. optional.
+    regex: "(//.*\n//.*\n//.*AmericanChronicle.*\n//.*\n//  Created by.*\n//  Copyright.*\n//)" # matching pattern
+    match_kinds:
+      - comment
+    message: "Template header comments should be removed."
+
+excluded:
+  - Pods
+
+force_try:
+  severity: warning 
+
+function_body_length: 100
+
+line_length: 150
+
+type_body_length:
+  warning: 300
+  error: 400
+
+file_length:
+  warning: 500
+  error: 1200
+
+type_name:
+  min_length: 3
+  max_length: 40
+
+variable_name:
+  min_length: 3
+  excluded: # excluded via string array
+    - id
+
+reporter: "xcode" # reporter type (xcode, json, csv, checkstyle)
