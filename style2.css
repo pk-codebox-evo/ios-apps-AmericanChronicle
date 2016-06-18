@@ -1,0 +1,455 @@
+/* Responsive */
+
+@media screen and (max-width: 960px) {
+
+header, section.desc, section.video, section.feat, section.getitnow, section.social, .footer{
+	width: 720px !important;
+}
+
+section.video div.video_width{
+	width: 712px !important;
+}
+
+header, section.content, section.desc{
+	text-align: center !important;
+}
+
+section.content a{
+	margin-left: 0 !important;
+}
+
+section.title{
+	width: 100% !important;
+}
+
+section.media{
+	margin-top: 4em;
+}
+
+section.feat section.middle{
+	margin: 4em 10em !important;
+}
+
+}
+
+@media screen and (max-width: 720px) {
+
+header, section.desc, section.video, section.feat, section.getitnow, section.social, .footer{
+	width: 512px !important;
+}
+
+section.video div.video_width{
+	width: 504px !important;
+}
+
+header, section.content, section.desc{
+	text-align: center !important;
+}
+
+section.content a{
+	margin-left: 0 !important;
+}
+
+section.title{
+	width: 100% !important;
+}
+
+section.media{
+	margin-top: 4em;
+}
+
+section.feat section.middle{
+	margin: 4em 2em !important;
+}
+
+}
+
+@media screen and (max-width: 512px) {
+
+body{
+	background-position: 0 -60px !important;
+}
+
+header, section.desc, section.media, section.video, section.feat, section.getitnow, section.social, .footer{
+	width: 250px !important;
+}
+
+section.video div.video_width{
+	width: 242px !important;
+}
+
+header h1{
+	font-size: 2em !important;
+}
+
+header, section.content, section.desc{
+	text-align: center !important;
+}
+
+section.content{
+height: 18.5em !important;
+}
+
+section.content a{
+	margin-left: 0 !important;
+}
+
+section.title{
+	width: 100% !important;
+}
+
+section.media{
+	margin-top: 4em;
+}
+
+.appstore{
+	margin-right: 0 !important;
+}
+
+section.feat section.middle{
+	margin: 4em 0 !important;
+}
+
+#slides{
+	width: 205px !important;
+	height: 370px !important;
+	background: url('images/iphone_small.png') no-repeat !important;
+	padding: 74px 20px !important;
+}
+
+section.media img{
+	max-width: 205px !important;
+}
+
+.slides_container{
+	width: 242px !important;
+	text-align: left;
+	height: 370px !important;
+}
+
+}
+
+/* -----------------  *  ----------------- */
+
+*{
+	margin: 0;
+	padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 { 
+	/*reset for mobile browsers */
+    font-weight: normal;
+}
+
+body{
+	background: url('images/bg.jpg') repeat-x #fff;
+	font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+}
+
+a{
+	text-decoration: none;
+	color: #4698ff;
+}
+
+a:hover{
+	color: #5a5a5a;
+}
+
+/* -----------------  Header  ----------------- */
+
+header{
+	width: 960px;
+	margin-top: 2.5em;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+section.title{
+	width: 575px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+section.content{
+	width: 100%;
+	display: inline-block;
+	height: 21.9em;
+}
+
+section.content a{
+	display: inline-block;
+	text-align: center;
+	margin-top: 3.2em;
+	margin-left: 1.5em;
+}
+
+section.content a img{
+	border: none;
+}
+
+header h1{
+	color: #fff;
+	text-shadow: 0 1px 3px rgba( 0, 0, 0, 0.3);
+	font-size: 5em;
+	margin-top: 0.2em;
+}
+
+section.media{
+	width: 380px;
+	display: inline-block;
+}
+
+#slides{
+	width:	320px;
+	height:	569px;
+	background: url('images/iphone.png') no-repeat;
+	padding: 117px 31px;
+}
+
+.slides_container {
+	width:	320px;
+	height:	569px;
+}
+
+.slides_container div {
+	width:	320px;
+	height:	569px;
+	display:	block;
+}
+
+/* -----------------  Header - Desc  ----------------- */
+
+section.desc{
+	width: 470px;
+	display: inline-block;
+}
+
+section.desc h2{
+	font-size: 2em;
+	font-weight: normal;
+	line-height: 36px;
+	color: #282828;
+	margin-top: 1em;
+}
+
+section.desc p{
+	font-size: 0.875em;
+	line-height: 22px;
+	color: #666666;
+	margin: 1em 0 2em 0;
+}
+
+section.desc a.button{
+	text-indent: -9999px;
+	width: 214px;
+	height: 75px;
+	display: inline-block;
+}
+
+.appstore{
+	background: url('images/appstore.png') no-repeat;
+	margin-right: 2em;
+	margin-bottom: 1em;
+}
+
+.gplay{
+	background: url('images/gplay.png') no-repeat;
+	margin-bottom: 1em;
+}
+
+section.desc a.button:hover{
+	opacity: 0.8;
+}
+
+/* -----------------  Section - Video  ----------------- */
+
+section.video{
+	width: 960px;
+	margin: 15em auto 5em auto;
+	text-align: center;
+}
+
+section.video div.video_width{
+	width: 700px;
+	display: inline-block;
+}
+
+section.video div.video_width iframe{
+	border: 4px solid #d5d8db;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+}
+
+/* -----------------  Section - Features  ----------------- */
+
+section.feat_outer{
+	width: 100%;
+	display: inline-block;
+	background-color: #eaeef2;
+}
+
+section.feat{
+	width: 960px;
+	margin: 9em auto -10em auto;
+	text-align: center;
+	position: relative;
+}
+
+section.feat section{
+	display: inline-block;
+	width: 240px;
+	vertical-align: top;
+} 
+
+section.feat section.middle{
+	margin: 0 6.8em;
+}
+
+section.feat h2{
+	font-size: 1.125em;
+	color: #2e2e2e;
+	line-height: 22px;
+	margin: 0.7em 0;
+}
+
+section.feat p{
+	font-size: 0.750em;
+	color: #666666;
+}
+
+/* -----------------  Section - Chronicling America  ----------------- */
+
+section.chronam{
+	width: 960px;
+	margin: 0 auto;
+	text-align: center;
+	border-top: 1px solid #d2d6d9;
+	padding: 2em 0;
+}
+
+section.chronam h2{
+	color: #2e2e2e;
+	margin-bottom: 0.6em;
+	font-size: 1.6em;
+	font-weight: normal;
+}
+
+section.chronam a{
+	display: inline-block;
+}
+
+section.chronam a:hover{
+	opacity: 0.8;
+}
+
+/* -----------------  Section - Social  ----------------- */
+
+section.social{
+	width: 960px;
+	margin: 0 auto;
+	text-align: center;
+	border-top: 1px solid #d2d6d9;
+	padding: 2em 0;
+}
+
+section.social h2{
+	color: #2e2e2e;
+	margin-bottom: 0.6em;
+	font-size: 1.6em;
+	font-weight: normal;
+}
+
+section.social a{
+	display: inline-block;
+}
+
+section.social a:hover{
+	opacity: 0.8;
+}
+
+section.social a span.fb{
+	width: 52px;
+	height: 52px;
+	display: inline-block;
+	background: url('images/fb.png') no-repeat;
+}
+
+section.social a span.twitter{
+	width: 52px;
+	height: 52px;
+	display: inline-block;
+	background: url('images/twitter.png') no-repeat;
+	margin: 0 1em;
+}
+
+section.social a span.mail{
+	width: 52px;
+	height: 52px;
+	display: inline-block;
+	background: url('images/mail.png') no-repeat;
+}
+
+/* -----------------  Section - GetItNow  ----------------- */
+
+section.getitnow{
+	width: 960px;
+	margin: 0 auto;
+	text-align: center;
+	border-top: 1px solid #d2d6d9;
+	padding: 2em 0;
+}
+
+section.getitnow h2{
+	color: #2e2e2e;
+	margin-bottom: 1em;
+	font-size: 1.6em;
+	font-weight: normal;
+}
+
+section.getitnow a{
+	display: inline-block;
+}
+
+section.getitnow a:hover{
+	opacity: 0.8;
+}
+
+section.getitnow a.button{
+	text-indent: -9999px;
+	width: 214px;
+	height: 75px;
+	display: inline-block;
+}
+
+/* -----------------  Footer ----------------- */
+
+.footer_outer{
+	width: 100%;
+	background-color: #eaeef2;
+}
+
+.footer{
+	border-top: 1px solid #c7cbce;
+	padding: 0.6em 0;
+	width: 960px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.footer p{
+	font-size: 0.750em;
+	color: #9c9c9c;
+}
+
+#toTop{
+	position: fixed;
+	bottom: 30px;
+	cursor: pointer;
+	right: 20px;
+	z-index: 9999;
+}
+
+#toTop:hover{
+	opacity: 0.8;
+}
