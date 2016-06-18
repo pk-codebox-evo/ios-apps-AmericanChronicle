@@ -16,6 +16,7 @@ class AmericanChronicleUITests: XCTestCase {
     }
 
     func testHappyPath() {
+
         let app = XCUIApplication()
         app.tables.textFields["Search all Newspapers"].typeText("mark twain")
         snapshot("01Search")
@@ -37,6 +38,8 @@ class AmericanChronicleUITests: XCTestCase {
             .elementBoundByIndex(0).childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Other).element
         snapshot("02PageZoomedOut")
         element.pinchWithScale(2.0, velocity: 1.0)
+
+        XCUIDevice.sharedDevice().orientation = .LandscapeLeft
 
         snapshot("03PageZoomedIn")
         app.buttons["Share"].tap()

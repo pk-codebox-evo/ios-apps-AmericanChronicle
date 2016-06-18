@@ -2,16 +2,11 @@
 
 ## The App ##
 
-American Chronicle provides mobile access to the collection of digitized U.S. newspapers made available by Chronicling America. It uses the project's' public API.
+American Chronicle provides mobile access to the collection of digitized U.S. newspapers made available by Chronicling America. It uses the project's public API.
 
 Chronicling America is a collaboration between the National Endowment for the Humanities and the Library of Congress to develop an Internet-based, searchable database of U.S. newspapers.
 
 Note: American Chronicle is an independent product and is not associated in any way with the Chronicling America project, the Library of Congress, or the National Endowment for the Humanities.
-
-(Screenshots)
-
-(A link to the product website)
-(A link to the app in the App Store)
 
 ## The Code ##
 

@@ -52,16 +52,6 @@
                ReferencedContainer = "container:AmericanChronicle.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "97E4C23F1CF8681500A0E8A3"
-               BuildableName = "ChroniclingAmericaIntegrationTests.xctest"
-               BlueprintName = "ChroniclingAmericaIntegrationTests"
-               ReferencedContainer = "container:AmericanChronicle.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
@@ -103,6 +93,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "97BDE10E1B76ED6B00A3E57F"
+            BuildableName = "AmericanChronicle.app"
+            BlueprintName = "AmericanChronicle"
+            ReferencedContainer = "container:AmericanChronicle.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
